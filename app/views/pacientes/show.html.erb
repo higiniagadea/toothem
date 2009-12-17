@@ -22,10 +22,14 @@
   <fieldset class="pacientes-data">
     <legend>Datos del paciente</legend>
     <table class="show-data">
-    
+
+      
       <tr>
         <td class="fieldname">Nombre y Apellido</td>
-        <td class="fielddata"><%=h @paciente.nombre %></td>
+        <td class="fielddata" id="fnombre" 
+                       onmouseover="ttip_edit_field('fnombre','nombre','<%=@paciente.id%>')">
+            <%=h @paciente.nombre %>
+        </td>
       </tr>
       <tr class="odd">
         <td class="fieldname">Documento</td>
@@ -118,7 +122,6 @@ $(document).ready(function()
    {
       $(this).qtip(
       {
-         //content: '<a href="#" onclick="Boxy.load(\'<%= changephoto_paciente_url(@paciente) %>\')">Editar</a>', // Give it some content //
          content: '<a onclick="Boxy.load(\'<%= changephoto_paciente_url(@paciente) %>\',{modal: true})">Editar</a>',
          position: 'topLeft', // Set its position
          hide: {
@@ -131,4 +134,5 @@ $(document).ready(function()
       });
    });
 });
+
 </script>

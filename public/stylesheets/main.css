@@ -12,6 +12,9 @@ body {
     background-color:#7095ad;
     text-align:center;
 }
+a {
+    cursor:pointer;
+}
 a:link{
     color: #0099CC;
     text-decoration:none;
@@ -232,8 +235,17 @@ ul {
     background-repeat:no-repeat;
     text-indent:25px;
     font-weight: bold;
+}
 
-
+#error{
+    border: #FF0000 1px solid;
+    margin:10px;
+    padding: 5px;
+    background-image: url('/images/exclamation.png');
+    background-position:center left;
+    background-repeat:no-repeat;
+    text-indent:25px;
+    font-weight: bold;
 }
 
 
@@ -473,12 +485,12 @@ table {
     background: #E8EDFF;
 }
 .show-data td.fieldname{
-    padding:3px;
+    padding:4px;
     font-weight: bold;
     width:180px;
 }
 .show-data td.fielddata{
-    padding:3px;
+    padding:4px;
      width:340px;
 }
 
@@ -515,6 +527,8 @@ table {
     width:250px;
     border: gray 1px solid;
 }
+
+
 
 /* divs */
 

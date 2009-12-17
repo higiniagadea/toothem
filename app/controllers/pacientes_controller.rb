@@ -73,6 +73,18 @@ class PacientesController < ApplicationController
     @paciente = Paciente.find(params[:id])
   end
 
+  def editfield
+    @paciente = Paciente.find(params[:id])
+    #render :update do |page|
+     # page.replace_html params[:rowid], :partial => 'editfield'
+
+
+    #end
+
+    render :partial => 'editfield'
+
+  end
+
   # POST /pacientes
   # POST /pacientes.xml
   def create

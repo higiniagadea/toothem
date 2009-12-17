@@ -12,7 +12,7 @@ class ArchivosController < ApplicationController
       flash[:notice] = 'Imagen cambiada'
       redirect_to(@paciente)
     else
-      flash[:notice] = 'Error'
+      flash[:error] = 'Error al subir el archivo. El archivo es una imagen?'
       redirect_to(@paciente)
     end
 
