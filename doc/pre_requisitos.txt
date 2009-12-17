@@ -1,0 +1,20 @@
+PRE REQUISITOS PARA LA APLICACIÓN
+
+Gems necesarios:
+    - postgresql (http://rubyforge.org/projects/ruby-pg). descargar el gem e instalar con gem --local.
+      Luego de la instalación si se produce error con la leyenda: FATAL la autentificación falló para el usuario xx,
+      se deben seguir los siguientes pasos:
+      Para evitarlo necesitas editar el archivo /etc/postgresql/8.3/main/pg_hba.conf y cambiar el esquema de autentificación. Abre el archivo con privilegios de root:
+
+      sudo gedit /etc/postgresql/8.3/main/pg_hba.conf
+
+        Y cambia esto:
+
+        # "local" is for Unix domain socket connections only
+        local all all ident sameuser
+
+        # "local" is for Unix domain socket connections only
+        local all all md5
+
+        sudo /etc/init.d/postgresql-8.3 restart
+

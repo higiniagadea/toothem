@@ -1,0 +1,134 @@
+<div id="pacientes-screen">
+  <div id="pacientes-photo">
+    <% if @paciente.archivo_id == 0 %>
+      <%= image_tag('nouser.jpg') %>
+    <%else%>
+      <%= image_tag archivo_path(@archivo), :alt => 'imagen del paciente' %>
+    <%end%>
+
+  </div>
+  <div id="pacientes-options">
+    <div id="pacientes-nombre">
+      <%=h @paciente.nombre %>
+    </div>
+    <div id="pacientes-actions">
+      <%= link_to image_tag('pencil.png'), edit_paciente_path(@paciente) %> |
+      <%= link_to image_tag('cancel.png'), @paciente, :confirm => 'Esta seguro que desea eliminar el paciente '+@paciente.nombre+'?', :method => :delete %> |
+      <%= link_to image_tag('printer.png'), edit_paciente_path(@paciente) %>
+
+    </div>
+
+  </div>
+  <fieldset class="pacientes-data">
+    <legend>Datos del paciente</legend>
+    <table class="show-data">
+    
+      <tr>
+        <td class="fieldname">Nombre y Apellido</td>
+        <td class="fielddata"><%=h @paciente.nombre %></td>
+      </tr>
+      <tr class="odd">
+        <td class="fieldname">Documento</td>
+        <td class="fielddata"><%=h @paciente.tipo_documento %> <%=h @paciente.matricula %></td>
+      </tr>
+
+      <tr >
+        <td class="fieldname">Fecha Nacimiento</td>
+        <td class="fielddata"><%=h @paciente.fecha_nacimiento.strftime('%d/%m/%Y') %></td>
+      </tr>
+      <tr class="odd">
+        <td class="fieldname">Sexo</td>
+        <td class="fielddata"><%=h @paciente.sexo %></td>
+      </tr>
+      <tr >
+        <td class="fieldname">Estado Civil</td>
+        <td class="fielddata"><%=h @paciente.estado_civil%></td>
+      </tr>
+      <tr class="odd">
+        <td class="fieldname">Domicilio particular</td>
+        <td class="fielddata"><%=h @paciente.domicilio_particular %></td>
+      </tr>
+      <tr>
+        <td class="fieldname">Domicilio laboral</td>
+        <td class="fielddata"><%=h @paciente.domicilio_laboral%></td>
+      </tr>
+      <tr class="odd">
+        <td class="fieldname">Grupo sanguíneo</td>
+        <td class="fielddata"><%=h @paciente.grupo_sanguineo %></td>
+      </tr>
+      <tr>
+        <td class="fieldname">Teléfono particular</td>
+        <td class="fielddata"><%=h @paciente.telefono_particular %></td>
+      </tr>
+      <tr class="odd">
+        <td class="fieldname">Teléfono laboral</td>
+        <td class="fielddata"><%=h @paciente.telefono_laboral %></td>
+      </tr>
+      <tr >
+        <td class="fieldname">Móvil</td>
+        <td class="fielddata"><%=h @paciente.movil%></td>
+      </tr>
+      <tr class="odd">
+        <td class="fieldname">Nivel escolar</td>
+        <td class="fielddata"><%=h @paciente.nivel_escolar %></td>
+      </tr>
+      <tr >
+        <td class="fieldname">Profesión</td>
+        <td class="fielddata"><%=h @paciente.profesion %></td>
+      </tr>
+      <tr class="odd">
+        <td class="fieldname">Ocupación</td>
+        <td class="fielddata"><%=h @paciente.ocupacion%></td>
+      </tr>
+
+    </table>
+  </fieldset>
+  <fieldset style="margin-left: 103px" class="pacientes-data">
+    <legend>Obra Social</legend>
+    <table class="show-data">
+      <tr>
+        <td class="fieldname">Obra Social</td>
+        <td class="fielddata"><%=h @paciente.titular.obra_social.nombre %></td>
+      </tr>
+      <tr class="odd">
+        <td class="fieldname">Numero afiliado</td>
+        <td class="fielddata"> <%=h @paciente.nro_afiliado %></td>
+      </tr>
+      <tr>
+        <td class="fieldname">Titular</td>
+        <td class="fielddata"> <%=h @paciente.titular.nombre %></td>
+      </tr>
+      <tr class="odd">
+        <td class="fieldname">Matrícula</td>
+        <td class="fielddata"> <%=h @paciente.titular.matricula %></td>
+      </tr>
+     </table>
+
+  </fieldset>
+    
+  
+  <div style="clear:both;"></div>
+</div>
+<script type="text/javascript">
+// Only create tooltips when document is ready
+$(document).ready(function()
+{
+   // Use the each() method to gain access to each of the elements attributes
+   $('#pacientes-photo img').each(function()
+   {
+      $(this).qtip(
+      {
+         //content: '<a href="#" onclick="Boxy.load(\'<%= changephoto_paciente_url(@paciente) %>\')">Editar</a>', // Give it some content //
+         content: '<a onclick="Boxy.load(\'<%= changephoto_paciente_url(@paciente) %>\',{modal: true})">Editar</a>',
+         position: 'topLeft', // Set its position
+         hide: {
+            fixed: true // Make it fixed so it can be hovered over
+         },
+         style: {
+            padding: '5px 15px', // Give it some extra padding
+            name: 'blue' // And style it with the preset dark theme
+         }
+      });
+   });
+});
+</script>

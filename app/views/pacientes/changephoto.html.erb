@@ -1,0 +1,32 @@
+<div>
+  <b>Cambiar imagen del paciente <%=  @paciente.nombre %></b><br/><br/>
+  <table>
+    <tr>
+      <td>Imagen actual:</td>
+      <td><% if @paciente.archivo_id == 0 %>
+            <%= "ninguna" %>
+          <%else%>
+            <%= image_tag archivo_path(@archivo_ant), :alt => 'imagen del paciente' %>
+          <%end%>
+      </td>
+    </tr>
+    <tr>
+      <td>Nueva imagen:</td>
+      <td>
+         <% form_for(:archivo, :url => archivos_path,
+                              :html => { :multipart => true }) do |f| -%>
+          <p>
+            <label for="archivo">Seleccione imagen:</label>
+            <%= f.file_field :uploaded_data %>
+            <%= hidden_field :paciente,:id,"value"=>@paciente.id %>
+          </p>
+          <p>
+            <%= submit_tag 'Nuevo' %>
+          </p>
+         <% end -%>
+
+      </td>
+    </tr>
+  </table>
+<a class="close">Cerrar</a>
+</div>

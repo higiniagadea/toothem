@@ -1,0 +1,33 @@
+<p>
+  <b>Nombre:</b>
+  <%=h @profesional.nombre %>
+</p>
+
+<p>
+  <b>Documento:</b>
+  <%=h @profesional.documento %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%=h @profesional.email %>
+</p>
+
+<p>
+  <b>Direccion:</b>
+  <%=h @profesional.direccion %>
+</p>
+
+<p>
+  <b>Telefono:</b>
+  <%=h @profesional.telefono %>
+</p>
+
+<p>
+  <b>Matricula:</b>
+  <%=h @profesional.matricula %>
+</p>
+
+
+<%= link_to 'Editar', edit_profesional_path(@profesional) %> |
+<%= link_to 'Volver', profesionales_path %>

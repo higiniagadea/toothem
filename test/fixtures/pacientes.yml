@@ -1,0 +1,37 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  nombre: MyString
+  tipo_documento: MyString
+  matricula: MyString
+  sexo: MyString
+  estado_civil: MyString
+  domicilio_particular: MyString
+  domicilio_laboral: MyString
+  fecha_nacimiento: 2009-12-10
+  grupo_sanguineo: MyString
+  telefono_particular: MyString
+  telefono_laboral: MyString
+  movil: MyString
+  profesion: MyString
+  ocupacion: MyString
+  nivel_escolar: MyString
+  numero_afiliado: MyString
+
+two:
+  nombre: MyString
+  tipo_documento: MyString
+  matricula: MyString
+  sexo: MyString
+  estado_civil: MyString
+  domicilio_particular: MyString
+  domicilio_laboral: MyString
+  fecha_nacimiento: 2009-12-10
+  grupo_sanguineo: MyString
+  telefono_particular: MyString
+  telefono_laboral: MyString
+  movil: MyString
+  profesion: MyString
+  ocupacion: MyString
+  nivel_escolar: MyString
+  numero_afiliado: MyString

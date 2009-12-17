@@ -1,0 +1,35 @@
+<h1>Nuevo profesional</h1>
+
+<% form_for(@profesional) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :nombre %><br />
+    <%= f.text_field :nombre %>
+  </p>
+  <p>
+    <%= f.label :documento %><br />
+    <%= f.text_field :documento %>
+  </p>
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :direccion %><br />
+    <%= f.text_field :direccion %>
+  </p>
+  <p>
+    <%= f.label :telefono %><br />
+    <%= f.text_field :telefono %>
+  </p>
+  <p>
+    <%= f.label :matricula %><br />
+    <%= f.text_field :matricula %>
+  </p>
+  <p>
+    <%= f.submit 'Crear' %>
+  </p>
+<% end %>
+
+<%= link_to 'Volver', profesionales_path %>

@@ -1,0 +1,21 @@
+<div id="login-form">
+<h1>Nuevo usuario</h1>
+<% @usuario.password = @usuario.password_confirmation = nil %>
+
+<%= error_messages_for :usuario %>
+<% form_for :usuario, :url => usuarios_path do |f| -%>
+<p><%= label_tag 'Nombre de usuario' %><br/>
+<%= f.text_field :login %></p>
+
+<p><%= label_tag 'Email' %><br/>
+<%= f.text_field :email %></p>
+
+<p><%= label_tag 'Contraseña' %><br/>
+<%= f.password_field :password %></p>
+
+<p><%= label_tag 'password_confirmation', 'Confirmación' %><br/>
+<%= f.password_field :password_confirmation %></p>
+
+<p><%= submit_tag 'Nuevo Usuario!' %></p>
+<% end -%>
+</div>

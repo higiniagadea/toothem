@@ -1,0 +1,30 @@
+<h1>Listado de profesionales</h1>
+
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Documento</th>
+    <th>Email</th>
+    <th>Direccion</th>
+    <th>Telefono</th>
+    <th>Matricula</th>
+  </tr>
+
+<% @profesionales.each do |profesional| %>
+  <tr>
+    <td><%=h profesional.nombre %></td>
+    <td><%=h profesional.documento %></td>
+    <td><%=h profesional.email %></td>
+    <td><%=h profesional.direccion %></td>
+    <td><%=h profesional.telefono %></td>
+    <td><%=h profesional.matricula %></td>
+    <td><%= link_to 'Ver', profesional %></td>
+    <td><%= link_to 'Editar', edit_profesional_path(profesional) %></td>
+    <td><%= link_to 'Borrar', profesional, :confirm => 'Esta seguro?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Nuevo profesional', new_profesional_path %>

@@ -1,0 +1,50 @@
+<h1>Listing pacientes</h1>
+
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Tipo documento</th>
+    <th>Matricula</th>
+    <th>Sexo</th>
+    <th>Estado civil</th>
+    <th>Domicilio particular</th>
+    <th>Domicilio laboral</th>
+    <th>Fecha nacimiento</th>
+    <th>Grupo sanguineo</th>
+    <th>Telefono particular</th>
+    <th>Telefono laboral</th>
+    <th>Movil</th>
+    <th>Profesion</th>
+    <th>Ocupacion</th>
+    <th>Nivel escolar</th>
+    <th>Numero afiliado</th>
+  </tr>
+
+<% @pacientes.each do |paciente| %>
+  <tr>
+    <td><%=h paciente.nombre %></td>
+    <td><%=h paciente.tipo_documento %></td>
+    <td><%=h paciente.matricula %></td>
+    <td><%=h paciente.sexo %></td>
+    <td><%=h paciente.estado_civil %></td>
+    <td><%=h paciente.domicilio_particular %></td>
+    <td><%=h paciente.domicilio_laboral %></td>
+    <td><%=h paciente.fecha_nacimiento %></td>
+    <td><%=h paciente.grupo_sanguineo %></td>
+    <td><%=h paciente.telefono_particular %></td>
+    <td><%=h paciente.telefono_laboral %></td>
+    <td><%=h paciente.movil %></td>
+    <td><%=h paciente.profesion %></td>
+    <td><%=h paciente.ocupacion %></td>
+    <td><%=h paciente.nivel_escolar %></td>
+    <td><%=h paciente.numero_afiliado %></td>
+    <td><%= link_to 'Show', paciente %></td>
+    <td><%= link_to 'Edit', edit_paciente_path(paciente) %></td>
+    <td><%= link_to 'Destroy', paciente, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New paciente', new_paciente_path %>

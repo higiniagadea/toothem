@@ -1,0 +1,75 @@
+<h1>New paciente</h1>
+
+<% form_for(@paciente) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :nombre %><br />
+    <%= f.text_field :nombre %>
+  </p>
+  <p>
+    <%= f.label :tipo_documento %><br />
+    <%= f.text_field :tipo_documento %>
+  </p>
+  <p>
+    <%= f.label :matricula %><br />
+    <%= f.text_field :matricula %>
+  </p>
+  <p>
+    <%= f.label :sexo %><br />
+    <%= f.text_field :sexo %>
+  </p>
+  <p>
+    <%= f.label :estado_civil %><br />
+    <%= f.text_field :estado_civil %>
+  </p>
+  <p>
+    <%= f.label :domicilio_particular %><br />
+    <%= f.text_field :domicilio_particular %>
+  </p>
+  <p>
+    <%= f.label :domicilio_laboral %><br />
+    <%= f.text_field :domicilio_laboral %>
+  </p>
+  <p>
+    <%= f.label :fecha_nacimiento %><br />
+    <%= f.date_select :fecha_nacimiento %>
+  </p>
+  <p>
+    <%= f.label :grupo_sanguineo %><br />
+    <%= f.text_field :grupo_sanguineo %>
+  </p>
+  <p>
+    <%= f.label :telefono_particular %><br />
+    <%= f.text_field :telefono_particular %>
+  </p>
+  <p>
+    <%= f.label :telefono_laboral %><br />
+    <%= f.text_field :telefono_laboral %>
+  </p>
+  <p>
+    <%= f.label :movil %><br />
+    <%= f.text_field :movil %>
+  </p>
+  <p>
+    <%= f.label :profesion %><br />
+    <%= f.text_field :profesion %>
+  </p>
+  <p>
+    <%= f.label :ocupacion %><br />
+    <%= f.text_field :ocupacion %>
+  </p>
+  <p>
+    <%= f.label :nivel_escolar %><br />
+    <%= f.text_field :nivel_escolar %>
+  </p>
+  <p>
+    <%= f.label :nro_afiliado %><br />
+    <%= f.text_field :nro_afiliado %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', pacientes_path %>
