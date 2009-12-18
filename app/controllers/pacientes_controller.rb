@@ -75,15 +75,30 @@ class PacientesController < ApplicationController
 
   def editfield
     @paciente = Paciente.find(params[:id])
-    #render :update do |page|
-     # page.replace_html params[:rowid], :partial => 'editfield'
+    @value = @paciente[params[:fieldname]]
 
-
-    #end
 
     render :partial => 'editfield'
 
   end
+  def updatefield
+    @paciente = Paciente.find(params[:id])
+    respond_to do |format|
+      if @paciente.update_attributes(params[:paciente])
+        format.html{
+          render :update do |page|
+            page["f#{params[:pacientes][:fieldname]}"].replace_html params[:paciente]["#{params[:pacientes][:fieldname]}"]
+          end
+        }
+      else
+        render :update do |page|
+          page["error_messages_for_#{params[:pacientes][:fieldname]}"].replace_html "error_messages_for"
+
+        end
+      end
+    end
+  end
+
 
   # POST /pacientes
   # POST /pacientes.xml

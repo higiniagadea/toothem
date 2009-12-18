@@ -1,5 +1,7 @@
-<%  form_remote_for(@paciente) do |f|   %>
+<%  form_remote_for(@paciente, :url=>updatefield_paciente_url(@paciente), :html=>{:id => 'single-form'}) do |f|   %>
 
-<%= f.text_field :nombre %><%= submit_tag 'guardar' %>
-
+<input type="text" name="paciente[<%= params[:fieldname] %>]" value="<%= @value %>"></input>
+<input type="hidden" name="pacientes[fieldname]" value="<%= params[:fieldname] %>"></input>
+<input style="vertical-align:middle" type="image" src="/images/16/disk.png"></input>
+<div style="color:red" id="error_messages_for_<%=  params[:fieldname]%>"></div>
 <% end %>

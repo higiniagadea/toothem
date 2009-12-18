@@ -491,7 +491,8 @@ table {
 }
 .show-data td.fielddata{
     padding:4px;
-     width:340px;
+    width:340px;
+    
 }
 
 /*-----------------FORMS STYLES ---------------------------*/
@@ -528,7 +529,16 @@ table {
     border: gray 1px solid;
 }
 
+#single-form{
+    margin:0;
+}
+#single-form input[type='text']{
+    font-size:12px;
+    height:18px;
 
+    border: #eaeaea 1px solid
+
+}
 
 /* divs */
 

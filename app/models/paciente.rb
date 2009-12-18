@@ -4,7 +4,8 @@ class Paciente < ActiveRecord::Base
   belongs_to :archivo
 
   has_many :fichas
-  
+
+  validates_presence_of :nombre, :message => 'Nombre y apellido no puede estar en blanco'
 
 
 
