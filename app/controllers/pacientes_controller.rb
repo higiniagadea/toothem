@@ -88,13 +88,26 @@ class PacientesController < ApplicationController
         format.html{
           render :update do |page|
             page["f#{params[:pacientes][:fieldname]}"].replace_html params[:paciente]["#{params[:pacientes][:fieldname]}"]
+            if params[:pacientes][:fieldname] == "nombre"
+              page["pacientes-nombre"].replace_html params[:paciente]["#{params[:pacientes][:fieldname]}"]
+            end
+            if params[:pacientes][:fieldname] == "matricula"
+              page["f#{params[:pacientes][:fieldname]}"].replace_html params[:paciente][:tipo_documento] +" "+ params[:paciente]["#{params[:pacientes][:fieldname]}"]
+            end
+            if params[:pacientes][:fieldname] == "fecha_nacimiento"
+              page["f#{params[:pacientes][:fieldname]}"].replace_html @paciente.fecha_nacimiento.strftime('%d/%m/%Y')
+            end
           end
         }
       else
-        render :update do |page|
-          page["error_messages_for_#{params[:pacientes][:fieldname]}"].replace_html "error_messages_for"
+        format.html{
+          render :update do |page|
+            page["error_messages_for_#{params[:pacientes][:fieldname]}"].replace_html nested_error_messages_for :paciente
 
-        end
+
+
+          end
+        }
       end
     end
   end

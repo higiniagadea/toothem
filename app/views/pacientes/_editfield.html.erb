@@ -1,7 +1,17 @@
 <%  form_remote_for(@paciente, :url=>updatefield_paciente_url(@paciente), :html=>{:id => 'single-form'}) do |f|   %>
-
-<input type="text" name="paciente[<%= params[:fieldname] %>]" value="<%= @value %>"></input>
-<input type="hidden" name="pacientes[fieldname]" value="<%= params[:fieldname] %>"></input>
-<input style="vertical-align:middle" type="image" src="/images/16/disk.png"></input>
-<div style="color:red" id="error_messages_for_<%=  params[:fieldname]%>"></div>
+  <%if params[:fieldname] == "matricula"%>
+    <select name="paciente[tipo_documento]">
+      <%=  options_for_select([ "D.N.I.", "L.E.","C.U.I.T.", "C.I." ], @paciente.tipo_documento)%>
+    </select>
+    <input type="text" name="paciente[<%= params[:fieldname] %>]" value="<%= @value %>"></input>
+    
+  <%elsif params[:fieldname] == "fecha_nacimiento"%>
+    <%=  f.date_select :fecha_nacimiento   %>
+  <%else%>
+    <input type="text" name="paciente[<%= params[:fieldname] %>]" value="<%= @value %>"></input>
+    
+  <%end%>
+    <input type="hidden" name="pacientes[fieldname]" value="<%= params[:fieldname] %>"></input>
+    <input style="vertical-align:middle" type="image" src="/images/16/disk.png"></input>
+    <span style="color:red" id="error_messages_for_<%=  params[:fieldname]%>"></span>
 <% end %>

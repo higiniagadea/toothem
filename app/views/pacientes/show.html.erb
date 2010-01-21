@@ -13,7 +13,7 @@
     </div>
     <div id="pacientes-actions">
       <%= link_to image_tag('pencil.png'), edit_paciente_path(@paciente) %> |
-      <%= link_to image_tag('cancel.png'), @paciente, :confirm => 'Esta seguro que desea eliminar el paciente '+@paciente.nombre+'?', :method => :delete %> |
+      <%= link_to image_tag('cancel.png'), @paciente, :confirm => 'Esta seguro que desea eliminar el paciente?', :method => :delete %> |
       <%= link_to image_tag('printer.png'), edit_paciente_path(@paciente) %>
 
     </div>
@@ -39,7 +39,8 @@
 
       <tr >
         <td class="fieldname">Fecha Nacimiento</td>
-        <td class="fielddata"><%=h @paciente.fecha_nacimiento.strftime('%d/%m/%Y') %></td>
+        <td class="fielddata" id="ffecha_nacimiento" ondblclick="<%= remote_function(:update => "ffecha_nacimiento",
+      :url => "/pacientes/editfield/"+@paciente.id.to_s+"?fieldname=fecha_nacimiento") %>"><%=h @paciente.fecha_nacimiento.strftime('%d/%m/%Y') %></td>
       </tr>
       <tr class="odd">
         <td class="fieldname">Sexo</td>

@@ -5,7 +5,9 @@ class Paciente < ActiveRecord::Base
 
   has_many :fichas
 
-  validates_presence_of :nombre, :message => 'Nombre y apellido no puede estar en blanco'
+  validates_presence_of :nombre, :message => ' y apellido no puede estar en blanco'
+  validates_presence_of :matricula, :message => ' no puede estar en blanco'
+  
 
 
 
