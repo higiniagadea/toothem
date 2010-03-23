@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 22) do
+ActiveRecord::Schema.define(:version => 24) do
 
   create_table "archivos", :force => true do |t|
     t.string  "content_type"
@@ -35,6 +35,12 @@ ActiveRecord::Schema.define(:version => 22) do
 
   create_table "db_files", :force => true do |t|
     t.binary "data"
+  end
+
+  create_table "estados_laborales", :force => true do |t|
+    t.string   "descripcion", :limit => 100
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "fichas", :force => true do |t|
@@ -376,12 +382,16 @@ ActiveRecord::Schema.define(:version => 22) do
 
   create_table "profesionales", :force => true do |t|
     t.string  "nombre"
+    t.integer "tipo_documento_id"
     t.string  "documento"
     t.string  "email"
+    t.string  "matricula_profesional"
     t.string  "direccion"
     t.string  "telefono"
-    t.string  "matricula"
-    t.integer "usuario_id"
+    t.string  "movil"
+    t.date    "fecha_nacimiento"
+    t.date    "fecha_ingreso"
+    t.integer "estado_laboral_id"
     t.integer "consultorio_id"
   end
 
@@ -389,6 +399,12 @@ ActiveRecord::Schema.define(:version => 22) do
     t.string  "nombre"
     t.integer "cantidad_max_usuarios"
     t.integer "cantidad_max_consultorios"
+  end
+
+  create_table "tipos_documento", :force => true do |t|
+    t.string   "descripcion", :limit => 100
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "titulares", :force => true do |t|

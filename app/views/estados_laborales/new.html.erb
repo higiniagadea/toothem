@@ -1,0 +1,16 @@
+<h1>Nuevo estado_laboral</h1>
+
+<% form_for(@estado_laboral) do |f| %>
+  <%= f.error_messages %>
+<ul id="form">
+  <li>
+     <label for="descripcion">Descripcion </label> <br />
+    <%= f.text_field :descripcion %>
+  </li>
+ </ul>
+  <p>
+    <%= f.submit 'Crear' %>
+  </p>
+<% end %>
+
+<%= link_to 'Volver', estados_laborales_path %>

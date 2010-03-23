@@ -27,7 +27,8 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'perfil', 'perfiles'
   inflect.irregular 'tipo_cuenta', 'tipos_cuentas'
   inflect.irregular 'item', 'items'
-
+  inflect.irregular 'tipo_documento', 'tipos_documento'
+  inflect.irregular 'estado_laboral', 'estados_laborales'
   
 
 

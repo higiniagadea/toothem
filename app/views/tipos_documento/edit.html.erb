@@ -1,0 +1,17 @@
+<h1>Editando el tipo_documento</h1>
+
+<% form_for(@tipo_documento) do |f| %>
+  <%= f.error_messages %>
+<ul id="form">
+  <li>
+     <label for="descripcion">Descripcion </label> <br />
+    <%= f.text_field :descripcion %>
+  </li>
+ </ul>
+  <p>
+    <%= f.submit 'Actualizar' %>
+  </p>
+<% end %>
+
+<%= link_to 'Ver', @tipo_documento %> |
+<%= link_to 'Volver', tipos_documento_path %>

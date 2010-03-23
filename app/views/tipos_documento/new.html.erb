@@ -1,0 +1,20 @@
+<h1>Nuevo tipo documento</h1>
+
+<% form_for(@tipo_documento) do |f| %>
+  <%= f.error_messages %>
+<ul id="form">
+  <li>
+    <label for="descripcion">Descripcion </label> <br />
+    <%= f.text_field :descripcion %>
+  </li>
+</ul>
+  <p>
+    <%= f.submit 'Crear' %>
+  </p>
+<% end %>
+
+<%= link_to 'Volver', tipos_documento_path %>
+
+
+
+  

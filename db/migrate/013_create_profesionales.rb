@@ -3,16 +3,20 @@ class CreateProfesionales < ActiveRecord::Migration
     create_table "profesionales" do |t|
 
       t.column :nombre, :string
+      t.column :tipo_documento_id, :integer
       t.column :documento, :string
       t.column :email, :string
+      t.column :matricula_profesional, :string
       t.column :direccion, :string
       t.column :telefono, :string
-      t.column :matricula, :string
-
-      t.column :usuario_id, :integer
+      t.column :movil, :string
+      t.column :fecha_nacimiento, :date
+      t.column :fecha_ingreso, :date
+      t.column :estado_laboral_id, :integer
       t.column :consultorio_id, :integer
 
     end
+     
   end
 
   def self.down
