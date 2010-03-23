@@ -1,0 +1,28 @@
+<h1>Editando titular</h1>
+
+<% form_for(@titular) do |f| %>
+  <%= f.error_messages %>
+<ul id="form">
+  <li>
+    <label>Nombre</label>
+    <%= f.text_field :nombre %>
+  </li>
+  
+  <li>
+    <label>Matrícula</label>
+    <%= f.text_field :matricula %>
+  </li>
+  <li>
+    <label>Obra Social</label>
+    
+    <%= f.collection_select(:obra_social_id, ObraSocial.all, :id, :nombre,{:include_blank => true}) %>
+  </li>
+  <li>
+    <label></label>
+    <%= f.submit 'Editar' %>
+  </li>
+</ul>
+<% end %>
+
+<%= link_to 'Ver', @titular %> |
+<%= link_to 'Volver', titulares_path %>

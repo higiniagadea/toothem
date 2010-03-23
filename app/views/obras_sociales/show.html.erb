@@ -1,0 +1,30 @@
+<p>
+  <b>Nombre:</b>
+  <%=h @obra_social.nombre %>
+</p>
+
+<p>
+  <b>Auditoria previa:</b>
+  <%=h boolean_desc(@obra_social.auditoria_previa) %>
+</p>
+
+<p>
+  <b>Auditoria post:</b>
+  <%=h boolean_desc(@obra_social.auditoria_post) %>
+</p>
+
+<p>
+  <b>Incluye ficha:</b>
+  <%=h boolean_desc(@obra_social.incluye_ficha) %>
+</p>
+
+<p>
+  <b>Nro max codigos por mes:</b>
+  <%=h @obra_social.nro_max_codigos_por_mes %>
+</p>
+
+
+
+
+<%= link_to 'Editar', edit_obra_social_path(@obra_social) %> |
+<%= link_to 'Volver', obras_sociales_path %>

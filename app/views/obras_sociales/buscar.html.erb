@@ -1,0 +1,32 @@
+<h1>Buscar obra social</h1>
+
+ <% form_remote_tag :url => resultado_obras_sociales_path,
+                   :method => :post, :update => :search_hits do -%>
+    <ul id="search-form">
+        <li>
+          <label>Nombre</label>
+          <%= text_field_tag :nombre %>
+        </li>
+        <li>
+          <label>Auditoria previa</label>
+          <%= check_box_tag :auditoria_previa %>
+        </li>
+        <li>
+          <label>Auditoria post</label>
+          <%= check_box_tag :auditoria_post %>
+        </li>
+        <li>
+          <label>Incluye ficha</label>
+          <%= check_box_tag :incluye_ficha %>
+        </li>
+        <li>
+          <label></label>
+          <%= submit_tag 'Buscar' %>
+        </li>
+      </ul>
+<%end -%>
+<div id ="search_hits">
+  
+</div>
+
+

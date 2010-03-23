@@ -25,4 +25,12 @@ module ApplicationHelper
           ''
         end
     end
+    def boolean_desc (objeto)
+    if objeto
+      "Si"
+    else
+      "No"
+    end
+   
+  end
 end

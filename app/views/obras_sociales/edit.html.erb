@@ -1,0 +1,35 @@
+<h1>Editando obra social</h1>
+
+<% form_for(@obra_social) do |f| %>
+  <%= f.error_messages %>
+
+ <ul id="form">
+    <li>
+      <label>Nombre</label>
+      <%= f.text_field :nombre %>
+    </li>
+    <li>
+      <label>Auditoria previa</label>
+      <%= f.check_box :auditoria_previa %>
+    </li>
+    <li>
+      <label>Auditoria post</label>
+      <%= f.check_box :auditoria_post %>
+    </li>
+    <li>
+      <label>Número máximo de códigos por mes</label>
+      <%= f.text_field :nro_max_codigos_por_mes %>
+    </li>
+    <li>
+      <label>Incluye ficha</label>
+      <%= f.check_box :incluye_ficha %>
+    </li>
+    <li>
+      <label></label>
+      <%= f.submit 'Editar' %>
+    </li>
+  </ul>
+<% end %>
+
+<%= link_to 'Ver', @obra_social %> |
+<%= link_to 'Volver', obras_sociales_path %>

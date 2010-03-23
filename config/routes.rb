@@ -1,4 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :titulares,
+                :collection => {:buscar => :get, :resultado => :post}
+
+  map.resources :obras_sociales,
+                :collection => {:buscar => :get, :resultado => :post}
+
   map.resources :pacientes,
                 :collection => {:search => :get, :result => :post},
                 :member => {:changephoto => :get,:uploadphoto => :post, :editfield => :get, :updatefield => :put}
