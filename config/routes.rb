@@ -1,4 +1,16 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :profesionales
+
+  map.resources :profesionales
+
+  map.resources :profesionales
+
+  map.resources :profesionales
+
+  map.resources :estados_laborales
+
+  map.resources :tipos_documento
+
   map.resources :pacientes,
                 :collection => {:search => :get, :result => :post},
                 :member => {:changephoto => :get,:uploadphoto => :post, :editfield => :get, :updatefield => :put}

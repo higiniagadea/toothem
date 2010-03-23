@@ -2,31 +2,57 @@
 
 <% form_for(@profesional) do |f| %>
   <%= f.error_messages %>
-
-  <p>
-    <%= f.label :nombre %><br />
+<ul id="form" >
+  <li>
+    <label for="nombre">Nombre  </label><br />
     <%= f.text_field :nombre %>
-  </p>
-  <p>
-    <%= f.label :documento %><br />
+  </li>
+  <li>
+    <label for="tipo_documento">Tipo documento </label><br />
+    <%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion) %>
+    
+  </li>
+  <li>
+    <label for="documento">Documento </label><br />
     <%= f.text_field :documento %>
-  </p>
-  <p>
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </p>
-  <p>
-    <%= f.label :direccion %><br />
+  </li>
+  <li>
+    <label for="matricula_profesional">Matricula Profesional </label><br />
+    <%= f.text_field :matricula_profesional %>
+  </li>
+  <li>
+    <label for="direccion">Direccion </label> <br />
     <%= f.text_field :direccion %>
-  </p>
-  <p>
-    <%= f.label :telefono %><br />
+  </li>
+  <li>
+    <label for="telefono">Telefono </label> <br />
     <%= f.text_field :telefono %>
-  </p>
-  <p>
-    <%= f.label :matricula %><br />
-    <%= f.text_field :matricula %>
-  </p>
+  </li>
+  <li>
+    <label for="movil">Movil </label><br />
+    <%= f.text_field :movil %>
+  </li>
+  <li>
+    <label for="email">email </label> <br />
+    <%= f.text_field :email %>
+  </li>
+  <li>
+    <label for="fecha_nacimiento">Fecha de Nacimiento </label> <br />
+    <%= f.date_select :fecha_nacimiento %>
+  </li>
+  <li>
+    <label for="fecha_ingreso">Fecha Ingreso </label><br />
+    <%= f.date_select :fecha_ingreso %>
+  </li>
+  <li>
+    <label for="consultorio_id">Consultorio </label><br />
+    <%= f.text_field :consultorio_id %>
+  </li>
+  <li>
+    <label for="estado_laboral_id">Estado Laboral </label> <br />
+    <%= f.collection_select :estado_laboral_id, EstadoLaboral.all, :id, :descripcion %>
+  </li>
+</ul>
   <p>
     <%= f.submit 'Crear' %>
   </p>

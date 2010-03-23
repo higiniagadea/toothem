@@ -1,9 +1,6 @@
 class ProfesionalesController < ApplicationController
   # GET /profesionales
   # GET /profesionales.xml
-
-  before_filter :login_required
-
   def index
     @profesionales = Profesional.all
 
@@ -47,7 +44,7 @@ class ProfesionalesController < ApplicationController
 
     respond_to do |format|
       if @profesional.save
-        flash[:notice] = 'Profesional was successfully created.'
+        flash[:notice] = 'Profesional creado.'
         format.html { redirect_to(@profesional) }
         format.xml  { render :xml => @profesional, :status => :created, :location => @profesional }
       else
@@ -64,7 +61,7 @@ class ProfesionalesController < ApplicationController
 
     respond_to do |format|
       if @profesional.update_attributes(params[:profesional])
-        flash[:notice] = 'Profesional was successfully updated.'
+        flash[:notice] = 'Profesional actualizado.'
         format.html { redirect_to(@profesional) }
         format.xml  { head :ok }
       else
