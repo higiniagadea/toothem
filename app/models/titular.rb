@@ -1,3 +1,4 @@
+
 class Titular < ActiveRecord::Base
   has_many :pacientes
 
@@ -7,7 +8,7 @@ class Titular < ActiveRecord::Base
    validates_presence_of :nombre, :message => ', debe ingresar un nombre'
    validates_presence_of :obra_social_id => 'debe ingresar una obra social'
    validates_presence_of :matricula => 'debe ingresar una matrícula'
-   validates_uniqueness_of :matricula, :scope => [:consultorio, :obra_social_id], :message => "ya se encuentra cargado el titular para la obra social"
+   #validates_uniqueness_of :matricula, :scope => [:consultorio, :obra_social_id], :message => "ya se encuentra cargado el titular para la obra social"
 
 #scope_builder
     named_scope :by_nombre, lambda { |nombre|
