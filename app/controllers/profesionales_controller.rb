@@ -2,7 +2,8 @@ class ProfesionalesController < ApplicationController
   # GET /profesionales
   # GET /profesionales.xml
   def index
-    @profesionales = Profesional.all
+   # @profesionales = Profesional.all
+  @profesionales = Profesional.paginate :page=> params[:page], :per_page=>15, :order=> 'nombre ASC'
 
     respond_to do |format|
       format.html # index.html.erb

@@ -1,0 +1,20 @@
+<h1>Editando consultorio</h1>
+
+<% form_for(@consultorio) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :clinica_id %><br />
+    <%= f.text_field :clinica_id %>
+  </p>
+  <p>
+    <%= f.label :nombre %><br />
+    <%= f.text_field :nombre %>
+  </p>
+  <p>
+    <%= f.submit 'Actualizar' %>
+  </p>
+<% end %>
+
+<%= link_to 'Ver', @consultorio %> |
+<%= link_to 'Volver', consultorios_path %>
