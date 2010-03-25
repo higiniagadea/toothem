@@ -1,0 +1,23 @@
+<p>
+  <b>Item:</b>
+  <%=h @item.item_id %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%=h @item.url %>
+</p>
+
+<p>
+  <b>Metodo http:</b>
+  <%=h @item.metodo_http %>
+</p>
+
+<p>
+  <b>Nombre:</b>
+  <%=h @item.nombre %>
+</p>
+
+
+<%= link_to 'Edit', edit_item_path(@item) %> |
+<%= link_to 'Back', items_path %>

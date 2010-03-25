@@ -380,21 +380,6 @@ ActiveRecord::Schema.define(:version => 24) do
   add_index "perfiles_items", ["item_id"], :name => "index_perfiles_items_on_item_id"
   add_index "perfiles_items", ["perfil_id"], :name => "index_perfiles_items_on_perfil_id"
 
-  create_table "profesionales", :force => true do |t|
-    t.string  "nombre"
-    t.integer "tipo_documento_id"
-    t.string  "documento"
-    t.string  "email"
-    t.string  "matricula_profesional"
-    t.string  "direccion"
-    t.string  "telefono"
-    t.string  "movil"
-    t.date    "fecha_nacimiento"
-    t.date    "fecha_ingreso"
-    t.integer "estado_laboral_id"
-    t.integer "consultorio_id"
-  end
-
   create_table "tipos_cuentas", :force => true do |t|
     t.string  "nombre"
     t.integer "cantidad_max_usuarios"

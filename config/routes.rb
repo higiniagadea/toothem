@@ -1,4 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :items
+
+  map.resources :items
+
+  map.resources :items
+
 
   map.resources :titulares,
                 :collection => {:buscar => :get, :resultado => :post}
