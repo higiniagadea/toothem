@@ -25,7 +25,7 @@ class ItemsController < ApplicationController
   # GET /items/new.xml
   def new
     @item = Item.new
-    @parent = Item.find(params[:item_id])
+
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @item }
@@ -44,8 +44,8 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.save
-        flash[:notice] = 'Item was successfully created.'
-        format.html { redirect_to(items_url) }
+        flash[:notice] = 'Item creado.'
+        format.html { redirect_to(@item) }
         format.xml  { render :xml => @item, :status => :created, :location => @item }
       else
         format.html { render :action => "new" }
@@ -61,7 +61,7 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.update_attributes(params[:item])
-        flash[:notice] = 'Item was successfully updated.'
+        flash[:notice] = 'Item actualizado.'
         format.html { redirect_to(@item) }
         format.xml  { head :ok }
       else
@@ -75,8 +75,12 @@ class ItemsController < ApplicationController
   # DELETE /items/1.xml
   def destroy
     @item = Item.find(params[:id])
-    @item.destroy
 
+    if @item.estatico == true
+      flash[:notice] = 'El item no puede ser borrado, ya que es estatico'
+    else
+    @item.destroy
+    end
     respond_to do |format|
       format.html { redirect_to(items_url) }
       format.xml  { head :ok }
