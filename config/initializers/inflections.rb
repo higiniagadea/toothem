@@ -29,6 +29,7 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'item', 'items'
   inflect.irregular 'tipo_documento', 'tipos_documento'
   inflect.irregular 'estado_laboral', 'estados_laborales'
+  inflect.irregular 'estado_civil', 'estados_civiles'
   
 
 

@@ -1,7 +1,9 @@
 class Paciente < ActiveRecord::Base
   belongs_to :titular
 
-  belongs_to :archivo
+  #belongs_to :archivo
+
+  belongs_to :tipo_documento
 
   has_many :fichas
 

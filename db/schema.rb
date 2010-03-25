@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 25) do
+ActiveRecord::Schema.define(:version => 30) do
 
   create_table "archivos", :force => true do |t|
     t.string  "content_type"
@@ -346,8 +346,6 @@ ActiveRecord::Schema.define(:version => 25) do
   create_table "pacientes", :force => true do |t|
     t.string   "nombre",                              :null => false
     t.string   "matricula",            :limit => 50,  :null => false
-    t.string   "sexo",                 :limit => 1,   :null => false
-    t.string   "estado_civil",         :limit => 100
     t.string   "domicilio_particular",                :null => false
     t.string   "domicilio_laboral"
     t.date     "fecha_nacimiento"
@@ -366,6 +364,8 @@ ActiveRecord::Schema.define(:version => 25) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "tipo_documento_id"
+    t.integer  "sexo_id"
+    t.integer  "estado_civil_id"
   end
 
   create_table "perfiles", :force => true do |t|
@@ -390,6 +390,10 @@ ActiveRecord::Schema.define(:version => 25) do
     t.string  "matricula"
     t.integer "usuario_id"
     t.integer "consultorio_id"
+  end
+
+  create_table "sexos", :force => true do |t|
+    t.string "descripcion", :limit => 30
   end
 
   create_table "tipos_cuentas", :force => true do |t|
