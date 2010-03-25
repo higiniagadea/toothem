@@ -1,16 +1,11 @@
 ActionController::Routing::Routes.draw do |map|
-<<<<<<< HEAD:config/routes.rb
-  map.resources :items
+
 
   map.resources :items
 
-  map.resources :items
-=======
   map.resources :clinicas
 
   map.resources :consultorios
->>>>>>> bf08c8be593f7eb784aa918fdc08396a6e848269:config/routes.rb
-
 
   map.resources :titulares,
                 :collection => {:buscar => :get, :resultado => :post}
