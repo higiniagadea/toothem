@@ -1,76 +1,82 @@
-<h1>Editing paciente</h1>
+<h1>Editando paciente</h1>
 
 <% form_for(@paciente) do |f| %>
   <%= f.error_messages %>
-
-  <p>
-    <%= f.label :nombre %><br />
+<ul id="form">
+  <li>
+    <label>Nombre</label>
     <%= f.text_field :nombre %>
-  </p>
-  <p>
-    <%= f.label :tipo_documento %><br />
-    <%= f.text_field :tipo_documento %>
-  </p>
-  <p>
-    <%= f.label :matricula %><br />
+  </li>
+  <li>
+    <label>Tipo de documento</label>
+    <%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion) %>
+  </li>
+  <li>
+    <label>Matricula</label>
     <%= f.text_field :matricula %>
-  </p>
-  <p>
-    <%= f.label :sexo %><br />
-    <%= f.text_field :sexo %>
-  </p>
-  <p>
-    <%= f.label :estado_civil %><br />
-    <%= f.text_field :estado_civil %>
-  </p>
-  <p>
-    <%= f.label :domicilio_particular %><br />
+  </li>
+  <li>
+    <label>Sexo</label>
+    <select name="paciente[sexo]">
+      <%=  options_for_select([ "Masculino", "Femenino" ], @paciente.sexo)%>
+    </select>
+  </li>
+  <li>
+    <label>Estado civil</label>
+    <select name="paciente[estado_civil]">
+      <%=  options_for_select([ "Soltero/a", "Casado/a","Divorciado/a","Viudo/a","Otro" ], @paciente.estado_civil)%>
+    </select>
+  </li>
+  <li>
+    <label> Domicilio Particular</label>
     <%= f.text_field :domicilio_particular %>
-  </p>
-  <p>
-    <%= f.label :domicilio_laboral %><br />
+  </li>
+  <li>
+    <label>Domicilio Laboral </label>
     <%= f.text_field :domicilio_laboral %>
-  </p>
-  <p>
-    <%= f.label :fecha_nacimiento %><br />
+  </li>
+  <li>
+    <label>Fecha de Nacimiento</label>
     <%= f.date_select :fecha_nacimiento %>
-  </p>
-  <p>
-    <%= f.label :grupo_sanguineo %><br />
+  </li>
+  <li>
+    <label>Grupo Sanguineo</label>
     <%= f.text_field :grupo_sanguineo %>
-  </p>
-  <p>
-    <%= f.label :telefono_particular %><br />
+  </li>
+  <li>
+    <label>Teléfono Particular</label>
     <%= f.text_field :telefono_particular %>
-  </p>
-  <p>
-    <%= f.label :telefono_laboral %><br />
+  </li>
+  <li>
+    <label>Teléfono Laboral</label>
     <%= f.text_field :telefono_laboral %>
-  </p>
-  <p>
-    <%= f.label :movil %><br />
+  </li>
+  <li>
+    <label>Teléfono Celular</label>
     <%= f.text_field :movil %>
-  </p>
-  <p>
-    <%= f.label :profesion %><br />
+  </li>
+  <li>
+    <label>Profesión</label>
     <%= f.text_field :profesion %>
-  </p>
-  <p>
-    <%= f.label :ocupacion %><br />
+  </li>
+  <li>
+    <label>Ocupación</label>
     <%= f.text_field :ocupacion %>
-  </p>
-  <p>
-    <%= f.label :nivel_escolar %><br />
+  </li>
+  <li>
+    <label>Nivel Escolar</label>
     <%= f.text_field :nivel_escolar %>
-  </p>
-  <p>
-    <%= f.label :nro_afiliado %><br />
+  </li>
+  <li>
+    <label>Número de Afiliado</label>
     <%= f.text_field :nro_afiliado %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
+  </li>
+  <li>
+    <label></label>
+    <%= f.submit 'Actualizar' %>
+  </li>
+</ul>
 <% end %>
 
-<%= link_to 'Show', @paciente %> |
-<%= link_to 'Back', pacientes_path %>
+<%= link_to 'Ver', @paciente %> |
+<%= link_to 'Volver', pacientes_path %>

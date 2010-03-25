@@ -84,6 +84,8 @@ class PacientesController < ApplicationController
   def updatefield
     @paciente = Paciente.find(params[:id])
     respond_to do |format|
+      
+
       if @paciente.update_attributes(params[:paciente])
         format.html{
           render :update do |page|
@@ -92,12 +94,19 @@ class PacientesController < ApplicationController
               page["pacientes-nombre"].replace_html params[:paciente]["#{params[:pacientes][:fieldname]}"]
             end
             if params[:pacientes][:fieldname] == "matricula"
-              page["f#{params[:pacientes][:fieldname]}"].replace_html params[:paciente][:tipo_documento] +" "+ params[:paciente]["#{params[:pacientes][:fieldname]}"]
+              page["f#{params[:pacientes][:fieldname]}"].replace_html @paciente.tipo_documento.descripcion + " " + params[:paciente]["#{params[:pacientes][:fieldname]}"]
             end
             if params[:pacientes][:fieldname] == "fecha_nacimiento"
               page["f#{params[:pacientes][:fieldname]}"].replace_html @paciente.fecha_nacimiento.strftime('%d/%m/%Y')
             end
+            if params[:pacientes][:fieldname] == "sexo"
+              page["pacientes-sexo"].replace_html @paciente.sexo
+            end
+            if params[:pacientes][:fieldname] == "estado_civil"
+              page["pacientes-sexo"].replace_html @paciente.estado_civil
+            end
           end
+          
         }
       else
         format.html{
@@ -108,11 +117,39 @@ class PacientesController < ApplicationController
 
           end
         }
+
       end
     end
   end
 
+  def cancelfield
+    @paciente = Paciente.find(params[:id])
+    respond_to do |format|
+      format.html{
+        render :update do |page|
+            page["f#{params[:fieldname]}"].replace_html @paciente["#{params[:fieldname]}"]
+#            if params[:fieldname] == "nombre"
+#              page["fnombre"].replace_html @paciente.nombre
+#            end
+#
+            if params[:fieldname] == "matricula"
+              page["f#{params[:fieldname]}"].replace_html @paciente.tipo_documento.descripcion + " " + @paciente["#{params[:fieldname]}"]
+            end
+#            if params[:fieldname] == "fecha_nacimiento"
+#              page["f#{params[:pacientes][:fieldname]}"].replace_html @paciente.fecha_nacimiento.strftime('%d/%m/%Y')
+#            end
+#            if params[:fieldname] == "sexo"
+#              page["pacientes-sexo"].replace_html @paciente.sexo
+#            end
+#            if params[:fieldname] == "estado_civil"
+#              page["pacientes-sexo"].replace_html @paciente.estado_civil
+#            end
+          end
+      }
+    end
+  end
 
+  
   # POST /pacientes
   # POST /pacientes.xml
   def create
