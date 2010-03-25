@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 24) do
+ActiveRecord::Schema.define(:version => 25) do
 
   create_table "archivos", :force => true do |t|
     t.string  "content_type"
@@ -345,7 +345,6 @@ ActiveRecord::Schema.define(:version => 24) do
 
   create_table "pacientes", :force => true do |t|
     t.string   "nombre",                              :null => false
-    t.string   "tipo_documento",                      :null => false
     t.string   "matricula",            :limit => 50,  :null => false
     t.string   "sexo",                 :limit => 1,   :null => false
     t.string   "estado_civil",         :limit => 100
@@ -366,6 +365,7 @@ ActiveRecord::Schema.define(:version => 24) do
     t.integer  "localidad_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "tipo_documento_id"
   end
 
   create_table "perfiles", :force => true do |t|
@@ -379,6 +379,18 @@ ActiveRecord::Schema.define(:version => 24) do
 
   add_index "perfiles_items", ["item_id"], :name => "index_perfiles_items_on_item_id"
   add_index "perfiles_items", ["perfil_id"], :name => "index_perfiles_items_on_perfil_id"
+
+
+  create_table "profesionales", :force => true do |t|
+    t.string  "nombre"
+    t.string  "documento"
+    t.string  "email"
+    t.string  "direccion"
+    t.string  "telefono"
+    t.string  "matricula"
+    t.integer "usuario_id"
+    t.integer "consultorio_id"
+  end
 
   create_table "tipos_cuentas", :force => true do |t|
     t.string  "nombre"

@@ -1,3 +1,4 @@
+
 class Titular < ActiveRecord::Base
   has_many :pacientes
   

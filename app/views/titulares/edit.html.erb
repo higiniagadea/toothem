@@ -15,7 +15,7 @@
   <li>
     <label>Obra Social</label>
     
-    <%= f.collection_select(:obra_social_id, ObraSocial.all, :id, :nombre,{:include_blank => true}) %>
+    <%= f.collection_select(:obra_social_id, ObraSocial.all, :id, :nombre) %>
   </li>
   <li>
     <label></label>

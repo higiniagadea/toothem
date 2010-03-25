@@ -1,0 +1,24 @@
+<h1>Listado de clinicas</h1>
+
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Direccion</th>
+    <th>Cuit</th>
+  </tr>
+
+<% @clinicas.each do |clinica| %>
+  <tr>
+    <td><%=h clinica.nombre %></td>
+    <td><%=h clinica.direccion %></td>
+    <td><%=h clinica.cuit %></td>
+    <td><%= link_to 'Ver', clinica %></td>
+    <td><%= link_to 'Editar', edit_clinica_path(clinica) %></td>
+    <td><%= link_to 'Borrar', clinica, :confirm => 'Esta seguro?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Nueva clinica', new_clinica_path %>
