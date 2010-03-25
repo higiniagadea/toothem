@@ -1,5 +1,12 @@
 ActionController::Routing::Routes.draw do |map|
 
+
+  map.resources :items
+
+  map.resources :clinicas
+
+  map.resources :consultorios
+
   map.resources :titulares,
                 :collection => {:buscar => :get, :resultado => :post}
 

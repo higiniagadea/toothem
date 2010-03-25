@@ -1,0 +1,23 @@
+<h1>Nueva clinica</h1>
+
+<% form_for(@clinica) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :nombre %><br />
+    <%= f.text_field :nombre %>
+  </p>
+  <p>
+    <%= f.label :direccion %><br />
+    <%= f.text_field :direccion %>
+  </p>
+  <p>
+    <%= f.label :cuit %><br />
+    <%= f.text_field :cuit %>
+  </p>
+  <p>
+    <%= f.submit 'Crear' %>
+  </p>
+<% end %>
+
+<%= link_to 'Volver', clinicas_path %>

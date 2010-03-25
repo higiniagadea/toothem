@@ -1,0 +1,13 @@
+<p>
+  <b>Clinica:</b>
+  <%=h @consultorio.clinica_id %>
+</p>
+
+<p>
+  <b>Nombre:</b>
+  <%=h @consultorio.nombre %>
+</p>
+
+
+<%= link_to 'Editar', edit_consultorio_path(@consultorio) %> |
+<%= link_to 'Volver', consultorios_path %>

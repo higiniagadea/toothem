@@ -380,6 +380,7 @@ ActiveRecord::Schema.define(:version => 30) do
   add_index "perfiles_items", ["item_id"], :name => "index_perfiles_items_on_item_id"
   add_index "perfiles_items", ["perfil_id"], :name => "index_perfiles_items_on_perfil_id"
 
+
   create_table "profesionales", :force => true do |t|
     t.string  "nombre"
     t.string  "documento"

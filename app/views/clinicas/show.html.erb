@@ -1,0 +1,18 @@
+<p>
+  <b>Nombre:</b>
+  <%=h @clinica.nombre %>
+</p>
+
+<p>
+  <b>Direccion:</b>
+  <%=h @clinica.direccion %>
+</p>
+
+<p>
+  <b>Cuit:</b>
+  <%=h @clinica.cuit %>
+</p>
+
+
+<%= link_to 'Editar', edit_clinica_path(@clinica) %> |
+<%= link_to 'Volver', clinicas_path %>
