@@ -1,7 +1,9 @@
 class ConsultoriosController < ApplicationController
   # GET /consultorios
   # GET /consultorios.xml
+  layout 'default'
   def index
+    @pagetitle = "Consultorios"
     @consultorios = Consultorio.all
 
     respond_to do |format|

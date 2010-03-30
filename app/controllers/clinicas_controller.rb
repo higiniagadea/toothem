@@ -1,6 +1,7 @@
 class ClinicasController < ApplicationController
   # GET /clinicas
   # GET /clinicas.xml
+  
   def index
     @clinicas = Clinica.all
 
