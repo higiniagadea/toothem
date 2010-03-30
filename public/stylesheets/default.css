@@ -142,62 +142,6 @@ div#opciones-menu{
 }
 
 
-
-#nav{
-    list-style:none;
-    padding-left:0px;
-    margin-bottom:0px;
-    display:block
-
-
-}
-
-#nav li {
-    margin-left:1px;
-    margin-top:8px;
-    margin-bottom:0;
-    padding:10px 10px 8px 10px;
-    float:left;
-
-    border-top:#eaeaea 1px solid;
-    border-left:#eaeaea 1px solid;
-    border-right:#eaeaea 1px solid;
-    color:#FFF;
-    cursor:pointer;
-    background: url(/images/gloss-wave-dark.png) repeat-x scroll 50% 50%;
-    -moz-border-radius-topright:8px;
-    -moz-border-radius-topleft:8px;
-    -webkit-border-top-right-radius:8px;
-    -webkit-border-top-left-radius:8px;
-}
-
-#nav li:hover{
-    text-decoration:underline;
-}
-
-#nav li.selected{
-    background-image:none;
-    background-color: #FFFFFF;
-    border-bottom: none;
-    color:#000;
-}
-
-
-
-#nav ul.submenu {
-    margin-top:30px;
-    margin-left:20px;
-    position:absolute;
-    list-style:none;
-    padding-top:30px;
-}
-#nav ul.submenu li {
-    float:none;
-    background-image:none;
-    border:none;
-}
-
-
 #content {
     margin: 0 auto;
     background-color:#FFFFFF;
@@ -222,26 +166,6 @@ div#opciones-menu{
     height:500px;
 
 
-
-}
-#right-content{
-    float:right;
-    width:28%;
-    border: #eaeaea 1px solid;
-    min-height:300px;
-    margin-right:10px;
-    padding-top:10px;
-
-    font-size:14px;
-    background-color:#ECF4FF;
-    -moz-border-radius-topright:8px;
-    -moz-border-radius-topleft:8px;
-    -webkit-border-top-right-radius:8px;
-    -webkit-border-top-left-radius:8px;
-}
-
-#right-content ul{
-    list-style:none;
 
 }
 
@@ -291,35 +215,7 @@ div#opciones-menu{
  
 
 
-/*LOGIN*/
-#login-form{
-    -moz-border-radius:8px;
-    -webkit-border-radius:8px;
-    border: #EAEAEA 10px solid;
-    width:350px;
-    margin-left: 15px;
-    color:gray;
-}
 
-#login-form input[type = text], input[type = password]{
-    border:#EAEAEA 2px solid;
-    font-size:20px;
-    width:300px;
-}
-#login-form input[type = submit]{
-    border:#0099CC 4px solid;
-    font-size:18px;
-    background-color: #EAEAEA;
-
-}
-#login-form label{
-    font-size:16px;
-    font-weight: bold;
-    color:#000;
-
-}
-
-/**/
 
 
 
@@ -592,6 +488,32 @@ table {
     width:340px;
 
 }
+
+.table-list{
+    border-collapse: collapse;
+    border-left: #EAEAEA 1px solid;
+    
+}
+
+.table-list td{
+    padding:4px;
+    padding-left:6px;
+    border-bottom: #EAEAEA 1px solid;
+}
+
+.table-list tr.odd{
+    background-color: #eaeaea;
+}
+
+.table-list th{
+    text-align: left;
+    padding:4px;
+    color:#FFF;
+    background-color: #5252FF;
+    font-size: 13px;
+
+}
+
 
 /*-----------------FORMS STYLES ---------------------------*/
 
