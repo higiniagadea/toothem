@@ -1,22 +1,22 @@
-<h1>Listado de consultorios</h1>
 
-<table>
+
+<table class="table-list">
   <tr>
-    <th>Clinica</th>
+    <th>Clínica</th>
     <th>Nombre</th>
   </tr>
 
 <% @consultorios.each do |consultorio| %>
-  <tr>
-    <td><%=h consultorio.clinica_id %></td>
+  <tr class="<%= cycle('','odd') %>">
+    <td><%=h consultorio.clinica.nombre %></td>
     <td><%=h consultorio.nombre %></td>
-    <td><%= link_to 'Ver', consultorio %></td>
-    <td><%= link_to 'Editar', edit_consultorio_path(consultorio) %></td>
-    <td><%= link_to 'Borrar', consultorio, :confirm => 'Esta seguro?', :method => :delete %></td>
+    <td><%= link_to image_tag('magnifier_zoom_in.png'), consultorio %>
+    <%= link_to image_tag('pencil.png'), edit_consultorio_path(consultorio) %>
+    <%= link_to image_tag('cancel.png'), consultorio, :confirm => 'Esta seguro?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
-
+<%= will_paginate @consultorios, :previous_label=>'Anterior', :next_label => 'Siguiente' %>
 <%= link_to 'Nuevo consultorio', new_consultorio_path %>
