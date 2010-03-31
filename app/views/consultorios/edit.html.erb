@@ -1,21 +1,22 @@
-<h1>Editando consultorio</h1>
-
 <% form_for(@consultorio) do |f| %>
-  <%= f.error_messages %>
+  <%= f.error_messages  :header_message => '', :message => 'Ocurrió un error al intentar guardar el registro'  %>
 <ul id="form" >
   <li>
-    <label for="clinica_id">Clinica </label>
-    <%= f.text_field :clinica_id %>
+    <label for="clinica_id">Clínica </label>
+    <%= f.collection_select :clinica_id, Clinica.all, :id, :nombre, {},:class=>'normal' %><!--después cambiar por la vble de sesión clínica-->
   </li>
   <li>
     <label for="nombre">Nombre </label>
-    <%= f.text_field :nombre %>
+    <%= f.text_field :nombre, :class => 'normal' %>
+  </li>
+  <li>
+    <label></label>
+    <%= f.submit 'Guardar' %>
+
   </li>
 </ul>
-  <p>
-    <%= f.submit 'Actualizar' %>
-  </p>
+  
 <% end %>
 
 <%= link_to 'Ver', @consultorio %> |
-<%= link_to 'Volver', consultorios_path %>
+<%= link_to 'Cancelar', consultorios_path %>

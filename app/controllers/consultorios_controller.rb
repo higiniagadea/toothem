@@ -26,6 +26,7 @@ class ConsultoriosController < ApplicationController
   # GET /consultorios/new
   # GET /consultorios/new.xml
   def new
+    @pagetitle = "Nuevo consultorio"
     @consultorio = Consultorio.new
 
     respond_to do |format|
@@ -36,6 +37,7 @@ class ConsultoriosController < ApplicationController
 
   # GET /consultorios/1/edit
   def edit
+    @pagetitle = "Editar consultorio"
     @consultorio = Consultorio.find(params[:id])
   end
 
@@ -47,11 +49,12 @@ class ConsultoriosController < ApplicationController
     respond_to do |format|
       if @consultorio.save
         flash[:notice] = 'Consultorio creado.'
-        format.html { redirect_to(@consultorio) }
-        format.xml  { render :xml => @consultorio, :status => :created, :location => @consultorio }
+        format.html { redirect_to(consultorios_url) }
+        
       else
+        @pagetitle = "Nuevo consultorio"
         format.html { render :action => "new" }
-        format.xml  { render :xml => @consultorio.errors, :status => :unprocessable_entity }
+        
       end
     end
   end
@@ -59,16 +62,18 @@ class ConsultoriosController < ApplicationController
   # PUT /consultorios/1
   # PUT /consultorios/1.xml
   def update
+
     @consultorio = Consultorio.find(params[:id])
 
     respond_to do |format|
       if @consultorio.update_attributes(params[:consultorio])
         flash[:notice] = 'Consultorio actualizado.'
-        format.html { redirect_to(@consultorio) }
-        format.xml  { head :ok }
+        format.html { redirect_to(consultorios_url) }
+        
       else
+        @pagetitle = "Editar consultorio"
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @consultorio.errors, :status => :unprocessable_entity }
+        
       end
     end
   end
@@ -77,12 +82,28 @@ class ConsultoriosController < ApplicationController
   # DELETE /consultorios/1.xml
   def destroy
     @consultorio = Consultorio.find(params[:id])
-    
-    @consultorio.destroy
-
+    @paciente = Paciente.find(:first, :conditions => ['consultorio_id = ?', params[:id]])
+    @profesional = Profesional.find(:first, :conditions => ['consultorio_id = ?', params[:id]])
+    @titular = Titular.find(:first, :conditions => ['consultorio_id = ?', params[:id]])
+    #@usuario = Usuario.find(:first, :conditions => ['consultorio_id = ?', params[:id]])
     respond_to do |format|
-      format.html { redirect_to(consultorios_url) }
-      format.xml  { head :ok }
+      if @paciente.blank? && @profesional.blank? && @titular.blank? #&& @usuario.blank?
+        @consultorio.destroy
+        flash[:notice] = "Consultorio Eliminado"
+        format.html { redirect_to(consultorios_url) }
+      else
+        flash[:error] = "Imposible eliminar el consultorio ya que posee registros asociados"
+        format.html { redirect_to(consultorios_url) }
+
+      end
     end
+
+
+    
+
+    
+      
+      
+    
   end
 end
