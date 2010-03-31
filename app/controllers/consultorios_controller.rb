@@ -14,6 +14,7 @@ class ConsultoriosController < ApplicationController
   # GET /consultorios/1.xml
   def show
     @consultorio = Consultorio.find(params[:id])
+    #@consultorio.profesionales << Profesional.find(:first)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -21,7 +22,7 @@ class ConsultoriosController < ApplicationController
     end
   end
 
-  # GET /consultorios/new
+  # GET /consultorios/ne
   # GET /consultorios/new.xml
   def new
     @consultorio = Consultorio.new

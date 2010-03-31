@@ -2,8 +2,8 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.xml
   def index
-    @items = Item.all
-
+    #@items = Item.all
+   @items = Item.paginate :page=> params[:page], :per_page=>15, :order=> 'nombre ASC'
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @items }
@@ -58,7 +58,8 @@ class ItemsController < ApplicationController
   # PUT /items/1.xml
   def update
     @item = Item.find(params[:id])
-
+    params[:item][:estatico]
+    
     respond_to do |format|
       if @item.update_attributes(params[:item])
         flash[:notice] = 'Item actualizado.'

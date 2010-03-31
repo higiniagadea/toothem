@@ -1,6 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :perfiles
+  map.resources :permisos
 
+  map.resources :perfiles
+             
   map.resources :items
 
   map.resources :items

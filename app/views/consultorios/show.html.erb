@@ -1,13 +1,54 @@
-<p>
-  <b>Clinica:</b>
-  <%=h @consultorio.clinica_id %>
-</p>
+<h1>Consultorios</h1>
 
-<p>
-  <b>Nombre:</b>
-  <%=h @consultorio.nombre %>
-</p>
+<table>
+  <tr>
+  <td>Nombre de la Clinica:  <%=h @consultorio.clinica_id %></td>
 
 
+  <td> Nombre del consultorio: <%=h @consultorio.nombre %> </td>
+  </tr>
+</table>
+
+
+
+<h1>Profesionales</h1>
+   <% @consultorio.profesionales.each do |profesional|  %>
+<table >
+  <tr>
+    <td><%=h profesional.nombre %></td>
+    <td><%=h profesional.matricula_profesional %></td>
+    <td><%=h profesional.email %></td>
+
+  </tr>
+
+</table>
+<%end%>
 <%= link_to 'Editar', edit_consultorio_path(@consultorio) %> |
 <%= link_to 'Volver', consultorios_path %>
+
+<h1>Usuarios</h1>
+<table>
+  <tr>
+    <td><label>nombre</label></td>
+    <td><label>email</label></td>
+    <td><label>usuario</label></td>
+  </tr>
+</table>
+<%= link_to 'Editar', edit_consultorio_path(@consultorio) %> |
+<%= link_to 'Volver', consultorios_path %>
+
+<h1>Pacientes</h1>
+   <% @consultorio.pacientes.each do |paciente|  %>
+<table >
+  <tr>
+    <td><%=h paciente.nombre %></td>
+    <td><%=h paciente.matricula %></td>
+    <td><%=h paciente.tipo_documento %></td>
+
+  </tr>
+
+</table>
+<%end%>
+<%= link_to 'Editar', edit_consultorio_path(@consultorio) %> |
+<%= link_to 'Volver', consultorios_path %>
+

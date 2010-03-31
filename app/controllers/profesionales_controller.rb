@@ -15,7 +15,7 @@ class ProfesionalesController < ApplicationController
   # GET /profesionales/1.xml
   def show
     @profesional = Profesional.find(params[:id])
-
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @profesional }

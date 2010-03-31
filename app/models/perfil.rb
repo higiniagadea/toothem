@@ -1,3 +1,6 @@
 class Perfil < ActiveRecord::Base
-validates_presence_of :nombre, :message=>"Debe ingresar un nombre"
+ has_many :permisos
+ has_many :items, :through=> :permisos
+
+  validates_presence_of :nombre, :message=>"Debe ingresar un nombre"
 end

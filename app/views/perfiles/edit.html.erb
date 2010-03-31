@@ -2,19 +2,54 @@
 
 <% form_for(@perfil) do |f| %>
   <%= f.error_messages %>
-
-  <p>
-    <%= f.label :nombre %><br />
+<ul id="form" >
+  <li>
+    <%= f.label :nombre %>
     <%= f.text_field :nombre %>
-  </p>
-  <p>
-    <%= f.label :estatico %><br />
+  </li>
+
+  <li>
+    <%= f.label :estatico %>
     <%= f.check_box :estatico %>
-  </p>
+  </li>
+</ul>
   <p>
     <%= f.submit 'Actualizar' %>
   </p>
 <% end %>
+
+
+
+
+  <h1>Permisos del perfil </h1>
+   <% @items.each do |item| %>
+  <table>     
+         
+      <tr>
+         <td><label>Items</label></td>
+         <td><label>Acciones</label></td>
+      </tr>
+      
+      <tr>
+         <td><%= item.parent_id %> <%= item.nombre %></td>
+      
+      
+      
+         <td><label>Crear_Editar</label><%= check_box_tag "perfil[item_ids][][crear_editar]", :perfil_id, @perfil.items.include?(item) %></td>
+      
+      
+         <td><label>Ver</label><%= check_box_tag "perfil[item_ids][][ver]", :perfil_id, @perfil.items.include?(item) %></td>
+      
+      
+         <td><label>Borrar</label><%= check_box_tag "perfil[item_ids][][borrar]", :perfil_id, @perfil.items.include?(item) %></td>
+
+      </tr>
+  
+  </table>
+  <%end%>
+  
+  
+
 
 <%= link_to 'Ver', @perfil %> |
 <%= link_to 'Volver', perfiles_path %>

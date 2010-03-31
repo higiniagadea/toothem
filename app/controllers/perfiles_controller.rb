@@ -2,8 +2,8 @@ class PerfilesController < ApplicationController
   # GET /perfiles
   # GET /perfiles.xml
   def index
-    @perfiles = Perfil.all
-
+    #@perfiles = Perfil.all
+   @perfiles = Perfil.paginate :page=> params[:page], :per_page=>15, :order=> 'nombre ASC'
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @perfiles }
@@ -35,6 +35,7 @@ class PerfilesController < ApplicationController
   # GET /perfiles/1/edit
   def edit
     @perfil = Perfil.find(params[:id])
+    @items = Item.all
   end
 
   # POST /perfiles
@@ -58,8 +59,9 @@ class PerfilesController < ApplicationController
   # PUT /perfiles/1.xml
   def update
     @perfil = Perfil.find(params[:id])
-
-    respond_to do |format|
+    params[:perfil][:estatico]
+    
+     respond_to do |format|
       if @perfil.update_attributes(params[:perfil])
         flash[:notice] = 'Perfil actualizado.'
         format.html { redirect_to(@perfil) }

@@ -24,5 +24,5 @@
 </table>
 
 <br />
-
+<%= will_paginate @items, :previous_label=> 'Anterior', :next_label=>'Siguiente'%>
 <%= link_to 'Nuevo item', new_item_path %>

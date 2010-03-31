@@ -2,15 +2,16 @@
 
 <% form_for(@perfil) do |f| %>
   <%= f.error_messages %>
-
-  <p>
-    <%= f.label :nombre %><br />
+<ul id="form" >
+  <li>
+    <label>Nombre </label>
     <%= f.text_field :nombre %>
-  </p>
-  <p>
-    <%= f.label :estatico %><br />
+  </li>
+  <li>
+    <label>Estatico </label>
     <%= f.check_box :estatico %>
-  </p>
+  </li>
+</ul>
   <p>
     <%= f.submit 'Crear' %>
   </p>
