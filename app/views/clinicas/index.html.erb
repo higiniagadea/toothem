@@ -1,6 +1,4 @@
-<h1>Listado de clinicas</h1>
-
-<table>
+<table class="table-list">
   <tr>
     <th>Nombre</th>
     <th>Direccion</th>
@@ -8,17 +6,17 @@
   </tr>
 
 <% @clinicas.each do |clinica| %>
-  <tr>
+  <tr class="<%= cycle('','odd') %>">
     <td><%=h clinica.nombre %></td>
     <td><%=h clinica.direccion %></td>
     <td><%=h clinica.cuit %></td>
-    <td><%= link_to 'Ver', clinica %></td>
-    <td><%= link_to 'Editar', edit_clinica_path(clinica) %></td>
-    <td><%= link_to 'Borrar', clinica, :confirm => 'Esta seguro?', :method => :delete %></td>
+    <td><%= link_to image_tag('magnifier_zoom_in.png'), clinica %>
+    <%= link_to image_tag('pencil.png'), edit_clinica_path(clinica) %>
+    <%= link_to image_tag('cancel.png'), clinica, :confirm => 'Esta seguro?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
-
-<%= link_to 'Nueva clinica', new_clinica_path %>
+<%= will_paginate @clinicas, :previous_label=>'Anterior', :next_label => 'Siguiente' %>
+<%= link_to 'Nueva clínica', new_clinica_path %>

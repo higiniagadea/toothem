@@ -1,10 +1,8 @@
-<h1>Listado de profesionales</h1>
-
-<table id="table-list">
+<table class="table-list">
   <tr>
     <th>Nombre</th>
-   
-    <th>Matricula profesional</th>
+    <th>Consultorio</th>
+    <th>Matrícula p.</th>
     
     <th>Email</th>
    
@@ -13,14 +11,14 @@
 <% @profesionales.each do |profesional| %>
   <tr>
     <td><%=h profesional.nombre %></td>
- 
-    <td><%=h profesional.matricula_profesional %></td>
+    <td><%=h profesional.consultorio.nombre %></td>
+    <td align="center"><%=h profesional.matricula_profesional %></td>
    
     <td><%=h profesional.email %></td>
-   
-    <td><%= link_to 'Ver', profesional %></td>
-    <td><%= link_to 'Editar', edit_profesional_path(profesional) %></td>
-    <td><%= link_to 'Borrar', profesional, :confirm => 'Esta seguro?', :method => :delete %></td>
+    <td><%= link_to image_tag('magnifier_zoom_in.png'), profesional %>
+    <%= link_to image_tag('pencil.png'), edit_profesional_path(profesional) %>
+    <%= link_to image_tag('cancel.png'), profesional, :confirm => 'Esta seguro?', :method => :delete %></td>
+    
   </tr>
 <% end %>
 </table>

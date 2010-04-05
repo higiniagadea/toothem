@@ -524,6 +524,7 @@ ul#form{
 ul#form li{
     line-height: 23px;
     
+    
 }
 
 ul#form li:hover{
@@ -576,7 +577,11 @@ input, select{
 
 .normal{
     width: 200px;
-    border: #eaeaea 1px solid;
+    border: gray 1px solid;
+}
+.date-select{
+    width: 66px;
+    border: gray 1px solid;
 }
 
 #search-form{

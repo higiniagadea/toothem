@@ -1,17 +1,15 @@
-<h1>Editando el estado_laboral</h1>
-
 <% form_for(@estado_laboral) do |f| %>
-  <%= f.error_messages %>
+  <%= f.error_messages  :id => 'error', :header_message => '', :message => 'Ocurrió un error al intentar guardar el registro'  %>
 <ul id="form">
   <li>
      <label for="descripcion">Descripcion </label>
-    <%= f.text_field :descripcion %>
+    <%= f.text_field :descripcion, :class => 'normal' %>
+  </li>
+  <li><label></label>
+    <%= f.submit 'Guardar' %>
   </li>
  </ul>
-  <p>
-    <%= f.submit 'Actualizar' %>
-  </p>
+  
 <% end %>
 
-<%= link_to 'Ver', @estado_laboral %> |
 <%= link_to 'Volver', estados_laborales_path %>

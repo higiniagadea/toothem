@@ -1,20 +1,17 @@
-<h1>Listado estados_laborales</h1>
-
-<table id="table-list">
+<table class="table-list">
   <tr>
     <th>Descripcion</th>
   </tr>
 
 <% @estados_laborales.each do |estado_laboral| %>
-  <tr>
+  <tr class="<%= cycle('','odd') %>">
     <td><%=h estado_laboral.descripcion %></td>
-    <td><%= link_to 'Ver', estado_laboral %></td>
-    <td><%= link_to 'Editar', edit_estado_laboral_path(estado_laboral) %></td>
-    <td><%= link_to 'Borrar', estado_laboral, :confirm => 'Esta seguro?', :method => :delete %></td>
+     <td><%= link_to image_tag('pencil.png'), edit_estado_laboral_path(estado_laboral) %>
+     <%= link_to image_tag('cancel.png'), estado_laboral, :confirm => 'Esta seguro?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'Nuevo estado_laboral', new_estado_laboral_path %>
+<%= link_to 'Nuevo estado laboral', new_estado_laboral_path %>

@@ -1,62 +1,63 @@
-<h1>Nuevo profesional</h1>
-
 <% form_for(@profesional) do |f| %>
-  <%= f.error_messages %>
+  <%= f.error_messages  :id => 'error', :header_message => '', :message => 'Ocurrió un error al intentar guardar el registro'  %>
 <ul id="form" >
   <li>
     <label for="nombre">Nombre  </label>
-    <%= f.text_field :nombre %>
+    <%= f.text_field :nombre, :class =>'normal' %>
+  </li>
+   <li>
+    <label for="consultorio_id">Consultorio </label>
+   <%= f.collection_select :consultorio_id, Consultorio.all, :id, :nombre,{}, :class =>'normal'  %>
+
   </li>
   <li>
     <label for="tipo_documento">Tipo documento </label>
-    <%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion) %>
+    <%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion,{}, :class =>'normal') %>
     
   </li>
   <li>
     <label for="documento">Documento </label>
-    <%= f.text_field :documento %>
+    <%= f.text_field :documento, :class =>'normal' %>
   </li>
   <li>
-    <label for="matricula_profesional">Matricula Profesional </label>
-    <%= f.text_field :matricula_profesional %>
+    <label for="matricula_profesional">Matrícula P. </label>
+    <%= f.text_field :matricula_profesional, :class =>'normal' %>
+  </li>
+  <li>
+    <label for="email">email </label>
+    <%= f.text_field :email, :class =>'normal' %>
   </li>
   <li>
     <label for="direccion">Direccion </label> 
-    <%= f.text_field :direccion %>
+    <%= f.text_field :direccion, :class =>'normal' %>
   </li>
   <li>
     <label for="telefono">Telefono </label> 
-    <%= f.text_field :telefono %>
+    <%= f.text_field :telefono, :class =>'normal' %>
   </li>
   <li>
-    <label for="movil">Movil </label>
-    <%= f.text_field :movil %>
+    <label for="movil">Móvil </label>
+    <%= f.text_field :movil, :class =>'normal' %>
   </li>
   <li>
-    <label for="email">email </label> 
-    <%= f.text_field :email %>
+    <label for="fecha_nacimiento">F. Nacimiento </label>
+    <%= f.date_select :fecha_nacimiento,{:start_year => 1930, :use_month_numbers => true, :order =>[:day, :month, :year]},:class => 'date-select' %>
   </li>
   <li>
-    <label for="fecha_nacimiento">Fecha de Nacimiento </label> 
-    <%= f.date_select :fecha_nacimiento %>
+    <label for="fecha_ingreso">F. Ingreso </label>
+    <%= f.date_select :fecha_ingreso,{:start_year => 2000, :use_month_numbers => true, :order =>[:day, :month, :year]},:class => 'date-select'%>
   </li>
-  <li>
-    <label for="fecha_ingreso">Fecha Ingreso </label>
-    <%= f.date_select :fecha_ingreso %>
-  </li>
-  <li>
-    <label for="consultorio_id">Consultorio </label>
-   <%= f.text_field :consultorio_id %>
  
-  </li>
   <li>
     <label for="estado_laboral_id">Estado Laboral </label> 
-    <%= f.collection_select :estado_laboral_id, EstadoLaboral.all, :id, :descripcion %>
+    <%= f.collection_select :estado_laboral_id, EstadoLaboral.all, :id, :descripcion,{}, :class =>'normal' %>
+  </li>
+  <li>
+    <label></label>
+    <%= f.submit 'Crear' %>
   </li>
 </ul>
-  <p>
-    <%= f.submit 'Crear' %>
-  </p>
+  
 <% end %>
 
 <%= link_to 'Volver', profesionales_path %>
