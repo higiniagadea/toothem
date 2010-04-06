@@ -1,0 +1,20 @@
+<h1>Editando el perfil</h1>
+
+<% form_for(@perfil) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :nombre %><br />
+    <%= f.text_field :nombre %>
+  </p>
+  <p>
+    <%= f.label :estatico %><br />
+    <%= f.check_box :estatico %>
+  </p>
+  <p>
+    <%= f.submit 'Actualizar' %>
+  </p>
+<% end %>
+
+<%= link_to 'Ver', @perfil %> |
+<%= link_to 'Volver', perfiles_path %>

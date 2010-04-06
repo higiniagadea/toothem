@@ -1,19 +1,20 @@
-<h1>Nuevo consultorio</h1>
-
 <% form_for(@consultorio) do |f| %>
-  <%= f.error_messages %>
-
-  <p>
-    <%= f.label :clinica_id %><br />
-    <%= f.collection_select(:clinica_id, Clinica.all, :id, :nombre) %>
-  </p>
-  <p>
-    <%= f.label :nombre %><br />
-    <%= f.text_field :nombre %>
-  </p>
-  <p>
+  <%= f.error_messages :header_message => '', :message => 'Ocurrió un error al intentar guardar el registro'  %>
+<ul id="form">
+  <li>
+    <label for="clinica_id">Clinica </label>
+    <%= f.collection_select(:clinica_id, Clinica.all, :id, :nombre, {}, :class => 'normal') %>
+  </li>
+  <li>
+    <label for="nombre">Nombre </label>
+    <%= f.text_field :nombre, :class => 'normal' %>
+  </li>
+  <li>
+    <label></label>
     <%= f.submit 'Crear' %>
-  </p>
+  </li>
+</ul>
+  
 <% end %>
 
 <%= link_to 'Volver', consultorios_path %>

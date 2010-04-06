@@ -1,0 +1,13 @@
+<p>
+  <b>Nombre:</b>
+  <%=h @perfil.nombre %>
+</p>
+
+<p>
+  <b>Estatico:</b>
+  <%=h @perfil.estatico %>
+</p>
+
+
+<%= link_to 'Editar', edit_perfil_path(@perfil) %> |
+<%= link_to 'Volver', perfiles_path %>

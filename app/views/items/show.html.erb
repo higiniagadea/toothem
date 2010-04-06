@@ -1,6 +1,6 @@
 <p>
-  <b>Item:</b>
-  <%=h @item.item_id %>
+  <b>Nombre:</b>
+  <%=h @item.nombre %>
 </p>
 
 <p>
@@ -14,10 +14,15 @@
 </p>
 
 <p>
-  <b>Nombre:</b>
-  <%=h @item.nombre %>
+  <b>Orden:</b>
+  <%=h @item.orden %>
+</p>
+
+<p>
+  <b>Estatico:</b>
+  <%=h @item.estatico %>
 </p>
 
 
-<%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Back', items_path %>
+<%= link_to 'Editar', edit_item_path(@item) %> |
+<%= link_to 'Volver', items_path %>

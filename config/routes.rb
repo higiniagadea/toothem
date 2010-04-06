@@ -1,11 +1,12 @@
 ActionController::Routing::Routes.draw do |map|
+
+
   map.resources :prestaciones
 
-  map.resources :prestaciones
-
-
+  map.resources :perfiles
 
   map.resources :items
+
 
   map.resources :clinicas
 
@@ -29,8 +30,7 @@ ActionController::Routing::Routes.draw do |map|
                             :editfield => :get, :updatefield => :put, :cancelfield => :get,
                             :search_titular => :get, :results_titular => :post,
                             :update_titular => :put,
-                            :new_titular => :get, :create_titular => :post,
-                            :show_titular => :get
+                            :new_titular => :get, :create_titular => :post
                             }
 
   map.resources :profesionales
