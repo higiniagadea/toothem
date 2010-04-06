@@ -41,10 +41,12 @@ class TitularesController < ApplicationController
   # POST /titulares.xml
   def create
     @titular = Titular.new(params[:titular])
-
+    
     respond_to do |format|
       if @titular.save
         flash[:notice] = 'Titular creado.'
+        
+        
         format.html { redirect_to(@titular) }
         format.xml  { render :xml => @titular, :status => :created, :location => @titular }
       else
@@ -53,6 +55,7 @@ class TitularesController < ApplicationController
       end
     end
   end
+  
 
   # PUT /titulares/1
   # PUT /titulares/1.xml
@@ -93,8 +96,6 @@ class TitularesController < ApplicationController
     @titulares = Titular.basic_search(params)
     respond_to do |format|
       format.html {render :layout => false}
-
     end
-
   end
 end

@@ -1,6 +1,6 @@
 class ObraSocial < ActiveRecord::Base
   has_many :titulares
-
+  has_many :prestaciones, :through => :aranceles
 #validates
   validates_presence_of :nombre, :message => ', debe ingresar un nombre y apellido'
   validates_presence_of :nro_max_codigos_por_mes => 'debe ingresar uno'

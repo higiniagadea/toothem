@@ -11,6 +11,13 @@
 
 ActiveRecord::Schema.define(:version => 30) do
 
+  create_table "aranceles", :force => true do |t|
+    t.integer "obra_social_id"
+    t.integer "prestacion_id"
+    t.float   "importe_cubierto"
+    t.float   "coseguro"
+  end
+
   create_table "archivos", :force => true do |t|
     t.string  "content_type"
     t.string  "filename"
@@ -364,8 +371,8 @@ ActiveRecord::Schema.define(:version => 30) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "tipo_documento_id"
-    t.integer  "sexo_id"
-    t.integer  "estado_civil_id"
+    t.string   "sexo",                 :limit => nil
+    t.string   "estado_civil",         :limit => nil
   end
 
   create_table "perfiles", :force => true do |t|
@@ -380,6 +387,11 @@ ActiveRecord::Schema.define(:version => 30) do
   add_index "perfiles_items", ["item_id"], :name => "index_perfiles_items_on_item_id"
   add_index "perfiles_items", ["perfil_id"], :name => "index_perfiles_items_on_perfil_id"
 
+  create_table "prestaciones", :force => true do |t|
+    t.string  "codigo"
+    t.string  "descripcion"
+    t.integer "consultorio_id"
+  end
 
   create_table "profesionales", :force => true do |t|
     t.string  "nombre"
@@ -390,10 +402,6 @@ ActiveRecord::Schema.define(:version => 30) do
     t.string  "matricula"
     t.integer "usuario_id"
     t.integer "consultorio_id"
-  end
-
-  create_table "sexos", :force => true do |t|
-    t.string "descripcion", :limit => 30
   end
 
   create_table "tipos_cuentas", :force => true do |t|

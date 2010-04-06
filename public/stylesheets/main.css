@@ -492,7 +492,7 @@ table {
 }
 .show-data td.fielddata{
     padding:4px;
-    width:340px;
+    width:70%;
     
 }
 
@@ -548,7 +548,7 @@ table {
     -moz-border-radius: 8px;
     -webkit-border-radius: 8px;
     border: #eaeaea 2px solid;
-    min-height:600px;
+    min-height:800px;
     margin-left:10px;
     padding:10px;
 }
@@ -565,7 +565,7 @@ table {
     -moz-border-radius: 8px;
     -webkit-border-radius: 8px;
     float:left;
-    height:60px;
+    height:90px;
     width:82%;
     margin-left:10px;
 }
@@ -587,8 +587,8 @@ table {
 
 .pacientes-data{
     float:left;
-    width:79%;
-    margin-left: 10px;
+    width:95%;
+    margin-left: 0px;
     border: #eaeaea 2px solid;
     -moz-border-radius: 8px;
     -webkit-border-radius: 8px;

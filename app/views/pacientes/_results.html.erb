@@ -1,45 +1,39 @@
-
 <table id="pacientes" class="table-search" align="center">
-  <tr>
-    <th>Nombre</th>
-    <th>Matricula</th>
-
-  </tr>
-
-<% @pacientes.each do |paciente| %>
-  <tr>
-    <td><%=h paciente.nombre %></td>
-    <td><%=h paciente.matricula %></td>
-    <td id="p_data_<%= paciente.id %>">
-      <%= image_tag 'wrench.png' %>
-   
-
-    </td>
-  </tr>
-
-<% end %>
+    <tr>
+      <th>Nombre</th>
+      <th>Matricula</th>
+    </tr>
+    <% @pacientes.each do |paciente| %>
+      <tr>
+        <td><%=h paciente.nombre %></td>
+        <td><%=h paciente.matricula %></td>
+        <td id="p_data_<%= paciente.id %>">
+          <%= image_tag 'wrench.png' %>
+        </td>
+      </tr>
+    <% end %>
 </table>
 <%@pacientes.each do |paciente|%>
-<script type="text/javascript">
-// Only create tooltips when document is ready
-$(document).ready(function()
-{
-   // Use the each() method to gain access to each of the elements attributes
-   $('#p_data_<%= paciente.id %> img').each(function()
-   {
-      $(this).qtip(
+    <script type="text/javascript">
+      // Only create tooltips when document is ready
+      $(document).ready(function()
       {
-         content: '<%= render :partial => 'static/menu_pacientes', :locals => {:paciente => paciente}%>', // Give it some content
-         position: 'topRight', // Set its position
-         hide: {
-            fixed: true // Make it fixed so it can be hovered over
-         },
-         style: {
-            padding: '5px 15px', // Give it some extra padding
-            name: 'blue' // And style it with the preset dark theme
-         }
+        // Use the each() method to gain access to each of the elements attributes
+        $('#p_data_<%= paciente.id %> img').each(function()
+        {
+          $(this).qtip(
+          {
+            content: '<%= render :partial => 'static/menu_pacientes', :locals => {:paciente => paciente}%>', // Give it some content
+            position: 'topRight', // Set its position
+            hide: {
+              fixed: true // Make it fixed so it can be hovered over
+            },
+            style: {
+              padding: '5px 15px', // Give it some extra padding
+              name: 'blue' // And style it with the preset dark theme
+            }
+          });
+        });
       });
-   });
-});
-</script>
+    </script>
 <%end%>
