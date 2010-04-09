@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  codigo: MyString
+  descripcion: MyString
+  consultorio_id: 1
+
+two:
+  codigo: MyString
+  descripcion: MyString
+  consultorio_id: 1

@@ -1,0 +1,32 @@
+
+<div id="formulario">
+  <a class="close" style="float: right" ><%= image_tag 'cancel.png' %></a>
+<% form_for(@titular, :url => create_titular_paciente_path(@paciente)) do |f| %>
+  <%= f.error_messages %>
+<%= link_to_remote 'Volver', :url => search_titular_paciente_path,
+                                      :method => :get,
+                                      :update => :formulario%>
+<ul id="search_form">
+  
+  
+  <li>
+    <label>Nombre</label>
+    <%= f.text_field :nombre %>
+  </li>
+
+  <li>
+    <label>Matrícula</label>
+    <%= f.text_field :matricula %>
+  </li>
+  <li>
+    <label>Obra Social</label>
+
+    <%= f.collection_select(:obra_social_id, ObraSocial.all, :id, :nombre) %>
+  </li>
+  <li>
+    <label></label>
+    <%= f.submit 'Crear' %>
+  </li>
+</ul>
+<% end %>
+</div>

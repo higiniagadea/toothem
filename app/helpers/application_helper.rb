@@ -26,16 +26,27 @@ module ApplicationHelper
         end
     end
 
+<<<<<<< HEAD:app/helpers/application_helper.rb
    def boolean_desc (objeto)
+=======
+    def boolean_desc (objeto)
+>>>>>>> d8a6ea492f99a218350049bb7a70aa346b1e8111:app/helpers/application_helper.rb
       if objeto
         "Si"
       else
         "No"
       end
+<<<<<<< HEAD:app/helpers/application_helper.rb
    end
 
    
 
 
 
+=======
+   
+    end
+
+    
+>>>>>>> d8a6ea492f99a218350049bb7a70aa346b1e8111:app/helpers/application_helper.rb
 end

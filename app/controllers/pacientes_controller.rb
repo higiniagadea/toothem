@@ -71,6 +71,7 @@ class PacientesController < ApplicationController
   # GET /pacientes/1/edit
   def edit
     @paciente = Paciente.find(params[:id])
+    
   end
 
   def editfield
@@ -128,26 +129,77 @@ class PacientesController < ApplicationController
       format.html{
         render :update do |page|
             page["f#{params[:fieldname]}"].replace_html @paciente["#{params[:fieldname]}"]
-#            if params[:fieldname] == "nombre"
-#              page["fnombre"].replace_html @paciente.nombre
-#            end
-#
             if params[:fieldname] == "matricula"
               page["f#{params[:fieldname]}"].replace_html @paciente.tipo_documento.descripcion + " " + @paciente["#{params[:fieldname]}"]
             end
-#            if params[:fieldname] == "fecha_nacimiento"
-#              page["f#{params[:pacientes][:fieldname]}"].replace_html @paciente.fecha_nacimiento.strftime('%d/%m/%Y')
-#            end
-#            if params[:fieldname] == "sexo"
-#              page["pacientes-sexo"].replace_html @paciente.sexo
-#            end
-#            if params[:fieldname] == "estado_civil"
-#              page["pacientes-sexo"].replace_html @paciente.estado_civil
-#            end
+            if params[:fieldname] == "fecha_nacimiento"
+              page["f#{params[:fieldname]}"].replace_html @paciente.fecha_nacimiento.strftime('%d/%m/%Y')
+            end
           end
       }
     end
   end
+
+  def search_titular
+    @paciente = Paciente.find(params[:id])
+    @titulares = Titular.new
+    respond_to do |format|
+      format.html {render :layout => false}
+    end
+  end
+
+  def results_titular
+    @paciente = Paciente.find(params[:id])
+    @titulares = Titular.basic_search_in_pacientes(params)
+    respond_to do |format|
+      format.html {render :layout => false}
+    end
+  end
+
+  def update_titular
+    @paciente = Paciente.find(params[:paciente_id])
+    @titular =  Titular.find(params[:id])
+
+    @paciente.update_attribute(:titular_id, @titular.id)
+     
+    respond_to do |format|
+        format.html{redirect_to(@paciente)}
+      end
+
+    end
+
+  def new_titular
+    @paciente = Paciente.find(params[:id])
+    @titular = Titular.new
+    respond_to do |format|
+      format.html {render :layout => false}
+    end
+  end
+
+  def create_titular
+    @paciente = Paciente.find(params[:id])
+    @titular = Titular.new(params[:titular])
+    
+    respond_to do |format|
+      if @titular.save
+        @paciente.update_attribute(:titular_id, @titular.id)
+        flash[:notice] = 'Titular creado.'
+        format.html {redirect_to(@paciente)}
+        
+      else
+        format.html { render :action => "new_titular" }
+      end
+    end
+  end
+#  def show_titular
+#    @titular = Titular.find(params[:id])
+#
+#    respond_to do |format|
+#      format.html # show.html.erb
+#      format.xml  { render :xml => @titular }
+#    end
+#  end
+
 
   
   # POST /pacientes

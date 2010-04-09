@@ -31,6 +31,7 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'estado_laboral', 'estados_laborales'
   inflect.irregular 'estado_civil', 'estados_civiles'
   
+  
 
 
 

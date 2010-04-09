@@ -1,0 +1,18 @@
+<p>
+  <b>Codigo:</b>
+  <%=h @prestacion.codigo %>
+</p>
+
+<p>
+  <b>Descripcion:</b>
+  <%=h @prestacion.descripcion %>
+</p>
+
+<p>
+  <b>Consultorio:</b>
+  <%=h @prestacion.consultorio_id %>
+</p>
+
+
+<%= link_to 'Editar', edit_prestacion_path(@prestacion) %> |
+<%= link_to 'Volver', prestaciones_path %>

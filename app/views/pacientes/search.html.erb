@@ -1,18 +1,22 @@
-<div id="searchform" align="center">
+<div id="searchform">
   <%  form_remote_tag :url=> result_pacientes_path, 
                       :method => :post,
                       :update => :search_hits do -%>
-  <ul id="search-form">
-    <li><label for="matricula">Matricula</label> <%= text_field_tag :matricula %></li>
-    <li><label for="nombre">Nombre y Apellido</label> <%= text_field_tag :nombre %></li>
-    <li style="text-align:right"><label></label><%= submit_tag 'Buscar' %> <a href="">Avanzado</a></li>
-  </ul>
-
-
-  
-
-
-  
+      <ul id="search-form">
+        <li>
+          <label for="matricula">Matricula</label>
+          <%= text_field_tag :matricula %>
+        </li>
+        <li>
+          <label for="nombre">Nombre y Apellido</label>
+          <%= text_field_tag :nombre %>
+        </li>
+        <li style="text-align:right">
+          <label></label>
+          <%= submit_tag 'Buscar' %>
+          <a href="">Avanzado</a>
+        </li>
+      </ul>
   <%end -%>
 </div>
 <div id="search_hits">

@@ -11,6 +11,13 @@
 
 ActiveRecord::Schema.define(:version => 26) do
 
+  create_table "aranceles", :force => true do |t|
+    t.integer "obra_social_id"
+    t.integer "prestacion_id"
+    t.float   "importe_cubierto"
+    t.float   "coseguro"
+  end
+
   create_table "archivos", :force => true do |t|
     t.string  "content_type"
     t.string  "filename"
@@ -389,8 +396,15 @@ ActiveRecord::Schema.define(:version => 26) do
     t.boolean "borrar"
   end
 
-  add_index "permisos", ["item_id"], :name => "index_permisos_on_item_id"
-  add_index "permisos", ["perfil_id"], :name => "index_permisos_on_perfil_id"
+  add_index "perfiles_items", ["item_id"], :name => "index_perfiles_items_on_item_id"
+  add_index "perfiles_items", ["perfil_id"], :name => "index_perfiles_items_on_perfil_id"
+
+  create_table "prestaciones", :force => true do |t|
+    t.string  "codigo"
+    t.string  "descripcion"
+    t.integer "consultorio_id"
+  end
+
 
   create_table "profesionales", :force => true do |t|
     t.string  "nombre"
@@ -406,6 +420,7 @@ ActiveRecord::Schema.define(:version => 26) do
     t.integer "estado_laboral_id"
     t.integer "consultorio_id"
   end
+
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
