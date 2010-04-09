@@ -1,6 +1,9 @@
 class ItemsController < ApplicationController
   # GET /items
   # GET /items.xml
+
+  layout 'default'
+
   def index
     @items = Item.all
 

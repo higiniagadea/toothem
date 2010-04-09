@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 30) do
+ActiveRecord::Schema.define(:version => 26) do
 
   create_table "archivos", :force => true do |t|
     t.string  "content_type"
@@ -330,8 +330,16 @@ ActiveRecord::Schema.define(:version => 30) do
 
   create_table "items", :force => true do |t|
     t.string  "nombre"
-    t.string  "rest_url"
-    t.integer "item_id"
+    t.string  "url"
+    t.string  "metodo_http"
+    t.integer "orden"
+    t.boolean "estatico"
+    t.integer "parent_id"
+    t.integer "children_count"
+    t.integer "ancestors_count"
+    t.integer "descendants_count"
+    t.integer "position"
+    t.boolean "hidden"
   end
 
   create_table "obras_sociales", :force => true do |t|
@@ -346,6 +354,8 @@ ActiveRecord::Schema.define(:version => 30) do
   create_table "pacientes", :force => true do |t|
     t.string   "nombre",                              :null => false
     t.string   "matricula",            :limit => 50,  :null => false
+    t.string   "sexo",                 :limit => 1,   :null => false
+    t.string   "estado_civil",         :limit => 100
     t.string   "domicilio_particular",                :null => false
     t.string   "domicilio_laboral"
     t.date     "fecha_nacimiento"
@@ -364,37 +374,48 @@ ActiveRecord::Schema.define(:version => 30) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "tipo_documento_id"
-    t.integer  "sexo_id"
-    t.integer  "estado_civil_id"
   end
 
   create_table "perfiles", :force => true do |t|
-    t.string "nombre"
+    t.string  "nombre"
+    t.boolean "estatico"
   end
 
-  create_table "perfiles_items", :force => true do |t|
+  create_table "permisos", :force => true do |t|
     t.integer "perfil_id"
     t.integer "item_id"
+    t.boolean "crear_editar"
+    t.boolean "ver"
+    t.boolean "borrar"
   end
 
-  add_index "perfiles_items", ["item_id"], :name => "index_perfiles_items_on_item_id"
-  add_index "perfiles_items", ["perfil_id"], :name => "index_perfiles_items_on_perfil_id"
-
+  add_index "permisos", ["item_id"], :name => "index_permisos_on_item_id"
+  add_index "permisos", ["perfil_id"], :name => "index_permisos_on_perfil_id"
 
   create_table "profesionales", :force => true do |t|
     t.string  "nombre"
+    t.integer "tipo_documento_id"
     t.string  "documento"
     t.string  "email"
+    t.string  "matricula_profesional"
     t.string  "direccion"
     t.string  "telefono"
-    t.string  "matricula"
-    t.integer "usuario_id"
+    t.string  "movil"
+    t.date    "fecha_nacimiento"
+    t.date    "fecha_ingreso"
+    t.integer "estado_laboral_id"
     t.integer "consultorio_id"
   end
 
-  create_table "sexos", :force => true do |t|
-    t.string "descripcion", :limit => 30
+  create_table "sessions", :force => true do |t|
+    t.string   "session_id", :null => false
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
+
+  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
+  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "tipos_cuentas", :force => true do |t|
     t.string  "nombre"
