@@ -1,6 +1,9 @@
 class PacientesController < ApplicationController
   # GET /pacientes
   # GET /pacientes.xml
+
+  layout 'default'
+
   def index
     @pacientes = Paciente.all
 
@@ -71,7 +74,9 @@ class PacientesController < ApplicationController
   # GET /pacientes/1/edit
   def edit
     @paciente = Paciente.find(params[:id])
-    
+     unless @paciente.archivo_id == 0
+      @archivo = Archivo.find(@paciente.archivo_id)
+     end
   end
 
   def editfield
