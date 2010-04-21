@@ -1,7 +1,7 @@
-<h1>Lista de obras sociales</h1>
+
 
 <table class="table-list">
-  <tr class="<%  cycle('par','impar') %>">
+  <tr>
     <th>Nombre</th>
     <th>Auditoria previa</th>
     <th>Auditoria post</th>
@@ -12,7 +12,7 @@
   </tr>
 
 <% @obras_sociales.each do |obra_social| %>
-  <tr>
+  <tr class="<%= cycle('','odd') %>">
     <td><%=h obra_social.nombre %></td>
     <td><%=h boolean_desc(obra_social.auditoria_previa)%></td>
     <td><%=h boolean_desc(obra_social.auditoria_post) %></td>
@@ -20,9 +20,10 @@
     <td><%=h boolean_desc(obra_social.incluye_ficha) %></td>
     
     
-    <td><%= link_to 'Ver', obra_social %></td>
-    <td><%= link_to 'Editar', edit_obra_social_path(obra_social) %></td>
-    <td><%= link_to 'Borrar', obra_social, :confirm => '¿Está seguro? No podrá deshacer esta acción', :method => :delete %></td>
+    <td><%= link_to image_tag('magnifier_zoom_in.png'), obra_social %>
+        <%= link_to image_tag('pencil.png'), edit_obra_social_path(obra_social) %>
+        <%= link_to image_tag('cancel.png'), obra_social, :confirm => '¿Está seguro? No podrá deshacer esta acción', :method => :delete %>
+        <%= link_to 'Aranceles', new_obra_social_arancel_path(obra_social)%></td>
   </tr>
 <% end %>
 </table>

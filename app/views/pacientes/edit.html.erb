@@ -1,82 +1,173 @@
-<h1>Editando paciente</h1>
 
-<% form_for(@paciente) do |f| %>
-  <%= f.error_messages %>
-<ul id="form">
-  <li>
-    <label>Nombre</label>
-    <%= f.text_field :nombre %>
-  </li>
-  <li>
-    <label>Tipo de documento</label>
-    <%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion) %>
-  </li>
-  <li>
-    <label>Matricula</label>
-    <%= f.text_field :matricula %>
-  </li>
-  <li>
-    <label>Sexo</label>
-    <select name="paciente[sexo]">
-      <%=  options_for_select([ "Masculino", "Femenino" ], @paciente.sexo)%>
-    </select>
-  </li>
-  <li>
-    <label>Estado civil</label>
-    <select name="paciente[estado_civil]">
-      <%=  options_for_select([ "Soltero/a", "Casado/a","Divorciado/a","Viudo/a","Otro" ], @paciente.estado_civil)%>
-    </select>
-  </li>
-  <li>
-    <label> Domicilio Particular</label>
-    <%= f.text_field :domicilio_particular %>
-  </li>
-  <li>
-    <label>Domicilio Laboral </label>
-    <%= f.text_field :domicilio_laboral %>
-  </li>
-  <li>
-    <label>Fecha de Nacimiento</label>
-    <%= f.date_select :fecha_nacimiento %>
-  </li>
-  <li>
-    <label>Grupo Sanguineo</label>
-    <%= f.text_field :grupo_sanguineo %>
-  </li>
-  <li>
-    <label>Teléfono Particular</label>
-    <%= f.text_field :telefono_particular %>
-  </li>
-  <li>
-    <label>Teléfono Laboral</label>
-    <%= f.text_field :telefono_laboral %>
-  </li>
-  <li>
-    <label>Teléfono Celular</label>
-    <%= f.text_field :movil %>
-  </li>
-  <li>
-    <label>Profesión</label>
-    <%= f.text_field :profesion %>
-  </li>
-  <li>
-    <label>Ocupación</label>
-    <%= f.text_field :ocupacion %>
-  </li>
-  <li>
-    <label>Nivel Escolar</label>
-    <%= f.text_field :nivel_escolar %>
-  </li>
-  <li>
-    <label>Número de Afiliado</label>
-    <%= f.text_field :nro_afiliado %>
-  </li>
-  <li>
-    <label></label>
-    <%= f.submit 'Actualizar' %>
-  </li>
-</ul>
-<% end %>
 
-<%= link_to 'Ver', @paciente %> |
-<%= link_to 'Volver', pacientes_path %>
+<div id="pacientes-screen">
+
+
+    <div id="pacientes-photo">
+        <% if @paciente.archivo_id.blank? %>
+          <%= image_tag('nouser.jpg') %>
+        <%else%>
+          <%= image_tag archivo_path(@archivo), :alt => 'imagen del paciente' %>
+        <%end%>
+
+    </div>
+
+   
+
+    <% form_for(@paciente) do |f| %>
+      <%= f.error_messages %>
+      <div id="pacientes-options">
+        <div id="pacientes-nombre">
+          <%=h @paciente.nombre %>
+        </div>
+        <div id="pacientes-actions">
+          <%= link_to image_tag('magnifier_zoom_in.png'), @paciente %> |
+          <%= link_to image_tag('cancel.png'), @paciente, :confirm => 'Esta seguro? No podrá deshacer esta acción', :method => :delete %> |
+          <%= link_to image_tag('printer.png'), edit_paciente_path(@paciente) %> |
+          <%= link_to 'Volver', pacientes_path %>
+        </div>
+
+      </div>
+      <fieldset class="pacientes-data">
+        <legend>Datos del paciente</legend>
+        <ul id="form">
+          <li>
+            <label>Nombre</label>
+            <%= f.text_field :nombre %>
+          </li>
+          <li>
+            <label>Tipo de documento</label>
+            <%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion) %>
+          </li>
+          <li>
+            <label>Matricula</label>
+            <%= f.text_field :matricula %>
+          </li>
+          <li>
+            <label>Sexo</label>
+            <select name="paciente[sexo]">
+              <%=  options_for_select([ "Masculino", "Femenino" ], @paciente.sexo)%>
+            </select>
+          </li>
+          <li>
+            <label>Estado civil</label>
+            <select name="paciente[estado_civil]">
+              <%=  options_for_select([ "Soltero/a", "Casado/a","Divorciado/a","Viudo/a","Otro" ], @paciente.estado_civil)%>
+            </select>
+          </li>
+          <li>
+            <label> Domicilio Particular</label>
+            <%= f.text_field :domicilio_particular %>
+          </li>
+          <li>
+            <label>Domicilio Laboral </label>
+            <%= f.text_field :domicilio_laboral %>
+          </li>
+          <li>
+            <label>Fecha de Nacimiento</label>
+            <%=  f.date_select :fecha_nacimiento,
+                       :order => [:day, :month, :year],
+                       :start_year => Time.now.year - 100,
+                       :end_year => Time.now.year%>
+          </li>
+          <li>
+            <label>Grupo Sanguineo</label>
+            <%= f.text_field :grupo_sanguineo %>
+          </li>
+          <li>
+            <label>Teléfono Particular</label>
+            <%= f.text_field :telefono_particular %>
+          </li>
+          <li>
+            <label>Teléfono Laboral</label>
+            <%= f.text_field :telefono_laboral %>
+          </li>
+          <li>
+            <label>Teléfono Celular</label>
+            <%= f.text_field :movil %>
+          </li>
+          <li>
+            <label>Profesión</label>
+            <%= f.text_field :profesion %>
+          </li>
+          <li>
+            <label>Ocupación</label>
+            <%= f.text_field :ocupacion %>
+          </li>
+          <li>
+            <label>Nivel Escolar</label>
+            <%= f.text_field :nivel_escolar %>
+          </li>
+          <li>
+            <label></label>
+            <%= f.submit 'Actualizar' %>
+          </li>
+          
+  
+        </ul>
+      </fieldset>
+
+      <fieldset class="pacientes-data">
+        <legend>Datos de Obra Social</legend>
+         <table class="show-data">
+           <%unless @paciente.titular.blank?%>
+          <tr>
+            <td class="fieldname">Obra Social</td>
+            <td class="fielddata"><%=h @paciente.titular.obra_social.nombre %></td>
+          </tr>
+          <tr>
+            <td class="fieldname">Titular</td>
+            <td class="fielddata"><%=h @paciente.titular.matricula%> - <%= @paciente.titular.nombre%> </td>
+            <% end %>
+            <td><div id="edit-obra-social"><%= image_tag ('pencil.png') %></div></td>
+          </tr>
+          
+         </table>
+         
+
+      </fieldset>
+    <% end %>
+</div>
+  
+  <script type="text/javascript">
+// Only create tooltips when document is ready
+$(document).ready(function()
+{
+   // Use the each() method to gain access to each of the elements attributes
+   $('#pacientes-photo img').each(function()
+   {
+      $(this).qtip(
+      {
+         content: '<a onclick="Boxy.load(\'<%= changephoto_paciente_url(@paciente) %>\',{modal: true})">Editar</a>',
+         position: 'topLeft', // Set its position
+         hide: {
+            fixed: true // Make it fixed so it can be hovered over
+         },
+         style: {
+            padding: '5px 15px', // Give it some extra padding
+            name: 'blue' // And style it with the preset dark theme
+         }
+      });
+   });
+  $('#edit-obra-social img').each(function()
+  {
+    $(this).qtip(
+    {
+      content: '<a onclick="Boxy.load(\'<%= search_titular_paciente_url %>\',{modal: true})"><%= image_tag('pencil.png') %></a>',
+      position: 'topLeft', // Set its position
+         hide: {
+            fixed: true // Make it fixed so it can be hovered over
+         },
+         style: {
+            border: '1px',
+            margin: '0 0 0 0', // Give it some extra padding
+            name: 'blue' // And style it with the preset dark theme
+            
+         }
+    });
+  });
+});
+
+
+</script>
+

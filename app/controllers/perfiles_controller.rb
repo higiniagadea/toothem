@@ -1,9 +1,11 @@
 class PerfilesController < ApplicationController
   # GET /perfiles
   # GET /perfiles.xml
+  layout 'default'
+
   def index
-    #@perfiles = Perfil.all
    @perfiles = Perfil.paginate :page=> params[:page], :per_page=>15, :order=> 'nombre ASC'
+   @pagetitle = "Perfiles"
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @perfiles }
@@ -25,7 +27,7 @@ class PerfilesController < ApplicationController
   # GET /perfiles/new.xml
   def new
     @perfil = Perfil.new
-
+    @pagetitle = "Nuevo perfil"
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @perfil }
@@ -36,13 +38,14 @@ class PerfilesController < ApplicationController
   def edit
     @perfil = Perfil.find(params[:id])
     @items = Item.all
+    @pagetitle = "Editando perfil"
   end
 
   # POST /perfiles
   # POST /perfiles.xml
   def create
     @perfil = Perfil.new(params[:perfil])
-
+    @pagetitle = "Nuevo perfil"
     respond_to do |format|
       if @perfil.save
         flash[:notice] = 'Perfil creado.'
@@ -61,7 +64,9 @@ class PerfilesController < ApplicationController
     @perfil = Perfil.find(params[:id])
     params[:perfil][:estatico]
     
-     respond_to do |format|
+    @pagetitle = "Editando perfil"
+    respond_to do |format|
+
       if @perfil.update_attributes(params[:perfil])
         flash[:notice] = 'Perfil actualizado.'
         format.html { redirect_to(@perfil) }

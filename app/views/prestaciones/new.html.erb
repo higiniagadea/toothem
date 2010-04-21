@@ -1,0 +1,25 @@
+
+
+<% form_for(@prestacion) do |f| %>
+  <%= f.error_messages %>
+  <ul id="form">
+    <li>
+      <label>Código</label>
+      <%= f.text_field :codigo %>
+    </li>
+    <li>
+      <label>Descripción</label>
+      <%= f.text_field :descripcion %>
+    </li>
+    <li>
+      <label>Consultorio</label>
+      <%= f.collection_select(:consultorio_id, Consultorio.all, :id, :nombre) %>
+    </li>
+    <li>
+      <label></label>
+      <%= f.submit 'Crear' %>
+    </li>
+  </ul>
+<% end %>
+
+<%= link_to 'Volver', prestaciones_path %>

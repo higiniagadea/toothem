@@ -1,9 +1,10 @@
 class TitularesController < ApplicationController
   # GET /titulares
   # GET /titulares.xml
+  layout 'default'
   def index
     @titulares = Titular.all
-
+    @pagetitle = "Titulares"
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @titulares }
@@ -25,7 +26,7 @@ class TitularesController < ApplicationController
   # GET /titulares/new.xml
   def new
     @titular = Titular.new
-
+    @pagetitle = "Nuevo titular"
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @titular }
@@ -35,16 +36,19 @@ class TitularesController < ApplicationController
   # GET /titulares/1/edit
   def edit
     @titular = Titular.find(params[:id])
+    @pagetitle = "Editando titular"
   end
 
   # POST /titulares
   # POST /titulares.xml
   def create
     @titular = Titular.new(params[:titular])
-
+    @pagetitle = "Nuevo titular"
     respond_to do |format|
       if @titular.save
         flash[:notice] = 'Titular creado.'
+        
+        
         format.html { redirect_to(@titular) }
         format.xml  { render :xml => @titular, :status => :created, :location => @titular }
       else
@@ -53,12 +57,13 @@ class TitularesController < ApplicationController
       end
     end
   end
+  
 
   # PUT /titulares/1
   # PUT /titulares/1.xml
   def update
     @titular = Titular.find(params[:id])
-
+    @pagetitle = "Editando titular"
     respond_to do |format|
       if @titular.update_attributes(params[:titular])
         flash[:notice] = 'Titular actualizado'
@@ -84,6 +89,7 @@ class TitularesController < ApplicationController
     end
   end
   def buscar
+    @pagetitle = "Buscar titular"
     respond_to do |format|
       format.html # buscar.html.erb
 
@@ -93,8 +99,6 @@ class TitularesController < ApplicationController
     @titulares = Titular.basic_search(params)
     respond_to do |format|
       format.html {render :layout => false}
-
     end
-
   end
 end

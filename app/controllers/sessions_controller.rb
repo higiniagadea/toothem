@@ -19,6 +19,7 @@ class SessionsController < ApplicationController
       # reset_session
       self.current_usuario = usuario
       new_cookie_flag = (params[:remember_me] == "1")
+      session[:user_menu] = Item.find(:all, :conditions => 'parent_id = 1', :order => 'orden')
       handle_remember_cookie! new_cookie_flag
       redirect_back_or_default('/profesionales')
       flash[:notice] = "Ingreso correcto"

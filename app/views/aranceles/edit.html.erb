@@ -1,0 +1,25 @@
+
+<%  form_for(:arancel, @arancel, :url => obra_social_arancel_path(@obra_social, @arancel), :html => {:method => :put}) do |f|   %>
+
+  <%= f.error_messages %>
+<ul id="form">
+
+      <li>
+        <label>Prestacion</label>
+        <%= @arancel.prestacion.descripcion %>
+        
+      </li>
+      <li>
+        <label>Importe Cubierto</label>
+        <%= f.text_field :importe_cubierto %>
+      </li>
+      <li>
+        <label>Coseguro</label>
+        <%= f.text_field :coseguro %>
+      </li>
+      <li>
+        <label></label>
+        <%= f.submit 'Actualizar' %>
+      </li>
+</ul>
+<% end %>

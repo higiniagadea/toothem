@@ -11,6 +11,13 @@
 
 ActiveRecord::Schema.define(:version => 25) do
 
+  create_table "aranceles", :force => true do |t|
+    t.integer "obra_social_id"
+    t.integer "prestacion_id"
+    t.float   "importe_cubierto"
+    t.float   "coseguro"
+  end
+
   create_table "archivos", :force => true do |t|
     t.string  "content_type"
     t.string  "filename"
@@ -389,16 +396,11 @@ ActiveRecord::Schema.define(:version => 25) do
   add_index "perfiles_items", ["item_id"], :name => "index_perfiles_items_on_item_id"
   add_index "perfiles_items", ["perfil_id"], :name => "index_perfiles_items_on_perfil_id"
 
-  create_table "permisos", :force => true do |t|
-    t.integer "perfil_id"
-    t.integer "item_id"
-    t.boolean "crear_editar"
-    t.boolean "ver"
-    t.boolean "borrar"
+  create_table "prestaciones", :force => true do |t|
+    t.string  "codigo"
+    t.string  "descripcion"
+    t.integer "consultorio_id"
   end
-
-  add_index "permisos", ["item_id"], :name => "index_permisos_on_item_id"
-  add_index "permisos", ["perfil_id"], :name => "index_permisos_on_perfil_id"
 
   create_table "profesionales", :force => true do |t|
     t.string  "nombre"

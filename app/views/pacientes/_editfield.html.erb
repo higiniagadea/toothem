@@ -1,27 +1,26 @@
 <%  form_remote_for(@paciente, :url=>updatefield_paciente_url(@paciente), :html=>{:id => 'single-form'}) do |f|   %>
-  <%if params[:fieldname] == "matricula"%>
-    <!--<select name="paciente[tipo_documento]">-->
-      <%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion) %>
-    <!--</select>-->
-    <input type="text" name="paciente[<%= params[:fieldname] %>]" value="<%= @value %>"></input>
+    <%if params[:fieldname] == "matricula"%>
+            <%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion) %>
+            <input type="text" name="paciente[<%= params[:fieldname] %>]" value="<%= @value %>"></input>
+        <%elsif params[:fieldname] == "fecha_nacimiento"%>
+            <%=  f.date_select :fecha_nacimiento,
+                               :order => [:day, :month, :year],
+                               :start_year => Time.now.year - 100,
+                               :end_year => Time.now.year%>
+        <%elsif params[:fieldname] == "sexo"%>
+            <select name="paciente[sexo]">
+                <%=  options_for_select([ "Masculino", "Femenino" ], @paciente.sexo)%>
+            </select>
+        <%elsif params[:fieldname] == "estado_civil"%>
+            <select name="paciente[estado_civil]">
+                <%=  options_for_select([ "Soltero/a", "Casado/a","Divorciado/a","Viudo/a","Otro" ], @paciente.estado_civil)%>
+            </select>
+        <%else%>
+            <input type="text" name="paciente[<%= params[:fieldname] %>]" value="<%= @value %>"></input>
     
-  <%elsif params[:fieldname] == "fecha_nacimiento"%>
-    <%=  f.date_select :fecha_nacimiento,
-                       :order => [:day, :month, :year]%>
-  <%elsif params[:fieldname] == "sexo"%>
-    <select name="paciente[sexo]">
-      <%=  options_for_select([ "Masculino", "Femenino" ], @paciente.sexo)%>
-    </select>
-  <%elsif params[:fieldname] == "estado_civil"%>
-    <select name="paciente[estado_civil]">
-      <%=  options_for_select([ "Soltero/a", "Casado/a","Divorciado/a","Viudo/a","Otro" ], @paciente.estado_civil)%>
-    </select>
-  <%else%>
-    <input type="text" name="paciente[<%= params[:fieldname] %>]" value="<%= @value %>"></input>
-    
-  <%end%>
+    <%end%>
     <input type="hidden" name="pacientes[fieldname]" value="<%= params[:fieldname] %>"></input>
     <input style="vertical-align:middle" type="image" src="/images/16/disk.png"></input>
-    <%= image_tag('/images/16/cancel.png', :onclick => remote_function(:url => "/pacientes/cancelfield/"+@paciente.id.to_s+"?fieldname="+params[:fieldname]))%>
+    <%= image_tag('/images/16/acancel.png', :onclick => remote_function(:url => "/pacientes/cancelfield/"+@paciente.id.to_s+"?fieldname="+params[:fieldname]))%>
     <span style="color:red" id="error_messages_for_<%=  params[:fieldname]%>"></span>
 <% end %>

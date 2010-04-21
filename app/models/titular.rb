@@ -14,22 +14,35 @@ class Titular < ActiveRecord::Base
     named_scope :by_nombre, lambda { |nombre|
     {
       :conditions=> ['lower(nombre) LIKE :nombre ',
-          { :nombre => "%"+nombre.downcase+"%"} ]
+                     { :nombre => "%"+nombre.downcase+"%"} ]
     }
   }
   named_scope :by_matricula, lambda { |matricula|
     {
       :conditions=> ['lower(matricula) LIKE :matricula ',
-          { :matricula => "%"+matricula.downcase+"%"} ]
+                     { :matricula => "%"+matricula.downcase+"%"} ]
+    }
+  }
+  named_scope :by_obra_social_id, lambda { |obra_social_id|
+    {
+    :conditions => ['obra_social_id = :obra_social_id',
+                    {:obra_social_id => obra_social_id}]
     }
   }
   named_scope :limitar, :limit => 15
   def self.basic_search(options)
     scope_builder do |builder|
-
-      builder.by_matricula(options[:matricula]) if options[:matricula]
-      builder.by_nombre(options[:nombre]) if options[:nombre]
-      builder.limitar
+      
+        builder.by_matricula(options[:matricula]) if options[:matricula]
+        builder.by_nombre(options[:nombre]) if options[:nombre]
+        builder.limitar   
+    end
+  end
+  def self.basic_search_in_pacientes(options)
+    scope_builder do |builder|
+        builder.by_matricula(options[:matricula]) if options[:matricula]
+        builder.by_nombre(options[:nombre]) if options[:nombre]
+        builder.by_obra_social_id(options[:get][:obra_social_id]) if options[:get][:obra_social_id]
     end
   end
 

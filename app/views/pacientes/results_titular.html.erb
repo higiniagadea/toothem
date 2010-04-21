@@ -1,0 +1,23 @@
+
+
+<table class="table-list">
+ 
+    <tr>
+      <th>Matricula</th>
+      <th>Nombre</th>
+    </tr>
+
+  <% @titulares.each do |titular| %>
+    <tr class="<%=  cycle('par','impar')%>">
+      <td><%=h titular.matricula %></td>
+      <td><%=h titular.nombre %></td>
+      <td>
+
+          <%=link_to image_tag('16/tick.png'), update_titular_paciente_path(titular, :paciente_id => @paciente), :method => :put%>
+      </td>
+    </tr>
+    
+  <% end %>
+
+
+</table>

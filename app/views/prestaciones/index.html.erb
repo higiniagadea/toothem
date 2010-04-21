@@ -1,0 +1,24 @@
+
+
+<table class="table-list">
+  <tr>
+    <th>Codigo</th>
+    <th>Descripcion</th>
+    <th>Consultorio</th>
+  </tr>
+
+<% @prestaciones.each do |prestacion| %>
+  <tr class="<%= cycle('','odd') %>">
+    <td><%=h prestacion.codigo %></td>
+    <td><%=h prestacion.descripcion %></td>
+    <td><%=h prestacion.consultorio_id %></td>
+    <td><%= link_to image_tag('magnifier_zoom_in.png'), prestacion %>
+        <%= link_to image_tag('pencil.png'), edit_prestacion_path(prestacion) %>
+        <%= link_to image_tag('cancel.png'), prestacion, :confirm => '¿Está seguro? No podrá deshacer esta acción', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Nueva prestación', new_prestacion_path %>
