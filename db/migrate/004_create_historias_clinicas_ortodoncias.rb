@@ -220,7 +220,7 @@ class CreateHistoriasClinicasOrtodoncias < ActiveRecord::Migration
       t.column :tratamiento_primera_etapa, :text, :null => true
       t.column :tratamiento_segunda_etapa, :text, :null => true
       t.column :tratamiento_tercera_etapa, :text, :null => true
-      t.column :tratamiento_primera_etapa, :text, :null => true
+      
       
       
       
@@ -245,5 +245,6 @@ class CreateHistoriasClinicasOrtodoncias < ActiveRecord::Migration
   end
 
   def self.down
+    drop_table "historias_clinicas_ortodoncias"
   end
 end

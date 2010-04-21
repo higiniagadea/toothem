@@ -1,6 +1,7 @@
 class ProfesionalesController < ApplicationController
   # GET /profesionales
   # GET /profesionales.xml
+  layout 'default'
   def index
    # @profesionales = Profesional.all
   @profesionales = Profesional.paginate :page=> params[:page], :per_page=>15, :order=> 'nombre ASC'
@@ -15,7 +16,7 @@ class ProfesionalesController < ApplicationController
   # GET /profesionales/1.xml
   def show
     @profesional = Profesional.find(params[:id])
-    
+   
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @profesional }

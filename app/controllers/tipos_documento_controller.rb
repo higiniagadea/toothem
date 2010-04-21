@@ -1,6 +1,7 @@
 class TiposDocumentoController < ApplicationController
   # GET /tipos_documentos
   # GET /tipos_documentos.xml
+  layout 'default'
   def index
     @tipos_documento = TipoDocumento.all
 

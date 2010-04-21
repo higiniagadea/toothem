@@ -4,7 +4,9 @@ class Paciente < ActiveRecord::Base
   #belongs_to :archivo
 
   belongs_to :tipo_documento
-
+  belongs_to :historia_clinica_general
+  belongs_to :historia_clinica_ortodoncia
+  
   has_many :fichas
 
   validates_presence_of :nombre, :message => ' y apellido no puede estar en blanco'

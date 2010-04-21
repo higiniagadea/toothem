@@ -84,6 +84,6 @@ class CreateHistoriasClinicasGenerales < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table "historias_clinicas"
+    drop_table "historias_clinicas_generales"
   end
 end

@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :historias_clinicas_ortodoncias
+
+  map.resources :historias_clinicas_generales
+
   map.resources :permisos
 
   map.resources :perfiles

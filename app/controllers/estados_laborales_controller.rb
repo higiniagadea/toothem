@@ -1,6 +1,7 @@
 class EstadosLaboralesController < ApplicationController
   # GET /estados_laborales
   # GET /estados_laborales.xml
+  layout 'default'
   def index
     @estados_laborales = EstadoLaboral.all
 

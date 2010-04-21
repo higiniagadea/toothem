@@ -1,0 +1,2 @@
+module HistoriasClinicasOrtodonciasHelper
+end
