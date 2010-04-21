@@ -643,8 +643,8 @@ input, select{
     width:90px;
     height:90px;
     border: #eaeaea 2px solid;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
+    /*-moz-border-radius: 8px;
+    -webkit-border-radius: 8px;*/
     float:left;
 }
 #pacientes-options{
@@ -652,21 +652,22 @@ input, select{
     -moz-border-radius: 8px;
     -webkit-border-radius: 8px;
     float:left;
-    height:60px;
+    height:90px;
     width:82%;
     margin-left:10px;
 }
 #pacientes-nombre{
     float:left;
     margin-left:10px;
-    margin-top:20px;
+    margin-top:30px;
     font-size:20px;
     font-weight:bold;
+    
 }
 #pacientes-actions{
     float:right;
     margin-right:10px;
-    margin-top:13px;
+    margin-top:23px;
     border: #ECF4FF 2px solid;
     padding:4px;
 }

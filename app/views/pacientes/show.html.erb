@@ -1,6 +1,6 @@
 <div id="pacientes-screen">
-  <div id="pacientes-photo">
-    <% if @paciente.archivo_id == 0 %>
+  <div id= "pacientes-photo">
+    <% if @paciente.archivo_id.blank? %>
       <%= image_tag('nouser.jpg') %>
     <%else%>
       <%= image_tag archivo_path(@archivo), :alt => 'imagen del paciente' %>
@@ -110,22 +110,24 @@
   <fieldset class="pacientes-data">
     <legend>Obra Social</legend>
     <table class="show-data">
-      <tr>
-        <td class="fieldname">Obra Social</td>
-        <td class="fielddata"><%=h @paciente.titular.obra_social.nombre %></td>
-      </tr>
-      <tr class="odd">
-        <td class="fieldname">Numero afiliado</td>
-        <td class="fielddata"> <%=h @paciente.nro_afiliado %></td>
-      </tr>
-      <tr>
-        <td class="fieldname">Titular</td>
-        <td class="fielddata"> <%=h @paciente.titular.nombre %></td>
-      </tr>
-      <tr class="odd">
-        <td class="fieldname">Matrícula</td>
-        <td class="fielddata"> <%=h @paciente.titular.matricula %></td>
-      </tr>
+      <%unless @paciente.titular.blank?%>
+        <tr>
+          <td class="fieldname">Obra Social</td>
+          <td class="fielddata"><%=h @paciente.titular.obra_social.nombre %></td>
+        </tr>
+        <tr class="odd">
+          <td class="fieldname">Numero afiliado</td>
+          <td class="fielddata"> <%=h @paciente.nro_afiliado %></td>
+        </tr>
+        <tr>
+          <td class="fieldname">Titular</td>
+          <td class="fielddata"> <%=h @paciente.titular.nombre %></td>
+        </tr>
+        <tr class="odd">
+          <td class="fieldname">Matrícula</td>
+          <td class="fielddata"> <%=h @paciente.titular.matricula %></td>
+        </tr>
+        <% end %>
      </table>
 
   </fieldset>

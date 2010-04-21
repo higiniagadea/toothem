@@ -15,8 +15,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :titulares,
                 :collection => {:buscar => :get, :resultado => :post}
 
-  map.resources :obras_sociales,
-                :collection => {:buscar => :get, :resultado => :post}
+  #map.resources :obras_sociales,
+  #              :collection => {:buscar => :get, :resultado => :post}
 
   
   map.resources :estados_laborales
@@ -36,6 +36,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :profesionales
   
   map.resources :archivos
+
 
 
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
@@ -69,10 +70,10 @@ ActionController::Routing::Routes.draw do |map|
   #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
   
   # Sample resource route with more complex sub-resources
-  #   map.resources :products do |products|
-  #     products.resources :comments
-  #     products.resources :sales, :collection => { :recent => :get }
-  #   end
+  map.resources :obras_sociales, :collection => {:buscar => :get, :resultado => :post} do |obra_social|
+     obra_social.resources :aranceles
+                           
+  end
 
   # Sample resource route within a namespace:
   #   map.namespace :admin do |admin|

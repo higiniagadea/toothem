@@ -1,11 +1,12 @@
 class ObraSocial < ActiveRecord::Base
   has_many :titulares
-  has_many :prestaciones, :through => :aranceles
+  has_many :aranceles
+  
 #validates
   validates_presence_of :nombre, :message => ', debe ingresar un nombre y apellido'
   validates_presence_of :nro_max_codigos_por_mes => 'debe ingresar uno'
   validates_inclusion_of :nro_max_codigos_por_mes, :in => 1..999, :message => 'el número máximo de códigos por mes debe ser un número entre 1 y 999'
-
+  
 #scope_builder
   named_scope :by_nombre, lambda { |nombre|
     {

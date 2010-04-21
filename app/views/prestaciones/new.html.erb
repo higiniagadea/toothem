@@ -1,8 +1,8 @@
-<h1>Nueva prestacion</h1>
+
 
 <% form_for(@prestacion) do |f| %>
   <%= f.error_messages %>
-  <ul>
+  <ul id="form">
     <li>
       <label>Código</label>
       <%= f.text_field :codigo %>

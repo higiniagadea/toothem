@@ -1,9 +1,11 @@
 class PrestacionesController < ApplicationController
   # GET /prestaciones
   # GET /prestaciones.xml
+  layout 'default'
+
   def index
     @prestaciones = Prestacion.all
-
+    @pagetitle = "Prestaciones"
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @prestaciones }
@@ -25,7 +27,7 @@ class PrestacionesController < ApplicationController
   # GET /prestaciones/new.xml
   def new
     @prestacion = Prestacion.new
-
+    @pagetitle = "Nueva prestación"
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @prestacion }
@@ -35,13 +37,14 @@ class PrestacionesController < ApplicationController
   # GET /prestaciones/1/edit
   def edit
     @prestacion = Prestacion.find(params[:id])
+    @pagetitle = "Editando prestación"
   end
 
   # POST /prestaciones
   # POST /prestaciones.xml
   def create
     @prestacion = Prestacion.new(params[:prestacion])
-
+    @pagetitle = "Nueva prestación"
     respond_to do |format|
       if @prestacion.save
         flash[:notice] = 'Prestacion creada.'
@@ -58,7 +61,7 @@ class PrestacionesController < ApplicationController
   # PUT /prestaciones/1.xml
   def update
     @prestacion = Prestacion.find(params[:id])
-
+    @pagetitle = "Editando prestación"
     respond_to do |format|
       if @prestacion.update_attributes(params[:prestacion])
         flash[:notice] = 'Prestacion actualizada'

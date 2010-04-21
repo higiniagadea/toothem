@@ -1,10 +1,10 @@
-<h1>Editando paciente</h1>
+
 
 <div id="pacientes-screen">
 
 
     <div id="pacientes-photo">
-        <% if @paciente.archivo_id == 0 %>
+        <% if @paciente.archivo_id.blank? %>
           <%= image_tag('nouser.jpg') %>
         <%else%>
           <%= image_tag archivo_path(@archivo), :alt => 'imagen del paciente' %>
@@ -21,11 +21,9 @@
           <%=h @paciente.nombre %>
         </div>
         <div id="pacientes-actions">
-          <%= link_to image_tag('pencil.png'), edit_paciente_path(@paciente) %> |
-          <%= link_to image_tag('cancel.png'), @paciente, :confirm => 'Esta seguro que desea eliminar el paciente?', :method => :delete %> |
-          <%= link_to image_tag('printer.png'), edit_paciente_path(@paciente) %>
-          
-          <%= link_to 'Ver', @paciente %> |
+          <%= link_to image_tag('magnifier_zoom_in.png'), @paciente %> |
+          <%= link_to image_tag('cancel.png'), @paciente, :confirm => 'Esta seguro? No podrá deshacer esta acción', :method => :delete %> |
+          <%= link_to image_tag('printer.png'), edit_paciente_path(@paciente) %> |
           <%= link_to 'Volver', pacientes_path %>
         </div>
 
@@ -112,6 +110,7 @@
       <fieldset class="pacientes-data">
         <legend>Datos de Obra Social</legend>
          <table class="show-data">
+           <%unless @paciente.titular.blank?%>
           <tr>
             <td class="fieldname">Obra Social</td>
             <td class="fielddata"><%=h @paciente.titular.obra_social.nombre %></td>
@@ -119,6 +118,7 @@
           <tr>
             <td class="fieldname">Titular</td>
             <td class="fielddata"><%=h @paciente.titular.matricula%> - <%= @paciente.titular.nombre%> </td>
+            <% end %>
             <td><div id="edit-obra-social"><%= image_tag ('pencil.png') %></div></td>
           </tr>
           
@@ -162,6 +162,7 @@ $(document).ready(function()
             border: '1px',
             margin: '0 0 0 0', // Give it some extra padding
             name: 'blue' // And style it with the preset dark theme
+            
          }
     });
   });

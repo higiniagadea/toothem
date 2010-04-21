@@ -1,0 +1,26 @@
+<table class="table-list">
+  <tr class="<%  cycle('par','impar') %>">
+    <th>Prestación</th>
+    <th>Importe cubierto</th>
+    <th>Coseguro</th>
+    <th></th>
+    <th></th>
+  </tr>
+<% @aranceles.each do |arancel| %>
+  <tr class ="<%= arancel.id %>">
+    <td><%=h arancel.prestacion.descripcion %></td>
+    <td><%=h arancel.importe_cubierto%></td>
+    <td><%=h arancel.coseguro%></td>
+    <td ><%= link_to image_tag('pencil.png'), edit_obra_social_arancel_path(arancel, @obra_social)%></td>
+
+    <td><%= link_to image_tag('cancel.png'), [@obra_social,arancel], :confirm => 'Esta seguro que desea eliminar el arancel?', :method => :delete%></td>
+
+
+
+  </tr>
+<% end %>
+</table>
+
+<div class="paginador">
+  <%= will_paginate @aranceles%>
+</div>

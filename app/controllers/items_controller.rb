@@ -5,8 +5,8 @@ class ItemsController < ApplicationController
   layout 'default'
 
   def index
-    @items = Item.all
-
+    @items = Item.paginate :page=> params[:page], :per_page=>15
+    @pagetitle = "Items"
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @items }
@@ -28,7 +28,7 @@ class ItemsController < ApplicationController
   # GET /items/new.xml
   def new
     @item = Item.new
-
+    @pagetitle = "Nuevo item"
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @item }
@@ -37,6 +37,7 @@ class ItemsController < ApplicationController
 
   # GET /items/1/edit
   def edit
+    @pagetitle = "Editar item"
     @item = Item.find(params[:id])
   end
 
@@ -44,7 +45,7 @@ class ItemsController < ApplicationController
   # POST /items.xml
   def create
     @item = Item.new(params[:item])
-
+    @pagetitle = "Nuevo item"
     respond_to do |format|
       if @item.save
         flash[:notice] = 'Item creado.'
@@ -61,7 +62,7 @@ class ItemsController < ApplicationController
   # PUT /items/1.xml
   def update
     @item = Item.find(params[:id])
-
+    @pagetitle = "Editar item"
     respond_to do |format|
       if @item.update_attributes(params[:item])
         flash[:notice] = 'Item actualizado.'

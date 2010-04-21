@@ -6,7 +6,7 @@ class EstadosLaboralesController < ApplicationController
 
   def index
     @pagetitle = "Estados laborales"
-    @estados_laborales = EstadoLaboral.all
+    @estados_laborales = EstadoLaboral.paginate :page=> params[:page], :per_page=>15
 
     respond_to do |format|
       format.html # index.html.erb

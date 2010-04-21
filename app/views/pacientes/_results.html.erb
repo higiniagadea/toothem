@@ -13,6 +13,8 @@
       </tr>
     <% end %>
 </table>
+<%= will_paginate @paginatepacientes, :previous_label=>'Anterior', :next_label => 'Siguiente' %>
+
 <%@pacientes.each do |paciente|%>
     <script type="text/javascript">
       // Only create tooltips when document is ready

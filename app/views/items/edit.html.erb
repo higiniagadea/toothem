@@ -1,7 +1,7 @@
-<h1>Editando item</h1>
+
 
 <% form_for(@item) do |f| %>
-  <%= f.error_messages %>
+  <%= f.error_messages  :id => 'error', :header_message => '', :message => 'Ocurrió un error al intentar guardar el registro'  %>
 <ul id="form" >
   <li>
     <label for="nombre">Nombre </label>

@@ -5,7 +5,8 @@ class PacientesController < ApplicationController
   layout 'default'
 
   def index
-    @pacientes = Paciente.all
+    @pagetitle = "Pacientes"
+    @pacientes = Paciente.paginate :page=> params[:page], :per_page=> 15, :order=> 'nombre ASC'
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,7 +15,7 @@ class PacientesController < ApplicationController
   end
 
   def search
-    @title = "Buscar Paciente"
+    @pagetitle = "Buscar Paciente"
     
     respond_to do |format|
       format.html # search.html.erb
@@ -25,6 +26,7 @@ class PacientesController < ApplicationController
   def result
     
     @pacientes = Paciente.basic_search(params)
+    @paginatepacientes = Paciente.paginate :page=> params[:page], :per_page=> 15, :order=> 'nombre ASC'
     respond_to do |format|
       format.html{render :partial => 'results'}
 
@@ -36,7 +38,7 @@ class PacientesController < ApplicationController
   def show
     @title = "Pacientes. Datos personales"
     @paciente = Paciente.find(params[:id])
-    unless @paciente.archivo_id == 0
+    unless @paciente.archivo_id.blank?
       @archivo = Archivo.find(@paciente.archivo_id)
     end
 
@@ -64,7 +66,7 @@ class PacientesController < ApplicationController
   # GET /pacientes/new.xml
   def new
     @paciente = Paciente.new
-
+    @title = "Nuevo paciente"
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @paciente }
@@ -74,7 +76,8 @@ class PacientesController < ApplicationController
   # GET /pacientes/1/edit
   def edit
     @paciente = Paciente.find(params[:id])
-     unless @paciente.archivo_id == 0
+    @title = "Editando paciente"
+     unless @paciente.archivo_id.blank?
       @archivo = Archivo.find(@paciente.archivo_id)
      end
   end
@@ -211,11 +214,11 @@ class PacientesController < ApplicationController
   # POST /pacientes.xml
   def create
     @paciente = Paciente.new(params[:paciente])
-
+    @title = "Nuevo paciente"
     respond_to do |format|
       if @paciente.save
         flash[:notice] = 'Paciente was successfully created.'
-        format.html { redirect_to(@paciente) }
+        format.html { redirect_to(pacientes_path) }
         format.xml  { render :xml => @paciente, :status => :created, :location => @paciente }
       else
         format.html { render :action => "new" }
@@ -228,7 +231,7 @@ class PacientesController < ApplicationController
   # PUT /pacientes/1.xml
   def update
     @paciente = Paciente.find(params[:id])
-
+    @title = "Editando paciente"
     respond_to do |format|
       if @paciente.update_attributes(params[:paciente])
         flash[:notice] = 'Paciente was successfully updated.'
