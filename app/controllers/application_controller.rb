@@ -13,8 +13,9 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
 
-  def index
-    
+  def generar_submenus
+     session[:subitems] = Item.find(:all, :conditions => 'parent_id = '+ params[:item_selected].to_s, :order => 'orden') unless params[:item_selected].blank?
+     
   end
 
 

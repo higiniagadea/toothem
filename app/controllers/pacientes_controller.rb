@@ -1,7 +1,7 @@
 class PacientesController < ApplicationController
   # GET /pacientes
   # GET /pacientes.xml
-
+  before_filter  :generar_submenus
   layout 'default'
 
   def index
