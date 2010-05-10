@@ -1,6 +1,7 @@
 <ul>
   <%unless session[:subitems].blank? %>
     <% session[:subitems].each do  |subitem| %>
+      
       <li><a href="<%= subitem.url %>"><%= subitem.nombre %></a></li>
 
 

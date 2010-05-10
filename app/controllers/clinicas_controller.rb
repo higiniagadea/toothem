@@ -3,6 +3,7 @@ class ClinicasController < ApplicationController
   # GET /clinicas.xml
   
   layout 'default'
+  before_filter  :generar_submenus
 
   def index
     @pagetitle = "Clínicas"

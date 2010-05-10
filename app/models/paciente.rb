@@ -1,13 +1,14 @@
 class Paciente < ActiveRecord::Base
   belongs_to :titular
   belongs_to :consultorio
-  #belongs_to :archivo
+  belongs_to :archivo
 
   belongs_to :tipo_documento
   belongs_to :historia_clinica_general
   belongs_to :historia_clinica_ortodoncia
   
   has_many :fichas
+  has_many :imagenes
 
   validates_presence_of :nombre, :message => ' y apellido no puede estar en blanco'
   validates_presence_of :matricula, :message => ' no puede estar en blanco'
