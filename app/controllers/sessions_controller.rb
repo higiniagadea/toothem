@@ -20,8 +20,11 @@ class SessionsController < ApplicationController
       self.current_usuario = usuario
       new_cookie_flag = (params[:remember_me] == "1")
       session[:user_menu] = Item.find(:all, :conditions => 'parent_id = 1', :order => 'orden')
+      #paciente = Item.find(:first,:conditions => ["url = ?", '/pacientes'])
+      #params[:item_selected] = paciente
+      generar_submenus
       handle_remember_cookie! new_cookie_flag
-      redirect_back_or_default('/profesionales')
+      redirect_back_or_default('/pacientes')
       flash[:notice] = "Ingreso correcto"
     else
       note_failed_signin
