@@ -2,7 +2,12 @@
 <%unless session[:user_menu].blank? %>
   <% session[:user_menu].each do |item| %>
   <li <%if controller.controller_name.downcase == item.nombre.downcase %> class="selected" <%end%>
-            onclick="javascript:location.href='<%= item.url  %>?item_selected=<%= item.id %>'"><%= item.nombre %></li>
+            onclick="javascript:location.href='<%= item.url  %>?item_selected=<%= item.id %>'">
+    <% if item.nombre.downcase == 'logout' %>
+    Salir</li>
+    <% else %>
+        <%=h item.nombre.humanize %></li>
+    <% end %>
 
   <%end%>
 <%end%>

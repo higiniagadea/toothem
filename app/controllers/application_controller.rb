@@ -14,7 +14,10 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
 
   def generar_submenus
-     session[:subitems] = Item.find(:all, :conditions => 'parent_id = '+ params[:item_selected].to_s, :order => 'orden') unless params[:item_selected].blank?
+     unless params[:item_selected].blank?
+        @item = Item.find(params[:item_selected])
+        session[:subitems] = Item.find(:all, :conditions => "lower(url) LIKE "+"'%"+@item.nombre.downcase+"%' AND url <> '"+ @item.url+ "'" , :order => 'orden')
+     end
      
   end
 

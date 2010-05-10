@@ -38,19 +38,28 @@ class PacientesController < ApplicationController
   def show
     @title = "Pacientes. Datos personales"
     @paciente = Paciente.find(params[:id])
+    @imagenes = Imagen.find_all_by_paciente_id(@paciente)
     unless @paciente.archivo_id.blank?
       @archivo = Archivo.find(@paciente.archivo_id)
     end
+
 
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @paciente }
     end
   end
+  def show_imagen
+    @imagen = Imagen.find(params [:id])
+    respond_to do |format|
+      format.html {redirect to show_imagen_path(@imagen)}
+    end
+  end
 
   def changephoto
     @paciente = Paciente.find(params[:id])
-    unless @paciente.archivo_id == 0
+    @value = params[:value]
+    unless @paciente.archivo_id.blank?
       @archivo_ant = Archivo.find(@paciente.archivo_id)
     end
     @archivo = Archivo.new
@@ -68,7 +77,7 @@ class PacientesController < ApplicationController
     @paciente = Paciente.new
     @title = "Nuevo paciente"
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.xml  { render :xml => @paciente }
     end
   end
@@ -253,6 +262,13 @@ class PacientesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(pacientes_url) }
       format.xml  { head :ok }
+    end
+  end
+
+  def lightbox
+    respond_to do |format|
+      format.html { render :layout => false }
+      
     end
   end
 end

@@ -1,0 +1,27 @@
+
+<table>
+  <tr>
+    <th>Paciente</th>
+    <th>Archivo</th>
+    <th>Descripcion</th>
+    <th>Observaciones</th>
+    <th>Fecha</th>
+  </tr>
+
+<% @imagenes.each do |imagen| %>
+  <tr>
+    <td><%=h imagen.paciente_id %></td>
+    <td><%=h imagen.archivo_id %></td>
+    <td><%=h imagen.descripcion %></td>
+    <td><%=h imagen.observaciones %></td>
+    <td><%=h imagen.fecha %></td>
+    <td><%= link_to 'Show', imagen %></td>
+    <td><%= link_to 'Edit', edit_imagen_path(imagen) %></td>
+    <td><%= link_to 'Destroy', imagen, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New imagen', new_imagen_path %>
