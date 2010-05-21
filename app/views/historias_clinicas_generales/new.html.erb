@@ -1,10 +1,11 @@
-<h1>Nueva Historia Clinica General de: </h1>
-<% form_for(@historia_clinica_general) do |f| %>
+
+<% form_for(:historia_clinica_general, @historia_clinica_general, :url => {:method => :post, :action => "show"}) do |f| %>
   <%= f.error_messages %>
  <table>
  <tr>
-    <td><label>Alergia a la Anestesia:</label>
-    <%= f.check_box :alergia_anestesia %>
+    <td>
+      <label>Alergia a la Anestesia:</label>
+      <%= f.check_box :alergia_anestesia %>
     </td> 
      
     <td><label>Alergia a la Droga de Medicamentos: </label>
@@ -291,4 +292,3 @@
   </p>
 <% end %>
 
-<%= link_to 'Volver', historias_clinicas_generales_path %>

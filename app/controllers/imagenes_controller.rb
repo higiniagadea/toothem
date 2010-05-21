@@ -55,7 +55,7 @@ class ImagenesController < ApplicationController
         if @imagen.save
          flash[:notice] = 'Imagen creada.'
           format.html { redirect_to(paciente_url(@imagen.paciente_id)) }
-          format.xml  { render :xml => @imagen, :status => :created, :location => @imagen }
+         # format.xml  { render :xml => @imagen, :status => :created, :location => @imagen }
         else
           format.html { render :action => "new" }
           format.xml  { render :xml => @imagen.errors, :status => :unprocessable_entity }
@@ -85,20 +85,16 @@ class ImagenesController < ApplicationController
   # DELETE /imagenes/1.xml
   def destroy
     @imagen = Imagen.find(params[:id])
+    @archivo = Archivo.find(@imagen.archivo_id)
+    @archivo_thumbnail = Archivo.find(:first, :conditions => 'parent_id =' + @archivo.id.to_s)
+    @archivo_thumbnail.destroy
+    @archivo.destroy
     @imagen.destroy
-
     respond_to do |format|
-      format.html { redirect_to(imagenes_url) }
+      format.html { redirect_to(paciente_url(@imagen.paciente_id)) }
       format.xml  { head :ok }
     end
   end
-  def new_archivo
-    @paciente = Paciente.find(params[:id])
-    @archivo = Archivo.new
-    @value = params[:value]
-    respond_to do |format|
-      format.html {render :layout => false}# new_archivo.html.erb
-    end
-  end
+ 
   
 end

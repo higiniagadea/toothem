@@ -17,7 +17,6 @@ class CreatePacientes < ActiveRecord::Migration
       t.column :profesion, :string, :limit => 150, :null => true
       t.column :ocupacion, :string, :limit => 150, :null => true
       t.column :nivel_escolar, :string, :limit => 150, :null => true
-
       t.column :nro_afiliado, :string, :limit => 150, :null => true
       
       

@@ -638,6 +638,7 @@ input, select{
     min-height:600px;
     margin-left:10px;
     padding:10px;
+    
 }
 #pacientes-photo{
     width:90px;
@@ -743,7 +744,7 @@ input, select{
 .boxy-wrapper .answers { text-align: right; }
 
 
-
+/*-------------------------------------------------------------*/
 
 /* Galeria de imagenes*/
 
@@ -793,16 +794,19 @@ input, select{
   margin:15px;
 }
 .slide h2 {
-  font:italic 24px Georgia, "Times New Roman", Times, serif;
-  color:#ccc;
+  font:italic 16px; /*Georgia, "Times New Roman", Times, serif;*/
+  font-weight: bold;
   letter-spacing:-1px;
+}
+#eliminar-img{
+    font: normal 13px tahoma;
 }
 .slide img {
   float:right;
   margin:0 15px;
 }
 .slide{
-    background-color: #ECF4FF;
+    background-color: #E8EDFF;
     -moz-border-radius: 8px;
 }
 

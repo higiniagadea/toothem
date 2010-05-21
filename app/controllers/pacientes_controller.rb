@@ -265,10 +265,13 @@ class PacientesController < ApplicationController
     end
   end
 
-  def lightbox
-    respond_to do |format|
-      format.html { render :layout => false }
-      
-    end
+  def listado_historias_clinicas
+   @paciente = Paciente.find(params[:id])
+   @pagetitle = "Historias Clinicas de "+@paciente.nombre
+#   @historia_clinica_ortodoncia = @paciente.historia_clinica_ortodoncia.find(:first, :conditions => 'paciente_id=?'+@paciente.id.to_s)
+#   @historia_clinica_general = @paciente.historia_clinica_general.find(:first, :conditions => 'paciente_id=?'+@paciente.id.to_s)
+   respond_to do |format|
+    format.html{ render :partial => 'listado_historias_clinicas', :layout => 'default'}
+   end
   end
 end

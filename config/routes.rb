@@ -2,9 +2,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :imagenes,
                 :collection => {:new_archivo => :get}
               
-  map.resources :historias_clinicas_ortodoncias
+  #map.resources :historias_clinicas_ortodoncias
 
-  map.resources :historias_clinicas_generales
+  #map.resources :historias_clinicas_generales
 
   map.resources :permisos
 
@@ -38,9 +38,13 @@ ActionController::Routing::Routes.draw do |map|
                             :search_titular => :get, :results_titular => :post,
                             :update_titular => :put,
                             :new_titular => :get, :create_titular => :post,
-                            :show_imagen => :get
+                            :show_imagen => :get,
+                            :listado_historias_clinicas => :get
                             
-                }
+                }do |paciente|
+                              paciente.resource :historia_clinica_general
+                              paciente.resource :historia_clinica_ortodoncia
+                            end
 
   map.resources :profesionales
   

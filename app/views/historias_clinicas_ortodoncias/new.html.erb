@@ -1,8 +1,13 @@
-Historia Clinica de:
 
-<% form_for(@historia_clinica_ortodoncia) do |f| %>
+<%#= link_to 'Volver', paciente_historia_clinica_ortodoncia_path(@paciente,historia_clinica_ortodoncia) %>
+
+<% form_for(:historia_clinica_ortodoncia, @historia_clinica_ortodoncia, :url => {:method => :get, :action => "show"}) do |f| %>
   <%= f.error_messages %>
+
+    <%= f.submit 'Guardar' %>
+
 <table>
+  
     <tr><td><label>Historia Familiar</label></td></tr>
 <tr>
  
@@ -35,7 +40,10 @@ Historia Clinica de:
     <%= f.text_field :domicilio_medico %>
     </td>
     <td><label>Vive con: </label><br/>
-    <%= f.text_field :vive_con %>
+    <select name="historia_clinica_ortodoncia[vive_con]">
+        <%=  options_for_select([ "Madre", "Padre", "Esposo", "Solo", "Otros" ], @historia_clinica_ortodoncia.vive_con)%>
+    </select>
+
     </td>
  </tr>
  <tr>
@@ -43,6 +51,9 @@ Historia Clinica de:
     <%= f.text_field :nombre_conyuge %>
     </td> 
  </tr>
+
+  
+
 
     <tr><td><label>Historia Medica</label></td></tr>
  <tr>
@@ -446,10 +457,16 @@ Historia Clinica de:
     <%= f.check_box :dificultad_hablar %>
     </td>
     <td><label>Estado bucal general: </label><br/>
-    <%= f.text_field :estado_bucal_general %>
+
+        <select name="historia_clinica_ortodoncia[estado_bucal_general]">
+        <%=  options_for_select([ "Bueno", "Regular", "Malo" ], @historia_clinica_ortodoncia.estado_bucal_general)%>
+      </select>
     </td>
+
     <td><label>Indice de caries: </label><br/>
-    <%= f.text_field :indice_caries %>
+      <select name="historia_clinica_ortodoncia[indice_caries]">
+        <%=  options_for_select([ "Normal", "Bajo", "Alto" ], @historia_clinica_ortodoncia.indice_caries)%>
+      </select>
     </td>
  </tr>
  <tr>
@@ -460,7 +477,9 @@ Historia Clinica de:
     <%= f.text_field :periodonto %>
     </td>
     <td><label>Cepilla los dientes? </label>
-    <%= f.check_box :cepilla_dientes %>
+      <select name="historia_clinica_ortodoncia[cepilla_dientes]">
+        <%=  options_for_select([ "Si", "No" ], @historia_clinica_ortodoncia.cepilla_dientes)%>
+      </select>
     </td>
  </tr>
  <tr>
@@ -471,12 +490,16 @@ Historia Clinica de:
     <%= f.check_box :usa_hilo_dental %>
     </td>
     <td><label>Indice de placas: </label><br/>
-    <%= f.text_field :indice_placa %>
+      <select name="historia_clinica_ortodoncia[indice_placa]">
+        <%=  options_for_select([ "Alto", "Medio", "Bajo" ], @historia_clinica_ortodoncia.indice_placa)%>
+      </select>
     </td>
  </tr>
  <tr>
     <td><label>Tratamiento de fluor: </label><br/>
-    <%= f.text_field :tratamiento_fluor %>
+      <select name="historia_clinica_ortodoncia[tratamiento_fluor]">
+        <%=  options_for_select([ "Si", "No", "No Sabe" ], @historia_clinica_ortodoncia.tratamiento_fluor)%>
+      </select>
     </td>
     <td><label>Topicaciones: </label><br/>
     <%= f.text_field :topicaciones %>
@@ -755,5 +778,5 @@ Historia Clinica de:
   </p>
 <%  end %>
 
-<%= link_to 'Volver', historias_clinicas_ortodoncias_path %>
+<%#= link_to 'Volver', paciente_historia_clinica_ortodoncia_path(@paciente, historia_clinica_ortodoncia) %>
 

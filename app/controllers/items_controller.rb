@@ -44,6 +44,7 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.xml
   def create
+    
     @item = Item.new(params[:item])
     @pagetitle = "Nuevo item"
     respond_to do |format|

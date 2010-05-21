@@ -1,10 +1,11 @@
 
 <div id="pacientes-screen">
   <div id= "pacientes-photo">
+    
     <% if @paciente.archivo_id.blank? %>
       <%= image_tag('nouser.jpg') %>
     <%else%>
-      <%= image_tag archivo_path(@archivo), :alt => 'imagen del paciente' %>
+      <%= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id = ' + @archivo.id.to_s)), :alt => 'imagen del paciente' %>
     <%end%>
   </div>
   <div id="pacientes-options">
@@ -108,6 +109,7 @@
 
     </table>
   </fieldset>
+
   <fieldset class="pacientes-data">
     <legend>Obra Social</legend>
     <table class="show-data">
@@ -128,6 +130,8 @@
           <td class="fieldname">Matrícula</td>
           <td class="fielddata"> <%=h @paciente.titular.matricula %></td>
         </tr>
+        <% else %>
+        <tr><div id="edit-obra-social" style=" cursor: pointer; color: blue" onclick="Boxy.load('<%= search_titular_paciente_url %>',{modal: true},{center: false})">Agregar</div></tr>
         <% end %>
      </table>
 
@@ -149,40 +153,41 @@
  
   <fieldset class="pacientes-data">
     <legend>Imágenes</legend>
+    <div style=" float: right; margin-right:  60px"><%= link_to "Nueva imagen", new_imagen_path + '/'+@paciente.id.to_s %></div>
     <% unless @imagenes.blank? %>
     <table class="show-data">
+      
       <tr>
         <td class="fielddata">
+          
             <div id="pageContainer">
  
   <!-- Slideshow HTML -->
   <div id="slideshow">
     <div id="slidesContainer">
-      
+     
         <% @imagenes.each do |imagen| %>
-         <div class="slide">
-            <h2><%= imagen.descripcion %></h2>
-            
-            <p><%= image_tag archivo_path(imagen.archivo_id) , :alt => imagen.descripcion, :id => imagen.id %> <%= imagen.observaciones %></p>
+      <div class="slide">
+           <h2>
+              <%= imagen.descripcion %>
+              <div  style="float: right; font-size: 12px; font-weight: normal">  
+                    <a onclick="Boxy.load('<%= imagen_url(imagen.id)%>').top()" style=" float: left">
+                      <%= image_tag('magnifier_zoom_in.png')%> 
+                    </a> 
+                    <a>
+                      <%= link_to image_tag('cancel.png'), imagen, :confirm => "Esta seguro que desea eliminar la imagen?", :method => :delete %>
+                    </a>
+              </div>
+           </h2>
+           <%thumbnail = Archivo.find(:first, :conditions => 'parent_id ='+imagen.archivo_id.to_s)%>
+        <p>
+           <div style=" height: 200px; float:  right">
+              <%= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id ='+imagen.archivo_id.to_s)) , :alt => imagen.descripcion, :id => imagen.id %>
+           </div>
+           <%= imagen.observaciones %>
+        </p>
          </div>
-        <script type="text/javascript">
-          $('#<%= imagen.id %>').each(function()
-           {
-              $(this).qtip(
-              {
-
-                 content: '<a onclick="Boxy.load(\'<%= imagen_url(imagen.id)%>\',{modal: true})">Ver</a>',
-                 position: 'topLeft', // Set its position
-                 hide: {
-                    fixed: true // Make it fixed so it can be hovered over
-                 },
-                 style: {
-                    padding: '5px 15px', // Give it some extra padding
-                    name: 'blue' // And style it with the preset dark theme
-                 }
-              });
-           });
-        </script>
+        
         <%end%>
       
     </div>
@@ -200,7 +205,7 @@
       </tr>
     </table>
     <% end %>
-    <div style="text-align: center"><%= link_to "Nueva Imagen", new_imagen_path + '/'+@paciente.id.to_s %></div>
+    
   </fieldset>
 
   <fieldset class="pacientes-data">
@@ -219,19 +224,17 @@
 
 
 <script type="text/javascript">
+ 
   
 // Only create tooltips when document is ready
 $(document).ready(function()
-{
- 
-  
+{  
    // Use the each() method to gain access to each of the elements attributes
-
    $('#pacientes-photo img').each(function()
    {
       $(this).qtip(
       {
-         content: '<a onclick="Boxy.load(\'<%= changephoto_paciente_url(@paciente)%>\',{modal: true})">Editar</a>',
+         content: '<div><a onclick="Boxy.load(\'<%= changephoto_paciente_url(@paciente)%>\',{modal: true})">Editar</a></div>',
          position: 'topLeft', // Set its position
          hide: {
             fixed: true // Make it fixed so it can be hovered over
@@ -241,8 +244,7 @@ $(document).ready(function()
             name: 'blue' // And style it with the preset dark theme
          }
       });
-   });
-   
+   });   
 });
 
 </script>

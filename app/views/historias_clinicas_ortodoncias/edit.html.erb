@@ -1,6 +1,7 @@
-<h1>Editing Historia Clinica Ortodoncia de:  </h1>
 
-<% form_for(@historia_clinica_ortodoncia) do |f| %>
+
+<% form_for(:historia_clinica_ortodoncia, @historia_clinica_ortodoncia,
+            :url=> paciente_historia_clinica_ortodoncia_path(@paciente, @historia_clinica_ortodoncia), :html=> {:method=> :put}) do |f| %>
   <%= f.error_messages %>
 <table
     <tr><td><label>Historia Familiar</label></td></tr>
@@ -759,4 +760,4 @@
 <% end %>
 
 <%= link_to 'Ver', @historia_clinica_ortodoncia %> |
-<%= link_to 'Volver', historias_clinicas_ortodoncias_path %>
+<%= link_to 'Volver', pacientes_historias_clinicas_ortodoncias_path %

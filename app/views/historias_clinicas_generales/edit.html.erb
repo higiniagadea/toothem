@@ -1,6 +1,7 @@
-<h1>Editando Historia Clinica General de: </h1>
 
-<% form_for(@historia_clinica_general) do |f| %>
+
+<% form_for(:historia_clinica_general, @historia_clinica_general,
+            :url=> paciente_historia_clinica_general_path(@paciente, @historia_clinica_general), :html=> {:method=> :put}) do |f| %>
   <%= f.error_messages %>
  <table>
  <tr>
@@ -292,4 +293,4 @@
 <% end %>
 
 <%= link_to 'Ver', @historia_clinica_general %> |
-<%= link_to 'Volver', historias_clinicas_generales_path %>
+<%= link_to 'Volver', pacientes_historias_clinicas_generales_path %>

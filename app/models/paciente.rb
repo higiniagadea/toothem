@@ -4,8 +4,8 @@ class Paciente < ActiveRecord::Base
   belongs_to :archivo
 
   belongs_to :tipo_documento
-  belongs_to :historia_clinica_general
-  belongs_to :historia_clinica_ortodoncia
+  has_one :historia_clinica_general
+  has_one :historia_clinica_ortodoncia
   
   has_many :fichas
   has_many :imagenes
