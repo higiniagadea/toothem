@@ -2,7 +2,7 @@
   
   <tr><td><label>Historia Familiar</label></td></tr>
     <td>
-      
+
       <label>Nombre y Apeliido del Padre</label>
       <%=h boolean_desc(@historia_clinica_ortodoncia.nombre_apellido_padre)%>
     </td>
@@ -12,9 +12,9 @@
     </td>
      <td>
       <label>Nombre y Apellido de la Madre</label>
-      <%=h @historia_clinica_otodoncia.nombre_apellido_madre%>
+      <%=h @historia_clinica_ortodoncia.nombre_apellido_madre%>
      </td>
-  </tr>
+ 
 
   <tr>
     <td>
@@ -27,7 +27,7 @@
     </td>
     <td>
       <label>Nombre y Edades de los Hermanos</label>
-      <%=h @historia_clinica_ortodoncia.nombre_edades_hermanos%>
+      <%=h @historia_clinica_ortodoncia.nombres_edades_hermanos%>
     </td>
     </tr>
 
@@ -44,7 +44,7 @@
         <label>Vive con</label>
         <%=h @historia_clinica_ortodoncia.vive_con%>
         </td>
-       </td>
+       
     </tr>
 
     <tr>
@@ -102,7 +102,7 @@
     <tr>
       <td>
         <label>Trastorno Psiquico</label>
-        <%=h boolena_desc(@historia_clinica_ortodoncia.tratorno_psiquico)%>
+        <%=h boolean_desc(@historia_clinica_ortodoncia.trastorno_psiquico)%>
       </td>
       <td>
         <label>Cual trastorno psiquico</label>
@@ -138,7 +138,7 @@
       </td>
       <td>
         <label>Operado de Apendice</label>
-        <%=h boolean_desc(@historia_clinica_ortoncia.operado_apendice)%>
+        <%=h boolean_desc(@historia_clinica_ortodoncia.operado_apendice)%>
       </td>
     </tr>
     <tr>
@@ -295,7 +295,7 @@
        </td>
        <td>
          <label>Escarlatina</label>
-         <%=h boolean_desc(@historia_clinica_ortodoncia.escarlati)%>
+         <%=h boolean_desc(@historia_clinica_ortodoncia.escarlatina)%>
        </td>
        <td>
          <label>Trastornos Hepaticos</label>
@@ -354,7 +354,7 @@
         </td>
         <td>
           <label>Trasnfusiones</label>
-          <%=h boolean_desc(@historia_clinica_ortodoncia.trasnfusiones)%>
+          <%=h boolean_desc(@historia_clinica_ortodoncia.transfusiones)%>
         </td>
         <td>
           <label>Dialisis</label>
@@ -472,7 +472,7 @@
         </td>
         <td>
           <label>Farmacos Consumidos en los ultimos años</label>
-          <%=h @historia_clinica_ortodoncia.farmacos_consumidos_ultimos_dos_anios%>
+          <%=h @historia_clinica_ortodoncia.farmacos_consumidos_ultimos_anios%>
         </td>
         <td>
           <label>Otros</label>
@@ -505,7 +505,7 @@
       <tr>
         <td>
          <label>Dolor/Ruido de articulaciones maxilares</label>
-         <%=h boolean_desc(@historia_clincia_ortodoncia.dolor_ruido_articulaciones_maxilares)%>
+         <%=h boolean_desc(@historia_clinica_ortodoncia.dolor_ruido_articulaciones_maxilares)%>
         </td>
         <td>
           <label>Dientes Traumatizados</label>
@@ -535,7 +535,7 @@
       <tr>
         <td>
           <label>Cuando rechinamiento dentario</label>
-          <%=h @historia_clinica_dentaria.cuando_rechinamiento_dentario%>
+          <%=h @historia_clinica_ortodoncia.cuando_rechinamiento_dentario%>
         </td>
         <td>
           <label>Succion digital</label>
@@ -543,7 +543,7 @@
         </td>
         <td>
           <label>Succion digital hasta la edad de:</label>
-          <%=h @historia_clinica_ortodoncia.succion_digital_hasta_la_edad_de%>
+          <%=h @historia_clinica_ortodoncia.succion_digital_hasta_edad_de%>
         </td>
       </tr>
 
@@ -554,7 +554,7 @@
         </td>
         <td>
           <label>Mordedura/succion del labio</label>
-          <%=h boolean_desc(@historia_clinica_ortodoncia.mordedura_labial)%>
+          <%=h boolean_desc(@historia_clinica_ortodoncia.mordedura_succion_labio)%>
         </td>
         <td>
           <label>Presion Labial</label>
@@ -978,7 +978,7 @@
          </td>
          <td>
            <label>Declaracion Jurada</label>
-           <%=h boolean_desc(@historia_clinica_ortodoncia.declaracion_jurada)%>
+           <%=h boolean_desc(@historia_clinica_ortodoncia.leyenda_declaracion_jurada)%>
          </td>
        </tr>
 

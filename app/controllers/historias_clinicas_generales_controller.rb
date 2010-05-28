@@ -16,10 +16,18 @@ class HistoriasClinicasGeneralesController < ApplicationController
   # GET /historias_clinicas_generales/1
   # GET /historias_clinicas_generales/1.xml
   def show
+    @title = "Pacientes. Historia Clinica"
+    @historia_clinica_general = @paciente.historia_clinica_general
+    respond_to do |format|
+      format.html # show.html.erb
+      #format.xml  { render :xml => @historia_clinica_general }
+    end
+  end
+  def imprimir
     @historia_clinica_general = @paciente.historia_clinica_general
     @pagetitle = "Historia clinica general de "+ @paciente.nombre
     respond_to do |format|
-      format.html # show.html.erb
+      format.html {render :layout => false, :action => "show"}
       #format.xml  { render :xml => @historia_clinica_general }
     end
   end
@@ -30,7 +38,7 @@ class HistoriasClinicasGeneralesController < ApplicationController
     
     #@historia_clinica_general = @paciente.historia_clinica_general.new
     @historia_clinica_general = HistoriaClinicaGeneral.new
-    @pagetitle = "Historia Clinica General de:" + @paciente.nombre
+    @title = "Nueva historia clinica general"
  
     respond_to do |format|
      format.html#historia clinica gral
@@ -39,8 +47,8 @@ class HistoriasClinicasGeneralesController < ApplicationController
 
   # GET /historias_clinicas_generales/1/edit
   def edit
-     @historia_clinica_general = @paciente.historia_clinica_general.find(params[:paciente_id])
-     @pagetitle = 'Editando Historia Clinica General' + @paciente.nombre
+     @historia_clinica_general = @paciente.historia_clinica_general
+     @title = "Editando historia clinica general"
   end
 
   # POST /historias_clinicas_generales
@@ -52,7 +60,7 @@ class HistoriasClinicasGeneralesController < ApplicationController
     respond_to do |format|
       if @historia_clinica_general.save
         flash[:notice] = 'Historia Clinica General creada.'
-        format.html{redirect_to @paciente}
+        format.html{render :action => 'show'}
         #format.xml  { render :xml => @historia_clinica_general, :status => :created, :location => @historia_clinica_general }
      else
        format.html { render :action => "new" }
@@ -64,16 +72,16 @@ class HistoriasClinicasGeneralesController < ApplicationController
   # PUT /historias_clinicas_generales/1
   # PUT /historias_clinicas_generales/1.xml
   def update
-    @historia_clinica_general = @paciente.historias_clinicas_generales.find(params[:paciente_id])
+    @historia_clinica_general = @paciente.historia_clinica_general
 
     respond_to do |format|
       if @historia_clinica_general.update_attributes(params[:historia_clinica_general])
         flash[:notice] = 'Historia Clinica General actualizada.'
-        format.html {redirect_to @paciente}
-       # format.xml  { head :ok }
-      #else
-       # format.html { render :action => "edit" }
-        #format.xml  { render :xml => @historia_clinica_general.errors, :status => :unprocessable_entity }
+        format.html{redirect_to paciente_historia_clinica_general_path(@paciente)}
+       
+      else
+        format.html { render :action => "edit" }
+      
       
     end
    end

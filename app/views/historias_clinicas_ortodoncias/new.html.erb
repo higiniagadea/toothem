@@ -1,5 +1,5 @@
 
-<%#= link_to 'Volver', paciente_historia_clinica_ortodoncia_path(@paciente,historia_clinica_ortodoncia) %>
+
 
 <% form_for(:historia_clinica_ortodoncia, @historia_clinica_ortodoncia, :url => {:method => :get, :action => "show"}) do |f| %>
   <%= f.error_messages %>
@@ -7,7 +7,8 @@
     <%= f.submit 'Guardar' %>
 
 <table>
-  
+    <fieldset class="pacientes-data">
+    <legend>Datos del paciente</legend>
     <tr><td><label>Historia Familiar</label></td></tr>
 <tr>
  
@@ -52,7 +53,7 @@
     </td> 
  </tr>
 
-  
+    </fieldset>
 
 
     <tr><td><label>Historia Medica</label></td></tr>
@@ -778,5 +779,4 @@
   </p>
 <%  end %>
 
-<%#= link_to 'Volver', paciente_historia_clinica_ortodoncia_path(@paciente, historia_clinica_ortodoncia) %>
 

@@ -164,7 +164,7 @@ div#opciones-menu{
     overflow:hidden;
     height:auto !important;
     min-height: 400px;
-    height:500px;
+    
 
 
 
@@ -812,3 +812,31 @@ input, select{
 
 
 /*Fin galeria de imagenes--------------------------------------------*/
+
+.labels{
+    font-weight: bold;
+    width: 50px;
+    
+}
+.historia_clinica td{
+    width: 380px;
+}
+tr.odd{
+    background: #E8EDFF;
+    
+}
+.historia_clinica tr{
+    height: 32px;
+}
+.historia_clinica{
+    border-collapse: collapse;
+}
+.ortodoncia{
+    border-collapse: collapse;
+}
+.ortodoncia td{
+    width: 40%;
+}
+.ortodoncia tr{
+     height: 32px;
+}

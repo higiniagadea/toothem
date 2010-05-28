@@ -172,6 +172,7 @@
               <%= imagen.descripcion %>
               <div  style="float: right; font-size: 12px; font-weight: normal">  
                     <a onclick="Boxy.load('<%= imagen_url(imagen.id)%>').top()" style=" float: left">
+                    
                       <%= image_tag('magnifier_zoom_in.png')%> 
                     </a> 
                     <a>
@@ -234,7 +235,7 @@ $(document).ready(function()
    {
       $(this).qtip(
       {
-         content: '<div><a onclick="Boxy.load(\'<%= changephoto_paciente_url(@paciente)%>\',{modal: true})">Editar</a></div>',
+         content: '<a onclick="Boxy.load(\'<%= changephoto_paciente_url(@paciente) %>\',{modal: true})">Editar</a>',
          position: 'topLeft', // Set its position
          hide: {
             fixed: true // Make it fixed so it can be hovered over
@@ -244,7 +245,7 @@ $(document).ready(function()
             name: 'blue' // And style it with the preset dark theme
          }
       });
-   });   
+   });
 });
 
 </script>
