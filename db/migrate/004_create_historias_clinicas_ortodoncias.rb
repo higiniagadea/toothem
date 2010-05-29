@@ -1,6 +1,6 @@
 class CreateHistoriasClinicasOrtodoncias < ActiveRecord::Migration
   def self.up
-    create_table "historias_clinicas_ortodoncias", :id => false do |t|
+    create_table "historias_clinicas_ortodoncias" do |t|
       t.column :paciente_id, :integer # Clave primaria
 
       # Historia Familiar

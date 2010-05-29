@@ -1,5 +1,6 @@
 class ProfesionalesController < ApplicationController
 
+  before_filter :generar_submenus
   layout 'default'
 
   # GET /profesionales
@@ -9,7 +10,7 @@ class ProfesionalesController < ApplicationController
   @pagetitle = "Profesionales"
   @profesionales = Profesional.paginate :page=> params[:page], :per_page=>15, :order=> 'nombre ASC'
   
-    self.item_selected unless params[:item_selected].blank?
+    
 
     respond_to do |format|
       format.html # index.html.erb
@@ -103,12 +104,9 @@ class ProfesionalesController < ApplicationController
     end
   end
 
-  protected
+  
 
-  def item_selected
-     session[:subitems] = Item.find(:all, :conditions => 'parent_id = '+ params[:item_selected].to_s, :order => 'orden')
-
-  end
+  
 
   
 

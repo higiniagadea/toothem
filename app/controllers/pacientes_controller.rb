@@ -1,7 +1,7 @@
 class PacientesController < ApplicationController
   # GET /pacientes
   # GET /pacientes.xml
-
+  before_filter  :generar_submenus
   layout 'default'
 
   def index
@@ -38,19 +38,28 @@ class PacientesController < ApplicationController
   def show
     @title = "Pacientes. Datos personales"
     @paciente = Paciente.find(params[:id])
+    @imagenes = Imagen.find_all_by_paciente_id(@paciente)
     unless @paciente.archivo_id.blank?
       @archivo = Archivo.find(@paciente.archivo_id)
     end
+
 
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @paciente }
     end
   end
+  def show_imagen
+    @imagen = Imagen.find(params [:id])
+    respond_to do |format|
+      format.html {redirect to show_imagen_path(@imagen)}
+    end
+  end
 
   def changephoto
     @paciente = Paciente.find(params[:id])
-    unless @paciente.archivo_id == 0
+    @value = params[:value]
+    unless @paciente.archivo_id.blank?
       @archivo_ant = Archivo.find(@paciente.archivo_id)
     end
     @archivo = Archivo.new
@@ -68,7 +77,7 @@ class PacientesController < ApplicationController
     @paciente = Paciente.new
     @title = "Nuevo paciente"
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.xml  { render :xml => @paciente }
     end
   end
@@ -217,7 +226,7 @@ class PacientesController < ApplicationController
     @title = "Nuevo paciente"
     respond_to do |format|
       if @paciente.save
-        flash[:notice] = 'Paciente was successfully created.'
+        flash[:notice] = 'Paciente creado.'
         format.html { redirect_to(pacientes_path) }
         format.xml  { render :xml => @paciente, :status => :created, :location => @paciente }
       else
@@ -234,7 +243,7 @@ class PacientesController < ApplicationController
     @title = "Editando paciente"
     respond_to do |format|
       if @paciente.update_attributes(params[:paciente])
-        flash[:notice] = 'Paciente was successfully updated.'
+        flash[:notice] = 'Paciente actualizado.'
         format.html { redirect_to(@paciente) }
         format.xml  { head :ok }
       else
@@ -254,5 +263,15 @@ class PacientesController < ApplicationController
       format.html { redirect_to(pacientes_url) }
       format.xml  { head :ok }
     end
+  end
+
+  def listado_historias_clinicas
+   @paciente = Paciente.find(params[:id])
+   @pagetitle = "Historias Clinicas de:   " +@paciente.nombre
+#   @historia_clinica_ortodoncia = @paciente.historia_clinica_ortodoncia.find(:first, :conditions => 'paciente_id=?'+@paciente.id.to_s)
+#   @historia_clinica_general = @paciente.historia_clinica_general.find(:first, :conditions => 'paciente_id=?'+@paciente.id.to_s)
+   respond_to do |format|
+    format.html{ render :partial => 'listado_historias_clinicas', :layout => 'default'}
+   end
   end
 end

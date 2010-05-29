@@ -3,7 +3,7 @@ class ObrasSocialesController < ApplicationController
   # GET /obras_sociales.xml
 
   layout 'default'
-
+  before_filter  :generar_submenus
   def index
     @obras_sociales = ObraSocial.all
     @pagetitle = "Obras sociales"

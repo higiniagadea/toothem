@@ -1,9 +1,12 @@
-Historia Clinica de:
 
-<% form_for(@historia_clinica_ortodoncia) do |f| %>
+
+
+<% form_for(:historia_clinica_ortodoncia, @historia_clinica_ortodoncia, :url => {:method => :post, :action => "show"}) do |f| %>
   <%= f.error_messages %>
-<table>
-    <tr><td><label>Historia Familiar</label></td></tr>
+
+ <table>
+       <h2>Datos del Paciente</h2>
+    <tr><td><h1>Historia Familiar</h1><br/></td></tr>
 <tr>
  
     <td><label>Nombre y Apellido del Padre:</label><br/>
@@ -11,15 +14,17 @@ Historia Clinica de:
     </td>
     <td><label>Ocupacion del Padre: </label><br/>
     <%= f.text_field :ocupacion_padre %>
-    </td> 
-    <td><label>Nombre y Apellido de la Madre: </label><br/>
-    <%= f.text_field :nombre_apellido_madre %>
     </td>
 </tr>
 <tr>
+    <td><label>Nombre y Apellido de la Madre: </label><br/>
+    <%= f.text_field :nombre_apellido_madre %>
+    </td>
     <td><label>Ocupacion de la Madre: </label><br/>
     <%= f.text_field :ocupacion_madre %>
     </td>
+</tr>
+<tr>
     <td><label>Cantidad de Hermanos: </label><br/>
     <%= f.text_field :cantidad_hermanos %>
     </td>       
@@ -27,28 +32,41 @@ Historia Clinica de:
     <%= f.text_field :nombres_edades_hermanos %>
     </td>
  </tr>
+  <tr>
+    <td><label>Vive con: </label><br/>
+    <select name="historia_clinica_ortodoncia[vive_con]">
+        <%=  options_for_select([ "Madre", "Padre", "Esposo", "Solo", "Otros" ], @historia_clinica_ortodoncia.vive_con)%>
+    </select>
+    </td>
+
+    <td><label>Nombre del conyuge: </label><br/>
+    <%= f.text_field :nombre_conyuge %>
+    </td>
+ </tr>
  <tr>
     <td><label>Nombre y Apellido del Medico Familiar: </label><br/>
     <%= f.text_field :nombre_apellido_medico_familiar %>
     </td>
-    <td><label>Domicilio del Medico: </label><br/>
+    <td><label>Domicilio del Medico Familiar: </label><br/>
     <%= f.text_field :domicilio_medico %>
     </td>
-    <td><label>Vive con: </label><br/>
-    <%= f.text_field :vive_con %>
-    </td>
- </tr>
- <tr>
-    <td><label>Nombre del conyuge: </label><br/>
-    <%= f.text_field :nombre_conyuge %>
-    </td> 
  </tr>
 
-    <tr><td><label>Historia Medica</label></td></tr>
+
+ 
+
+  
+  <tr><td><h1>Historia Medica</h1><br/></td></tr>
+    
  <tr>
     <td><label>Tratamiendo Medico: </label>
     <%= f.check_box :tratamiento_medico %>
     </td>
+    <td><label>Atencion Medica de los ultimos dos años: </label>
+    <%= f.check_box :atencion_medica_ultimos_dos_anios %>
+    </td>
+ </tr>
+ <tr>
     <td><label>Esta tomando Medicamentos: </label>
     <%= f.check_box :tomando_medicamentos %>
     </td>
@@ -56,27 +74,28 @@ Historia Clinica de:
     <%= f.text_field :cual_medicamento %>
     </td>
  </tr>
+
  <tr>
-    <td><label>Atencion Medica de los ultimos dos años: </label>
-    <%= f.check_box :atencion_medica_ultimos_dos_anios %>
-    </td> 
-    <td><label>Condicion: </label><br/>
-    <%= f.text_field :condicion %>
-    </td>
-    <td><label>Peso: </label><br/>
-    <%= f.text_field :peso %>
-    </td>
- </tr>
- <tr>
-    <td><label>Altura: </label><br/>
-    <%= f.text_field :altura %>
-    </td>
-    <td><label>Trastorno Fisico: </label>
+   
+   <td><label>Trastorno Fisico: </label>
     <%= f.check_box :trastorno_fisico %>
     </td>
     <td><label>Cual trastorno fisico: </label><br/>
     <%= f.text_field :cual_trastorno_fisico %>
     </td>
+ </tr>
+ <tr>
+    <td><label>Altura: </label><br/>
+    <%= f.text_field :altura, :size=> 3*1 %>
+    </td>
+    
+    <td><label>Peso: </label><br/>
+    <%= f.text_field :peso, :size=> 3*1 %>
+    </td>
+     <td><label>Condicion: </label><br/>
+    <%= f.text_field :condicion, :size=> 15*1 %>
+    </td>
+    
  </tr>
  <tr>
     <td><label>Trastorno Psiquico: </label>
@@ -85,14 +104,16 @@ Historia Clinica de:
     <td><label>Cual Trastorno Psiquico: </label><br/>
     <%= f.text_field :cual_trastorno_psiquico %>
     </td>
+ </tr>
+ <tr>
     <td><label>Fue Hospitalizado: </label>
     <%= f.check_box :fue_hospitalizado %>
     </td>
- </tr>
- <tr>
     <td><label>Causa de la Hospitalizacion: </label><br/>
     <%= f.text_field :causa_hospitalizacion %>
     </td>
+ </tr>
+ <tr>
     <td><label>Operado de Amigdalas: </label>
     <%= f.check_box :operado_amigdalas %>
     </td>
@@ -107,253 +128,257 @@ Historia Clinica de:
     <td><label>Edad operado de adenoides: </label><br/>
     <%= f.text_field :edad_operado_adenoides %>
     </td>
-    <td><label>Operado de Apendices: </label>
-    <%= f.check_box :operado_apendice %>
-    </td>
  </tr>
  <tr>
+    <td><label>Operado de Apendice: </label>
+    <%= f.check_box :operado_apendice %>
+    </td>
     <td><label>Edad operado de Apendice: </label><br/>
     <%= f.text_field :edad_operado_apendice %>
     </td>
+ </tr>
+ <tr>
     <td><label>Alergia a la Anestesia: </label>
     <%= f.check_box :alergia_anestesia %>
     </td>
     <td><label>Alergia a las Drogas de medicamento: </label>
     <%= f.check_box :alergia_drogas_medicamentos %>
     </td>
+    <td><label>Descripcion del Medicamento: </label><br/>
+    <%= f.text_field :desc_alergia_drogas_medicamentos, :size=> 15*1 %>
+    </td>
  </tr>
  <tr>
-    <td><label>Descripcion del Medicamento: </label><br/>
-    <%= f.text_field :desc_alergia_drogas_medicamentos %>
-    </td>
     <td><label>Asma Bronquial: </label>
     <%= f.check_box :asma_bronquial %>
     </td>
     <td><label>Epilepsia: </label>
     <%= f.check_box :epilepsia %>
     </td>
- </tr>
- <tr>
     <td><label>Ictericia: </label>
     <%= f.check_box :ictericia %>
     </td>
+ </tr>
+ <tr>
     <td><label>Perdida de Peso: </label>
     <%= f.check_box :perdida_peso %>
     </td>
     <td><label>Fiebre Reumatica: </label>
     <%= f.check_box :fiebre_reumeatica %>
     </td>
- </tr>
- <tr>
     <td><label>Enfermedades Sanguineas: </label>
     <%= f.check_box :enfermedades_sanguineas %>
     </td>
+ </tr>
+ <tr>
     <td><label>Enfermedades Cardiacas: </label>
     <%= f.check_box :enfermedades_cardiacas %>
     </td>
- 
     <td><label>Diabetes: </label>
     <%= f.check_box :diabetes %>
     </td>
- </tr>
- <tr>
     <td><label>Problemas Endocrinos: </label>
     <%= f.check_box :problemas_endocrinos %>
     </td>
+ </tr>
+ <tr>
     <td><label>Problemas Emocionales: </label>
     <%= f.check_box :asma_bronquial %>
     </td>
     <td><label>Tuberculosis: </label>
     <%= f.check_box :tuberculosis %>
     </td>
- </tr>
- <tr>
     <td><label>Problemas Respiratorios: </label>
     <%= f.check_box :problemas_respiratorios %>
     </td>
+ </tr>
+ <tr>
     <td><label>Problemas Gastrointestinales: </label>
     <%= f.check_box :problemas_gastrointestinales %>
     </td>
     <td><label>Ulceras: </label>
     <%= f.check_box :ulceras %>
     </td>
- </tr>
- <tr>
     <td><label>Problemas Visuales: </label>
     <%= f.check_box :problemas_visuales %>
     </td>
+ </tr>
+ <tr>
     <td><label>Glaucoma: </label>
     <%= f.check_box :glaucoma %>
     </td>
     <td><label>Jaquecas: </label>
     <%= f.check_box :jaquecas %>
     </td>
- </tr>
- <tr>
     <td><label>Desordenes de piel: </label>
     <%= f.check_box :desordenes_piel %>
     </td>
+ </tr>
+ <tr>
     <td><label>Desordenes de tiroides: </label>
     <%= f.check_box :desordenes_tiroides %>
     </td>
     <td><label>Sarampion: </label>
     <%= f.check_box :sarampion %>
     </td>
- </tr>
- <tr>
     <td><label>Trastornos Psicologicos: </label>
     <%= f.check_box :trastornos_psicologicos %>
     </td>
+ </tr>
+ <tr>
     <td><label>Parotiditis: </label>
     <%= f.check_box :parotiditis %>
     </td>
     <td><label>Trastornos Auditivos: </label>
     <%= f.check_box :trastornos_auditivos %>
     </td>
- </tr>
- <tr>
     <td><label>Varicela: </label>
     <%= f.check_box :varicela %>
     </td>
+ </tr>
+ <tr>
     <td><label>Trastornos Oseos: </label>
     <%= f.check_box :trastornos_oseos %>
     </td>
     <td><label>Viruelas: </label>
     <%= f.check_box :viruelas %>
     </td>
- </tr>
- <tr>
     <td><label>Trastornos Renales: </label>
     <%= f.check_box :trastornos_renales %>
     </td>
+ </tr>
+ <tr>
     <td><label>Escarlatina: </label>
     <%= f.check_box :escarlatina %>
     </td>
     <td><label>Trastornos Hepaticos: </label>
     <%= f.check_box :trastornos_hepaticos %>
     </td>
- </tr>
- <tr>
     <td><label>Artritis: </label>
     <%= f.check_box :artritis %>
     </td>
+ </tr>
+ <tr>
     <td><label>Artrosis: </label>
     <%= f.check_box :artrosis %>
     </td>
     <td><label>Hepatitis: </label>
     <%= f.check_box :hepatitis %>
     </td>
- </tr>
- <tr>
     <td><label>Infecciones Bucales Frecuentes: </label>
     <%= f.check_box :infecciones_bucales_frecuentes %>
     </td>
+ </tr>
+ <tr>
     <td><label>Hemofilia: </label>
     <%= f.check_box :hemofilia %>
     </td>
     <td><label>Enfermedades de Transmision Sexual: </label>
     <%= f.check_box :enfermedades_transmision_sexual %>
     </td>
- </tr>
- <tr>
     <td><label>Anemia: </label>
     <%= f.check_box :anemia %>
     </td>
+ </tr>
+ <tr>
     <td><label>Herpes: </label>
     <%= f.check_box :herpes %>
     </td>
     <td><label>HIV: </label>
     <%= f.check_box :hiv %>
     </td>
- </tr>
- <tr>
     <td><label>Homosexualidad: </label>
     <%= f.check_box :homosexualidad    %>
     </td>
+ </tr>
+ <tr>
     <td><label>Transfusiones: </label>
     <%= f.check_box :transfusiones %>
     </td>
     <td><label>Dialisis: </label>
     <%= f.check_box :dialisis %>
     </td>
- </tr>
- <tr>
     <td><label>Embarazo: </label>
     <%= f.check_box :embarazo %>
     </td>
+ </tr>
+ <tr>
     <td><label>Ganglios: </label>
     <%= f.check_box :ganglios %>
     </td>
     <td><label>Hipertension: </label>
     <%= f.check_box :hipertension %>
     </td>
- </tr>
- <tr>
     <td><label>Hipotension: </label>
     <%= f.check_box :hipotension %>
     </td>
+ </tr>
+ <tr>
     <td><label>Derrame Cerebral: </label>
     <%= f.check_box :derrame_cerebral %>
     </td>
     <td><label>Bronquitis Cronica: </label>
     <%= f.check_box :bronquitis_cronica %>
     </td>
- </tr>
- <tr>
     <td><label>Fiebre: </label>
     <%= f.check_box :fiebre %>
     </td>
+ </tr>
+ <tr>
     <td><label>Sudoracion Fiebre Nocturna: </label>
     <%= f.check_box :sudoracion_fiebre_nocturna %>
     </td>
     <td><label>Moretones Facilmente: </label>
     <%= f.check_box :moretones_facilmente %>
     </td>
- </tr>
- <tr>
     <td><label>Sangrado Excesivo de Heridas: </label>
     <%= f.check_box :sangrado_excesivo_heridas %>
     </td>
-    <td><label>Vacuna Antihepatitis: </label>
-    <%= f.check_box :vacuna_antihepatitis %>
-    </td>
+ </tr>
+ <tr>
     <td><label>Vacuna Antitetanica: </label>
     <%= f.check_box :vacuna_antitetanica %>
     </td>
+     <td><label>Cuando la vacuna antitetanica: </label><br/>
+    <%= f.text_field :cuando_vacuna_antitetanica, :size=> 20*1 %>
+    </td>
  </tr>
  <tr>
-    <td><label>Cuando la vacuna antitetanica: </label><br/>
-    <%= f.text_field :cuando_vacuna_antitetanica %>
+    <td><label>Vacuna Antihepatitis: </label>
+    <%= f.check_box :vacuna_antihepatitis %>
     </td>
     <td><label>Usado/Usa alcohol: </label>
     <%= f.check_box :usado_usa_alcohol %>
-    </td> 
-    <td><label>Tipo de drogas usadas: </label><br/>
-    <%= f.text_field :tipo_drogas_usadas %>
     </td>
  </tr>
  <tr>
-    <td><label>Cantidad de drogas usadas: </label><br/>
-    <%= f.text_field :cantidad_drogas_usadas %>
+    <td><label>Tipo de drogas usadas: </label><br/>
+    <%= f.text_field :tipo_drogas_usadas %>
     </td>
+    <td><label>Cantidad de drogas usadas: </label><br/>
+    <%= f.text_field :cantidad_drogas_usadas, :size=> 15*1 %>
+    </td>
+ </tr>
+ <tr>
     <td><label>Usado/Usa tabaco: </label>
     <%= f.check_box :usado_usa_tabaco %>
     </td>
     <td><label>Tipo de tabaco usado: </label><br/>
     <%= f.text_field :tipo_tabaco_usado %>
     </td>
+    <td><label>Cantidad de tabaco usado: </label><br/>
+    <%= f.text_field :cantidad_tabaco_usado, :size=> 15*1 %>
+    </td>
  </tr>
  <tr>
-    <td><label>Cantidad de tabaco usado: </label><br/>
-    <%= f.text_field :cantidad_tabaco_usado %>
-    </td>
     <td><label>Presion Arterial Promedio: </label><br/>
-    <%= f.text_field :presion_arterial_promedio %>
+    <%= f.text_field :presion_arterial_promedio, :size=> 12*1 %>
     </td>
     <td><label>Farmacos consumidos en los ultimos años: </label><br/>
     <%= f.text_field :farmacos_consumidos_ultimos_anios %>
     </td>
  </tr>
+ 
  <tr>
     <td><label>Otros: </label><br/>
     <%= f.text_field :otros %>
@@ -363,19 +388,19 @@ Historia Clinica de:
     </td>
  </tr>
 
-    <tr><td><label>Historia bucodental</label></td></tr>
+    <tr><td><h1>Historia bucodental</h1><br/></td></tr>
  <tr> 
     <td><label>Fue al odontologo anteriormente?: </label>
     <%= f.check_box :fue_al_odontologo_anteriormente %>
     </td>
-    <td><label>Fecha el ultimo control odontologico: </label><br/>
-    <%= f.text_field :fecha_ultimo_control_odontologico %>
+    <td><label>Fecha del ultimo control odontologico: </label><br/>
+    <%= f.text_field :fecha_ultimo_control_odontologico, :size=> 15*1 %>
     </td>
     <td><label>Razon de la concurrencia: </label><br/>
-    <%= f.text_field :razon_concurrencia %>
+    <%= f.text_field :razon_concurrencia, :size=> 14*1 %>
     </td>
-</tr>
-<tr>
+ </tr>
+ <tr>
     <td><label>Dolor/Ruido de articulaciones maxilares: </label>
     <%= f.check_box :dolor_ruido_articulaciones_maxilares %>
     </td>
@@ -391,18 +416,21 @@ Historia Clinica de:
     <%= f.check_box :succion_pulgar %>
     </td>
     <td><label>Succion del pulgar hasta la edad de: </label><br/>
-    <%= f.text_field :succion_pulgar_hasta_edad_de %>
-    </td>
-    <td><label>Rechinamiento Dentario: </label>
-    <%= f.check_box :rechinamiento_dentario %>
+    <%= f.text_field :succion_pulgar_hasta_edad_de, :size=> 10*1 %>
     </td>
 </tr>
 <tr>
+  
     <td><label>Succion Digital: </label>
     <%= f.check_box :succion_digital %>
     </td>
     <td><label>Succion Digital hasta la edad de: </label><br/>
-    <%= f.text_field :succion_digital_hasta_edad_de %>
+    <%= f.text_field :succion_digital_hasta_edad_de, :size=> 10*1 %>
+    </td>
+</tr>
+<tr>
+    <td><label>Rechinamiento Dentario: </label>
+    <%= f.check_box :rechinamiento_dentario %>
     </td>
     <td><label>Empuje lingual: </label>
     <%= f.check_box :empuje_lingual %>
@@ -415,14 +443,16 @@ Historia Clinica de:
     <td><label>Presion Labial: </label>
     <%= f.check_box :presion_labial %>
     </td>
+ </tr>
+ <tr>
     <td><label>Respirador Bucal: </label>
     <%= f.check_box :respirador_bucal %>
     </td>
- </tr>
- <tr>
     <td><label>Come Uñas?: </label>
     <%= f.check_box :come_unas %>
     </td>
+ </tr>
+ <tr>
     <td><label>Usó chupete?: </label>
     <%= f.check_box :uso_chupete %>
     </td>
@@ -437,19 +467,26 @@ Historia Clinica de:
     <td><label>Dificultad de masticar: </label>
     <%= f.check_box :dificultad_masticar %>
     </td>
+ </tr>
+ <tr>
     <td><label>Dificultad de tragar: </label>
     <%= f.check_box :dificultad_tragar %>
     </td>
- </tr>
- <tr>
     <td><label>Dificultad de hablar: </label>
     <%= f.check_box :dificultad_hablar %>
     </td>
+ </tr>
+ <tr>
     <td><label>Estado bucal general: </label><br/>
-    <%= f.text_field :estado_bucal_general %>
+        <select name="historia_clinica_ortodoncia[estado_bucal_general]">
+        <%=  options_for_select([ "Bueno", "Regular", "Malo" ], @historia_clinica_ortodoncia.estado_bucal_general)%>
+      </select>
     </td>
+
     <td><label>Indice de caries: </label><br/>
-    <%= f.text_field :indice_caries %>
+      <select name="historia_clinica_ortodoncia[indice_caries]">
+        <%=  options_for_select([ "Normal", "Bajo", "Alto" ], @historia_clinica_ortodoncia.indice_caries)%>
+      </select>
     </td>
  </tr>
  <tr>
@@ -459,34 +496,43 @@ Historia Clinica de:
     <td><label>Periodonto: </label><br/>
     <%= f.text_field :periodonto %>
     </td>
-    <td><label>Cepilla los dientes? </label>
-    <%= f.check_box :cepilla_dientes %>
-    </td>
- </tr>
- <tr>
-    <td><label>Cepilla los dientes, cuando? </label><br/>
-    <%= f.text_field :cepilla_dientes_cuando %>
-    </td> 
-    <td><label>Usa hilo dental? </label>
+     <td><label>Usa hilo dental? </label>
     <%= f.check_box :usa_hilo_dental %>
     </td>
+ </tr>
+ <tr>
+    <td><label>Cepilla los dientes? </label>
+      <select name="historia_clinica_ortodoncia[cepilla_dientes]">
+        <%=  options_for_select([ "Si", "No", "A Veces" ], @historia_clinica_ortodoncia.cepilla_dientes)%>
+      </select>
+    </td>
+    <td><label>Cepilla los dientes, cuando? </label><br/>
+    <%= f.text_field :cepilla_dientes_cuando, :size=> 10*1 %>
+    </td> 
+   
+ </tr>
+ <tr>
     <td><label>Indice de placas: </label><br/>
-    <%= f.text_field :indice_placa %>
+      <select name="historia_clinica_ortodoncia[indice_placa]">
+        <%=  options_for_select([ "Alto", "Medio", "Bajo" ], @historia_clinica_ortodoncia.indice_placa)%>
+      </select>
+    </td>
+    <td><label>Tratamiento de fluor: </label><br/>
+      <select name="historia_clinica_ortodoncia[tratamiento_fluor]">
+        <%=  options_for_select([ "Si", "No", "No Sabe" ], @historia_clinica_ortodoncia.tratamiento_fluor)%>
+      </select>
     </td>
  </tr>
  <tr>
-    <td><label>Tratamiento de fluor: </label><br/>
-    <%= f.text_field :tratamiento_fluor %>
-    </td>
     <td><label>Topicaciones: </label><br/>
-    <%= f.text_field :topicaciones %>
+    <%= f.text_field :topicaciones, :size=> 10*1 %>
     </td>
     <td><label>Buches: </label><br/>
-    <%= f.text_field :buches %>
+    <%= f.text_field :buches, :size=> 10*1 %>
     </td>
  </tr>
  
- <tr><td><label>Examen Radiologico </label><br/></td></tr>
+ <tr><td><h1>Examen Radiologico </h1><br/></td></tr>
  <tr>
     <td><label>Anomalias Forma: </label>
     <%= f.check_box :anomalias_forma %>
@@ -547,7 +593,6 @@ Historia Clinica de:
     <td><label>Erupcion Retrasada: </label>
     <%= f.check_box :erupcion_retrasada %>
     </td>
-
     <td><label>Erupcion Precoz: </label>
     <%= f.check_box :erupcion_precoz %>
     </td>
@@ -566,10 +611,7 @@ Historia Clinica de:
     <%= f.check_box :caries_cemento %>
     </td>
  </tr>
- <tr>
-    <td><label>Comentarios: </label><br/>
-    <%= f.text_field :comentarios %>
-    </td>
+ <tr>   
     <td><label>Rx Panoramica: </label><br/>
     <%= f.text_field :rx_panoramica %>
     </td>
@@ -585,8 +627,12 @@ Historia Clinica de:
     <%= f.text_field :rx_diagnostico_clinico %>
     </td>
  </tr>
-
- <tr><td><label>Historia Ortodoncica</label><br/></td></tr>
+ <tr>
+     <td><label>Comentarios: </label><br/>
+    <%= f.text_field :comentarios %>
+    </td>
+ </tr>
+ <tr><td><h1>Historia Ortodoncica</h1><br/></td></tr>
  <tr>
     <td><label>Consulta ortodoncica previa: </label>
     <%= f.check_box :consulta_ortodoncica_previa %>
@@ -594,23 +640,27 @@ Historia Clinica de:
     <td><label>Fecha de consulta ortodoncica: </label><br/>
     <%= f.text_field :fecha_consulta_ortodoncica %>
     </td>
+ </tr>
+ <tr>
     <td><label>Medico de la consulta ortodoncica previa: </label><br/>
     <%= f.text_field :medico_consulta_ortodoncica %>
     </td>
-</tr>
-<tr>
     <td><label>Interes del paciente al tratamiento ortodoncico: </label><br/>
     <%= f.text_field :interes_paciente_tratamiento_ortodoncico %>
     </td>
+ </tr>
+ <tr>
     <td><label>Algun familiar con tratamiento ortodoncico ortopedico: </label>
     <%= f.check_box :algun_familiar_tratamiento_ortodoncico_ortopedico %>
     </td>
-    <td><label>Otros comentarios Ortodoncia: </label><br/>
+ </tr>
+ <tr>
+    <td><label>Otros comentarios de Ortodoncia: </label><br/>
     <%= f.text_field :otros_comentarios_ortodoncia %>
     </td>
  </tr>
 
- <tr><td><label>Examen Bucal</label><br/></td></tr>
+ <tr><td><h1>Examen Bucal</h1><br/></td></tr>
  <tr> 
     <td><label>Dientes presentes en la boca: </label><br/>
     <%= f.text_field :dientes_presentes_boca %>
@@ -620,7 +670,7 @@ Historia Clinica de:
     </td>
  </tr>
  
- <tr><td><label>Articulacion temporo-mandibular</label><br/></td></tr>
+ <tr><td><h1>Articulacion temporo-mandibular</h1><br/></td></tr>
  <tr> 
     <td><label>Limitacion: </label>
     <%= f.check_box :limitacion %>
@@ -680,11 +730,11 @@ Historia Clinica de:
     <td><label>Palpacion Articular Posterior: </label>
     <%= f.check_box :palpacion_articular_posterior %>
     </td>
-</tr>
-<tr>
     <td><label>Radiografia Panoramica: </label>
     <%= f.check_box :radiografia_panoramica %>
     </td>
+</tr>
+<tr>
     <td><label>Historial traba bloqueo mandibular: </label>
     <%= f.check_box :historial_traba_bloqueo_mandibular %>
     </td>
@@ -700,22 +750,25 @@ Historia Clinica de:
     <%= f.check_box :con_movimiento_limitado %>
     </td>
 </tr>
+
+<tr><td><h1>Otros varios</h1><br/></td></tr>
 <tr>
-    <td><label>Otros varios</label><br/></td>
     <td><label>Examen de Tejidos blandos: </label><br/>
     <%= f.text_field :examen_tejidos_blandos %>
     </td>
     <td><label>Examen de relaciones dentarias: </label><br/>
     <%= f.text_field :examen_relaciones_dentarias %>
     </td>
+</tr>
+<tr>
     <td><label>Ficha de tejidos blandos intraorales: </label><br/>
     <%= f.text_field :ficha_tejidos_blandos_intraorales %>
     </td>
-</tr>
-<tr>
     <td><label>Montaje en articulador: </label><br/>
     <%= f.text_field :montaje_en_articulador %>
     </td>
+</tr>
+<tr>
     <td><label>Diagnostico de ortodoncia: </label><br/>
     <%= f.text_field :diagnostico_ortodoncia %>
     </td>
@@ -755,5 +808,4 @@ Historia Clinica de:
   </p>
 <%  end %>
 
-<%= link_to 'Volver', historias_clinicas_ortodoncias_path %>
 

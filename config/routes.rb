@@ -1,7 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :historias_clinicas_ortodoncias
+  map.resources :imagenes,
+                :collection => {:new_archivo => :get}
+              
+  #map.resources :historias_clinicas_ortodoncias
 
-  map.resources :historias_clinicas_generales
+  #map.resources :historias_clinicas_generales
 
   map.resources :permisos
 
@@ -23,10 +26,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :titulares,
                 :collection => {:buscar => :get, :resultado => :post}
 
-  #map.resources :obras_sociales,
-  #              :collection => {:buscar => :get, :resultado => :post}
-
-  
   map.resources :estados_laborales
 
   map.resources :tipos_documento
@@ -38,12 +37,20 @@ ActionController::Routing::Routes.draw do |map|
                             :editfield => :get, :updatefield => :put, :cancelfield => :get,
                             :search_titular => :get, :results_titular => :post,
                             :update_titular => :put,
-                            :new_titular => :get, :create_titular => :post
-                            }
+                            :new_titular => :get, :create_titular => :post,
+                            :show_imagen => :get,
+                            :listado_historias_clinicas => :get
+                            
+                }do |paciente|
+                              paciente.resource :historia_clinica_general
+                              paciente.resource :historia_clinica_ortodoncia
+                            end
 
   map.resources :profesionales
   
   map.resources :archivos
+                
+                
 
 
 
@@ -79,10 +86,8 @@ ActionController::Routing::Routes.draw do |map|
   
   # Sample resource route with more complex sub-resources
   map.resources :obras_sociales, :collection => {:buscar => :get, :resultado => :post} do |obra_social|
-     obra_social.resources :aranceles
-                           
+     obra_social.resources :aranceles                     
   end
-
   # Sample resource route within a namespace:
   #   map.namespace :admin do |admin|
   #     # Directs /admin/products/* to Admin::ProductsController (app/controllers/admin/products_controller.rb)

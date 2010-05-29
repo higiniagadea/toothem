@@ -15,10 +15,10 @@
     <td><%=h item.url %></td>
     <td><%=h item.metodo_http %></td>
     <td><%=h item.orden %></td>
-    <td><%=h item.estatico %></td>
+    <td><%=h boolean_desc(item.estatico) %></td>
     <td><%= link_to image_tag('magnifier_zoom_in.png'), item %>
         <%= link_to image_tag('pencil.png'), edit_item_path(item) %>
-        <%= link_to image_tag('cancel.png'), item, :confirm => 'Está seguro? No podrá deshacer esta acción', :method => :delete unless item.estatico? %></td>
+        <%= link_to image_tag('cancel.png'), item, :confirm => 'Está seguro? No podrá deshacer esta acción', :method => :delete unless item.estatico? || item.nombre == "root" %></td>
   </tr>
 <% end %>
 </table>

@@ -70,12 +70,8 @@
       <%= f.text_field :nivel_escolar %>
     </li>
     <li>
-      <label>Num. de Afiliado</label>
+      <label>Num. Afiliado</label>
       <%= f.text_field :nro_afiliado %>
-    </li>
-    <li>
-      <label>Consultorio</label>
-      <%= f.collection_select(:consultorio_id, Consultorio.all, :id, :nombre) %>
     </li>
     <li>
       <label></label>
@@ -83,4 +79,3 @@
     </li>
   </ul>
 <% end %>
-<%= link_to 'Atrás', pacientes_path %>

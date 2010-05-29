@@ -1,0 +1,29 @@
+
+
+<table>
+  <tr>
+    <label>Historia Clinica General de : </label>
+<%if @paciente.historia_clinica_general.blank? -%>
+    <%=  link_to image_tag('add.png'), new_paciente_historia_clinica_general_path(@paciente) %>
+<%elsif-%>
+    <%= link_to image_tag('magnifier_zoom_in.png'), paciente_historia_clinica_general_path(@paciente, @historia_clinica_general) %>
+<%end-%>
+    
+</tr>
+
+<br/>
+
+<tr>
+<label>Historia Clinica Ortodoncia de :</label>
+<% if @paciente.historia_clinica_ortodoncia.blank? -%>
+
+  <%= link_to image_tag('add.png'), new_paciente_historia_clinica_ortodoncia_path(@paciente) %>
+
+<%elsif -%>
+     <%=  link_to image_tag('magnifier_zoom_in.png'), paciente_historia_clinica_ortodoncia_path(@paciente, @historia_clinica_ortodoncia) %>
+ 
+
+<%end -%>
+
+</tr>
+ </table>

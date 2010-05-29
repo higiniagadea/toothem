@@ -13,8 +13,12 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
 
-  def index
-    
+  def generar_submenus
+     unless params[:item_selected].blank?
+        @item = Item.find(params[:item_selected])
+        #session[:subitems] = Item.find(:all, :conditions => "lower(url) LIKE "+"'%"+@item.nombre.downcase+"%' AND url <> '"+ @item.url+ "'" , :order => 'orden')
+        session[:subitems] = Item.find(:all, :conditions => "parent_id =" + @item.id.to_s + " AND activo =" + @item.activo.to_s, :order => 'orden')
+     end
   end
 
 

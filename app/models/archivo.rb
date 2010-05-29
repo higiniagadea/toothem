@@ -6,7 +6,7 @@ class Archivo < ActiveRecord::Base
   has_attachment :content_type => :image,
                  :storage => :db_file,
                  :max_size => 500.kilobytes,
-                 :resize_to => [90,90],
+                 :resize_to => [640,480],
                  :thumbnails => { :thumb => [90,90] }
 
   validates_as_attachment

@@ -12,8 +12,9 @@
         </td>
       </tr>
     <% end %>
+      
 </table>
-<%= will_paginate @paginatepacientes, :previous_label=>'Anterior', :next_label => 'Siguiente' %>
+
 
 <%@pacientes.each do |paciente|%>
     <script type="text/javascript">
@@ -25,7 +26,7 @@
         {
           $(this).qtip(
           {
-            content: '<%= render :partial => 'static/menu_pacientes', :locals => {:paciente => paciente}%>', // Give it some content
+            content: '<%= render :partial => 'static/menu_pacientes', :locals => {:paciente => paciente} %>', // Give it some content
             position: 'topRight', // Set its position
             hide: {
               fixed: true // Make it fixed so it can be hovered over
@@ -39,3 +40,4 @@
       });
     </script>
 <%end%>
+<%= will_paginate @paginatepacientes, :previous_label=>'Anterior', :next_label => 'Siguiente' %>

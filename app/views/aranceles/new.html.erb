@@ -4,29 +4,34 @@
   <%= f.error_messages %>
 <br/>
 <br/>
+<% prestaciones =  Prestacion.find(:all, :conditions => [ "id NOT IN
+                                                                    (SELECT prestacion_id FROM obras_sociales AS os INNER JOIN aranceles
+                                                                     ON obra_social_id = os.id
+                                                                     WHERE os.id =?)", @arancel.obra_social_id])%>
   <table id="form">
-    <tr>
-      <td>Prestación</td>
-      <td>Importe Cubierto</td>
-      <td>Coseguro</td>
-    </tr>
-    <tr>
-      <td>
-        <%= f.collection_select(:prestacion_id, Prestacion.find(:all, :conditions => [ "id NOT IN
-                                                                                        (SELECT prestacion_id FROM obras_sociales AS os INNER JOIN aranceles
-                                                                                        ON obra_social_id = os.id
-                                                                                        WHERE os.id =?)", @arancel.obra_social_id]), :id, :codigo_descripcion) %>
-      </td>
-      <td>
-        <%= f.text_field :importe_cubierto %>
-      </td>
-      <td>
-        <%= f.text_field :coseguro %>
-      </td>
-      <td>
-        <%= f.submit 'Crear' %>
-      </td>
-    </tr>   
+    <% unless prestaciones.blank? -%>
+      <tr>
+        <td>Prestación</td>
+        <td>Importe Cubierto</td>
+        <td>Coseguro</td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.collection_select(:prestacion_id, prestaciones, :id, :codigo_descripcion) %>
+        </td>
+        <td>
+          <%= f.text_field :importe_cubierto, :size => 15 %>
+        </td>
+        <td>
+          <%= f.text_field :coseguro, :size => 15 %>
+        </td>
+        <td>
+          <%= f.submit 'Crear' %>
+        </td>
+      </tr>
+    <%  else -%>
+      <a style ="font-weight: bold;">No existen mas prestaciones para agregar</a>
+    <% end -%>
   </table>
 <% end %>
 <table class="table-list">

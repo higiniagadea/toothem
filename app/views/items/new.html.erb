@@ -6,9 +6,14 @@
   <li>
     <label for="nombre">Nombre </label>
     <%= f.text_field :nombre %>
+    
   </li>
   <li>
     <label>Padre</label>
+    <%if params[:nombre] == "root"%>
+      <%  params[:item][:parent_id]= 0 %>
+    <%  end %>
+
     <%= f.collection_select(:parent_id, Item.find(:all, :conditions => 'parent_id = 0 or parent_id = 1'), :id, :nombre,{}, :class =>'normal') %>
   </li>
   <li>
@@ -16,10 +21,10 @@
     <%= f.text_field :url %>
   </li>
   <li>
-    <label for="metodo_http">Metodo_http </label>
-    <%= f.text_field :metodo_http %>
+    <label for="url_imagen">URL Imagen</label>
+    <%= f.text_field :url_imagen %>
   </li>
-  <li>
+ <li>
     <label for="orden">Orden </label>
     <%= f.text_field :orden %>
   </li>
