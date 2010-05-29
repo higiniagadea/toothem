@@ -3,14 +3,18 @@ class CreatePacientes < ActiveRecord::Migration
     create_table "pacientes" do |t|
 
       t.column :nombre, :string, :limit => 255, :null => false
-      t.column :tipo_documento_id, :integer, :null => false
+
+      t.column :tipo_documento_id, :integer
+
       t.column :matricula, :string, :limit => 50, :null => false
       t.column :sexo, :string, :limit => 255, :null => false
       t.column :estado_civil, :string, :limit => 100, :null => true
       t.column :domicilio_particular, :string, :limit => 255, :null => false
       t.column :domicilio_laboral, :string, :limit => 255, :null => true
       t.column :fecha_nacimiento, :date, :null => true
-      t.column :grupo_sanguineo, :string, :null => true
+
+      t.column :grupo_sanguineo, :string, :limit => 255
+
       t.column :telefono_particular, :string, :limit => 255, :null => true
       t.column :telefono_laboral, :string, :limit => 255, :null => true
       t.column :movil, :string, :limit => 100, :null => true

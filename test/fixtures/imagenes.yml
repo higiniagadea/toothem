@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  paciente_id: 1
+  archivo_id: 1
+  descripcion: MyString
+  observaciones: MyString
+  fecha: 2010-04-29
+
+two:
+  paciente_id: 1
+  archivo_id: 1
+  descripcion: MyString
+  observaciones: MyString
+  fecha: 2010-04-29

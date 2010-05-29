@@ -2,7 +2,11 @@
 
 <table>
   <tr>
+<<<<<<< HEAD:app/views/pacientes/_listado_historias_clinicas.html.erb
     <label>Historia Clinica General de : </label>
+=======
+    <label>Historia Clinica General</label>
+>>>>>>> 8f4a4514ce387a71d3813d507577904f18142bbc:app/views/pacientes/_listado_historias_clinicas.html.erb
 <%if @paciente.historia_clinica_general.blank? -%>
     <%=  link_to image_tag('add.png'), new_paciente_historia_clinica_general_path(@paciente) %>
 <%elsif-%>
@@ -14,7 +18,11 @@
 <br/>
 
 <tr>
+<<<<<<< HEAD:app/views/pacientes/_listado_historias_clinicas.html.erb
 <label>Historia Clinica Ortodoncia de :</label>
+=======
+<label>Historia Clinica Ortodoncia</label>
+>>>>>>> 8f4a4514ce387a71d3813d507577904f18142bbc:app/views/pacientes/_listado_historias_clinicas.html.erb
 <% if @paciente.historia_clinica_ortodoncia.blank? -%>
 
   <%= link_to image_tag('add.png'), new_paciente_historia_clinica_ortodoncia_path(@paciente) %>

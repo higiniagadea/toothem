@@ -42,7 +42,9 @@ ActionController::Routing::Routes.draw do |map|
                             :listado_historias_clinicas => :get
                             
                 }do |paciente|
-                              paciente.resource :historia_clinica_general
+
+                              paciente.resource :historia_clinica_general, :member => {:imprimir => :get}
+
                               paciente.resource :historia_clinica_ortodoncia
                             end
 

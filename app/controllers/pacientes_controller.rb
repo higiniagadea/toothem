@@ -267,7 +267,11 @@ class PacientesController < ApplicationController
 
   def listado_historias_clinicas
    @paciente = Paciente.find(params[:id])
+<<<<<<< HEAD:app/controllers/pacientes_controller.rb
    @pagetitle = "Historias Clinicas de:   " +@paciente.nombre
+=======
+   @pagetitle = "Historias Clinicas de "+@paciente.nombre
+>>>>>>> 8f4a4514ce387a71d3813d507577904f18142bbc:app/controllers/pacientes_controller.rb
 #   @historia_clinica_ortodoncia = @paciente.historia_clinica_ortodoncia.find(:first, :conditions => 'paciente_id=?'+@paciente.id.to_s)
 #   @historia_clinica_general = @paciente.historia_clinica_general.find(:first, :conditions => 'paciente_id=?'+@paciente.id.to_s)
    respond_to do |format|

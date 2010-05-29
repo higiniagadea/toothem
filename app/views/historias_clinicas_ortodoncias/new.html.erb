@@ -1,12 +1,24 @@
 
 
 
+<<<<<<< HEAD:app/views/historias_clinicas_ortodoncias/new.html.erb
 <% form_for(:historia_clinica_ortodoncia, @historia_clinica_ortodoncia, :url => {:method => :post, :action => "show"}) do |f| %>
   <%= f.error_messages %>
 
  <table>
        <h2>Datos del Paciente</h2>
     <tr><td><h1>Historia Familiar</h1><br/></td></tr>
+=======
+<% form_for(:historia_clinica_ortodoncia, @historia_clinica_ortodoncia, :url => {:method => :get, :action => "show"}) do |f| %>
+  <%= f.error_messages %>
+
+    <%= f.submit 'Guardar' %>
+
+<table>
+    <fieldset class="pacientes-data">
+    <legend>Datos del paciente</legend>
+    <tr><td><label>Historia Familiar</label></td></tr>
+>>>>>>> 8f4a4514ce387a71d3813d507577904f18142bbc:app/views/historias_clinicas_ortodoncias/new.html.erb
 <tr>
  
     <td><label>Nombre y Apellido del Padre:</label><br/>
@@ -50,6 +62,7 @@
     <td><label>Domicilio del Medico Familiar: </label><br/>
     <%= f.text_field :domicilio_medico %>
     </td>
+<<<<<<< HEAD:app/views/historias_clinicas_ortodoncias/new.html.erb
  </tr>
 
 
@@ -58,6 +71,25 @@
   
   <tr><td><h1>Historia Medica</h1><br/></td></tr>
     
+=======
+    <td><label>Vive con: </label><br/>
+    <select name="historia_clinica_ortodoncia[vive_con]">
+        <%=  options_for_select([ "Madre", "Padre", "Esposo", "Solo", "Otros" ], @historia_clinica_ortodoncia.vive_con)%>
+    </select>
+
+    </td>
+ </tr>
+ <tr>
+    <td><label>Nombre del conyuge: </label><br/>
+    <%= f.text_field :nombre_conyuge %>
+    </td> 
+ </tr>
+
+    </fieldset>
+
+
+    <tr><td><label>Historia Medica</label></td></tr>
+>>>>>>> 8f4a4514ce387a71d3813d507577904f18142bbc:app/views/historias_clinicas_ortodoncias/new.html.erb
  <tr>
     <td><label>Tratamiendo Medico: </label>
     <%= f.check_box :tratamiento_medico %>
@@ -478,6 +510,10 @@
  </tr>
  <tr>
     <td><label>Estado bucal general: </label><br/>
+<<<<<<< HEAD:app/views/historias_clinicas_ortodoncias/new.html.erb
+=======
+
+>>>>>>> 8f4a4514ce387a71d3813d507577904f18142bbc:app/views/historias_clinicas_ortodoncias/new.html.erb
         <select name="historia_clinica_ortodoncia[estado_bucal_general]">
         <%=  options_for_select([ "Bueno", "Regular", "Malo" ], @historia_clinica_ortodoncia.estado_bucal_general)%>
       </select>
@@ -496,8 +532,15 @@
     <td><label>Periodonto: </label><br/>
     <%= f.text_field :periodonto %>
     </td>
+<<<<<<< HEAD:app/views/historias_clinicas_ortodoncias/new.html.erb
      <td><label>Usa hilo dental? </label>
     <%= f.check_box :usa_hilo_dental %>
+=======
+    <td><label>Cepilla los dientes? </label>
+      <select name="historia_clinica_ortodoncia[cepilla_dientes]">
+        <%=  options_for_select([ "Si", "No" ], @historia_clinica_ortodoncia.cepilla_dientes)%>
+      </select>
+>>>>>>> 8f4a4514ce387a71d3813d507577904f18142bbc:app/views/historias_clinicas_ortodoncias/new.html.erb
     </td>
  </tr>
  <tr>
@@ -509,7 +552,18 @@
     <td><label>Cepilla los dientes, cuando? </label><br/>
     <%= f.text_field :cepilla_dientes_cuando, :size=> 10*1 %>
     </td> 
+<<<<<<< HEAD:app/views/historias_clinicas_ortodoncias/new.html.erb
    
+=======
+    <td><label>Usa hilo dental? </label>
+    <%= f.check_box :usa_hilo_dental %>
+    </td>
+    <td><label>Indice de placas: </label><br/>
+      <select name="historia_clinica_ortodoncia[indice_placa]">
+        <%=  options_for_select([ "Alto", "Medio", "Bajo" ], @historia_clinica_ortodoncia.indice_placa)%>
+      </select>
+    </td>
+>>>>>>> 8f4a4514ce387a71d3813d507577904f18142bbc:app/views/historias_clinicas_ortodoncias/new.html.erb
  </tr>
  <tr>
     <td><label>Indice de placas: </label><br/>

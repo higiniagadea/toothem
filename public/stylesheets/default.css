@@ -811,4 +811,36 @@ input, select{
 }
 
 
+<<<<<<< HEAD:public/stylesheets/default.css
 /*Fin galeria de imagenes--------------------------------------------*/
+=======
+/*Fin galeria de imagenes--------------------------------------------*/
+
+.labels{
+    font-weight: bold;
+    width: 50px;
+    
+}
+.historia_clinica td{
+    width: 380px;
+}
+tr.odd{
+    background: #E8EDFF;
+    
+}
+.historia_clinica tr{
+    height: 32px;
+}
+.historia_clinica{
+    border-collapse: collapse;
+}
+.ortodoncia{
+    border-collapse: collapse;
+}
+.ortodoncia td{
+    width: 40%;
+}
+.ortodoncia tr{
+     height: 32px;
+}
+>>>>>>> 8f4a4514ce387a71d3813d507577904f18142bbc:public/stylesheets/default.css
