@@ -2,7 +2,9 @@
 
 <table>
   <tr>
+
     <label>Historia Clinica General</label>
+
 <%if @paciente.historia_clinica_general.blank? -%>
     <%=  link_to image_tag('add.png'), new_paciente_historia_clinica_general_path(@paciente) %>
 <%elsif-%>
@@ -14,7 +16,9 @@
 <br/>
 
 <tr>
+
 <label>Historia Clinica Ortodoncia</label>
+
 <% if @paciente.historia_clinica_ortodoncia.blank? -%>
 
   <%= link_to image_tag('add.png'), new_paciente_historia_clinica_ortodoncia_path(@paciente) %>

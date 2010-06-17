@@ -4,6 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%= stylesheet_link_tag "default" %>
+     
         <%= javascript_include_tag :defaults %>
         <%= javascript_include_tag 'qtip.js','jquery.boxy.js' %>
         
@@ -13,28 +14,32 @@
       <div id="wrapper">
             <div id="container">
                 <div id="header">
-                  <div id="logo" style="float:left">
-                    Logo clínica
-                  </div>
+                       <div id="logo" style="float:left">
+                        <img src="/images/toothem-logo.png" alt="tlogo">
+                       </div>
                   <div id="menutabs" style="float:right;">
                     <%=  render :partial => 'static/tabs' %>
                   </div>
+
                   <div style="clear:both"></div>
-
                   
+                  </div>
 
-                </div>
-                <div id="content">
+                  <div id="content">
+
                   <div id="submenu">
                     <%= render :partial => 'static/submenu' %>
                   </div>
+
                   <div id="main-content">
                       <h1><%= @pagetitle %></h1>
+
                       <div id="opciones-menu">
                         <%= render :partial => 'static/opciones' %>
                         
                       </div>
                       <div style="clear:both"></div>
+                      
                       <div id="title"><%= @title %></div>
                       <%if flash[:notice]%>
                         <div id ="notice"><%=  flash[:notice]%></div>

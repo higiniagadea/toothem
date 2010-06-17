@@ -1,25 +1,25 @@
-
 <div id="pacientes-screen">
-  <div id="pacientes-options">
+  <div id="pacientes-options"> 
     <div id="pacientes-nombre">
       <%=h @paciente.nombre %>
     </div>
     <div id="pacientes-actions">
-      <table>
+      <table>        
         <tr>
           <%= link_to image_tag('magnifier_zoom_in.png'), paciente_historia_clinica_general_path(@paciente) %> |
           <%= link_to image_tag('printer.png'), imprimir_paciente_historia_clinica_general_path(@paciente), :popup => ['Imprimir', 'height=300,width=600'] %>
         </tr>
       </table>
-    </div>
+    </div>    
   </div>
+   
   <fieldset class="pacientes-data">
-<% form_for(:historia_clinica_general, @historia_clinica_general, :url => {:method => :post, :action => "show"}) do |f| %>
-  <%= f.error_messages %>
-
-  <table class="historia_clinica">
+    <% form_for(:historia_clinica_general, @historia_clinica_general, :url => {:method => :post, :action => "show"}) do |f| %>
+        <%= f.error_messages %>
+  
+ <table class="historia_clinica">
     <tr class="odd">
-    <td class="labels">Alergia a la Anestesia:</td>
+    <td class="labels"> Alergia a la Anestesia:</td>
     <td>
     <%= f.check_box :alergia_anestesia %>
     </td>
@@ -57,8 +57,10 @@
     <td>
     <%= f.check_box :fiebre_reumeatica %>
     </td>
+
     <td class="labels">Enfermedades Sanguineas: </td>
     <td>
+
     <%= f.check_box :enfermedades_sanguineas%>
     </td>
  </tr>
@@ -279,30 +281,8 @@
 
  </tr>
 
-
-
- </table>
-  <table class="ortodoncia">
-
-
-
  <tr class="odd">
-
-    <td class="labels">Vacuna Antitetanica: </td>
-    <td>
-
-    <%= f.check_box :vacuna_antitetanica %>
-    </td>
-    <td class="labels">Hace cuanto se vacuno?: </td>
-    <td>
-
-    <%= f.text_field :cuando_vacuna_antitetanica, :size => 17%>
-    </td>
-    <td></td>
-    <td></td>
- </tr>
- <tr>
-   <td class="labels">Alergia a la Droga de Medicamentos: </td>
+   <td class="labels"> Alergia a la Droga de Medicamentos: </td>
     <td>
     <%= f.check_box :alergia_drogas_medicamentos %>
     </td>
@@ -310,10 +290,9 @@
     <td>
     <%= f.text_field :desc_alergia_drogas_medicamentos, :size => 17%>
     </td>
-    <td></td>
-    <td></td>
  </tr>
- <tr class="odd">
+
+ <tr>
 
    <td class="labels">Usado/usa alcohol </td>
     <td>
@@ -323,85 +302,79 @@
     <td>
     <%= f.text_field :promedio_por_semana_en_litros, :size => 17%>
     </td>
-    <td></td>
-    <td></td>
+
  </tr>
-
-
- <tr>
+ <tr class="odd">
    <td class="labels">Usado/usa drogas: </td>
    <td>
    <%= f.check_box :usado_usa_drogas %>
+
    </td>
    <td class="labels">Tipos: </td>
    <td>
    <%= f.text_field :tipo_drogas_usadas, :size => 17%>
    </td>
-   <td class="labels">Cantidad: </td>
-   <td>
-   <%= f.text_field :cantidad_drogas_usadas, :size => 17%>
-   </td>
 
  </tr>
+ 
 
- <tr class="odd">
+ <tr>
    <td class="labels">Usado/usa tabaco: </td>
    <td>
    <%= f.check_box :usado_usa_tabaco %>
    </td>
    <td class="labels">Tipo usado: </td>
    <td>
-   <%= f.text_field :tipo_tabaco_usado, :size => 17%>
+   <%= f.text_field :tipo_tabaco_usado, :size => 10%>
    </td>
+
    <td class="labels">Cantidad: </td>
    <td>
-   <%= f.text_field :cantidad_tabaco_usado, :size => 17%>
+   <%= f.text_field :cantidad_tabaco_usado, :size => 10 %>
    </td>
 
  </tr>
-    </table>
-  <table class="ortodoncia">
- <tr>
+  
+ <tr class="odd">
    <td class="labels">Presion Arterial Promedio: </td>
    <td>
-    <%= f.text_field :presion_arterial_promedio, :size => 17%>
+    <%= f.text_field :presion_arterial_promedio, :size => 10%>
     </td>
  </tr>
- <tr class="odd">
+ <tr>
    <td class="labels">Farmacos Consumidos en los ultimos años: </td>
     <td>
     <%= f.text_field :farmacos_consumidos_ultimos_anios, :size => 17%>
+
     </td>
  </tr>
 
- <tr>
+ <tr class="odd">
    <td class="labels">Otros: </td>
     <td>
     <%= f.text_field :otros, :size => 17%>
     </td>
   </tr>
-  <tr class="odd">
+  <tr>
     <td class="labels">Observaciones: </td>
     <td>
     <%= f.text_field :observaciones, :size => 17%>
     </td>
   </tr>
 
-  <tr>
+  <tr class="odd">
    <td class="labels">Declaracion Jurada: </td>
     <td>
     <%= f.text_field :leyenda_declaracion_jurada, :size => 17%>
     </td>
  </tr>
-
- </table>
+  </table>
     <p>
       <%= submit_tag "Guardar" %>
 
     </p>
-    <% end %>
   </fieldset>
-</div>
-
-
-
+<%end%>
+<div style="clear:both;"></div>
+    
+ 

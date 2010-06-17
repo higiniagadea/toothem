@@ -661,7 +661,7 @@ input, select{
     float:left;
     margin-left:10px;
     margin-top:30px;
-    font-size:20px;
+    font-size:22px;
     font-weight:bold;
     
 }
@@ -683,11 +683,12 @@ input, select{
     -webkit-border-radius: 8px;
     margin-top:5px;
     padding-left:10px;
+  
 }
 
 .pacientes-data legend{
-    font-size: 12px;
-
+    font-size: 16px;
+     font-weight:bold;
 }
 
 
@@ -811,6 +812,7 @@ input, select{
 }
 
 
+
 /*Fin galeria de imagenes--------------------------------------------*/
 
 .labels{
@@ -840,3 +842,4 @@ tr.odd{
 .ortodoncia tr{
      height: 32px;
 }
+

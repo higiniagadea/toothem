@@ -39,6 +39,7 @@ class PacientesController < ApplicationController
     @title = "Pacientes. Datos personales"
     @paciente = Paciente.find(params[:id])
     @imagenes = Imagen.find_all_by_paciente_id(@paciente)
+    
     unless @paciente.archivo_id.blank?
       @archivo = Archivo.find(@paciente.archivo_id)
     end
@@ -226,7 +227,7 @@ class PacientesController < ApplicationController
     @title = "Nuevo paciente"
     respond_to do |format|
       if @paciente.save
-        flash[:notice] = 'Paciente was successfully created.'
+        flash[:notice] = 'Paciente creado.'
         format.html { redirect_to(pacientes_path) }
         format.xml  { render :xml => @paciente, :status => :created, :location => @paciente }
       else
@@ -243,7 +244,7 @@ class PacientesController < ApplicationController
     @title = "Editando paciente"
     respond_to do |format|
       if @paciente.update_attributes(params[:paciente])
-        flash[:notice] = 'Paciente was successfully updated.'
+        flash[:notice] = 'Paciente actualizado.'
         format.html { redirect_to(@paciente) }
         format.xml  { head :ok }
       else
@@ -267,7 +268,9 @@ class PacientesController < ApplicationController
 
   def listado_historias_clinicas
    @paciente = Paciente.find(params[:id])
+
    @pagetitle = "Historias Clinicas de "+@paciente.nombre
+
 #   @historia_clinica_ortodoncia = @paciente.historia_clinica_ortodoncia.find(:first, :conditions => 'paciente_id=?'+@paciente.id.to_s)
 #   @historia_clinica_general = @paciente.historia_clinica_general.find(:first, :conditions => 'paciente_id=?'+@paciente.id.to_s)
    respond_to do |format|

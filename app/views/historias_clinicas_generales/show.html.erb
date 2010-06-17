@@ -17,22 +17,26 @@
   
   <table class="historia_clinica">
     <tr class="odd">
-      <td class="labels">Alergia a anestesia:</td>
+      <td class="labels"> Alergia a anestesia:</td>
       <td>
         <%=h boolean_desc(@historia_clinica_general.alergia_anestesia) %>
       </td>
+
+
       <% if @historia_clinica_general.alergia_drogas_medicamentos -%>
         <td class="labels"> Alergia a drogas:</td>
         <td>
           <%=h @historia_clinica_general.desc_alergia_drogas_medicamentos %>
         </td>
       <% else -%>
-        <td class="labels">Alergia a drogas de medicamentos:</td>
+        <td class="labels"> Alergia a drogas de medicamentos:</td>
         <td>
           
           <%=h boolean_desc(@historia_clinica_general.alergia_drogas_medicamentos) %>
         </td>
       <% end -%>
+
+
         <td class="labels">Asma Bronquial:</td>
         <td>
         <%=h boolean_desc(@historia_clinica_general.asma_bronquial) %>
@@ -390,41 +394,40 @@
       <% else -%>
         <td class="labels">Ha usado/usa drogas:</td>
         <td>
-          
-          <%=h boolean_desc(@historia_clinica_general.usado_usa_drogas) %>
+        <%=h boolean_desc(@historia_clinica_general.usado_usa_drogas) %>
         </td>
         <td></td>
         <td></td>
       <% end -%>
     </tr>
+
     <tr class="odd">
       <td class="labels">Farmacos Consumidos en ultimos años:</td>
       <td>
-        
-        <%=h @historia_clinica_general.farmacos_consumidos_ultimos_anios %>
+      <%=h @historia_clinica_general.farmacos_consumidos_ultimos_anios %>
       </td>
+    </tr>
+    <tr>
       <% if @historia_clinica_general.usado_usa_tabaco -%>
       <td class="labels">Tipo de tabaco usado:</td>
       <td>
-          
-          <%=h boolean_desc(@historia_clinica_general.tipo_tabaco_usado) %>
+        <%=h boolean_desc(@historia_clinica_general.tipo_tabaco_usado) %>
         </td>
         <td class="labels">Cantidad de tabaco usado:</td>
         <td>
-          
           <%=h @historia_clinica_general.cantidad_tabaco_usado %>
         </td>
         <td></td>
       <% else -%>
         <td class="labels">Usado/usa tabaco:</td>
-        <td>
-          
+        <td>         
           <%=h boolean_desc(@historia_clinica_general.usado_usa_tabaco) %>
         </td>
         <td></td>
         <td></td>
-      <% end -%>
     </tr>
+      <% end -%>
+    
 
     <tr>
       <td class="labels">Otros:</td>
@@ -449,9 +452,17 @@
       </td>
     </tr>
   </table>
+
+  <p>
+    <%= link_to image_tag('printer.png'), imprimir_paciente_historia_clinica_general_path(@paciente), :popup => ['Imprimir', 'height=300,width=600'] %>
+   
+    <%= link_to 'Volver', paciente_path(@paciente)%>
+  </p>
+
 </fieldset>
-  <div style="clear:both;"></div>
+  <div style="clear :both;"></div>
 </div>
+
 
 
 
