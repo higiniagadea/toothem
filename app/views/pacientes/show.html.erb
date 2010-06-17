@@ -171,7 +171,7 @@
            <h2>
               <%= imagen.descripcion %>
               <div  style="float: right; font-size: 12px; font-weight: normal">  
-                    <a onclick="Boxy.load('<%= imagen_url(imagen.id)%>').top()" style=" float: left">
+                    <a id="imagen" href="<%= imagen_url(imagen.id)%>" style=" float: left">
                     
                       <%= image_tag('magnifier_zoom_in.png')%> 
                     </a> 
@@ -230,12 +230,13 @@
 // Only create tooltips when document is ready
 $(document).ready(function()
 {  
-   // Use the each() method to gain access to each of the elements attributes
+   
    $('#pacientes-photo img').each(function()
    {
       $(this).qtip(
       {
-         content: '<a onclick="Boxy.load(\'<%= changephoto_paciente_url(@paciente) %>\',{modal: true})">Editar</a>',
+         //content: '<a onclick="Boxy.load(\'<%= changephoto_paciente_url(@paciente) %>\',{modal: true})">Editar</a>',
+         content: '<a href="<%= changephoto_paciente_url(@paciente) %>" id="imagen">Editar</a>',
          position: 'topLeft', // Set its position
          hide: {
             fixed: true // Make it fixed so it can be hovered over
@@ -246,7 +247,11 @@ $(document).ready(function()
          }
       });
    });
+   $('#imagen').fancybox();
+   
 });
+
+
 
 </script>
 
