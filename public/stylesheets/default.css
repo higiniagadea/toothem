@@ -661,7 +661,7 @@ input, select{
     float:left;
     margin-left:10px;
     margin-top:30px;
-    font-size:20px;
+    font-size:22px;
     font-weight:bold;
     
 }
@@ -683,11 +683,12 @@ input, select{
     -webkit-border-radius: 8px;
     margin-top:5px;
     padding-left:10px;
+  
 }
 
 .pacientes-data legend{
-    font-size: 12px;
-
+    font-size: 16px;
+     font-weight:bold;
 }
 
 
@@ -811,9 +812,7 @@ input, select{
 }
 
 
-<<<<<<< HEAD:public/stylesheets/default.css
-/*Fin galeria de imagenes--------------------------------------------*/
-=======
+
 /*Fin galeria de imagenes--------------------------------------------*/
 
 .labels{
@@ -843,4 +842,4 @@ tr.odd{
 .ortodoncia tr{
      height: 32px;
 }
->>>>>>> 8f4a4514ce387a71d3813d507577904f18142bbc:public/stylesheets/default.css
+

@@ -1,41 +1,31 @@
-
-<<<<<<< HEAD:app/views/historias_clinicas_generales/edit.html.erb
-
 <% form_for(:historia_clinica_general, @historia_clinica_general,
-            :url=> paciente_historia_clinica_general_path(@paciente, @historia_clinica_general), :html=> {:method=> :put}) do |f| %>
-  <%= f.error_messages %>
- <table>
+            :url => paciente_historia_clinica_general_url(@paciente), :html=> {:method=> :put}) do |f| %>
 
-    <tr>
-    <td>
-    <label>Alergia a la Anestesia:</label>
-    <%= f.check_box :alergia_anestesia %>
-    </td>
-    <td><label>Alergia a la Droga de Medicamentos: </label>
-    <%= f.check_box :alergia_drogas_medicamentos %>
-    </td>
-    <td><label>Descripcion de la Droga: </label><br/>
-    <%= f.text_field :desc_alergia_drogas_medicamentos %>
-=======
+
+  <%= f.error_messages %>
 <div id="pacientes-screen">
   <div id="pacientes-options">
     <div id="pacientes-nombre">
       <%=h @paciente.nombre %>
     </div>
+   
     <div id="pacientes-actions">
+
+       <tr><%= f.submit 'Actualizar' %></tr>
+       
       <table>
+        
         <tr>
           <%= link_to image_tag('magnifier_zoom_in.png'), paciente_historia_clinica_general_path(@paciente) %> |
           <%= link_to image_tag('printer.png'), imprimir_paciente_historia_clinica_general_path(@paciente), :popup => ['Imprimir', 'height=300,width=600'] %>
         </tr>
       </table>
+     
     </div>
   </div>
-  <fieldset class="pacientes-data">
-<% form_for(:historia_clinica_general, @historia_clinica_general,
-            :url => paciente_historia_clinica_general_url(@paciente), :html=> {:method=> :put}) do |f| %>
-  <%= f.error_messages %>
   
+  <fieldset class="pacientes-data">
+
   <table class="historia_clinica">
     <tr class="odd">
     <td class="labels">Alergia a la Anestesia:</td>
@@ -49,7 +39,7 @@
     <td class="labels">Jaquecas: </td>
     <td>
     <%= f.check_box :jaquecas %>
->>>>>>> 8f4a4514ce387a71d3813d507577904f18142bbc:app/views/historias_clinicas_generales/edit.html.erb
+
     </td>
 
  </tr>
@@ -77,12 +67,9 @@
     <td>
     <%= f.check_box :fiebre_reumeatica %>
     </td>
-<<<<<<< HEAD:app/views/historias_clinicas_generales/edit.html.erb
-    <td><label>Enfermedades Sanguineas: </label>
-=======
+
     <td class="labels">Enfermedades Sanguineas: </td>
     <td>
->>>>>>> 8f4a4514ce387a71d3813d507577904f18142bbc:app/views/historias_clinicas_generales/edit.html.erb
     <%= f.check_box :enfermedades_sanguineas%>
     </td>
  </tr>
@@ -291,6 +278,7 @@
     <%= f.check_box :fiebre %>
     </td>
  </tr>
+
  <tr>
    <td class="labels">Sudoracion Fiebre Nocturna: </td>
     <td>
@@ -302,37 +290,16 @@
     </td>
    
  </tr>
-
-<<<<<<< HEAD:app/views/historias_clinicas_generales/edit.html.erb
-  <tr>
-   <td><label>Presion Arterial Promedio: </label><br/>
-    <%= f.text_field :presion_arterial_promedio %>
-    </td>
-    <td><label>Farmacos Consumidos en los ultimos años: </label><br/>
-    <%= f.text_field :farmacos_consumidos_ultimos_anios %>
-=======
-
-
- </table>
-  <table class="ortodoncia">
-      
-
-
  <tr class="odd">
-
     <td class="labels">Vacuna Antitetanica: </td>
     <td>
-    
     <%= f.check_box :vacuna_antitetanica %>
     </td>
     <td class="labels">Hace cuanto se vacuno?: </td>
     <td>
-    
     <%= f.text_field :cuando_vacuna_antitetanica, :size => 17%>
->>>>>>> 8f4a4514ce387a71d3813d507577904f18142bbc:app/views/historias_clinicas_generales/edit.html.erb
-    </td>
-    <td></td>
-    <td></td>
+   </td>
+   
  </tr>
  <tr>
    <td class="labels">Alergia a la Droga de Medicamentos: </td>
@@ -343,21 +310,12 @@
     <td>
     <%= f.text_field :desc_alergia_drogas_medicamentos, :size => 17%>
     </td>
-<<<<<<< HEAD:app/views/historias_clinicas_generales/edit.html.erb
- </tr>
- <tr>
-   <td><label>Usado/usa Drogas: </label>
-   <%= f.check_box :usado_usa_drogas %>
-   </td>
-   <td><label>Tipos de drogas usadas: </label><br/>
-   <%= f.text_field :tipo_drogas_usadas %>
-=======
-    <td></td>
-    <td></td>
- </tr>
- <tr class="odd">
 
-   <td class="labels">Usado/usa alcohol </td>
+ </tr>
+
+
+ <tr class="odd">
+  <td class="labels">Usado/usa alcohol </td>
     <td>
     <%= f.check_box :usado_usa_alcohol %>
     </td>
@@ -368,69 +326,43 @@
     <td></td>
     <td></td>
  </tr>
- 
- 
+   
  <tr>
    <td class="labels">Usado/usa drogas: </td>
    <td>
    <%= f.check_box :usado_usa_drogas %>
->>>>>>> 8f4a4514ce387a71d3813d507577904f18142bbc:app/views/historias_clinicas_generales/edit.html.erb
+
    </td>
    <td class="labels">Tipos: </td>
    <td>
    <%= f.text_field :tipo_drogas_usadas, :size => 17%>
    </td>
-<<<<<<< HEAD:app/views/historias_clinicas_generales/edit.html.erb
+
  </tr>
- <tr>
-   <td><label>Usado/usa Tabaco: </label>
-   <%= f.check_box :usado_usa_tabaco %>
-   </td>
-   <td><label>Tipo de tabaco usado: </label><br/>
-   <%= f.text_field :tipo_tabaco_usado %>
-=======
-   <td class="labels">Cantidad: </td>
-   <td>
-   <%= f.text_field :cantidad_drogas_usadas, :size => 17%>
-   </td>
-   
- </tr>
+ 
+
  
  <tr class="odd">
    <td class="labels">Usado/usa tabaco: </td>
    <td>
    <%= f.check_box :usado_usa_tabaco %>
->>>>>>> 8f4a4514ce387a71d3813d507577904f18142bbc:app/views/historias_clinicas_generales/edit.html.erb
+
    </td>
    <td class="labels">Tipo usado: </td>
    <td>
    <%= f.text_field :tipo_tabaco_usado, :size => 17%>
    </td>
-<<<<<<< HEAD:app/views/historias_clinicas_generales/edit.html.erb
- </tr>
-  <tr>
-    <td><label>Vacuna Antihepatitis: </label>
-    <%= f.check_box :vacuna_antihepatitis %>
-    </td>
-    <td>
-    <label>Vacuna Antitetanica: </label>
-    <%= f.check_box :vacuna_antitetanica %>
-    </td>
-    <td>
-    <label>Cuando la vacuna antitetanica: </label><br/>
-    <%= f.text_field :cuando_vacuna_antitetanica %>
-    </td>
- </tr>
-
-=======
+ 
+ 
    <td class="labels">Cantidad: </td>
    <td>
    <%= f.text_field :cantidad_tabaco_usado, :size => 17%>
-   </td>
-   
+   </td>   
  </tr>
-    </table>
-  <table class="ortodoncia">
+  </table>
+
+
+  <table class="historia_clinica">
  <tr>
    <td class="labels">Presion Arterial Promedio: </td>
    <td>
@@ -444,7 +376,7 @@
     </td>
  </tr>
  
->>>>>>> 8f4a4514ce387a71d3813d507577904f18142bbc:app/views/historias_clinicas_generales/edit.html.erb
+
  <tr>
    <td class="labels">Otros: </td>
     <td>
@@ -470,13 +402,12 @@
   <p>
     <%= f.submit 'Actualizar' %>
   </p>
+ 
 <% end %>
-<<<<<<< HEAD:app/views/historias_clinicas_generales/edit.html.erb
 
-<%= link_to 'Ver', @historia_clinica_general %> |
-<%= link_to 'Volver', pacientes_historias_clinicas_generales_path %>
-=======
+
+
   </fieldset>
   <div style="clear:both;"></div>
 </div>
->>>>>>> 8f4a4514ce387a71d3813d507577904f18142bbc:app/views/historias_clinicas_generales/edit.html.erb
+

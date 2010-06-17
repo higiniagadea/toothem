@@ -17,14 +17,21 @@ class HistoriasClinicasOrtodonciasController < ApplicationController
   # GET /historias_clinicas_ortodoncias/1.xml
   def show
     @historia_clinica_ortodoncia = @paciente.historia_clinica_ortodoncia
-<<<<<<< HEAD:app/controllers/historias_clinicas_ortodoncias_controller.rb
-    @pagetitle = "Historia Clinica Ortodoncica de: " + @paciente.nombre
-=======
-    @pagetitle = "Historia clinica de ortodoncia de "+ @paciente.nombre
->>>>>>> 8f4a4514ce387a71d3813d507577904f18142bbc:app/controllers/historias_clinicas_ortodoncias_controller.rb
+    @title = "Historia Ortodoncica "
     respond_to do |format|
       format.html # show.html.erb
      
+    end
+  end
+
+
+  def imprimir
+    @historia_clinica_ortodoncia = @paciente.historia_clinica_ortodoncia
+    @title = "Historia Ortodoncica de "+ @paciente.nombre
+    respond_to do |format|
+      format.html {render :layout=> "print", :action => "print"}
+      #format.xml  { render :xml => @historia_clinica_general }
+
     end
   end
 
@@ -32,11 +39,8 @@ class HistoriasClinicasOrtodonciasController < ApplicationController
   # GET /historias_clinicas_ortodoncias/new.xml
   def new
     @historia_clinica_ortodoncia = HistoriaClinicaOrtodoncia.new
-<<<<<<< HEAD:app/controllers/historias_clinicas_ortodoncias_controller.rb
-    @pagetitle = "Historia Clinica Ortodoncica de: " + @paciente.nombre
-=======
-    @pagetitle = "Historia clinica de ortodoncica" + @paciente.nombre
->>>>>>> 8f4a4514ce387a71d3813d507577904f18142bbc:app/controllers/historias_clinicas_ortodoncias_controller.rb
+    @title = "Historia Clinica Ortodoncica"
+
     respond_to do |format|      
       format.html #historia clinica ortod
     end
@@ -46,12 +50,9 @@ class HistoriasClinicasOrtodonciasController < ApplicationController
 
   # GET /historias_clinicas_ortodoncias/1/edit
   def edit
-    @historia_clinica_ortodoncia = @paciente.historia_clinica_ortodoncia.find(params[:id])
-<<<<<<< HEAD:app/controllers/historias_clinicas_ortodoncias_controller.rb
-    @pagetitle = 'Editando Historia Clinica Ortodoncica de: ' + @paciente.nombre
-=======
-    @pagetitle = 'Editando Historia Clinica Ortodoncica de:' + @paciente.nombre    
->>>>>>> 8f4a4514ce387a71d3813d507577904f18142bbc:app/controllers/historias_clinicas_ortodoncias_controller.rb
+    @historia_clinica_ortodoncia = HistoriaClinicaOrtodoncia.find(params[:paciente_id])
+    @title = 'Editando Historia Clinica Ortodoncica'
+
   end
   # POST /historias_clinicas_ortodoncias
   # POST /historias_clinicas_ortodoncias.xml
@@ -60,14 +61,9 @@ class HistoriasClinicasOrtodonciasController < ApplicationController
     @historia_clinica_ortodoncia = HistoriaClinicaOrtodoncia.new(params[:historia_clinica_ortodoncia])
     respond_to do |format|
       if @historia_clinica_ortodoncia.save
-<<<<<<< HEAD:app/controllers/historias_clinicas_ortodoncias_controller.rb
-        flash[:notice] = 'Historia Clinica Ortodoncica creada.'
-        format.html{render :action => 'show'}
-=======
+
         flash[:notice] = 'Historia Clinica Ortodoncia creada.'
-        format.html{redirect_to @paciente}
->>>>>>> 8f4a4514ce387a71d3813d507577904f18142bbc:app/controllers/historias_clinicas_ortodoncias_controller.rb
-       # format.xml  { render :xml => @historia_clinica_ortodoncia, :status => :created, :location => @historia_clinica_ortodoncia }
+        format.html{render :action => 'show'}
       else
         format.html { render :action => "new" }
         #format.xml  { render :xml => @historia_clinica_ortodoncia.errors, :status => :unprocessable_entity }
@@ -78,13 +74,14 @@ class HistoriasClinicasOrtodonciasController < ApplicationController
   # PUT /historias_clinicas_ortodoncias/1
   # PUT /historias_clinicas_ortodoncias/1.xml
   def update
-    @historia_clinica_ortodoncia = @paciente.historia_clinica_ortodoncia.find(params[:paciente_id])
+    @historia_clinica_ortodoncia = @paciente.historia_clinica_ortodoncia
 
     respond_to do |format|
       if @historia_clinica_ortodoncia.update_attributes(params[:historia_clinica_ortodoncia])
         flash[:notice] = 'Historia Clinica Ortodoncia creada.'
-        format.html {redirect_to(new_paciente_historia_clinica_ortodoncia_path(@paciente)) }
-      
+        format.html {redirect_to paciente_historia_clinica_ortodoncia_path }
+      else
+        format.html { render :action => 'show'}
        end
     end
   end
