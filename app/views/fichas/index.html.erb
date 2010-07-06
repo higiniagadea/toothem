@@ -1,0 +1,21 @@
+<table class="table-list">
+  <tr>
+    <th>Obra social</th>
+    <th>Localidad</th>
+    <th>Nombre</th>
+    
+  </tr>
+
+<% @fichas.each do |ficha| %>
+  <tr>
+    <td><%=h ficha.obra_social_id %></td>
+    <td><%=h ficha.localidad_id %></td>
+   
+    
+    <td><%= link_to 'Ver', ficha %></td>
+    <td><%= link_to 'Eliminar', ficha, :confirm => 'Esta seguro?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />

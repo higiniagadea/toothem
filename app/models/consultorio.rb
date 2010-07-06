@@ -7,6 +7,8 @@ class Consultorio < ActiveRecord::Base
   has_many :pacientes
   validates_presence_of :nombre, :message => " requerido"
 
+ has_many :usuarios
+ has_many :consultorios
 
 
 end

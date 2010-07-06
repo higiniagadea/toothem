@@ -1,6 +1,7 @@
 class ObraSocial < ActiveRecord::Base
   has_many :titulares
   has_many :aranceles
+  has_many :tratamientos
   
 #validates
   validates_presence_of :nombre, :message => ', debe ingresar un nombre y apellido'

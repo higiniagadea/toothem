@@ -1,0 +1,28 @@
+<table>
+  <tr><td>Ficha de <%= @ficha.paciente.nombre %> </td></tr>
+<tr>
+<td>
+  <td>Obra social:</td>
+  <td><%=h @ficha.obra_social_id %>
+</td>
+</td>
+</tr>
+
+<tr>
+<td>
+  <td>Tel:</td>
+  <td><%=h @ficha.localidad_id %>
+</td>
+</td>
+</tr>
+
+<tr>
+<td>
+  <td>Direccion:</td>
+  <td><%=h @ficha.profesional_id %>
+</td>
+</td>
+</tr>
+</table>
+
+<%= link_to 'Ver', fichas_path %>

@@ -21,7 +21,8 @@ class AgregarItems < ActiveRecord::Migration
           Item.create :nombre => 'Nuevo', :url => "/clinicas/new", :parent_id => clinica.id, :orden => 2, :estatico => true, :url_imagen => "add.png"
 
       Item.create :nombre => 'Logout', :url => "/logout", :parent_id => 1, :orden => 100, :estatico => true
-  end
-  
 
+      
+  end
+ 
 end

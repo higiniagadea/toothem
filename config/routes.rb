@@ -1,4 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :fichas
+
+  map.resources :estados_tratamientos
+
+  map.resources :tratamientos
+
   map.resources :imagenes,
                 :collection => {:new_archivo => :get}
               
@@ -33,7 +39,10 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :pacientes,
                 :collection => {:search => :get, :result => :post},
-                :member => {:changephoto => :get,:uploadphoto => :post, 
+                :member => {:new_tratamiento => [:get,:post],
+                            :update_tratameinto => [:get, :post],
+                           
+                            :changephoto => :get,:uploadphoto => :post,
                             :editfield => :get, :updatefield => :put, :cancelfield => :get,
                             :search_titular => :get, :results_titular => :post,
                             :update_titular => :put,
@@ -41,18 +50,23 @@ ActionController::Routing::Routes.draw do |map|
                             :show_imagen => :get,
                             :listado_historias_clinicas => :get
                             
+                            
                 }do |paciente|
-
+                             
+                            
+                              
                               paciente.resource :historia_clinica_general, :member => {:imprimir => :get}
 
                               paciente.resource :historia_clinica_ortodoncia, :member => {:imprimir => :get}
+
+
                             end
 
   map.resources :profesionales
   
   map.resources :archivos
                 
-                
+  map.resources :estados_laborales
 
 
 

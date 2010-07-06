@@ -4,6 +4,17 @@ class PacientesController < ApplicationController
   before_filter  :generar_submenus
   layout 'default'
 
+  def new_tratamiento
+
+    @paciente = Paciente.find(params[:paciente_id])
+    @tratamiento = Tratamiento.new
+    respond_to do |format|
+      #format.html {render :layout => false}
+     format.html {render :controller => 'tratamientos', :action => 'new'}
+     
+    end
+  end
+
   def index
     @pagetitle = "Pacientes"
     @pacientes = Paciente.paginate :page=> params[:page], :per_page=> 15, :order=> 'nombre ASC'
@@ -53,7 +64,7 @@ class PacientesController < ApplicationController
   def show_imagen
     @imagen = Imagen.find(params [:id])
     respond_to do |format|
-      format.html {redirect to show_imagen_path(@imagen)}
+      format.html {redirect_to show_imagen_path(@imagen)}
     end
   end
 
@@ -76,6 +87,9 @@ class PacientesController < ApplicationController
   # GET /pacientes/new.xml
   def new
     @paciente = Paciente.new
+    #@paciente = Paciente.find(params[:paciente_id])
+
+
     @title = "Nuevo paciente"
     respond_to do |format|
       format.html
@@ -205,7 +219,7 @@ class PacientesController < ApplicationController
         format.html {redirect_to(@paciente)}
         
       else
-        format.html { render :action => "new_titular" }
+        format.html { render :action => "" }
       end
     end
   end
@@ -223,6 +237,7 @@ class PacientesController < ApplicationController
   # POST /pacientes
   # POST /pacientes.xml
   def create
+    #params[:paciente][:consultorio_id]=
     @paciente = Paciente.new(params[:paciente])
     @title = "Nuevo paciente"
     respond_to do |format|
@@ -269,7 +284,7 @@ class PacientesController < ApplicationController
   def listado_historias_clinicas
    @paciente = Paciente.find(params[:id])
 
-   @pagetitle = "Historias Clinicas de "+@paciente.nombre
+   @pagetitle = "Historias Clinicas de "+ @paciente.nombre
 
 #   @historia_clinica_ortodoncia = @paciente.historia_clinica_ortodoncia.find(:first, :conditions => 'paciente_id=?'+@paciente.id.to_s)
 #   @historia_clinica_general = @paciente.historia_clinica_general.find(:first, :conditions => 'paciente_id=?'+@paciente.id.to_s)
@@ -278,3 +293,49 @@ class PacientesController < ApplicationController
    end
   end
 end
+
+
+
+ #def new_ficha
+    #@paciente = Paciente.find(params[:paciente_id])
+    #@ficha = Ficha.new
+    #respond_to do |format|
+     # format.html {render :controller => 'fichas', :action => 'new'}
+    #  format.html {render :partial => 'ficha'}
+   # end
+  #end
+
+
+
+
+
+#def create_tratamiento
+#  params[:tratamiento][:paciente_id] = @paciente.id
+#  @paciente = Paciente.find(params[:paciente_id])
+#    @tratamiento = Tratamiento.new(params[:tratamiento])
+#
+#    respond_to do |format|
+#      if @tratamiento.save
+#        flash[:notice] = 'Tratamiento creado.'
+#        format.html {redirect_to(@tratamiento)}
+#
+#      else
+#        format.html {render :action => "tratamiento" }
+#      end
+#    end
+#end
+
+ 
+
+def update_tratamiento
+  @paciente = Paciente.find(params[:paciente_id])
+  @tratamiento = Tratamiento.find(params[:id])
+  respond_to do |format|
+    if 
+      @tratamiento.update_attributes(params[:tratamiento])
+    end
+    format.html{ redirect_to(@tratamiento)}
+  end
+end
+
+

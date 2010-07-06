@@ -1,0 +1,33 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  fecha: 2010-06-21
+  diente: 1
+  cara: MyString
+  fecha_finalizacion: 2010-06-21
+  importe_cubierto: 1.5
+  fue_liquidado: false
+  fecha_liquidacion: 2010-06-21
+  odontograma_id: 1
+  paciente_id: 1
+  prestacion_id: 1
+  profesional_id: 1
+  obra_social_id: 1
+  estado_tratamiento_id: 1
+  ficha_id: 1
+
+two:
+  fecha: 2010-06-21
+  diente: 1
+  cara: MyString
+  fecha_finalizacion: 2010-06-21
+  importe_cubierto: 1.5
+  fue_liquidado: false
+  fecha_liquidacion: 2010-06-21
+  odontograma_id: 1
+  paciente_id: 1
+  prestacion_id: 1
+  profesional_id: 1
+  obra_social_id: 1
+  estado_tratamiento_id: 1
+  ficha_id: 1

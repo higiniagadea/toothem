@@ -1,0 +1,64 @@
+
+<table id="table-list">
+
+<tr><td><h1>Tratamiento de: <%=h @tratamiento.paciente.nombre %> </h1></td></tr>
+
+<tr>
+<td class="label">Fecha:</td>
+<td><%=h @tratamiento.fecha %>
+</td>
+
+<td class="label">Diente:</td>
+<td><%=h @tratamiento.diente %>
+</td>
+</tr>
+
+<tr>
+<td class="label">Cara:</td>
+<td><%=h @tratamiento.cara %>
+</td>
+
+<td class="label">Fecha finalizacion:</td>
+<td><%=h @tratamiento.fecha_finalizacion %>
+</td>
+</tr>
+
+<tr>
+<td class="label">Importe cubierto:</td>
+<td><%=h @tratamiento.importe_cubierto %>
+</td>
+
+<td class="label">Fue liquidado:</td>
+<td><%=h boolean_desc(@tratamiento.fue_liquidado)%>
+</td>
+</tr>
+
+<tr>
+<td class="label">Fecha liquidacion:</td>
+<td><%=h @tratamiento.fecha_liquidacion %>
+</td>
+
+<td class="label">Odontograma:</td>
+<td>
+</td>
+</tr>
+
+<tr>
+<td class="label">Prestacion:</td>
+<td><%=h @tratamiento.prestacion.descripcion %>
+</td>
+
+<td class="label">Profesional:</td>
+<td><%=h @tratamiento.profesional.nombre %>
+</td>
+</tr>
+
+<tr>
+<td class="label">Estado tratamiento:</td>
+<td><%=h @tratamiento.estado_tratamiento.nombre %>
+</td>
+<td class="label">Ficha:</td>
+</tr>
+</table>
+<%= link_to 'Editar', edit_tratamiento_path(@tratamiento) %> |
+<%= link_to 'Volver', tratamientos_path %>

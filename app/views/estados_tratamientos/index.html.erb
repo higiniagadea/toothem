@@ -1,0 +1,20 @@
+<h1>Listado de estados tratamientos</h1>
+
+<table>
+  <tr>
+    <th>Nombre</th>
+  </tr>
+
+<% @estados_tratamientos.each do |estado_tratamiento| %>
+  <tr>
+    <td><%=h estado_tratamiento.nombre %></td>
+    <td><%= link_to 'Ver', estado_tratamiento %></td>
+    <td><%= link_to 'Edita', edit_estado_tratamiento_path(estado_tratamiento) %></td>
+    <td><%= link_to 'Borrar', estado_tratamiento, :confirm => 'Esta seguro?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Nuevo estado tratamiento', new_estado_tratamiento_path %>

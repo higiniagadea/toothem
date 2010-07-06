@@ -1,0 +1,37 @@
+<% form_for(@ficha) do |f| %>
+  <%= f.error_messages %>
+  <%= f.hidden_field :paciente_id, 'value' => @paciente.id.to_s  %>
+<table id="form">
+  <tr>
+
+  </tr>
+  <tr>
+    <td class="label">Nombre y Apellido: <%= @paciente.nombre %></td>
+  </tr>
+  <tr>
+    <td class="label">Telefono: <%= @paciente.telefono_particular %> </td>
+  </tr>
+  <tr>
+    <td class="label">Localidad: </td>
+  </tr>
+  <tr>
+    <td class="label">Domicilio: <%= @paciente.domicilio_particular %> </td>
+  </tr>
+  <tr>
+    <td class="label">Nro. Afiliado. <%= @paciente.nro_afiliado %> </td>
+  </tr>
+  <tr>
+    <td>
+      <%= f.submit 'Crear Ficha' %>
+    </td>
+  </tr>
+  <tr>
+    <%= render  :action => 'new', :controller => 'tratamientos' %>
+  </tr>
+</table>
+<% end %>
+
+
+
+
+

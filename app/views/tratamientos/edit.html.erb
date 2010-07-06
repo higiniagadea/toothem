@@ -1,0 +1,84 @@
+
+
+<% form_for(@tratamiento) do |f| %>
+  <%= f.error_messages %>
+
+<table id="form">
+<tr>
+  <td><h1>Editando Tratamiento</h1></td></tr>
+<tr>
+  <td class="label">Paciente:<%= @tratamiento.paciente.nombre %> </td>
+
+  <td class="label">Fecha</td>
+  <td><%= f.date_select :fecha, :order => [:day, :month, :year],
+                        :use_month_names => ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct','Nov','Dic']%>
+  </td>
+  </tr>
+
+  <tr>
+  <td class="label">Diente</td>
+  <td><%= f.text_field :diente, :size => 10 %>
+  </td>
+  <td class="label">Cara</td>
+  <td><%= f.text_field :cara, :size => 10 %>
+  </td>
+  </tr>
+
+  <tr>
+  <td class="label">Fecha de Finalizacion </td>
+  <td><%= f.date_select :fecha_finalizacion, :order => [:day, :month, :year],
+                        :use_month_names => ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct','Nov','Dic']%>
+  </td>
+  <td class="label">Importe Cubierto </td>
+  <td><%= f.text_field :importe_cubierto, :size => 10 %>
+  </td>
+  </tr>
+
+  <tr>
+  <td class="label">Coseguro</td>
+  <td><%= f.text_field :coseguro, :size=>10 %></td>
+  
+  <td class="label">Fue Liquidado</td>
+  <td><%= f.check_box :fue_liquidado %>
+  </td>
+  </tr>
+
+  <tr>
+
+  <td class="label">Fecha de Liquidacion</td>
+  <td><%= f.date_select :fecha_liquidacion, :order => [:day, :month, :year],
+                        :use_month_names => ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct','Nov','Dic']%>
+  </td>
+
+  </tr>
+
+  <tr>
+   <td class="label">Estado del Tratamiento</td>
+  <td><%= f.collection_select(:estado_tratamiento_id, EstadoTratamiento.all, :id, :nombre)%>
+  </td>
+  <td class="label">Prestacion </td>
+  <td><%= f.collection_select(:prestacion_id, Prestacion.all, :id, :descripcion)%>
+  </td>
+  </tr>
+
+  <tr>
+    <td class="label">Profesional</td>
+    <td><%= f.collection_select(:profesional_id, Profesional.all, :id, :nombre)%>
+  </td>
+  </tr>
+
+  <tr>
+  <td class="label">Ficha </td>
+  <td</td>
+  <td class="label">Odontograma </td>
+  </tr>
+</table>
+
+
+  <td>
+    <%= f.submit 'Actualizar' %>
+  </td>
+<% end %>
+
+<%= link_to 'Ver', @tratamiento %> |
+<%= link_to 'Volver', tratamientos_path %>

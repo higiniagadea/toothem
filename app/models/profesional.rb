@@ -3,7 +3,7 @@ class Profesional < ActiveRecord::Base
   belongs_to :tipo_documento
   belongs_to :consultorio
 
-
+  has_many :tratamientos
   has_many :fichas
   #has_many :tratamientos
 

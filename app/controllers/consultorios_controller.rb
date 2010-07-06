@@ -16,7 +16,7 @@ class ConsultoriosController < ApplicationController
   # GET /consultorios/1.xml
   def show
     @consultorio = Consultorio.find(params[:id])
-   #@consultorio.profesionales << Profesional.find(:first)
+   
     @consultorios = Consultorio.paginate :page=> params[:page], :per_page=>15, :order=> 'nombre ASC'
 
     respond_to do |format|
@@ -89,7 +89,7 @@ class ConsultoriosController < ApplicationController
     @titular = Titular.find(:first, :conditions => ['consultorio_id = ?', params[:id]])
     #@usuario = Usuario.find(:first, :conditions => ['consultorio_id = ?', params[:id]])
     respond_to do |format|
-      if @paciente.blank? && @profesional.blank? && @titular.blank? #&& @usuario.blank?
+      if @paciente.blank? && @profesional.blank? && @titular.blank?
         @consultorio.destroy
         flash[:notice] = "Consultorio Eliminado"
         format.html { redirect_to(consultorios_url) }
@@ -98,14 +98,7 @@ class ConsultoriosController < ApplicationController
         format.html { redirect_to(consultorios_url) }
 
       end
-    end
-
-
-    
-
-    
-      
-      
-    
+  end
+ 
   end
 end

@@ -2,6 +2,7 @@ class Paciente < ActiveRecord::Base
   belongs_to :titular
   belongs_to :consultorio
   belongs_to :archivo
+  has_many :tratamiento
 
   belongs_to :tipo_documento
   has_one :historia_clinica_general
