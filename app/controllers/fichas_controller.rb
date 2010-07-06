@@ -25,15 +25,23 @@ class FichasController < ApplicationController
   # GET /fichas/new
   # GET /fichas/new.xml
   def new
-    @ficha = Ficha.new
     @paciente = Paciente.find(params[:paciente_id])
+    @ficha = Ficha.new
+    @ficha.paciente_id = @paciente.id
+    @ficha.localidad_id = @paciente.localidad_id
+    
     @tratamiento = Tratamiento.new
     @tratamientos = Tratamiento.find(:all, :conditions => ['paciente_id =?', params[:paciente_id].to_s])
     @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5
+    #@ficha = Ficha.new(params[:ficha][:paciente])
+
+    if @ficha.save
+   
     respond_to do |format|
       format.html # new.html.erb
       #format.xml  { render :xml => @ficha }
     end
+  end
   end
 
   # GET /fichas/1/edit
@@ -61,7 +69,7 @@ class FichasController < ApplicationController
   # PUT /fichas/1.xml
   def update
     @ficha = Ficha.find(params[:id])
-    @paciente = Paciente.find(params[:paciente_id])
+    #@paciente = Paciente.find(params[:paciente_id])
     
     respond_to do |format|
       if @ficha.update_attributes(params[:ficha])

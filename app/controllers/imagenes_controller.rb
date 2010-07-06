@@ -45,9 +45,7 @@ class ImagenesController < ApplicationController
   # POST /imagenes.xml
   def create
     @archivo = Archivo.new(params[:archivo])
-
     respond_to do |format|
-
       if @archivo.save
         params[:imagen][:archivo_id] = @archivo.id
         @imagen = Imagen.new(params[:imagen])
