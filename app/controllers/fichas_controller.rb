@@ -15,7 +15,6 @@ class FichasController < ApplicationController
   # GET /fichas/1.xml
   def show
     @ficha = Ficha.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @ficha }
@@ -28,7 +27,7 @@ class FichasController < ApplicationController
     @ficha = Ficha.new
     @paciente = Paciente.find(params[:paciente_id])
     @tratamiento = Tratamiento.new
-    @tratamientos = Tratamiento.find(:all, :conditions => ['paciente_id =?', params[:paciente_id].to_s])
+    @tratamientos = Tratamiento.find(:all, :conditions => ['paciente_id = ?', params[:paciente_id].to_s])
     @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5
     respond_to do |format|
       format.html # new.html.erb

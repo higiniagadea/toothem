@@ -1,7 +1,8 @@
 require 'digest/sha1'
 
 class Usuario < ActiveRecord::Base
-  
+  has_many :consultorios, :through => :usuarios_consultorios
+  has_many :usuarios_consultorios
   
    
   
