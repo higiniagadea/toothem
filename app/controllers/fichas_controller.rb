@@ -27,6 +27,9 @@ class FichasController < ApplicationController
   def new
     @ficha = Ficha.new
     @paciente = Paciente.find(params[:paciente_id])
+    @tratamiento = Tratamiento.new
+    @tratamientos = Tratamiento.find(:all, :conditions => ['paciente_id =?', params[:paciente_id].to_s])
+    @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5
     respond_to do |format|
       format.html # new.html.erb
       #format.xml  { render :xml => @ficha }

@@ -72,36 +72,32 @@
   </td>
 
  
-
-<table class="table-list">
-  <tr>
-
-    <th>Prestacion</th>
-    <th>Diente</th>
-    <th>Cara</th
-    <th>Profesional</th>
-    <th>Estado de tratamiento</th>
-    <th>Importe</th>
-
-  </tr>
-  <tr>
-    <% @tratamientos.each do |tratamiento| %>
-    <td><%=h tratamiento.prestacion.descripcion %></td>
-    <td><%=h tratamiento.diente %></td>
-    <td><%=h tratamiento.cara %></td>
-    <td><%=h tratamiento.profesional.nombre %></td>
-    <td><%=h tratamiento.estado_tratamiento.nombre%></td>
-    <td><%=h number_to_currency(tratamiento.importe_cubierto) %></td>
-    <td>
-    <%= link_to image_tag('magnifier_zoom_in.png'), tratamiento, :title => "Ver" %>
-    <%= link_to image_tag('pencil.png'), edit_tratamiento_path(tratamiento), :title => "Editar" %>
-    <%= link_to image_tag('cancel.png'), tratamiento, :confirm => 'Esta seguro que desea eliminar el tratamiento?', :method => :delete, :title => "Eliminar" %></td>
-  </tr>
-
-   <%  end %>
-
-
-</table>
+<%unless @tratamientos.blank?%>
+    <table class="table-list">
+        <tr>
+          <th>Prestacion</th>
+          <th>Diente</th>
+          <th>Cara</th
+          <th>Profesional</th>
+          <th>Estado de tratamiento</th>
+          <th>Importe</th>
+        </tr>
+        <tr>
+          <% @tratamientos.each do |tratamiento| %>
+          <td><%=h tratamiento.prestacion.descripcion %></td>
+          <td><%=h tratamiento.diente %></td>
+          <td><%=h tratamiento.cara %></td>
+          <td><%=h tratamiento.profesional.nombre %></td>
+          <td><%=h tratamiento.estado_tratamiento.nombre%></td>
+          <td><%=h number_to_currency(tratamiento.importe_cubierto) %></td>
+          <td>
+          <%= link_to image_tag('magnifier_zoom_in.png'), tratamiento, :title => "Ver" %>
+          <%= link_to image_tag('pencil.png'), edit_tratamiento_path(tratamiento), :title => "Editar" %>
+          <%= link_to image_tag('cancel.png'), tratamiento, :confirm => 'Esta seguro que desea eliminar el tratamiento?', :method => :delete, :title => "Eliminar" %></td>
+         <%  end %>
+        </tr>
+    </table>
+  <% end %>
 <% end %>
 </table>
 <div class="paginador">
