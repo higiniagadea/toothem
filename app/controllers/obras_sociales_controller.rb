@@ -1,18 +1,16 @@
 class ObrasSocialesController < ApplicationController
   # GET /obras_sociales
   # GET /obras_sociales.xml
-
   layout 'default'
   before_filter  :generar_submenus
   def index
-    @obras_sociales = ObraSocial.all
+    @obras_sociales = ObraSocial.find(:all,:conditions => ['consultorio_id in (?)', current_usuario.consultorios])
     @pagetitle = "Obras sociales"
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @obras_sociales }
     end
   end
-
   # GET /obras_sociales/1
   # GET /obras_sociales/1.xml
   def show
@@ -43,6 +41,7 @@ class ObrasSocialesController < ApplicationController
   # POST /obras_sociales
   # POST /obras_sociales.xml
   def create
+    params[:obra_social][:consultorio_id] = current_usuario.consultorio_id
     @obra_social = ObraSocial.new(params[:obra_social])
     @pagetitle = "Nueva obra social"
     respond_to do |format|

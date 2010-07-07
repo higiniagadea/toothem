@@ -19,7 +19,7 @@ class Paciente < ActiveRecord::Base
 
   named_scope :by_matricula, lambda { |matricula|
     {
-      :conditions=> ['lower(matricula) LIKE :matricula ',
+      :conditions=> ['lower(matricula) LIKE :matricula',
           { :matricula => "%"+matricula.downcase+"%"} ]
     }
   }
