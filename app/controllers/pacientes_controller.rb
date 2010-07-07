@@ -17,7 +17,7 @@ class PacientesController < ApplicationController
 
   def index
     @pagetitle = "Pacientes"
-    @pacientes = Paciente.paginate :page=> params[:page], :per_page=> 15, :order=> 'nombre ASC'
+    @pacientes = Paciente.paginate :page=> params[:page], :per_page=> 15,:conditions => ['consultorio_id in (?)', current_usuario.consultorios], :order=> 'nombre ASC'
 
     respond_to do |format|
       format.html # index.html.erb
@@ -235,7 +235,7 @@ class PacientesController < ApplicationController
   # POST /pacientes
   # POST /pacientes.xml
   def create
-    #params[:paciente][:consultorio_id]=
+    params[:paciente][:consultorio_id]= current_usuario.consultorios
     @paciente = Paciente.new(params[:paciente])
     @title = "Nuevo paciente"
     respond_to do |format|

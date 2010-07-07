@@ -3,7 +3,8 @@ require 'digest/sha1'
 class Usuario < ActiveRecord::Base
   has_many :consultorios, :through => :usuarios_consultorios
   has_many :usuarios_consultorios
-  
+  has_and_belongs_to_many :consultorios ,:join_table => 'usuarios_consultorios',
+                          :class_name => 'Consultorio'
    
   
   

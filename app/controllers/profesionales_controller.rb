@@ -8,7 +8,7 @@ class ProfesionalesController < ApplicationController
   layout 'default'
   def index
   @pagetitle = "Profesionales"
-  @profesionales = Profesional.paginate :page=> params[:page], :per_page=>15, :order=> 'nombre ASC'
+  @profesionales = Profesional.paginate :page=> params[:page], :conditions => ['consultorio_id in (?)', current_usuario.consultorios], :per_page=>15, :order=> 'nombre ASC'
   
     
 
@@ -52,6 +52,7 @@ class ProfesionalesController < ApplicationController
   # POST /profesionales.xml
   def create
     @pagetitle = "Nuevo profesional"
+    params[:profesional][:consultorio_id]= current_usuario.consultorios
     @profesional = Profesional.new(params[:profesional])
 
     respond_to do |format|
