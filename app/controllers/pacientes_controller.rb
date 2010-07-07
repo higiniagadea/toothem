@@ -272,6 +272,7 @@ class PacientesController < ApplicationController
   def destroy
     @paciente = Paciente.find(params[:id])
     @paciente.destroy
+  
 
     respond_to do |format|
       format.html { redirect_to(pacientes_url) }

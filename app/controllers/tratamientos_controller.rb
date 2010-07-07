@@ -3,6 +3,7 @@ class TratamientosController < ApplicationController
   # GET /tratamientos.xml
   layout 'default'
   def index
+    
     @tratamientos = Tratamiento.all
     @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5
     respond_to do |format|
@@ -27,7 +28,7 @@ class TratamientosController < ApplicationController
   def new
     @paciente = Paciente.find(params[:paciente_id])
     @tratamiento = Tratamiento.new
-    @tratamientos = Tratamiento.find(:all, :conditions => ['paciente_id =?', params[:paciente_id].to_s])
+    @tratamientos = Tratamiento.find(:all, :conditions => ['paciente_id =?', @paciente.id.to_s])
     @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5
     @ficha = Ficha.find(params[:ficha_id]) unless params[:ficha_id].blank?
     respond_to do |format|
@@ -88,7 +89,7 @@ class TratamientosController < ApplicationController
 
     respond_to do |format|
       flash[:notice] = 'Tratamiento eliminado'
-      format.html { redirect_to(tratamientos_url) }
+      format.html { redirect_to tratamientos_path }
       format.xml  { head :ok }
     end
   end

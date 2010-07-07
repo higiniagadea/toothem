@@ -1,6 +1,7 @@
+<td>Tratamientos</td>
 <table class="table-list">
   <tr>
-   
+  
     <th>Prestacion</th>
     <th>Diente</th>
     <th>Cara</th
@@ -12,6 +13,7 @@
 
 <% @tratamientos.each do |tratamiento| %>
   <tr>
+    
     <td><%=h tratamiento.prestacion.descripcion %></td>
     
     <td><%=h tratamiento.diente %></td>

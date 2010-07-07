@@ -40,8 +40,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :pacientes,
                 :collection => {:search => :get, :result => :post},
                 :member => {:new_tratamiento => [:get,:post],
-                            :update_tratameinto => [:get, :post],
-                           
+                            :update_tratameinto => [:get, :post],                           
                             :changephoto => :get,:uploadphoto => :post,
                             :editfield => :get, :updatefield => :put, :cancelfield => :get,
                             :search_titular => :get, :results_titular => :post,

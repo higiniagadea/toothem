@@ -853,15 +853,19 @@
     <td><%= f.text_field :leyenda_declaracion_jurada, :size=>10 %>
     </td>
  </tr>
+
+ <td>
+    <%= f.submit 'Guardar' %>
+  </td>
+  <td>
+    <%= link_to 'Volver', paciente_path(@paciente) %>
+  </td>
+
+
 </table>
 
 </fieldset>
-  <p>
-    <%= f.submit 'Guardar' %>
-  </p>
-  <p>
-    <%= link_to 'Volver', paciente_path(@paciente) %>
-  </p>
+  
 <%  end %>
 
   <div style="clear:both;"></div>

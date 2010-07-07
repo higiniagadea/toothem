@@ -96,8 +96,9 @@ class HistoriasClinicasGeneralesController < ApplicationController
   # DELETE /historias_clinicas_generales/1
   # DELETE /historias_clinicas_generales/1.xml
   def destroy
-    @historia_clinica_general = @paciente.historias_clinicas_generales.find(params[:paciente_id])
+    @historia_clinica_general = @paciente.historias_clinicas_generales.find(params[:id])
     @historia_clinica_general.destroy
+    @paciente.destroy
 
     respond_to do |format|
       format.html { redirect_to new_paciente_historia_clinica_general_path }

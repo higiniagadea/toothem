@@ -2,11 +2,11 @@ class Paciente < ActiveRecord::Base
   belongs_to :titular
   belongs_to :consultorio
   belongs_to :archivo
-  has_many :tratamiento
+  has_many :tratamiento, :dependent => :destroy
 
   belongs_to :tipo_documento
-  has_one :historia_clinica_general
-  has_one :historia_clinica_ortodoncia
+  has_one :historia_clinica_general, :dependent => :destroy
+  has_one :historia_clinica_ortodoncia, :dependent => :destroy
   
   has_many :fichas
   has_many :imagenes

@@ -1,9 +1,15 @@
+<% form_for(:historia_clinica_general, @historia_clinica_general, :url => {:method => :post, :action => "show"}) do |f| %>
+        <%= f.error_messages %>
+
 <div id="pacientes-screen">
   <div id="pacientes-options"> 
     <div id="pacientes-nombre">
       <%=h @paciente.nombre %>
     </div>
     <div id="pacientes-actions">
+       <tr>
+      <%= f.submit 'Guardar' %>
+      </tr>
       <table>        
         <tr>
           <%= link_to image_tag('magnifier_zoom_in.png'), paciente_historia_clinica_general_path(@paciente) %> |
@@ -14,9 +20,7 @@
   </div>
    
   <fieldset class="pacientes-data">
-    <% form_for(:historia_clinica_general, @historia_clinica_general, :url => {:method => :post, :action => "show"}) do |f| %>
-        <%= f.error_messages %>
-  
+    
  <table class="historia_clinica">
     <tr class="odd">
     <td class="labels"> Alergia a la Anestesia:</td>
@@ -368,11 +372,15 @@
     <%= f.text_field :leyenda_declaracion_jurada, :size => 17%>
     </td>
  </tr>
-  </table>
-    <p>
+  
+    <td>
       <%= submit_tag "Guardar" %>
 
-    </p>
+    </td>
+     <td>
+    <%= link_to 'Volver', paciente_path(@paciente) %>
+     </td>
+ </table>
   </fieldset>
 <%end%>
 <div style="clear:both;"></div>
