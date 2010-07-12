@@ -25,7 +25,7 @@
 
 <tr>
 <td class="label">Importe cubierto:</td>
-<td><%=h @tratamiento.importe_cubierto %>
+<td><%=h number_to_currency(@tratamiento.importe_cubierto) %>
 </td>
 
 <td class="label">Fue liquidado:</td>

@@ -1,12 +1,13 @@
 <% form_for(@ficha) do |f| %>
   <%= f.error_messages %>
   <%= f.hidden_field :paciente_id, 'value' => @paciente.id.to_s  %>
+  
 <table id="form">
   <tr>
 
   </tr>
   <tr>
-    <td class="label">Nombre y Apellido: <%= @paciente.nombre %></td>
+    <td><h1>Nombre y Apellido: <%= @paciente.nombre %></h1></td>
   </tr>
   <tr>
     <td class="label">Telefono: <%= @paciente.telefono_particular %> </td>
@@ -30,8 +31,3 @@
   </tr>
 </table>
 <% end %>
-
-
-
-
-

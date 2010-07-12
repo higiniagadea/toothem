@@ -2,15 +2,14 @@
   <tr>
     <th>Obra social</th>
     <th>Localidad</th>
-    <th>Nombre</th>
-    
+    <th>Paciente</th>
   </tr>
 
 <% @fichas.each do |ficha| %>
   <tr>
     <td><%=h ficha.obra_social_id %></td>
     <td><%=h ficha.localidad_id %></td>
-   
+    <td><%=h ficha.paciente_id %></td>
     
     <td><%= link_to 'Ver', ficha %></td>
     <td><%= link_to 'Eliminar', ficha, :confirm => 'Esta seguro?', :method => :delete %></td>

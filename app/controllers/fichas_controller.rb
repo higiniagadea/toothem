@@ -13,13 +13,14 @@ class FichasController < ApplicationController
 
   # GET /fichas/1
   # GET /fichas/1.xml
-  def show
-    @ficha = Ficha.find(params[:id])
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @ficha }
-    end
-  end
+#  def show
+#    @ficha = Ficha.find(params[:id])
+#
+#    respond_to do |format|
+#      format.html
+#      format.xml  { render :xml => @ficha }
+#    end
+#  end
 
   # GET /fichas/new
   # GET /fichas/new.xml
@@ -28,17 +29,14 @@ class FichasController < ApplicationController
     @ficha = Ficha.new
     @ficha.paciente_id = @paciente.id
     @ficha.localidad_id = @paciente.localidad_id
-    
     @tratamiento = Tratamiento.new
-    @tratamientos = Tratamiento.find(:all, :conditions => ['paciente_id = ?', params[:paciente_id].to_s])
-    @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5
-    #@ficha = Ficha.new(params[:ficha][:paciente])
-
-    if @ficha.save
+    #@tratamientos = Tratamiento.find(:all, :conditions => ['paciente_id = ?', params[:paciente_id]])
+    @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', params[:paciente_id].to_i]
    
+    if @ficha.save    
     respond_to do |format|
-      format.html # new.html.erb
-      #format.xml  { render :xml => @ficha }
+      format.html 
+      format.xml  { render :xml => @ficha }
     end
   end
   end
@@ -51,17 +49,20 @@ class FichasController < ApplicationController
   # POST /fichas
   # POST /fichas.xml
   def create
-  
-    @ficha = Ficha.new(params[:ficha])
     respond_to do |format|
-      if @ficha.save
-        flash[:notice] = 'Ficha creada.'
-        format.html  { redirect_to(@ficha) }
-      else
-        format.html { render :action => 'new' }
-        format.xml  { render :xml => @ficha.errors, :status => :unprocessable_entity }
-      end
+      format.html { redirect_to new_ficha_path + "?paciente_id="+@paciente.id.to_s} 
     end
+#
+#    @ficha = Ficha.new(params[:ficha])
+#    respond_to do |format|
+#      if @ficha.save
+#        flash[:notice] = 'Ficha creada.'
+#        format.html  { redirect_to(@ficha) }
+#      else
+#        format.html { render :action => 'new' }
+#        format.xml  { render :xml => @ficha.errors, :status => :unprocessable_entity }
+#      end
+#    end
   end
 
   # PUT /fichas/1

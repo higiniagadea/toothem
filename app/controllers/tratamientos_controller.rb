@@ -28,8 +28,7 @@ class TratamientosController < ApplicationController
   def new
     @paciente = Paciente.find(params[:paciente_id])
     @tratamiento = Tratamiento.new
-    @tratamientos = Tratamiento.find(:all, :conditions => ['paciente_id =?', @paciente.id.to_s])
-    @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5
+    @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5,  :conditions => ['paciente_id = ?', @paciente.id]
     @ficha = Ficha.find(params[:ficha_id]) unless params[:ficha_id].blank?
     respond_to do |format|
       format.html {render :partial => 'new', :layout => 'default'}
@@ -74,6 +73,7 @@ class TratamientosController < ApplicationController
         flash[:notice] = 'Tratamiento actualizado.'
         format.html { redirect_to(@tratamiento)}
         format.xml  { head :ok }
+        
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @tratamiento.errors, :status => :unprocessable_entity }

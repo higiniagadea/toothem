@@ -1,7 +1,5 @@
 class Archivo < ActiveRecord::Base
- 
-  
-  has_one :db_file
+  has_one :db_file, :dependent => :destroy
 
   has_attachment :content_type => :image,
                  :storage => :db_file,
