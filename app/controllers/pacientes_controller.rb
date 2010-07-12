@@ -5,7 +5,7 @@ class PacientesController < ApplicationController
   layout 'default'
 
   def new_tratamiento
-
+    params[:paciente][:consultorio_id] = session[:consultorio][:id]
     @paciente = Paciente.find(params[:paciente_id])
     @tratamiento = Tratamiento.new
     respond_to do |format|
@@ -17,7 +17,9 @@ class PacientesController < ApplicationController
 
   def index
     @pagetitle = "Pacientes"
-    @pacientes = Paciente.paginate :page=> params[:page], :per_page=> 15,:conditions => ['consultorio_id in (?)', current_usuario.consultorios], :order=> 'nombre ASC'
+    consultorios = []
+    current_usuario.consultorios.each {|x| consultorios << x.consultorio_id}
+    @pacientes = Paciente.paginate :page=> params[:page], :per_page=> 15,:conditions => ['consultorio_id in (?)', consultorios], :order=> 'nombre ASC'
    
     respond_to do |format|
       format.html # index.html.erb

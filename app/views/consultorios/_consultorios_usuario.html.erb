@@ -1,0 +1,6 @@
+<ul><% current_usuario.consultorios.each do |consultorio| %>
+  <li>
+    <a href="#" onclick="<%= session[:consultorio]= consultorio.nombre %>"><%= consultorio.nombre %></a>
+  </li>
+    <% end %>
+</ul>
