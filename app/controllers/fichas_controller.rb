@@ -13,33 +13,27 @@ class FichasController < ApplicationController
 
   # GET /fichas/1
   # GET /fichas/1.xml
-#  def show
-#    @ficha = Ficha.find(params[:id])
-#
-#    respond_to do |format|
-#      format.html
-#      format.xml  { render :xml => @ficha }
-#    end
-#  end
+ def show
+    @ficha = Ficha.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.xml  { render :xml => @ficha }
+    end
+  end
 
   # GET /fichas/new
   # GET /fichas/new.xml
   def new
-    @paciente = Paciente.find(params[:paciente_id])
     @ficha = Ficha.new
-    @ficha.paciente_id = @paciente.id
-    @ficha.localidad_id = @paciente.localidad_id
-    @tratamiento = Tratamiento.new
-    #@tratamientos = Tratamiento.find(:all, :conditions => ['paciente_id = ?', params[:paciente_id]])
-    @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', params[:paciente_id].to_i]
-   
-    if @ficha.save    
+    @paciente = Paciente.find(params[:paciente_id])
     respond_to do |format|
-      format.html 
+      format.html
       format.xml  { render :xml => @ficha }
-    end
-  end
-  end
+      
+      end
+   end
+ 
 
   # GET /fichas/1/edit
   def edit
@@ -49,9 +43,17 @@ class FichasController < ApplicationController
   # POST /fichas
   # POST /fichas.xml
   def create
+    @ficha = Ficha.new(params[:ficha])
+    @paciente = Paciente.find(params[:paciente_id])
+    #params[:ficha][:tratamiento][:paciente_id]
+    @ficha.paciente_id = @paciente.id
+    @ficha.localidad_id = @paciente.localidad_id
     respond_to do |format|
-      format.html { redirect_to new_ficha_path + "?paciente_id="+@paciente.id.to_s} 
+      if @ficha.save
+      format.html {redirect_to @ficha}
+      end
     end
+  end
 #
 #    @ficha = Ficha.new(params[:ficha])
 #    respond_to do |format|
@@ -63,20 +65,19 @@ class FichasController < ApplicationController
 #        format.xml  { render :xml => @ficha.errors, :status => :unprocessable_entity }
 #      end
 #    end
-  end
+  
 
   # PUT /fichas/1
   # PUT /fichas/1.xml
   def update
     @ficha = Ficha.find(params[:id])
     #@paciente = Paciente.find(params[:paciente_id])
-    
-    respond_to do |format|
+     respond_to do |format|
       if @ficha.update_attributes(params[:ficha])
         flash[:notice] = 'Ficha actualizada.'
-        format.html { redirect_to(@ficha) }
+        format.html { redirect_to(:action =>'new') }
         format.xml  { head :ok }
-      else
+     else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @ficha.errors, :status => :unprocessable_entity }
       end

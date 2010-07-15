@@ -67,7 +67,7 @@ class TratamientosController < ApplicationController
   # PUT /tratamientos/1.xml
   def update
     @tratamiento = Tratamiento.find(params[:id])
-    #@paciente = Paciente.find(params[:paciente_id])
+
     respond_to do |format|
       if @tratamiento.update_attributes(params[:tratamiento])
         flash[:notice] = 'Tratamiento actualizado.'

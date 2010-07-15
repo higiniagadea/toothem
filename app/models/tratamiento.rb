@@ -3,7 +3,8 @@ class Tratamiento < ActiveRecord::Base
   belongs_to :prestacion
   belongs_to :profesional
   belongs_to :obra_social
-  has_many :fichas
+  has_one :fichas
+  accepts_nested_attributes_for :fichas
   belongs_to :estado_tratamiento
 
  

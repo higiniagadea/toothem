@@ -91,12 +91,11 @@
           <td><%=h tratamiento.estado_tratamiento.nombre%></td>
           <td><%=h number_to_currency(tratamiento.importe_cubierto) %></td>
 
-       
         
-         
-        <td><%= link_to image_tag('magnifier_zoom_in.png'), new_tratamiento_path(tratamiento), :title => "Ver" %></td>
+        <td><%= link_to image_tag('magnifier_zoom_in.png'), tratamiento, :title => "Ver" %></td>
         <td><%= link_to image_tag('pencil.png'), edit_tratamiento_path(tratamiento), :title => "Editar" %></td>
         <td><%= link_to image_tag('cancel.png'), tratamiento, :confirm => 'Esta seguro que desea eliminar el tratamiento?', :method => :delete, :title => "Eliminar" %></td>
+        
         </tr>
     <%  end %>
     </table>
