@@ -45,19 +45,13 @@ class TratamientosController < ApplicationController
   # POST /tratamientos.xml
   def create
     @paciente = Paciente.find(params[:tratamiento][:paciente_id])
-
-    #params[:tratamiento][:paciente_id] = @paciente.id
-    #@tratamiento = Tratamiento.new(params[:tratamiento][:paciente_id])
     @tratamiento = Tratamiento.new(params[:tratamiento])
     @tratamientos = Tratamiento.find(:all, :conditions => ['paciente_id =?', @paciente.id.to_s])
-    
     respond_to do |format|
       if @tratamiento.save
         flash[:notice] = 'Tratamiento creado.'
         format.html  { redirect_to new_tratamiento_path + "?paciente_id="+@paciente.id.to_s }
-        
-      else
-        
+       else
         format.xml  { render :xml => @tratamiento.errors, :status => :unprocessable_entity }
       end
     end
@@ -67,14 +61,12 @@ class TratamientosController < ApplicationController
   # PUT /tratamientos/1.xml
   def update
     @tratamiento = Tratamiento.find(params[:id])
-
     respond_to do |format|
       if @tratamiento.update_attributes(params[:tratamiento])
         flash[:notice] = 'Tratamiento actualizado.'
         format.html { redirect_to(@tratamiento)}
         format.xml  { head :ok }
-        
-      else
+       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @tratamiento.errors, :status => :unprocessable_entity }
       end

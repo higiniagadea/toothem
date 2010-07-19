@@ -6,7 +6,7 @@
 
   </tr>
   <tr>
-    <td><h1>Nombre y Apellido: <%=# @paciente.nombre %></h1></td>
+    <td><h1>Nombre y Apellido: <%= @paciente.nombre %></h1></td>
   </tr>
   <tr>
     <td class="label">Telefono: <%= @paciente.telefono_particular %> </td>
@@ -84,12 +84,12 @@
     <td class="label">Odontograma</td>
     <td><%= tratamiento.text_field :odontograma_id, :size=> 10 %> </td>
   </tr>
-  
-    <%end%>
+    
   <tr>
     <td>
       <%= f.submit 'Crear Ficha' %>
+      <%end%>
     </td>
   </tr>
- </table>
-<% end %>
+  </table>
+<%end%>

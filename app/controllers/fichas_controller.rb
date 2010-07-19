@@ -43,11 +43,13 @@ class FichasController < ApplicationController
   # POST /fichas
   # POST /fichas.xml
   def create
-    @ficha = Ficha.new(params[:ficha])
+    params[:ficha][:tratamiento][:ficha_id]
     @paciente = Paciente.find(params[:paciente_id])
-    #params[:ficha][:tratamiento][:paciente_id]
+    @ficha = Ficha.new(params[:ficha])  
     @ficha.paciente_id = @paciente.id
     @ficha.localidad_id = @paciente.localidad_id
+    @ficha = Ficha.find(:all, :conditions => ['paciente_id =?', @paciente.id.to_s])
+    
     respond_to do |format|
       if @ficha.save
       format.html {redirect_to @ficha}
