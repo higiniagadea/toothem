@@ -27,7 +27,7 @@ class TratamientosController < ApplicationController
   # GET /tratamientos/new.xml
   def new
     @paciente = Paciente.find(params[:paciente_id])
-    @tratamiento = Tratamiento.new
+    @tratamiento = Tratamiento.new(params[:ficha_id])
     @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5,  :conditions => ['paciente_id = ?', @paciente.id]
     @ficha = Ficha.find(params[:ficha_id]) unless params[:ficha_id].blank?
     respond_to do |format|

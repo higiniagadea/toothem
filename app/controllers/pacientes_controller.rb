@@ -87,9 +87,6 @@ class PacientesController < ApplicationController
   # GET /pacientes/new.xml
   def new
     @paciente = Paciente.new
-    #@paciente = Paciente.find(params[:paciente_id])
-
-
     @title = "Nuevo paciente"
     respond_to do |format|
       format.html

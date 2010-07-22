@@ -15,7 +15,7 @@ class FichasController < ApplicationController
   # GET /fichas/1.xml
  def show
     @ficha = Ficha.find(params[:id])
-
+    
     respond_to do |format|
       format.html
       format.xml  { render :xml => @ficha }
@@ -25,8 +25,10 @@ class FichasController < ApplicationController
   # GET /fichas/new
   # GET /fichas/new.xml
   def new
-    @ficha = Ficha.new
     @paciente = Paciente.find(params[:paciente_id])
+    @ficha = Ficha.new
+    #@ficha.tratamientos
+     
     respond_to do |format|
       format.html
       format.xml  { render :xml => @ficha }
@@ -34,7 +36,6 @@ class FichasController < ApplicationController
       end
    end
  
-
   # GET /fichas/1/edit
   def edit
     @ficha = Ficha.find(params[:id])
@@ -43,17 +44,20 @@ class FichasController < ApplicationController
   # POST /fichas
   # POST /fichas.xml
   def create
-    params[:ficha][:tratamiento][:ficha_id]
-    @paciente = Paciente.find(params[:paciente_id])
-    @ficha = Ficha.new(params[:ficha])  
+    @paciente = Paciente.find(params[:ficha][:paciente_id])
+    @ficha = Ficha.new(params[:ficha])
+    @tratamiento = Tratamiento.new(params[:ficha_id])
     @ficha.paciente_id = @paciente.id
     @ficha.localidad_id = @paciente.localidad_id
-    @ficha = Ficha.find(:all, :conditions => ['paciente_id =?', @paciente.id.to_s])
     
     respond_to do |format|
       if @ficha.save
-      format.html {redirect_to @ficha}
-      end
+       format.html {redirect_to(@ficha)}
+      else
+         format.html { render :action => "new" }
+         
+     end
+
     end
   end
 #
@@ -73,7 +77,7 @@ class FichasController < ApplicationController
   # PUT /fichas/1.xml
   def update
     @ficha = Ficha.find(params[:id])
-    #@paciente = Paciente.find(params[:paciente_id])
+    
      respond_to do |format|
       if @ficha.update_attributes(params[:ficha])
         flash[:notice] = 'Ficha actualizada.'

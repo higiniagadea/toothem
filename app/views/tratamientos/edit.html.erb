@@ -5,10 +5,9 @@
 
 <table id="form">
 <tr>
-  <td><h1>Editando Tratamiento</h1></td></tr>
-<tr>
-  <td class="label">Paciente:<%= @tratamiento.paciente.nombre %> </td>
+  <td><h1>Editando Tratamiento de :<%= @tratamiento.paciente.nombre %></h1></td></tr>
 
+<tr>
   <td class="label">Fecha</td>
   <td><%= f.date_select :fecha, :order => [:day, :month, :year],
                         :use_month_names => ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct','Nov','Dic']%>
