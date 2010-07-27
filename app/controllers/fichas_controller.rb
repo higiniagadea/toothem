@@ -44,9 +44,9 @@ class FichasController < ApplicationController
   # POST /fichas
   # POST /fichas.xml
   def create
-    @paciente = Paciente.find(params[:ficha][:paciente_id])
     @ficha = Ficha.new(params[:ficha])
-    @tratamiento = Tratamiento.new(params[:ficha_id])
+    @paciente = Paciente.find(params[:ficha][:paciente_id])
+    
     @ficha.paciente_id = @paciente.id
     @ficha.localidad_id = @paciente.localidad_id
     

@@ -3,7 +3,7 @@ class TratamientosController < ApplicationController
   # GET /tratamientos.xml
   layout 'default'
   def index
-    
+    @pagetitle = "Tratamientos"
     @tratamientos = Tratamiento.all
     @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5
     respond_to do |format|

@@ -19,7 +19,8 @@ class PacientesController < ApplicationController
     @pagetitle = "Pacientes"
     consultorios = []
     current_usuario.consultorios.each {|x| consultorios << x.consultorio_id}
-    @pacientes = Paciente.paginate :page=> params[:page], :per_page=> 15,:conditions => ['consultorio_id in (?)', consultorios], :order=> 'nombre ASC'
+    #@pacientes = Paciente.paginate :page=> params[:page], :per_page=> 15, :conditions => ['consultorio_id in ?', @consultorio.id], :order=> 'nombre ASC'
+    @pacientes = Paciente.paginate :page=> params[:page], :per_page=> 15, :order=> 'nombre ASC'
    
     respond_to do |format|
       format.html # index.html.erb
