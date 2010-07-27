@@ -10,9 +10,9 @@
     <td><%=h clinica.nombre %></td>
     <td><%=h clinica.direccion %></td>
     <td><%=h clinica.cuit %></td>
-    <td><%= link_to image_tag('magnifier_zoom_in.png'), clinica %>
-    <%= link_to image_tag('pencil.png'), edit_clinica_path(clinica) %>
-    <%= link_to image_tag('cancel.png'), clinica, :confirm => 'Esta seguro? No podrá deshacer esta acción', :method => :delete %></td>
+    <td><%= link_to image_tag('magnifier_zoom_in.png'), clinica, :title => 'Ver' %>
+    <%= link_to image_tag('pencil.png'), edit_clinica_path(clinica), :title => 'Editar' %>
+    <%= link_to image_tag('cancel.png'), clinica, :title => 'Eliminar', :confirm => 'Esta seguro? No podrá deshacer esta acción', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

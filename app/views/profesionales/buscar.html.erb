@@ -1,0 +1,23 @@
+
+<% form_remote_tag :url => resultado_profesionales_path,
+                    :method => :post, 
+                    :update => :search_hits do -%>
+
+    <ul id="search-form">
+        <li>
+          <label>Nombre</label>
+          <%= text_field_tag :nombre %>
+        </li>
+        <li>
+          <label>Documento</label>
+          <%= text_field_tag :documento %>
+        </li>
+        <li>
+          <label></label>
+          <%= submit_tag 'Buscar' %>
+        </li>
+      </ul>
+<%end -%>
+<div id ="search_hits">
+
+</div>

@@ -23,7 +23,7 @@
         <div id="pacientes-actions">
           <%= link_to image_tag('magnifier_zoom_in.png'), @paciente %> |
           <%= link_to image_tag('cancel.png'), @paciente, :confirm => 'Esta seguro? No podrá deshacer esta acción', :method => :delete %> |
-          <%= link_to image_tag('printer.png'), imprimir_paciente_historia_clinica_ortodoncia_path(@paciente), :popup => ['Imprimir', 'height=300,width=600']  %> |
+         
           <%= link_to 'Volver', pacientes_path %>
         </div>
 

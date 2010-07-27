@@ -1,9 +1,9 @@
-<h1>Consultorio</h1> <br/>
+<h1>Consultorio: <%=h @consultorio.nombre %></h1> <br/>
 
 <table>
   <tr>
-     <td><label>Clinica: <%=h @consultorio.clinica_id %></label></td>
-     <td><label>Consultorio:<%=h @consultorio.nombre %></label></td>
+     <td><label>Clinica: <%=h @consultorio.clinica.nombre %></label></td>
+     
   </tr>
 </table>
 
@@ -38,17 +38,15 @@
  <br/>
 
 <h1>Pacientes</h1><br/>
-   <% @consultorio.pacientes.each do |paciente|  %>
-<table >
-
+<table>
+<% @consultorio.pacientes.each do |paciente|  %>
   <tr>
     <td><label>Nombre: <%=h paciente.nombre %></label></td>
     <td><label>Matricula: <%=h paciente.matricula %></label></td>
-    <td><label>Tipo Documento: <%=h paciente.tipo_documento.descripcion %></label></td>
   </tr>
-</table>
-<%end%>
 
+<%end%>
+</table>
 <%= link_to 'Editar', edit_consultorio_path(@consultorio) %>
 <%= link_to 'Volver', consultorios_path %>
 

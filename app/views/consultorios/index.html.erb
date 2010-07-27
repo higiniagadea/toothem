@@ -8,9 +8,9 @@
   <tr class="<%= cycle('','odd') %>">
     <td><%=h consultorio.clinica.nombre %></td>
     <td><%=h consultorio.nombre %></td>
-    <td><%= link_to image_tag('magnifier_zoom_in.png'), consultorio %>
-    <%= link_to image_tag('pencil.png'), edit_consultorio_path(consultorio) %>
-    <%= link_to image_tag('cancel.png'), consultorio, :confirm => 'Esta seguro? No podrá deshacer esta acción', :method => :delete %></td>
+    <td><%= link_to image_tag('magnifier_zoom_in.png'), consultorio, :title => 'Ver' %></td>
+    <td><%= link_to image_tag('pencil.png'), edit_consultorio_path(consultorio), :title => 'Editar' %></td>
+    <td><%= link_to image_tag('cancel.png'), consultorio, :title => 'Eliminar', :confirm => 'Esta seguro? No podrá deshacer esta acción', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

@@ -61,7 +61,7 @@ ActionController::Routing::Routes.draw do |map|
 
                             end
 
-  map.resources :profesionales
+  map.resources :profesionales, :collection => {:buscar => :get, :resultado => :post}
   
   map.resources :archivos
                 

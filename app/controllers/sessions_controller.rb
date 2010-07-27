@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
       self.current_usuario = usuario
       new_cookie_flag = (params[:remember_me] == "1")
       
-      session[:consultorio] = Consultorio.find(:first, :conditions => ['id in (?)', current_usuario.consultorios]).nombre
+      session[:consultorio] = Consultorio.find(:first, :conditions => ['id in (?)', current_usuario.consultorios])
       session[:user_menu] = Item.find(:all, :conditions => 'parent_id = 1', :order => 'orden')
       
       #paciente = Item.find(:first,:conditions => ["url = ?", '/pacientes'])

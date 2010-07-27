@@ -4,7 +4,9 @@ class ObrasSocialesController < ApplicationController
   layout 'default'
   before_filter  :generar_submenus
   def index
-    @obras_sociales = ObraSocial.find(:all,:conditions => ['consultorio_id in (?)', current_usuario.consultorios])
+    
+  #  @obras_sociales = ObraSocial.find(:all,:conditions => ['consultorio_id in (?)', current_usuario.consultorios])
+    @obras_sociales = ObraSocial.paginate :page=> params[:page], :per_page=> 5
     @pagetitle = "Obras sociales"
     respond_to do |format|
       format.html # index.html.erb
@@ -41,7 +43,7 @@ class ObrasSocialesController < ApplicationController
   # POST /obras_sociales
   # POST /obras_sociales.xml
   def create
-    params[:obra_social][:consultorio_id] = current_usuario.consultorio_id
+    #params[:obra_social][:consultorio_id] = current_usuario.consultorio_id
     @obra_social = ObraSocial.new(params[:obra_social])
     @pagetitle = "Nueva obra social"
     respond_to do |format|
@@ -95,16 +97,13 @@ class ObrasSocialesController < ApplicationController
   def resultado
     respond_to do |format|
       if params[:nombre].blank? && params[:auditoria_previa].blank? && params[:auditoria_post].blank? && params[:incluye_ficha].blank?
-        format.html{render :text => "debe ingresar al menos un parametro", :layout => false }
+        format.html{render :text => "Debe ingresar al menos un parametro", :layout => false }
       else
         @obras_sociales = ObraSocial.basic_search(params)
         format.html {render :layout => false}
       end
-        
-      
+          
     end
-    
-    
-    
+      
   end
 end

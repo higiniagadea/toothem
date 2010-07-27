@@ -1,7 +1,7 @@
 <% form_for(@tratamiento) do |f|%>
 <%= f.error_messages %>
 <%= f.hidden_field :paciente_id, 'value' => @paciente.id.to_s  %>
-<%= f.hidden_field :ficha_id, 'value' => @ficha.id.to_s unless @ficha.blank? %>
+<%= f.hidden_field :ficha_id, 'value' => @ficha.id %>
 <table id="form">
   <tr>
     <td class="label"><h1>Paciente: <%= @paciente.nombre %></h1></td>
