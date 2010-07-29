@@ -50,7 +50,7 @@ class HistoriasClinicasOrtodonciasController < ApplicationController
 
   # GET /historias_clinicas_ortodoncias/1/edit
   def edit
-    @historia_clinica_ortodoncia = HistoriaClinicaOrtodoncia.find(params[:paciente_id])
+    @historia_clinica_ortodoncia = HistoriaClinicaOrtodoncia
     @title = 'Editando Historia Clinica Ortodoncica'
 
   end

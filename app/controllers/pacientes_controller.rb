@@ -202,6 +202,7 @@ class PacientesController < ApplicationController
     @paciente = Paciente.find(params[:id])
     @titular = Titular.new
     respond_to do |format|
+    
       format.html {render :layout => false}
     end
   end

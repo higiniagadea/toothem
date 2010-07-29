@@ -47,7 +47,7 @@ class HistoriasClinicasGeneralesController < ApplicationController
   # GET /historias_clinicas_generales/1/edit
   def edit
 
-     @historia_clinica_general = HistoriaClinicaGeneral.find(params[:paciente_id])
+     @historia_clinica_general = @paciente.historia_clinica_general
      @pagetitle = 'Editando Historia Clinica General' 
     
 

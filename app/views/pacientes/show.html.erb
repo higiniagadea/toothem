@@ -15,7 +15,7 @@
     <div id="pacientes-actions">
       <%= link_to image_tag('pencil.png'), edit_paciente_path(@paciente), :title=> 'Editar'%> |
       <%= link_to image_tag('cancel.png'), @paciente, :confirm => 'Esta seguro que desea eliminar el paciente?', :method => :delete, :title=> 'Eliminar' %> |
-      
+      <%= link_to image_tag('paste_plain.png'), listado_historias_clinicas_paciente_path(@paciente), :title => "Historias Clinicas"  %></td>
     </div>
   </div>
   <fieldset class="pacientes-data">
@@ -173,14 +173,14 @@
               <div  style="float: right; font-size: 12px; font-weight: normal">  
                     <a id="imagen" href="<%= imagen_url(imagen.id)%>" style=" float: left">
                     
-                      <%= image_tag('magnifier_zoom_in.png')%> 
+                      <%= link_to image_tag('magnifier_zoom_in.png'), imagen, :title => 'Ver Imagen' %>
                     </a> 
                     <a>
-                      <%= link_to image_tag('cancel.png'), imagen, :confirm => "Esta seguro que desea eliminar la imagen?", :method => :delete %>
+                      <%= link_to image_tag('cancel.png'), imagen, :title => 'Eliminar Imagen', :confirm => "Esta seguro que desea eliminar la imagen?", :method => :delete %>
                     </a>
               </div>
            </h2>
-           <%thumbnail = Archivo.find(:first, :conditions => 'parent_id ='+imagen.archivo_id.to_s)%>
+           <%thumbnail = Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)%>
         <p>
            <div style=" height: 200px; float:  right">
               <%= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id ='+imagen.archivo_id.to_s)) , :alt => imagen.descripcion, :id => imagen.id %>

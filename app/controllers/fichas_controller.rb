@@ -4,7 +4,7 @@ class FichasController < ApplicationController
   layout 'default'
   def index
     @fichas = Ficha.all
-    @paciente = Paciente.all
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @fichas }
@@ -27,8 +27,7 @@ class FichasController < ApplicationController
   def new
     @paciente = Paciente.find(params[:paciente_id])
     @ficha = Ficha.new
-    #@ficha.tratamientos
-     
+        
     respond_to do |format|
       format.html
       format.xml  { render :xml => @ficha }
@@ -44,12 +43,9 @@ class FichasController < ApplicationController
   # POST /fichas
   # POST /fichas.xml
   def create
-    @ficha = Ficha.new(params[:ficha])
     @paciente = Paciente.find(params[:ficha][:paciente_id])
-    
+    @ficha = Ficha.new(params[:ficha][:tratamiento])
     @ficha.paciente_id = @paciente.id
-    @ficha.localidad_id = @paciente.localidad_id
-    
     respond_to do |format|
       if @ficha.save
        format.html {redirect_to(@ficha)}

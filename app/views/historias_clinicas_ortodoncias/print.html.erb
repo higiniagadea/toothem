@@ -3,9 +3,7 @@
     <table>
     <tr>
       <td>
-         <%#= image_tag('toothem-logo.png', :alt => 'logo') %>
-
-      </td>
+             </td>
       <td style="font-size:25px;">Historia Ortodoncica de: <%=h @paciente.nombre %></td>
     </tr>
   </table>
@@ -988,5 +986,5 @@
           window.print();
         </script>
 </fieldset>
-   <%= link_to image_tag('printer.png'), imprimir_paciente_historia_clinica_ortodoncia_path(@paciente), :popup => ['Imprimir', 'height=300,width=600'] %>
+   <%= link_to image_tag('printer.png'), imprimir_paciente_historia_clinica_ortodoncia_path(@paciente), :title => 'Imprimir', :popup => ['Imprimir', 'height=300,width=600'] %>
 </div>
