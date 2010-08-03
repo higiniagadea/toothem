@@ -9,7 +9,7 @@ class PacientesController < ApplicationController
     @paciente = Paciente.find(params[:paciente_id])
     @tratamiento = Tratamiento.new
     respond_to do |format|
-      #format.html {render :layout => false}
+     format.html {render :layout => false}
      format.html {render :controller => 'tratamientos', :action => 'new'}
      
     end

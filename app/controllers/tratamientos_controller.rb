@@ -4,7 +4,7 @@ class TratamientosController < ApplicationController
   layout 'default'
   def index
     @pagetitle = "Tratamientos"
-    @tratamientos = Tratamiento.all
+    #@tratamientos = Tratamiento.all
     @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5
     respond_to do |format|
       format.html # index.html.erb
@@ -50,8 +50,9 @@ class TratamientosController < ApplicationController
     respond_to do |format|
       if @tratamiento.save
         flash[:notice] = 'Tratamiento creado.'
-        format.html  { redirect_to new_tratamiento_path + "?paciente_id="+@paciente.id.to_s }
+        format.html  { redirect_to new_tratamiento_path + "?paciente_id=" + @paciente.id.to_s }
        else
+        
         format.xml  { render :xml => @tratamiento.errors, :status => :unprocessable_entity }
       end
     end
@@ -81,7 +82,7 @@ class TratamientosController < ApplicationController
 
     respond_to do |format|
       flash[:notice] = 'Tratamiento eliminado'
-      format.html { redirect_to tratamientos_path }
+      format.html { redirect_to tratamientos_path, :layout => 'default' }
       format.xml  { head :ok }
     end
   end

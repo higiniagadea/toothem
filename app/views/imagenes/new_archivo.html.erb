@@ -9,7 +9,7 @@
           </td>
           <td>
             <%= f.file_field :uploaded_data %>
-            <%= hidden_field :paciente,:id,"value"=>@paciente.id %>
+            <%= f.hidden_field :paciente_id,  "value" => @paciente.id.to_s %>
             
           </td>
         </tr>

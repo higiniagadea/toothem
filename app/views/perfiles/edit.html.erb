@@ -1,7 +1,7 @@
-<h1>Editando el perfil</h1>
 
 <% form_for(@perfil) do |f| %>
   <%= f.error_messages %>
+<table>
 <ul id="form" >
   <li>
     <%= f.label :nombre %>
@@ -16,15 +16,17 @@
   <p>
     <%= f.submit 'Actualizar' %>
   </p>
+
 <% end %>
+</table>
 
 
-
-  <table>
+  
   <td><h1>Permisos del perfil </h1></td>
-   <% @items.each do |item| %>
-  </table>
-  <table>     
+  
+<% @items.each do |item| %>
+  <table>
+       
          
       <tr>
          <td><label>Items</label></td>
@@ -33,8 +35,8 @@
       
       <tr>
          <td><%= item.parent_id %> <%= item.nombre %></td>
-      
-      
+      </tr>
+      <tr>
       
          <td><label>Crear_Editar</label><%= check_box_tag "perfil[item_ids][][crear_editar]", :perfil_id, @perfil.items.include?(item) %></td>
       

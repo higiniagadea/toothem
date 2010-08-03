@@ -11,7 +11,7 @@
     <td><%=h ficha.localidad_id %></td>
     <td><%=h ficha.paciente_id %></td>
     
-    <td><%= link_to 'Ver', ficha %></td>
+    <td><%= link_to image_tag('pencil.png'), edit_ficha_path(ficha) %></td>
     <td><%= link_to 'Eliminar', ficha, :confirm => 'Esta seguro?', :method => :delete %></td>
   </tr>
 <% end %>

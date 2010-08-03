@@ -15,13 +15,13 @@
     <td><%=h imagen.descripcion %></td>
     <td><%=h imagen.observaciones %></td>
     <td><%=h imagen.fecha %></td>
-    <td><%= link_to 'Show', imagen %></td>
-    <td><%= link_to 'Edit', edit_imagen_path(imagen) %></td>
-    <td><%= link_to 'Destroy', imagen, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Ver', imagen %></td>
+    <td><%= link_to 'Editar', edit_imagen_path(imagen) %></td>
+    <td><%= link_to 'Eliminar', imagen, :confirm => 'Esta seguro?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New imagen', new_imagen_path %>
+<%= link_to 'Nueva Imagen', new_imagen_path %>

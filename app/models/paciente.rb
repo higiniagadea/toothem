@@ -8,7 +8,7 @@ class Paciente < ActiveRecord::Base
   has_one :historia_clinica_general, :dependent => :destroy
   has_one :historia_clinica_ortodoncia, :dependent => :destroy
   
-  has_many :fichas
+  has_many :fichas, :dependent => :destroy
   has_many :imagenes, :dependent => :destroy
 
   validates_presence_of :nombre, :message => ' y apellido no puede estar en blanco'

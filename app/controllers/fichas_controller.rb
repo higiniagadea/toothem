@@ -80,6 +80,7 @@ class FichasController < ApplicationController
         format.html { redirect_to(:action =>'new') }
         format.xml  { head :ok }
      else
+       
         format.html { render :action => "edit" }
         format.xml  { render :xml => @ficha.errors, :status => :unprocessable_entity }
       end

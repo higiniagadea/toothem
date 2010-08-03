@@ -1,8 +1,8 @@
-<table>
-  <tr><td>Ficha de <%= @ficha.paciente.nombre %> </td></tr>
+<table id="table-list">
+  <tr><td><h1>Ficha de <%= @ficha.paciente.nombre %></h1></td></tr>
 <tr>
 <td>
-  <td>Obra social:</td>
+  <td  class="label">Obra social</td>
   <td><%=h @ficha.obra_social_id %>
 </td>
 </td>
@@ -10,7 +10,7 @@
 
 <tr>
 <td>
-  <td>Tel:</td>
+  <td class="label">Tel:</td>
   <td><%=h @ficha.localidad_id %>
 </td>
 </td>
@@ -18,11 +18,11 @@
 
 <tr>
 <td>
-  <td>Direccion:</td>
+<td class="label">Direccion:</td>
   <td><%=h @ficha.profesional_id %>
 </td>
 </td>
 </tr>
 </table>
 
-<%= link_to 'Ver', fichas_path(@fichas) %>
+<%= link_to 'Volver', fichas_path(@fichas) %>
