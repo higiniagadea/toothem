@@ -72,6 +72,7 @@ class FichasController < ApplicationController
   # PUT /fichas/1
   # PUT /fichas/1.xml
   def update
+    @paciente = Paciente.find(params[:ficha][:paciente_id])
     @ficha = Ficha.find(params[:id])
     
      respond_to do |format|

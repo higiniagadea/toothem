@@ -46,14 +46,15 @@ class TratamientosController < ApplicationController
   def create
     @paciente = Paciente.find(params[:tratamiento][:paciente_id])
     @tratamiento = Tratamiento.new(params[:tratamiento])
-    @tratamientos = Tratamiento.find(:all, :conditions => ['paciente_id =?', @paciente.id.to_s])
+    @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 5, :conditions => ['paciente_id =?', @paciente.id.to_s])
     respond_to do |format|
       if @tratamiento.save
         flash[:notice] = 'Tratamiento creado.'
         format.html  { redirect_to new_tratamiento_path + "?paciente_id=" + @paciente.id.to_s }
        else
-        
+        format.html {render :partial => 'new', :layout => 'default'}
         format.xml  { render :xml => @tratamiento.errors, :status => :unprocessable_entity }
+
       end
     end
   end

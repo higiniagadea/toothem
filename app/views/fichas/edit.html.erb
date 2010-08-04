@@ -1,31 +1,14 @@
 <% form_for(@ficha) do |f| %>
   <%= f.error_messages %>
-  <%= f.hidden_field :paciente_id, 'value' => @paciente.id  %>
-
+  <%#= f.hidden_field :paciente_id, 'value' => @paciente.id  %>
+ <tr>
+    <td><h1>Nombre y Apellido: <%= @ficha.paciente_id %></h1></td>
+  </tr>
 <% f.fields_for :tratamientos do |f_tratamiento| %>
 <table id="form">
+ 
   <tr>
-
-  </tr>
-  <tr>
-    <td><h1>Nombre y Apellido: <%= @ficha.paciente.nombre %></h1></td>
-  </tr>
-  <tr>
-    <td class="label">Telefono: <%= @paciente.telefono_particular %> </td>
-  </tr>
-  <tr>
-    <td class="label">Localidad: </td>
-  </tr>
-  <tr>
-    <td class="label">Domicilio: <%= @paciente.domicilio_particular %> </td>
-  </tr>
-  <tr>
-    <td class="label">Nro. Afiliado. <%= @paciente.nro_afiliado %> </td>
-  </tr>
-
-  <tr>
-
-    <td class="label">Fecha</td>
+   <td class="label">Fecha</td>
   <td>  <%= f_tratamiento.date_select :fecha, :order => [:day, :month, :year],
                           :use_month_names => ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct','Nov','Dic']%></td>
   </tr>

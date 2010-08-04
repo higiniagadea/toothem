@@ -8,6 +8,7 @@ class ArchivosController < ApplicationController
       flash[:notice] = 'Imagen cambiada'
       redirect_to(@paciente)
     else
+      format.html { render :action => 'new', :layout => 'default'}
       flash[:error] = 'Error al subir el archivo. El archivo es una imagen?'
       redirect_to(@paciente)
     end

@@ -1,5 +1,5 @@
 <% form_for(@tratamiento) do |f|%>
-<%= f.error_messages %>
+<%= f.error_messages(:header_message=>'Ingreso Incorrecto: ',:message=>'Se encontraron los siguientes errores') %>
 <%= f.hidden_field :paciente_id, 'value' => @paciente.id.to_s  %>
 
 <table id="form">

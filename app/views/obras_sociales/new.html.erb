@@ -1,7 +1,7 @@
 
 
 <% form_for(@obra_social) do |f| %>
-  <%= f.error_messages %>
+  <%= f.error_messages(:id => 'Error', :header_message => '', :message=>'Se encontraron los siguientes errores') %>
   <ul id="form">
     <li>
       <label>Nombre</label>
