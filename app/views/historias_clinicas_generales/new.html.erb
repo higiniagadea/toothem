@@ -5,6 +5,7 @@
   <div id="pacientes-options"> 
     <div id="pacientes-nombre">
       <%=h @paciente.nombre %>
+
     </div>
     <div id="pacientes-actions">
        <tr>
@@ -12,13 +13,14 @@
       </tr>
       <table>        
         <tr>
+          
           <%= link_to image_tag('magnifier_zoom_in.png'), paciente_historia_clinica_general_path(@paciente), :title => 'Ver' %> |
           <%= link_to image_tag('printer.png'), imprimir_paciente_historia_clinica_general_path(@paciente), :title => 'Imprimir', :popup => ['Imprimir', 'height=300,width=600'] %>
         </tr>
       </table>
     </div>    
   </div>
-   
+    <%= link_to 'Volver', paciente_path(@paciente) %>
   <fieldset class="pacientes-data">
     
  <table class="historia_clinica">

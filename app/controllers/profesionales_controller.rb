@@ -118,8 +118,9 @@ def buscar
 
   def resultado
     respond_to do |format|
+    
       if params[:nombre].blank? && params[:documento].blank?
-        format.html{render :text => "Debe ingresar al menos un parametro", :layout => false }
+        format.html{render :text => "Ingrese Nombre y Documento ", :layout => false }
       else
         @profesionales = Profesional.basic_search(params)
         format.html {render :layout => false}
@@ -128,4 +129,5 @@ def buscar
     end
 
   end
+  
 end

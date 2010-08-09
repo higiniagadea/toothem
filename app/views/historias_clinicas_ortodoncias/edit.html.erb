@@ -1,7 +1,6 @@
-  <% form_for(:historia_clinica_ortodoncia, @historia_clinica_ortodoncia,
-            :url=> paciente_historia_clinica_ortodoncia_url(@paciente), :html=> {:method=> :put}) do |f| %>
-   <%= f.error_messages %>
-
+<% form_for(:historia_clinica_ortodoncia, @historia_clinica_ortodoncia,
+            :url => paciente_historia_clinica_ortodoncia_url(@paciente), :html=> {:method=> :put}) do |f| %>
+<%= f.error_messages %>
 <div id="pacientes-screen">
   <div id="pacientes-options">
     <div id="pacientes-nombre">

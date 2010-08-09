@@ -62,7 +62,7 @@
 
   <tr>
     <td class="label">Ficha </td>
-    <td></td>
+    <td><%= f.text_field :ficha_id %> </td>
   
     <td class="label">Odontograma</td>
   </tr>
@@ -80,7 +80,7 @@
           <th>Cara</th
           <th>Profesional</th>
           <th>Estado de tratamiento</th>
-          <th>Importe</th>
+          <th>Importe Cubierto</th>
         </tr>
         <tr>
           <% @tratamientos.each do |tratamiento| %>

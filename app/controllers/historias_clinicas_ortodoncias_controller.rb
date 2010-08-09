@@ -50,7 +50,8 @@ class HistoriasClinicasOrtodonciasController < ApplicationController
 
   # GET /historias_clinicas_ortodoncias/1/edit
   def edit
-    @historia_clinica_ortodoncia = HistoriaClinicaOrtodoncia
+   
+    @historia_clinica_ortodoncia = @paciente.historia_clinica_ortodoncia
     @title = 'Editando Historia Clinica Ortodoncica'
 
   end
@@ -81,7 +82,7 @@ class HistoriasClinicasOrtodonciasController < ApplicationController
         flash[:notice] = 'Historia Clinica Ortodoncia creada.'
         format.html {redirect_to paciente_historia_clinica_ortodoncia_path }
       else
-        format.html { render :action => 'show'}
+        format.html { render :action => 'edit'}
        end
     end
   end

@@ -1,18 +1,13 @@
 <table class="table-list">
-  <tr>
+  <tr class="<%  cycle('par','impar') %>">
     <th>Nombre</th>
-     
-    <th>Matrícula Profesional</th>
-   
+    <th>Documento</th>
   </tr>
 
 <% @profesionales.each do |profesional| %>
   <tr>
     <td><%=h profesional.nombre %></td>
-  
-     <td><%=h profesional.matricula%></td>
-
-     
+    <td><%=h profesional.documento %></td>
     <td><%= link_to image_tag('magnifier_zoom_in.png'), profesional, :title => 'Ver' %></td>
     <td><%= link_to image_tag('pencil.png'), edit_profesional_path(profesional), :title => 'Editar' %></td>
     <td><%= link_to image_tag('cancel.png'), profesional, :title => 'Eliminar', :confirm => 'Esta seguro?', :method => :delete %></td>

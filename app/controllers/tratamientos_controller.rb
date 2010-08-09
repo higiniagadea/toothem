@@ -66,7 +66,7 @@ class TratamientosController < ApplicationController
     respond_to do |format|
       if @tratamiento.update_attributes(params[:tratamiento])
         flash[:notice] = 'Tratamiento actualizado.'
-        format.html { redirect_to(@tratamiento)}
+        format.html { redirect_to pacientes_path(@paciente)}
         format.xml  { head :ok }
        else
         format.html { render :action => "edit" }

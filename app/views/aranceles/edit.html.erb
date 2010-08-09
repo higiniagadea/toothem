@@ -1,7 +1,7 @@
 
 <%  form_for(:arancel, @arancel, :url => obra_social_arancel_path(@obra_social, @arancel), :html => {:method => :put}) do |f|   %>
 
-  <%= f.error_messages %>
+  <%= f.error_messages(:id => 'error', :header_message=>'', :message=>'Se encontraron los siguientes errores') %>
 <ul id="form">
 
       <li>

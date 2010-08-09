@@ -1,7 +1,7 @@
 
 
 <%  form_for(:arancel, @arancel, :url => {:method => :post, :action => "index"})do |f| %>
-  <%= f.error_messages %>
+  <%= f.error_messages(:id => 'error', :header_message=>'', :message=>'Se encontraron los siguientes errores') %>
 <br/>
 <br/>
 <% prestaciones =  Prestacion.find(:all, :conditions => [ "id NOT IN
@@ -61,3 +61,4 @@
   <%= will_paginate @aranceles%>
 </div>
 
+<%= link_to 'Volver', obras_sociales_path %>

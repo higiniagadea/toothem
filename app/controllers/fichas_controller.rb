@@ -26,8 +26,9 @@ class FichasController < ApplicationController
   # GET /fichas/new.xml
   def new
     @paciente = Paciente.find(params[:paciente_id])
+
     @ficha = Ficha.new
-        
+    
     respond_to do |format|
       format.html
       format.xml  { render :xml => @ficha }
@@ -45,9 +46,12 @@ class FichasController < ApplicationController
   def create
     @paciente = Paciente.find(params[:ficha][:paciente_id])
     @ficha = Ficha.new(params[:ficha][:tratamiento])
+
     @ficha.paciente_id = @paciente.id
+
     respond_to do |format|
       if @ficha.save
+      
        format.html {redirect_to(@ficha)}
       else
          format.html { render :action => "new" }
@@ -72,16 +76,15 @@ class FichasController < ApplicationController
   # PUT /fichas/1
   # PUT /fichas/1.xml
   def update
-    @paciente = Paciente.find(params[:ficha][:paciente_id])
-    @ficha = Ficha.find(params[:id])
-    
-     respond_to do |format|
+     @tratamiento = Tratamiento.find(params[:id])
+     @ficha = Ficha.find(params[:id])
+      respond_to do |format|
       if @ficha.update_attributes(params[:ficha])
+      
         flash[:notice] = 'Ficha actualizada.'
-        format.html { redirect_to(:action =>'new') }
+        format.html { redirect_to(@ficha)}
         format.xml  { head :ok }
      else
-       
         format.html { render :action => "edit" }
         format.xml  { render :xml => @ficha.errors, :status => :unprocessable_entity }
       end
