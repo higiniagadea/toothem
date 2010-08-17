@@ -1,34 +1,53 @@
 <% form_for(@ficha) do |f| %>
-  <%= f.error_messages %>
-  <%#= f.hidden_field :paciente_id, 'value' => @paciente.id  %>
-<% f.fields_for :tratamientos do |f_tratamiento| %>
+  <%= error_messages_for :ficha %>
+  <%#= f.hidden_field :paciente_id, 'value' => @paciente.id.to_s  %>
+
 <table id="form">
- <tr>
-    <td><h1>Nombre y Apellido: <%= @ficha.paciente_id %></h1></td>
+  <tr>
+
+  </tr>
+  <tr>
+    <td><h1>Nombre y Apellido: <%= @ficha.paciente.nombre %></h1></td>
+  </tr>
+  <tr>
+    <td> </td>
+  </tr>
+  <tr>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
   </tr>
 
-
- 
+  <% fields_for :tratamientos do |f_tratamiento| %>
   <tr>
-   <td class="label">Fecha</td>
+    <td class="label">Fecha</td>
   <td>  <%= f_tratamiento.date_select :fecha, :order => [:day, :month, :year],
-                          :use_month_names => ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct','Nov','Dic']%></td>
+                                      :use_month_names => ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct','Nov','Dic']%>
+  </td>
   </tr>
 
   <tr>
   <td class="label">Diente</td>
-    <td><%= f_tratamiento.text_field :diente, :size=>10 %></td>
+    <td><%= f_tratamiento.text_field :diente, :size=>10 %>
+    </td>
     <td class="label">Cara </td>
-    <td><%= f_tratamiento.text_field :cara, :size=>10 %></td>
+    <td><%= f_tratamiento.text_field :cara, :size=>10 %>
+    </td>
   </tr>
 
   <tr>
     <td class="label">Fecha Finalizacion </td>
-    <td><%= f_tratamiento.date_select  :fecha, :order => [:day, :month, :year],
-                          :use_month_names => ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct','Nov','Dic'] %>
+    <td><%= f_tratamiento.date_select  :fecha,
+                                       :order => [:day, :month, :year],
+                                       :use_month_names => ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct','Nov','Dic'] %>
     </td>
     <td class="label">Importe Cubierto </td>
-    <td><%= f_tratamiento.text_field :importe_cubierto, :size=>10 %></td>
+    <td><%= f_tratamiento.text_field :importe_cubierto, :size=>10 %>
+    </td>
   </tr>
 
   <tr>
@@ -51,28 +70,26 @@
 
   <tr>
   <td class="label">Prestacion </td>
-  <td><%= f_tratamiento.collection_select(:prestacion_id, Prestacion.all, :id, :descripcion) %></td>
-
+  <td><%= f_tratamiento.collection_select(:prestacion_id, Prestacion.all, :id, :descripcion) %>
+  </td>
   <td class="label">Profesional </td>
-  <td><%= f_tratamiento.collection_select(:profesional_id, Profesional.all, :id, :nombre) %></td>
+  <td><%= f_tratamiento.collection_select(:profesional_id, Profesional.all, :id, :nombre) %>
+  </td>
   </tr>
 
   <tr>
     <td class="label">Ficha </td>
-    <td></td>
+
 
     <td class="label">Odontograma</td>
+    <td><%= f_tratamiento.text_field :odontograma_id, :size=> 10 %> </td>
   </tr>
 
-  <td>
-
-  </td>
-  <%end%>
   <tr>
     <td>
-      <%= f.submit 'Actualizar' %>
+      <%= f.submit 'Crear Ficha' %>
+      <%end%>
     </td>
   </tr>
-</table>
-<% end %>
-<%= link_to 'Volver', fichas_path %>
+  </table>
+<%end%>

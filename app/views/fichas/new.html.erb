@@ -1,7 +1,7 @@
 <% form_for(@ficha) do |f| %>
-  <%= f.error_messages %>
+  <%= error_messages_for :ficha %>
   <%= f.hidden_field :paciente_id, 'value' => @paciente.id.to_s  %>
-  <% f.fields_for :tratamientos do |f_tratamiento| %>
+ 
 <table id="form">
   <tr>
 
@@ -22,7 +22,7 @@
     <td class="label">Nro. Afiliado. <%= @paciente.nro_afiliado %> </td>
   </tr>
 
-  
+  <% fields_for :tratamientos do |f_tratamiento| %>
   <tr>
     <td class="label">Fecha</td>
   <td>  <%= f_tratamiento.date_select :fecha, :order => [:day, :month, :year],
@@ -79,7 +79,7 @@
 
   <tr>
     <td class="label">Ficha </td>
-    <td><%= f_tratamiento.text_field :ficha_id, :size => 10 %></td>
+   
 
     <td class="label">Odontograma</td>
     <td><%= f_tratamiento.text_field :odontograma_id, :size=> 10 %> </td>

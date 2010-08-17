@@ -4,7 +4,7 @@ class TratamientosController < ApplicationController
   layout 'default'
   def index
     @pagetitle = "Tratamientos"
-    #@tratamientos = Tratamiento.all
+   
     @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5
     respond_to do |format|
       format.html # index.html.erb
@@ -28,8 +28,8 @@ class TratamientosController < ApplicationController
   def new
     @paciente = Paciente.find(params[:paciente_id])
     @tratamiento = Tratamiento.new(params[:ficha_id])
-    @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5,  :conditions => ['paciente_id = ?', @paciente.id]
-    @ficha = Ficha.find(params[:ficha_id]) unless params[:ficha_id].blank?
+    @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 4,  :conditions => ['paciente_id = ?', @paciente.id]
+    @ficha = Ficha.new(params[:ficha_id]) unless params[:ficha_id].blank?
     respond_to do |format|
       format.html {render :partial => 'new', :layout => 'default'}
       format.xml  { render :xml => @tratamiento }
@@ -46,7 +46,7 @@ class TratamientosController < ApplicationController
   def create
     @paciente = Paciente.find(params[:tratamiento][:paciente_id])
     @tratamiento = Tratamiento.new(params[:tratamiento])
-    @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 5, :conditions => ['paciente_id =?', @paciente.id.to_s])
+    @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 4, :conditions => ['paciente_id =?', @paciente.id.to_s])
     respond_to do |format|
       if @tratamiento.save
         flash[:notice] = 'Tratamiento creado.'

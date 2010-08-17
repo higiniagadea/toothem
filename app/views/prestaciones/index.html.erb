@@ -12,9 +12,9 @@
     <td><%=h prestacion.codigo %></td>
     <td><%=h prestacion.descripcion %></td>
     <td><%=h prestacion.consultorio_id %></td>
-    <td><%= link_to image_tag('magnifier_zoom_in.png'), prestacion %>
-        <%= link_to image_tag('pencil.png'), edit_prestacion_path(prestacion) %>
-        <%= link_to image_tag('cancel.png'), prestacion, :confirm => '¿Está seguro? No podrá deshacer esta acción', :method => :delete %></td>
+    <td><%= link_to image_tag('magnifier_zoom_in.png'), prestacion, :title => 'Ver' %>
+        <%= link_to image_tag('pencil.png'), edit_prestacion_path(prestacion), :title => 'Editar' %>
+        <%= link_to image_tag('cancel.png'), prestacion, :title => 'Eliminar', :confirm => '¿Está seguro? No podrá deshacer esta acción', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

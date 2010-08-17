@@ -57,7 +57,7 @@ class ImagenesController < ApplicationController
           format.html { redirect_to(pacientes_url(@paciente))}
           format.xml  { render :xml => @imagen, :status => :created, :location => @imagen }
         else         
-
+        
           format.xml  { render :xml => @imagen.errors, :status => :unprocessable_entity}
        
         end

@@ -62,7 +62,7 @@
 
   <tr>
     <td class="label">Ficha </td>
-    <td><%= f.text_field :ficha_id %> </td>
+    <td><%= f.text_field :ficha_id, :size => 10 %> </td>
   
     <td class="label">Odontograma</td>
   </tr>
@@ -103,7 +103,7 @@
 <% end %>
 </table>
 <div class="paginador">
-  <%= will_paginate @tratamientos %>
+  <%= will_paginate @tratamientos, :previous_label=>'Anterior', :next_label => 'Siguiente' %>
 </div>
 
 <%= link_to 'Volver', paciente_path(@paciente) %>

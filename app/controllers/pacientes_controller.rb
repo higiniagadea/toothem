@@ -288,39 +288,6 @@ class PacientesController < ApplicationController
   end
 end
 
-
-
- #def new_ficha
-    #@paciente = Paciente.find(params[:paciente_id])
-    #@ficha = Ficha.new
-    #respond_to do |format|
-     # format.html {render :controller => 'fichas', :action => 'new'}
-    #  format.html {render :partial => 'ficha'}
-   # end
-  #end
-
-
-
-
-
-#def create_tratamiento
-#  params[:tratamiento][:paciente_id] = @paciente.id
-#  @paciente = Paciente.find(params[:paciente_id])
-#    @tratamiento = Tratamiento.new(params[:tratamiento])
-#
-#    respond_to do |format|
-#      if @tratamiento.save
-#        flash[:notice] = 'Tratamiento creado.'
-#        format.html {redirect_to(@tratamiento)}
-#
-#      else
-#        format.html {render :action => "tratamiento" }
-#      end
-#    end
-#end
-
- 
-
 def update_tratamiento
   @paciente = Paciente.find(params[:paciente_id])
   @tratamiento = Tratamiento.find(params[:id])
