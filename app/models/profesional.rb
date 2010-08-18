@@ -19,8 +19,8 @@ class Profesional < ActiveRecord::Base
 
   named_scope :by_documento, lambda { |documento|
     {
-      :conditions => ['documento = :documento',
-        { :documento => documento } ]
+      :conditions => ['lower(documento) LIKE :documento',
+        { :documento => "%"+documento.downcase+"%"} ]
     }
   }
 

@@ -7,7 +7,7 @@
   </tr>
 
 <% @profesionales.each do |profesional| %>
-  <tr>
+  <tr class="<%= cycle('','odd') %>">
     <td><%=h profesional.nombre %></td>
      <td><%=h profesional.consultorio.nombre %></td>
       <td><%=h profesional.matricula_profesional %></td>
