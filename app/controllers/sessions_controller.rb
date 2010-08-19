@@ -19,8 +19,10 @@ class SessionsController < ApplicationController
       # reset_session
       self.current_usuario = usuario
       new_cookie_flag = (params[:remember_me] == "1")
+      
+      session[:consultorio] = Consultorio.find(:first, :conditions => ['id in (?)', current_usuario.consultorios])
       session[:user_menu] = Item.find(:all, :conditions => 'parent_id = 1', :order => 'orden')
-
+      
       #paciente = Item.find(:first,:conditions => ["url = ?", '/pacientes'])
       #params[:item_selected] = paciente
       generar_submenus
@@ -28,7 +30,7 @@ class SessionsController < ApplicationController
       session[:subitems] = Item.find(:all, :conditions => "lower(url) LIKE '%/profesionales/%'")
 
       handle_remember_cookie! new_cookie_flag
-      redirect_back_or_default('/pacientes')
+      redirect_back_or_default('/consultorios')
       flash[:notice] = "Ingreso correcto"
     else
       note_failed_signin

@@ -1,0 +1,33 @@
+
+<table class="table-list">
+  <tr>
+  
+    <th>Prestacion</th>
+    <th>Diente</th>
+    <th>Cara</th
+    <th>Profesional</th>
+    <th>Estado de tratamiento</th>
+    <th>Importe</th>
+   
+  </tr>
+
+<% @tratamientos.each do |tratamiento| %>
+  <tr>
+    
+    <td><%=h tratamiento.prestacion.descripcion %></td>
+    <td><%=h tratamiento.diente %></td>
+    <td><%=h tratamiento.cara %></td>
+    <td><%=h tratamiento.profesional.nombre %></td>
+    <td><%=h tratamiento.estado_tratamiento.nombre%></td>
+    <td><%=h number_to_currency(tratamiento.importe_cubierto) %></td>
+
+    <td><%= link_to image_tag('magnifier_zoom_in.png'), tratamiento, :title => "Ver" %></td>
+    <td><%= link_to image_tag('pencil.png'), edit_tratamiento_path(tratamiento), :title => 'Editar' %></td>
+    <td><%= link_to image_tag('cancel.png'),tratamiento, :confirm => 'Esta seguro?', :method => :delete, :title=> 'Eliminar' %></td>
+    
+  </tr>
+
+<% end %>
+
+</table>
+<%= will_paginate @tratamientos, :previous_label=>'Anterior', :next_label => 'Siguiente' %>

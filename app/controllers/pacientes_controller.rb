@@ -4,10 +4,24 @@ class PacientesController < ApplicationController
   before_filter  :generar_submenus
   layout 'default'
 
+  def new_tratamiento
+    params[:paciente][:consultorio_id] = session[:consultorio][:id]
+    @paciente = Paciente.find(params[:paciente_id])
+    @tratamiento = Tratamiento.new
+    respond_to do |format|
+     format.html {render :layout => false}
+     format.html {render :controller => 'tratamientos', :action => 'new'}
+     
+    end
+  end
+
   def index
     @pagetitle = "Pacientes"
+    consultorios = []
+    current_usuario.consultorios.each {|x| consultorios << x.consultorio_id}
+    #@pacientes = Paciente.paginate :page=> params[:page], :per_page=> 15, :conditions => ['consultorio_id in ?', @consultorio.id], :order=> 'nombre ASC'
     @pacientes = Paciente.paginate :page=> params[:page], :per_page=> 15, :order=> 'nombre ASC'
-
+   
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @pacientes }
@@ -39,11 +53,10 @@ class PacientesController < ApplicationController
     @title = "Pacientes. Datos personales"
     @paciente = Paciente.find(params[:id])
     @imagenes = Imagen.find_all_by_paciente_id(@paciente)
+    
     unless @paciente.archivo_id.blank?
       @archivo = Archivo.find(@paciente.archivo_id)
     end
-
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @paciente }
@@ -52,7 +65,7 @@ class PacientesController < ApplicationController
   def show_imagen
     @imagen = Imagen.find(params [:id])
     respond_to do |format|
-      format.html {redirect to show_imagen_path(@imagen)}
+      format.html {redirect_to show_imagen_path(@imagen)}
     end
   end
 
@@ -189,6 +202,7 @@ class PacientesController < ApplicationController
     @paciente = Paciente.find(params[:id])
     @titular = Titular.new
     respond_to do |format|
+    
       format.html {render :layout => false}
     end
   end
@@ -204,7 +218,7 @@ class PacientesController < ApplicationController
         format.html {redirect_to(@paciente)}
         
       else
-        format.html { render :action => "new_titular" }
+        format.html { render :action => "" }
       end
     end
   end
@@ -222,11 +236,12 @@ class PacientesController < ApplicationController
   # POST /pacientes
   # POST /pacientes.xml
   def create
+    params[:paciente][:consultorio_id]= current_usuario.consultorios
     @paciente = Paciente.new(params[:paciente])
     @title = "Nuevo paciente"
     respond_to do |format|
       if @paciente.save
-        flash[:notice] = 'Paciente was successfully created.'
+        flash[:notice] = 'Paciente creado.'
         format.html { redirect_to(pacientes_path) }
         format.xml  { render :xml => @paciente, :status => :created, :location => @paciente }
       else
@@ -243,7 +258,7 @@ class PacientesController < ApplicationController
     @title = "Editando paciente"
     respond_to do |format|
       if @paciente.update_attributes(params[:paciente])
-        flash[:notice] = 'Paciente was successfully updated.'
+        flash[:notice] = 'Paciente actualizado.'
         format.html { redirect_to(@paciente) }
         format.xml  { head :ok }
       else
@@ -258,17 +273,30 @@ class PacientesController < ApplicationController
   def destroy
     @paciente = Paciente.find(params[:id])
     @paciente.destroy
-
     respond_to do |format|
       format.html { redirect_to(pacientes_url) }
       format.xml  { head :ok }
     end
   end
 
-  def lightbox
-    respond_to do |format|
-      format.html { render :layout => false }
-      
-    end
+  def listado_historias_clinicas
+   @paciente = Paciente.find(params[:id])
+   @pagetitle = "Historias Clinicas de "+ @paciente.nombre
+   respond_to do |format|
+    format.html{ render :partial => 'listado_historias_clinicas', :layout => 'default'}
+   end
   end
 end
+
+def update_tratamiento
+  @paciente = Paciente.find(params[:paciente_id])
+  @tratamiento = Tratamiento.find(params[:id])
+  respond_to do |format|
+    if 
+      @tratamiento.update_attributes(params[:tratamiento])
+    end
+    format.html{ redirect_to(@tratamiento)}
+  end
+end
+
+

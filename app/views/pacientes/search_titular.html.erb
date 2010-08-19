@@ -3,7 +3,7 @@
  
  <% form_remote_tag :url => results_titular_paciente_path,
                    :method => :post, :update => :search_hits do -%>
-<%= link_to_remote 'Nuevo', :url => new_titular_paciente_path,
+<%= link_to_remote 'Nuevo titular', :url => new_titular_paciente_path,
                                       :method => :get,
                                       :update => :formulario%>
     <ul id="search_form">

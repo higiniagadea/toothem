@@ -1,9 +1,9 @@
-class CreateTratamientos < ActiveRecord::Migration
+ class CreateTratamientos < ActiveRecord::Migration
   def self.up
     create_table "tratamientos" do |t|
       t.column :fecha, :date
       t.column :diente, :integer
-      t.column :cara, :string, :limit => 1
+      t.column :cara, :string, :limit => 10
       t.column :fecha_finalizacion, :date
       t.column :importe_cubierto, :float
       t.column :coseguro, :float

@@ -7,11 +7,13 @@ class ProfesionalesController < ApplicationController
   # GET /profesionales.xml
   layout 'default'
   def index
-  @pagetitle = "Profesionales"
-  @profesionales = Profesional.paginate :page=> params[:page], :per_page=>15, :order=> 'nombre ASC'
-  
-    
-
+ 
+    #@pagetitle = "Profesionales"
+    #@profesionales = Profesional.paginate :page=> params[:page], :conditions => ['consultorio_id in (?)', current_usuario.consultorios], :per_page=>15, :order=> 'nombre ASC'
+    #@profesionales = Profesional.find(:all,:conditions => ['consultorio_id in (?)', current_usuario.consultorios])
+   
+    @profesionales = Profesional.paginate :page=> params[:page], :per_page => 5
+     @pagetitle = "Profesionales"
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @profesionales }
@@ -52,6 +54,7 @@ class ProfesionalesController < ApplicationController
   # POST /profesionales.xml
   def create
     @pagetitle = "Nuevo profesional"
+    params[:profesional][:consultorio_id]= current_usuario.consultorios
     @profesional = Profesional.new(params[:profesional])
 
     respond_to do |format|
@@ -104,10 +107,27 @@ class ProfesionalesController < ApplicationController
     end
   end
 
-  
 
-  
+def buscar
+    @pagetitle = "Buscar Profesional"
+    respond_to do |format|
+      format.html # buscar.html.erb
 
-  
+    end
+  end
 
+  def resultado
+    respond_to do |format|
+    
+      if params[:nombre].blank? && params[:documento].blank?
+        format.html{render :text => "Ingrese Nombre y Documento ", :layout => false }
+      else
+        @profesionales = Profesional.basic_search(params)
+        format.html {render :layout => false}
+      end
+
+    end
+
+  end
+  
 end

@@ -1,32 +1,37 @@
 
 
 <%  form_for(:arancel, @arancel, :url => {:method => :post, :action => "index"})do |f| %>
-  <%= f.error_messages %>
+  <%= f.error_messages(:id => 'error', :header_message=>'', :message=>'Se encontraron los siguientes errores') %>
 <br/>
 <br/>
+<% prestaciones =  Prestacion.find(:all, :conditions => [ "id NOT IN
+                                                                    (SELECT prestacion_id FROM obras_sociales AS os INNER JOIN aranceles
+                                                                     ON obra_social_id = os.id
+                                                                     WHERE os.id =?)", @arancel.obra_social_id])%>
   <table id="form">
-    <tr>
-      <td>Prestación</td>
-      <td>Importe Cubierto</td>
-      <td>Coseguro</td>
-    </tr>
-    <tr>
-      <td>
-        <%= f.collection_select(:prestacion_id, Prestacion.find(:all, :conditions => [ "id NOT IN
-                                                                                        (SELECT prestacion_id FROM obras_sociales AS os INNER JOIN aranceles
-                                                                                        ON obra_social_id = os.id
-                                                                                        WHERE os.id =?)", @arancel.obra_social_id]), :id, :codigo_descripcion) %>
-      </td>
-      <td>
-        <%= f.text_field :importe_cubierto %>
-      </td>
-      <td>
-        <%= f.text_field :coseguro %>
-      </td>
-      <td>
-        <%= f.submit 'Crear' %>
-      </td>
-    </tr>   
+    <% unless prestaciones.blank? -%>
+      <tr>
+        <td>Prestación</td>
+        <td>Importe Cubierto</td>
+        <td>Coseguro</td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.collection_select(:prestacion_id, prestaciones, :id, :codigo_descripcion) %>
+        </td>
+        <td>
+          <%= f.text_field :importe_cubierto, :size => 15 %>
+        </td>
+        <td>
+          <%= f.text_field :coseguro, :size => 15 %>
+        </td>
+        <td>
+          <%= f.submit 'Crear' %>
+        </td>
+      </tr>
+    <%  else -%>
+      <a style ="font-weight: bold;">No existen mas prestaciones para agregar</a>
+    <% end -%>
   </table>
 <% end %>
 <table class="table-list">
@@ -40,11 +45,11 @@
 <% @aranceles.each do |arancel| %>
   <tr class ="<%= arancel.id %>">
     <td><%=h arancel.prestacion.descripcion %></td>
-    <td><%=h arancel.importe_cubierto%></td>
-    <td><%=h arancel.coseguro%></td>
-    <td ><%= link_to image_tag('pencil.png'), edit_obra_social_arancel_path(@obra_social, arancel)%></td>
-
-    <td><%= link_to image_tag('cancel.png'), [@obra_social,arancel], :confirm => 'Esta seguro que desea eliminar el arancel?', :method => :delete%></td>
+    <td><%= number_to_currency(arancel.importe_cubierto)%></td>
+    <td><%= number_to_currency(arancel.coseguro)%></td>
+    <td><%= link_to image_tag('pencil.png'), edit_obra_social_arancel_path(@obra_social, arancel), :title => 'Editar'%></td>
+   
+    <td><%= link_to image_tag('cancel.png'), [@obra_social,arancel], :confirm => 'Esta seguro que desea eliminar el arancel?', :method => :delete, :title => 'Eliminar'%></td>
 
 
 
@@ -56,3 +61,4 @@
   <%= will_paginate @aranceles%>
 </div>
 
+<%= link_to 'Volver', obras_sociales_path %>

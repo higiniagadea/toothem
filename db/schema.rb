@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 30) do
+ActiveRecord::Schema.define(:version => 29) do
 
   create_table "aranceles", :force => true do |t|
     t.integer "obra_social_id"
@@ -50,6 +50,12 @@ ActiveRecord::Schema.define(:version => 30) do
     t.datetime "updated_at"
   end
 
+  create_table "estados_tratamientos", :force => true do |t|
+    t.string   "nombre",     :limit => 100
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "fichas", :force => true do |t|
     t.date    "fecha"
     t.integer "localidad_id"
@@ -59,7 +65,7 @@ ActiveRecord::Schema.define(:version => 30) do
     t.integer "odontograma_id"
   end
 
-  create_table "historias_clinicas", :id => false, :force => true do |t|
+  create_table "historias_clinicas_generales", :force => true do |t|
     t.integer "paciente_id"
     t.boolean "alergia_anestesia"
     t.boolean "alergia_drogas_medicamentos"
@@ -133,7 +139,7 @@ ActiveRecord::Schema.define(:version => 30) do
     t.text    "leyenda_declaracion_jurada"
   end
 
-  create_table "historias_clinicas_ortodoncias", :id => false, :force => true do |t|
+  create_table "historias_clinicas_ortodoncias", :force => true do |t|
     t.integer "paciente_id"
     t.string  "nombre_apellido_padre"
     t.string  "ocupacion_padre"
@@ -370,11 +376,14 @@ ActiveRecord::Schema.define(:version => 30) do
 
   create_table "pacientes", :force => true do |t|
     t.string   "nombre",                              :null => false
+    t.integer  "tipo_documento_id",                   :null => false
     t.string   "matricula",            :limit => 50,  :null => false
+    t.string   "sexo",                                :null => false
+    t.string   "estado_civil",         :limit => 100
     t.string   "domicilio_particular",                :null => false
     t.string   "domicilio_laboral"
     t.date     "fecha_nacimiento"
-    t.string   "grupo_sanguineo",      :limit => 100
+    t.string   "grupo_sanguineo"
     t.string   "telefono_particular"
     t.string   "telefono_laboral"
     t.string   "movil",                :limit => 100
@@ -383,18 +392,16 @@ ActiveRecord::Schema.define(:version => 30) do
     t.string   "nivel_escolar",        :limit => 150
     t.string   "nro_afiliado",         :limit => 150
     t.integer  "archivo_id"
-    t.integer  "consultorio_id",                      :null => false
+    t.integer  "consultorio_id"
     t.integer  "titular_id"
     t.integer  "localidad_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "tipo_documento_id"
-    t.string   "sexo",                 :limit => nil
-    t.string   "estado_civil",         :limit => nil
   end
 
   create_table "perfiles", :force => true do |t|
-    t.string "nombre"
+    t.string  "nombre"
+    t.boolean "estatico"
   end
 
   create_table "perfiles_items", :force => true do |t|
@@ -404,6 +411,17 @@ ActiveRecord::Schema.define(:version => 30) do
 
   add_index "perfiles_items", ["item_id"], :name => "index_perfiles_items_on_item_id"
   add_index "perfiles_items", ["perfil_id"], :name => "index_perfiles_items_on_perfil_id"
+
+  create_table "permisos", :force => true do |t|
+    t.integer "perfil_id"
+    t.integer "item_id"
+    t.boolean "crear_editar"
+    t.boolean "ver"
+    t.boolean "borrar"
+  end
+
+  add_index "permisos", ["item_id"], :name => "index_permisos_on_item_id"
+  add_index "permisos", ["perfil_id"], :name => "index_permisos_on_perfil_id"
 
   create_table "prestaciones", :force => true do |t|
     t.string  "codigo"

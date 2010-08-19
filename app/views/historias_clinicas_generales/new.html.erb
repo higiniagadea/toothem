@@ -1,294 +1,390 @@
-<h1>Nueva Historia Clinica General de: </h1>
-<% form_for(@historia_clinica_general) do |f| %>
-  <%= f.error_messages %>
- <table>
- <tr>
-    <td><label>Alergia a la Anestesia:</label>
-    <%= f.check_box :alergia_anestesia %>
-    </td> 
-     
-    <td><label>Alergia a la Droga de Medicamentos: </label>
-    <%= f.check_box :alergia_drogas_medicamentos %>
-    </td>
+<% form_for(:historia_clinica_general, @historia_clinica_general, :url => {:method => :post, :action => "show"}) do |f| %>
+        <%= f.error_messages %>
+
+<div id="pacientes-screen">
+  <div id="pacientes-options"> 
+    <div id="pacientes-nombre">
+      <%=h @paciente.nombre %>
+
+    </div>
+    <div id="pacientes-actions">
+       <tr>
+      <%= f.submit 'Guardar' %>
+      </tr>
+      <table>        
+        <tr>
+          
+          <%= link_to image_tag('magnifier_zoom_in.png'), paciente_historia_clinica_general_path(@paciente), :title => 'Ver' %> |
+          <%= link_to image_tag('printer.png'), imprimir_paciente_historia_clinica_general_path(@paciente), :title => 'Imprimir', :popup => ['Imprimir', 'height=300,width=600'] %>
+        </tr>
+      </table>
+    </div>    
+  </div>
+    <%= link_to 'Volver', paciente_path(@paciente) %>
+  <fieldset class="pacientes-data">
     
-    <td><label>Descripcion de la Droga: </label><br/>
-    <%= f.text_field :desc_alergia_drogas_medicamentos %>
+ <table class="historia_clinica">
+    <tr class="odd">
+    <td class="labels"> Alergia a la Anestesia:</td>
+    <td>
+    <%= f.check_box :alergia_anestesia %>
     </td>
+    <td class="labels">Vacuna Antihepatitis: </td>
+    <td>
+    <%= f.check_box :vacuna_antihepatitis %>
+    </td>
+    <td class="labels">Jaquecas: </td>
+    <td>
+    <%= f.check_box :jaquecas %>
+    </td>
+
  </tr>
  <tr>
-    <td><label>Asma Bronquial: </label>
+   <td class="labels">Asma Bronquial: </td>
+    <td>
     <%= f.check_box :asma_bronquial %>
     </td>
-    <td><label>Epilepsia: </label>
+    <td class="labels">Epilepsia: </td>
+    <td>
     <%= f.check_box :epilepsia %>
     </td>
-    <td><label>Ictericia: </label>
+    <td class="labels">Ictericia: </td>
+    <td>
     <%= f.check_box :ictericia %>
     </td>
  </tr>
 
- <tr>
-    <td><label>Perdida de peso: </label>
-    <%= f.check_box :perdida_peso %>  
+ <tr class="odd">
+   <td class="labels">Perdida de peso: </td>
+    <td>
+    <%= f.check_box :perdida_peso %>
     </td>
-    <td><label>Fiebre Reumatica: </label>
+    <td class="labels">Fiebre Reumatica: </td>
+    <td>
     <%= f.check_box :fiebre_reumeatica %>
     </td>
 
-    <td><label>Enfermedades Sanguineas: </label>
+    <td class="labels">Enfermedades Sanguineas: </td>
+    <td>
+
     <%= f.check_box :enfermedades_sanguineas%>
     </td>
  </tr>
  <tr>
-    <td><label>Enfermedades Cardiacas: </label>
+   <td class="labels">Enfermedades Cardiacas: </td>
+    <td>
     <%= f.check_box :enfermedades_cardiacas %>
     </td>
-    <td><label>Diabetes: </label>
+    <td class="labels">Diabetes: </td>
+    <td>
     <%= f.check_box :diabetes %>
     </td>
-    <td><label>Problemas Endocrinos: </label>
+    <td class="labels">Problemas Endocrinos: </td>
+    <td>
     <%= f.check_box :problemas_endocrinos %>
     </td>
  </tr>
 
- <tr>
-    <td><label>Problemas Emocionales: </label>
+ <tr class="odd">
+   <td class="labels">Problemas Emocionales: </td>
+    <td>
     <%= f.check_box :problemas_emocionales %>
     </td>
-    <td><label>Tuberculosis: </label>
+    <td class="labels">Tuberculosis: </td>
+    <td>
     <%= f.check_box :tuberculosis %>
     </td>
-    <td><label>Problemas Respiratorios: </label>
+    <td class="labels">Problemas Respiratorios: </td>
+    <td>
     <%= f.check_box :problemas_respiratorios %>
     </td>
  </tr>
  <tr>
+   <td class="labels">Problemas Gastrointestinales: </td>
     <td>
-    <label>Problemas Gastrointestinales: </label>
+
     <%= f.check_box :problemas_gastrointestinales %>
     </td>
-    <td><label>Ulceras: </label>
+    <td class="labels">Ulceras: </td>
+    <td>
     <%= f.check_box :ulceras %>
     </td>
-    <td><label>Problemas Visuales: </label>
+    <td class="labels">Problemas Visuales: </td>
+    <td>
     <%= f.check_box :problemas_visuales %>
     </td>
  </tr>
- <tr>
-    <td><label>Glaucoma: </label>
+ <tr class="odd">
+   <td class="labels">Glaucoma: </td>
+    <td>
     <%= f.check_box :glaucoma %>
     </td>
-    <td><label>Jaquecas: </label>
-    <%= f.check_box :jaquecas %>
-    </td>
-    <td><label>Desordenes de Piel: </label>
+
+    <td class="labels">Desordenes de Piel: </td>
+    <td>
     <%= f.check_box :desordenes_piel %>
+    </td>
+     <td class="labels">Sangrado Excesivo de Heridas: </td>
+    <td>
+    <%= f.check_box :sangrado_excesivo_heridas %>
     </td>
  </tr>
  <tr>
-    <td><label>Desordenes de Tiroides: </label>
+   <td class="labels">Desordenes de Tiroides: </td>
+    <td>
     <%= f.check_box :desordenes_tiroides %>
     </td>
-    <td><label>Sarampion: </label>
+    <td class="labels">Sarampion: </td>
+    <td>
     <%= f.check_box :sarampion %>
     </td>
-    <td><label>Trastornos Psicologicos: </label>
+    <td class="labels">Trastornos Psicologicos: </td>
+    <td>
     <%= f.check_box :trastornos_psicologicos %>
     </td>
  </tr>
- <tr>
-    <td><label>Parotiditis: </label>
+ <tr class="odd">
+   <td class="labels">Parotiditis: </td>
+    <td>
     <%= f.check_box :parotiditis %>
     </td>
-    <td><label>Trastornos Auditivos: </label>
+    <td class="labels">Trastornos Auditivos: </td>
+    <td>
     <%= f.check_box :trastornos_auditivos %>
     </td>
-    <td><label>Varicela: </label>
+    <td class="labels">Varicela: </td>
+    <td>
     <%= f.check_box :varicela %>
     </td>
  </tr>
  <tr>
-    <td><label>Trastornos Oseos: </label>
+   <td class="labels">Trastornos Oseos: </td>
+    <td>
     <%= f.check_box :trastornos_oseos %>
     </td>
-    <td><label>Viruelas: </label>
+    <td class="labels">Viruelas: </td>
+    <td>
     <%= f.check_box :viruelas %>
     </td>
-    <td><label>Trastornos Renales: </label>
+    <td class="labels">Trastornos Renales: </td>
+    <td>
     <%= f.check_box :trastornos_renales %>
     </td>
  </tr>
 
 
- <tr>
-    <td><label>Escarlatina: </label>
+ <tr class="odd">
+   <td class="labels">Escarlatina: </td>
+    <td>
     <%= f.check_box :escarlatina %>
     </td>
-    <td><label>Trastornos Hepaticos: </label>
+    <td class="labels">Trastornos Hepaticos: </td>
+    <td>
     <%= f.check_box :trastornos_hepaticos %>
     </td>
-    <td><label>Artritis: </label>
+    <td class="labels">Artritis: </td>
+    <td>
     <%= f.check_box :artritis %>
     </td>
  </tr>
  <tr>
-    <td><label>Artrosis: </label>
+   <td class="labels">Artrosis: </td>
+    <td>
     <%= f.check_box :artrosis %>
     </td>
-    <td><label>Hepatitis: </label>
+    <td class="labels">Hepatitis: </td>
+    <td>
     <%= f.check_box :hepatitis %>
     </td>
-    <td><label>Infecciones Bucales Frecuentes: </label>
+    <td class="labels">Infecciones Bucales Frecuentes: </td>
+    <td>
     <%= f.check_box :infecciones_bucales_frecuentes %>
     </td>
  </tr>
 
- <tr>
-    <td><label>Hemofilia: </label>
+ <tr class="odd">
+   <td class="labels">Hemofilia: </td>
+    <td>
     <%= f.check_box :hemofilia %>
     </td>
-    <td><label>Enfermedades de Transmision Sexual: </label>
+    <td class="labels">Enfermedades de Transmision Sexual: </td>
+    <td>
     <%= f.check_box :enfermedades_transmision_sexual %>
     </td>
-    <td><label>Anemia: </label>
+    <td class="labels">Anemia: </td>
+    <td>
     <%= f.check_box :anemia %>
     </td>
  </tr>
  <tr>
-    <td><label>Herpes: </label>
+   <td class="labels">Herpes: </td>
+    <td>
     <%= f.check_box :herpes %>
     </td>
-    <td><label>HIV: </label>
+    <td class="labels">HIV: </td>
+    <td>
     <%= f.check_box :hiv %>
     </td>
-    <td><label>Homosexualidad: </label>
+    <td class="labels">Homosexualidad: </td>
+    <td>
     <%= f.check_box :homosexualidad %>
     </td>
  </tr>
 
- <tr>
-    <td><label>Transfusiones: </label>
+ <tr class="odd">
+   <td class="labels">Transfusiones: </td>
+    <td>
     <%= f.check_box :transfusiones %>
     </td>
-    <td><label>Dialisis: </label>
+    <td class="labels">Dialisis: </td>
+    <td>
     <%= f.check_box :dialisis %>
     </td>
-    <td><label>Embarazo: </label>
+    <td class="labels">Embarazo: </td>
+    <td>
     <%= f.check_box :embarazo %>
     </td>
  </tr>
  <tr>
-    <td><label>Ganglios: </label>
+   <td class="labels">Ganglios: </td>
+    <td>
     <%= f.check_box :ganglios %>
     </td>
-    <td><label>Hipertension: </label>
+    <td class="labels">Hipertension: </td>
+    <td>
     <%= f.check_box :hipertension %>
     </td>
-    <td><label>Hipotension: </label>
+    <td class="labels">Hipotension: </td>
+    <td>
     <%= f.check_box :hipotension %>
     </td>
  </tr>
 
 
- <tr>
-    <td><label>Derrame Cerebral: </label>
+ <tr class="odd">
+   <td class="labels">Derrame Cerebral: </td>
+    <td>
     <%= f.check_box :derrame_cerebral %>
     </td>
-    <td><label>Bronquitis Cronica: </label>
+    <td class="labels">Bronquitis Cronica: </td>
+    <td>
     <%= f.check_box :bronquitis_cronica %>
     </td>
-    <td><label>Fiebre: </label>
+    <td class="labels">Fiebre: </td>
+    <td>
     <%= f.check_box :fiebre %>
     </td>
  </tr>
  <tr>
-    <td><label>Sudoracion Fiebre Nocturna: </label>
+   <td class="labels">Sudoracion Fiebre Nocturna: </td>
+    <td>
     <%= f.check_box :sudoracion_fiebre_nocturna %>
     </td>
-    <td><label>Moretones Facilmente: </label>
+    <td class="labels">Moretones Facilmente: </td>
+    <td>
     <%= f.check_box :moretones_facilmente %>
     </td>
-    <td><label>Sangrado Excesivo de Heridas: </label>
-    <%= f.check_box :sangrado_excesivo_heridas %>
+
+ </tr>
+
+ <tr class="odd">
+   <td class="labels"> Alergia a la Droga de Medicamentos: </td>
+    <td>
+    <%= f.check_box :alergia_drogas_medicamentos %>
+    </td>
+    <td class="labels">Descripcion de la Droga: </td>
+    <td>
+    <%= f.text_field :desc_alergia_drogas_medicamentos, :size => 17%>
     </td>
  </tr>
 
-
-
  <tr>
-    <td><label>Vacuna Antihepatitis: </label>
-    <%= f.check_box :vacuna_antihepatitis %>
-    </td>
+
+   <td class="labels">Usado/usa alcohol </td>
     <td>
-    <label>Vacuna Antitetanica: </label>
-    <%= f.check_box :vacuna_antitetanica %>
-    </td>
-    <td>
-    <label>Cuando la vacuna antitetanica: </label><br/>
-    <%= f.text_field :cuando_vacuna_antitetanica %>
-    </td>
- </tr>
- <tr>
-    <td><label>Usado/usa Alcohol: </label>
     <%= f.check_box :usado_usa_alcohol %>
     </td>
-    <td><label>Promedio por semana en litros: </label><br/>
-    <%= f.text_field :promedio_por_semana_en_litros %>
+    <td class="labels">Promedio por semana</td>
+    <td>
+    <%= f.text_field :promedio_por_semana_en_litros, :size => 17%>
     </td>
-   
-   <td><label>Usado/usa Drogas: </label>
-   <%= f.check_box :usado_usa_drogas %>
-   </td>
+
  </tr>
+ <tr class="odd">
+   <td class="labels">Usado/usa drogas: </td>
+   <td>
+   <%= f.check_box :usado_usa_drogas %>
+
+   </td>
+   <td class="labels">Tipos: </td>
+   <td>
+   <%= f.text_field :tipo_drogas_usadas, :size => 17%>
+   </td>
+
+ </tr>
+ 
+
  <tr>
-   <td><label>Tipos de drogas usadas: </label><br/>
-   <%= f.text_field :tipo_drogas_usadas %>
-   </td>
-   <td><label>Cantidad de Drogas Usadas: </label><br/>
-   <%= f.text_field :cantidad_drogas_usadas %>
-   </td>
-   <td><label>Usado/usa Tabaco: </label>
+   <td class="labels">Usado/usa tabaco: </td>
+   <td>
    <%= f.check_box :usado_usa_tabaco %>
    </td>
+   <td class="labels">Tipo usado: </td>
+   <td>
+   <%= f.text_field :tipo_tabaco_usado, :size => 10%>
+   </td>
+
+   <td class="labels">Cantidad: </td>
+   <td>
+   <%= f.text_field :cantidad_tabaco_usado, :size => 10 %>
+   </td>
+
  </tr>
- <tr>
-   <td><label>Tipo de tabaco usado: </label><br/>
-   <%= f.text_field :tipo_tabaco_usado %>
-   </td>
-   <td><label>Cantidad de Tabaco Usado: </label><br/>
-   <%= f.text_field :cantidad_tabaco_usado %>
-   </td>
-   <td><label>Presion Arterial Promedio: </label><br/>
-    <%= f.text_field :presion_arterial_promedio %>
+  
+ <tr class="odd">
+   <td class="labels">Presion Arterial Promedio: </td>
+   <td>
+    <%= f.text_field :presion_arterial_promedio, :size => 10%>
     </td>
  </tr>
  <tr>
-    <td><label>Farmacos Consumidos en los ultimos años: </label><br/>
-    <%= f.text_field :farmacos_consumidos_ultimos_anios %>
+   <td class="labels">Farmacos Consumidos en los ultimos años: </td>
+    <td>
+    <%= f.text_field :farmacos_consumidos_ultimos_anios, :size => 17%>
+
     </td>
  </tr>
- <tr>
-    <td><label>Otros: </label><br/>
-    <%= f.text_field :otros %>
+
+ <tr class="odd">
+   <td class="labels">Otros: </td>
+    <td>
+    <%= f.text_field :otros, :size => 17%>
     </td>
   </tr>
   <tr>
-    <td><label>Observaciones: </label><br/>
-    <%= f.text_field :observaciones %>
+    <td class="labels">Observaciones: </td>
+    <td>
+    <%= f.text_field :observaciones, :size => 17%>
     </td>
   </tr>
 
- <tr>
-    <td><label>Declaracion Jurada: </label><br/>
-    <%= f.text_field :leyenda_declaracion_jurada %>
+  <tr class="odd">
+   <td class="labels">Declaracion Jurada: </td>
+    <td>
+    <%= f.text_field :leyenda_declaracion_jurada, :size => 17%>
     </td>
  </tr>
+  
+    <td>
+      <%= submit_tag "Guardar" %>
 
+    </td>
+     <td>
+    <%= link_to 'Volver', paciente_path(@paciente) %>
+     </td>
  </table>
-
-  <p>
-    <%= f.submit 'Guardar' %>
-  </p>
-<% end %>
-
-<%= link_to 'Volver', historias_clinicas_generales_path %>
+  </fieldset>
+<%end%>
+<div style="clear:both;"></div>
+    
+ 

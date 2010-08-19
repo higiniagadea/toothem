@@ -1,29 +1,27 @@
 
   <% form_for(@imagen, :html => {:multipart => true }) do |f| -%>
-    <ul>  
-  <li>
-    <%= f.hidden_field :paciente_id,"value"=>@paciente.id %>
-  </li>
-  <li>
-            <label for="archivo">Seleccione archivo:</label>
-
-            <%= file_field :archivo, :uploaded_data %>
-            
-
-
+  <%= f.error_messages %>
+  <ul>  
+    <li>
+    <%= f.hidden_field :paciente_id, "value" => @paciente.id %>
+    </li>
+    
+        <li>
+        <label for="archivo">Seleccione archivo:</label>
+        <%= file_field :archivo, :uploaded_data %>
         </li>
         <li>
-            <label for="descripcion">Descripcion</label>
-            <%= f.text_field :descripcion %>
+        <label for="descripcion">Descripcion</label>
+        <%= f.text_field :descripcion %>
         </li>
         <li>
-          
-          <label style=" float: left" for="observaciones">Observaciones</label>
-            <%= f.text_area :observaciones, :rows => 5 %>
+        <label style=" float: left" for="observaciones">Observaciones</label>
+        <%= f.text_area :observaciones, :rows => 5 %>
         </li>
+
         <li>
-          <label></label>
-          <%= f.submit 'Aceptar' %>
+        <label></label>
+        <%= f.submit 'Crear Imagen' %>
         </li>
         
    </ul>

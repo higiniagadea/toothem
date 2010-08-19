@@ -1,0 +1,16 @@
+<h1>Editando estado tratamiento</h1>
+
+<% form_for(@estado_tratamiento) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :nombre %><br />
+    <%= f.text_field :nombre %>
+  </p>
+  <p>
+    <%= f.submit 'Actualizar' %>
+  </p>
+<% end %>
+
+<%= link_to 'Ver', @estado_tratamiento %> |
+<%= link_to 'Volver', estados_tratamientos_path %>

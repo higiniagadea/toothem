@@ -1,0 +1,990 @@
+  
+<div id="pacientes-screen">
+    <table>
+    <tr>
+      <td>
+             </td>
+      <td style="font-size:25px;">Historia Ortodoncica de: <%=h @paciente.nombre %></td>
+    </tr>
+  </table>
+
+  <fieldset class="pacientes-data">
+
+  <table>
+  <legend>Historia Familiar</legend>
+    <tr>
+  
+      <td>Nombre y Apellido del Padre:</td>
+      <td><%=h @historia_clinica_ortodoncia.nombre_apellido_padre %></td>
+    </tr>
+    <tr>
+      <td>Ocupacion del Padre</td>
+      <td><%=h @historia_clinica_ortodoncia.ocupacion_padre %>
+    </td>
+    </tr>
+
+     <tr>
+      <td>Nombre y Apellido de la Madre</td>
+      <td><%=h @historia_clinica_ortodoncia.nombre_apellido_madre%>
+     </td>
+     </tr>
+     <tr>
+
+      <td>Ocupacion de la Madre</td>
+      <td><%=h @historia_clinica_ortodoncia.ocupacion_madre%>
+      </td>
+     </tr>
+
+     <tr>
+      <td>Cantidad de Hermanos</td>
+      <td><%=h @historia_clinica_ortodoncia.cantidad_hermanos%>
+    </td>
+     </tr>
+     <tr>
+      <td>Nombre y Edades de los Hermanos</td>
+      <td><%=h @historia_clinica_ortodoncia.nombres_edades_hermanos%>
+    </td>
+    </tr>
+
+    <tr>
+        <td>Nombre y Apellido del Medico Familiar</td>
+        <td><%=h @historia_clinica_ortodoncia.nombre_apellido_medico_familiar%>
+        </td>
+    </tr>
+    <tr>
+        <td>Domicilio del Medico</td>
+        <td><%=h @historia_clinica_ortodoncia.domicilio_medico%>
+        </td>
+    </tr>
+    <tr>
+        <td>Vive con:   </td>
+        <td><%=h @historia_clinica_ortodoncia.vive_con%>
+        </td>
+    </tr>
+    <tr>
+        <td>Nombre del Conyuge</td>
+        <td><%=h @historia_clinica_ortodoncia.nombre_conyuge%>
+        </td>
+    </tr>
+  
+  </table>
+</fieldset>
+  
+
+  <fieldset class="pacientes-data">
+  <table class="historia_clinica">
+  <legend>Historia Medica</legend>
+       <tr>
+       <td>Tratamiento Medico</td>
+       <td><%=h boolean_desc(@historia_clinica_ortodoncia.tratamiento_medico)%>
+       </td>
+
+       <% if @historia_clinica_ortodoncia.cual_medicamento -%>
+       <td>Esta tomando medicamentos?</td>
+       <td><%=h boolean_desc(@historia_clinica_ortodoncia.tomando_medicamentos)%>
+       </td>
+       <% else -%>
+      
+       <td>Cual medicamento:</td>
+       <td><%=h @historia_clinica_ortodoncia.cual_medicamento%>
+       </td>
+       <%end -%>
+       </tr>
+
+
+      <tr>
+      <% if @historia_clinica_ortodoncia.condicion -%>
+        <td>Atencion Medica en los ultimos dos años:</td>
+        <td><%=h boolean_desc(@historia_clinica_ortodoncia.atencion_medica_ultimos_dos_anios)%>
+        </td>
+       <%else -%>
+        <td>Condicion</td>
+        <td><%=h @historia_clinica_ortodoncia.condicion%>
+        </td>
+        <td>Peso</td>
+        <td><%=h @historia_clinica_ortodoncia.peso%>
+       </td>    
+        <td>Altura</td>
+        <td><%=h @historia_clinica_ortodoncia.altura%>
+      </td>
+      <%end -%>
+      </tr>
+
+      <tr>
+       <% if @historia_clinica_ortodoncia.trastorno_fisico -%>
+       <td>Cual Trastorno Fisico</td>
+       <td><%=h @historia_clinica_ortodoncia.cual_trastorno_fisico%>
+       </td>
+       <%else -%>
+       <td>Trastorno fisico</td>
+       <td><%=h boolean_desc(@historia_clinica_ortodoncia.trastorno_fisico)%>
+      </td>
+      <%end -%>
+      </tr>
+
+
+     <tr>
+      <% if @historia_clinica_ortodoncia.trastorno_psiquico -%>
+        <td>Cual Trastorno Psiquico</td>
+        <td><%=h @historia_clinica_ortodoncia.cual_trastorno_psiquico%>
+      </td>
+      <%else -%>
+     
+        <td>Trastorno psiquico</td>
+        <td><%=h boolean_desc(@historia_clinica_ortodoncia.trastorno_psiquico) %>
+      </td>
+      <%end -%>
+    </tr>
+
+    <tr>
+      <%if @historia_clinica_ortodoncia.fue_hospitalizado -%>
+        <td>Causa de la hospitalizacion</td>
+        <td><%=h boolean_desc(@historia_clinica_ortodoncia.causa_hospitalizacion)%>
+      </td>
+     <% else -%>
+        <td>Fue hospitalizado</td>
+        <td><%=h boolean_desc(@historia_clinica_ortodoncia.fue_hospitalizado) %>
+      </td>
+      <%end -%>
+    </tr>
+    
+    <tr>
+     <% if @historia_clinica_ortodoncia.operado_amigdalas -%>
+        <td>Edad de operado de Amigdalas</td>
+        <td><%=h @historia_clinica_ortodoncia.edad_operado_amigdalas %>
+      </td>
+      <%else -%>
+        <td>Operado de amigdalas</td>
+        <td><%=h boolean_desc(@historia_clinica_ortodoncia.operado_amigdalas)%>
+      </td>
+      <%end -%>
+    </tr>
+    
+    <tr>
+        <% if @historia_clinica_ortodoncia.operado_adenoides -%>
+        <td>Edad de Operado de Adenoides</td>
+        <td><%=h boolean_desc(@historia_clinica_ortodoncia.edad_operado_adenoides)%>
+      </td>
+      <%else-%>
+        <td>Operado de adenoides</td>
+        <td><%=h @historia_clinica_ortodoncia.operado_adenoides%>
+      </td>
+      <%end -%>
+      </tr>
+
+     <tr>
+        <%  if @historia_clinica_ortodoncia.operado_apendice -%>
+        <td>Edad de operado de Apendice</td>
+        <td><%=h @historia_clinica_ortodoncia.edad_operado_apendice %>
+      </td>
+      <%else -%>
+      <td>Operado de Apendice</td>
+      <td><%=h boolean_desc(@historia_clinica_ortodoncia.operado_apendice) %>
+      </td>
+      <%end -%>
+     </tr>
+
+      <tr>
+        <% if @historia_clinica_ortodoncia.alergia_drogas_medicamentos -%>
+        <td>Alergia a que droga</td>
+        <td><%=h @historia_clinica_ortodoncia.desc_alergia_drogas_medicamentos%>
+      </td>
+        <%else -%>
+        <td>Alergia a drogas de medicamentos?</td>
+        <td><%=h boolean_desc(@historia_clinica_ortodoncia.alergia_drogas_medicamentos)%>
+      </td>
+      <%end -%>
+    </tr>
+
+    <tr>      
+        <td>Alergia a la anestesia?</td>
+        <td><%=h boolean_desc(@historia_clinica_ortodoncia.alergia_anestesia) %>
+        </td>
+        <td>Asma Bronquial</td>
+        <td><%=h boolean_desc(@historia_clinica_ortodoncia.asma_bronquial)%>
+        </td>
+        <td>Epilepsia</td>
+        <td><%=h boolean_desc(@historia_clinica_ortodoncia.epilepsia)%>
+        </td>
+    </tr>
+
+    <tr>
+         <td>Ictericia</td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.ictericia)%>
+         </td>
+         <td>Perdida de Peso</td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.perdida_peso)%>
+         </td>
+         <td>Fiebre Reumeatica</td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.fiebre_reumeatica)%>
+         </td>
+     </tr>
+
+     <tr>
+       <td>Enfermedades Sanguineas</td>
+       <td><%=h boolean_desc(@historia_clinica_ortodoncia.enfermedades_sanguineas)%>
+       </td>
+       <td>Enfermedades Cardiacas</td>
+       <td><%=h boolean_desc(@historia_clinica_ortodoncia.enfermedades_cardiacas)%>
+       </td>
+       <td>Diabetes</td>
+       <td><%=h boolean_desc(@historia_clinica_ortodoncia.diabetes)%>
+       </td>
+     </tr>
+
+     <tr>
+       <td>Problemas Endocrinos</td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.problemas_endocrinos)%>
+         </td>
+         <td>Problemas Emocionales</td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.problemas_emocionales)%>
+         </td>
+         <td>Tuberculosis</td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.tuberculosis)%>
+         </td>
+     </tr>
+
+     <tr>
+         <td>Problemas Respiratorios</td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.problemas_respiratorios)%>
+         </td>
+         <td>Problemas Gastrointestinales</td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.problemas_gastrointestinales)%>
+         </td>
+         <td>Ulceras</td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.ulceras)%>
+         </td>
+     </tr>
+
+     <tr>
+         <td>Problemas Visuales</td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.problemas_visuales)%>
+         </td>
+         <td>Glaucoma</td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.glaucoma)%>
+         </td>
+         <td>Jaquecas</td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.jaquecas)%>
+         </td>
+     </tr>
+
+     <tr>
+         <td>Desordenes de piel</td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.desordenes_piel)%>
+         </td>
+         <td>Desordenes de tiroides</td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.desordenes_tiroides)%>
+         </td>
+         <td>Sarampion</td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.sarampion)%>
+         </td>
+     </tr>
+
+     <tr>
+         <td>Trastornos Psicologicos</td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.trastornos_psicologicos)%>
+         </td>
+         <td>Parotiditis</td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.parotiditis)%>
+         </td>
+         <td>Trastornos Auditivos</td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.trastornos_auditivos)%>
+         </td>
+     </tr>
+
+     <tr>
+         <td>Varicela</td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.varicela)%>
+         </td>
+         <td>Trastornos Oseos </td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.trastornos_oseos)%>
+         </td>
+         <td>Viruelas</td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.viruelas)%>
+         </td>
+     </tr>
+
+     <tr>
+         <td>Trastornos Renales </td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.trastornos_renales)%>
+         </td>
+         <td>Escarlatina</td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.escarlatina)%>
+         </td>
+         <td>Trastornos Hepaticos</td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.trastornos_hepaticos)%>
+         </td>
+     </tr>
+
+  
+     <tr>
+         <td>Artritis</td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.artritis)%>
+         </td>
+         <td>Artrosis</td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.artrosis)%>
+         </td>
+         <td>Hepatitis</td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.hepatitis)%>
+         </td>
+     </tr>
+    
+
+     <tr>
+         <td>Infecciones Bucales Frecuentes</td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.infecciones_bucales_frecuentes)%>
+         </td>
+         <td>Hemofilia</td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.hemofilia)%>
+         </td>
+         <td>Enfermedades de Transmision Sexual</td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.enfermedades_transmision_sexual)%>
+         </td>
+     </tr>
+</table>
+  </fieldset>
+  <fieldset class="pacientes-data">
+  <table>
+     <tr>
+       <td>Anemia</td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.anemia)%>
+         </td>
+         <td>Herpes</td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.herpes)%>
+         </td>
+         <td>HIV</td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.hiv)%>
+         </td>
+      </tr>
+   
+      <tr>
+          <td>Homosexualidad</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.homosexualidad)%>
+          </td>
+          <td>Trasnfusiones</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.transfusiones)%>
+          </td>
+          <td>Dialisis</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.dialisis)%>
+          </td>
+      </tr>
+
+
+      <tr>
+          <td>Embarazo</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.embarazo)%>
+          </td>
+          <td>Ganglios</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.ganglios)%>
+          </td>
+          <td>Hipertension</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.hipertension)%>
+          </td>
+      </tr>
+
+      <tr>
+        <td>Hipotension</td>
+        <td><%=h boolean_desc(@historia_clinica_ortodoncia.hipotension)%>
+        </td>
+        <td>Derrame Cerebral</td>
+        <td><%=h boolean_desc(@historia_clinica_ortodoncia.derrame_cerebral)%>
+        </td>
+        <td>Bronquitis Cronica</td>
+        <td><%=h boolean_desc(@historia_clinica_ortodoncia.bronquitis_cronica)%>
+        </td>
+        </tr>
+
+          <tr>
+          <td>Fiebre</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.fiebre)%>
+          </td>
+          <td>Sudoracion Fiebre Nocturna</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.sudoracion_fiebre_nocturna)%>
+          </td>
+          <td>Moretones Facilmente</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia)%>
+          </td>
+      </tr>
+
+      <tr>
+          <td>Sangrado Excesivo de Heridas</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.sangrado_excesivo_heridas)%>
+          </td>
+          <td>Vacuna Antihepatitis</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.vacuna_antihepatitis)%>
+          </td>
+      </tr>
+
+      <tr>
+        <% if @historia_clinica_ortodoncia.vacuna_antitetanica -%>
+          <td>Cuando la vacuna Antitetanica?</td>
+          <%=h boolean_desc(@historia_clinica_ortodoncia.cuando_vacuna_antitetanica)%>
+          <%else -%>
+          <td>Vacuna antitetanica</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.vacuna_antitetanica)%>
+          </td>
+        <%end -%>
+      </tr>
+
+      <tr>
+          <% if @historia_clinica_ortodoncia.usado_usa_alcohol -%>
+          <td>Promedio por semana en litros</td>
+          <td><%=h @historia_clinica_ortodoncia.promedio_por_semana_en_litros%>
+          </td>
+          <%else -%>
+          <td>Usado/usa Alcohol</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.usado_usa_alcohol)%>
+          </td>
+          <%end -%>
+      </tr>
+
+      <tr>
+          <% if @historia_clinica_ortodoncia.usado_usa_drogas -%>
+          <label>Tipo de drogas usadas</label>
+          <td><%=h  @historia_clinica_ortodoncia.tipo_drogas_usadas%>
+          </td>
+          <%else -%>
+          <td>Usado/usa Alcohol</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.usado_usa_alcohol)%>
+          </td>
+          <%end -%>
+      </tr>
+
+       <tr>
+          <% if @historia_clinica_ortodoncia.usado_usa_tabaco -%>
+          <td>Cantidad de tabaco</td>
+          <td><%=h @historia_clinica_ortodoncia.cantidad_tabaco_usado%>
+          </td>
+          <td>
+          <label>Tipo de tabaco usado</label>
+          <%=h @historia_clinica_ortodoncia.tipo_tabaco_usado%>
+          </td>
+          <%else -%>
+          <td>Usado/usa tabaco</td>
+          <td><%h boolean_desc(@historia_clinica_ortodoncia.usado_usa_tabaco)%>
+          </td>
+          <%end -%>
+      </tr>
+
+      <tr>
+          <td>Presion Arterial Promedio</td>
+          <td><%=h @historia_clinica_ortodoncia.presion_arterial_promedio%>
+          </td>
+          <td>Farmacos Consumidos en los ultimos años</td>
+          <td><%=h @historia_clinica_ortodoncia.farmacos_consumidos_ultimos_anios%>
+          </td>
+          <td>Otros</td>
+          <td><%=h @historia_clinica_ortodoncia.otros%>
+          </td>
+      </tr>
+
+       <tr>
+          <td>Observaciones</td>
+          <td><%=h @historia_clinica_ortodoncia.observaciones%>
+          </td>
+      </tr>
+      </table>
+</fieldset>
+  
+
+    <fieldset class="pacientes-data">
+    <table class="historia_clinica">
+      <legend>Historia Bucodental</legend>
+      <tr>
+          <td>Fue al odontologo anteriormente?</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.fue_al_odontologo_anteriormente)%>
+          </td>
+          <td>Fecha del ultimo control odontologico</td>
+          <td><%=h @historia_clinica_ortodoncia.fecha_ultimo_control_odontologico%>
+          </td>
+          <td>Razon de la concurrencia</td>
+          <td><%=h @historia_clinica_ortodoncia.razon_concurrencia%>
+          </td>
+      </tr>
+
+      <tr>
+         <td>Dolor/Ruido de articulaciones maxilares</td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.dolor_ruido_articulaciones_maxilares)%>
+         </td>
+         <td>Dientes Traumatizados</td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.dientes_traumatizados)%>
+         </td>
+         <td>Correccion Foniatrica</td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.correccion_foniatrica)%>
+         </td>
+      </tr>
+
+      <tr>
+          <% if @historia_clinica_ortodoncia.succion_pulgar -%>
+          <td>Succion del pulgar hasta la edad de:</td>
+          <td><%=h @historia_clinica_ortodoncia.succion_pulgar_hasta_edad_de%>
+          </td>
+          <%else -%>
+          <td>Succion del pulgar</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.succion_pulgar)%>
+          </td>
+          <%end -%>
+      </tr>
+
+      <tr>
+          <% if @historia_clinica_ortodoncia.rechinamiento_dentario -%>
+          <td>Cuando rechinamiento dentario</td>
+          <td><%=h @historia_clinica_ortodoncia.cuando_rechinamiento_dentario%>
+          </td>
+          <%else -%>
+          <td>Rechinamiento Dentario</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.rechinamiento_dentario)%>
+          </td>
+          <%end -%>
+      </tr>
+      
+      <tr>
+         <% if @historia_clinica_ortodoncia.succion_digital -%>
+         <td>Succion digital hasta la edad de:</td>
+         <td><%=h @historia_clinica_ortodoncia.succion_digital_hasta_edad_de%>
+         </td>
+         <%else -%>
+         <td>Succion Digital</td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.succion_digital) %>
+         </td>
+         <%end -%>
+      </tr>
+
+      <tr>
+          <td>Empuje Lingual</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.empuje_lingual)%>
+          </td>
+          <td>Mordedura/succion del labio</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.mordedura_succion_labio)%>
+          </td>
+          <td>Presion Labial</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.presion_labial)%>
+          </td>
+      </tr>
+
+      <tr>
+          <td>Respirador Bucal</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.respirador_bucal)%>
+          </td>
+          <td>Se come las uñas?</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.come_unas)%>
+          </td>
+      </tr>
+
+      <tr>
+          <td>Uso chupete?</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.uso_chupete)%>
+          </td>
+          <td>Uso mamadera?</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.uso_mamadera)%>
+          </td>
+       </tr>
+
+      <tr>
+          <% if @historia_clinica_ortodoncia.amamantamiento -%>
+          <td>Tiempo de Amamamtamiento</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.tiempo_amamantamiento)%>
+          </td>
+          <% else -%>
+          <td>Amamantamiento</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.amamantamiento)%>
+          </td>
+          <%end -%>
+      </tr>
+
+      <tr>
+          <td>Dificultad para masticar</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.dificultad_masticar)%>
+          </td>
+          <td>Dificultad para tragar</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.dificultad_tragar)%>
+          </td>
+          <td>Dificultad para hablar</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.dificultad_hablar)%>
+          </td>
+      </tr>
+
+      <tr>
+          <td>Estado Bucal General</td>
+          <td><%=h @historia_clinica_ortodoncia.estado_bucal_general%>
+          </td>
+          <td>Indice de Caries</td>
+          <td><%=h @historia_clinica_ortodoncia.indice_caries%>
+          </td>
+          <td>Cierre Labial</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.cierre_labial)%>
+          </td>
+      </tr>
+
+      <tr>
+          <td>Periodonto</td>
+          <td><%=h @historia_clinica_ortodoncia.periodonto%>
+          </td>
+          <td>Cepilla los Dientes?</td>
+          <td><%=h @historia_clinica_ortodoncia.cepilla_dientes%>
+          </td>
+          <td>Cuando se cepilla los dientes?</td>
+          <td><%=h @historia_clinica_ortodoncia.cepilla_dientes_cuando%>
+          </td>
+      </tr>
+
+      <tr>
+          <td>Usa hilo dental?</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.usa_hilo_dental)%>
+          </td>
+          <td>Indice de placa</td>
+          <td><%=h @historia_clinica_ortodoncia.indice_placa%>
+          </td>
+          <td>Tratamiento de fluor</td>
+          <td><%=h @historia_clinica_ortodoncia.tratamiento_fluor%>
+          </td>
+      </tr>
+
+      <tr>
+          <td>Topicaciones</td>
+          <td> <%=h @historia_clinica_ortodoncia.topicaciones%>
+          </td>
+          <td>Buches</td>
+          <td><%=h @historia_clinica_ortodoncia.buches%>
+          </td>
+      </tr>
+      </table>
+    </fieldset>
+
+     <fieldset class="pacientes-data">
+  <table class="historia_clinica">
+        <legend>Examen Radiologico</legend>
+      
+      <tr>
+         <td>Anomalias forma</td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.anomalias_forma)%>
+         </td>
+         <td>Perdida osea cresta alveolar</td>
+         <td><%=h boolean_desc(@historia_clinica_alveolar)%>
+         </td>
+         <td>Agenesias</td>
+         <td><%=h boolean_desc(@historia_clinica_ortodoncia.agenesias)%>
+         </td>
+      </tr>
+
+      <tr>
+          <td>Lesion Periapical</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.lesion_periapical)%>
+          </td>
+          <td>Supernumerarios</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.supernumerarios)%>
+          </td>
+          <td>Lesion Intraradicular</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.lesion_intraradicular)%>
+          </td>
+      </tr>
+
+      <tr>
+          <td>Ectopicos</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.ectopicos)%>
+          </td>
+          <td>Fractura Coronaria</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.fractura_coronaria)%>
+          </td>
+          <td>Retenidos</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.retenidos)%>
+          </td>
+      </tr>
+
+      <tr>
+          <td>Fractura Radicular</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.fractura_radicular)%>
+          </td>
+          <td>Anquilosados</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.anquilosados)%>
+          </td>
+          <td>Reabsorcion Radicular</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.reabsorcion_radicular)%>
+          </td>
+      </tr>
+
+      
+      <tr>
+          <td>Erupcion Retrasada</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.erupcion_retrasada)%>
+          </td>
+          <td>Erupcion Precoz</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.erupcion_precoz)%>
+          </td>
+          <td>Exceso obturacion</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.exceso_obturacion)%>
+          </td>
+      </tr>
+      
+      <tr>
+          <td>Caries esmalte</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.caries_esmalte)%>
+        </td>
+       
+          <td>Caries dentina</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.caries_dentina)%>
+        </td>
+        
+          <td>Caries cemento</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.caries_cemento)%>
+        </td>
+      </tr>
+
+      <tr>
+        
+          <td>RX Panoramica</td>
+          <td><%=h @historia_clinica_ortodoncia.rx_panoramica%>
+        </td>
+     
+        <td>RX Seriada</td>
+          <td><%=h @historia_clinica_ortodoncia.rx_seriada%>
+        </td>
+        
+          <td>Teleradiografia de Perfil</td>
+          <td><%=h @historia_clinica_ortodoncia.teleradiografia_perfil%>
+        </td>
+      </tr>
+
+      <tr>
+       
+          <td>RX Diagnostico Clinico</td>
+          <td><%=h @historia_clinica_ortodoncia.rx_diagnostico_clinico%>
+        </td>
+      </tr>
+        </table>
+      </fieldset>
+
+      <fieldset class="pacientes-data">
+ <table class="historia_clinica">
+          <legend>Historia Ortodoncica</legend>
+    
+      <tr>
+          <% if @historia_clinica_ortodoncia.consulta_ortodoncica_previa -%>
+           
+          <td>Fecha consulta ortodoncica</td>
+          <td><%=h @historia_clinica_ortodoncia.fecha_consulta_ortodoncica%>
+          </td>
+          <td>Medico de la consulta ortodoncica</td>
+          <td><%=h @historia_clinica_ortodoncia.medico_consulta_ortodoncica%>
+        </td>
+        <%else -%>
+         <td>Consulta Ortodoncica Previa</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.consulta_ortodoncica_previa)%>
+        </td>
+        <%end -%>
+      </tr>
+
+      <tr>
+     
+          <td>Interes del paciente para el tratamiento ortodoncico</td>
+          <td><%=h @historia_clinica_ortodoncia.interes_paciente_tratamiento_ortodoncico%>
+        </td>
+        
+          <td>Algun familiar con tratamiento ortodoncico/ortopedico</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.algun_familiar_tratamiento_ortodoncico_ortopedico)%>
+        </td>
+        
+          <td>Otros comentarios acerca de ortodoncia</td>
+          <td><%=h @historia_clinica_ortodoncia.otros_comentarios_ortodoncia%>
+        </td>
+      </tr>
+        </table>
+      </fieldset>
+
+      <fieldset class="pacientes-data">
+ <table class="historia_clinica">
+        <legend>Examen Bucal</legend>
+    
+        <tr>
+          <td>Dientes Presentes en la boca</td>
+          <td><%=h @historia_clinica_ortodoncia.dientes_presentes_boca%>
+        </td>
+     
+          <td>Evaluacion Clinica</td>
+          <td><%=h @historia_clinica_ortodoncia.evaluacion_clinica%>
+        </td>
+      </tr>
+        </table>
+      </fieldset>
+
+
+  <fieldset class="pacientes-data">
+ <table>
+          <legend>Articulacion Temporo Mandibular</legend>
+      <tr>
+       
+        <td>Limitacion</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.limitacion)%>
+        </td>
+      
+          <td>Desviacion</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.desviacion)%>
+        </td>
+     
+          <td>Hipermovilidad</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.hipermovilidad)%>
+        </td>
+      </tr>
+
+      <tr>
+        
+          <td>Ruidos</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.ruidos)%>
+        </td>
+        
+          <td>Lateralidad</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.lateralidad)%>
+        </td>
+     
+          <td>Hacia la izquierda</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.hacia_izquierda)%>
+        </td>
+      </tr>
+
+      <tr>
+        
+          <td>Hacia la derecha</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.hacia_derecha)%>
+        </td>
+      
+          <td>Chasquido</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.chasquido)%>
+        </td>
+      
+          <td>Crepitacion</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.crepitacion)%>
+        </td>
+      </tr>
+
+      <tr>
+       
+          <td>Dolor</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.dolor)%>
+        </td>
+        
+          <td>Espontaneo</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.espontaneo)%>
+        </td>
+       
+          <td>Localizado</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.localizado)%>
+        </td>
+      </tr>
+
+      <tr>
+     
+        <td>Difuso</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.difuso)%>
+        </td>
+     
+          <td>Durante funcion</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.durante_funcion)%>
+        </td>
+        
+        <td>Palpacion Articular Lateral</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.palpacion_articular_lateral)%>
+        </td>
+      </tr>
+
+      <tr>
+    
+          <td>Palpacion Articular Posterior</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.palpacion_articular_posterior)%>
+        </td>
+        
+          <td>Radiografia Panoramica</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.radiografia_panoramica)%>
+        </td>
+      
+          <td>Historial Traba bloqueo Mandibular</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.historial_traba_bloqueo_mandibular)%>
+        </td>
+      </tr>
+
+      <tr>
+        
+          <td>Con dolor</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.con_dolor)%>
+        </td>
+     
+          <td>Con Ruido</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.con_ruido)%>
+        </td>
+        
+          <td>Con movimiento limitado</td>
+          <td><%=h boolean_desc(@historia_clinica_ortodoncia.con_movimiento_limitado)%>
+        </td>
+      </tr>
+    </table>
+  </fieldset>
+
+      <fieldset class="pacientes-data">
+ <table class="historia_clinica">
+          <legend>Otros Varios</legend>
+       
+      <tr>
+          <td>Examen de tejidos blandos</td>
+          <td><%=h @historia_clinica_ortodoncia.examen_tejidos_blandos%>
+        </td>
+      
+          <td>Examen relaciones dentarias</td>
+          <td><%=h @historia_clinica_ortodoncia.examen_relaciones_dentarias%>
+        </td>
+        
+          <td>Ficha de tejidos blandos intraorales</td>
+          <td><%=h @historia_clinica_ortodoncia.ficha_tejidos_blandos_intraorales%>
+        </td>
+      </tr>
+
+      <tr>
+        
+          <td>Montaje en articulador</td>
+          <td><%=h @historia_clinica_ortodoncia.montaje_en_articulador%>
+        </td>
+    
+          <td>Diagnostico de ortodoncia</td>
+          <td><%=h @historia_clinica_ortodoncia.diagnostico_ortodoncia%>
+        </td>
+        
+          <td>Objetivos Principales del Tratamiento</td>
+          <td><%=h @historia_clinica_ortodoncia.tratamiento_objetivos_principales%>
+        </td>
+       </tr>
+
+       <tr>
+      
+           <td>Mecanica arco recto propuesta tratamiento</td>
+           <td><%=h @historia_clinica_ortodoncia.mecanica_arco_recto_propuesta_tratamiento%>
+         </td>
+           </tr>
+
+         <tr>
+           <td>Tratamiento Primera Etapa</td>
+           <td><%=h @historia_clinica_ortodoncia.tratamiento_primera_etapa%>
+         </td>
+         </tr>
+         <tr>
+           <td>Tratamiento Segunda Etapa</td>
+           <td><%=h @historia_clinica_ortodoncia.tratamiento_segunda_etapa%>
+         </td>
+
+       </tr>
+       <tr>
+    
+           <td>Tratamiento Tercera Etapa</td>
+           <td><%=h @historia_clinica_ortodoncia.tratamiento_tercera_etapa%>
+         </td>
+       </tr>
+       <tr>
+           <td>Declaracion Jurada</td>
+           <td><%=h boolean_desc(@historia_clinica_ortodoncia.leyenda_declaracion_jurada)%>
+         </td>
+      </tr>
+</table>
+
+        <script type="text/javascript">
+          window.print();
+        </script>
+</fieldset>
+   <%= link_to image_tag('printer.png'), imprimir_paciente_historia_clinica_ortodoncia_path(@paciente), :title => 'Imprimir', :popup => ['Imprimir', 'height=300,width=600'] %>
+</div>

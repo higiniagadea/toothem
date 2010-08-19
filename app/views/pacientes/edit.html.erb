@@ -1,13 +1,11 @@
 
 
 <div id="pacientes-screen">
-
-
     <div id="pacientes-photo">
         <% if @paciente.archivo_id.blank? %>
           <%= image_tag('nouser.jpg') %>
         <%else%>
-          <%= image_tag archivo_path(@archivo), :alt => 'imagen del paciente' %>
+          <%= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id = ' + @archivo.id.to_s)), :alt => 'imagen del paciente' %>
         <%end%>
 
     </div>
@@ -15,15 +13,15 @@
    
 
     <% form_for(@paciente) do |f| %>
-      <%= f.error_messages %>
+      <%= f.error_messages(:id=>'Error', :header_message => '', :message=>'Se encontraron los siguientes errores') %>
       <div id="pacientes-options">
         <div id="pacientes-nombre">
           <%=h @paciente.nombre %>
         </div>
         <div id="pacientes-actions">
-          <%= link_to image_tag('magnifier_zoom_in.png'), @paciente %> |
-          <%= link_to image_tag('cancel.png'), @paciente, :confirm => 'Esta seguro? No podrá deshacer esta acción', :method => :delete %> |
-          <%= link_to image_tag('printer.png'), edit_paciente_path(@paciente) %> |
+          <%= link_to image_tag('magnifier_zoom_in.png'), @paciente, :title => 'Ver'%> |
+          <%= link_to image_tag('cancel.png'), @paciente, :title=> 'Eliminar Paciente', :confirm => 'Esta seguro? No podrá deshacer esta acción', :method => :delete %> |
+         
           <%= link_to 'Volver', pacientes_path %>
         </div>
 
@@ -119,7 +117,7 @@
             <td class="fieldname">Titular</td>
             <td class="fielddata"><%=h @paciente.titular.matricula%> - <%= @paciente.titular.nombre%> </td>
             <% end %>
-            <td><div id="edit-obra-social"><%= image_tag ('pencil.png') %></div></td>
+            <td><div id="edit-obra-social" style=" cursor: pointer" onclick="Boxy.load('<%= search_titular_paciente_url %>',{modal: true})"><%= image_tag('pencil.png') %></div></td>
           </tr>
           
          </table>
@@ -149,23 +147,7 @@ $(document).ready(function()
          }
       });
    });
-  $('#edit-obra-social img').each(function()
-  {
-    $(this).qtip(
-    {
-      content: '<a onclick="Boxy.load(\'<%= search_titular_paciente_url %>\',{modal: true})"><%= image_tag('pencil.png') %></a>',
-      position: 'topLeft', // Set its position
-         hide: {
-            fixed: true // Make it fixed so it can be hovered over
-         },
-         style: {
-            border: '1px',
-            margin: '0 0 0 0', // Give it some extra padding
-            name: 'blue' // And style it with the preset dark theme
-            
-         }
-    });
-  });
+
 });
 
 

@@ -20,13 +20,14 @@
     <td><%=h boolean_desc(obra_social.incluye_ficha) %></td>
     
     
-    <td><%= link_to image_tag('magnifier_zoom_in.png'), obra_social %>
-        <%= link_to image_tag('pencil.png'), edit_obra_social_path(obra_social) %>
-        <%= link_to image_tag('cancel.png'), obra_social, :confirm => '¿Está seguro? No podrá deshacer esta acción', :method => :delete %>
-        <%= link_to 'Aranceles', new_obra_social_arancel_path(obra_social)%></td>
+    <td><%= link_to image_tag('magnifier_zoom_in.png'), obra_social, :title => "Ver" %>
+        <%= link_to image_tag('pencil.png'), edit_obra_social_path(obra_social), :title => "Editar" %>
+        <%= link_to image_tag('cancel.png'), obra_social, :confirm => '¿Está seguro? No podrá deshacer esta acción', :method => :delete, :title => "Eliminar" %>
+        <%= link_to image_tag('money_dollar.png'), new_obra_social_arancel_path(obra_social), :title => "Aranceles"%></td>
   </tr>
 <% end %>
 </table>
 
 <br />
-
+<br />
+<%= will_paginate @obras_sociales, :previous_label=>'Anterior', :next_label => 'Siguiente' %>

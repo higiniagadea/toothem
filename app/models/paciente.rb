@@ -2,13 +2,14 @@ class Paciente < ActiveRecord::Base
   belongs_to :titular
   belongs_to :consultorio
   belongs_to :archivo
+  has_many :tratamiento, :dependent => :destroy
 
   belongs_to :tipo_documento
-  belongs_to :historia_clinica_general
-  belongs_to :historia_clinica_ortodoncia
+  has_one :historia_clinica_general, :dependent => :destroy
+  has_one :historia_clinica_ortodoncia, :dependent => :destroy
   
-  has_many :fichas
-  has_many :imagenes
+  has_many :fichas, :dependent => :destroy
+  has_many :imagenes, :dependent => :destroy
 
   validates_presence_of :nombre, :message => ' y apellido no puede estar en blanco'
   validates_presence_of :matricula, :message => ' no puede estar en blanco'
@@ -18,7 +19,7 @@ class Paciente < ActiveRecord::Base
 
   named_scope :by_matricula, lambda { |matricula|
     {
-      :conditions=> ['lower(matricula) LIKE :matricula ',
+      :conditions=> ['lower(matricula) LIKE :matricula',
           { :matricula => "%"+matricula.downcase+"%"} ]
     }
   }

@@ -5,6 +5,7 @@
 ActiveSupport::Inflector.inflections do |inflect|
 #   inflect.plural /^(ox)$/i, '\1en'
 #   inflect.singular /^(ox)en/i, '\1'
+  inflect.irregular 'usuario_consultorio', 'usuarios_consultorios'
   inflect.irregular 'paciente', 'pacientes'
   inflect.irregular 'historia_clinica_general', 'historias_clinicas_generales'
   inflect.irregular 'historia_clinica_cirugia', 'historias_clinicas_cirugias'

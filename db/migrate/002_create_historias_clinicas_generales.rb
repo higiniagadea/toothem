@@ -1,6 +1,7 @@
 class CreateHistoriasClinicasGenerales < ActiveRecord::Migration
   def self.up
-    create_table "historias_clinicas", :id => false do |t|
+    #create_table "historias_clinicas_generales", :id => false do |t|
+    create_table "historias_clinicas_generales"do |t|
       t.column :paciente_id, :integer # Clave primaria
       t.column :alergia_anestesia, :boolean, :null => true
       t.column :alergia_drogas_medicamentos, :boolean, :null => true

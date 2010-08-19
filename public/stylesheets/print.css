@@ -1,0 +1,79 @@
+/* 
+    Document   : print
+    Created on : 07/06/2010, 18:10:31
+    Author     : higinia
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+
+body{
+    font-family: tahoma,  arial, sans-serif;
+    font-size: 14px;
+    background-color: #ffffff;
+    text-align:center;
+    
+}
+
+div#content {
+    margin: 0 auto;
+    background-color:#ffffff;
+    clear:both;
+    overflow:hidden;
+   
+    padding-bottom:25px;
+    min-height: 100%;
+    width:700px;
+    text-align:left;
+    min-height:400px;
+    height: auto;
+  
+}
+
+
+.pacientes-data{
+     /*width: 380px;*/
+     border: #000000 2px solid;
+     float:left;
+     width:95%;
+     margin-top:5px;    
+     -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    font-size: 18px;    
+}
+
+.pacientes-data legend{
+    font-size: 18px;
+}
+.pacientes-data td{
+    width:380px;
+}
+
+div#pacientes-screen{
+    font-size:18px;
+    height:auto;
+}
+
+#header #logo{
+    font-size:20px;
+    vertical-align: middle;
+    overflow:hidden;
+    
+}
+#header{
+    margin: 2px auto;
+    text-align:left;
+    clear:both;
+    overflow:hidden;
+    padding-bottom:10px;
+    padding-top:10px;
+    height:40px;
+    width:950px;
+    
+}
+

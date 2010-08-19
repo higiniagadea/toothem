@@ -12,8 +12,9 @@
         </td>
       </tr>
     <% end %>
+      
 </table>
-<%= will_paginate @paginatepacientes, :previous_label=>'Anterior', :next_label => 'Siguiente' %>
+
 
 <%@pacientes.each do |paciente|%>
     <script type="text/javascript">
@@ -39,3 +40,4 @@
       });
     </script>
 <%end%>
+<%= will_paginate @paginatepacientes, :previous_label=>'Anterior', :next_label => 'Siguiente' %>

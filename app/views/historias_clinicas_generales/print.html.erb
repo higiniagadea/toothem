@@ -1,0 +1,445 @@
+<div id="pacientes-screen">
+   <legend>Historia Clinica General de: <%=h @paciente.nombre %></legend>
+   <fieldset class="pacientes-data">
+   <table>
+   <tr>
+      <td>Alergia a anestesia:</td>
+      <td>
+        <%=h boolean_desc(@historia_clinica_general.alergia_anestesia) %>
+      </td>
+
+
+      <% if @historia_clinica_general.alergia_drogas_medicamentos -%>
+        <td> Alergia a drogas:</td>
+        <td>
+          <%=h @historia_clinica_general.desc_alergia_drogas_medicamentos %>
+        </td>
+      <% else -%>
+        <td> Alergia a drogas de medicamentos:</td>
+        <td>
+
+          <%=h boolean_desc(@historia_clinica_general.alergia_drogas_medicamentos) %>
+        </td>
+      <% end -%>
+    
+        <td>Asma Bronquial:</td>
+        <td>
+        <%=h boolean_desc(@historia_clinica_general.asma_bronquial) %>
+      </td>
+    </tr>
+    <tr>
+      <td>Ictericia:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.ictericia) %>
+      </td>
+      <td>Perdida de Peso:</td>
+      <td>
+        <%=h boolean_desc(@historia_clinica_general.perdida_peso) %>
+      </td>
+      <td>Fiebre Reumatica:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.fiebre_reumeatica) %>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Enfermedades Sanguineas:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.enfermedades_sanguineas) %>
+      </td>
+      <td>Enfermedades Cardiacas:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.enfermedades_cardiacas) %>
+      </td>
+      <td>Diabetes:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.diabetes) %>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Problemas Endocrinos:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.problemas_endocrinos) %>
+      </td>
+      <td>Problemas Emocionales:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.problemas_emocionales) %>
+      </td>
+      <td>Tuberculosis:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.tuberculosis) %>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Problemas Respiratorios:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.problemas_respiratorios) %>
+      </td>
+      <td>Problemas Gastrointestinales:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.problemas_gastrointestinales) %>
+      </td>
+      <td>Ulceras:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.ulceras) %>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Problemas Visuales:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.problemas_visuales) %>
+      </td>
+      <td>Glaucoma:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.glaucoma) %>
+      </td>
+      <td>Jaquecas:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.jaquecas) %>
+      </td>
+    </tr>
+    <tr>
+      <td>Desordenes de Piel:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.desordenes_piel) %>
+      </td>
+      <td>Desordenes de Tiroides:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.desordenes_tiroides) %>
+      </td>
+      <td>Sarampion:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.sarampion) %>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Trastornos Psicologicos:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.trastornos_psicologicos) %>
+      </td>
+      <td>Parotiditis:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.parotiditis) %>
+      </td>
+      <td>Trastornos Auditivos:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.trastornos_auditivos) %>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Varicela:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.varicela) %>
+      </td>
+      <td>Trastornos Oseos:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.trastornos_oseos) %>
+      </td>
+      <td>Viruelas:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.viruelas) %>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Trastornos Renales:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.trastornos_renales) %>
+      </td>
+      <td>Escarlatina:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.escarlatina) %>
+      </td>
+      <td>Trastornos Hepaticos:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.trastornos_hepaticos) %>
+      </td>
+    </tr>
+    <tr>
+      <td>Artritis:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.artritis) %>
+      </td>
+      <td>Artrosis:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.artrosis) %>
+      </td>
+      <td>Hepatitis:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.hepatitis) %>
+      </td>
+    </tr>
+    <tr>
+      <td>Infecciones Bucales Frecuentes:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.infecciones_bucales_frecuentes) %>
+      </td>
+      <td>Hemofilia:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.hemofilia) %>
+      </td>
+      <td>Enfermedades de transimision sexual:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.enfermedades_transmision_sexual) %>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Anemia:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.anemia) %>
+      </td>
+      <td>Herpes:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.herpes) %>
+      </td>
+      <td>HIV:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.hiv) %>
+      </td>
+    </tr>
+    <tr>
+      <td>Homosexualidad:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.homosexualidad) %>
+      </td>
+      <td>Transfusiones:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.transfusiones) %>
+      </td>
+      <td>Dialisis:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.dialisis) %>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Embarazo:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.embarazo) %>
+      </td>
+      <td>Ganglios:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.ganglios) %>
+      </td>
+      <td>Hipertension:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.hipertension) %>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Hipotension:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.hipotension) %>
+      </td>
+      <td>Derrame Cerebral:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.derrame_cerebral) %>
+      </td>
+      <td>Bronquitis Cronica:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.bronquitis_cronica) %>
+      </td>
+    </tr>
+    <tr>
+      <td>Fiebre:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.fiebre) %>
+      </td>
+      <td>Sudoracion Fiebre Nocturna:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.sudoracion_fiebre_nocturna) %>
+      </td>
+      <td>Moretones Facilmente:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.moretones_facilmente) %>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Sangrado Excesiva de Heridas:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.sangrado_excesivo_heridas) %>
+      </td>
+      <td>Vacuna Antihepatitis:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.vacuna_antihepatitis) %>
+      </td>
+      <% if @historia_clinica_general.vacuna_antitetanica -%>
+        <td>Vacuna antitetanica:</td>
+        <td>
+
+          <%=h @historia_clinica_general.cuando_vacuna_antitetanica %>
+        </td>
+      <% else -%>
+        <td>Vacuna Antitetanica:</td>
+        <td>
+
+          <%=h boolean_desc(@historia_clinica_general.vacuna_antitetanica) %>
+        </td>
+      <% end -%>
+    </tr>
+    <tr>
+      <td>Epilepsia:</td>
+      <td>
+
+        <%=h boolean_desc(@historia_clinica_general.epilepsia) %>
+      </td>
+      <% if @historia_clinica_general.usado_usa_alcohol -%>
+        <td>Alcohol por semana en litros:</td>
+        <td>
+
+          <%=h @historia_clinica_general.promedio_por_semana_en_litros %>
+        </td>
+        <td></td>
+      <% else -%>
+        <td>Ha usado/usa alcohol:</td>
+        <td>
+
+          <%=h boolean_desc(@historia_clinica_general.usado_usa_alcohol) %>
+        </td>
+        <td></td>
+        <td></td>
+      <% end -%>
+    </tr>
+
+    <tr>
+      <td>Presion Arterial Promedio:</td>
+      <td>
+
+        <%=h @historia_clinica_general.presion_arterial_promedio %>
+      </td>
+      <% if @historia_clinica_general.usado_usa_drogas -%>
+        <td>Tipo de drogas usadas:</td>
+        <td>
+
+          <%=h @historia_clinica_general.tipo_drogas_usadas %>
+        </td>
+        <td>Cantidad de drogas usadas:</td>
+        <td>
+
+          <%=h @historia_clinica_general.cantidad_drogas_usadas %>
+        </td>
+        <td></td>
+      <% else -%>
+        <td>Ha usado/usa drogas:</td>
+        <td>
+        <%=h boolean_desc(@historia_clinica_general.usado_usa_drogas) %>
+        </td>
+        <td></td>
+        <td></td>
+      <% end -%>
+    </tr>
+
+    <tr>
+      <td>Farmacos Consumidos en ultimos años:</td>
+      <td>
+      <%=h @historia_clinica_general.farmacos_consumidos_ultimos_anios %>
+      </td>
+    </tr>
+    <tr>
+      <% if @historia_clinica_general.usado_usa_tabaco -%>
+      <td>Tipo de tabaco usado:</td>
+      <td>
+        <%=h boolean_desc(@historia_clinica_general.tipo_tabaco_usado) %>
+        </td>
+        <td>Cantidad de tabaco usado:</td>
+        <td>
+          <%=h @historia_clinica_general.cantidad_tabaco_usado %>
+        </td>
+        <td></td>
+      <% else -%>
+        <td>Usado/usa tabaco:</td>
+        <td>
+          <%=h boolean_desc(@historia_clinica_general.usado_usa_tabaco) %>
+        </td>
+        <td></td>
+        <td></td>
+    </tr>
+      <% end -%>
+
+
+    <tr>
+      <td>Otros:</td>
+      <td>
+        <%=h @historia_clinica_general.otros %>
+      </td>
+    </tr>
+    <tr>
+      <td>Observaciones</td>
+      <td>
+        <%=h @historia_clinica_general.observaciones %>
+      </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Declaracion Jurada</td>
+      <td>
+        <%=h @historia_clinica_general.leyenda_declaracion_jurada %>
+      </td>
+    </tr>
+    <script type="text/javascript">
+          window.print();
+        </script>
+  </table>
+</fieldset>
+    <%= link_to image_tag('printer.png'), imprimir_paciente_historia_clinica_general_path(@paciente), :title => 'Imprimir', :popup => ['Imprimir', 'height=300,width=600'] %>
+</div>

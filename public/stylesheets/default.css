@@ -638,6 +638,7 @@ input, select{
     min-height:600px;
     margin-left:10px;
     padding:10px;
+    
 }
 #pacientes-photo{
     width:90px;
@@ -660,7 +661,7 @@ input, select{
     float:left;
     margin-left:10px;
     margin-top:30px;
-    font-size:20px;
+    font-size:22px;
     font-weight:bold;
     
 }
@@ -682,11 +683,12 @@ input, select{
     -webkit-border-radius: 8px;
     margin-top:5px;
     padding-left:10px;
+  
 }
 
 .pacientes-data legend{
-    font-size: 12px;
-
+    font-size: 16px;
+     font-weight:bold;
 }
 
 
@@ -743,7 +745,7 @@ input, select{
 .boxy-wrapper .answers { text-align: right; }
 
 
-
+/*-------------------------------------------------------------*/
 
 /* Galeria de imagenes*/
 
@@ -793,18 +795,51 @@ input, select{
   margin:15px;
 }
 .slide h2 {
-  font:italic 24px Georgia, "Times New Roman", Times, serif;
-  color:#ccc;
+  font:italic 16px; /*Georgia, "Times New Roman", Times, serif;*/
+  font-weight: bold;
   letter-spacing:-1px;
+}
+#eliminar-img{
+    font: normal 13px tahoma;
 }
 .slide img {
   float:right;
   margin:0 15px;
 }
 .slide{
-    background-color: #ECF4FF;
+    background-color: #E8EDFF;
     -moz-border-radius: 8px;
 }
 
 
+
 /*Fin galeria de imagenes--------------------------------------------*/
+
+.labels{
+    font-weight: bold;
+    width: 50px;
+    
+}
+.historia_clinica td{
+    width: 380px;
+}
+tr.odd{
+    background: #E8EDFF;
+    
+}
+.historia_clinica tr{
+    height: 32px;
+}
+.historia_clinica{
+    border-collapse: collapse;
+}
+.ortodoncia{
+    border-collapse: collapse;
+}
+.ortodoncia td{
+    width: 40%;
+}
+.ortodoncia tr{
+     height: 32px;
+}
+

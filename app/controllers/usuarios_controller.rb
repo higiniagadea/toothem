@@ -2,7 +2,6 @@ class UsuariosController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
   
-
   # render new.rhtml
   def new
     @usuario = Usuario.new
@@ -20,7 +19,7 @@ class UsuariosController < ApplicationController
       # button. Uncomment if you understand the tradeoffs.
       # reset session
       self.current_usuario = @usuario # !! now logged in
-      redirect_back_or_default('/profesionales')
+      redirect_back_or_default('/pacientes')
       flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
     else
       flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."

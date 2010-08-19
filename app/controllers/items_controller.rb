@@ -44,6 +44,7 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.xml
   def create
+    
     @item = Item.new(params[:item])
     @pagetitle = "Nuevo item"
     respond_to do |format|
@@ -52,7 +53,7 @@ class ItemsController < ApplicationController
         format.html { redirect_to(@item) }
         format.xml  { render :xml => @item, :status => :created, :location => @item }
       else
-        format.html { render :action => "new" }
+        format.html { render :layout => 'default'}
         format.xml  { render :xml => @item.errors, :status => :unprocessable_entity }
       end
     end

@@ -2,27 +2,23 @@
   <tr>
     <th>Nombre</th>
     <th>Consultorio</th>
-    <th>Matrícula p.</th>
-    
-    <th>Email</th>
+    <th>Matrícula Profesional</th>
    
   </tr>
 
 <% @profesionales.each do |profesional| %>
-  <tr>
+  <tr class="<%= cycle('','odd') %>">
     <td><%=h profesional.nombre %></td>
-    <td><%=h profesional.consultorio.nombre %></td>
-    <td align="center"><%=h profesional.matricula_profesional %></td>
-   
-    <td><%=h profesional.email %></td>
-    <td><%= link_to image_tag('magnifier_zoom_in.png'), profesional %>
-    <%= link_to image_tag('pencil.png'), edit_profesional_path(profesional) %>
-    <%= link_to image_tag('cancel.png'), profesional, :confirm => 'Esta seguro?', :method => :delete %></td>
+     <td><%=h profesional.consultorio.nombre %></td>
+      <td><%=h profesional.matricula_profesional %></td>
+
+    <td><%= link_to image_tag('magnifier_zoom_in.png'), profesional, :title => 'Ver' %></td>
+    <td><%= link_to image_tag('pencil.png'), edit_profesional_path(profesional), :title => 'Editar' %></td>
+    <td><%= link_to image_tag('cancel.png'), profesional, :confirm => 'Esta seguro?', :method => :delete, :title => 'Eliminar'%></td>
     
   </tr>
 <% end %>
 </table>
 
 <br />
-<%= will_paginate @profesionales, :previous_label=> 'Anterior', :next_label=>'Siguiente'%>
-
+<%= will_paginate @profesionales, :previous_label=>'Anterior', :next_label => 'Siguiente' %>
