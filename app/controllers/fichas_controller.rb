@@ -43,7 +43,7 @@ class FichasController < ApplicationController
   # POST /fichas
   # POST /fichas.xml
   def create
-    @tratamiento = Tratamiento.new(params[:tratamiento][:diente][:cara])
+    
     @paciente = Paciente.find(params[:ficha][:paciente_id])
     @ficha = Ficha.new(params[:ficha])
     
@@ -51,7 +51,7 @@ class FichasController < ApplicationController
     @ficha.paciente_id = @paciente.id
      respond_to do |format|
       if @ficha.save
-         @tratamiento.save 
+       
         flash[:notice] = 'Ficha Creada.'
        format.html {redirect_to(@ficha)}
       else

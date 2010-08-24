@@ -27,13 +27,15 @@ class ImagenesController < ApplicationController
   # GET /imagenes/new
   # GET /imagenes/new.xml
   def new
+    
     @paciente = Paciente.find(params[:id])
     @imagen = Imagen.new(params[:imagen])
     @valor = "imagen"
     @pagetitle = "Nueva imagen"
     respond_to do |format|
       format.html # new.html.erb
-      #format.xml  { render :xml => @imagen }
+      format.xml  { render :xml => @imagen }
+      
     end
   end
 
@@ -45,25 +47,25 @@ class ImagenesController < ApplicationController
   # POST /imagenes
   # POST /imagenes.xml
   def create
-
     @archivo = Archivo.new(params[:archivo])
     if @archivo.save
         params[:imagen][:archivo_id] = @archivo.id
         @imagen = Imagen.new(params[:imagen])
-        
         respond_to do |format|
         if @imagen.save
          flash[:notice] = 'Imagen creada.'
           format.html { redirect_to(pacientes_url(@paciente))}
           format.xml  { render :xml => @imagen, :status => :created, :location => @imagen }
-        else         
-        
-          format.xml  { render :xml => @imagen.errors, :status => :unprocessable_entity}
-       
+        else
+          
+          #format.xml  { render :xml => @imagen.errors, :status => :unprocessable_entity}
+          
         end
       end
+    
     end
   end
+  
 
   # PUT /imagenes/1
   # PUT /imagenes/1.xml

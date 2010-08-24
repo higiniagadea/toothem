@@ -41,16 +41,17 @@
     <td><%= f.check_box :fue_liquidado %>
     </td>
   </tr>
-
   <tr>
-    <td class="label">Fecha de Liquidacion </td>
-    <td><%= f.date_select  :fecha, :order => [:day, :month, :year],
-                          :use_month_names => ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct','Nov','Dic'] %>
-    </td>
+   <td style="display:inline-block;">
+       <%=f.label :fecha, 'Fecha' %>
+   <td><%=f.text_field :fecha, :size=> 10 %></td>
+
+   </td>
+  
+  
    <td class="label">Estado del tratamiento</td>
    <td><%= f.collection_select(:estado_tratamiento_id, EstadoTratamiento.all, :id, :nombre) %></td>
   </tr>
-
   <tr>
   <td class="label">Prestacion </td>
   <td><%= f.collection_select(:prestacion_id, Prestacion.all, :id, :descripcion) %>
@@ -107,3 +108,20 @@
 </div>
 
 <%= link_to 'Volver', paciente_path(@paciente) %>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+    $('#fecha').datePicker('dd-mm-yyyy');
+    $('#fecha').mask("99/99/9999");
+     
+	days: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+	draggable: true
+	position: {x:'right',y:'top'}
+
+    }
+  
+;'click');
+
+</script>

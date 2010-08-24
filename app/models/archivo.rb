@@ -7,11 +7,15 @@ class Archivo < ActiveRecord::Base
                  :resize_to => [640,480],
                  :thumbnails => { :thumb => [90,90] }
 
+  
+
+
  
 
 
-  validates_as_attachment
 
+
+  
   def image_file=(input_data)
     self.filename = input_data.original_filename
     self.content_type = input_data.content_type.chomp

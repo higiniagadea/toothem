@@ -14,3 +14,13 @@ Technoweenie::AttachmentFu.tempfile_path = ATTACHMENT_FU_TEMPFILE_PATH if Object
 FileUtils.mkdir_p Technoweenie::AttachmentFu.tempfile_path
 
 $:.unshift(File.dirname(__FILE__) + '/vendor')
+
+
+
+
+
+def uploaded_data_is_present # valida si hay datos subidos o no
+    unless uploaded_data? # si no hay datos...
+      errors.add_to_base("You must select a file to upload.")#...agrega el error al objeto
+    end
+  end

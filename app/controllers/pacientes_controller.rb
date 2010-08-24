@@ -88,7 +88,7 @@ class PacientesController < ApplicationController
   # GET /pacientes/new.xml
   def new
     @paciente = Paciente.new
-    @title = "Nuevo paciente"
+    #@title = "Nuevo paciente"
     respond_to do |format|
       format.html
       format.xml  { render :xml => @paciente }
