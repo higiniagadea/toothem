@@ -1,0 +1,19 @@
+<fieldset class="pacientes-data">
+        <legend>Datos de Obra Social</legend>
+         <table class="show-data">
+           <%unless @paciente.titular.blank?%>
+          <tr>
+            <td class="fieldname">Obra Social</td>
+            <td class="fielddata"><%=h @paciente.titular.obra_social.nombre %></td>
+          </tr>
+          <tr>
+            <td class="fieldname">Titular</td>
+            <td class="fielddata"><%=h @paciente.titular.matricula%> - <%= @paciente.titular.nombre%> </td>
+            <% end %>
+            <td><div id="edit-obra-social" style=" cursor: pointer" onclick="Boxy.load('<%= search_titular_paciente_url %>',{modal: true})"><%= image_tag('pencil.png') %></div></td>
+          </tr>
+
+         </table>
+
+
+      </fieldset>

@@ -1,21 +1,24 @@
-<table class="table-list">
-  <tr>
-    <th>Clínica</th>
-    <th>Nombre</th>
-  </tr>
+<fieldset class=" ui-widget ui-widget-content ui-corner-top"
+          <legend class="ui-widget ui-corner-top ui-widget-header">Consultorios</legend>
+    <table class="table-list">
+      <tr class=" ui-corner-top ui-widget-shadow ui-widget-header">
+        <th>Clínica</th>
+        <th>Nombre</th>
+      </tr>
 
-<% @consultorios.each do |consultorio| %>
-  <tr class="<%= cycle('','odd') %>">
-    <td><%=h consultorio.clinica.nombre %></td>
-    <td><%=h consultorio.nombre %></td>
-    <td><%= link_to image_tag('magnifier_zoom_in.png'), consultorio, :title => 'Ver' %></td>
-    <td><%= link_to image_tag('pencil.png'), edit_consultorio_path(consultorio), :title => 'Editar' %></td>
-    <td><%= link_to image_tag('cancel.png'), consultorio, :title => 'Eliminar', :confirm => 'Esta seguro? No podrá deshacer esta acción', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+    <% @consultorios.each do |consultorio| %>
+      <tr class="<%= cycle('','odd') %>">
+        <td><%=h consultorio.clinica.nombre %></td>
+        <td><%=h consultorio.nombre %></td>
+        <td><%= link_to image_tag('magnifier_zoom_in.png'), consultorio, :title => 'Ver' %></td>
+        <td><%= link_to image_tag('pencil.png'), edit_consultorio_path(consultorio), :title => 'Editar' %></td>
+        <td><%= link_to image_tag('cancel.png'), consultorio, :title => 'Eliminar', :confirm => 'Esta seguro? No podrá deshacer esta acción', :method => :delete %></td>
+      </tr>
+    <% end %>
+    </table>
 
-<br />
-<%= will_paginate @consultorios, :previous_label=>'Anterior', :next_label => 'Siguiente' %>
-<%= link_to 'Nuevo consultorio', new_consultorio_path %>
+    <br />
+    <%= will_paginate @consultorios, :previous_label=>'Anterior', :next_label => 'Siguiente' %>
+    <%= link_to 'Nuevo consultorio', new_consultorio_path %>
+</fieldset>
 

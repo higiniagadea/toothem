@@ -1,4 +1,5 @@
-
+<fieldset class="ui-widget-content ui-corner-all">
+  <legend class="ui-widget ui-widget-header ui-corner-all" >Edici&oacute;n</legend>
 <div id="pacientes-screen">
   <div id= "pacientes-photo">
     
@@ -110,8 +111,8 @@
     </table>
   </fieldset>
 
-  <fieldset class="pacientes-data">
-    <legend>Obra Social</legend>
+  <fieldset class="ui-widget-content ui-corner-all">
+    <legend class="ui-widget ui-widget-header ui-corner-all" >Obra Social</legend>
     <table class="show-data">
       <%unless @paciente.titular.blank?%>
         <tr>
@@ -137,8 +138,8 @@
 
   </fieldset>
 
-  <fieldset class="pacientes-data">
-    <legend>Cuenta Corriente</legend>
+  <fieldset class="ui-widget-content ui-corner-all">
+    <legend class="ui-widget ui-widget-header ui-corner-all" >Cuenta Corriente</legend>
     <table class="show-data">
       <tr>
         <td class="fieldname">Saldo Actual:</td>
@@ -151,8 +152,8 @@
     </table>
   </fieldset>
  
-  <fieldset class="pacientes-data">
-    <legend>Imágenes</legend>
+  <fieldset class="ui-widget-content ui-corner-all">
+    <legend class="ui-widget ui-widget-header ui-corner-all" >Im&aacute;genes</legend>
     <div style=" float: right; margin-right:  60px"><%= link_to "Nueva imagen", new_imagen_path + '/'+@paciente.id.to_s %></div>
     <% unless @imagenes.blank? %>
     <table class="show-data">
@@ -209,8 +210,8 @@
     
   </fieldset>
 
-  <fieldset class="pacientes-data">
-    <legend>Tratamientos</legend>
+  <fieldset class="ui-widget-content ui-corner-all">
+    <legend class="ui-widget ui-widget-header ui-corner-all" >Tratamientos</legend>
     
     <%= link_to "Tratamiento", new_tratamiento_path + "?paciente_id="+@paciente.id.to_s %>
     <table class="show-data">
@@ -221,8 +222,8 @@
     </table>
   </fieldset>
 
-   <fieldset class="pacientes-data">
-    <legend>Fichas</legend>
+   <fieldset class="ui-widget-content ui-corner-all">
+    <legend class="ui-widget ui-widget-header ui-corner-all" >Fichas</legend>
 
     <%= link_to "Nueva Ficha", new_ficha_path + "?paciente_id="+@paciente.id.to_s %>
     <table class="show-data">
@@ -240,7 +241,7 @@
   <div style="clear:both;"></div>
 </div>
 
-
+</fieldset>
 <script type="text/javascript">
  
   

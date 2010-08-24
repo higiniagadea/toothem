@@ -1,20 +1,27 @@
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class ="ui-widget ui-widget-content ui-corner-all ui-widget-header">Nuevo consultorio</legend>
 <% form_for(@consultorio) do |f| %>
   <%= f.error_messages  :id => 'error', :header_message => '', :message => 'Ocurrió un error al intentar guardar el registro'  %>
 <ul id="form">
   <li>
     <label for="clinica_id">Clinica </label>
-    <%= f.collection_select(:clinica_id, Clinica.all, :id, :nombre, {}, :class => 'normal') %>
+    <%= f.collection_select(:clinica_id, Clinica.all, :id, :nombre, {}, :class => 'normal ui-widget-content') %>
   </li>
   <li>
     <label for="nombre">Nombre </label>
-    <%= f.text_field :nombre, :class => 'normal' %>
+    <%= f.text_field :nombre, :class => 'normal ui-widget-content' %>
   </li>
   <li>
     <label></label>
-    <%= f.submit 'Crear' %>
+
+    <%= f.submit 'Crear', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+    <%= link_to 'Cancelar', consultorios_path %>
   </li>
 </ul>
+
   
+
 <% end %>
 
-<%= link_to 'Volver', consultorios_path %>
+
+</fieldset>

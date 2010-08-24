@@ -1,11 +1,12 @@
 div.cmDiv
 {
-	border: 1px solid #aed0ea;
-        background: #deedf7;
+	border: 1px solid #E78F08;
+        background: #FFCC76;
 	/*background-color: #eee;*/
         -moz-border-radius:8px;
         -webkit-border-radius:8px;
         font-weight: bold;
+        color: whitesmoke;
         padding-top: 0px;
         width: 94%;
         margin-left: 3%;
@@ -64,7 +65,7 @@ div.cmDiv
 {
 	position: relative;
 	padding: 5px 20px 0 2px;
-        background: #deedf6;
+        background: #FFCC76;
 	white-space: nowrap;
         height: 25px;
         
@@ -73,7 +74,7 @@ div.cmDiv
 {
 	float: left;
 	
-	background-color: #deedf6;
+	background-color: #FFCC76;
 	height: 20px; /* for ie */
         
         
@@ -86,7 +87,7 @@ div.cmDiv
 .clickMenu li.hover
 {
 	z-index: 1 !important; /* the hover z-index has to be below the normal one the hovering items may be drawn over a submenu */
-	background-color: #eeefff;
+	background-color: #CCC;
         -moz-border-radius:6px;
         -webkit-border-radius:6px;
 

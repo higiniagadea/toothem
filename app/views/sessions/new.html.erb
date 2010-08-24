@@ -1,16 +1,18 @@
-<div id="login-form">
-  <% form_tag session_path do -%>
-  <p><%= label_tag 'Usuario' %><br />
-  <%= text_field_tag 'login', @login %></p>
 
-  <p><%= label_tag 'Contraseña' %><br/>
-  <%= password_field_tag 'password', nil %></p>
+<fieldset class=" ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-corner-top ui-widget-header">Ingresar</legend>
+      <% form_tag session_path do -%>
+      <p><%= label_tag 'Usuario' %><br />
+      <%= text_field_tag 'login', @login %></p>
 
-  <!-- Uncomment this if you want this functionality
-  <p><%= label_tag 'remember_me', 'Remember me' %>
-  <%= check_box_tag 'remember_me', '1', @remember_me %></p>
-  -->
+      <p><%= label_tag 'Contraseña' %><br/>
+      <%= password_field_tag 'password', nil,"class"=>'ui-widget-content' %></p>
 
-  <p style="text-align: center;"><%= submit_tag 'Ingresar' %> u <a href="#">olvido su contraseña?</a></p>
-  <% end -%>
-</div>
+      <!-- Uncomment this if you want this functionality
+      <p><%= label_tag 'remember_me', 'Remember me' %>
+      <%= check_box_tag 'remember_me', '1', @remember_me %></p>
+      -->
+
+      <%= submit_tag 'Ingresar' %> u <a href="#">olvido su contraseña?</a>
+      <% end -%>
+  </fieldset>

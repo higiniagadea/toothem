@@ -1,0 +1,47 @@
+<script type="text/javascript">
+  $(document).ready(function()
+{
+	$.fn.clickMenu.setDefaults({arrowSrc:'/images/16/flecha.png'});
+
+	$('#menu1').clickMenu();
+
+});
+</script>
+<%  @modulos = Item.find(:all, :conditions => 'parent_id = 1', :order => 'orden')%>
+<% unless @modulos.blank? -%>
+      <ul id="menu1">
+        <% @modulos.each do |modulo| %>
+            <% @subitems = Item.find(:all, :conditions => ['parent_id = ?', modulo.id], :order => 'orden') %>
+                <%  unless @subitems.blank? %>
+                      <li id="primero">
+                        <%=  format_str(modulo.nombre) %>
+                        <ul>
+                            <% @subitems.each do |subitem|%>
+                                  <%  @subsubitems = Item.find(:all, :conditions => ['parent_id = ?', subitem.id], :order => 'orden') %>
+                                    <% unless @subsubitems.blank? %>
+                                        <li>
+                                          <ul>
+                                              <% @subsubitems.each do |subsubitem| %>
+                                                  <li onclick="javascript:location.href='<%= subsubitem.url %>'">
+                                                    <%= format_str(subsubitem.nombre) %>
+                                                  </li>
+                                              <% end %>
+                                          </ul>
+                                        </li>
+                                    <% else %>
+                                        <li onclick="javascript:location.href='<%= subitem.url %>'">
+                                          <%= format_str(subitem.nombre) %>
+                                        </li>
+                                    <% end %>
+                            <% end %>
+                        </ul>
+                      </li>
+                <% else %>
+                      <li id="primero" onclick="javascript:location.href='<%= modulo.url %>'">
+                        <%= format_str(modulo.nombre) %>
+                      </li>
+                <% end %>
+        <% end %>
+      </ul>
+<% end -%>
+<br />

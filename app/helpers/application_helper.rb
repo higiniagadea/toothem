@@ -36,6 +36,13 @@ module ApplicationHelper
    
     end
 
+    #Pone la primer letra del string en mayuscula y el resto en minuscula
+  def format_str(string)
+    string[0,1].upcase + string[1,string.size].downcase
+
+  end
+
+
     
 
 end

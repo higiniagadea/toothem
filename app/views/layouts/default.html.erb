@@ -22,6 +22,9 @@
       <div id="home">
 
         <div id="container">
+          <div>
+                    <%= render :partial => 'static/click_menu' %>
+                  </div>
           <%if flash[:notice]%>
               <div  id="notice" class="ui-state-highlight ui-corner-all" style=" padding: 0 .7em;">
                 <p><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
