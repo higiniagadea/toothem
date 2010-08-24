@@ -1,0 +1,105 @@
+<div id="pacientes-photo">
+        <% if @paciente.archivo_id.blank? %>
+          <%= image_tag('nouser.jpg') %>
+        <%else%>
+          <%= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id = ' + @archivo.id.to_s)), :alt => 'imagen del paciente' %>
+        <%end%>
+
+    </div>
+
+<% form_for(@paciente) do |f| %>
+      <%= f.error_messages(:id=>'Error', :header_message => '', :message=>'Se encontraron los siguientes errores') %>
+      <div id="pacientes-options">
+        <div id="pacientes-nombre">
+          <%=h @paciente.nombre %>
+        </div>
+        <div id="pacientes-actions">
+          <%= link_to image_tag('magnifier_zoom_in.png'), @paciente, :title => 'Ver'%> |
+          <%= link_to image_tag('cancel.png'), @paciente, :title=> 'Eliminar Paciente', :confirm => 'Esta seguro? No podrá deshacer esta acción', :method => :delete %> |
+
+          <%= link_to 'Volver', pacientes_path %>
+        </div>
+
+      </div>
+     
+        <ul id="form">
+          <li>
+            <label>Nombre</label>
+            <%= f.text_field :nombre, :class => 'ui-widget-content' %>
+          </li>
+          <li>
+            <label>Tipo de documento</label>
+            <%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion, {}, :class => 'ui-widget-content') %>
+          </li>
+          <li>
+            <label>Matricula</label>
+            <%= f.text_field :matricula, :class => 'ui-widget-content' %>
+          </li>
+          <li>
+            <label>Sexo</label>
+            <select name="paciente[sexo]" class="ui-widget-content">
+              <%=  options_for_select([ "Masculino", "Femenino" ], @paciente.sexo)%>
+            </select>
+          </li>
+          <li>
+            <label>Estado civil</label>
+            <select name="paciente[estado_civil]" class="ui-widget-content">
+              <%=  options_for_select([ "Soltero/a", "Casado/a","Divorciado/a","Viudo/a","Otro" ], @paciente.estado_civil)%>
+            </select>
+          </li>
+          <li>
+            <label> Domicilio Particular</label>
+            <%= f.text_field :domicilio_particular, :class => 'ui-widget-content' %>
+          </li>
+          <li>
+            <label>Domicilio Laboral </label>
+            <%= f.text_field :domicilio_laboral, :class => 'ui-widget-content' %>
+          </li>
+          <li>
+            <label>F. Nacimiento</label>
+            <span class="fecha_nacimiento">
+                    <input class="ui-widget-content "type="text" id="fecha_nacimiento" name="paciente[fecha_nacimiento]" readonly="readonly" />
+            </span>
+          </li>
+          <li>
+            <label>Grupo Sanguineo</label>
+            <%= f.text_field :grupo_sanguineo, :class => 'ui-widget-content' %>
+          </li>
+          <li>
+            <label>Teléfono Particular</label>
+            <%= f.text_field :telefono_particular, :class => 'ui-widget-content' %>
+          </li>
+          <li>
+            <label>Teléfono Laboral</label>
+            <%= f.text_field :telefono_laboral, :class => 'ui-widget-content' %>
+          </li>
+          <li>
+            <label>Teléfono Celular</label>
+            <%= f.text_field :movil, :class => 'ui-widget-content' %>
+          </li>
+          <li>
+            <label>Profesión</label>
+            <%= f.text_field :profesion, :class => 'ui-widget-content' %>
+          </li>
+          <li>
+            <label>Ocupación</label>
+            <%= f.text_field :ocupacion, :class => 'ui-widget-content' %>
+          </li>
+          <li>
+            <label>Nivel Escolar</label>
+            <%= f.text_field :nivel_escolar, :class => 'ui-widget-content' %>
+          </li>
+          <li>
+            <label></label>
+            <%= f.submit 'Actualizar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+          </li>
+
+
+        </ul>
+      
+
+ <% end %>
+
+<script type="text/javascript">
+  $("#fecha_nacimiento").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110'});
+</script>

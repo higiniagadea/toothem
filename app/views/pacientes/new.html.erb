@@ -1,85 +1,97 @@
+<<<<<<< HEAD:app/views/pacientes/new.html.erb
 
 
+=======
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Nuevo Paciente</legend>
+>>>>>>> a7301a3e1cd00ca1a455dd6ad4f33d5df183c2d6:app/views/pacientes/new.html.erb
 <% form_for(@paciente) do |f| %>
   <%= f.error_messages(:id => 'Error', :header_message=>'', :message=>'Se encontraron los siguientes errores') %>
   <ul id="form">
     <li>
       <label>Nombre</label>
-      <%= f.text_field :nombre %>
+      <%= f.text_field :nombre, :class => 'ui-widget-content' %>
     </li>
     <li>
       <label>Matrícula</label>
-      <%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion) %>
-      <%= f.text_field :matricula %>
+      <%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion, {}, :class => 'ui-widget-content') %>
+      <%= f.text_field :matricula, :class => 'ui-widget-content' %>
     </li>
     <li>
       <label>Sexo</label>
-      <select name="paciente[sexo]">
+      <select name="paciente[sexo]" class ="ui-widget-content">
         <%=  options_for_select([ "Masculino", "Femenino" ], @paciente.sexo)%>
       </select>
     </li>
     <li>
       <label>Estado Civil</label>
-      <select name="paciente[estado_civil]">
+      <select name="paciente[estado_civil]" class ="ui-widget-content">
         <%=  options_for_select([ "Soltero/a", "Casado/a","Divorciado/a","Viudo/a","Otro" ], @paciente.estado_civil)%>
       </select>
     </li>
     <li>
       <label>Domicilio</label>
-      <%= f.text_field :domicilio_particular %>
+      <%= f.text_field :domicilio_particular, :class => 'ui-widget-content' %>
     </li>
     <li>
       <label>Domicilio Laboral</label>
-      <%= f.text_field :domicilio_laboral %>
+      <%= f.text_field :domicilio_laboral, :class => 'ui-widget-content' %>
     </li>
 
     <li>
       <label>F. Nacimiento</label>
-      <%= f.date_select :fecha_nacimiento,
-                        :order => [:day, :month, :year],
-                        :use_month_names => ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct','Nov','Dic'],
-                        :start_year => 1920,
-                        :end_year => Time.now.year %>
+      <span class="fecha_nacimiento">
+              <input class="ui-widget-content "type="text" id="fecha_nacimiento" name="paciente[fecha_nacimiento]" readonly="readonly" />
+      </span>
+      
     </li>
     <li>
       <label>Grupo Sanguíneo</label>
-      <select name="paciente[grupo_sanguineo]">
+      <select name="paciente[grupo_sanguineo]" class ="ui-widget-content">
       <%= options_for_select(["A+","A-","B+","B-","AB+","AB-","O+","O-"], @paciente.grupo_sanguineo) %>
       </select>
     </li>
     <li>
       <label>Teléfono</label>
-      <%= f.text_field :telefono_particular %>
+      <%= f.text_field :telefono_particular, :class => 'ui-widget-content' %>
     </li>
     <li>
       <label>Teléfono Laboral</label>
-      <%= f.text_field :telefono_laboral %>
+      <%= f.text_field :telefono_laboral, :class => 'ui-widget-content' %>
     </li>
     <li>
       <label>Móvil</label>
-      <%= f.text_field :movil %>
+      <%= f.text_field :movil, :class => 'ui-widget-content' %>
     </li>
     <li>
       <label>Profesión</label>
-      <%= f.text_field :profesion %>
+      <%= f.text_field :profesion, :class => 'ui-widget-content' %>
     </li>
     <li>
       <label>Ocupación</label>
-      <%= f.text_field :ocupacion %>
+      <%= f.text_field :ocupacion, :class => 'ui-widget-content' %>
     </li>
     <li>
       <label>Nivel Escolar</label>
-      <%= f.text_field :nivel_escolar %>
+      <%= f.text_field :nivel_escolar, :class => 'ui-widget-content' %>
     </li>
     <li>
       <label>Num. Afiliado</label>
-      <%= f.text_field :nro_afiliado %>
+      <%= f.text_field :nro_afiliado, :class => 'ui-widget-content' %>
     </li>
     <li>
       <label></label>
-      <%= f.submit 'Crear' %>
+      <%= f.submit 'Crear', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
     </li>
   </ul>
 
 
 <% end %>
+</fieldset>
+
+
+<script type="text/javascript">
+
+  $("#fecha_nacimiento").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110'});
+
+</script>
