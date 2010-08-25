@@ -1,24 +1,29 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Busqueda</legend>
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Buscar Pacientes</legend>
 <div id="searchform">
   <%  form_remote_tag :url=> result_pacientes_path, 
                       :method => :post,
                       :update => :search_hits do -%>
-      <ul id="search-form">
-        <li>
-          <label for="matricula">Matricula</label>
-          <%= text_field_tag :matricula, :class => 'ui-widget-content' %>
-        </li>
-        <li>
-          <label for="nombre">Nombre y Apellido</label>
-          <%= text_field_tag :nombre, :class => 'ui-widget-content' %>
-        </li>
-        <li style="text-align:right">
+
+      <table id="search-form">
+        <tr>
+          <td> <label for="tipo_documento">Tipo Documento</label></td>
+        <td><%=  collection_select(:get, :tipo_documento_id, TipoDocumento.all, :id, :descripcion, {}, :class => 'ui-widget-content') %> </td>
+          
+        <td><label for="matricula">Nro:</label></td>
+          <td> <%= text_field_tag :matricula %></td>
+        </tr>
+
+        <tr>
+          <td><label for="nombre">Nombre y Apellido</label></td>
+        <td><%= text_field_tag :nombre %></td>
+        </tr>
+        <tr style="text-align:right">
           <label></label>
-          <%= submit_tag 'Buscar' %>
-          <a href="">Avanzado</a>
-        </li>
-      </ul>
+          <td> <%= submit_tag 'Buscar' %></td>
+          <td><a href="">Avanzado</a></td>
+        </tr>
+      </table>
   <%end -%>
   
 </div>

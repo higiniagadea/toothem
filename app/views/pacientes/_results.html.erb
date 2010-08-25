@@ -1,14 +1,18 @@
 <table id="pacientes" class="table-search" align="center">
     <tr>
-      <th>Nombre</th>
-      <th>Matricula</th>
+      <th>Nombre y Apellido </th>
+      <th>Tipo y Nro. Documento</th>
+      <th>Telefono Movil</th>
     </tr>
     <% @pacientes.each do |paciente| %>
       <tr>
         <td><%=h paciente.nombre %></td>
-        <td><%=h paciente.matricula %></td>
+        <td><%=h paciente.tipo_documento.descripcion %>  <%=h paciente.matricula %></td>
+        <td><%=h paciente.movil%></td>
         <td id="p_data_<%= paciente.id %>">
-          <%= image_tag 'wrench.png' %>
+          <td><%= link_to image_tag('magnifier_zoom_in.png'), paciente, :title => "Ver" %>
+          <%= link_to image_tag('pencil.png'), edit_paciente_path(paciente), :title => "Editar" %></td>
+         
         </td>
       </tr>
     <% end %>
