@@ -1,4 +1,5 @@
-
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Tratamiento</legend>
 <table id="table-list">
 
 <tr><td><h1>Tratamiento de: <%=h @tratamiento.paciente.nombre %> </h1></td></tr>
@@ -60,5 +61,6 @@
 <td class="label">Ficha:</td>
 </tr>
 </table>
+</fieldset>
 <%= link_to 'Editar', edit_tratamiento_path(@tratamiento) %> |
 <%= link_to 'Volver', tratamientos_path %>

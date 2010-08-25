@@ -1,4 +1,5 @@
-
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Tratamiento</legend>
 
 <% form_for(@tratamiento) do |f| %>
   <%= f.error_messages(:header_message=>'Ingreso Incorrecto: ',:message=>'Se encontraron los siguientes errores') %>
@@ -78,6 +79,6 @@
     <%= f.submit 'Actualizar' %>
   </td>
 <% end %>
-
+</fieldset>
 <%= link_to 'Ver', @tratamiento %> |
 <%= link_to 'Volver', tratamientos_path %>

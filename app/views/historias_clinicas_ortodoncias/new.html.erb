@@ -1,3 +1,5 @@
+ <fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Historia Clinica</legend>
  <% form_for(:historia_clinica_ortodoncia, @historia_clinica_ortodoncia, :url => {:method => :post, :action => "show"}) do |f| %>
         <%= f.error_messages %>
 
@@ -13,7 +15,7 @@
       <table>
         <tr>
      
-         <%= link_to image_tag('magnifier_zoom_in.png'), paciente_historia_clinica_ortodoncia_path(@paciente), :title => 'Ver' %> |
+         <%#= link_to image_tag('magnifier_zoom_in.png'), paciente_historia_clinica_ortodoncia_path(@paciente), :title => 'Ver' %> |
          <%= link_to image_tag('printer.png'), imprimir_paciente_historia_clinica_ortodoncia_path(@paciente), :title => 'Imprimir', :popup => ['Imprimir', 'height=300,width=600'] %>
         </tr>
       </table>
@@ -873,6 +875,6 @@
 
  
 </div>
-
+ </fieldset>
 
 

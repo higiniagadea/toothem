@@ -1,3 +1,5 @@
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Obra Social</legend>
 <p>
   <b>Nombre:</b>
   <%=h @obra_social.nombre %>
@@ -22,6 +24,6 @@
   <b>Nro max codigos por mes:</b>
   <%=h @obra_social.nro_max_codigos_por_mes %>
 </p>
-
+</fieldset>
 <%= link_to 'Volver', obras_sociales_path(@obras_sociales) %>
 

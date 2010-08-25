@@ -1,4 +1,5 @@
-
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Obra Social</legend>
 
 <% form_for(@obra_social) do |f| %>
   <%= f.error_messages(:id => 'Error', :header_message=>'', :message=>'Se encontraron los siguientes errores') %>
@@ -31,5 +32,5 @@
     </li>
   </ul>
 <% end %>
-
+</fieldset>
 <%= link_to 'Volver', obras_sociales_path(@obras_sociales) %>

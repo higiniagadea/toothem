@@ -1,3 +1,5 @@
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Editando Historia Clinica</legend>
 <% form_for(:historia_clinica_general, @historia_clinica_general,
             :url => paciente_historia_clinica_general_url(@paciente), :html=> {:method=> :put}) do |f| %>
 <%= f.error_messages %>
@@ -404,4 +406,4 @@
   </fieldset>
   <div style="clear:both;"></div>
 </div>
-
+</fieldset>

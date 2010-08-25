@@ -1,3 +1,5 @@
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Busqueda</legend>
 <div id="searchform">
   <%  form_remote_tag :url=> result_pacientes_path, 
                       :method => :post,
@@ -5,11 +7,11 @@
       <ul id="search-form">
         <li>
           <label for="matricula">Matricula</label>
-          <%= text_field_tag :matricula %>
+          <%= text_field_tag :matricula, :class => 'ui-widget-content' %>
         </li>
         <li>
           <label for="nombre">Nombre y Apellido</label>
-          <%= text_field_tag :nombre %>
+          <%= text_field_tag :nombre, :class => 'ui-widget-content' %>
         </li>
         <li style="text-align:right">
           <label></label>
@@ -23,3 +25,4 @@
 <div id="search_hits">
 
 </div>
+</fieldset>
