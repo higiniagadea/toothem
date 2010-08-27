@@ -8,18 +8,18 @@
     <tr>
     <td>
       <label>Nombre y Apellido</label></td>
-    <td><%= f.text_field :nombre, :class => 'ui-widget-content' %>
+    <td><%= f.text_field :nombre, :class => 'required' %>
     </td>
     <td>
       <label>Tipo Y Nro.  Documento</label></td>
     <td><%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion, {}, :class => 'ui-widget-content') %>
-      <%= f.text_field :matricula, :class => 'ui-widget-content' %>
+      <%= f.text_field :matricula, :class => 'required' %>
     </td>
     </tr>
     <tr>
     <td>
       <label>Domicilio</label></td>
-    <td><%= f.text_field :domicilio_particular, :class => 'ui-widget-content' %>
+    <td><%= f.text_field :domicilio_particular, :class => 'required' %>
     </td>
     </tr>
 
@@ -101,19 +101,29 @@
       <%= f.submit 'Crear', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
     </td>
 
-     <td>
+    <td>
       <label></label>
-      <%= link_to 'Cancelar',  :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+      <%= link_to 'Cancelar', search_pacientes_path %>
     </td>
     
   </table>
 
 
 <% end %>
+
+
+    
 </fieldset>
 
-
 <script type="text/javascript">
+  $(document).ready(function(){
+    $("#form").validate();
+  });
+  
+
+
+
+ type="text/javascript">
 
   $("#fecha_nacimiento").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Jutdo','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110'});
 

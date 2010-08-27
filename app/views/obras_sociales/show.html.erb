@@ -1,29 +1,38 @@
-<fieldset class="ui-widget ui-widget-content ui-corner-top">
+<fieldset class="ui-widget ui-widget-content ui-corner-totd">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Obra Social</legend>
-<p>
-  <b>Nombre:</b>
-  <%=h @obra_social.nombre %>
-</p>
+<table class="table-list">
+  <tr>|
+  <td>Nombre:</td>
+  <td><%=h @obra_social.nombre %>
+</td>
+  </tr>
 
-<p>
-  <b>Auditoria previa:</b>
-  <%=h boolean_desc(@obra_social.auditoria_previa) %>
-</p>
+<tr>
+<td>Auditoria Previa</td>
+<td><%=h boolean_desc(@obra_social.auditoria_previa) %>
+</td>
+</tr>
 
-<p>
-  <b>Auditoria post:</b>
-  <%=h boolean_desc(@obra_social.auditoria_post) %>
-</p>
+<tr>
+<td> Auditoria Posterior:</td>
+<td> <%=h boolean_desc(@obra_social.auditoria_post) %>
+</td>
+</tr>
 
-<p>
-  <b>Incluye ficha:</b>
-  <%=h boolean_desc(@obra_social.incluye_ficha) %>
-</p>
+<tr>
+<td>  Incluye ficha:</td>
+<td><%=h boolean_desc(@obra_social.incluye_ficha) %>
+</td>
+</tr>
 
-<p>
-  <b>Nro max codigos por mes:</b>
-  <%=h @obra_social.nro_max_codigos_por_mes %>
-</p>
+<tr
+<td>
+  Nro max codigos por mes:</td>
+<td><%=h @obra_social.nro_max_codigos_por_mes %>
+</td>
+</tr>
+</table>
+  
 </fieldset>
 <%= link_to 'Volver', obras_sociales_path(@obras_sociales) %>
 

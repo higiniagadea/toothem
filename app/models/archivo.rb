@@ -8,7 +8,7 @@ class Archivo < ActiveRecord::Base
                  :thumbnails => { :thumb => [90,90] }
 
   
-
+  
 
  
 

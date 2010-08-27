@@ -8,7 +8,7 @@
       <table id="search-form">
         <tr>
           <td> <label for="tipo_documento">Tipo Documento</label></td>
-        <td><%=  collection_select(:get, :tipo_documento_id, TipoDocumento.all, :id, :descripcion, {}, :class => 'ui-widget-content') %> </td>
+        <td><%=  collection_select(:get, :tipo_documento_id, TipoDocumento.all, :id, :descripcion, {}) %> </td>
           
         <td><label for="matricula">Nro:</label></td>
           <td> <%= text_field_tag :matricula %></td>
@@ -18,12 +18,17 @@
           <td><label for="nombre">Nombre y Apellido</label></td>
         <td><%= text_field_tag :nombre %></td>
         </tr>
-        <tr style="text-align:right">
+        <table>
+        <tr>
           <label></label>
-          <td> <%= submit_tag 'Buscar' %></td>
-          <td><a href="">Avanzado</a></td>
+
+
+          <td style=" float: left; margin-left:  400px"> <%= submit_tag 'Buscar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
+          <td><a href="">???????????</a></td
         </tr>
+        </table>
       </table>
+
   <%end -%>
   
 </div>

@@ -10,14 +10,17 @@
     <%end%>
   </div>
   <div id="pacientes-options">
+
     <div id="pacientes-nombre">
       <%=h @paciente.nombre %>
     </div>
+
     <div id="pacientes-actions">
       <%= link_to image_tag('pencil.png'), edit_paciente_path(@paciente), :title=> 'Editar'%> |
       <%= link_to image_tag('cancel.png'), @paciente, :confirm => 'Esta seguro que desea eliminar el paciente?', :method => :delete, :title=> 'Eliminar' %> |
       <%= link_to image_tag('paste_plain.png'), listado_historias_clinicas_paciente_path(@paciente), :title => "Historias Clinicas"  %>
     </div>
+
   </div>
   <fieldset class="ui-widget-content ui-corner-all">
     <legend class="ui-widget ui-widget-header ui-corner-all" >Datos del paciente</legend>

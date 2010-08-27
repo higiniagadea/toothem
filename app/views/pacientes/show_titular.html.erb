@@ -1,19 +1,24 @@
-<p>
-  <b>Nombre:</b>
-  <%=h @titular.nombre %>
-</p>
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Titular</legend>
+  <table class="table-list">
 
-<p>
-  <b>Consultorio:</b>
-  <%=h @titular.consultorio_id %>
-</p>
+  <td>Nombre:</td>
+  <td><%=h @titular.nombre %>
+</td>
 
-<p>
-  <b>Matricula:</b>
-  <%=h @titular.matricula %>
-</p>
 
-<p>
-  <b>Obra social:</b>
-  <%=h @titular.obra_social_id %>
-</p>
+  <td>Consultorio:</td>
+  <td><%=h @titular.consultorio_id %>
+</td>
+
+
+  <td>Matricula:</td>
+  <td><%=h @titular.matricula %>
+</td>
+
+
+  <td>Obra social:</td>
+  <td><%=h @titular.obra_social_id %>
+</td>
+  </table>
+</fieldset>

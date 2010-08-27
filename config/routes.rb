@@ -47,7 +47,8 @@ ActionController::Routing::Routes.draw do |map|
                             :update_titular => :put,
                             :new_titular => :get, :create_titular => :post,
                             :show_imagen => :get,
-                            :listado_historias_clinicas => :get
+                            :listado_historias_clinicas => :get,
+                            :ver => [:post, :get]
                             
                             
                 }do |paciente|

@@ -1,7 +1,7 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Nuevo Profesional</legend>
 <% form_for(@profesional) do |f| %>
-  <%= f.error_messages  :id => 'error', :header_message => '', :message => 'Ocurrió un error al intentar guardar el registro'  %>
+  <%= f.error_messages(:id => 'error', :header_message => '', :message => 'Ocurrió un error al intentar guardar el registro')  %>
 <table id="form" >
   <tr>
   <td>
@@ -77,7 +77,7 @@
 
   <td>
     <label></label>
-    <%= f.submit 'Crear' %>
+    <%= f.submit 'Crear',  :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
   </td>
 </table>
 </fieldset>

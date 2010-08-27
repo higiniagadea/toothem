@@ -1,4 +1,5 @@
-
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class ="ui-widget ui-widget-content ui-corner-all ui-widget-header">Nuevo Arancel</legend>
 
 <%  form_for(:arancel, @arancel, :url => {:method => :post, :action => "index"})do |f| %>
   <%= f.error_messages(:id => 'error', :header_message=>'', :message=>'Se encontraron los siguientes errores') %>
@@ -20,13 +21,13 @@
           <%= f.collection_select(:prestacion_id, prestaciones, :id, :codigo_descripcion) %>
         </td>
         <td>
-          <%= f.text_field :importe_cubierto, :size => 15 %>
+          <%= f.text_field :importe_cubierto, :size => 10 %>
         </td>
         <td>
-          <%= f.text_field :coseguro, :size => 15 %>
+          <%= f.text_field :coseguro, :size => 10 %>
         </td>
         <td>
-          <%= f.submit 'Crear' %>
+          <%= f.submit 'Crear', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
         </td>
       </tr>
     <%  else -%>
@@ -35,6 +36,7 @@
   </table>
 <% end %>
 <table class="table-list">
+  
   <tr class="<%  cycle('par','impar') %>">
     <th>Prestación</th>
     <th>Importe cubierto</th>
@@ -47,15 +49,16 @@
     <td><%=h arancel.prestacion.descripcion %></td>
     <td><%= number_to_currency(arancel.importe_cubierto)%></td>
     <td><%= number_to_currency(arancel.coseguro)%></td>
-    <td><%= link_to image_tag('pencil.png'), edit_obra_social_arancel_path(@obra_social, arancel), :title => 'Editar'%></td>
+    <td><%= link_to image_tag('pencil.png'), edit_obra_social_arancel_path(@obra_social, arancel), :title => 'Editar' %></td>
    
-    <td><%= link_to image_tag('cancel.png'), [@obra_social,arancel], :confirm => 'Esta seguro que desea eliminar el arancel?', :method => :delete, :title => 'Eliminar'%></td>
+    <td><%= link_to image_tag('cancel.png'), [@obra_social,arancel], :confirm => 'Esta seguro que desea eliminar el arancel?', :method => :delete, :title => 'Eliminar' %></td>
 
 
 
   </tr>
 <% end %>
 </table>
+</fieldset>
 
 <div class="paginador">
   <%= will_paginate @aranceles%>

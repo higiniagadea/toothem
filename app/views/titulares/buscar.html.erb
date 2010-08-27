@@ -1,22 +1,29 @@
-
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Titular</legend>
 
  <% form_remote_tag :url => resultado_titulares_path,
                    :method => :post, :update => :search_hits do -%>
-    <ul id="search-form">
-        <li>
-          <label>Nombre</label>
-          <%= text_field_tag :nombre %>
-        </li>
-        <li>
+    <table id="search-form">
+      <tr>
+        <td>
+          <label>Nombre</label></td>
+        <td><%= text_field_tag :nombre %>
+        </td>
+      </tr>
+      <tr>
+        <td>
           <label>Matrícula</label>
           <%= text_field_tag :matricula %>
-        </li>
-        
-        <li>
-          <label></label>
-          <%= submit_tag 'Buscar' %>
-        </li>
-      </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label></label></td>
+        <td><%= submit_tag 'Buscar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+        </td>
+      </tr>
+      </table>
+</fieldset>
 <%end -%>
 <div id ="search_hits">
 

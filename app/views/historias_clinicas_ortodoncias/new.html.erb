@@ -10,7 +10,7 @@
     </div>
     <div id="pacientes-actions">
       <tr>
-      <%= f.submit 'Guardar' %>
+      <%= f.submit 'Guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
       </tr>
       <table>
         <tr>
@@ -858,7 +858,7 @@
  </tr>
 
  <td>
-    <%= f.submit 'Guardar' %>
+    <%= f.submit 'Guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
   </td>
   <td>
     <%= link_to 'Volver', paciente_path(@paciente) %>

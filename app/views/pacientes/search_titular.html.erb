@@ -1,3 +1,5 @@
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Titular</legend>
 <div id="formulario">
   <a class="close" style="float: right" ><%= image_tag 'cancel.png' %></a>
  
@@ -6,31 +8,36 @@
 <%= link_to_remote 'Nuevo titular', :url => new_titular_paciente_path,
                                       :method => :get,
                                       :update => :formulario%>
-    <ul id="search_form">
-        
-        <li>
-          <%= collection_select(:get, :obra_social_id, ObraSocial.all, :id, :nombre) %>
-        </li>
-      
-        <li>
-          <label>Nombre</label>
-          <%= text_field_tag :nombre %>
-        </li>
-        <li>
-          <label>Matrícula</label>
-          <%= text_field_tag :matricula %>
-        </li>
-        <li>
+    <table id="search_form">
+      <tr>
+        <td>
+          <%= collection_select(:get, :obra_social_id, ObraSocial.all, :id, :nombre, :class=> 'ui-gadget-content')%>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label>Nombre</label></td>
+        <td><%= text_field_tag :nombre, :class=> 'ui-widget-content' %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label>Documento</label></td>
+        <td><%= text_field_tag :matricula, :class=> 'ui-widget-content' %>
+        </td>
+      </tr>
+
+        <td>
           <label></label>
-          <%= submit_tag 'Buscar' %>
+          <%= submit_tag 'Buscar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
           
-        </li>
-      </ul>
+        </td>
+      </table>
 
 <%end -%>
-
+</fieldset>
 
 <div id ="search_hits">
 
 </div>
-  </div>
+ 
