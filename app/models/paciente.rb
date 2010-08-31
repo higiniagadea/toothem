@@ -14,9 +14,7 @@ class Paciente < ActiveRecord::Base
   validates_presence_of :nombre, :message => ' y apellido no puede estar vacio'
   validates_presence_of :matricula, :message => ' No puede estar en blanco'
   validates_presence_of :domicilio_particular, :message => 'El campo no puede estar vacio'
-
-
-
+  
   named_scope :by_matricula, lambda { |matricula|
     {
       :conditions=> ['lower(matricula) LIKE :matricula',

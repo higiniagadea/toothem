@@ -4,22 +4,27 @@
 
 <% form_for(@paciente) do |f| %>
   <%= f.error_messages(:id => 'Error', :header_message=>'', :message=>'Se encontraron los siguientes errores') %>
+  <div class="errores">
+    <ol style="list-style:none"></ol>
+  </div>
+
   <table id="form">
+
     <tr>
     <td>
       <label>Nombre y Apellido</label></td>
-    <td><%= f.text_field :nombre, :class => 'required' %>
+    <td><%= f.text_field :nombre, :class => 'required', :title=> 'El campo Nombre y Apellido no puede estar en blanco' %>
     </td>
     <td>
       <label>Tipo Y Nro.  Documento</label></td>
     <td><%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion, {}, :class => 'ui-widget-content') %>
-      <%= f.text_field :matricula, :class => 'required' %>
+      <%= f.text_field :matricula, :class => 'required', :title=> 'El campo Tipo y Nro. de Documento no puede estar en blanco' %>
     </td>
     </tr>
+    
     <tr>
-    <td>
-      <label>Domicilio</label></td>
-    <td><%= f.text_field :domicilio_particular, :class => 'required' %>
+    <td><label>Domicilio</label></td>
+    <td><%= f.text_field :domicilio_particular, :class => 'required', :title=> 'El campo Domicilio no puede estar en blanco'%>
     </td>
     </tr>
 
@@ -41,13 +46,13 @@
     <tr>
     <td>
       <label>Domicilio Laboral</label></td>
-    <td><%= f.text_field :domicilio_laboral, :class => 'ui-widget-content' %>
+    <td><%= f.text_field :domicilio_laboral %>
     </td>
     </tr>
 
     <tr>
     <td>
-      <label>Fecha Nacimiento</label></td>
+      <label>Fecha de Nacimiento</label></td>
     <td><span class="fecha_nacimiento">
               <input class="ui-widget-content "type="text" id="fecha_nacimiento" name="paciente[fecha_nacimiento]" readonly="readonly" />
       </span>
@@ -63,37 +68,37 @@
     <tr>
     <td>
       <label>Teléfono</label></td>
-    <td><%= f.text_field :telefono_particular, :class => 'ui-widget-content' %>
+    <td><%= f.text_field :telefono_particular %>
     </td>
      <td>
       <label>Móvil</label></td>
-     <td><%= f.text_field :movil, :class => 'ui-widget-content' %>
+     <td><%= f.text_field :movil %>
     </td>
     <td>
       <label>Teléfono Laboral</label></td>
-    <td><%= f.text_field :telefono_laboral, :class => 'ui-widget-content' %>
+    <td><%= f.text_field :telefono_laboral %>
     </td>
     </tr>
 
     <tr>
     <td>
       <label>Profesión</label></td>
-    <td><%= f.text_field :profesion, :class => 'ui-widget-content' %>
+    <td><%= f.text_field :profesion %>
     </td>
     <td>
       <label>Ocupación</label></td>
-    <td><%= f.text_field :ocupacion, :class => 'ui-widget-content' %>
+    <td><%= f.text_field :ocupacion %>
     </td>
     <td>
       <label>Nivel Escolar</label></td>
-    <td><%= f.text_field :nivel_escolar, :class => 'ui-widget-content' %>
+    <td><%= f.text_field :nivel_escolar %>
     </td>
     </tr>
 
     <tr>
     <td>
       <label>Num. Afiliado</label></td>
-    <td><%= f.text_field :nro_afiliado, :class => 'ui-widget-content' %>
+    <td><%= f.text_field :nro_afiliado %>
     </td>
     </tr>
     <td>
@@ -117,14 +122,18 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
-    $("#form").validate();
+    $("#new_paciente").validate({
+        //errorLabelContainer: $("#new_titular div.errores")
+       errorContainer: $("#new_paciente div.errores"),
+       errorLabelContainer: $("ol", $("#new_paciente div.errores")),
+       wrapper: 'li',
+       meta: "validate"
+     });
+
   });
   
 
+  $("#fecha_nacimiento").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate: 0});
 
-
- type="text/javascript">
-
-  $("#fecha_nacimiento").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Jutdo','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110'});
 
 </script>

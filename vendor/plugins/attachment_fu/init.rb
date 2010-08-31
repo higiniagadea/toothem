@@ -24,3 +24,12 @@ def uploaded_data_is_present # valida si hay datos subidos o no
       errors.add_to_base("You must select a file to upload.")#...agrega el error al objeto
     end
   end
+
+
+
+
+
+
+
+
+ 
