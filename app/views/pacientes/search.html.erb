@@ -1,6 +1,6 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Buscar Pacientes</legend>
-<div id="searchform">
+<div class="searchform">
   <%  form_remote_tag :url=> result_pacientes_path, 
                       :method => :post,
                       :update => :search_hits do -%>
@@ -24,8 +24,9 @@
 
 
           <td style=" float: left; margin-left:  400px"> <%= submit_tag 'Buscar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
-          <td><a href="">???????????</a></td
-        </tr>
+          <td>  <a href=""><%= image_tag 'information.png' %></a></td>
+          
+          </tr>
         </table>
       </table>
 
@@ -36,3 +37,5 @@
 
 </div>
 </fieldset>
+
+

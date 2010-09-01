@@ -24,7 +24,7 @@
     
     <tr>
     <td><label>Domicilio</label></td>
-    <td><%= f.text_field :domicilio_particular, :class => 'required', :title=> 'El campo Domicilio no puede estar en blanco'%>
+    <td colspan="3"><%= f.text_field :domicilio_particular, :class => 'required', :title=> 'El campo Domicilio no puede estar en blanco', :size=>101%>
     </td>
     </tr>
 
@@ -46,8 +46,7 @@
     <tr>
     <td>
       <label>Domicilio Laboral</label></td>
-    <td><%= f.text_field :domicilio_laboral %>
-    </td>
+    <td colspan="3"><%= f.text_field :domicilio_laboral, :size=>101%>  </td>
     </tr>
 
     <tr>

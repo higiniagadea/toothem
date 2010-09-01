@@ -30,7 +30,7 @@ class SessionsController < ApplicationController
       session[:subitems] = Item.find(:all, :conditions => "lower(url) LIKE '%/profesionales/%'")
 
       handle_remember_cookie! new_cookie_flag
-      redirect_back_or_default('/consultorios')
+      redirect_back_or_default('/pacientes')
       flash[:notice] = "Ingreso correcto"
     else
       note_failed_signin
