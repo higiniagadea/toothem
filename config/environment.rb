@@ -47,4 +47,4 @@ Rails::Initializer.run do |config|
 end
 require 'will_paginate'
 require RAILS_ROOT + '/vendor/plugins/ryanb-scope-builder-0.1.2/lib/scope_builder.rb'
-#require 'acts_as_tree'
+#require 'acts_as_tree' 

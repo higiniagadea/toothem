@@ -13,7 +13,7 @@
     <tr>
     <td>
       <label>Nombre y Apellido</label></td>
-    <td><%= f.text_field :nombre, :class => 'required', :title=> 'El campo Nombre y Apellido no puede estar en blanco' %>
+    <td><%= f.text_field :nombre, :title=> 'El campo Nombre y Apellido no puede estar en blanco',  :class => 'required' %>
     </td>
     <td>
       <label>Tipo Y Nro.  Documento</label></td>
@@ -53,7 +53,7 @@
     <td>
       <label>Fecha de Nacimiento</label></td>
     <td><span class="fecha_nacimiento">
-              <input class="ui-widget-content "type="text" id="fecha_nacimiento" name="paciente[fecha_nacimiento]" readonly="readonly" />
+              <input class="ui-widget-content required" title="El campo Fecha de nacimiento no puede estar en blanco" type="text" id="fecha_nacimiento" name="paciente[fecha_nacimiento]" readonly="readonly" />
       </span>
     </td>
     <td>

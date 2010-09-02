@@ -19,7 +19,7 @@ $:.unshift(File.dirname(__FILE__) + '/vendor')
 
 
 
-def uploaded_data_is_present # valida si hay datos subidos o no
+  def uploaded_data_is_present # valida si hay datos subidos o no
     unless uploaded_data? # si no hay datos...
       errors.add_to_base("You must select a file to upload.")#...agrega el error al objeto
     end

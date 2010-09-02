@@ -47,6 +47,7 @@ class ImagenesController < ApplicationController
   # POST /imagenes
   # POST /imagenes.xml
   def create
+    #@paciente = Paciente.find(params[:id])
     @archivo = Archivo.new(params[:archivo])
     if @archivo.save
         params[:imagen][:archivo_id] = @archivo.id
