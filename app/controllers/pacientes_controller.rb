@@ -312,5 +312,16 @@ def ver
    end
 end
 
+
+def imprimir
+    @paciente = Paciente.find(params[:id])
+
+    respond_to do |format|
+      format.html {render :layout=> "print", :action => "reporte"}   #ccs :layout=>false
+    
+    end
+end
+
+
 end
 

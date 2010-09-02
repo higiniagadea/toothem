@@ -1,0 +1,76 @@
+<div id="pacientes-screen">
+  <legend>Paciente: <%=h @paciente.nombre %></legend>
+  <fieldset class="pacientes-data">
+<table>
+<tr>
+        <td>Tipo y Nro. de Documento</td>
+        <td><%=h @paciente.tipo_documento.descripcion %> <%=h @paciente.matricula %></td>
+</tr>
+
+<tr>
+  <td>Sexo</td>
+  <td><%=h @paciente.sexo %></td>
+
+  <td>Estado Civil</td>
+  <td><%=h @paciente.estado_civil %></td>
+</tr>
+
+<tr>
+  <td>Domicilio</td>
+  <td><%=h @paciente.domicilio_particular %></td>
+</tr>
+<tr>
+<td>Domicilio Laboral
+  <td><%=h @paciente.domicilio_laboral%></td>
+  </td>
+</tr>
+
+<tr>
+  <td>Fecha de Nacimiento
+  <td>
+  <%=@paciente.fecha_nacimiento.blank? ? '-' : @paciente.fecha_nacimiento.strftime('%d/%m/%Y') %></td>
+  </td>
+  <td>Grupo Sanguineo
+  <td><%=h @paciente.grupo_sanguineo%></td>
+  </td>
+</tr>
+
+<tr>
+  <td>Telefono</td>
+  <td><%=h @paciente.telefono_particular %></td>
+
+  <td>Movil</td>
+  <td><%=h @paciente.movil %></td>
+</tr>
+
+<tr>
+
+  <td>Telefono Laboral</td>
+  <td><%=h @paciente.telefono_laboral %></td>
+
+
+  <td>Profesion</td>
+  <td><%=h @paciente.profesion %></td>
+</tr>
+<tr>
+  <td>Ocupacion</td>
+  <td><%=h @paciente.ocupacion %></td>
+  <td>Nivel Escolar</td>
+  <td><%=h @paciente.nivel_escolar %></td>
+</tr>
+
+<tr>
+  <td>Obra Social
+  <td><%=h @paciente.titular.obra_social.nombre %></td>
+  </td>
+</tr>
+
+
+</table>
+ </fieldset>
+
+   <script type="text/javascript">
+          window.print();
+        </script>
+
+  </div>
