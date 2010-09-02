@@ -257,9 +257,15 @@ class PacientesController < ApplicationController
   # PUT /pacientes/1.xml
   def update
     @paciente = Paciente.find(params[:id])
+    @imagenes = Imagen.find_all_by_paciente_id(@paciente)
+
+    unless @paciente.archivo_id.blank?
+      @archivo = Archivo.find(@paciente.archivo_id)
+    end
     @title = "Editando paciente"
     respond_to do |format|
       if @paciente.update_attributes(params[:paciente])
+       
         flash[:notice] = 'Paciente actualizado.'
         format.html { redirect_to(@paciente) }
         format.xml  { head :ok }
