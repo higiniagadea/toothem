@@ -1,16 +1,20 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Imagen</legend>
-<div>
+  <table>
+  <div>
+  <div class="errores">
+    <ol style="list-style:none"></ol>
+  </div>
 
    <% form_for(:archivo, :url => archivos_path,
                          :html => { :multipart => true }) do |f| -%>
-      <table>
+      
         <tr>
           <td>
             <label for="archivo">Seleccione archivo:</label>
           </td>
           <td>
-            <%= f.file_field :uploaded_data %>
+            <%= f.file_field :uploaded_data, :class=> 'required', :title=> 'fkdfdkfjdkf' %>
             <%= f.hidden_field :paciente_id,  "value" => @paciente.id.to_s %>
             
           </td>
@@ -19,7 +23,21 @@
           <td><a  style="font-size: 13px;color:red" class="close">Cancelar</a></td>
           <td><%= submit_tag 'Aceptar' %></td>
         </tr>
-      </table>
+      
    <% end -%>
 </div>
+  </table>
 </fieldset>
+<script type="text/javascript">
+
+// Only create tooltips when document is ready
+$(document).ready(function()
+{
+     $("#new_archivo_imagenes").validate({
+        //errorLabelContainer: $("#new_titular div.errores")
+       errorContainer: $("#new_archivo_imagenes div.errores"),
+       errorLabelContainer: $("ol", $("#new_imagenes div.errores")),
+       wrapper: 'li',
+       meta: "validate"
+     });
+ </script>
