@@ -314,7 +314,7 @@ def ver
       @archivo = Archivo.find(@paciente.archivo_id)
     end
   respond_to do |format|
-    format.html{ render :partial => 'ver', :layout => 'default'}
+    format.html{ render :partial => 'ver', :layout => false}
    end
 end
 

@@ -11,11 +11,11 @@
         <td><%=  collection_select(:get, :tipo_documento_id, TipoDocumento.all, :id, :descripcion, {}) %> </td>
           
         <td><label for="matricula">Nro:</label></td>
-          <td> <%= text_field_tag :matricula %></td>
+          <td> <%= text_field_tag :matricula,{}, :class => 'ui-widget-content' %></td>
         </tr>
 
         <tr>
-          <td><label for="nombre">Nombre y Apellido</label></td>
+          <td><label for="nombre" >Nombre y Apellido</label></td>
         <td><%= text_field_tag :nombre %></td>
         </tr>
         <table>

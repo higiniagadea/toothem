@@ -2,7 +2,6 @@
 <fieldset class="ui-widget-content ui-corner-all">
   <legend class="ui-widget ui-widget-header ui-corner-all" ><%=h @paciente.nombre %> </legend>
 <div id="pacientes-screen">
-<table class="show-data">
   <div id= "pacientes-photo">
 
     <% if @paciente.archivo_id.blank? %>
@@ -11,14 +10,14 @@
       <%= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id = ' + @archivo.id.to_s)), :alt => 'imagen del paciente' %>
     <%end%>
   </div>
-
+<table class="show-data">
 <tr class="odd">
         <td class="fieldname">Tipo y Nro. de Documento</td>
         <td><%=h @paciente.tipo_documento.descripcion %> <%=h @paciente.matricula %></td>
 </tr>
 
 <tr class="odd">
-  <td class="fieldname">Sexo</td>
+  <th class="fieldname">Sexo</th>
   <td><%=h @paciente.sexo %></td>
 
   <td class="fieldname">Estado Civil</td>
@@ -30,35 +29,26 @@
   <td><%=h @paciente.domicilio_particular %></td>
 </tr>
 <tr>
-<td class="fieldname">Domicilio Laboral
+  <td class="fieldname">Domicilio Laboral</td>
   <td><%=h @paciente.domicilio_laboral%></td>
-  </td>
 </tr>
 
 <tr class="odd">
-  <td class="fieldname">Fecha de Nacimiento
-  <td>
-  <%=@paciente.fecha_nacimiento.blank? ? '-' : @paciente.fecha_nacimiento.strftime('%d/%m/%Y') %></td>
-  </td>
-  <td class="fieldname">Grupo Sanguineo
+  <td class="fieldname">Fecha de Nacimiento</td>
+  <td><%=@paciente.fecha_nacimiento.blank? ? '-' : @paciente.fecha_nacimiento.strftime('%d/%m/%Y') %></td>
+  <td class="fieldname">Grupo Sanguineo</td>
   <td><%=h @paciente.grupo_sanguineo%></td>
-  </td>
 </tr>
 
 <tr class="odd">
   <td class="fieldname">Telefono</td>
   <td><%=h @paciente.telefono_particular %></td>
-
   <td class="fieldname">Movil</td>
   <td><%=h @paciente.movil %></td>
 </tr>
-
 <tr class="odd">
- 
   <td class="fieldname">Telefono Laboral</td>
   <td><%=h @paciente.telefono_laboral %></td>
- 
-  
   <td class="fieldname">Profesion</td>
   <td><%=h @paciente.profesion %></td>
 </tr>
@@ -71,11 +61,11 @@
 
 <tr>
   <td class="fieldname">Obra Social
-  <td><%=h @paciente.titular.obra_social.nombre %></td>
+  <td><%=h @paciente.titular.obra_social.nombre unless @paciente.titular_id.blank? %></td>
   </td>
 </tr>
 
-</div>
+
 
 
 </table>
