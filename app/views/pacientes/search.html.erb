@@ -1,40 +1,37 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Buscar Pacientes</legend>
 <div class="searchform">
-  <%  form_remote_tag :url=> result_pacientes_path, 
+         <div class="errores">
+         <ol style="list-style:none"></ol>
+         </div>
+
+<%  form_remote_tag :url=> result_pacientes_path, 
                       :method => :post,
                       :update => :search_hits do -%>
-
-      <table id="search-form">
+     
+  <table id="form">
         <tr>
-          <td> <label for="tipo_documento">Tipo Documento</label></td>
-        <td><%=  collection_select(:get, :tipo_documento_id, TipoDocumento.all, :id, :descripcion, {}) %> </td>
-          
-        <td><label for="matricula">Nro:</label></td>
-          <td> <%= text_field_tag :matricula %></td>
+          <td><label>Tipo y Nro. de Documento</label></td>
+        <td><%=  collection_select(:get, :tipo_documento_id, TipoDocumento.all, :id, :descripcion, {}, :class=> 'required', :title=> 'Ingrese Nro. de Documento') %>
+            <%= text_field_tag :matricula %></td>
+               
+             
+          <td>Nombre y Apellido</td>
+        <td><%= text_field_tag :nombre, {}, :class=> 'required', :title=> 'Ingrese Nombre Y Apellido' %></td>
         </tr>
-
+        
         <tr>
-          <td><label for="nombre">Nombre y Apellido</label></td>
-        <td><%= text_field_tag :nombre %></td>
-        </tr>
-        <table>
-        <tr>
-          <label></label>
-
-
           <td style=" float: left; margin-left:  400px"> <%= submit_tag 'Buscar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
-          <td>  <span id="ayuda"><%= image_tag 'information.png' %></span></td>
+          <td id="ayuda"><%= image_tag 'information.png' %></td>
           
           </tr>
-        </table>
+        
       </table>
 
   <%end -%>
   
 </div>
 <div id="search_hits">
-
 </div>
 </fieldset>
 
@@ -56,6 +53,16 @@ $('#ayuda img').each(function(){
             }
           });
         });
+
+
+
+         $("#search").validate({
+        //errorLabelContainer: $("#new_titular div.errores")
+       errorContainer: $("#search div.errores"),
+       errorLabelContainer: $("ol", $("#search div.errores")),
+       wrapper: 'li',
+       meta: "validate"
+     });
 
 });
 </script>
