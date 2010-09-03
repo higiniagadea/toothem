@@ -19,8 +19,11 @@
             <input type="text" name="paciente[<%= params[:fieldname] %>]" value="<%= @value %>"></input>
     
     <%end%>
+
+
     <input type="hidden" name="pacientes[fieldname]" value="<%= params[:fieldname] %>"></input>
     <input style="vertical-align:middle" type="image" src="/images/16/disk.png"></input>
     <%= image_tag('/images/16/acancel.png', :onclick => remote_function(:url => "/pacientes/cancelfield/"+@paciente.id.to_s+"?fieldname="+params[:fieldname]))%>
     <span style="color:red" id="error_messages_for_<%=  params[:fieldname]%>"></span>
+
 <% end %>

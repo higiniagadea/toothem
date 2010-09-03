@@ -10,14 +10,17 @@
     <%end%>
   </div>
   <div id="pacientes-options">
+
     <div id="pacientes-nombre">
       <%=h @paciente.nombre %>
     </div>
+
     <div id="pacientes-actions">
       <%= link_to image_tag('pencil.png'), edit_paciente_path(@paciente), :title=> 'Editar'%> |
       <%= link_to image_tag('cancel.png'), @paciente, :confirm => 'Esta seguro que desea eliminar el paciente?', :method => :delete, :title=> 'Eliminar' %> |
-      <%= link_to image_tag('paste_plain.png'), listado_historias_clinicas_paciente_path(@paciente), :title => "Historias Clinicas"  %></td>
+      <%= link_to image_tag('paste_plain.png'), listado_historias_clinicas_paciente_path(@paciente), :title => "Historias Clinicas"  %>
     </div>
+
   </div>
   <fieldset class="ui-widget-content ui-corner-all">
     <legend class="ui-widget ui-widget-header ui-corner-all" >Datos del paciente</legend>
@@ -39,73 +42,73 @@
         <td class="fieldname">Fecha Nacimiento</td>
         <td class="fielddata" id="ffecha_nacimiento" ondblclick="<%= remote_function(:update => "ffecha_nacimiento",
                                                                                      :url => "/pacientes/editfield/"+@paciente.id.to_s+"?fieldname=fecha_nacimiento") %>">
-            <%=h @paciente.fecha_nacimiento.strftime('%d/%m/%Y') %></td>
+            <%=@paciente.fecha_nacimiento.blank? ? '-' : @paciente.fecha_nacimiento.strftime('%d/%m/%Y') %></td>
       </tr>
       <tr class="odd">
         <td class="fieldname">Sexo</td>
         <td class="fielddata" id="fsexo" ondblclick="<%= remote_function(:update => "fsexo",
                                                                          :url => "/pacientes/editfield/"+@paciente.id.to_s+"?fieldname=sexo") %>">
-          <%=h @paciente.sexo %></td>
+        <%= @paciente.sexo.blank? ? '-' : @paciente.sexo %></td>
       </tr>
       <tr >
         <td class="fieldname">Estado Civil</td>
         <td class="fielddata" id="festado_civil" ondblclick="<%= remote_function(:update => "festado_civil",
                                                                                  :url => "/pacientes/editfield/"+@paciente.id.to_s+"?fieldname=estado_civil") %>">
-          <%=h @paciente.estado_civil%></td>
+       <%=@paciente.estado_civil.blank? ? '-' :  @paciente.estado_civil %></td>
       </tr>
       <tr class="odd">
         <td class="fieldname">Domicilio particular</td>
         <td class="fielddata"id="fdomicilio_particular" ondblclick="<%= remote_function(:update => "fdomicilio_particular",
                                                                                         :url => "/pacientes/editfield/"+@paciente.id.to_s+"?fieldname=domicilio_particular") %>">
-          <%=h @paciente.domicilio_particular %></td>
+       <%=h @paciente.domicilio_particular %></td>
       </tr>
       <tr>
         <td class="fieldname">Domicilio laboral</td>
         <td class="fielddata" id="fdomicilio_laboral" ondblclick="<%= remote_function(:update => "fdomicilio_laboral",
                                                                                       :url => "/pacientes/editfield/"+@paciente.id.to_s+"?fieldname=domicilio_laboral") %>">
-          <%=h @paciente.domicilio_laboral%></td>
+        <%= @paciente.domicilio_laboral.blank? ? '-' : @paciente.domicilio_laboral%></td>
       </tr>
       <tr class="odd">
         <td class="fieldname">Grupo sanguíneo</td>
         <td class="fielddata"id="fgrupo_sanguineo" ondblclick="<%= remote_function(:update => "fgrupo_sanguineo",
                                                                                    :url => "/pacientes/editfield/"+@paciente.id.to_s+"?fieldname=grupo_sanguineo") %>">
-          <%=h @paciente.grupo_sanguineo %></td>
+        <%= @paciente.grupo_sanguineo.blank? ? '-' :  @paciente.grupo_sanguineo %></td>
       </tr>
       <tr>
         <td class="fieldname">Teléfono particular</td>
         <td class="fielddata" id="ftelefono_particular" ondblclick="<%= remote_function(:update => "ftelefono_particular",
                                                                                         :url => "/pacientes/editfield/"+@paciente.id.to_s+"?fieldname=telefono_particular") %>">
-          <%=h @paciente.telefono_particular %></td>
+       <%= @paciente.telefono_particular.blank? ? '-' : @paciente.telefono_particular %></td>
       </tr>
       <tr class="odd">
         <td class="fieldname">Teléfono laboral</td>
         <td class="fielddata" id="ftelefono_laboral" ondblclick="<%= remote_function(:update => "ftelefono_laboral",
                                                                                      :url => "/pacientes/editfield/"+@paciente.id.to_s+"?fieldname=telefono_laboral") %>">
-          <%=h @paciente.telefono_laboral %></td>
+       <%= @paciente.telefono_laboral.blank? ? '-' : @paciente.telefono_laboral %></td>
       </tr>
       <tr >
         <td class="fieldname">Móvil</td>
         <td class="fielddata" id="fmovil" ondblclick="<%= remote_function(:update => "fmovil",
                                                                           :url => "/pacientes/editfield/"+@paciente.id.to_s+"?fieldname=movil") %>">
-          <%=h @paciente.movil%></td>
+       <%= @paciente.movil.blank? ? '-'  :  @paciente.movil%></td>
       </tr>
       <tr class="odd">
         <td class="fieldname">Nivel escolar</td>
         <td class="fielddata" id="fnivel_escolar" ondblclick="<%= remote_function(:update => "fnivel_escolar",
                                                                                   :url => "/pacientes/editfield/"+@paciente.id.to_s+"?fieldname=nivel_escolar") %>">
-          <%=h @paciente.nivel_escolar %></td>
+        <%= @paciente.nivel_escolar.blank? ? '-'  : @paciente.nivel_escolar %></td>
       </tr>
       <tr >
         <td class="fieldname">Profesión</td>
         <td class="fielddata" id="fprofesion" ondblclick="<%= remote_function(:update => "fprofesion",
                                                                               :url => "/pacientes/editfield/"+@paciente.id.to_s+"?fieldname=profesion") %>">
-          <%=h @paciente.profesion %></td>
+       <%= @paciente.profesion.blank? ? '-' :  @paciente.profesion %></td>
       </tr>
       <tr class="odd">
         <td class="fieldname">Ocupación</td>
         <td class="fielddata" id="focupacion" ondblclick="<%= remote_function(:update => "focupacion",
                                                                               :url => "/pacientes/editfield/"+@paciente.id.to_s+"?fieldname=ocupacion") %>">
-          <%=h @paciente.ocupacion%></td>
+       <%= @paciente.ocupacion.blank? ? '-'  : @paciente.ocupacion%></td>
       </tr>
 
     </table>

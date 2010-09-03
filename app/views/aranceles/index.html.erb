@@ -1,3 +1,5 @@
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class ="ui-widget ui-widget-content ui-corner-all ui-widget-header">Aranceles</legend>
 <table class="table-list">
   <tr class="<%  cycle('par','impar') %>">
     <th>Prestación</th>
@@ -15,13 +17,14 @@
     
     <td ><%= link_to image_tag('pencil.png'), edit_obra_social_arancel_path(arancel, @obra_social)%></td>
 
-    <td><%= link_to image_tag('cancel.png'), [@obra_social,arancel], :confirm => 'Esta seguro que desea eliminar el arancel?', :method => :delete%></td>
+    <td><%= link_to image_tag('cancel.png'), [@obra_social,arancel], :confirm => 'Esta seguro que desea eliminar el arancel?', :method => :delete %></td>
     
 
 
   </tr>
 <% end %>
 </table>
+</fieldset>
 
 <div class="paginador">
   <%= will_paginate @aranceles%>

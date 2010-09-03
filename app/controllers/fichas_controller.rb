@@ -24,7 +24,7 @@ class FichasController < ApplicationController
   # GET /fichas/new
   # GET /fichas/new.xml
   def new
-    @tratamiento = Tratamiento.new
+    #@tratamiento = Tratamiento.new
     @paciente = Paciente.find(params[:paciente_id])
     @ficha = Ficha.new
 

@@ -11,11 +11,10 @@ class Paciente < ActiveRecord::Base
   has_many :fichas, :dependent => :destroy
   has_many :imagenes, :dependent => :destroy
 
-  validates_presence_of :nombre, :message => ' y apellido no puede estar en blanco'
-  validates_presence_of :matricula, :message => ' no puede estar en blanco'
+  validates_presence_of :nombre, :message => ' y apellido no puede estar vacio'
+  validates_presence_of :matricula, :message => ' No puede estar en blanco'
+  validates_presence_of :domicilio_particular, :message => 'El campo no puede estar vacio'
   
-
-
 
   named_scope :by_matricula, lambda { |matricula|
     {

@@ -4,91 +4,135 @@
 
 <% form_for(@paciente) do |f| %>
   <%= f.error_messages(:id => 'Error', :header_message=>'', :message=>'Se encontraron los siguientes errores') %>
-  <ul id="form">
-    <li>
-      <label>Nombre</label>
-      <%= f.text_field :nombre, :class => 'ui-widget-content' %>
-    </li>
-    <li>
-      <label>Matrícula</label>
-      <%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion, {}, :class => 'ui-widget-content') %>
-      <%= f.text_field :matricula, :class => 'ui-widget-content' %>
-    </li>
-    <li>
-      <label>Sexo</label>
-      <select name="paciente[sexo]" class ="ui-widget-content">
+  <div class="errores">
+    <ol style="list-style:none"></ol>
+  </div>
+
+  <table id="form">
+
+    <tr>
+    <td>
+      <label>Nombre y Apellido</label></td>
+    <td><%= f.text_field :nombre, :title=> 'El campo Nombre y Apellido no puede estar en blanco',  :class => 'required' %>
+    </td>
+    <td>
+      <label>Tipo Y Nro.  Documento</label></td>
+    <td><%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion, {}, :class => 'ui-widget-content') %>
+      <%= f.text_field :matricula, :class => 'required', :title=> 'El campo Tipo y Nro. de Documento no puede estar en blanco' %>
+    </td>
+    </tr>
+    
+    <tr>
+    <td><label>Domicilio</label></td>
+    <td colspan="3"><%= f.text_field :domicilio_particular, :class => 'required', :title=> 'El campo Domicilio no puede estar en blanco', :size=>101%>
+    </td>
+    </tr>
+
+    <tr>
+    <td>
+      <label>Sexo</label></td>
+    <td><select name="paciente[sexo]" class ="ui-widget-content">
         <%=  options_for_select([ "Masculino", "Femenino" ], @paciente.sexo)%>
       </select>
-    </li>
-    <li>
-      <label>Estado Civil</label>
-      <select name="paciente[estado_civil]" class ="ui-widget-content">
+    </td>
+    <td>
+      <label>Estado Civil</label></td>
+    <td><select name="paciente[estado_civil]" class ="ui-widget-content">
         <%=  options_for_select([ "Soltero/a", "Casado/a","Divorciado/a","Viudo/a","Otro" ], @paciente.estado_civil)%>
       </select>
-    </li>
-    <li>
-      <label>Domicilio</label>
-      <%= f.text_field :domicilio_particular, :class => 'ui-widget-content' %>
-    </li>
-    <li>
-      <label>Domicilio Laboral</label>
-      <%= f.text_field :domicilio_laboral, :class => 'ui-widget-content' %>
-    </li>
+    </td>
+    </tr>
 
-    <li>
-      <label>F. Nacimiento</label>
-      <span class="fecha_nacimiento">
-              <input class="ui-widget-content "type="text" id="fecha_nacimiento" name="paciente[fecha_nacimiento]" readonly="readonly" />
+    <tr>
+    <td>
+      <label>Domicilio Laboral</label></td>
+    <td colspan="3"><%= f.text_field :domicilio_laboral, :size=>101%>  </td>
+    </tr>
+
+    <tr>
+    <td>
+      <label>Fecha de Nacimiento</label></td>
+    <td><span class="fecha_nacimiento">
+              <input class="ui-widget-content required" title="El campo Fecha de nacimiento no puede estar en blanco" type="text" id="fecha_nacimiento" name="paciente[fecha_nacimiento]" readonly="readonly" />
       </span>
-      
-    </li>
-    <li>
-      <label>Grupo Sanguíneo</label>
-      <select name="paciente[grupo_sanguineo]" class ="ui-widget-content">
+    </td>
+    <td>
+      <label>Grupo Sanguíneo</label></td>
+    <td><select name="paciente[grupo_sanguineo]" class ="ui-widget-content">
       <%= options_for_select(["A+","A-","B+","B-","AB+","AB-","O+","O-"], @paciente.grupo_sanguineo) %>
       </select>
-    </li>
-    <li>
-      <label>Teléfono</label>
-      <%= f.text_field :telefono_particular, :class => 'ui-widget-content' %>
-    </li>
-    <li>
-      <label>Teléfono Laboral</label>
-      <%= f.text_field :telefono_laboral, :class => 'ui-widget-content' %>
-    </li>
-    <li>
-      <label>Móvil</label>
-      <%= f.text_field :movil, :class => 'ui-widget-content' %>
-    </li>
-    <li>
-      <label>Profesión</label>
-      <%= f.text_field :profesion, :class => 'ui-widget-content' %>
-    </li>
-    <li>
-      <label>Ocupación</label>
-      <%= f.text_field :ocupacion, :class => 'ui-widget-content' %>
-    </li>
-    <li>
-      <label>Nivel Escolar</label>
-      <%= f.text_field :nivel_escolar, :class => 'ui-widget-content' %>
-    </li>
-    <li>
-      <label>Num. Afiliado</label>
-      <%= f.text_field :nro_afiliado, :class => 'ui-widget-content' %>
-    </li>
-    <li>
+    </td>
+    </tr>
+
+    <tr>
+    <td>
+      <label>Teléfono</label></td>
+    <td><%= f.text_field :telefono_particular %>
+    </td>
+     <td>
+      <label>Móvil</label></td>
+     <td><%= f.text_field :movil %>
+    </td>
+    <td>
+      <label>Teléfono Laboral</label></td>
+    <td><%= f.text_field :telefono_laboral %>
+    </td>
+    </tr>
+
+    <tr>
+    <td>
+      <label>Profesión</label></td>
+    <td><%= f.text_field :profesion %>
+    </td>
+    <td>
+      <label>Ocupación</label></td>
+    <td><%= f.text_field :ocupacion %>
+    </td>
+    <td>
+      <label>Nivel Escolar</label></td>
+    <td><%= f.text_field :nivel_escolar %>
+    </td>
+    </tr>
+
+    <tr>
+    <td>
+      <label>Num. Afiliado</label></td>
+    <td><%= f.text_field :nro_afiliado %>
+    </td>
+    </tr>
+    <td>
       <label></label>
       <%= f.submit 'Crear', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
-    </li>
-  </ul>
+    </td>
+
+    <td>
+      <label></label>
+      <%= link_to 'Cancelar', search_pacientes_path %>
+    </td>
+    
+  </table>
 
 
 <% end %>
+
+
+    
 </fieldset>
 
-
 <script type="text/javascript">
+  $(document).ready(function(){
+    $("#new_paciente").validate({
+        //errorLabelContainer: $("#new_titular div.errores")
+       errorContainer: $("#new_paciente div.errores"),
+       errorLabelContainer: $("ol", $("#new_paciente div.errores")),
+       wrapper: 'li',
+       meta: "validate"
+     });
 
-  $("#fecha_nacimiento").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110'});
+  });
+  
+
+  $("#fecha_nacimiento").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate: 0});
+
 
 </script>

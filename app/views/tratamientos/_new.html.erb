@@ -1,3 +1,5 @@
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Tratamiento</legend>
 <% form_for(@tratamiento) do |f|%>
 <%= f.error_messages(:header_message=>'Ingreso Incorrecto: ',:message=>'Se encontraron los siguientes errores') %>
 <%= f.hidden_field :paciente_id, 'value' => @paciente.id.to_s  %>
@@ -7,13 +9,17 @@
     <td class="label"><h1>Paciente: <%= @paciente.nombre %></h1></td>
     <td></td >
   </tr>
+   
+
   <tr>
-  
-  <td class="label">Fecha</td>
-  <td>  <%= f.date_select :fecha, :order => [:day, :month, :year],
-                          :use_month_names => ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct','Nov','Dic']%>
-  </td>
+   <td><label>Fecha</label></td>
+    <td><span class="fecha">
+              <input class="ui-widget-content "type="text" id="fecha" name="profesional[fecha]" readonly="readonly" />
+      </span></td>
   </tr>
+
+
+
 
   <tr>
   <td class="label">Diente</td>
@@ -25,10 +31,12 @@
   </tr>
 
   <tr>
-    <td class="label">Fecha Finalizacion </td>
-    <td><%= f.date_select  :fecha, :order => [:day, :month, :year],
-                          :use_month_names => ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct','Nov','Dic'] %>
-    </td>
+
+   <td><label>Fecha Finalizacion</label></td>
+    <td><span class="fecha_finalizacion">
+              <input class="ui-widget-content "type="text" id="fecha_finalizacion" name="profesional[fecha_finalizacion]" readonly="readonly" />
+      </span></td>
+
     <td class="label">Importe Cubierto </td>
     <td><%= f.text_field :importe_cubierto, :size=>10 %>
     </td>
@@ -42,11 +50,9 @@
     </td>
   </tr>
   <tr>
-   <td style="display:inline-block;">
-       <%=f.label :fecha, 'Fecha' %>
-   <td><%=f.text_field :fecha, :size=> 10 %></td>
 
-   </td>
+   
+
   
   
    <td class="label">Estado del tratamiento</td>
@@ -108,20 +114,12 @@
 </div>
 
 <%= link_to 'Volver', paciente_path(@paciente) %>
-
+</fieldset>
 <script type="text/javascript">
 
-$(document).ready(function(){
+ $("#fecha").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Jutdo','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110'});
+$("#fecha_finalizacion").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Jutdo','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110'});
+$("#fecha_liquidacion").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Jutdo','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110'});
 
-    $('#fecha').datePicker('dd-mm-yyyy');
-    $('#fecha').mask("99/99/9999");
-     
-	days: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
-	draggable: true
-	position: {x:'right',y:'top'}
-
-    }
-  
-;'click');
 
 </script>

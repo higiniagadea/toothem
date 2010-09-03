@@ -1,21 +1,29 @@
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class ="ui-widget ui-widget-content ui-corner-all ui-widget-header">Clinica</legend>
 <% form_for(@consultorio) do |f| %>
   <%= f.error_messages  :id => 'error', :header_message => '', :message => 'Ocurrió un error al intentar guardar el registro'  %>
-<ul id="form" >
-  <li>
-    <label for="clinica_id">Clínica </label>
-    <%= f.collection_select :clinica_id, Clinica.all, :id, :nombre, {},:class=>'normal' %><!--después cambiar por la vble de sesión clínica-->
-  </li>
-  <li>
-    <label for="nombre">Nombre </label>
-    <%= f.text_field :nombre, :class => 'normal' %>
-  </li>
-  <li>
-    <label></label>
-    <%= f.submit 'Actualizar' %>
+<table id="form" >
+  <tr>
+  <td>
+    <label for="clinica_id">Clínica </label></td>
+  <td><%= f.collection_select :clinica_id, Clinica.all, :id, :nombre, {},:class=>'normal' %><!--después cambiar por la vble de sesión clínica-->
+  </td>
+  </tr>
 
-  </li>
-</ul>
-  
+  <tr>
+  <td>
+    <label for="nombre">Nombre </label></td>
+  <td>|<%= f.text_field :nombre, :class => 'normal' %>
+  </td>
+  </tr>
+
+  <td>
+    <label></label>
+    <%= f.submit 'Actualizar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+
+  </td>
+</table>
+</fieldset>
 <% end %>
 
 <%= link_to 'Ver', @consultorio %> |

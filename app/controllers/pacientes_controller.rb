@@ -20,7 +20,7 @@ class PacientesController < ApplicationController
     consultorios = []
     current_usuario.consultorios.each {|x| consultorios << x.consultorio_id}
     #@pacientes = Paciente.paginate :page=> params[:page], :per_page=> 15, :conditions => ['consultorio_id in ?', @consultorio.id], :order=> 'nombre ASC'
-    @pacientes = Paciente.paginate :page=> params[:page], :per_page=> 15, :order=> 'nombre ASC'
+    @pacientes = Paciente.paginate :page=> params[:page], :per_page=> 10, :order=> 'nombre ASC'
    
     respond_to do |format|
       format.html # index.html.erb
@@ -38,12 +38,14 @@ class PacientesController < ApplicationController
   end
 
   def result
-    
-    @pacientes = Paciente.basic_search(params)
-    @paginatepacientes = Paciente.paginate :page=> params[:page], :per_page=> 15, :order=> 'nombre ASC'
+    @paginatepacientes = Paciente.paginate :page=> params[:page], :per_page=> 10, :order=> 'nombre ASC'
     respond_to do |format|
+      if params[:nombre].blank? && params[:matricula].blank?
+        format.html{render :text => 'Ingrese Nombre y Documento', :layout => false}
+      else
+        @pacientes = Paciente.basic_search(params)
       format.html{render :partial => 'results'}
-
+      end
     end
   end
 
@@ -242,7 +244,7 @@ class PacientesController < ApplicationController
     respond_to do |format|
       if @paciente.save
         flash[:notice] = 'Paciente creado.'
-        format.html { redirect_to(pacientes_path) }
+        format.html { redirect_to(edit_paciente_path(@paciente)) }
         format.xml  { render :xml => @paciente, :status => :created, :location => @paciente }
       else
         format.html { render :action => "new" }
@@ -255,9 +257,15 @@ class PacientesController < ApplicationController
   # PUT /pacientes/1.xml
   def update
     @paciente = Paciente.find(params[:id])
+    @imagenes = Imagen.find_all_by_paciente_id(@paciente)
+
+    unless @paciente.archivo_id.blank?
+      @archivo = Archivo.find(@paciente.archivo_id)
+    end
     @title = "Editando paciente"
     respond_to do |format|
       if @paciente.update_attributes(params[:paciente])
+       
         flash[:notice] = 'Paciente actualizado.'
         format.html { redirect_to(@paciente) }
         format.xml  { head :ok }
@@ -286,7 +294,6 @@ class PacientesController < ApplicationController
     format.html{ render :partial => 'listado_historias_clinicas', :layout => 'default'}
    end
   end
-end
 
 def update_tratamiento
   @paciente = Paciente.find(params[:paciente_id])
@@ -299,4 +306,28 @@ def update_tratamiento
   end
 end
 
+def ver
+  @paciente = Paciente.find(params[:id])
+   @imagenes = Imagen.find_all_by_paciente_id(@paciente)
+
+    unless @paciente.archivo_id.blank?
+      @archivo = Archivo.find(@paciente.archivo_id)
+    end
+  respond_to do |format|
+    format.html{ render :partial => 'ver', :layout => 'default'}
+   end
+end
+
+
+def imprimir
+    @paciente = Paciente.find(params[:id])
+
+    respond_to do |format|
+      format.html {render :layout=> "print", :action => "reporte"}   #ccs :layout=>false
+    
+    end
+end
+
+
+end
 

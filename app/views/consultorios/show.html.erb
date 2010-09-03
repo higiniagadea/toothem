@@ -1,6 +1,8 @@
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class ="ui-widget ui-widget-content ui-corner-all ui-widget-header">Consultorio</legend>
 <h1>Consultorio: <%=h @consultorio.nombre %></h1> <br/>
 
-<table>
+<table id="table-list">
   <tr>
      <td><label>Clinica: <%=h @consultorio.clinica.nombre %></label></td>
      
@@ -9,7 +11,7 @@
 
 <h1>Profesionales</h1><br/>
    
-<table >
+<table class="table-list" >
   <% @consultorio.profesionales.each do |profesional|  %>
   <tr>
     <td><label>Nombre: <%=h profesional.nombre %></label></td>
@@ -47,6 +49,8 @@
 
 <%end%>
 </table>
+</fieldset>
+
 <%= link_to 'Editar', edit_consultorio_path(@consultorio) %>
 <%= link_to 'Volver', consultorios_path %>
 

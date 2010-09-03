@@ -1,33 +1,46 @@
-
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Obra Social</legend>
 
  <% form_remote_tag :url => resultado_obras_sociales_path,
                     :method => :post,
                     :update => :search_hits do -%>
-    <ul id="search-form">
-        <li>
-          <label>Nombre</label>
-          <%= text_field_tag :nombre %>
-        </li>
-        <li>
-          <label>Auditoria previa</label>
-          <%= check_box_tag :auditoria_previa %>
-        </li>
-        <li>
-          <label>Auditoria post</label>
-          <%= check_box_tag :auditoria_post %>
-        </li>
-        <li>
-          <label>Incluye ficha</label>
-          <%= check_box_tag :incluye_ficha %>
-        </li>
-        <li>
+    <table id="search-form">
+      <tr>
+      <td>
+          <label>Nombre</label></td>
+      <td><%= text_field_tag :nombre %>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <label>Auditoria previa</label></td>
+        <td><%= check_box_tag :auditoria_previa %>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <label>Auditoria post</label></td>
+        <td><%= check_box_tag :auditoria_post %>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <label>Incluye ficha</label></td>
+        <td><%= check_box_tag :incluye_ficha %>
+        </td>
+      </tr>
+
+        <td>
           <label></label>
-          <%= submit_tag 'Buscar' %>
-        </li>
-      </ul>
+          <%= submit_tag 'Buscar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all'  %>
+        </td>
+      </table>
 <%end -%>
 <div id ="search_hits">
   
 </div>
-
+</fieldset>
 

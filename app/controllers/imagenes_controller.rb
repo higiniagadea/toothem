@@ -47,18 +47,20 @@ class ImagenesController < ApplicationController
   # POST /imagenes
   # POST /imagenes.xml
   def create
+    
     @archivo = Archivo.new(params[:archivo])
     if @archivo.save
         params[:imagen][:archivo_id] = @archivo.id
         @imagen = Imagen.new(params[:imagen])
         respond_to do |format|
         if @imagen.save
+        
          flash[:notice] = 'Imagen creada.'
           format.html { redirect_to(pacientes_url(@paciente))}
           format.xml  { render :xml => @imagen, :status => :created, :location => @imagen }
         else
           
-          #format.xml  { render :xml => @imagen.errors, :status => :unprocessable_entity}
+          format.xml  { render :xml => @imagen.errors, :status => :unprocessable_entity}
           
         end
       end

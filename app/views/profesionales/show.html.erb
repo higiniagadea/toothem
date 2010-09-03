@@ -1,61 +1,79 @@
-<li>
-  <b>Nombre:</b>
-  <%=h @profesional.nombre %>
-</li>
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Profesional</legend>
+  <table class="table-list">
+    <tr>
+  <td>
+  <label>Nombre:</label></td>
+  <td><%=h @profesional.nombre %>
+</td>
+    </tr>
+    <tr>
+<td>
+  <label>Tipo documento:</label></td>
+  <td><%=h @profesional.tipo_documento.descripcion %>
+</td>
+    </tr>
+    <tr>
+<td>
+  <label>Documento:</label></td>
+<td><%=h @profesional.documento %>
+</td>
+    </tr>
+    <tr>
+<td>
+  <label>Matricula profesional:</label></td>
+<td><%=h @profesional.matricula_profesional %>
+</td>
+    </tr>
+    <tr>
+<td>
+  <label>Direccion:</label></td>
+<td><%=h @profesional.direccion %>
+</td>
+    </tr>
+    <tr>
+<td>
+  <label>Telefono:</label></td>
+<td><%=h @profesional.telefono %>
+</td>
+    </tr>
+    <tr>
+<td>
+  <label>Movil:</label></td>
+<td><%=h @profesional.movil %>
+</td>
+    </tr>
+    <tr>
+<td>
+  <label>Email:</label></td>
+<td><%=h @profesional.email %>
+</td>
+    </tr>
+    <tr>
+<td>
+  <label>Fecha nacimiento:</label></td>
+<td><%=h @profesional.fecha_nacimiento %>
+</td>
+    </tr>
+    <tr>
+<td>
+  <label>Fecha ingreso:</label></td>
+<td><%=h @profesional.fecha_ingreso %>
+</td>
+    </tr>
+    <tr>
 
-<li>
-  <b>Tipo documento:</b>
-  <%=h @profesional.tipo_documento.descripcion %>
-</li>
-
-<li>
-  <b>Documento:</b>
-  <%=h @profesional.documento %>
-</li>
-
-<li>
-  <b>Matricula profesional:</b>
-  <%=h @profesional.matricula_profesional %>
-</li>
-
-<li>
-  <b>Direccion:</b>
-  <%=h @profesional.direccion %>
-</li>
-
-<li>
-  <b>Telefono:</b>
-  <%=h @profesional.telefono %>
-</li>
-
-<li>
-  <b>Movil:</b>
-  <%=h @profesional.movil %>
-</li>
-
-<li>
-  <b>Email:</b>
-  <%=h @profesional.email %>
-</li>
-
-<li>
-  <b>Fecha nacimiento:</b>
-  <%=h @profesional.fecha_nacimiento %>
-</li>
-
-<li>
-  <b>Fecha ingreso:</b>
-  <%=h @profesional.fecha_ingreso %>
-</li>
-
-<li>
-  <b>Consultorio:</b>
-  <%=h @profesional.consultorio_id %>
-</li>
-
-<li>
-  <b>Estado laboral:</b>
-  <%=h @profesional.estado_laboral.descripcion %>
-</li>
-
+<td>
+  <label>Consultorio:</label></td>
+<td><%=h @profesional.consultorio_id %>
+</td>
+    </tr>
+    <tr>
+<td>
+  <label>Estado laboral:</label></td>
+<td><%=h @profesional.estado_laboral.descripcion %>
+</td>
+    </tr>
+  </table>
+</fieldset>
 <%= link_to 'Volver', profesionales_path %>

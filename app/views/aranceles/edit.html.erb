@@ -1,27 +1,34 @@
-
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class ="ui-widget ui-widget-content ui-corner-all ui-widget-header">Arancel</legend>
 <%  form_for(:arancel, @arancel, :url => obra_social_arancel_path(@obra_social, @arancel), :html => {:method => :put}) do |f|   %>
 
   <%= f.error_messages(:id => 'error', :header_message=>'', :message=>'Se encontraron los siguientes errores') %>
-<ul id="form">
-
-      <li>
-        <label>Prestacion</label>
-        <%= @arancel.prestacion.descripcion %>
+<table id="form">
+  <tr>
+      <td>
+        <label>Prestacion</label></td>
+      <td><%= @arancel.prestacion.descripcion %>
         
-      </li>
-      <li>
-        <label>Importe Cubierto</label>
-        <%= f.text_field :importe_cubierto %>
-      </li>
-      <li>
-        <label>Coseguro</label>
-        <%= f.text_field :coseguro %>
-      </li>
-      <li>
-        <label></label>
-        <%= f.submit 'Actualizar' %>
-      </li>
-</ul>
+      </td>
+  </tr>
+  <tr>
+      <td>
+        <label>Importe Cubierto</label></td>
+      <td><%= f.text_field :importe_cubierto, :size=> 10 %>
+      </td>
+  </tr>
+  <tr>
+      <td>
+        <label>Coseguro</label></td>
+      <td><%= f.text_field :coseguro, :size=> 10 %>
+      </td>
+  </tr>
+      <td>
+        <label></label></td>
+      <td><%= f.submit 'Actualizar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+      </td>
+</table>
+</fieldset>
 <% end %>
 
 <%=  link_to 'Volver', obras_sociales_path %>
