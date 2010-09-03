@@ -16,7 +16,7 @@
     <td><%= f.text_field :nombre, :title=> 'El campo Nombre y Apellido no puede estar en blanco',  :class => 'required' %>
     </td>
     <td>
-      <label>Tipo Y Nro.  Documento</label></td>
+      <label>Tipo Y Nro. de Documento</label></td>
     <td><%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion, {}, :class => 'ui-widget-content') %>
       <%= f.text_field :matricula, :class => 'required', :title=> 'El campo Tipo y Nro. de Documento no puede estar en blanco' %>
     </td>
@@ -130,7 +130,8 @@
      });
 
   });
-  
+
+
 
   $("#fecha_nacimiento").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate: 0});
 

@@ -24,7 +24,7 @@
 
 
           <td style=" float: left; margin-left:  400px"> <%= submit_tag 'Buscar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
-          <td>  <a href=""><%= image_tag 'information.png' %></a></td>
+          <td>  <span id="ayuda"><%= image_tag 'information.png' %></span></td>
           
           </tr>
         </table>
@@ -38,4 +38,24 @@
 </div>
 </fieldset>
 
+<script type="text/javascript">
+ $(document).ready(function(){
 
+$('#ayuda img').each(function(){
+
+          $(this).qtip(
+          {
+            content: '<%= render :partial => 'ayuda'  %>', // Give it some content
+            position: 'topRight', // Set its position
+            hide: {
+              fixed: true // Make it fixed so it can be hovered over
+            },
+            style: {
+              padding: '5px 15px', // Give it some extra padding
+              name: 'blue' // And style it with the preset dark theme
+            }
+          });
+        });
+
+});
+</script>
