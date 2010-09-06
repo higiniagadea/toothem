@@ -754,6 +754,7 @@ input, select{
 	width:640px;
 	height:263px;
 	position:relative;
+        cursor:pointer
 }
 #slideshow #slidesContainer {
   margin:0 auto;
@@ -761,11 +762,13 @@ input, select{
   height:263px;
   overflow:auto; /* allow scrollbar */
   position:relative;
+  cursor:pointer
 }
 #slideshow #slidesContainer .slide {
   margin:0 auto;
   width:540px; /* reduce by 20 pixels of #slidesContainer to avoid horizontal scroll */
   height:263px;
+  cursor:pointer
 }
 
 .control {
@@ -782,6 +785,7 @@ input, select{
   padding-top: 120px;
   font-size: 20px;
   font-weight: bold;
+  cursor:pointer
 }
 #rightControl {
   top:0;
@@ -789,15 +793,18 @@ input, select{
   padding-top: 120px;
   font-size: 20px;
   font-weight: bold;
+  cursor:pointer
 }
 
 .slide h2, .slide p {
   margin:15px;
+  cursor:pointer
 }
 .slide h2 {
   font:italic 16px; /*Georgia, "Times New Roman", Times, serif;*/
   font-weight: bold;
   letter-spacing:-1px;
+  cursor:pointer
 }
 #eliminar-img{
     font: normal 13px tahoma;
@@ -805,10 +812,12 @@ input, select{
 .slide img {
   float:right;
   margin:0 15px;
+  cursor:pointer
 }
 .slide{
     background-color: #E8EDFF;
     -moz-border-radius: 8px;
+    cursor:pointer
 }
 
 

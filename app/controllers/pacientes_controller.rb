@@ -39,12 +39,15 @@ class PacientesController < ApplicationController
 
   def result
     @paginatepacientes = Paciente.paginate :page=> params[:page], :per_page=> 10, :order=> 'nombre ASC'
+   
+
     respond_to do |format|
       if params[:nombre].blank? && params[:matricula].blank?
-        format.html{render :text => 'Ingrese Nombre y Documento', :layout => false}
-      else
+       format.html{render :text => 'Ingrese al menos un dato para realizar la busqueda', :layout => false}
+    else
+
         @pacientes = Paciente.basic_search(params)
-      format.html{render :partial => 'results'}
+        format.html{render :partial => 'results'}
       end
     end
   end
@@ -314,7 +317,7 @@ def ver
       @archivo = Archivo.find(@paciente.archivo_id)
     end
   respond_to do |format|
-    format.html{ render :partial => 'ver', :layout => 'default'}
+    format.html{ render :partial => 'ver', :layout => false}
    end
 end
 

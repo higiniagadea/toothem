@@ -31,6 +31,7 @@
 * html #fancybox-loading {	/* IE6 */
 	position: absolute;
 	margin-top: 0;
+        cursor: pointer;
 }
 
 #fancybox-loading div {
@@ -40,6 +41,7 @@
 	width: 40px;
 	height: 480px;
 	background-image: url('/images/fancybox/fancybox.png');
+        cursor: pointer;
 }
 
 #fancybox-overlay {
@@ -51,6 +53,7 @@
 	background: #000;
 	z-index: 1100;
 	display: none;
+        cursor: pointer;
 }
 
 * html #fancybox-overlay {	/* IE6 */
@@ -64,6 +67,7 @@
 	border: 0;
 	overflow: auto;
 	display: none;
+        
 }
 
 #fancybox-wrap {
@@ -74,6 +78,7 @@
 	padding: 20px;
 	z-index: 1101;
 	display: none;
+        
 }
 
 #fancybox-outer {
@@ -81,6 +86,7 @@
 	width: 100%;
 	height: 100%;
 	background: #FFF;
+        
 }
 
 #fancybox-inner {

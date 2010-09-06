@@ -1,6 +1,6 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Titular</legend>
-<div id="formulario">
+<div id="search-form">
   <a class="close" style="float: right" ><%= image_tag 'cancel.png' %></a>
  
  <% form_remote_tag :url => results_titular_paciente_path,
@@ -8,22 +8,22 @@
 <%= link_to_remote 'Nuevo titular', :url => new_titular_paciente_path,
                                       :method => :get,
                                       :update => :formulario%>
-    <table id="search_form">
+    <table id="search-form">
       <tr>
         <td>
-          <%= collection_select(:get, :obra_social_id, ObraSocial.all, :id, :nombre, :class=> 'ui-gadget-content')%>
+          <%= collection_select(:get, :obra_social_id, ObraSocial.all, :id, :nombre)%>
         </td>
       </tr>
       <tr>
         <td>
           <label>Nombre</label></td>
-        <td><%= text_field_tag :nombre, :class=> 'ui-widget-content' %>
+        <td><%= text_field_tag :nombre  %>
         </td>
       </tr>
       <tr>
         <td>
           <label>Documento</label></td>
-        <td><%= text_field_tag :matricula, :class=> 'ui-widget-content' %>
+        <td><%= text_field_tag :matricula %>
         </td>
       </tr>
 

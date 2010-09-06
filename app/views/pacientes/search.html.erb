@@ -8,18 +8,25 @@
 <%  form_remote_tag :url=> result_pacientes_path, 
                       :method => :post,
                       :update => :search_hits do -%>
-     
-  <table id="form">
+
+
+      <table id="search-form">
         <tr>
-          <td><label>Tipo y Nro. de Documento</label></td>
-        <td><%=  collection_select(:get, :tipo_documento_id, TipoDocumento.all, :id, :descripcion, {}, :class=> 'required', :title=> 'Ingrese Nro. de Documento') %>
-            <%= text_field_tag :matricula %></td>
-               
-             
-          <td>Nombre y Apellido</td>
-        <td><%= text_field_tag :nombre, {}, :class=> 'required', :title=> 'Ingrese Nombre Y Apellido' %></td>
+          <th> <label for="tipo_documento">Tipo Documento</label></th>
+        <td><%=  collection_select(:get, :tipo_documento_id, TipoDocumento.all, :id, :descripcion, {}, :class =>"ui-widget-content required") %> </td>
+          
+        <th><label for="matricula">Nro:</label></th>
+          <td> <%= text_field_tag :matricula,{}, :class => 'ui-widget-content required', :title=> 'Ingrese Nro. de Documento' %></td>
         </tr>
-        
+
+        <tr>
+          <th><label for="nombre" >Nombre y Apellido</label></th>
+        <td><%= text_field_tag :nombre,{}, :class => 'ui-widget-content required', :title=> 'Ingrese Nombre Y Apellido' %></td>
+
+        </tr>
+      </table>
+
+     <table>
         <tr>
           <td style=" float: left; margin-left:  400px"> <%= submit_tag 'Buscar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
           <td id="ayuda"><%= image_tag 'information.png' %></td>
@@ -56,10 +63,10 @@ $('#ayuda img').each(function(){
 
 
 
-         $("#search").validate({
+         $("#searchform").validate({
         //errorLabelContainer: $("#new_titular div.errores")
-       errorContainer: $("#search div.errores"),
-       errorLabelContainer: $("ol", $("#search div.errores")),
+       errorContainer: $("#searchform div.errores"),
+       errorLabelContainer: $("ol", $("#searchform div.errores")),
        wrapper: 'li',
        meta: "validate"
      });

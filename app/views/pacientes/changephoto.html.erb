@@ -1,12 +1,16 @@
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Cambiar Imagen</legend>
 <div>
   <b>Cambiar imagen del paciente <%=  @paciente.nombre %></b><br/><br/>
    <% form_for(:archivo, :url => archivos_path,
                          :html => { :multipart => true }) do |f| -%>
+ 
       <table>
+        
         <tr>
-          <td>
+          <th>
             <label for="archivo">Seleccione archivo:</label>
-          </td>
+          </th>
           <td>
             <%= f.file_field :uploaded_data %>
             <%= hidden_field :paciente,:id,"value"=>@paciente.id %>
@@ -19,3 +23,4 @@
       </table>
    <% end -%>
 </div>
+</fieldset>

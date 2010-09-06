@@ -8,7 +8,7 @@ class Archivo < ActiveRecord::Base
                  :thumbnails => { :thumb => [90,90] }
 
   
-  
+   
  
   def image_file=(input_data)
     self.filename = input_data.original_filename

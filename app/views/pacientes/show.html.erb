@@ -177,7 +177,7 @@
               <div  style="float: right; font-size: 12px; font-weight: normal">  
                     <a id="imagen" href="<%= imagen_url(imagen.id)%>" style=" float: left">
                     
-                      <%= link_to image_tag('magnifier_zoom_in.png'), imagen, :title => 'Ver Imagen' %>
+                      <%= link_to image_tag('magnifier_zoom_in.png'), imagen, :title => 'Ver Imagen', :id=> 'ver_imagen' %>
                     </a> 
                     <a>
                       <%= link_to image_tag('cancel.png'), imagen, :title => 'Eliminar Imagen', :confirm => "Esta seguro que desea eliminar la imagen?", :method => :delete %>
@@ -264,10 +264,18 @@ $(document).ready(function()
          },
          style: {
             padding: '5px 15px', // Give it some extra padding
-            name: 'blue' // And style it with the preset dark theme
-         }
+            name: 'blue', // And style it with the preset dark theme
+            cursor: 'pointer'
+       }
+
       });
    });
+   $('#ver_imagen').fancybox(
+    {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
    //$('#imagen').fancybox();
    
 });

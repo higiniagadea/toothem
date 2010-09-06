@@ -7,12 +7,12 @@
       <th>Telefono Movil</th>
     </tr>
     <% @pacientes.each do |paciente| %>
-      <tr>
+        <tr>
         <td><%=h paciente.nombre %></td>
         <td><%=h paciente.tipo_documento.descripcion %>  <%=h paciente.matricula %></td>
         <td><%=h paciente.movil%></td>
         <td id="p_data_<%= paciente.id %>">
-          <td><%= link_to image_tag('magnifier_zoom_in.png'), ver_paciente_path(paciente), :title => "Ver" %>
+          <td><%= link_to image_tag('magnifier_zoom_in.png'), ver_paciente_path(paciente), :title => "Ver", :id => 'ver_paciente_' + paciente.object_id.to_s%>
           <%= link_to image_tag('pencil.png'), edit_paciente_path(paciente), :title => "Editar" %></td>
          
         </td>
@@ -43,7 +43,14 @@
             }
           });
         });
+        $('#ver_paciente_' + <%= paciente.object_id.to_s %>).fancybox(
+    {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
       });
+      
     </script>
 <%end%>
 <%= will_paginate @paginatepacientes, :previous_label=>'Anterior', :next_label => 'Siguiente' %>

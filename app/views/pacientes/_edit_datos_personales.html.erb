@@ -1,6 +1,7 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header"><%=h @paciente.nombre %></legend>
-<div id="pacientes-photo">
+<div id="pacientes-screen"
+  <div id="pacientes-photo">
         <% if @paciente.archivo_id.blank? %>
           <%= image_tag('nouser.jpg') %>
         <%else%>
@@ -11,9 +12,12 @@
 
 <% form_for(@paciente) do |f| %>
       <%= f.error_messages(:id=>'Error', :header_message => '', :message=>'Se encontraron los siguientes errores') %>
-  <div class="errores">
-    <ol style="list-style:none"></ol>
-  </div>
+
+     <div class="errores">
+     <ol style="list-style:none"></ol>
+     </div>
+
+
   <div id="pacientes-options">
         <div id="pacientes-nombre">
           
@@ -28,27 +32,27 @@
     
         <table id="form">
           <tr>
-          <td>
-            <label>Nombre y Apellido</label></td>
-          <td><%= f.text_field :nombre, :class=>'required', :title=> 'El campo Nombre y Apellido no puede estar en blanco' %>
+          <th class="fieldname">
+            Nombre y Apellido</th>
+          <td><%= f.text_field :nombre, :class=>'ui-widget-content required', :title=> 'Nombre y Apellido no puede estar en blanco', :id=> 'edit_paciente' %>
           </td>
-         <td>
-          <label>Tipo Y Nro.  Documento</label></td>
+         <th class="fieldname">
+          Tipo Y Nro.  Documento</th>
           <td><%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion, {}, :class => 'ui-widget-content') %>
-          <%= f.text_field :matricula, :class => 'required', :title=> 'El campo Tipo y Nro. de Documento no puede estar en blanco' %>
+          <%= f.text_field :matricula, :class => 'ui-widget-content required', :title=> 'Tipo y Nro. de Documento no puede estar en blanco', :id=> 'edit_paciente' %>
           </td>
           </tr>
 
           <tr>
-            <td>
-            <label>Domicilio </label></td>
-          <td colspan="3"><%= f.text_field :domicilio_particular, :size=>101, :class=>'required', :title=> 'El campo Domicilio Particular no puede estar en blanco' %>
+            <th class="fieldname">
+            Domicilio Particular </th>
+          <td colspan="3"><%= f.text_field :domicilio_particular, :size=>101, :class=>'ui-widget-content required', :title=> 'Domicilio Particular no puede estar en blanco', :id=> 'edit_paciente' %>
           </td>
           </tr>
 
           <tr>
-          <td>
-            <label>Sexo</label></td>
+          <th class="fieldname">
+            Sexo</th>
           <td><select name="paciente[sexo]" class="ui-widget-content">
               <%=  options_for_select([ "Masculino", "Femenino" ], @paciente.sexo)%>
             </select>
@@ -56,66 +60,65 @@
           
 
           
-          <td>
-            <label>Estado civil</label></td>
+          <th class="fieldname">
+            Estado civil</th>
           <td><select name="paciente[estado_civil]" class="ui-widget-content">
               <%=  options_for_select([ "Soltero/a", "Casado/a","Divorciado/a","Viudo/a","Otro" ], @paciente.estado_civil)%>
             </select>
           </td>
           </tr>
           <tr>
-          <td>
-            <label> Domicilio Laboral</label></td>
-          <td colspan="3"><%= f.text_field :domicilio_laboral, :size=>101 %>
+          <th>
+            Domicilio Laboral</th>
+          <td colspan="3"><%= f.text_field :domicilio_laboral, :size=>101, :class=> 'ui-widget-content' %>
           </td>
           </tr>
 
           <tr>
-          <td>
-            <label>F. Nacimiento</label></td>
-          <td><span class="fecha_nacimiento">
-              <input class="ui-widget-content required " title="El campo Fecha de Nacimiento no puede estar en blanco" type="text" id="fecha_nacimiento" name="paciente[fecha_nacimiento]" readonly="readonly" />
+          <th class="fieldname">Fecha de Nacimiento </th>
+          <td><span class="fecha_nacimiento" class ="ui-widget-content">
+              <input class="ui-widget-content required " title="Fecha de Nacimiento no puede estar en blanco" type="text" id="fecha_nacimiento" name="paciente[fecha_nacimiento]" readonly="readonly" />
             </span>
           </td>
-          <td>
-            <label>Grupo Sanguineo</label></td>
-          <td><%= f.text_field :grupo_sanguineo%>
+          <th class="fieldname">
+            Grupo Sanguineo</th>
+          <td><%= f.text_field :grupo_sanguineo, :class=> 'ui-widget-content'%>
           </td>
           </tr>
 
           <tr>
-          <td>
-            <label>Teléfono</label></td>
-          <td><%= f.text_field :telefono_particular %>
+          <th class="fieldname">
+            Teléfono</th>
+          <td><%= f.text_field :telefono_particular, :class=> 'ui-widget-content ' %>
           </td>
-            <td>
-            <label>Teléfono Celular</label></td>
-          <td><%= f.text_field :movil %>
+            <th class="fieldname">
+            Teléfono Celular</th>
+          <td><%= f.text_field :movil, :class=> 'ui-widget-content' %>
           </td>
-          <td>
-            <label>Teléfono Laboral</label></td>
-          <td><%= f.text_field :telefono_laboral %>
+          <th class="fieldname">
+            Teléfono Laboral</th>
+          <td><%= f.text_field :telefono_laboral, :class=> 'ui-widget-content' %>
           </td>        
           </tr>
 
           <tr>
-          <td>
-            <label>Profesión</label></td>
-          <td><%= f.text_field :profesion %>
+          <th class="fieldname">
+            Profesión</th>
+          <td><%= f.text_field :profesion, :class=> 'ui-widget-content ' %>
           </td>
-          <td>
-            <label>Ocupación</label></td>
-          <td><%= f.text_field :ocupacion %>
+          <th class="fieldname">
+            Ocupación</th>
+          <td><%= f.text_field :ocupacion, :class=> 'ui-widget-content ' %>
           </td>
 
-          <td>
-            <label>Nivel Escolar</label></td>
-          <td><%= f.text_field :nivel_escolar %>
+          <th class="fieldname">
+            Nivel Escolar</th>
+          <td><%= f.text_field :nivel_escolar, :class=> 'ui-widget-content' %>
           </td>
           </tr>
 
-          <td>
-            <label></label></td>
+          
+           
           <td><%= f.submit 'Actualizar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
           </td>
 
@@ -128,17 +131,14 @@
 <script type="text/javascript">
   $(document).ready(function(){
     $("#edit_paciente").validate({
-        //errorLabelContainer: $("#new_titular div.errores")
+        //errorLabelContainer: $("#edit_paciente div.errores")
        errorContainer: $("#edit_paciente div.errores"),
        errorLabelContainer: $("ol", $("#edit_paciente div.errores")),
        wrapper: 'li',
        meta: "validate"
-
      });
 
   });
-
-
 
   $("#fecha_nacimiento").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate: 0});
   
