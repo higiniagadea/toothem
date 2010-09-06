@@ -135,7 +135,7 @@
           <td class="fielddata"> <%=h @paciente.titular.matricula %></td>
         </tr>
         <% else %>
-        <tr><div id="edit-obra-social" style=" cursor: pointer; color: blue" onclick="Boxy.load('<%= search_titular_paciente_url %>',{modal: true},{center: false})">Agregar</div></tr>
+        <tr><div id="edit-obra-social" style=" cursor: pointer; color: blue" onclick="Boxy.load('<%= search_titular_paciente_url %>', {modal: true},{center: false})">Agregar</div></tr>
         <% end %>
      </table>
 
@@ -178,7 +178,8 @@
                     <a id="imagen" href="<%= imagen_url(imagen.id)%>" style=" float: left">
                     
                       <%= link_to image_tag('magnifier_zoom_in.png'), imagen, :title => 'Ver Imagen', :id=> 'ver_imagen' %>
-                    </a> 
+                    </a>
+
                     <a>
                       <%= link_to image_tag('cancel.png'), imagen, :title => 'Eliminar Imagen', :confirm => "Esta seguro que desea eliminar la imagen?", :method => :delete %>
                     </a>
@@ -189,8 +190,11 @@
            <div style=" height: 200px; float:  right">
               <%= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id ='+imagen.archivo_id.to_s)) , :alt => imagen.descripcion, :id => imagen.id %>
            </div>
-           <%= imagen.observaciones %>
         </p>
+      <p>
+           <%= imagen.observaciones %>
+       
+          </p>
          </div>
         
         <%end%>
@@ -245,6 +249,8 @@
 </div>
 
 </fieldset>
+
+
 <script type="text/javascript">
  
   
@@ -264,25 +270,25 @@ $(document).ready(function()
          },
          style: {
             padding: '5px 15px', // Give it some extra padding
-            name: 'blue', // And style it with the preset dark theme
-            cursor: 'pointer'
+            name: 'blue'// And style it with the preset dark theme
+            
        }
-
-      });
-   });
-   $('#ver_imagen').fancybox(
+       });
+       
+     $('#ver_imagen').fancybox(
     {
       'hideOnContentClick': false,
       'titleShow': false
 
     });
-   //$('#imagen').fancybox();
-   
-});
 
-
+      });
 
 </script>
+
+
+
+ 
 
 <script type="text/javascript">
 $(document).ready(function(){

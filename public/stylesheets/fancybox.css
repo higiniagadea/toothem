@@ -41,7 +41,7 @@
 	width: 40px;
 	height: 480px;
 	background-image: url('/images/fancybox/fancybox.png');
-        cursor: pointer;
+        
 }
 
 #fancybox-overlay {
@@ -53,7 +53,7 @@
 	background: #000;
 	z-index: 1100;
 	display: none;
-        cursor: pointer;
+        
 }
 
 * html #fancybox-overlay {	/* IE6 */

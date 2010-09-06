@@ -5,7 +5,8 @@
  
  <% form_remote_tag :url => results_titular_paciente_path,
                    :method => :post, :update => :search_hits do -%>
-<%= link_to_remote 'Nuevo titular', :url => new_titular_paciente_path,
+
+ <%= link_to_remote 'Nuevo titular', :url => new_titular_paciente_path,
                                       :method => :get,
                                       :update => :formulario%>
     <table id="search-form">

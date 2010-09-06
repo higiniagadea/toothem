@@ -647,6 +647,7 @@ input, select{
     /*-moz-border-radius: 8px;
     -webkit-border-radius: 8px;*/
     float:left;
+    cursor:pointer
 }
 #pacientes-options{
     border: #eaeaea 2px solid;
