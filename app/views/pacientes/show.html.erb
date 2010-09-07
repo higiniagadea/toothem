@@ -26,14 +26,14 @@
     <legend class="ui-widget ui-widget-header ui-corner-all" >Datos del paciente</legend>
     <table class="show-data">
       <tr>
-        <td class="fieldname">Nombre y Apellido</td>
+        <th class="fieldname">Nombre y Apellido</th>
         <td class="fielddata" id="fnombre" ondblclick="<%= remote_function(:update => "fnombre",
                                                                            :url => "/pacientes/editfield/"+@paciente.id.to_s+"?fieldname=nombre") %>">
             <%=h @paciente.nombre %>
         </td>
       </tr>
       <tr class="odd">
-        <td class="fieldname">Documento</td>
+        <th class="fieldname">Documento</th>
         <td id="fmatricula" class="fielddata" ondblclick="<%= remote_function(:update => "fmatricula",
                                                                               :url => "/pacientes/editfield/"+@paciente.id.to_s+"?fieldname=matricula") %>">
             <%=h @paciente.tipo_documento.descripcion %> <%=h @paciente.matricula %></td>
@@ -135,7 +135,7 @@
           <td class="fielddata"> <%=h @paciente.titular.matricula %></td>
         </tr>
         <% else %>
-        <tr><div id="edit-obra-social" style=" cursor: pointer; color: blue" onclick="Boxy.load('<%= search_titular_paciente_url %>', {modal: true},{center: false})">Agregar</div></tr>
+        <tr><div id="edit-obra-social" style=" cursor: pointer; color: blue" onclick="Boxy.load('<%= search_titular_paciente_url %>' , {modal: true},{center: false})">Agregar</div></tr>
         <% end %>
      </table>
 

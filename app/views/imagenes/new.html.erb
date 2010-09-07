@@ -14,19 +14,19 @@
     <tr>
         <td>
         <label for="archivo">Seleccione archivo:</label></td>
-        <td><%= file_field :archivo, :uploaded_data, :class=> 'required', :title=> 'Por favor Seleccione un Archivo' %>
+        <td><%= file_field :archivo, :uploaded_data, :class=> 'ui-widget-content required', :title=> 'Por favor Seleccione un Archivo' %>
         </td>
     </tr>
     <tr>
         <td>
         <label for="descripcion">Descripcion</label></td>
-        <td><%= f.text_field :descripcion, :class=>'required', :title=> 'El campo Descripcion no puede estar en blanco' %>
+        <td><%= f.text_field :descripcion, :class=>'ui-widget-content required', :title=> 'Descripcion no puede estar en blanco' %>
         </td>
     </tr>
     <tr>
         <td>
         <label style=" float: left" for="observaciones">Observaciones</label></td>
-        <td><%= f.text_area :observaciones, :rows => 5 , :class=>'required', :title=> 'El campo Observaciones no puede estar en blanco'%>
+        <td><%= f.text_area :observaciones, :rows => 5 , :class=>'required ui-widget-content', :title=> 'Observaciones no puede estar en blanco'%>
         </td>
     </tr>
         <td>
