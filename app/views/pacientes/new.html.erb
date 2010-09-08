@@ -11,11 +11,11 @@
   <table id="form">
 
     <tr>
-    <th class="fieldname">
+    <th>
       Nombre y Apellido</th>
-    <th><%= f.text_field :nombre, :title=> 'El campo Nombre y Apellido no puede estar en blanco',  :class => 'required ui-widget-content'%>
+    <th><%= f.text_field :nombre, :title=> 'Nombre y Apellido no puede estar en blanco',  :class => 'required ui-widget-content'%>
     </th>
-    <th class="fieldname">
+    <th>
       Tipo Y Nro. de Documento</th>
     <th><%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion, {}, :class => 'ui-widget-content required') %>
       <%= f.text_field :matricula, :title=> 'Tipo y Nro. de Documento no puede estar en blanco', :class =>"ui-widget-content required" %>
@@ -23,7 +23,7 @@
     </tr>
     
     <tr>
-    <th class="fieldname">Domicilio Particular</th>
+    <th>Domicilio Particular</th>
     <td colspan="3"><%= f.text_field :domicilio_particular, :title=> 'Domicilio no puede estar en blanco', :size=>105, :class =>"ui-widget-content required"%>
     </td>
     </tr>

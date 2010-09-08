@@ -1,7 +1,7 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header"><%=h @paciente.nombre %></legend>
-<div id="pacientes-screen"
-  <div id="pacientes-photo">
+  <div id="pacientes-screen">
+     <div id="pacientes-photo">
         <% if @paciente.archivo_id.blank? %>
           <%= image_tag('nouser.jpg') %>
         <%else%>
@@ -12,13 +12,9 @@
 
 <% form_for(@paciente) do |f| %>
       <%= f.error_messages(:id=>'Error', :header_message => '', :message=>'Se encontraron los siguientes errores') %>
-
-     <div class="errores">
-     <ol style="list-style:none"></ol>
-     </div>
-
-
+ 
   <div id="pacientes-options">
+ 
         <div id="pacientes-nombre">
           
         </div>
@@ -29,24 +25,27 @@
         </div>
 
       </div>
+    <div class="errores">
+     <ol style="list-style:none"></ol>
+     </div>
     
         <table id="form">
-          <tr>
+         <tr>
           <th class="fieldname">
             Nombre y Apellido</th>
-          <td><%= f.text_field :nombre, :class=>'ui-widget-content required', :title=> 'Nombre y Apellido no puede estar en blanco', :id=> 'edit_paciente' %>
+          <td><%= f.text_field :nombre, :class=>'ui-widget-content required', :title=> 'Nombre y Apellido no puede estar en blanco' %>
           </td>
          <th class="fieldname">
           Tipo Y Nro.  Documento</th>
           <td><%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion, {}, :class => 'ui-widget-content') %>
-          <%= f.text_field :matricula, :class => 'ui-widget-content required', :title=> 'Tipo y Nro. de Documento no puede estar en blanco', :id=> 'edit_paciente' %>
+          <%= f.text_field :matricula, :class => 'ui-widget-content required', :title=> 'Tipo y Nro. de Documento no puede estar en blanco' %>
           </td>
           </tr>
 
           <tr>
             <th class="fieldname">
             Domicilio Particular </th>
-          <td colspan="3"><%= f.text_field :domicilio_particular, :size=>102, :class=>'ui-widget-content required', :title=> 'Domicilio Particular no puede estar en blanco', :id=> 'edit_paciente' %>
+          <td colspan="3"><%= f.text_field :domicilio_particular, :size=>102, :class=>'ui-widget-content required', :title=> 'Domicilio Particular no puede estar en blanco' %>
           </td>
           </tr>
 
@@ -130,8 +129,8 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
-    $("#edit_paciente").validate({
-        //errorLabelContainer: $("#edit_paciente div.errores")
+    $("#edit_paciente_" + <%= @paciente.id.to_s %>).validate({
+        //errorLabelContainer: $("#edit_datos div.errores")
        errorContainer: $("#edit_paciente div.errores"),
        errorLabelContainer: $("ol", $("#edit_paciente div.errores")),
        wrapper: 'li',
