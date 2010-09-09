@@ -4,15 +4,16 @@
   <b>Cambiar imagen del paciente <%=  @paciente.nombre %></b><br/><br/>
    <% form_for(:archivo, :url => archivos_path,
                          :html => { :multipart => true }) do |f| -%>
- 
+ <div class="errores">
+    <ol style="list-style:none"></ol>
+  </div>
       <table>
-        
         <tr>
           <th>
-            <label for="archivo">Seleccione archivo:</label>
+            <label for="archivo" id="archivos">Seleccione archivo:</label>
           </th>
           <td>
-            <%= f.file_field :uploaded_data %>
+            <%= f.file_field :uploaded_data, :class=> 'ui-widget-content required'%>
             <%= hidden_field :paciente,:id,"value"=>@paciente.id %>
           </td>
         </tr>
@@ -24,6 +25,18 @@
    <% end -%>
 </div>
 </fieldset>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#archivo").validate({
+        //errorLabelContainer: $("#new_paciente div.errores")
+       errorContainer: $("#archivo div.errores"),
+       errorLabelContainer: $("ol", $("#archiv div.errores")),
+       wrapper: 'li',
+       meta: "validate"
+     });
+
+  });
+</script>
 
 
   

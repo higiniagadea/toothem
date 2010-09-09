@@ -76,7 +76,7 @@
           <tr>
           <th class="fieldname">Fecha de Nacimiento </th>
           <td><span class="fecha_nacimiento" class ="ui-widget-content">
-              <input class="ui-widget-content required " title="Fecha de Nacimiento no puede estar en blanco" type="text" id="fecha_nacimiento" name="paciente[fecha_nacimiento]" readonly="readonly" />
+              <input class="ui-widget-content required " title="Fecha de Nacimiento no puede estar en blanco" type="text" id="fecha_nacimiento" name="paciente[fecha_nacimiento]" readonly="readonly" value="<%=@paciente.fecha_nacimiento.strftime('%d/%m/%y')%>" />
             </span>
           </td>
           <th class="fieldname">

@@ -120,7 +120,7 @@
       <%unless @paciente.titular.blank?%>
         <tr>
           <td class="fieldname">Obra Social</td>
-          <td class="fielddata"><%=h @paciente.titular.obra_social_id %></td>
+          <td class="fielddata"><%=h @paciente.titular.obra_social.nombre %></td>
         </tr>
         <tr class="odd">
           <td class="fieldname">Numero afiliado</td>

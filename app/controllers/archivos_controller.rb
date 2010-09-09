@@ -3,17 +3,18 @@ class ArchivosController < ApplicationController
   def create
     @archivo = Archivo.new(params[:archivo])
     @paciente = Paciente.find(params[:paciente][:id])
+  respond_to do |format|
     if @archivo.save
       @paciente.update_attribute(:archivo_id, @archivo.id)
       flash[:notice] = 'Imagen cambiada'
       redirect_to(@paciente)
     else
-      format.html { render :action => 'new', :layout => 'default'}
-      flash[:error] = 'Error al subir el archivo. El archivo es una imagen?'
-      redirect_to(@paciente)
+      format.html { redirect_to edit_paciente_path(@paciente)}
+      flash[:error] = 'Error. Seleccione una imagen'
+      #redirect_to(@paciente)
     end
   end
-
+  end
   
 
   def show
