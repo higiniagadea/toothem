@@ -3,13 +3,15 @@
 
   <div id="formulario">
   <a class="close" style="float: right" ><%= image_tag 'cancel.png' %></a>
- 
+
+  <%= link_to_remote 'Nuevo titular', :url => new_titular_paciente_path,
+                                      :method => :get,
+                                      :update => :formulario%>
+  
  <% form_remote_tag :url => results_titular_paciente_path,
                     :method => :post, :update => :search_hits do -%>
 
- <%= link_to_remote 'Nuevo titular', :url => new_titular_paciente_path,
-                                      :method => :get,
-                                      :update => :formulario%>
+ 
 <table id="search-form">
       <tr>
         <td>
@@ -39,6 +41,7 @@
 <%end -%>
 </div>
 </fieldset>
+
 
 <div id ="search_hits">
 

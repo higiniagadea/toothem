@@ -1,10 +1,11 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Obra Social</legend>
 
-        <legend>Datos de Obra Social</legend>
+       
          <table class="show-data">
            <%unless @paciente.titular.blank?%>
           <tr>
+            <legend>Datos de Obra Social</legend>
             <td class="fieldname">Obra Social</td>
             <td class="fielddata"><%=h @paciente.titular.obra_social.nombre %></td>
           </tr>
@@ -12,7 +13,12 @@
             <td class="fieldname">Titular</td>
             <td class="fielddata"><%=h @paciente.titular.matricula%> - <%= @paciente.titular.nombre%> </td>
             <% end %>
-            <td><div id="edit-obra-social" style=" cursor: pointer" onclick="Boxy.load('<%= search_titular_paciente_url %>',{modal: true})"><%= image_tag('pencil.png') %></div></td>
+
+           
+
+            <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">EL paciente no posee obra social</legend>
+         
+            <td> <%= link_to image_tag('add.png'), search_titular_paciente_url %> Asignar una obra social con nuevo titular</td>
           </tr>
 
          </table>
