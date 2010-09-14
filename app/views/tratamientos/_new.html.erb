@@ -23,10 +23,10 @@
 
   <tr>
   <td class="label">Diente</td>
-    <td><%= f.text_field :diente, :size=>10 %>
+    <td><%= f.text_field :diente, :size=>10, :class=> 'ui-widget-content' %>
     </td>
     <td class="label">Cara </td>
-    <td><%= f.text_field :cara, :size=>10 %>
+    <td><%= f.text_field :cara, :size=>10, :class=> 'ui-widget-content' %>
     </td>
   </tr>
 
@@ -38,44 +38,46 @@
       </span></td>
 
     <td class="label">Importe Cubierto </td>
-    <td><%= f.text_field :importe_cubierto, :size=>10 %>
+    <td><%= f.text_field :importe_cubierto, :size=>10, :class=> 'ui-widget-content' %>
     </td>
   </tr>
 
   <tr>
     <td class="label">Coseguro</td>
-    <td><%= f.text_field :coseguro, :size=>10 %></td>
+    <td><%= f.text_field :coseguro, :size=>10, :class=> 'ui-widget-content' %></td>
     <td class="label">Fue Liquidado </td>
-    <td><%= f.check_box :fue_liquidado %>
+    <td><%= f.check_box :fue_liquidado, :class=>'ui-widget-content' %>
     </td>
   </tr>
   <tr>
 
+    <td><label>Fecha Liquidacion</label></td>
+    <td><span class="fecha_liquidacion">
+              <input class="ui-widget-content "type="text" id="fecha_liquidacion" name="profesional[fecha_liquidacion]" readonly="readonly" />
+      </span></td>
    
-
-  
-  
+ 
    <td class="label">Estado del tratamiento</td>
-   <td><%= f.collection_select(:estado_tratamiento_id, EstadoTratamiento.all, :id, :nombre) %></td>
+   <td><%= f.collection_select(:estado_tratamiento_id, EstadoTratamiento.all, :id, :nombre, :class=>'ui-widget-content') %></td>
   </tr>
   <tr>
   <td class="label">Prestacion </td>
-  <td><%= f.collection_select(:prestacion_id, Prestacion.all, :id, :descripcion) %>
+  <td><%= f.collection_select(:prestacion_id, Prestacion.all, :id, :descripcion, :class=> 'ui-widget-content') %>
   </td>
   <td class="label">Profesional </td>
-  <td><%= f.collection_select(:profesional_id, Profesional.all, :id, :nombre) %>
+  <td><%= f.collection_select(:profesional_id, Profesional.all, :id, :nombre, :class=> 'ui-widget-content') %>
   </td>
   </tr>
 
   <tr>
     <td class="label">Ficha </td>
-    <td><%= f.text_field :ficha_id, :size => 10 %> </td>
+    <td><%= f.text_field :ficha_id, :size => 10, :class=> 'ui-widget-content' %> </td>
   
     <td class="label">Odontograma</td>
   </tr>
 
   <td>
-    <%= f.submit 'Crear' %>
+    <%= f.submit 'Crear Tratamiento', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
   </td>
 
  

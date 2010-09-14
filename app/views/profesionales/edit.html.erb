@@ -6,11 +6,11 @@
   <tr>
   <td>
     <label for="nombre">Nombre y Apellido  </label></td>
-  <td><%= f.text_field :nombre, :class =>'normal' %>
+  <td><%= f.text_field :nombre, :class =>"ui-widget-content" %>
   </td>
    <td>
     <label for="consultorio_id">Consultorio </label></td>
-    <td><%= f.collection_select :consultorio_id, Consultorio.all, :id, :nombre,{}, :class =>'normal'  %>
+    <td><%= f.collection_select :consultorio_id, Consultorio.all, :id, :nombre,{}, :class =>"ui-widget-content"  %>
 
   </td>
   </tr>
@@ -18,45 +18,45 @@
   <tr>
   <td>
     <label for="tipo_documento">Tipo documento </label></td>
-  <td><%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion,{}, :class =>'normal') %>
+  <td><%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion,{}, :class =>"ui-widget-content") %>
 
   </td>
   <td>
     <label for="documento">Documento </label></td>
-  <td><%= f.text_field :documento, :class =>'normal' %>
+  <td><%= f.text_field :documento, :class =>"ui-widget-content" %>
   </td>
   </tr>
 
   <tr>
   <td>
     <label for="matricula_profesional">Matrícula Profesional </label></td>
-  <td><%= f.text_field :matricula_profesional, :class =>'normal' %>
+  <td><%= f.text_field :matricula_profesional, :class =>"ui-widget-content" %>
   </td>
   <td>
     <label for="email">email </label></td>
-  <td><%= f.text_field :email, :class =>'normal' %>
+  <td><%= f.text_field :email, :class =>"ui-widget-content" %>
   </td>
   </tr>
 
   <tr>
   <td>
     <label for="direccion">Direccion </label></td>
-  <td><%= f.text_field :direccion, :class =>'normal' %>
+  <td><%= f.text_field :direccion, :class =>"ui-widget-content" %>
   </td>
   <td>
     <label for="telefono">Telefono </label></td>
-  <td><%= f.text_field :telefono, :class =>'normal' %>
+  <td><%= f.text_field :telefono, :class =>"ui-widget-content" %>
   </td>
   </tr>
 
   <tr>
   <td>
     <label for="movil">Móvil </label></td>
-  <td><%= f.text_field :movil, :class =>'normal' %>
+  <td><%= f.text_field :movil, :class =>"ui-widget-content" %>
   </td>
 
   <td><label>Fecha Nacimiento</label></td>
-    <td><span class="fecha_nacimiento">
+    <td><span class="fecha_nacimiento" class ="ui-widget-content">
               <input class="ui-widget-content "type="text" id="fecha_nacimiento" name="profesional[fecha_nacimiento]" readonly="readonly" />
       </span></td>
   </tr>
@@ -64,14 +64,14 @@
 
 
   <td><label>Fecha Ingreso</label></td>
-    <td><span class="fecha_ingreso">
+    <td><span class="fecha_ingreso" class ="ui-widget-content">
               <input class="ui-widget-content "type="text" id="fecha_ingreso" name="profesional[fecha_ingreso]" readonly="readonly" />
       </span></td>
 
   <tr>
   <td>
     <label for="estado_laboral_id">Estado Laboral </label></td>
-  <td><%= f.collection_select :estado_laboral_id, EstadoLaboral.all, :id, :descripcion,{}, :class =>'normal' %>
+  <td><%= f.collection_select :estado_laboral_id, EstadoLaboral.all, :id, :descripcion,{}, :class =>"ui-widget-content" %>
   </td>
   </tr>
 

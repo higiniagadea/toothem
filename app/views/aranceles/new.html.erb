@@ -21,10 +21,10 @@
           <%= f.collection_select(:prestacion_id, prestaciones, :id, :codigo_descripcion) %>
         </td>
         <td>
-          <%= f.text_field :importe_cubierto, :size => 10 %>
+          <%= f.text_field :importe_cubierto, :size => 10, :class=>'ui-widget-content ' %>
         </td>
         <td>
-          <%= f.text_field :coseguro, :size => 10 %>
+          <%= f.text_field :coseguro, :size => 10, :class=>'ui-widget-content ' %>
         </td>
         <td>
           <%= f.submit 'Crear', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>

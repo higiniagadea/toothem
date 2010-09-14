@@ -6,9 +6,6 @@
  
 <table id="form">
   <tr>
-
-  </tr>
-  <tr>
     <td><h1>Nombre y Apellido: <%= @paciente.nombre %></h1></td>
   </tr>
   <tr>
@@ -26,56 +23,60 @@
 
   <% fields_for :tratamientos do |f_tratamiento| %>
   <tr>
-    <td class="label">Fecha</td>
-  <td>  <%= f_tratamiento.date_select :fecha, :order => [:day, :month, :year],
-                                      :use_month_names => ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct','Nov','Dic']%>
-  </td>
+    <td><label>Fecha</label></td>
+     <td><span class="fecha">
+              <input class="ui-widget-content "type="text" id="fecha" name="tratamiento[fecha]" readonly="readonly" />
+      </span></td>
+  
+  
   </tr>
 
   <tr>
+ 
   <td class="label">Diente</td>
-    <td><%= f_tratamiento.text_field :diente, :size=>10 %>
+    <td><%= f_tratamiento.text_field :diente, :size=>10, :class=> 'ui-widget-content' %>
     </td>
     <td class="label">Cara </td>
-    <td><%= f_tratamiento.text_field :cara, :size=>10 %>
+    <td><%= f_tratamiento.text_field :cara, :size=>10, :class=> 'ui-widget-content' %>
     </td>
   </tr>
 
   <tr>
-    <td class="label">Fecha Finalizacion </td>
-    <td><%= f_tratamiento.date_select  :fecha,
-                                       :order => [:day, :month, :year],
-                                       :use_month_names => ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct','Nov','Dic'] %>
-    </td>
+    <td><label>Fecha Finalizacion</label></td>
+    <td><span class="fecha_finalizacion">
+              <input class="ui-widget-content "type="text" id="fecha_finalizacion" name="tratamiento[fecha_finalizacion]" readonly="readonly" />
+      </span></td>
+
     <td class="label">Importe Cubierto </td>
-    <td><%= f_tratamiento.text_field :importe_cubierto, :size=>10 %>
+    <td><%= f_tratamiento.text_field :importe_cubierto, :size=>10, :class=> 'ui-widget-content' %>
     </td>
   </tr>
 
   <tr>
     <td class="label">Coseguro</td>
-    <td><%= f_tratamiento.text_field :coseguro, :size=>10 %></td>
+    <td><%= f_tratamiento.text_field :coseguro, :size=>10, :class=> 'ui-widget-content' %></td>
 
     <td class="label">Fue Liquidado </td>
-    <td><%= f_tratamiento.check_box :fue_liquidado %>
+    <td><%= f_tratamiento.check_box :fue_liquidado, :class=> 'ui-widget-content' %>
     </td>
   </tr>
 
   <tr>
-    <td class="label">Fecha de Liquidacion </td>
-    <td><%= f_tratamiento.date_select  :fecha, :order => [:day, :month, :year],
-                                       :use_month_names => ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct','Nov','Dic'] %>
-    </td>
+    <td><label>Fecha de Liquidacion</label></td>
+    <td><span class="fecha_liquidacion">
+              <input class="ui-widget-content "type="text" id="fecha_liquidacion" name="tratamiento[fecha_liquidacion]" readonly="readonly" />
+      </span></td>
+
    <td class="label">Estado del tratamiento</td>
-   <td><%= f_tratamiento.collection_select(:estado_tratamiento_id, EstadoTratamiento.all, :id, :nombre) %></td>
+   <td><%= f_tratamiento.collection_select(:estado_tratamiento_id, EstadoTratamiento.all, :id, :nombre, :class=> 'ui-widget-content') %></td>
   </tr>
 
   <tr>
   <td class="label">Prestacion </td>
-  <td><%= f_tratamiento.collection_select(:prestacion_id, Prestacion.all, :id, :descripcion) %>
+  <td><%= f_tratamiento.collection_select(:prestacion_id, Prestacion.all, :id, :descripcion, :class=> 'ui-widget-content') %>
   </td>
   <td class="label">Profesional </td>
-  <td><%= f_tratamiento.collection_select(:profesional_id, Profesional.all, :id, :nombre) %>
+  <td><%= f_tratamiento.collection_select(:profesional_id, Profesional.all, :id, :nombre, :class=> 'ui-widget-content') %>
   </td>
   </tr>
 
@@ -84,15 +85,25 @@
     <td></td>
 
     <td class="label">Odontograma</td>
-    <td><%= f_tratamiento.text_field :odontograma_id, :size=> 10 %> </td>
+    <td><%= f_tratamiento.text_field :odontograma_id, :size=> 10, :class=> 'ui-widget-content' %> </td>
   </tr>
 
   <tr>
     <td>
-      <%= f.submit 'Crear Ficha' %>
+      <%= f.submit 'Crear Ficha', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
       <%end%>
     </td>
   </tr>
   </table>
-</fieldset>
+
 <%end%>
+<%= link_to 'Volver', paciente_path(@paciente) %>
+  </fieldset>
+<script type="text/javascript">
+
+ $("#fecha").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Jutdo','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110'});
+$("#fecha_finalizacion").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Jutdo','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110'});
+$("#fecha_liquidacion").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Jutdo','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110'});
+
+
+</script>

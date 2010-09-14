@@ -1,5 +1,5 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Nuevo Profesional</legend>
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Buscar Profesional</legend>
 <% form_remote_tag :url => resultado_profesionales_path,
                     :method => :post, 
                     :update => :search_hits do -%>
@@ -8,13 +8,13 @@
       <tr>
         <td>
           <label>Nombre</label></td>
-        <td><%= text_field_tag :nombre %>
+        <td><%= text_field_tag :nombre,{}, :class=> 'ui-widget-content' %>
         </td>
       </tr>
       <tr>
         <td>
-          <label>Documento</label></td>
-        <td><%= text_field_tag :documento %>
+          <label for="documento">Documento</label></td>
+        <td><%= text_field_tag :documento,{}, :class=> 'ui-widget-content' %>
         </td>
       </tr>
       <tr>

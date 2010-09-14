@@ -6,14 +6,14 @@
   <tr>
   <td>
     <label for="clinica_id">Clínica </label></td>
-  <td><%= f.collection_select :clinica_id, Clinica.all, :id, :nombre, {},:class=>'normal' %><!--después cambiar por la vble de sesión clínica-->
+  <td><%= f.collection_select :clinica_id, Clinica.all, :id, :nombre, {},:class=>'ui-widget-content' %><!--después cambiar por la vble de sesión clínica-->
   </td>
   </tr>
 
   <tr>
   <td>
     <label for="nombre">Nombre </label></td>
-  <td>|<%= f.text_field :nombre, :class => 'normal' %>
+  <td><%= f.text_field :nombre, :class => 'ui-widget-content' %>
   </td>
   </tr>
 

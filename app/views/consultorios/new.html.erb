@@ -3,14 +3,18 @@
 <% form_for(@consultorio) do |f| %>
   <%= f.error_messages  :id => 'error', :header_message => '', :message => 'Ocurrió un error al intentar guardar el registro'  %>
 <table id="form">
+  <tr>
   <td>
     <label for="clinica_id">Clinica </label></td>
-  <td><%= f.collection_select(:clinica_id, Clinica.all, :id, :nombre, {}, :class => 'normal ui-widget-content') %>
+  <td><%= f.collection_select(:clinica_id, Clinica.all, :id, :nombre, {}, :class => 'ui-widget-content') %>
   </td>
+  </tr>
+  <tr>
   <td>
     <label for="nombre">Nombre </label></td>
-  <td><%= f.text_field :nombre, :class => 'normal ui-widget-content' %>
+  <td><%= f.text_field :nombre, :class => ' ui-widget-content' %>
   </td>
+  </tr>
   <td>
     <label></label>
 

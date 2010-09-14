@@ -1,7 +1,7 @@
 <fieldset class=" ui-widget ui-widget-content ui-corner-top"
           <legend class="ui-widget ui-corner-top ui-widget-header">Consultorios</legend>
     <table class="table-list">
-      <tr class=" ui-corner-top ui-widget-shadow ui-widget-header">
+      <tr>
         <th>Clínica</th>
         <th>Nombre</th>
       </tr>
@@ -18,7 +18,7 @@
     </table>
 
     <br />
-    <%= will_paginate @consultorios, :previous_label=>'Anterior', :next_label => 'Siguiente' %>
-    <%= link_to 'Nuevo consultorio', new_consultorio_path %>
+   
 </fieldset>
-
+ <%= will_paginate @consultorios, :previous_label=>'Anterior', :next_label => 'Siguiente' %>
+    <%= link_to 'Nuevo consultorio', new_consultorio_path %>

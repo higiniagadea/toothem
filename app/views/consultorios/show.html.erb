@@ -1,15 +1,15 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class ="ui-widget ui-widget-content ui-corner-all ui-widget-header">Consultorio</legend>
-<h1>Consultorio: <%=h @consultorio.nombre %></h1> <br/>
+  <legend class ="ui-widget ui-widget-content ui-corner-all ui-widget-header">Consultorio: <%=h @consultorio.nombre %></legend>
+
 
 <table id="table-list">
   <tr>
-     <td><label>Clinica: <%=h @consultorio.clinica.nombre %></label></td>
+     <td><h1>Clinica:<%=h @consultorio.clinica.nombre %></h1></td>
      
   </tr>
 </table>
 
-<h1>Profesionales</h1><br/>
+<h1>Profesionales</h1>
    
 <table class="table-list" >
   <% @consultorio.profesionales.each do |profesional|  %>
@@ -17,19 +17,16 @@
     <td><label>Nombre: <%=h profesional.nombre %></label></td>
     <td><label>Matricula: <%=h profesional.matricula_profesional %></label></td>
     <td><label>Email: <%=h profesional.email %></label></td>
-
   </tr>
+  
 <%end%>
 </table>
 
 <br/>
-<%= will_paginate @profesionales, :previous_label=> 'Anterior', :next_label=>'Siguiente'%>
-
-
 <br/>
 
-<h1>Usuarios</h1><br/>
-<table>
+<h1>Usuarios</h1>
+<table class="table-list">
   
   <tr>
     <td><label>nombre:</label></td>
@@ -37,10 +34,10 @@
     <td><label>usuario: </label></td>
   </tr>
 </table>
- <br/>
+
 
 <h1>Pacientes</h1><br/>
-<table>
+<table class="table-list">
 <% @consultorio.pacientes.each do |paciente|  %>
   <tr>
     <td><label>Nombre: <%=h paciente.nombre %></label></td>

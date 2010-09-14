@@ -4,7 +4,7 @@ class ConsultoriosController < ApplicationController
   layout 'default'
   def index
     @pagetitle = "Consultorios"
-    @consultorios = Consultorio.paginate :page=> params[:page], :per_page=>15, :order=> 'nombre ASC'
+    @consultorios = Consultorio.paginate :page=> params[:page], :per_page=>5, :order=> 'nombre ASC'
   
     respond_to do |format|
       format.html # index.html.erb
@@ -17,7 +17,7 @@ class ConsultoriosController < ApplicationController
   def show
     @consultorio = Consultorio.find(params[:id])
    
-    @consultorios = Consultorio.paginate :page=> params[:page], :per_page=>15, :order=> 'nombre ASC'
+    @consultorios = Consultorio.paginate :page=> params[:page], :per_page=>5, :order=> 'nombre ASC'
 
     respond_to do |format|
       format.html # show.html.erb

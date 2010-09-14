@@ -135,7 +135,7 @@
           <td class="fielddata"> <%=h @paciente.titular.matricula %></td>
         </tr>
         <% else %>
-        <tr><div id="edit-obra-social" style=" cursor: pointer; color: blue" onclick="Boxy.load('<%= search_titular_paciente_url %>' , {modal: true},{center: false})">Agregar</div></tr>
+        <tr><div id="edit-obra-social" style=" cursor: pointer; color: blue" onclick="Boxy.load('<%= search_titular_paciente_url %>')">Agregar</div></tr>
         <% end %>
      </table>
 
@@ -194,7 +194,7 @@
       <p>
            <%= imagen.observaciones %>
        
-          </p>
+      </p>
          </div>
         
         <%end%>

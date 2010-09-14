@@ -5,9 +5,7 @@
   <a class="close" style="float: right" ><%= image_tag 'cancel.png' %></a>
 <% form_for(@titular, :url => create_titular_paciente_path(@paciente)) do |f| %>
   <%= f.error_messages %>
-<%= link_to_remote 'Volver', :url => search_titular_paciente_path,
-                                      :method => :get,
-                                      :update => :formulario%>
+
 <table id="search_form">
   
   <tr>|
@@ -36,3 +34,6 @@
 <% end %>
 </div>
 </fieldset>
+<%= link_to_remote 'Volver', :url => search_titular_paciente_path,
+                                      :method => :get,
+                                      :update => :formulario%>
