@@ -1,27 +1,50 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Obra Social</legend>
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Datos de Obra Social</legend>
 
-       
-         <table class="show-data">
-           <%unless @paciente.titular.blank?%>
+       <%unless @paciente.titular.blank? %>
+         <table class="table-list">
+                   
           <tr>
-            <legend>Datos de Obra Social</legend>
-            <td class="fieldname">Obra Social</td>
-            <td class="fielddata"><%=h @paciente.titular.obra_social.nombre %></td>
+          <td class="fieldname">Obra Social</td>
+          <td class="fielddata"><%=h @paciente.titular.obra_social.nombre %></td>
           </tr>
           <tr>
-            <td class="fieldname">Titular</td>
-            <td class="fielddata"><%=h @paciente.titular.matricula%> - <%= @paciente.titular.nombre%> </td>
-            <% end %>
+          <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Datos del Titular</legend>
+          </tr>
+          <td class="fielddata">Matricula <%=h @paciente.titular.matricula%></td><br/>
+          <td class="fielddata">Titular <%= @paciente.titular.nombre%> </td><br/>
+
+         
+            <%else %>
 
            
-
-            <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">EL paciente no posee obra social</legend>
-         
-            <td> <%= link_to image_tag('add.png'), search_titular_paciente_url %> Asignar una obra social con nuevo titular</td>
-          </tr>
-
+          <tr>
+          <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">EL paciente no posee obra social</legend>
+         </tr>
+            <tr>
+             <%= link_to image_tag('add.png'), new_titular_paciente_url, :id=> 'titular' %> Asignar una Obra Social con Nuevo Titular
+            </tr><br/>
+            <tr>
+             <%= link_to image_tag('user_add.png'), search_titular_paciente_url, :id=> 'busc_titular'%>Asignar Obra Social con Titular Existente
+         </tr>
+         <%end %>
          </table>
 
+</fieldset><br/>
 
-</fieldset>
+ <%= link_to 'Volver', paciente_path %>
+
+<script type="text/javascript">
+    $('#titular').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+    $('#busc_titular').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+</script>

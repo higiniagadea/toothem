@@ -1,39 +1,57 @@
 
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Titular</legend>
-<div>
-  <a class="close" style="float: right" ><%= image_tag 'cancel.png' %></a>
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Nuevo Titular</legend>
+
+  <div>
+<a class="close" style="float: right" ><%= image_tag 'cancel.png' %></a>
+
 <% form_for(@titular, :url => create_titular_paciente_path(@paciente)) do |f| %>
   <%= f.error_messages %>
-
-<table id="search_form">
   
-  <tr>|
-  <td>
-    <label>Nombre</label></td>
-  <td><%= f.text_field :nombre%>
+<table id="table-list">
+
+ <div class="errores">
+    <ol style="list-style:none"></ol>
+  </div>
+
+  
+  <tr>
+  <th>
+    Nombre y Apellido</th>
+  <td><%= f.text_field :nombre, :class=> 'ui-widget-content required', :title=> ' Nombre y Apellido no puede estar en blanco'%>
+  </td>
+ 
+  
+  <th>
+    Matrícula</th>
+  <td><%= f.text_field :matricula, :size=> 10, :class=> 'ui-widget-content required', :title=> 'Matricula no puede estar en blanco' %>
   </td>
   </tr>
-  <tr>
-  <td>
-    <label>Matrícula</label></td>
-  <td><%= f.text_field :matricula %>
-  </td>
-  </tr>
-  <tr>
-  <td>
-    <label>Obra Social</label></td>
-   <td><%= f.collection_select(:obra_social_id, ObraSocial.all, :id, :nombre ) %>
+   <tr>
+  <th>
+    Obra Social</th>
+   <td><%= f.collection_select(:obra_social_id, ObraSocial.all, :id, :nombre, :class=> 'ui-widget-content ') %>
   </td>
   </tr>
   <td>
     <label></label>
-    <%= f.submit 'Crear',  :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+    <%= f.submit 'Crear Titular',  :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
   </td>
 </table>
 <% end %>
 </div>
 </fieldset>
-<%= link_to_remote 'Volver', :url => search_titular_paciente_path,
-                                      :method => :get,
-                                      :update => :formulario%>
+<%= link_to 'Volver', paciente_path %>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#new_titular").validate({
+        //errorLabelContainer: $("#new_paciente div.errores")
+       errorContainer: $("#new_titular div.errores"),
+       errorLabelContainer: $("ol", $("#new_titular div.errores")),
+       wrapper: 'li',
+       meta: "validate"
+     });
+
+  });
+  </script>

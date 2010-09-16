@@ -223,7 +223,7 @@ class PacientesController < ApplicationController
         format.html {redirect_to(@paciente)}
         
       else
-        format.html { render :action => "" }
+        format.html { render :action => ""  }
       end
     end
   end
@@ -247,7 +247,7 @@ class PacientesController < ApplicationController
     respond_to do |format|
       if @paciente.save
         flash[:notice] = 'Paciente creado.'
-        format.html { redirect_to(edit_paciente_path(@paciente)) }
+        format.html { redirect_to(@paciente) } #redirec_to edit_paciente_path
         format.xml  { render :xml => @paciente, :status => :created, :location => @paciente }
       else
         format.html { render :action => "new" }

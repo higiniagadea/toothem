@@ -11,29 +11,28 @@
  <div id="formulario">
 <table id="search-form">
       <tr>
-        <td>
-          <label>Obra Social</label></td>
+        <th>
+          Obra Social</th>
         <td><%= collection_select(:get, :obra_social_id, ObraSocial.all, :id, :nombre)%>
         </td>
       </tr>
       <tr>
-        <td>
-          <label>Nombre</label></td>
+        <th>
+          Nombre</th>
         <td><%= text_field_tag :nombre  %>
         </td>
       </tr>
       <tr>
-        <td>
-          <label>Documento</label></td>
+        <th>
+          Matricula</th>
         <td><%= text_field_tag :matricula %>
         </td>
       </tr>
 
         <td>
           <label></label>
-          <%= submit_tag 'Buscar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %> |<%= link_to_remote 'Nuevo titular', :url => new_titular_paciente_path,
-                                      :method => :get,
-                                      :update => :formulario %>
+          <%= submit_tag 'Buscar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+
 
         </td>
       </table>
@@ -46,3 +45,4 @@
 <div id ="search_hits">
 
 </div>
+  <%= link_to 'Volver', paciente_path  %>

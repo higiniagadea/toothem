@@ -4,12 +4,10 @@
 <table>
   <tr>
 
-    <label>Historia Clinica General</label>
-
 <%if @paciente.historia_clinica_general.blank? -%>
-    <%=  link_to image_tag('add.png'), new_paciente_historia_clinica_general_path(@paciente), :title => 'Nueva Historia Clinica' %>
+    <%=  link_to image_tag('add.png'), new_paciente_historia_clinica_general_path(@paciente), :title => 'Nueva Historia Clinica' %>Historia Clinica General
 <%elsif-%>
-    <%= link_to image_tag('magnifier_zoom_in.png'), paciente_historia_clinica_general_path(@paciente, @historia_clinica_general), :title => 'Ver' %>
+    <%= link_to image_tag('magnifier_zoom_in.png'), paciente_historia_clinica_general_path(@paciente, @historia_clinica_general), :title => 'Ver' %>Historia Clinica General
 <%end-%>
     
 </tr>
@@ -18,14 +16,14 @@
 
 <tr>
 
-<label>Historia Clinica Ortodoncia</label>
+
 
 <% if @paciente.historia_clinica_ortodoncia.blank? -%>
 
-  <%= link_to image_tag('add.png'), new_paciente_historia_clinica_ortodoncia_path(@paciente), :title => 'Nueva Historia Clinica' %>
+  <%= link_to image_tag('add.png'), new_paciente_historia_clinica_ortodoncia_path(@paciente), :title => 'Nueva Historia Clinica' %>Historia Ortodoncica
 
 <%elsif -%>
-     <%=  link_to image_tag('magnifier_zoom_in.png'), paciente_historia_clinica_ortodoncia_path(@paciente, @historia_clinica_ortodoncia), :title => 'Ver' %>
+     <%=  link_to image_tag('magnifier_zoom_in.png'), paciente_historia_clinica_ortodoncia_path(@paciente, @historia_clinica_ortodoncia), :title => 'Ver' %>Historia Ortodoncica
  
 
 <%end -%>

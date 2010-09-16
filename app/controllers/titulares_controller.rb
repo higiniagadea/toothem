@@ -2,6 +2,7 @@ class TitularesController < ApplicationController
   # GET /titulares
   # GET /titulares.xml
   layout 'default'
+  
   def index
     @titulares = Titular.all
     @pagetitle = "Titulares"

@@ -24,7 +24,7 @@
           <%= f.text_field :importe_cubierto, :size => 10, :class=>'ui-widget-content ' %>
         </td>
         <td>
-          <%= f.text_field :coseguro, :size => 10, :class=>'ui-widget-content ' %>
+          <%= f.text_field :coseguro, :size => 10, :class=>'ui-widget-content required', :div=> 'obras_sociales/' %>
         </td>
         <td>
           <%= f.submit 'Crear', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
