@@ -672,20 +672,20 @@
  </tr>
  <tr class="odd">
     <td class="labels">Medico de la consulta ortodoncica previa: </td>
-    <td><%= f.text_field :medico_consulta_ortodoncica, :size=>10 %>
+    <td><%= f.text_field :medico_consulta_ortodoncica, :size=>10, :class=> 'ui-widget-content' %>
     </td>
     <td class="labels">Interes del paciente al tratamiento ortodoncico: </td>
-    <td><%= f.text_field :interes_paciente_tratamiento_ortodoncico, :size=>10 %>
+    <td><%= f.text_field :interes_paciente_tratamiento_ortodoncico, :size=>10, :class=> 'ui-widget-content' %>
     </td>
  </tr>
  <tr>
    <td class="labels">Algun familiar con tratamiento ortodoncico ortopedico: </td>
-   <td> <%= f.check_box :algun_familiar_tratamiento_ortodoncico_ortopedico, :size=>10 %>
+   <td> <%= f.check_box :algun_familiar_tratamiento_ortodoncico_ortopedico, :size=>10, :class=> 'ui-widget-content' %>
     </td>
  </tr>
  <tr class="odd">
     <td class="labels">Otros comentarios de Ortodoncia: </td>
-    <td><%= f.text_field :otros_comentarios_ortodoncia, :size=>10 %>
+    <td><%= f.text_field :otros_comentarios_ortodoncia, :size=>10, :class=> 'ui-widget-content' %>
     </td>
  </tr>
  </table>
@@ -698,10 +698,10 @@
  <tr class="odd">
     <legend>Examen Bucal</legend>
     <td class="labels">Dientes presentes en la boca: </td>
-    <td><%= f.text_field :dientes_presentes_boca, :size=>10 %>
+    <td><%= f.text_field :dientes_presentes_boca, :size=>10, :class=> 'ui-widget-content' %>
     </td>
     <td class="labels">Evaluacion Clinica: </td>
-    <td><%= f.text_field :evaluacion_clinica, :size=>10 %>
+    <td><%= f.text_field :evaluacion_clinica, :size=>10, :class=> 'ui-widget-content' %>
     </td>
  </tr>
    </table>
@@ -713,81 +713,81 @@
  <tr class="odd">
    <legend>Articulacion temporo-mandibular</legend>
     <td class="labels">Limitacion: </td>
-    <td><%= f.check_box :limitacion %>
+    <td><%= f.check_box :limitacion, :class=> 'ui-widget-content' %>
     </td>
     <td class="labels">Desviacion: </td>
-    <td><%= f.check_box :desviacion %>
+    <td><%= f.check_box :desviacion, :class=> 'ui-widget-content' %>
     </td>
     <td class="labels">Hipermovilidad: </td>
-    <td><%= f.check_box :hipermovilidad %>
+    <td><%= f.check_box :hipermovilidad, :class=> 'ui-widget-content' %>
     </td>
 </tr>
 <tr>
     <td class="labels">Ruidos: </td>
-    <td><%= f.check_box :ruidos %>
+    <td><%= f.check_box :ruidos, :class=> 'ui-widget-content' %>
     </td>
     <td class="labels">Lateralidad: </td>
-    <td><%= f.check_box :lateralidad %>
+    <td><%= f.check_box :lateralidad, :class=> 'ui-widget-content' %>
     </td>
     <td class="labels">Hacia la Izquierda: </td>
-    <td><%= f.check_box :hacia_izquierda %>
+    <td><%= f.check_box :hacia_izquierda, :class=> 'ui-widget-content' %>
     </td>
 </tr>
 <tr class="odd">
     <td class="labels">Hacia la Derecha: </td>
-    <td><%= f.check_box :hacia_derecha %>
+    <td><%= f.check_box :hacia_derecha, :class=> 'ui-widget-content' %>
     </td>
     <td class="labels">Chasquido: </td>
-    <td><%= f.check_box :chasquido %>
+    <td><%= f.check_box :chasquido, :class=> 'ui-widget-content' %>
     </td>
     <td class="labels">Crepitacion: </td>
-    <td><%= f.check_box :crepitacion %>
+    <td><%= f.check_box :crepitacion, :class=> 'ui-widget-content' %>
     </td>
 </tr>
 <tr>
     <td class="labels">Dolor: </td>
-    <td><%= f.check_box :dolor %>
+    <td><%= f.check_box :dolor, :class=> 'ui-widget-content' %>
     </td>
     <td class="labels">Espontaneo: </td>
-    <td><%= f.check_box :espontaneo %>
+    <td><%= f.check_box :espontaneo, :class=> 'ui-widget-content' %>
     </td>
     <td class="labels">Localizado: </td>
-    <td><%= f.check_box :localizado %>
+    <td><%= f.check_box :localizado, :class=> 'ui-widget-content' %>
     </td>
 </tr>
 <tr class="odd">
     <td class="labels">Difuso: </td>
-    <td><%= f.check_box :difuso %>
+    <td><%= f.check_box :difuso, :class=> 'ui-widget-content' %>
     </td>
     <td class="labels">Durante la funcion: </td>
-    <td><%= f.check_box :durante_funcion %>
+    <td><%= f.check_box :durante_funcion, :class=> 'ui-widget-content' %>
     </td>
     <td class="labels">Palpacion Articular Lateral: </td>
-    <td><%= f.check_box :palpacion_articular_lateral %>
+    <td><%= f.check_box :palpacion_articular_lateral, :class=> 'ui-widget-content' %>
     </td>
 </tr>
 <tr>
     <td class="labels">Palpacion Articular Posterior: </td>
-    <td><%= f.check_box :palpacion_articular_posterior %>
+    <td><%= f.check_box :palpacion_articular_posterior, :class=> 'ui-widget-content' %>
     </td>
     <td class="labels">Radiografia Panoramica: </td>
-    <td><%= f.check_box :radiografia_panoramica %>
+    <td><%= f.check_box :radiografia_panoramica, :class=> 'ui-widget-content' %>
     </td>
 </tr>
 <tr class="odd">
     <td class="labels">Historial traba bloqueo mandibular: </td>
-    <td><%= f.check_box :historial_traba_bloqueo_mandibular %>
+    <td><%= f.check_box :historial_traba_bloqueo_mandibular, :class=> 'ui-widget-content' %>
     </td>
     <td class="labels">Con dolor: </td>
-    <td><%= f.check_box :con_dolor %>
+    <td><%= f.check_box :con_dolor, :class=> 'ui-widget-content' %>
     </td>
 </tr>
 <tr>
     <td class="labels">Con ruido: </td>
-    <td><%= f.check_box :con_ruido %>
+    <td><%= f.check_box :con_ruido, :class=> 'ui-widget-content' %>
     </td>
     <td class="labels">Con movimiento limitado: </td>
-    <td><%= f.check_box :con_movimiento_limitado %>
+    <td><%= f.check_box :con_movimiento_limitado, :class=> 'ui-widget-content' %>
     </td>
 </tr>
 </table>
@@ -799,31 +799,31 @@
 <tr class="odd">
   <legend>Otros varios</legend>
     <td class="labels">Examen de Tejidos blandos: </td>
-    <td><%= f.text_field :examen_tejidos_blandos, :size=>10 %>
+    <td><%= f.text_field :examen_tejidos_blandos, :size=>10, :class=> 'ui-widget-content' %>
     </td>
     <td class="labels">Examen de relaciones dentarias: </td>
-    <td><%= f.text_field :examen_relaciones_dentarias, :size=>10 %>
+    <td><%= f.text_field :examen_relaciones_dentarias, :size=>10, :class=> 'ui-widget-content' %>
     </td>
 </tr>
 <tr>
     <td class="labels">Ficha de tejidos blandos intraorales: </td>
-    <td><%= f.text_field :ficha_tejidos_blandos_intraorales, :size=>10 %>
+    <td><%= f.text_field :ficha_tejidos_blandos_intraorales, :size=>10, :class=> 'ui-widget-content' %>
     </td>
     <td class="labels">Montaje en articulador: </td>
-    <td><%= f.text_field :montaje_en_articulador, :size=>10 %>
+    <td><%= f.text_field :montaje_en_articulador, :size=>10, :class=> 'ui-widget-content' %>
     </td>
 </tr>
 <tr class="odd">
     <td class="labels">Diagnostico de ortodoncia: </td>
-    <td><%= f.text_field :diagnostico_ortodoncia, :size=>10 %>
+    <td><%= f.text_field :diagnostico_ortodoncia, :size=>10, :class=> 'ui-widget-content' %>
     </td>
     <td class="labels">Tratamiento de los objetivos principales: </td>
-    <td><%= f.text_field :tratamiento_objetivos_principales, :size=>10 %>
+    <td><%= f.text_field :tratamiento_objetivos_principales, :size=>10, :class=> 'ui-widget-content' %>
     </td>
 </tr>
 <tr>
     <td class="labels">Mecanica Arco Recto Propuesta de tratamiento: </td>
-    <td><%= f.text_field :mecanica_arco_recto_propuesta_tratamiento, :size=>10 %>
+    <td><%= f.text_field :mecanica_arco_recto_propuesta_tratamiento, :size=>10, :class=> 'ui-widget-content' %>
     </td>
 </tr>
 </table>
@@ -834,18 +834,18 @@
 <table class="historia_clinica">
 <tr class="odd">
     <td class="labels">Tratamiento Primera Etapa: </td>
-    <td><%= f.text_field :tratamiento_primera_etapa, :size=>10 %>
+    <td><%= f.text_field :tratamiento_primera_etapa, :size=>10, :class=> 'ui-widget-content' %>
     </td>
 </tr>
 <tr>
     <td class="labels">Tratamiento segunda etapa: </td>
-    <td><%= f.text_field :tratamiento_segunda_etapa, :size=>10 %>
+    <td><%= f.text_field :tratamiento_segunda_etapa, :size=>10, :class=> 'ui-widget-content' %>
     </td>
  </tr>
 
  <tr class="odd">
     <td class="labels">Tratamiento tercera etapa: </td>
-    <td><%= f.text_field :tratamiento_tercera_etapa, :size=>10 %>
+    <td><%= f.text_field :tratamiento_tercera_etapa, :size=>10, :class=> 'ui-widget-content' %>
     </td>
  </tr>
  <td></td>
@@ -854,7 +854,7 @@
 
  <tr>
     <td class="labels">Declaracion Jurada: </td>
-    <td><%= f.text_field :leyenda_declaracion_jurada, :size=>10 %>
+    <td><%= f.text_field :leyenda_declaracion_jurada, :size=>10, :class=> 'ui-widget-content' %>
     </td>
  </tr>
 </table>

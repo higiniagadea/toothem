@@ -3,29 +3,30 @@
 
   
   
- <a class="close" style="float: right" ><%#= image_tag 'cancel.png' %></a>
+ 
 
  <% form_remote_tag :url => results_titular_paciente_path,
                     :method => :post, :update => :search_hits do -%>
+  <a class="close" style="float: right" ><%= image_tag 'cancel.png' %></a>
 
  <div id="formulario">
 <table id="search-form">
       <tr>
         <th>
           Obra Social</th>
-        <td><%= collection_select(:get, :obra_social_id, ObraSocial.all, :id, :nombre)%>
+        <td><%= collection_select(:get, :obra_social_id, ObraSocial.all, :id, :nombre,{}, :class=> 'ui-widget-content')%>
         </td>
       </tr>
       <tr>
         <th>
           Nombre</th>
-        <td><%= text_field_tag :nombre  %>
+        <td><%= text_field_tag :nombre,{}, :class=> 'ui-widget-content'  %>
         </td>
       </tr>
       <tr>
         <th>
           Matricula</th>
-        <td><%= text_field_tag :matricula %>
+        <td><%= text_field_tag :matricula,{}, :class=> 'ui-widget-content' %>
         </td>
       </tr>
 
@@ -45,4 +46,4 @@
 <div id ="search_hits">
 
 </div>
-  <%= link_to 'Volver', paciente_path  %>
+  
