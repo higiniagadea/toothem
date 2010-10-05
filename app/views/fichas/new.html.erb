@@ -1,109 +1,78 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Ficha</legend>
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Nueva Ficha </legend>
 <% form_for(@ficha) do |f| %>
   <%= error_messages_for :ficha %>
-  <%= f.hidden_field :paciente_id, 'value' => @paciente.id.to_s  %>
+  <%= f.hidden_field :paciente_id, 'value' => @paciente.id.to_s %>
  
 <table id="form">
   <tr>
-    <td><h1>Nombre y Apellido: <%= @paciente.nombre %></h1></td>
+    <td>N° Ficha </td>
+    <td></td>
+     <td>Obra Social <%=  @paciente.titular.obra_social.nombre %></td>
   </tr>
-  <tr>
-    <td class="label">Telefono: <%= @paciente.telefono_particular %> </td>
-  </tr>
-  <tr>
-    <td class="label">Localidad: </td>
-  </tr>
-  <tr>
-    <td class="label">Domicilio:  </td>
-  </tr>
-  <tr>
-    <td class="label">Nro. Afiliado. <%= @paciente.nro_afiliado %> </td>
-  </tr>
-
-  <% fields_for :tratamientos do |f_tratamiento| %>
   <tr>
     <td><label>Fecha</label></td>
-     <td><span class="fecha">
-              <input class="ui-widget-content "type="text" id="fecha" name="tratamiento[fecha]" readonly="readonly" />
+     <td><span class="fecha" class="ui-widget-content">
+              <input class="ui-widget-content required "type="text" id="fecha" name="ficha[fecha]" readonly="readonly" size="10" />
       </span></td>
+
+
   
-  
-  </tr>
-
-  <tr>
- 
-  <td class="label">Diente</td>
-    <td><%= f_tratamiento.text_field :diente, :size=>10, :class=> 'ui-widget-content' %>
-    </td>
-    <td class="label">Cara </td>
-    <td><%= f_tratamiento.text_field :cara, :size=>10, :class=> 'ui-widget-content' %>
-    </td>
-  </tr>
-
-  <tr>
-    <td><label>Fecha Finalizacion</label></td>
-    <td><span class="fecha_finalizacion">
-              <input class="ui-widget-content "type="text" id="fecha_finalizacion" name="tratamiento[fecha_finalizacion]" readonly="readonly" />
-      </span></td>
-
-    <td class="label">Importe Cubierto </td>
-    <td><%= f_tratamiento.text_field :importe_cubierto, :size=>10, :class=> 'ui-widget-content' %>
-    </td>
-  </tr>
-
-  <tr>
-    <td class="label">Coseguro</td>
-    <td><%= f_tratamiento.text_field :coseguro, :size=>10, :class=> 'ui-widget-content' %></td>
-
-    <td class="label">Fue Liquidado </td>
-    <td><%= f_tratamiento.check_box :fue_liquidado, :class=> 'ui-widget-content' %>
-    </td>
-  </tr>
-
-  <tr>
-    <td><label>Fecha de Liquidacion</label></td>
-    <td><span class="fecha_liquidacion">
-              <input class="ui-widget-content "type="text" id="fecha_liquidacion" name="tratamiento[fecha_liquidacion]" readonly="readonly" />
-      </span></td>
-
-   <td class="label">Estado del tratamiento</td>
-   <td><%= f_tratamiento.collection_select(:estado_tratamiento_id, EstadoTratamiento.all, :id, :nombre, :class=> 'ui-widget-content') %></td>
-  </tr>
-
-  <tr>
-  <td class="label">Prestacion </td>
-  <td><%= f_tratamiento.collection_select(:prestacion_id, Prestacion.all, :id, :descripcion, :class=> 'ui-widget-content') %>
-  </td>
-  <td class="label">Profesional </td>
-  <td><%= f_tratamiento.collection_select(:profesional_id, Profesional.all, :id, :nombre, :class=> 'ui-widget-content') %>
+    <td>Profesional </td>
+  <td><%= f.collection_select(:profesional_id, Profesional.all, :id, :nombre, :class=> 'ui-widget-content required') %>
   </td>
   </tr>
+</table>
+  <table id="listado-tratamientos">
+    <tr id="listado-encabezado">
+      <th>
+        Fecha
+      </th>
+      <th>
+        Diente
+      </th>
+      <th>
+        Cara
+      </th>
+      <th>
+        Prestacion
+      </th>
+      <th>
+        Estado
+      </th>
+      <th>
+        Importe
+      </th>
+      <th>
+        Coseguro
+      </th>
+    </tr>
+  </table>
 
-  <tr>
-    <td class="label">Ficha </td>
-    <td></td>
-
-    <td class="label">Odontograma</td>
-    <td><%= f_tratamiento.text_field :odontograma_id, :size=> 10, :class=> 'ui-widget-content' %> </td>
-  </tr>
-
-  <tr>
-    <td>
-      <%= f.submit 'Crear Ficha', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+  <%= hidden_field_tag :tratamiento   %>
+  <table>
+    <tr>
+      
+      <td><%= link_to image_tag('add.png'), new_tratamiento_path + "?paciente_id=" + @paciente.id.to_s, :id=> 'ficha' %>Agregar Tratamiento</td>
+    </tr>
+    <tr>
+    <td><%= f.submit 'Guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
       <%end%>
     </td>
   </tr>
   </table>
 
-<%end%>
-<%= link_to 'Volver', paciente_path(@paciente) %>
+  
+ 
+  
   </fieldset>
 <script type="text/javascript">
+   $('#ficha').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
 
- $("#fecha").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Jutdo','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110'});
-$("#fecha_finalizacion").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Jutdo','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110'});
-$("#fecha_liquidacion").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Jutdo','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110'});
+    });
 
-
+ $("#fecha").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate:0});
 </script>

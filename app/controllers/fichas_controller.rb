@@ -2,7 +2,15 @@ class FichasController < ApplicationController
   # GET /fichas
   # GET /fichas.xml
   layout 'default'
+  
+  def asignar_tratamiento
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def index
+
     @pagetitle = "Fichas"
     @fichas = Ficha.paginate :page=> params[:page], :per_page=> 5
     respond_to do |format|
@@ -43,10 +51,9 @@ class FichasController < ApplicationController
   # POST /fichas
   # POST /fichas.xml
   def create
-    
     @paciente = Paciente.find(params[:ficha][:paciente_id])
     @ficha = Ficha.new(params[:ficha])
-    
+    @ficha.obra_social_id = @paciente.titular.obra_social_id
     @ficha.localidad_id = @paciente.localidad_id
     @ficha.paciente_id = @paciente.id
      respond_to do |format|
@@ -91,4 +98,27 @@ class FichasController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def buscar
+    @pagetitle = "Buscar Ficha"
+    respond_to do |format|
+      format.html # buscar.html.erb
+
+    end
+  end
+
+  def resultado
+    respond_to do |format|
+
+      if params[:profesional].blank? && params[:fecha].blank?
+        format.html{render :text => "Ingrese", :layout => false }
+      else
+        @fichas = Ficha.basic_search(params)
+        format.html {render :layout => false}
+      end
+
+    end
+
+  end
+
 end

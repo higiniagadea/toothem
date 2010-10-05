@@ -4,14 +4,25 @@ class PacientesController < ApplicationController
   before_filter  :generar_submenus
   layout 'default'
 
-  def new_tratamiento
+  def new_ficha
     params[:paciente][:consultorio_id] = session[:consultorio][:id]
     @paciente = Paciente.find(params[:paciente_id])
     @tratamiento = Tratamiento.new
     respond_to do |format|
-     format.html {render :layout => false}
-     format.html {render :controller => 'tratamientos', :action => 'new'}
+     format.html {render :layout => 'layout'}
+     format.html {render :controller => 'ficha', :action => 'new'} #partial _new solo agrega a la lista el tratamiento
      
+    end
+  end
+
+  def new_trat
+    params[:paciente][:consultorio_id] = session[:consultorio][:id]
+    @paciente = Paciente.find(params[:paciente_id])
+    @tratamiento = Tratamiento.new
+    respond_to do |format|
+     format.html {render :layout => false }
+     format.html {render :controller => 'tratamientos', :action => 'new_trat'}  #partial _new_trat crea el tratamiento
+
     end
   end
 

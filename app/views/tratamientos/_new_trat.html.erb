@@ -1,13 +1,11 @@
-<fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Nuevo Tratamiento con ficha</legend>
 
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Nuevo Tratamiento</legend>
+  
   <% form_for(@tratamiento) do |f|%>
       <%= f.error_messages(:header_message=>'Ingreso Incorrecto: ',:message=>'Se encontraron los siguientes errores') %>
       <%= f.hidden_field :paciente_id, 'value' => @paciente.id.to_s  %>
-
-<%#= TRATAMIENTO CON FICHA DE OBRA SOCIAL %>
-
-  <div class="errores">
+      <div class="errores">
           <ol style="list-style:none"></ol>
         </div>
       <table id="form">
@@ -17,11 +15,12 @@
         </tr>
         <tr>
          <td><label>Fecha</label></td>
-          <td><span class="fecha" class="ui-widget-content">
-                    <input class="ui-widget-content required "type="text" id="fecha" size="10" name="tratamiento[fecha]" readonly="readonly" title="Ingrese una fecha" />
+          <td>
+            <span class="fecha" class="ui-widget-content">
+                    <input class="ui-widget-content required "type="text" id="fecha" size="10" name= "tratamiento[fecha]" readonly="readonly" title="Ingrese una fecha" />
             </span>
           </td>
-          <td class="label">Diente</td> 
+          <td class="label">Diente</td>
           <td>
             <%= f.text_field :diente, :size=>10, :class=> 'ui-widget-content required', :title=> 'Diente debe ser numerico' %>
           </td>
@@ -49,11 +48,11 @@
          </tr>
          <tr>
             <td>
-
-                  <%= f.submit 'Agregar Tratamiento', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
-
-                  <%# = button_to_remote 'Agregar Tratamiento', :url=> asignar_tratamiento_ficha_url(@ficha), :method => :get, :success=> '$.fancybox.close();' %>
-
+              
+                  <%= f.submit 'Crear Tratamiento', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+              
+                  <%#= button_to_remote 'Agregar Tratamiento', :url=> asignar_tratamiento_ficha_url(@ficha), :method => :get, :success=> '$.fancybox.close();' %>
+             
             </td>
 
          </tr>
@@ -108,11 +107,11 @@
        meta: "validate"
      });
 
+ 
+
+ $("#fecha").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Jutdo','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110',  maxDate: 0});
 
 
- $("#fecha").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Jutdo','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate :0 });
-
-
-
+ 
 });
 </script>

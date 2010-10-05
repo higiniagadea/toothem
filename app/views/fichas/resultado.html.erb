@@ -1,0 +1,23 @@
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Ficha</legend>
+<table class="table-list">
+  <tr class="<%  cycle('par','impar') %>">
+    <th>Fecha</th>
+    <th>Profesional</th>
+    <th>Estado</th>
+  </tr>
+
+<% @fichas.each do |ficha| %>
+  <tr>
+    <td><%=h ficha.fecha %></td>
+    <td><%=h ficha.profesional %></td>
+    <td><%=h ficha.estado %></td>
+    <td><%= link_to image_tag('magnifier_zoom_in.png'), ficha, :title => 'Ver' %></td>
+    <td><%= link_to image_tag('pencil.png'), edit_ficha_path(ficha), :title => 'Editar' %></td>
+    <td><%= link_to image_tag('cancel.png'), ficha, :title => 'Eliminar', :confirm => 'Esta seguro?', :method => :delete %></td>
+
+  </tr>
+<% end %>
+</table>
+</fieldset>
+<br />

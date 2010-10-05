@@ -1,12 +1,12 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :fichas
+  map.resources :fichas, :collection => { :buscar => :get, :resultado => :post},
+                         :member => { :asignar_tratamiento => :get }
 
   map.resources :estados_tratamientos
 
-  map.resources :tratamientos
+  map.resources :tratamientos, :member => {:new_trat => [:get, :post], :create_trat => :post}
 
-  map.resources :imagenes,
-                :collection => {:new_archivo => :get}
+  map.resources :imagenes, :collection => {:new_archivo => :get}
               
   #map.resources :historias_clinicas_ortodoncias
 
@@ -39,7 +39,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :pacientes,
                 :collection => {:search => :get, :result => :post},
-                :member => {:new_tratamiento => [:get,:post],
+                :member => {:new_tratamiento => [:get,:post], :new_trat => [:get, :post],
                             :update_tratamiento => [:get, :post],
                             :changephoto => :get,:uploadphoto => :post,
                             :editfield => :get, :updatefield => :put, :cancelfield => :get,

@@ -1,0 +1,45 @@
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Buscar Ficha</legend>
+  
+  <% form_remote_tag :url => resultado_fichas_path, :method => :post, :update => :search_hits do -%>
+  <table id="search-form">
+    <tr>
+      <td>Fecha desde</td>
+    <td><span class="fecha" class ="ui-widget-content">
+              <input class="ui-widget-content" type="text" id="fecha_desde" name="tratamiento[fecha]" readonly="readonly" size="10" />
+      </span>
+    </td>
+    </tr>
+    <tr>
+    <td>Hasta</td>
+    <td><span class="fecha" class ="ui-widget-content">
+              <input class="ui-widget-content" type="text" id="fecha_hasta" name="tratamiento[fecha]" readonly="readonly" size="10" />
+      </span>
+    </td>
+    </tr>
+    <tr>
+     <td>
+          <label>Profesional</label></td>
+        <td><%= text_field_tag :profesional,{}, :class=> 'ui-widget-content' %>
+        </td>
+
+    </tr>
+     <tr>
+        <td>
+          <label></label>
+          <%= submit_tag 'Buscar',  :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+        </td>
+      </tr>
+  </table>
+</fieldset>
+<%end -%>
+<div id ="search_hits">
+
+</div>
+
+<script type="text/javascript">
+
+ $("#fecha_desde").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate:0});
+$("#fecha_hasta").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate:0});
+</script>
+ 

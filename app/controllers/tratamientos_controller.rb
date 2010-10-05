@@ -2,12 +2,15 @@ class TratamientosController < ApplicationController
   # GET /tratamientos
   # GET /tratamientos.xml
   layout 'default'
+
+  
+
   def index
     @pagetitle = "Tratamientos"
    
     @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5
     respond_to do |format|
-      format.html # index.html.erb
+      #format.html {render :partial => 'edit', :layout=> 'default'}
       format.xml  { render :xml => @tratamientos }
     end
   end
@@ -27,17 +30,30 @@ class TratamientosController < ApplicationController
   # GET /tratamientos/new.xml
   def new
     @paciente = Paciente.find(params[:paciente_id])
-    @tratamiento = Tratamiento.new(params[:ficha_id])
+    @tratamiento = Tratamiento.new
     @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 4,  :conditions => ['paciente_id = ?', @paciente.id]
     @ficha = Ficha.new(params[:ficha_id]) unless params[:ficha_id].blank?
     respond_to do |format|
-      format.html {render :partial => 'new', :layout => 'default'}
+      format.html { render :partial => 'new', :layout => false }
       format.xml  { render :xml => @tratamiento }
     end
   end
 
+   def new_trat
+    @paciente = Paciente.find(params[:paciente_id])
+    @tratamiento = Tratamiento.new
+    @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 4,  :conditions => ['paciente_id = ?', @paciente.id]
+    #@ficha = Ficha.new(params[:ficha_id]) unless params[:ficha_id].blank?
+    respond_to do |format|
+     format.html { render :partial => 'new_trat', :layout => 'default'}
+      format.xml  { render :xml => @tratamiento }
+    end
+  end
+
+
   # GET /tratamientos/1/edit
   def edit
+    
     @tratamiento = Tratamiento.find(params[:id])
   end
 
@@ -47,6 +63,7 @@ class TratamientosController < ApplicationController
     @paciente = Paciente.find(params[:tratamiento][:paciente_id])
     @tratamiento = Tratamiento.new(params[:tratamiento])
     @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 4, :conditions => ['paciente_id =?', @paciente.id.to_s])
+    #@ficha = Ficha.new(params[:ficha_id]) unless params[:ficha_id].blank?
     respond_to do |format|
       if @tratamiento.save
         flash[:notice] = 'Tratamiento creado.'
@@ -58,6 +75,8 @@ class TratamientosController < ApplicationController
       end
     end
   end
+
+  
 
   # PUT /tratamientos/1
   # PUT /tratamientos/1.xml
@@ -78,12 +97,14 @@ class TratamientosController < ApplicationController
   # DELETE /tratamientos/1
   # DELETE /tratamientos/1.xml
   def destroy
+    
     @tratamiento = Tratamiento.find(params[:id])
     @tratamiento.destroy
 
     respond_to do |format|
       flash[:notice] = 'Tratamiento eliminado'
-      format.html { redirect_to tratamientos_path, :layout => 'default' }
+      format.html { redirect_to pacientes_path, :layout => 'default'}
+     
       format.xml  { head :ok }
     end
   end
