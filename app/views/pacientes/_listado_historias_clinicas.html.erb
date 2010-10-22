@@ -5,9 +5,9 @@
   <tr>
 
 <%if @paciente.historia_clinica_general.blank? -%>
-    <%=  link_to image_tag('add.png'), new_paciente_historia_clinica_general_path(@paciente), :title => 'Nueva Historia Clinica' %>Historia Clinica General
+    <%=  link_to image_tag('add.png'), new_paciente_historia_clinica_general_path(@paciente),:id=>'new_general', :title => 'Nueva Historia Clinica' %>Historia Clinica General
 <%elsif-%>
-    <%= link_to image_tag('magnifier_zoom_in.png'), paciente_historia_clinica_general_path(@paciente, @historia_clinica_general), :title => 'Ver' %>Historia Clinica General
+    <%= link_to image_tag('pencil.png'), edit_paciente_historia_clinica_general_path(@paciente, @historia_clinica_general),:id=> 'edit_general' ,:title => 'Ver' %>Historia Clinica General
 <%end-%>
     
 </tr>
@@ -20,10 +20,10 @@
 
 <% if @paciente.historia_clinica_ortodoncia.blank? -%>
 
-  <%= link_to image_tag('add.png'), new_paciente_historia_clinica_ortodoncia_path(@paciente), :title => 'Nueva Historia Clinica' %>Historia Ortodoncica
+  <%= link_to image_tag('add.png'), new_paciente_historia_clinica_ortodoncia_path(@paciente), :title => 'Nueva Historia Clinica', :id=> 'new_ortodoncia' %>Historia Ortodoncica
 
 <%elsif -%>
-     <%=  link_to image_tag('magnifier_zoom_in.png'), paciente_historia_clinica_ortodoncia_path(@paciente, @historia_clinica_ortodoncia), :title => 'Ver' %>Historia Ortodoncica
+     <%=  link_to image_tag('pencil.png'), paciente_historia_clinica_ortodoncia_path(@paciente, @historia_clinica_ortodoncia), :title => 'Ver', :id=> 'edit_ortodoncia' %>Historia Ortodoncica
  
 
 <%end -%>
@@ -31,3 +31,33 @@
 </tr>
  </table>
 </fieldset>
+
+<script type="text/javascript">
+    $('#new_general').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+
+    $('#edit_general').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+
+    $('#new_ortodoncia').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+
+    $('#edit_ortodoncia').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+    </script>

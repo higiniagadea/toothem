@@ -1,56 +1,59 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header"><%=h @paciente.nombre %></legend>
-  <div id="pacientes-screen">
-     <div id="pacientes-photo">
+  <table>
+    <tr>
+     <td >
         <% if @paciente.archivo_id.blank? %>
           <%= image_tag('nouser.jpg') %>
         <%else%>
-          <%= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id = ' + @archivo.id.to_s)), :alt => 'imagen del paciente' %>
+     <td><%= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id = ' + @archivo.id.to_s)), :alt => 'imagen del paciente' %></td>
         <%end%>
 
-    </div>
-
+    </td>
+  </tr>
+  </table>
 <% form_for(@paciente) do |f| %>
       <%= f.error_messages(:id=>'Error', :header_message => '', :message=>'Se encontraron los siguientes errores') %>
- 
-  <div id="pacientes-options">
- 
-        <div id="pacientes-nombre">
-          
-        </div>
-        <div id="pacientes-actions">
-          <%= link_to image_tag('magnifier_zoom_in.png'), @paciente, :title => 'Ver'%> |
-          <%= link_to image_tag('cancel.png'), @paciente, :title=> 'Eliminar Paciente', :confirm => 'Esta seguro? No podrá deshacer esta acción', :method => :delete %> |
-          <%= link_to 'Volver', pacientes_path %>
-        </div>
-
-      </div>
-    <div class="errores">
-     <ol style="list-style:none"></ol>
+  <div class="errores">
+     <ul style="list-style:none"></ul>
      </div>
     
-        <table id="form">
+        <table>
+          <tr>
+          <td style=" float: left; margin-left:  1100px"> <%= link_to image_tag('printer.png'), imprimir_paciente_path, :title => 'Imprimir'%>
+          <%= link_to image_tag('cancel.png'), @paciente, :title=> 'Eliminar Paciente', :confirm => 'Esta seguro? No podrá deshacer esta acción', :method => :delete %></td>
+        
+          </tr>
+        </table>
+  
+        <table style=" text-align: left; "class="tablelist">
          <tr>
-          <th class="fieldname">
+          <th>
             Nombre y Apellido</th>
-          <td><%= f.text_field :nombre, :class=>'ui-widget-content required', :title=> 'Nombre y Apellido no puede estar en blanco' %>
+          <td><%= f.text_field :nombre, :class=>'ui-widget-content required', :title=> 'Nombre y Apellido no puede estar vacio', :size=> 30 %>
           </td>
-         <th class="fieldname">
+         <th>
           Tipo Y Nro.  Documento</th>
           <td><%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion, {}, :class => 'ui-widget-content') %>
-          <%= f.text_field :matricula, :class => 'ui-widget-content required', :title=> 'Tipo y Nro. de Documento no puede estar en blanco' %>
+          <%= f.text_field :matricula, :class => 'ui-widget-content required', :title=> 'La matricula ya se encuentra cargado', :size=>23 %>
           </td>
           </tr>
 
           <tr>
             <th class="fieldname">
             Domicilio Particular </th>
-          <td colspan="3"><%= f.text_field :domicilio_particular, :size=>102, :class=>'ui-widget-content required', :title=> 'Domicilio Particular no puede estar en blanco' %>
+          <td colspan="3"><%= f.text_field :domicilio_particular, :size=>88, :class=>'ui-widget-content required', :title=> 'Domicilio Particular no puede estar vacio' %>
           </td>
           </tr>
 
+            <tr>
+          <th>
+            Domicilio Laboral</th>
+          <td colspan="3"><%= f.text_field :domicilio_laboral, :size=>88, :class=> 'ui-widget-content' %>
+          </td>
+          </tr>
           <tr>
-          <th class="fieldname">
+          <th>
             Sexo</th>
           <td><select name="paciente[sexo]" class="ui-widget-content">
               <%=  options_for_select([ "Masculino", "Femenino" ], @paciente.sexo)%>
@@ -66,12 +69,7 @@
             </select>
           </td>
           </tr>
-          <tr>
-          <th>
-            Domicilio Laboral</th>
-          <td colspan="3"><%= f.text_field :domicilio_laboral, :size=>102, :class=> 'ui-widget-content' %>
-          </td>
-          </tr>
+        
 
           <tr>
           <th class="fieldname">Fecha de Nacimiento </th>
@@ -79,48 +77,55 @@
               <input class="ui-widget-content required " title="Fecha de Nacimiento no puede estar en blanco" type="text" id="fecha_nacimiento" name="paciente[fecha_nacimiento]" readonly="readonly" value="<%=@paciente.fecha_nacimiento.strftime('%d/%m/%y')%>" />
             </span>
           </td>
-          <th class="fieldname">
-            Grupo Sanguineo</th>
-          <td><%= f.text_field :grupo_sanguineo, :class=> 'ui-widget-content'%>
-          </td>
+         <th>
+      Grupo Sanguineo</th>
+      <td><select name="paciente[grupo_sanguineo]" class ="ui-widget-content">
+       <%= options_for_select(["A+","A-","B+","B-","AB+","AB-","O+","O-"], @paciente.grupo_sanguineo) %>
+         </select>
+        </td>
           </tr>
 
           <tr>
           <th class="fieldname">
             Teléfono</th>
-          <td><%= f.text_field :telefono_particular, :class=> 'ui-widget-content ' %>
+          <td><%= f.text_field :telefono_particular, :class=> 'ui-widget-content ', :size=> 20 %>
           </td>
             <th class="fieldname">
             Teléfono Celular</th>
-          <td><%= f.text_field :movil, :class=> 'ui-widget-content' %>
+          <td><%= f.text_field :movil, :class=> 'ui-widget-content', :size=>20 %>
           </td>
           <th class="fieldname">
             Teléfono Laboral</th>
-          <td><%= f.text_field :telefono_laboral, :class=> 'ui-widget-content' %>
+          <td><%= f.text_field :telefono_laboral, :class=> 'ui-widget-content', :size=>20 %>
           </td>        
           </tr>
 
           <tr>
           <th class="fieldname">
             Profesión</th>
-          <td><%= f.text_field :profesion, :class=> 'ui-widget-content ' %>
+          <td><%= f.text_field :profesion, :class=> 'ui-widget-content ', :size=>20  %>
           </td>
           <th class="fieldname">
             Ocupación</th>
-          <td><%= f.text_field :ocupacion, :class=> 'ui-widget-content ' %>
+          <td><%= f.text_field :ocupacion, :class=> 'ui-widget-content ', :size=>20  %>
           </td>
 
           <th class="fieldname">
             Nivel Escolar</th>
-          <td><%= f.text_field :nivel_escolar, :class=> 'ui-widget-content' %>
+          <td><%= f.text_field :nivel_escolar, :class=> 'ui-widget-content', :size=>20  %>
           </td>
           </tr>
-
+          <tr>
+            <th class="fieldname">Nro. de Afiliado</th>
+            <td><%= f.text_field :nro_afiliado, :class=> 'ui-widget-content required', :title=> 'Nro. de Afiliado no puede estar vacio', :size=>20 %> </td>
+          </tr>
           
-           
-          <td><%= f.submit 'Actualizar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+          <table>
+            <tr>
+          <td style=" float: left; margin-left:  1100px"><%= f.submit 'Editar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
           </td>
-
+          </tr>
+          </table>
 
         </table>
 </fieldset>
@@ -134,7 +139,15 @@
        errorContainer: $("#edit_paciente div.errores"),
        errorLabelContainer: $("ol", $("#edit_paciente div.errores")),
        wrapper: 'li',
-       meta: "validate"
+       meta: "validate",
+       required:true,
+       messages:{required:'Ingrese', remote:'ya existe'},
+        rules: {
+         "paciente[matricula]": {required: true, remote:"/pacientes/verificar_matricula?paciente[matricula]=" + $('#paciente[matricula]').val()},
+         "paciente[nro_afiliado]": {required: true, remote:"/pacientes/verificar_nroafiliado?paciente[nro_afiliado]=" + $('#paciente[nro_afiliado').val()}
+
+       }
+       
      });
 
   });

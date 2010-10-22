@@ -2,6 +2,7 @@ class PacientesController < ApplicationController
   # GET /pacientes
   # GET /pacientes.xml
   before_filter  :generar_submenus
+  before_filter :login_required
   layout 'default'
 
   def new_ficha
@@ -31,7 +32,7 @@ class PacientesController < ApplicationController
     consultorios = []
     current_usuario.consultorios.each {|x| consultorios << x.consultorio_id}
     #@pacientes = Paciente.paginate :page=> params[:page], :per_page=> 15, :conditions => ['consultorio_id in ?', @consultorio.id], :order=> 'nombre ASC'
-    @pacientes = Paciente.paginate :page=> params[:page], :per_page=> 10, :order=> 'nombre ASC'
+    @pacientes = Paciente.paginate :page=> params[:page], :per_page=> 5, :order=> 'nombre ASC'
    
     respond_to do |format|
       format.html # index.html.erb
@@ -42,7 +43,7 @@ class PacientesController < ApplicationController
   def search
     @pagetitle = "Buscar Paciente"
     
-    respond_to do |format|
+   respond_to do |format|
       format.html # search.html.erb
       
     end
@@ -55,12 +56,15 @@ class PacientesController < ApplicationController
     respond_to do |format|
       if params[:nombre].blank? && params[:matricula].blank?
        format.html{render :text => 'Ingrese al menos un dato para realizar la busqueda', :layout => false}
-    else
-
+      elsif
+      params[:nombre].size > 3
         @pacientes = Paciente.basic_search(params)
         format.html{render :partial => 'results'}
+      else
+        format.html{render :text=> 'Debe ingresar al menos 3 caracteres en el campo de texto'}
       end
     end
+   
   end
 
   # GET /pacientes/1
@@ -74,6 +78,7 @@ class PacientesController < ApplicationController
       @archivo = Archivo.find(@paciente.archivo_id)
     end
     respond_to do |format|
+
       format.html # show.html.erb
       format.xml  { render :xml => @paciente }
     end
@@ -113,13 +118,21 @@ class PacientesController < ApplicationController
 
   # GET /pacientes/1/edit
   def edit
-    @paciente = Paciente.find(params[:id])
+    @paciente = Paciente.find_by_id(params[:id])
     @title = "Editando paciente"
-     unless @paciente.archivo_id.blank?
-      @archivo = Archivo.find(@paciente.archivo_id)
-     end
-  end
+     respond_to do |format|
+      unless @paciente.blank?
+      unless @paciente.archivo_id.blank?
+         @archivo = Archivo.find(@paciente.archivo_id)
+       end
+   
 
+        format.html unless @paciente.id.blank?
+      else
+        format.html {redirect_to search_pacientes_path}
+      end
+  end
+  end
   def editfield
     @paciente = Paciente.find(params[:id])
     @value = @paciente[params[:fieldname]]
@@ -196,24 +209,25 @@ class PacientesController < ApplicationController
 
   def results_titular
     @paciente = Paciente.find(params[:id])
-    @titulares = Titular.basic_search_in_pacientes(params)
+    @titulares = Titular.basic_search_in_pacientes(params[:titular])
+    #@titulares = Titular.find_all_by_obra_social_id(params[:obra_social].to_i)
     respond_to do |format|
       format.html {render :layout => false}
-    end
+
   end
-
+  end
+  
   def update_titular
-    @paciente = Paciente.find(params[:paciente_id])
+    @paciente =  Paciente.find(params[:paciente_id])
     @titular =  Titular.find(params[:id])
-
     @paciente.update_attribute(:titular_id, @titular.id)
-     
+
     respond_to do |format|
-        format.html{redirect_to(@paciente)}
-      end
-
+    format.html {redirect_to edit_paciente_path(@paciente) + '#obra_social'}
     end
+  end 
 
+  
   def new_titular
     @paciente = Paciente.find(params[:id])
     @titular = Titular.new
@@ -229,10 +243,10 @@ class PacientesController < ApplicationController
     
     respond_to do |format|
       if @titular.save
-        @paciente.update_attribute(:titular_id, @titular.id)
+      @paciente.update_attribute(:titular_id, @titular.id)
         flash[:notice] = 'Titular creado.'
-        format.html {redirect_to(@paciente)}
-        
+        #format.html {redirect_to @paciente}
+         format.html {render :partial=> 'pacientes/edit_obra_social', :layout => 'default'}
       else
         format.html { render :action => ""  }
       end
@@ -247,18 +261,19 @@ class PacientesController < ApplicationController
 #    end
 #  end
 
-
+    
   
   # POST /pacientes
   # POST /pacientes.xml
   def create
     params[:paciente][:consultorio_id]= current_usuario.consultorios
+    params[:paciente][:usuario_id]= current_usuario.id
     @paciente = Paciente.new(params[:paciente])
     @title = "Nuevo paciente"
     respond_to do |format|
       if @paciente.save
         flash[:notice] = 'Paciente creado.'
-        format.html { redirect_to(@paciente) } #redirec_to edit_paciente_path
+        format.html { redirect_to edit_paciente_path(@paciente)}
         format.xml  { render :xml => @paciente, :status => :created, :location => @paciente }
       else
         format.html { render :action => "new" }
@@ -266,6 +281,7 @@ class PacientesController < ApplicationController
       end
     end
   end
+  
 
   # PUT /pacientes/1
   # PUT /pacientes/1.xml
@@ -281,7 +297,8 @@ class PacientesController < ApplicationController
       if @paciente.update_attributes(params[:paciente])
        
         flash[:notice] = 'Paciente actualizado.'
-        format.html { redirect_to(@paciente) }
+        #format.html { redirect_to(@paciente) }
+        format.html {render :partial=> 'pacientes/edit_datos_personales', :layout => 'default'}
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -296,7 +313,7 @@ class PacientesController < ApplicationController
     @paciente = Paciente.find(params[:id])
     @paciente.destroy
     respond_to do |format|
-      format.html { redirect_to(pacientes_url) }
+      format.html { redirect_to(search_pacientes_url) }
       format.xml  { head :ok }
     end
   end
@@ -305,7 +322,7 @@ class PacientesController < ApplicationController
    @paciente = Paciente.find(params[:id])
    @pagetitle = "Historias Clinicas de "+ @paciente.nombre
    respond_to do |format|
-    format.html{ render :partial => 'listado_historias_clinicas', :layout => 'default'}
+    format.html{ render :partial => 'listado_historias_clinicas', :layout => false }
    end
   end
 
@@ -325,10 +342,10 @@ def ver
    @imagenes = Imagen.find_all_by_paciente_id(@paciente)
 
     unless @paciente.archivo_id.blank?
-      @archivo = Archivo.find(@paciente.archivo_id)
+    @archivo = Archivo.find(@paciente.archivo_id)
     end
   respond_to do |format|
-    format.html{ render :partial => 'ver', :layout => false}
+    format.html{ render :partial => 'ver'}
    end
 end
 
@@ -342,6 +359,32 @@ def imprimir
     end
 end
 
+def verificar_matricula
+   
+    @paciente= Paciente.find(:first, :conditions => {:matricula => params[:paciente][:matricula]})
+    respond_to do |format|
+    format.json { render :json => !@paciente}
+    end
+  end
+
+def verificar_nroafiliado
+  @paciente= Paciente.find(:first, :conditions => {:nro_afiliado => params[:paciente][:nro_afiliado]})
+    respond_to do |format|
+    format.json { render :json => !@paciente}
+    end
+  end
+
+def elimina_tit
+  @paciente = Paciente.find(params[:id])
+  #@titular = Titular.find(params[:id])
+
+  @paciente.update_attribute(:titular_id, nil)
+   respond_to do |format|
+      format.html {redirect_to(edit_paciente_path(@paciente) + '#obra_social') }
+      format.xml  { head :ok }
+end
+end
 
 end
+
 

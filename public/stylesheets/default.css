@@ -13,10 +13,13 @@ body {
     text-align:center;
 }
 a {
+     color:#3333CC;
+    text-decoration: none;
+    font-weight: normal;
     cursor:pointer;
 }
 a:link{
-    color: #0099CC;
+    color: #0000FF;
     text-decoration:none;
 }
 a:visited{
@@ -34,6 +37,7 @@ img{
     vertical-align:middle;
     border:none;
 }
+
 ul {
     list-style:none;
 
@@ -241,6 +245,7 @@ div#opciones-menu{
     background-repeat:no-repeat;
     text-indent:25px;
     font-weight: bold;
+    color:red;
 }
 
 
@@ -425,6 +430,7 @@ div#opciones-menu{
 form{
     margin-left:10px;
 }
+
 table {
     font-size:12px;
 }
@@ -450,6 +456,13 @@ table {
     border-bottom: #eaeaea 1px solid;
     background: #E8EDFF;
 
+
+}
+.table-search td.impar{
+    background-color: #eaeaea;
+}
+.table-search td.par{
+    background-color: #DDDDDD;
 
 }
 .table-search tr:hover{
@@ -502,17 +515,21 @@ table {
     border-bottom: #EAEAEA 1px solid;
 }
 
-.table-list tr.odd{
+.table-list td.odd{
     background-color: #eaeaea;
 }
+.table-list td.par{
+    background-color: #DDDDDD;
 
-.table-list th{
+}
+
+.tablelist th{
     text-align: left;
-    padding:4px;
-    color:#FFF;
+    color:#999;
     background-color: #5252FF;
     font-size: 13px;
-
+    line-height: 24px;
+    
 }
 
 
@@ -553,7 +570,7 @@ input, select{
   width: 400px;
   border: 2px solid red;
   padding: 7px;
-  
+  color:red;
   
   
 }
@@ -574,6 +591,7 @@ input, select{
 #errorExplanation ul li {
   font-size: 12px;
   list-style: square;
+  color:red;
 }
 
 .normal{
@@ -852,6 +870,7 @@ tr.odd{
 .ortodoncia tr{
      height: 32px;
 }
+
 
 
 

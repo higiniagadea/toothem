@@ -1,6 +1,7 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Buscar Pacientes</legend>
-<div class="searchform">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header"  >Buscar Pacientes</legend>
+
+  <div class="search-form">
          <div class="errores">
          <ol style="list-style:none"></ol>
          </div>
@@ -9,18 +10,17 @@
                       :method => :post,
                       :update => :search_hits do -%>
 
-
-      <table id="search-form">
+      <table  style=" text-align: left; "class="table-search">
         <tr>
-          <th> <label for="tipo_documento">Tipo Documento</label></th>
+          <th>Tipo Documento</th>
         <td><%=  collection_select(:get, :tipo_documento_id, TipoDocumento.all, :id, :descripcion, {}, :class =>"ui-widget-content required") %> </td>
           
-        <th><label for="matricula">Nro:</label></th>
+        <th>Nro:</th>
           <td> <%= text_field_tag :matricula,{}, :class => 'ui-widget-content required', :title=> 'Ingrese Nro. de Documento' %></td>
         </tr>
 
         <tr>
-          <th><label for="nombre" >Nombre y Apellido</label></th>
+          <th>Apellido/Nombre</th>
         <td><%= text_field_tag :nombre,{}, :class => 'ui-widget-content required', :title=> 'Ingrese Nombre Y Apellido' %></td>
 
         </tr>
@@ -29,7 +29,7 @@
      <table>
         <tr>
           <td style=" float: left; margin-left:  400px"> <%= submit_tag 'Buscar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
-          <td id="ayuda"><%= image_tag 'information.png' %></td>
+          <td id="ayuda"><%= image_tag 'help.png' %></td>
           
           </tr>
         
@@ -38,8 +38,8 @@
   <%end -%>
   
 </div>
-<div id="search_hits">
-</div>
+  <td id="errorExplanation"></td>
+<div id="search_hits"></div>
 </fieldset>
 
 <script type="text/javascript">

@@ -18,7 +18,7 @@
         <tr>
          <td><label>Fecha</label></td>
           <td><span class="fecha" class="ui-widget-content">
-                    <input class="ui-widget-content required "type="text" id="fecha" size="10" name="tratamiento[fecha]" readonly="readonly" title="Ingrese una fecha" />
+                    <input class="ui-widget-content required "type="text" id="fecha_trat" size="10" name="tratamiento[fecha]" readonly="readonly" title="Ingrese una fecha" />
             </span>
           </td>
           <td class="label">Diente</td> 
@@ -110,7 +110,7 @@
 
 
 
- $("#fecha").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Jutdo','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate :0 });
+ $("#fecha_trat").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Jutdo','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate :0 });
 
 
 

@@ -1,6 +1,6 @@
 
-<fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Nuevo Paciente</legend>
+<fieldset class="ui-widget ui-widget-content ui-corner-all">
+  <legend class="ui-widget  ui-corner-all ui-widget-header">Nuevo Paciente</legend>
 
 <% form_for(@paciente) do |f| %>
   <%= f.error_messages(:id => 'Error', :header_message=>'', :message=>'Se encontraron los siguientes errores') %>
@@ -8,34 +8,39 @@
     <ol style="list-style:none"></ol>
   </div>
 
-  <table id="form">
+  <table style="text-align: left ; "class="table-list">
 
     <tr>
     <th>
       Nombre y Apellido</th>
-    <th><%= f.text_field :nombre, :title=> 'Nombre y Apellido no puede estar en blanco',  :class => 'required ui-widget-content'%>
+    <th><%= f.text_field :nombre, :class => 'required ui-widget-content', :title=> 'Nombre y Apellido no puede estar vacio'%>
     </th>
     <th>
       Tipo Y Nro. de Documento</th>
     <th><%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion, {}, :class => 'ui-widget-content required') %>
-      <%= f.text_field :matricula, :title=> 'Tipo y Nro. de Documento no puede estar en blanco', :class =>"ui-widget-content required" %>
+      <%= f.text_field :matricula,  :class =>"ui-widget-content required", :title=>'Documento no puede estar vacio' ,:size=> 22 %>
     </th>
     </tr>
     
     <tr>
     <th>Domicilio Particular</th>
-    <td colspan="3"><%= f.text_field :domicilio_particular, :title=> 'Domicilio no puede estar en blanco', :size=>105, :class =>"ui-widget-content required"%>
+    <td colspan="3"><%= f.text_field :domicilio_particular, :title=> 'Domicilio no puede estar vacio', :size=>88, :class =>"ui-widget-content required"%>
     </td>
     </tr>
-
+    
+      <tr>
+    <th>
+      Domicilio Laboral</th>
+    <td colspan="3"><%= f.text_field :domicilio_laboral, :size=>88, :class =>"ui-widget-content"%>  </td>
+    </tr>
     <tr>
-    <th class="fieldname">
+    <th>
       Sexo</th>
     <td><select name="paciente[sexo]" class ="ui-widget-content">
         <%=  options_for_select([ "Masculino", "Femenino" ], @paciente.sexo)%>
       </select>
     </td>
-    <th class="fieldname">
+    <th>
       Estado Civil</th>
     <td><select name="paciente[estado_civil]" class ="ui-widget-content">
         <%=  options_for_select([ "Soltero/a", "Casado/a","Divorciado/a","Viudo/a","Otro" ], @paciente.estado_civil)%>
@@ -43,21 +48,17 @@
     </td>
     </tr>
 
-    <tr>
-    <th class="fieldname">
-      Domicilio Laboral</th>
-    <td colspan="3"><%= f.text_field :domicilio_laboral, :size=>105, :class =>"ui-widget-content"%>  </td>
-    </tr>
+  
 
     <tr>
-    <th class="fieldname">
+    <th>
       Fecha de Nacimiento</th>
     <td><span class="fecha_nacimiento" class ="ui-widget-content">
-              <input class="ui-widget-content required" title="Fecha de nacimiento no puede estar en blanco" type="text" id="fecha_nacimiento" name="paciente[fecha_nacimiento]" readonly="readonly" />
+              <input class="ui-widget-content required" title="Fecha de nacimiento no puede estar vacio" type="text" id="fecha_nacimiento" name="paciente[fecha_nacimiento]" readonly="readonly" />
       </span>
     </td>
-    <th class="fieldname">
-      Grupo Sanguíneo</th>
+    <th>
+      Grupo Sanguineo</th>
     <td><select name="paciente[grupo_sanguineo]" class ="ui-widget-content">
       <%= options_for_select(["A+","A-","B+","B-","AB+","AB-","O+","O-"], @paciente.grupo_sanguineo) %>
       </select>
@@ -65,48 +66,49 @@
     </tr>
 
     <tr>
-    <th class="fieldname">
+    <th>
       Teléfono</th>
-    <td><%= f.text_field :telefono_particular, :class =>"ui-widget-content" %>
+    <td><%= f.text_field :telefono_particular, :class =>"ui-widget-content", :size=> 20 %>
     </td>
-     <th class="fieldname">
+     <th>
       Móvil</th>
-     <td><%= f.text_field :movil, :class =>"ui-widget-content" %>
+     <td><%= f.text_field :movil, :class =>"ui-widget-content", :size=> 20 %>
     </td>
-    <th class="fieldname">
+    <th>
       Teléfono Laboral</th>
-    <td><%= f.text_field :telefono_laboral, :class =>"ui-widget-content" %>
+    <td><%= f.text_field :telefono_laboral, :class =>"ui-widget-content", :size=> 20 %>
     </td>
     </tr>
 
     <tr>
-    <th class="fieldname">
+    <th>
       Profesión</th>
-    <td><%= f.text_field :profesion, :class =>"ui-widget-content" %>
+    <td><%= f.text_field :profesion, :class =>"ui-widget-content", :size=>20 %>
     </td>
-    <th class="fieldname">
+    <th>
       Ocupación</th>
-    <td><%= f.text_field :ocupacion, :class =>"ui-widget-content" %>
+    <td><%= f.text_field :ocupacion, :class =>"ui-widget-content", :size=>20 %>
     </td>
-    <th class="fieldname">
+    <th>
       Nivel Escolar</th>
-    <td><%= f.text_field :nivel_escolar, :class =>"ui-widget-content" %>
+    <td><%= f.text_field :nivel_escolar, :class =>"ui-widget-content", :size=> 20 %>
     </td>
     </tr>
-
-   
-    
-    <td>
-      <%= f.submit 'Crear Paciente', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+    <tr>
+      <th>Nro. de Afiliado</th>
+      <td><%= f.text_field :nro_afiliado, :size=>20, :class=>'ui-widget-content required' , :title=> 'Nro. de Afiliado no puede estar vacio'%>
+      </td>
+    </tr>
+    <table>
+      <tr>
+       <td style=" float: left; margin-left:  1100px"><%= link_to 'Cancelar', search_pacientes_path %> <%= f.submit 'Guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
     </td>
 
-    <th>
-      
-      <%= link_to 'Cancelar', search_pacientes_path %>
-    </th>
-    
+    </tr>
+    </table>
+ 
   </table>
-
+  <div id="error-paciente"></div>
 
 <% end %>
 
@@ -121,8 +123,20 @@
        errorContainer: $("#new_paciente div.errores"),
        errorLabelContainer: $("ol", $("#new_paciente div.errores")),
        wrapper: 'li',
-       meta: "validate"
+       meta: "validate",
+        messages: {
+      required: "Debe ingresar al menos un documento",
+        remote: jQuery.format("El documento ya se encuentra cargado")
+      },
+       rules: {
+         "paciente[matricula]": {required:true, remote:"/pacientes/verificar_matricula?paciente[matricula]=" + $('#paciente[matricula]').val()},
+         "paciente[nro_afiliado]": {required:true, remote:"/pacientes/verificar_nroafiliado?paciente[nro_afiliado]=" + $('#paciente[nro_afiliado').val()}
+
+       }
+      
+      
      });
+
 
   });
 

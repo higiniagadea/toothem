@@ -40,11 +40,14 @@ class Titular < ActiveRecord::Base
     end
   end
   def self.basic_search_in_pacientes(options)
+   
     scope_builder do |builder|
-        builder.by_matricula(options[:matricula]) if options[:matricula]
-        builder.by_nombre(options[:nombre]) if options[:nombre]
-        builder.by_obra_social_id(options[:get][:obra_social_id]) if options[:get][:obra_social_id]
-    end
-  end
+        builder.by_matricula(options[:matricula]) unless options[:matricula].blank?
+        builder.by_nombre(options[:nombre]) unless options[:nombre].blank?
+        builder.by_obra_social_id(options[:obra_social]) unless options[:obra_social].blank?
 
+      end
+    
+  
+  end
 end

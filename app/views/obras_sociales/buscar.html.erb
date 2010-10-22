@@ -4,31 +4,31 @@
  <% form_remote_tag :url => resultado_obras_sociales_path,
                     :method => :post,
                     :update => :search_hits do -%>
-    <table id="search-form">
+    <table class=" table-search">
       <tr>
-      <td>
-          <label>Nombre</label></td>
+      <th>
+          Nombre</th>
       <td><%= text_field_tag :nombre %>
         </td>
       </tr>
 
       <tr>
-        <td>
-          <label>Auditoria previa</label></td>
+        <th>
+         Auditoria previa</th>
         <td><%= check_box_tag :auditoria_previa %>
         </td>
       </tr>
 
       <tr>
-        <td>
-          <label>Auditoria post</label></td>
+        <th>
+          Auditoria post</th>
         <td><%= check_box_tag :auditoria_post %>
         </td>
       </tr>
 
       <tr>
-        <td>
-          <label>Incluye ficha</label></td>
+        <th>
+          Incluye ficha</th>
         <td><%= check_box_tag :incluye_ficha %>
         </td>
       </tr>

@@ -1,27 +1,40 @@
+<% unless @pacientes.blank? %>
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Buscar Pacientes</legend>
-<table id="pacientes" class="table-search" >
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Resultado de busqueda de Pacientes</legend>
+ 
+  <table id="pacientes" class="table-search" >
     <tr>
       <th>Nombre y Apellido </th>
       <th>Tipo y Nro. Documento</th>
       <th>Telefono Movil</th>
+      
     </tr>
     <% @pacientes.each do |paciente| %>
-        <tr>
+     <tr class="<%=  cycle('par','impar')%>">
         <td><%=h paciente.nombre %></td>
         <td><%=h paciente.tipo_documento.descripcion %>  <%=h paciente.matricula %></td>
         <td><%=h paciente.movil%></td>
         <td id="p_data_<%= paciente.id %>">
-          <td><%= link_to image_tag('magnifier_zoom_in.png'), ver_paciente_path(paciente), :title => "Ver", :id => 'ver_paciente_' + paciente.object_id.to_s%>
+        <td><%= link_to image_tag('magnifier_zoom_in.png'), ver_paciente_path(paciente), :title => "Vista Rapida", :id => 'ver_paciente_' + paciente.object_id.to_s%>
           <%= link_to image_tag('pencil.png'), edit_paciente_path(paciente), :title => "Editar" %></td>
-         
-        </td>
-      </tr>
-    <% end %>
+         </td>
+        
+     </tr>
       
-</table>
-</fieldset>
+       
+  <%end%>
+         
+  <%else%>
+     <table>
+       <tr>
+     <td id="errorExplanation" class="error">No se encontraron pacientes segun el criterio de busqueda.</td>
+       </tr>
+     </table>
+<%end%>
 
+  </table>
+</fieldset>
+ 
 <%@pacientes.each do |paciente|%>
     <script type="text/javascript">
       // Only create tooltips when document is ready
@@ -54,4 +67,4 @@
       
     </script>
 <%end%>
-<%= will_paginate @paginatepacientes, :previous_label=>'Anterior', :next_label => 'Siguiente' %>
+ <%= will_paginate @paginatepacientes, :previous_label=>'Anterior', :next_label => 'Siguiente' %>

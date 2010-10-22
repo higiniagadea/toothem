@@ -1,7 +1,7 @@
 class ProfesionalesController < ApplicationController
 
-  before_filter :generar_submenus
-  layout 'default'
+  before_filter :generar_submenus, :login_required
+ 
 
   # GET /profesionales
   # GET /profesionales.xml

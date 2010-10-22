@@ -1,21 +1,34 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Datos de Obra Social</legend>
 
-       <%unless @paciente.titular.blank? %>
-         <table class="table-list">
+   <%  unless @paciente.titular.blank? %>
+         <table style=" text-align: left; "class="table-list">
                    
           <tr>
-          <td class="fieldname">Obra Social</td>
-          <td class="fielddata"><%=h @paciente.titular.obra_social.nombre %></td>
+          <th>Obra Social</th>
+          <th><%=h @paciente.titular.obra_social.nombre %></th>
           </tr>
           <tr>
-          <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Datos del Titular</legend>
+          <tr><td><h1>Datos del Titular</h1></td></tr>
           </tr>
-          <td class="fielddata">Matricula <%=h @paciente.titular.matricula%></td><br/>
-          <td class="fielddata">Titular <%= @paciente.titular.nombre%> </td><br/>
+          <tr>
+          <th>Matricula</th>
+          <th><%=h @paciente.titular.matricula%></th>
+          </tr>
+          <tr>
+          <th>Titular</th>
+          <th><%=h @paciente.titular.nombre%></th>
+          </tr>
+          <tr>
+            <th>Nro. de Afiliado</th>
+            <th><%=h @paciente.titular.nro_afiliado %></th>
+          </tr>
+          <table>
+          <tr>
+          <td style=" float: left; margin-left:  250px"><%= link_to image_tag('cancel.png'), elimina_tit_paciente_path(@paciente), :confirm=> 'Esta seguro?'  %>Borrar</td></tr>
+          </table>
 
-         
-            <%else %>
+          <%else %>
 
            
           <tr>
@@ -23,17 +36,19 @@
           
          </tr>
             <tr>
-             <%= link_to image_tag('add.png'), new_titular_paciente_url, :id=> 'titular' %> Asignar una Obra Social con Nuevo Titular
+              <td><%= link_to image_tag('add.png'), new_titular_paciente_url, :id=> 'titular' %> Asignar una Obra Social con Nuevo Titular
+              </td>
             </tr><br/>
             <tr>
-             <%= link_to image_tag('user_add.png'), search_titular_paciente_url, :id=> 'busc_titular'%>Asignar Obra Social con Titular Existente
-         </tr>
+
+              <td><%= link_to image_tag('user_add.png'), search_titular_paciente_url + "?paciente_id="+@paciente.id.to_s, :id=> 'busc_titular'%>Asignar Obra Social con Titular Existente
+             </td></tr>
          <%end %>
          </table>
 
 </fieldset><br/>
 
- <%= link_to 'Volver', paciente_path %>
+
 
 <script type="text/javascript">
     $('#titular').fancybox(

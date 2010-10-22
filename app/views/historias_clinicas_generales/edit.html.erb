@@ -3,18 +3,19 @@
 <% form_for(:historia_clinica_general, @historia_clinica_general,
             :url => paciente_historia_clinica_general_url(@paciente), :html=> {:method=> :put}) do |f| %>
 <%= f.error_messages %>
-<div id="pacientes-screen">
+
   <div id="pacientes-options">
     <div id="pacientes-nombre">
       <%=h @paciente.nombre %>
     </div>
     <div id="pacientes-actions">
-    <tr><%= f.submit 'Actualizar' %></tr>
+  
     <table>
     <tr>
-          <%= link_to image_tag('magnifier_zoom_in.png'), paciente_historia_clinica_general_path(@paciente), :title => 'Ver' %> |
-          <%= link_to image_tag('printer.png'), imprimir_paciente_historia_clinica_general_path(@paciente), :title => 'Imprimir',:popup => ['Imprimir', 'height=300,width=600'] %>
-    </tr>
+           <td style=" float: left; margin-left:  1100px"><%= link_to image_tag('printer.png'), imprimir_paciente_historia_clinica_general_path(@paciente), :title => 'Imprimir', :popup => ['Imprimir', 'height=300,width=600'] %>
+           <%= f.submit 'Actualizar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+          </td>
+        </tr>
     </table>
      
     </div>
@@ -394,16 +395,16 @@
  </tr>
 
  </table>
-  
-  <p>
-    <%= f.submit 'Actualizar' %>
-  </p>
- 
+    <table>
+  <tr>
+    <td  style=" float: left; margin-left:  1100px"><%= f.submit 'Actualizar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
+  </tr>
+  </table>
 <% end %>
 
 
 
   </fieldset>
   <div style="clear:both;"></div>
-</div>
+
 </fieldset>

@@ -1,24 +1,28 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Titular</legend>
   <table class="table-list">
+    <tr>
+  <th>Nombre:</th>
+  <th><%=h @titular.nombre %>
+</th>
+    </tr>
+    <tr>
 
-  <td>Nombre:</td>
-  <td><%=h @titular.nombre %>
-</td>
+  <th>Consultorio:</th>
+  <th><%=h @titular.consultorio_id %>
+</th>
+    </tr>
+    <tr>
 
+  <th>Matricula:</th>
+  <th><%=h @titular.matricula %>
+</th>
+    </tr>
+    <tr>
 
-  <td>Consultorio:</td>
-  <td><%=h @titular.consultorio_id %>
-</td>
-
-
-  <td>Matricula:</td>
-  <td><%=h @titular.matricula %>
-</td>
-
-
-  <td>Obra social:</td>
-  <td><%=h @titular.obra_social_id %>
-</td>
+  <th>Obra social:</th>
+  <th><%=h @titular.obra_social_id %>
+</th>
+    </tr>
   </table>
 </fieldset>

@@ -7,25 +7,25 @@
 <div id="pacientes-screen">
   <div id="pacientes-options">
     <div id="pacientes-nombre">
-      <%=h @paciente.nombre %>
+      <h1><%=h @paciente.nombre %></h1>
     </div>
-    <div id="pacientes-actions">
-       <tr><%= f.submit 'Actualizar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></tr>
-        <table>
+      <table>
         <tr>
-         <%= link_to image_tag('magnifier_zoom_in.png'), paciente_historia_clinica_ortodoncia_path(@paciente), :title => 'Ver' %> |
-          <%= link_to image_tag('printer.png'), imprimir_paciente_historia_clinica_ortodoncia_path(@paciente), :title => 'Imprimir', :popup => ['Imprimir', 'height=300,width=600'] %>
+          <td style=" float: left; margin-left:  1100px">
+         <%= link_to image_tag('printer.png'), imprimir_paciente_historia_clinica_ortodoncia_path(@paciente), :title => 'Imprimir', :popup => ['Imprimir', 'height=300,width=600'] %>
+          <%= f.submit 'Actualizar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
         </tr>
       </table>
-      </div>
+      
      </div>
 
   <fieldset class="pacientes-data">
   
  <table class="historia_clinica">
-
+<legend>Historia Familiar</legend>
+<table class="historia_clinica">
     <tr class="odd">
-    <legend>Historia Familiar</legend>
+    
       <td class="labels">Nombre y Apellido del Padre:</td>
       <td><%= f.text_field :nombre_apellido_padre, :size=>10, :class=> 'ui-widget-content' %>
     </td>
@@ -51,8 +51,8 @@
  </tr>
   <tr>
     <td class="labels">Vive con: </td>
-    <td><select name="historia_clinica_ortodoncia[vive_con]">
-        <%=  options_for_select([ "Madre", "Padre", "Esposo", "Solo", "Otros" ], @historia_clinica_ortodoncia.vive_con, :class=> 'ui-widget-content') %>
+    <td><select name="historia_clinica_ortodoncia[vive_con]" class="ui-widget-content">
+        <%=  options_for_select([ "Madre", "Padre", "Esposo", "Solo", "Otros" ], @historia_clinica_ortodoncia.vive_con) %>
     </select>
     </td>
 
@@ -75,9 +75,10 @@
   </fieldset>
 
  <fieldset class="pacientes-data">
- <table>
+  <legend>Historia Medica</legend>
+   <table class="historia-clinica">
    <tr class="odd">
-   <legend>Historia Medica</legend
+  
     <td class="labels">Tratamiendo Medico: </td>
     <td><%= f.check_box :tratamiento_medico, :class=> 'ui-widget-content' %>
     </td>
@@ -409,9 +410,10 @@
 </fieldset>
 
  <fieldset class="pacientes-data">
- <table class="historia_clinica">
+ <legend>Historia bucodental</legend>
+   <table class="historia_clinica">
  <tr class="odd">
-   <legend>Historia bucodental</legend>
+   
     <td class="labels">Fue al odontologo anteriormente?: </td>
     <td><%= f.check_box :fue_al_odontologo_anteriormente, :class=> 'ui-widget-content' %>
     </td>
@@ -500,13 +502,13 @@
  </tr>
  <tr class="odd">
     <td class="labels">Estado bucal general: </td>
-    <td><select name="historia_clinica_ortodoncia[estado_bucal_general]">
-        <%=  options_for_select([ "Bueno", "Regular", "Malo" ], @historia_clinica_ortodoncia.estado_bucal_general, :class=> 'ui-widget-content')%>
+    <td><select name="historia_clinica_ortodoncia[estado_bucal_general]" class="ui-widget-content">
+        <%=  options_for_select([ "Bueno", "Regular", "Malo" ], @historia_clinica_ortodoncia.estado_bucal_general)%>
       </select>
     </td>
     <td class="labels">Indice de caries: </td>
-    <td> <select name="historia_clinica_ortodoncia[indice_caries]">
-        <%=  options_for_select([ "Normal", "Bajo", "Alto" ], @historia_clinica_ortodoncia.indice_caries, :class=> 'ui-widget-content')%>
+    <td> <select name="historia_clinica_ortodoncia[indice_caries]" class="ui-widget-content">
+        <%=  options_for_select([ "Normal", "Bajo", "Alto" ], @historia_clinica_ortodoncia.indice_caries)%>
       </select>
     </td>
  </tr>
@@ -525,20 +527,20 @@
     <td><%= f.check_box :usa_hilo_dental, :class=> 'ui-widget-content' %>
     </td>
     <td class="labels">Indice de placas: </td>
-    <td> <select name="historia_clinica_ortodoncia[indice_placa]">
-         <%=  options_for_select([ "Alto", "Medio", "Bajo" ], @historia_clinica_ortodoncia.indice_placa, :class=> 'ui-widget-content')%>
+    <td> <select name="historia_clinica_ortodoncia[indice_placa]" class="ui-widget-content">
+         <%=  options_for_select([ "Alto", "Medio", "Bajo" ], @historia_clinica_ortodoncia.indice_placa)%>
          </select>
     </td>
  </tr>
  <tr>
     <td class="labels">Tratamiento de fluor: </td>
-    <td> <select name="historia_clinica_ortodoncia[tratamiento_fluor]">
-        <%=  options_for_select([ "Si", "No", "No Sabe" ], @historia_clinica_ortodoncia.tratamiento_fluor, :class=> 'ui-widget-content')%>
+    <td> <select name="historia_clinica_ortodoncia[tratamiento_fluor]" class="ui-widget-content">
+        <%=  options_for_select([ "Si", "No", "No Sabe" ], @historia_clinica_ortodoncia.tratamiento_fluor)%>
       </select>
     </td>
      <td class="labels">Cepilla los dientes? </td>
-    <td> <select name="historia_clinica_ortodoncia[cepilla_dientes]">
-         <%=  options_for_select([ "Si", "No" ], @historia_clinica_ortodoncia.cepilla_dientes, :class=> 'ui-widget-content')%>
+    <td> <select name="historia_clinica_ortodoncia[cepilla_dientes]" class="ui-widget-content">
+         <%=  options_for_select([ "Si", "No" ], @historia_clinica_ortodoncia.cepilla_dientes)%>
          </select>
     </td>
  </tr>
@@ -554,9 +556,10 @@
  </fieldset>
 
  <fieldset class="pacientes-data">
+    <legend>Examen Radiologico</legend>
    <table class="historia_clinica">
  <tr>
-    <legend>Examen Radiologico</legend>
+   
     <td class="labels">Anomalias Forma: </td>
     <td><%= f.check_box :anomalias_forma, :class=> 'ui-widget-content' %>
     </td>
@@ -659,10 +662,11 @@
  </fieldset>
 
  <fieldset class="pacientes-data">
+    <legend>Historia Ortodoncica</legend>
    <table class="historia_clinica">
 
  <tr>
-      <legend>Historia Ortodoncica</legend>
+     
     <td class="labels">Consulta ortodoncica previa: </td>
     <td><%= f.check_box :consulta_ortodoncica_previa, :class=> 'ui-widget-content' %>
     </td>
@@ -693,10 +697,11 @@
 
 
  <fieldset class="pacientes-data">
+   <legend>Examen Bucal</legend>
    <table>
 
  <tr class="odd">
-    <legend>Examen Bucal</legend>
+    
     <td class="labels">Dientes presentes en la boca: </td>
     <td><%= f.text_field :dientes_presentes_boca, :size=>10, :class=> 'ui-widget-content' %>
     </td>
@@ -708,10 +713,11 @@
  </fieldset>
 
  <fieldset class="pacientes-data">
+   <legend>Articulacion temporo-mandibular</legend>
    <table>
 
  <tr class="odd">
-   <legend>Articulacion temporo-mandibular</legend>
+   
     <td class="labels">Limitacion: </td>
     <td><%= f.check_box :limitacion, :class=> 'ui-widget-content' %>
     </td>
@@ -794,10 +800,11 @@
 </fieldset>
 
 <fieldset class="pacientes-data">
-    <table class="historia_clinica">
+<legend>Otros varios</legend>
+  <table class="historia_clinica">
 
 <tr class="odd">
-  <legend>Otros varios</legend>
+  
     <td class="labels">Examen de Tejidos blandos: </td>
     <td><%= f.text_field :examen_tejidos_blandos, :size=>10, :class=> 'ui-widget-content' %>
     </td>
@@ -858,10 +865,12 @@
     </td>
  </tr>
 </table>
- <p>
-    <%= f.submit 'Actualizar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+    <table>
+ <tr>
+   <td style=" float: left; margin-left:  1080px"><%= f.submit 'Actualizar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
   
- </p>
+ </tr>
+    </table>
   </fieldset>
 
   

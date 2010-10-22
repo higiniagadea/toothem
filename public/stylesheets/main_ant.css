@@ -13,6 +13,9 @@ body {
     text-align:center;
 }
 a {
+    color:#3333CC;
+    text-decoration: none;
+    font-weight: normal;
     cursor:pointer;
 }
 a:link{

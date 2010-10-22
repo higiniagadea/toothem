@@ -1,8 +1,12 @@
 class Paciente < ActiveRecord::Base
-  belongs_to :titular
+  acts_as_paranoid
+
+  belongs_to :titular, :dependent => :destroy
   belongs_to :consultorio
   belongs_to :archivo
   has_many :tratamiento, :dependent => :destroy
+
+
 
   belongs_to :tipo_documento
   has_one :historia_clinica_general, :dependent => :destroy
@@ -12,10 +16,10 @@ class Paciente < ActiveRecord::Base
   has_many :imagenes, :dependent => :destroy
 
   validates_presence_of :nombre, :message => ' y apellido no pueden estar en blanco'
-  validates_presence_of :matricula, :message => ' No puede estar en blanco'
+  validates_uniqueness_of :matricula, :message => ' Ya existe'
   validates_presence_of :domicilio_particular, :message => 'No puede estar en blanco'
   validates_presence_of :fecha_nacimiento, :message=> 'No puede estar en blanco'
- 
+  validates_uniqueness_of :nro_afiliado, :message=> 'Ya existe ese numero '
   named_scope :by_matricula, lambda { |matricula|
     {
       :conditions=> ['lower(matricula) LIKE :matricula',

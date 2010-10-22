@@ -5,20 +5,22 @@
     <div id="pacientes-nombre">
       <%=h @paciente.nombre %>
     </div>
-    <div id="pacientes-actions">
+   
       <table>
         <tr>
-          <%= link_to image_tag('pencil.png'), edit_paciente_historia_clinica_ortodoncia_path(@paciente), :title => 'Ver' %> |
+          <td style=" float: left; margin-left:  1100px"><%= link_to image_tag('pencil.png'), edit_paciente_historia_clinica_ortodoncia_path(@paciente), :title => 'Ver' %> 
           <%= link_to image_tag('printer.png'), imprimir_paciente_historia_clinica_ortodoncia_path(@paciente), :title => 'Imprimir', :popup => ['Imprimir', 'height=300,width=600'] %>
+          </td>
         </tr>
       </table>
-    </div>
+ 
   </div>
 
 <fieldset class="pacientes-data"
-<table class="historia_clinica">
+ <legend>Historia Familiar</legend>
+          <table class="historia_clinica">
   
-  <legend>Historia Familiar</legend>
+ 
     <tr class="odd">
 
       <td class="labels">Nombre y Apeliido del Padre</td>
@@ -73,10 +75,11 @@
 </fieldset>
 
  <fieldset class="pacientes-data">
- <table class="historia_clinica">
+ <legend>Historia Medica</legend>
+   <table class="historia_clinica">
    
        <tr class="odd">
-       <legend>Historia Medica</legend>
+       
 
        <td class="labels">Tratamiento Medico</td>
        <td><%=h boolean_desc(@historia_clinica_ortodoncia.tratamiento_medico)%>
@@ -485,8 +488,9 @@
     </fieldset>
 
     <fieldset class="pacientes-data">
-    <table class="historia_clinica">
-      <legend>Historia Bucodental</legend>
+     <legend>Historia Bucodental</legend>
+      <table class="historia_clinica">
+     
       <tr class="odd">
           <td class="labels">Fue al odontologo anteriormente?</td>
           <td><%=h boolean_desc(@historia_clinica_ortodoncia.fue_al_odontologo_anteriormente)%>
@@ -649,8 +653,9 @@
     </fieldset>
 
      <fieldset class="pacientes-data">
- <table class="historia_clinica">
-        <legend>Examen Radiologico</legend>
+ <legend>Examen Radiologico</legend>
+       <table class="historia_clinica">
+        
       
       <tr class="odd">
          <td class="labels">Anomalias forma</td>
@@ -751,8 +756,9 @@
       </fieldset>
 
       <fieldset class="pacientes-data">
- <table class="historia_clinica">
-          <legend>Historia Ortodoncica</legend>
+      <legend>Historia Ortodoncica</legend>
+        <table class="historia_clinica">
+          
     
       <tr class="odd">
           <% if @historia_clinica_ortodoncia.consulta_ortodoncica_previa -%>
@@ -788,8 +794,9 @@
       </fieldset>
 
       <fieldset class="pacientes-data">
- <table class="historia_clinica">
-        <legend>Examen Bucal</legend>
+ <legend>Examen Bucal</legend>
+        <table class="historia_clinica">
+        
     
       <tr class="odd">
           <td class="labels">Dientes Presentes en la boca</td>
@@ -805,8 +812,9 @@
 
 
   <fieldset class="pacientes-data">
- <table class="historia_clinica">
-          <legend>Articulacion Temporo Mandibular</legend>
+  <legend>Articulacion Temporo Mandibular</legend>
+    <table class="historia_clinica">
+         
       <tr>
        
           <td class="labels">Limitacion</td>
@@ -915,8 +923,9 @@
   </fieldset>
 
       <fieldset class="pacientes-data">
- <table class="historia_clinica">
-          <legend>Otros Varios</legend>
+  <legend>Otros Varios</legend>
+        <table class="historia_clinica">
+         
        
       <tr class="odd">
           <td class="labels">Examen de tejidos blandos</td>

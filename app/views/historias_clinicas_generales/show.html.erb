@@ -9,8 +9,10 @@
     <div id="pacientes-actions">
       <table>
         <tr>
-          <%= link_to image_tag('pencil.png'), edit_paciente_historia_clinica_general_path(@paciente), :title => 'Editar' %> |
+          <td style=" float: left; margin-left:  1150px">
+          <%= link_to image_tag('pencil.png'), edit_paciente_historia_clinica_general_path(@paciente), :title => 'Editar' %> 
           <%= link_to image_tag('printer.png'), imprimir_paciente_historia_clinica_general_path(@paciente), :title => 'Imprimir', :popup => ['Imprimir', 'height=300,width=600'] %>
+          </td>
         </tr>
       </table>
     </div>
@@ -457,11 +459,12 @@
     </tr>
   </table>
 
-  <p>
-    <%= link_to image_tag('printer.png'), imprimir_paciente_historia_clinica_general_path(@paciente), :popup => ['Imprimir', 'height=300,width=600'] %>
-   
-    <%= link_to 'Volver', paciente_path(@paciente)%>
-  </p>
+  <table>
+    <tr>
+      <td style=" float: right; margin-left:  1150px"><%= link_to image_tag('printer.png'), imprimir_paciente_historia_clinica_general_path(@paciente), :popup => ['Imprimir', 'height=300,width=600'] %>
+      </td>
+    </tr>
+  </table>
 </fieldset>
 
   <div style="clear :both;"></div>

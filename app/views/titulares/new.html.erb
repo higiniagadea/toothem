@@ -24,6 +24,12 @@
   <td> <%= f.collection_select(:obra_social_id, ObraSocial.all, :id, :nombre) %>
   </td>
   </tr>
+
+  <tr>
+    <td>Nro de Afiliado</td>
+    <td><%= f.text_field :nro_afiliado %> </td>
+  </tr>
+
   <td>
     <label></label>
     <%= f.submit 'Crear',  :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>

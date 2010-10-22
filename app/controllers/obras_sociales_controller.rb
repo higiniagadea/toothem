@@ -2,7 +2,7 @@ class ObrasSocialesController < ApplicationController
   # GET /obras_sociales
   # GET /obras_sociales.xml
   layout 'default'
-  before_filter  :generar_submenus
+  before_filter  :generar_submenus, :login_required
   def index
     
   #  @obras_sociales = ObraSocial.find(:all,:conditions => ['consultorio_id in (?)', current_usuario.consultorios])

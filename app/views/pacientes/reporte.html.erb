@@ -1,78 +1,82 @@
-<div id="pacientes-screen">
-  <legend>Paciente: <%=h @paciente.nombre %></legend>
-  <fieldset class="pacientes-data">
-<table>
+<div id="pacientes-nombre">
+  <fieldset class="show-data">
+    <th><legend>Paciente: <%=h @paciente.nombre %></legend></th>
+  
+<table style=" text-align: left; "class=" table-list">
 <tr>
-        <td>Tipo y Nro. de Documento</td>
-        <td><%=h @paciente.tipo_documento.descripcion %> <%=h @paciente.matricula %></td>
+<th coldspan="2" >Tipo y Nro. de Documento</th>
+<th><%=h @paciente.tipo_documento.descripcion %> <%=h @paciente.matricula %></th>
 </tr>
 
 <tr>
-  <td>Sexo</td>
-  <td><%=h @paciente.sexo %></td>
+  <th>Sexo</th>
+  <th><%=h @paciente.sexo %></th>
 
-  <td>Estado Civil</td>
-  <td><%=h @paciente.estado_civil %></td>
+  <th>Estado Civil</th>
+  <th><%=h @paciente.estado_civil %></th>
 </tr>
 
 <tr>
-  <td>Domicilio</td>
-  <td><%=h @paciente.domicilio_particular %></td>
+  <th>Domicilio</th>
+  <th><%=h @paciente.domicilio_particular %></th>
 </tr>
 <tr>
-<td>Domicilio Laboral
-  <td><%=h @paciente.domicilio_laboral%></td>
-  </td>
-</tr>
-
-<tr>
-  <td>Fecha de Nacimiento
-  <td>
-  <%=@paciente.fecha_nacimiento.blank? ? '-' : @paciente.fecha_nacimiento.strftime('%d/%m/%Y') %></td>
-  </td>
-  <td>Grupo Sanguineo
-  <td><%=h @paciente.grupo_sanguineo%></td>
-  </td>
+<th>Domicilio Laboral</th>
+  <th><%=h @paciente.domicilio_laboral%>
+  </th>
 </tr>
 
 <tr>
-  <td>Telefono</td>
-  <td><%=h @paciente.telefono_particular %></td>
+  <th>Fecha de Nacimiento</th>
+  <th>
+  <%=@paciente.fecha_nacimiento.blank? ? '-' : @paciente.fecha_nacimiento.strftime('%d/%m/%Y') %>
+  </th>
+  <th>Grupo Sanguineo</th>
+  <th><%=h @paciente.grupo_sanguineo%>
+  </th>
+</tr>
 
-  <td>Movil</td>
-  <td><%=h @paciente.movil %></td>
+<tr>
+  <th>Telefono</th>
+  <th><%=h @paciente.telefono_particular %></th>
+
+  <th>Movil</th>
+  <th><%=h @paciente.movil %></th>
 </tr>
 
 <tr>
 
-  <td>Telefono Laboral</td>
-  <td><%=h @paciente.telefono_laboral %></td>
+  <th>Telefono Laboral</th>
+  <th><%=h @paciente.telefono_laboral %></th>
 
 
-  <td>Profesion</td>
-  <td><%=h @paciente.profesion %></td>
+  <th>Profesion</th>
+  <th><%=h @paciente.profesion %></th>
 </tr>
 <tr>
-  <td>Ocupacion</td>
+  <th>Ocupacion</th>
   <td><%=h @paciente.ocupacion %></td>
-  <td>Nivel Escolar</td>
-  <td><%=h @paciente.nivel_escolar %></td>
+  <th>Nivel Escolar</th>
+  <th><%=h @paciente.nivel_escolar %></th>
 </tr>
 
 <tr>
-  <td>Obra Social
-  <td><%=h @paciente.titular.obra_social.nombre %></td>
-  </td>
+  <th>Obra Social</th>
+  <th><%=@paciente.titular.blank? ? '-' : @paciente.titular.obra_social.nombre %></th>
+  <td></td>
+  </tr>
+<tr>
+  <th>Nro. de Afiliado</th>
+  <th><%=h @paciente.nro_afiliado  %> </th>
 </tr>
 
 
 </table>
  </fieldset>
-
+</div>
    <script type="text/javascript">
           window.print();
         </script>
 
-  </div>
+ 
 
-<%= link_to 'Volver', ver_paciente_path(@paciente)%>

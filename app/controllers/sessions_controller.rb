@@ -2,11 +2,13 @@
 class SessionsController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
-
+  
   layout 'login'
   # render new.rhtml
   def new
-
+    respond_to do |format|
+      current_usuario.blank? ? format.html : format.html {redirect_to search_pacientes_path}
+    end
   end
 
   def create
@@ -30,7 +32,7 @@ class SessionsController < ApplicationController
       session[:subitems] = Item.find(:all, :conditions => "lower(url) LIKE '%/profesionales/%'")
 
       handle_remember_cookie! new_cookie_flag
-      redirect_back_or_default('/pacientes')
+      redirect_back_or_default('/pacientes/search')
       flash[:notice] = "Ingreso correcto"
     else
       note_failed_signin

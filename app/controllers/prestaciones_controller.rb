@@ -2,7 +2,7 @@ class PrestacionesController < ApplicationController
   # GET /prestaciones
   # GET /prestaciones.xml
   layout 'default'
-
+ before_filter :login_required
   def index
     @prestaciones = Prestacion.all
     @pagetitle = "Prestaciones"

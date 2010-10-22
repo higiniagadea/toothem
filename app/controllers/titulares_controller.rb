@@ -2,7 +2,7 @@ class TitularesController < ApplicationController
   # GET /titulares
   # GET /titulares.xml
   layout 'default'
-  
+   before_filter :login_required
   def index
     @titulares = Titular.all
     @pagetitle = "Titulares"
@@ -85,7 +85,8 @@ class TitularesController < ApplicationController
 
     respond_to do |format|
       flash[:notice] = 'Titular eliminado'
-      format.html { redirect_to(titulares_url) }
+      #format.html { redirect_to(titulares_url) }
+      format.html { redirect_to titulares_path }
       format.xml  { head :ok }
     end
   end

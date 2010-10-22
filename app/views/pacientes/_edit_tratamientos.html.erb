@@ -1,16 +1,4 @@
  <fieldset class="ui-widget-content ui-corner-all">
     <legend class="ui-widget ui-widget-header ui-corner-all" >Tratamientos</legend>
-     <%unless @paciente.titular.blank? %>
-
-    <table class="table-list">
-
-      <tr><td><%= link_to "Nueva Ficha", new_ficha_path+"?paciente_id="+@paciente.id.to_s %></td></tr>
-
-     <% else %>
-    
-      <tr><td><%= link_to 'Nuevo Tratamiento', new_trat_tratamiento_path+"?paciente_id="+@paciente.id.to_s %></td></tr>
-         
-
-     </table>
-    <%end%>
+  
 </fieldset>

@@ -3,12 +3,10 @@
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Nuevo Titular</legend>
 
   <div>
-<a class="close" style="float: right" ><%= image_tag 'cancel.png' %></a>
-
 <% form_for(@titular, :url => create_titular_paciente_path(@paciente)) do |f| %>
   <%= f.error_messages %>
   
-<table id="table-list">
+<table style="text-align:left; "class="tablelist">
 
  <div class="errores">
     <ol style="list-style:none"></ol>
@@ -18,25 +16,30 @@
   <tr>
   <th>
     Nombre y Apellido</th>
-  <td><%= f.text_field :nombre, :class=> 'ui-widget-content required', :title=> ' Nombre y Apellido no puede estar en blanco'%>
+  <td><%= f.text_field :nombre, :class=> 'ui-widget-content required', :title=> ' Nombre y Apellido no puede estar vacio', :size=> 20%>
   </td>
  
   
   <th>
     Matrícula</th>
-  <td><%= f.text_field :matricula, :size=> 10, :class=> 'ui-widget-content required', :title=> 'Matricula no puede estar en blanco' %>
+  <td><%= f.text_field :matricula, :size=> 10, :class=> 'ui-widget-content required', :title=> 'Matricula no puede vacio' %>
   </td>
   </tr>
    <tr>
   <th>
     Obra Social</th>
-   <td><%= f.collection_select(:obra_social_id, ObraSocial.all, :id, :nombre, :class=> 'ui-widget-content ') %>
+   <td><%= f.collection_select(:obra_social_id, ObraSocial.all, :id, :nombre, :class=> 'ui-widget-content') %>
   </td>
+  </tr>
+  <tr>
+    <th>Nro de Afiliado</th>
+    <td><%= f.text_field :nro_afiliado, :class=> 'ui-widget-content required', :title=> 'Nro. de Afiliado no puede estar vacio', :size=> 10 %> </td>
   </tr>
   <td>
     <label></label>
     <%= f.submit 'Guardar',  :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
   </td>
+  
 </table>
 <% end %>
 </div>

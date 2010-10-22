@@ -2,7 +2,8 @@ class HistoriasClinicasOrtodonciasController < ApplicationController
   # GET /historias_clinicas_ortodoncias
   # GET /historias_clinicas_ortodoncias.xml
  
-  before_filter(:get_paciente)
+  before_filter :get_paciente, :login_required
+
    layout 'default'
   #def index
    # @historias_clinicas_ortodoncias = @paciente.historias_clinicas_ortodoncias.all
@@ -64,7 +65,8 @@ class HistoriasClinicasOrtodonciasController < ApplicationController
       if @historia_clinica_ortodoncia.save
 
         flash[:notice] = 'Historia Clinica Ortodoncia creada.'
-        format.html{render :action => 'show'}
+       
+        format.html{redirect_to @paciente }
       else
         format.html { render :action => "new" }
         #format.xml  { render :xml => @historia_clinica_ortodoncia.errors, :status => :unprocessable_entity }
@@ -79,8 +81,9 @@ class HistoriasClinicasOrtodonciasController < ApplicationController
 
     respond_to do |format|
       if @historia_clinica_ortodoncia.update_attributes(params[:historia_clinica_ortodoncia])
-        flash[:notice] = 'Historia Clinica Ortodoncia creada.'
-        format.html {redirect_to paciente_historia_clinica_ortodoncia_path }
+        flash[:notice] = 'Historia Clinica Ortodoncia Actualizada.'
+        
+        format.html {redirect_to @paciente }
       else
         format.html { render :action => 'edit'}
        end
@@ -94,7 +97,7 @@ class HistoriasClinicasOrtodonciasController < ApplicationController
     @historia_clinica_ortodoncia.destroy
 
     respond_to do |format|
-      format.html {redirect_to new_paciente_historia_clinica_ortodoncia_path}
+      format.html {redirect_to @paciente}
       
     end
   end

@@ -14,7 +14,7 @@
     <td><%=h titular.nombre %></td>
     
     <td><%=h titular.matricula %></td>
-    <td><%=h titular.obra_social.nombre %></td>
+    <td><%=h titular.obra_social_id %></td>
     <td><%= link_to image_tag('magnifier_zoom_in.png'), titular %>
         <%= link_to image_tag('pencil.png'), edit_titular_path(titular) %>
         <%= link_to image_tag('cancel.png'), titular, :confirm => '¿Está seguro? No podrá deshacer esta acción', :method => :delete %></td>
@@ -24,4 +24,3 @@
 </fieldset>
 <br />
 
-<%= link_to 'Nuevo titular', new_titular_path %>

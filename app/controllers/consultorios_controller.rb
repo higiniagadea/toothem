@@ -2,6 +2,7 @@ class ConsultoriosController < ApplicationController
   # GET /consultorios
   # GET /consultorios.xml
   layout 'default'
+  before_filter :login_required
   def index
     @pagetitle = "Consultorios"
     @consultorios = Consultorio.paginate :page=> params[:page], :per_page=>5, :order=> 'nombre ASC'

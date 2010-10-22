@@ -2,16 +2,16 @@
 <div id="pacientes-screen">
     <table>
     <tr>
-      <td>
-             </td>
-      <td style="font-size:25px;">Historia Ortodoncica de: <%=h @paciente.nombre %></td>
+      <td>Historia Ortodoncica de: <%=h @paciente.nombre %></td>
+    </tr>
+    <tr><td style=" float: right; margin-right:  1100px "<%= link_to image_tag('printer.png'), imprimir_paciente_historia_clinica_ortodoncia_path(@paciente), :title => 'Imprimir', :popup => ['Imprimir', 'height=300,width=600'] %></td>
     </tr>
   </table>
 
   <fieldset class="pacientes-data">
-
+ <legend>Historia Familiar</legend>
   <table>
-  <legend>Historia Familiar</legend>
+ 
     <tr>
   
       <td>Nombre y Apellido del Padre:</td>
@@ -72,8 +72,9 @@
   
 
   <fieldset class="pacientes-data">
-  <table class="historia_clinica">
   <legend>Historia Medica</legend>
+    <table>
+  
        <tr>
        <td>Tratamiento Medico</td>
        <td><%=h boolean_desc(@historia_clinica_ortodoncia.tratamiento_medico)%>
@@ -487,9 +488,10 @@
 </fieldset>
   
 
-    <fieldset class="pacientes-data">
-    <table class="historia_clinica">
-      <legend>Historia Bucodental</legend>
+    <fieldset>
+     <legend>Historia Bucodental</legend>
+      <table class="historia_clinica">
+     
       <tr>
           <td>Fue al odontologo anteriormente?</td>
           <td><%=h boolean_desc(@historia_clinica_ortodoncia.fue_al_odontologo_anteriormente)%>
@@ -651,9 +653,10 @@
       </table>
     </fieldset>
 
-     <fieldset class="pacientes-data">
-  <table class="historia_clinica">
-        <legend>Examen Radiologico</legend>
+     <fieldset>
+    <legend>Examen Radiologico</legend>
+       <table class="historia_clinica">
+      
       
       <tr>
          <td>Anomalias forma</td>
@@ -754,9 +757,10 @@
         </table>
       </fieldset>
 
-      <fieldset class="pacientes-data">
- <table class="historia_clinica">
-          <legend>Historia Ortodoncica</legend>
+      <fieldset>
+  <legend>Historia Ortodoncica</legend>
+        <table class="historia_clinica">
+         
     
       <tr>
           <% if @historia_clinica_ortodoncia.consulta_ortodoncica_previa -%>
@@ -791,9 +795,10 @@
         </table>
       </fieldset>
 
-      <fieldset class="pacientes-data">
- <table class="historia_clinica">
-        <legend>Examen Bucal</legend>
+      <fieldset>
+  <legend>Examen Bucal</legend>
+        <table class="historia_clinica">
+       
     
         <tr>
           <td>Dientes Presentes en la boca</td>
@@ -808,9 +813,10 @@
       </fieldset>
 
 
-  <fieldset class="pacientes-data">
- <table>
-          <legend>Articulacion Temporo Mandibular</legend>
+  <fieldset>
+ <legend>Articulacion Temporo Mandibular</legend>
+    <table>
+          
       <tr>
        
         <td>Limitacion</td>
@@ -918,10 +924,9 @@
     </table>
   </fieldset>
 
-      <fieldset class="pacientes-data">
- <table class="historia_clinica">
-          <legend>Otros Varios</legend>
-       
+ <fieldset>
+ <legend>Otros Varios</legend>
+        <table>       
       <tr>
           <td>Examen de tejidos blandos</td>
           <td><%=h @historia_clinica_ortodoncia.examen_tejidos_blandos%>
@@ -985,6 +990,10 @@
         <script type="text/javascript">
           window.print();
         </script>
-</fieldset>
-   <%= link_to image_tag('printer.png'), imprimir_paciente_historia_clinica_ortodoncia_path(@paciente), :title => 'Imprimir', :popup => ['Imprimir', 'height=300,width=600'] %>
+
+      </fieldset>
+ <table>
+   <tr><td style=" float:right"><%= link_to image_tag('printer.png'), imprimir_paciente_historia_clinica_ortodoncia_path(@paciente), :title => 'Imprimir', :popup => ['Imprimir', 'height=300,width=600'] %>
+     </td></tr>
+ </table>
 </div>

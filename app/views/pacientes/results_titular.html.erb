@@ -1,25 +1,30 @@
-<fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Titular</legend>
+<% unless @titulares.blank? %>
+    <fieldset class="ui-widget ui-widget-content ui-corner-top">
+      <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Titular</legend>
 
-<table class="table-list">
- 
-    <tr>
-      <th>Matricula</th>
-      <th>Nombre</th>
-    </tr>
+    <table class="table-list">
 
-  <% @titulares.each do |titular| %>
-    <tr class="<%=  cycle('par','impar')%>">
-      <td><%=h titular.matricula %></td>
-      <td><%=h titular.nombre %></td>
-      <td>
+        <tr>
+          <th>Nombre/Apellido</th>
+          <th>Matricula</th>
+        </tr>
 
-          <%=link_to image_tag('16/tick.png'), update_titular_paciente_path(titular, :paciente_id => @paciente), :method => :put, :title => 'Actualizar Titular' %>
-      </td>
-    </tr>
-    
-  <% end %>
+      <% @titulares.each do |titular| %>
+        <tr class="<%=  cycle('par','impar')%>">
+
+          <td><%=h titular.nombre %></td>
+          <td><%=h titular.matricula %></td>
+          <td>
+
+              <%=link_to image_tag('16/tick.png'), update_titular_paciente_path(titular) + '?paciente_id=' + @paciente.id.to_s, :method=> :put, :title => 'Actualizar Titular' %>
+          </td>
+        </tr>
+
+      <% end %>
 
 
-</table>
-</fieldset>
+    </table>
+    </fieldset>
+<% else %>
+No se encontro
+<% end %>

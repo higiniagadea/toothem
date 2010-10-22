@@ -61,7 +61,8 @@ class HistoriasClinicasGeneralesController < ApplicationController
     respond_to do |format|
       if @historia_clinica_general.save
         flash[:notice] = 'Historia Clinica General creada.'
-        format.html{render :action => 'show'}
+        format.html {redirect_to @paciente}
+        #format.html{redirect_to edit_paciente_historia_clinica_general_path}
         #format.xml  { render :xml => @historia_clinica_general, :status => :created, :location => @historia_clinica_general }
      else
        format.html { render :action => "new" }
@@ -77,8 +78,8 @@ class HistoriasClinicasGeneralesController < ApplicationController
     respond_to do |format|
       if @historia_clinica_general.update_attributes(params[:historia_clinica_general])
         flash[:notice] = 'Historia Clinica General actualizada.'
-
-        format.html {redirect_to paciente_historia_clinica_general_path}
+  
+        format.html {redirect_to @paciente}
        # format.xml  { head :ok }
       #else
        # format.html { render :action => "edit" }
@@ -101,7 +102,7 @@ class HistoriasClinicasGeneralesController < ApplicationController
     @paciente.destroy
 
     respond_to do |format|
-      format.html { redirect_to new_paciente_historia_clinica_general_path }
+      format.html { redirect_to @paciente}
     
     end
   end

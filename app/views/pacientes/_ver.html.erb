@@ -10,67 +10,78 @@
       <%= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id = ' + @archivo.id.to_s)), :alt => 'imagen del paciente' %>
     <%end%>
   </div>
-<table class="show-data">
+<table style="text-align: left ; " class=" table-list">
 <tr>
-        <th coldspan="2" class="fieldname">Tipo y Nro. de Documento</th>
-        <td><%=h @paciente.tipo_documento.descripcion %> <%=h @paciente.matricula %></td>
-</tr>
-
-<tr class="odd">
-  <th class="fieldname">Sexo</th>
-  <td><%=h @paciente.sexo %></td>
-
-  <th class="fieldname">Estado Civil</th>
-  <td><%=h @paciente.estado_civil %></td>
+       <th coldspan="3">Tipo y Nro. de Documento</th>
+        <th coldspan="3"><%=h @paciente.tipo_documento.descripcion %></th><th><%=h @paciente.matricula %></th>
 </tr>
 
 <tr>
-  <th class="fieldname">Domicilio</th>
-  <td><%=h @paciente.domicilio_particular %></td>
-</tr>
-<tr>
-  <th class="fieldname">Domicilio Laboral</th>
-  <td><%=h @paciente.domicilio_laboral%></td>
-</tr>
+  <th>Sexo</th>
+  <th><%=h @paciente.sexo %></th>
 
-<tr class="odd">
-  <th class="fieldname">Fecha de Nacimiento</th>
-  <td><%=@paciente.fecha_nacimiento.blank? ? '-' : @paciente.fecha_nacimiento.strftime('%d/%m/%Y') %></td>
-  <th class="fieldname">Grupo Sanguineo</th>
-  <td><%=h @paciente.grupo_sanguineo%></td>
-</tr>
-
-<tr class="odd">
-  <th class="fieldname">Telefono</th>
-  <td><%=h @paciente.telefono_particular %></td>
-  <th class="fieldname">Movil</th>
-  <td><%=h @paciente.movil %></td>
-</tr>
-<tr class="odd">
-  <th class="fieldname">Telefono Laboral</th>
-  <td><%=h @paciente.telefono_laboral %></td>
-  <th class="fieldname">Profesion</th>
-  <td><%=h @paciente.profesion %></td>
-</tr>
-<tr class="odd">
-  <th class="fieldname">Ocupacion</th>
-  <td><%=h @paciente.ocupacion %></td>
-  <th class="fieldname">Nivel Escolar</th>
-  <td><%=h @paciente.nivel_escolar %></td>
+  <th>Estado Civil</th>
+  <th><%=h @paciente.estado_civil %></th>
 </tr>
 
 <tr>
-  <th class="fieldname">Obra Social</th>
-  <th><%=h @paciente.titular.obra_social.nombre unless @paciente.titular_id.blank? %></th>
+  <th>Domicilio</th>
+  <th><%=h @paciente.domicilio_particular %></th>
+</tr>
+<tr>
+  <th>Domicilio Laboral</th>
+  <th><%=h @paciente.domicilio_laboral%></th>
+</tr>
+
+<tr>
+  <th>Fecha de Nacimiento</th>
+  <th><%=@paciente.fecha_nacimiento.blank? ? '-' : @paciente.fecha_nacimiento.strftime('%d/%m/%Y') %></th>
+  <th>Grupo Sanguineo</th>
+  <th><%=h @paciente.grupo_sanguineo%></th>
+</tr>
+
+<tr>
+  <th>Telefono</th>
+  <th><%=h @paciente.telefono_particular %></th>
+  <th>Movil</th>
+  <th><%=h @paciente.movil %></th>
+</tr>
+<tr>
+  <th>Telefono Laboral</th>
+  <th><%=h @paciente.telefono_laboral %></th>
+  <th>Profesion</th>
+  <th><%=h @paciente.profesion %></th>
+</tr>
+<tr>
+  <th>Ocupacion</th>
+  <th><%=h @paciente.ocupacion %></th>
+  <th>Nivel Escolar</th>
+  <th><%=h @paciente.nivel_escolar %></th>
+</tr>
+
+<tr>
   
+  <th>Obra Social</th>
+  <th><%=@paciente.titular.blank? ? '-' : @paciente.titular.obra_social.nombre %></th>
+
+ 
+  <td></td>
+  
+ 
+</tr>
+</table>
+<table>
+<tr>
+  <td style=" float: left; margin-left:  400px"> <%= link_to image_tag('pencil.png'), edit_paciente_path(@paciente),  :title=> 'Editar' %></td>
+  <td><%= link_to image_tag('printer.png'), imprimir_paciente_path(@paciente), :title => 'Imprimir', :popup => ['Imprimir', 'height=300,width=600'] %>
+  </td>
 </tr>
 
-<td>
-
-</td>
 </table>
+</div>
 </fieldset>
-<%= link_to image_tag('printer.png'), imprimir_paciente_path(@paciente) %>
-<%= link_to 'Cancelar', search_pacientes_path %>
+ 
+
+
 
 

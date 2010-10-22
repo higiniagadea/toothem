@@ -38,7 +38,11 @@ ActionController::Routing::Routes.draw do |map|
 
 
   map.resources :pacientes,
-                :collection => {:search => :get, :result => :post},
+                :collection => {:search => :get, 
+                                :result => :post,
+                                :verificar_matricula => [:get],
+                                :verificar_nroafiliado => [:get]
+                              },
                 :member => {:new_tratamiento => [:get,:post], :new_trat => [:get, :post],
                             :update_tratamiento => [:get, :post],
                             :changephoto => :get,:uploadphoto => :post,
@@ -49,9 +53,8 @@ ActionController::Routing::Routes.draw do |map|
                             :show_imagen => :get,
                             :listado_historias_clinicas => :get,
                             :ver => [:post, :get],
-                            :imprimir=> [:post, :get]
-                            
-                            
+                            :imprimir=> [:post, :get],
+                            :elimina_tit => :get
                 }do |paciente|
                              
                             
