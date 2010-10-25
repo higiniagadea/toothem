@@ -55,6 +55,7 @@ class PacientesController < ApplicationController
 
     respond_to do |format|
       if params[:nombre].blank? && params[:matricula].blank?
+       
        format.html{render :text => 'Ingrese al menos un dato para realizar la busqueda', :layout => false}
       elsif
       params[:nombre].size > 3
@@ -384,6 +385,21 @@ def elimina_tit
       format.xml  { head :ok }
 end
 end
+
+def verificar_matricula_tit
+
+    @titular = Titular.find(:first, :conditions => {:matricula => params[:titular][:matricula]})
+    respond_to do |format|
+    format.json { render :json => !@titular}
+    end
+  end
+
+def verificar_nroafiliado_tit
+  @titular = Titular.find(:first, :conditions => {:nro_afiliado => params[:titular][:nro_afiliado]})
+    respond_to do |format|
+    format.json { render :json => !@titular}
+    end
+  end
 
 end
 

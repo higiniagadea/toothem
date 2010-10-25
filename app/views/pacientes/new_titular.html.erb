@@ -22,7 +22,7 @@
   
   <th>
     Matrícula</th>
-  <td><%= f.text_field :matricula, :size=> 10, :class=> 'ui-widget-content required', :title=> 'Matricula no puede vacio' %>
+  <td><%= f.text_field :matricula, :size=> 10, :class=> 'ui-widget-content required', :title=> 'Nro. de Documento no puede vacio' %>
   </td>
   </tr>
    <tr>
@@ -35,11 +35,12 @@
     <th>Nro de Afiliado</th>
     <td><%= f.text_field :nro_afiliado, :class=> 'ui-widget-content required', :title=> 'Nro. de Afiliado no puede estar vacio', :size=> 10 %> </td>
   </tr>
-  <td>
-    <label></label>
-    <%= f.submit 'Guardar',  :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
-  </td>
+</table>
+  <table>
+    <tr>
+      <td style=" float: left; margin-left:  315px"><%= f.submit 'Guardar',  :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
   
+    </tr>
 </table>
 <% end %>
 </div>
@@ -53,7 +54,13 @@
        errorContainer: $("#new_titular div.errores"),
        errorLabelContainer: $("ol", $("#new_titular div.errores")),
        wrapper: 'li',
-       meta: "validate"
+       meta: "validate",
+        rules: {
+         "titular[matricula]": {required:true, remote:"/pacientes/verificar_matricula_tit?titular[matricula]=" + $('#titular[matricula]').val()},
+         "titular[nro_afiliado]": {required:true, remote:"/pacientes/verificar_nroafiliado_tit?titular[nro_afiliado]=" + $('#titular[nro_afiliado').val()}
+
+       }
+    
      });
 
   });

@@ -31,6 +31,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :titulares,
                 :collection => {:buscar => :get, :resultado => :post}
+             
 
   map.resources :estados_laborales
 
@@ -39,10 +40,11 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :pacientes,
                 :collection => {:search => :get, 
-                                :result => :post,
-                                :verificar_matricula => [:get],
-                                :verificar_nroafiliado => [:get]
-                              },
+                                :result => :post,                               
+                                :verificar_nroafiliado_tit => [:get],
+                                :verificar_matricula_tit => [:get],
+                },
+
                 :member => {:new_tratamiento => [:get,:post], :new_trat => [:get, :post],
                             :update_tratamiento => [:get, :post],
                             :changephoto => :get,:uploadphoto => :post,

@@ -18,7 +18,7 @@
     <th>
       Tipo Y Nro. de Documento</th>
     <th><%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion, {}, :class => 'ui-widget-content required') %>
-      <%= f.text_field :matricula,  :class =>"ui-widget-content required", :title=>'Documento no puede estar vacio' ,:size=> 22 %>
+      <%= f.text_field :matricula,  :class =>"ui-widget-content required" , :size=> 22 , :title=> 'Nro. de Documento no puede estar vacio'%>
     </th>
     </tr>
     
@@ -124,16 +124,16 @@
        errorLabelContainer: $("ol", $("#new_paciente div.errores")),
        wrapper: 'li',
        meta: "validate",
-        messages: {
-      required: "Debe ingresar al menos un documento",
-        remote: jQuery.format("El documento ya se encuentra cargado")
-      },
+     
        rules: {
          "paciente[matricula]": {required:true, remote:"/pacientes/verificar_matricula?paciente[matricula]=" + $('#paciente[matricula]').val()},
          "paciente[nro_afiliado]": {required:true, remote:"/pacientes/verificar_nroafiliado?paciente[nro_afiliado]=" + $('#paciente[nro_afiliado').val()}
 
-       }
-      
+       },
+        messages: {
+         required: "Debe ingresar al menos un documento",
+         remote: jQuery.format("El documento ya se encuentra cargado")
+      }
       
      });
 

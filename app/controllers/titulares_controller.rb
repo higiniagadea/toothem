@@ -15,11 +15,11 @@ class TitularesController < ApplicationController
   # GET /titulares/1
   # GET /titulares/1.xml
   def show
-    @titular = Titular.find(params[:id])
+  @titular = Titular.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @titular }
+     format.html # show.html.erb
+     format.xml  { render :xml => @titular }
     end
   end
 
@@ -101,6 +101,20 @@ class TitularesController < ApplicationController
     @titulares = Titular.basic_search(params)
     respond_to do |format|
       format.html {render :layout => false}
+    end
+  end
+def verificar_matricula
+   
+    @titular = Titular.find(:first, :conditions => {:matricula => params[:titular][:matricula]})
+    respond_to do |format|
+    format.json { render :json => !@titular}
+    end
+  end
+
+def verificar_nroafiliado
+  @titular = Titular.find(:first, :conditions => {:nro_afiliado => params[:titular][:nro_afiliado]})
+    respond_to do |format|
+    format.json { render :json => !@titular}
     end
   end
 end
