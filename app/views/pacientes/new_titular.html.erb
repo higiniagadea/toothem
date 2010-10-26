@@ -57,8 +57,12 @@
        meta: "validate",
         rules: {
          "titular[matricula]": {required:true, remote:"/pacientes/verificar_matricula_tit?titular[matricula]=" + $('#titular[matricula]').val()},
-         "titular[nro_afiliado]": {required:true, remote:"/pacientes/verificar_nroafiliado_tit?titular[nro_afiliado]=" + $('#titular[nro_afiliado').val()}
+         "titular[nro_afiliado]": {required:true, remote:"/pacientes/verificar_nroafiliado_tit?titular[nro_afiliado]=" + $('#titular[nro_afiliado]').val()}
 
+       },
+       messages: {
+         "titular[matricula]": {remote:'Nro. de Documento ya se encuentra cargado' },
+         "titular[nro_afiliado]":{remote:'Nro. de Afiliado ya se encuentra cargado'}
        }
     
      });

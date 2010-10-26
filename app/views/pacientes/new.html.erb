@@ -96,7 +96,7 @@
     </tr>
     <tr>
       <th>Nro. de Afiliado</th>
-      <td><%= f.text_field :nro_afiliado, :size=>20, :class=>'ui-widget-content required' , :title=> 'Nro. de Afiliado no puede estar vacio'%>
+      <td><%= f.text_field :nro_afiliado, :size=>20,:title=>'Nro. de Afiliado no puede estar vacio', :class=>'ui-widget-content required' %>
       </td>
     </tr>
     <table>
@@ -124,25 +124,22 @@
        errorLabelContainer: $("ol", $("#new_paciente div.errores")),
        wrapper: 'li',
        meta: "validate",
-     
+       
        rules: {
-         "paciente[matricula]": {required:true, remote:"/pacientes/verificar_matricula?paciente[matricula]=" + $('#paciente[matricula]').val()},
-         "paciente[nro_afiliado]": {required:true, remote:"/pacientes/verificar_nroafiliado?paciente[nro_afiliado]=" + $('#paciente[nro_afiliado').val()}
+         "paciente[matricula]": {required: true, remote:"/pacientes/verificar_matricula?paciente[matricula]=" + $('#paciente[matricula]').val()},
+         "paciente[nro_afiliado]": {required: true, remote:"/pacientes/verificar_nroafiliado?paciente[nro_afiliado]=" + $('#paciente[nro_afiliado]').val()}
 
        },
-        messages: {
-         required: "Debe ingresar al menos un documento",
-         remote: jQuery.format("El documento ya se encuentra cargado")
-      }
-      
+         messages:{
+           "paciente[matricula]": {remote:"Nro. de Documento ya se encuentra cargado"},
+           "paciente[nro_afiliado]": {remote:"Nro. de Afiliado ya se encuentra cargado"}
+         }
+    });
+            
+
      });
-
-
-  });
-
-
-
-  $("#fecha_nacimiento").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate: 0});
+    
+   $("#fecha_nacimiento").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate: 0});
 
 
 </script>

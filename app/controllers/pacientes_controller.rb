@@ -40,6 +40,7 @@ class PacientesController < ApplicationController
     end
   end
 
+  #busqueda de pacientes
   def search
     @pagetitle = "Buscar Paciente"
     
@@ -49,6 +50,7 @@ class PacientesController < ApplicationController
     end
   end
 
+  #resultado de la busqueda de pacientes
   def result
     @paginatepacientes = Paciente.paginate :page=> params[:page], :per_page=> 10, :order=> 'nombre ASC'
    
@@ -73,11 +75,11 @@ class PacientesController < ApplicationController
   def show
     @title = "Pacientes. Datos personales"
     @paciente = Paciente.find(params[:id])
-    @imagenes = Imagen.find_all_by_paciente_id(@paciente)
+    #@imagenes = Imagen.find_all_by_paciente_id(@paciente)
     
-    unless @paciente.archivo_id.blank?
-      @archivo = Archivo.find(@paciente.archivo_id)
-    end
+    #unless @paciente.archivo_id.blank?
+     # @archivo = Archivo.find(@paciente.archivo_id)
+    #end
     respond_to do |format|
 
       format.html # show.html.erb
@@ -199,7 +201,7 @@ class PacientesController < ApplicationController
       }
     end
   end
-
+#busqueda de titulares
   def search_titular
     @paciente = Paciente.find(params[:id])
     @titulares = Titular.new
@@ -208,6 +210,7 @@ class PacientesController < ApplicationController
     end
   end
 
+  #resultado de la busqueda de titulares
   def results_titular
     @paciente = Paciente.find(params[:id])
     @titulares = Titular.basic_search_in_pacientes(params[:titular])
@@ -338,6 +341,7 @@ def update_tratamiento
   end
 end
 
+
 def ver
   @paciente = Paciente.find(params[:id])
    @imagenes = Imagen.find_all_by_paciente_id(@paciente)
@@ -350,7 +354,7 @@ def ver
    end
 end
 
-
+#imprime un reporte del paciente
 def imprimir
     @paciente = Paciente.find(params[:id])
 
@@ -360,21 +364,27 @@ def imprimir
     end
 end
 
+
+#valida una matricula duplicada
 def verificar_matricula
    
-    @paciente= Paciente.find(:first, :conditions => {:matricula => params[:paciente][:matricula]})
+    @paciente = Paciente.find(:first, :conditions => {:matricula => params[:paciente][:matricula]})
     respond_to do |format|
+    
     format.json { render :json => !@paciente}
+   
     end
   end
 
+#valida un nro de afiliado duplicado
 def verificar_nroafiliado
-  @paciente= Paciente.find(:first, :conditions => {:nro_afiliado => params[:paciente][:nro_afiliado]})
+  @paciente = Paciente.find(:first, :conditions => {:nro_afiliado => params[:paciente][:nro_afiliado]})
     respond_to do |format|
     format.json { render :json => !@paciente}
     end
   end
 
+#elimina el titular asignado al paciente
 def elimina_tit
   @paciente = Paciente.find(params[:id])
   #@titular = Titular.find(params[:id])
@@ -386,6 +396,7 @@ def elimina_tit
 end
 end
 
+#valida la matricula del titular
 def verificar_matricula_tit
 
     @titular = Titular.find(:first, :conditions => {:matricula => params[:titular][:matricula]})
@@ -394,9 +405,12 @@ def verificar_matricula_tit
     end
   end
 
+#valida el nro de afiliado del titular
 def verificar_nroafiliado_tit
   @titular = Titular.find(:first, :conditions => {:nro_afiliado => params[:titular][:nro_afiliado]})
     respond_to do |format|
+
+
     format.json { render :json => !@titular}
     end
   end

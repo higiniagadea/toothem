@@ -35,7 +35,7 @@
          <th>
           Tipo Y Nro.  Documento</th>
           <td><%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion, {}, :class => 'ui-widget-content') %>
-          <%= f.text_field :matricula, :class => 'ui-widget-content required', :title=> 'La matricula ya se encuentra cargado', :size=>23 %>
+          <%= f.text_field :matricula, :class => 'ui-widget-content required', :size=>23 %>
           </td>
           </tr>
 
@@ -140,17 +140,21 @@
        errorLabelContainer: $("ol", $("#edit_paciente div.errores")),
        wrapper: 'li',
        meta: "validate",
+       
        required:true,
-       messages:{required:'Ingrese', remote:'ya existe'},
         rules: {
          "paciente[matricula]": {required: true, remote:"/pacientes/verificar_matricula?paciente[matricula]=" + $('#paciente[matricula]').val()},
          "paciente[nro_afiliado]": {required: true, remote:"/pacientes/verificar_nroafiliado?paciente[nro_afiliado]=" + $('#paciente[nro_afiliado').val()}
-
-       }
+        },
+         messages:{
+           "paciente[matricula]": {remote:"Nro. de Documento ya se encuentra cargado"},
+           "paciente[nro_afiliado]": {remote:"Nro. de Afiliado ya se encuentra cargado"}
+         }
+       
        
      });
-
-  });
+});
+  
 
 
 

@@ -40,23 +40,33 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :pacientes,
                 :collection => {:search => :get, 
-                                :result => :post,                               
-                                :verificar_nroafiliado_tit => [:get],
-                                :verificar_matricula_tit => [:get],
+                                :result => :post,
+                                :verificar_nroafiliado => [:get],
+                                :verificar_matricula => [:get],
+                                 :verificar_nroafiliado_tit => [:get],
+                            :verificar_matricula_tit => [:get],
+                                
                 },
 
-                :member => {:new_tratamiento => [:get,:post], :new_trat => [:get, :post],
+                :member => {:new_tratamiento => [:get,:post],
+                            :new_trat => [:get, :post],
                             :update_tratamiento => [:get, :post],
-                            :changephoto => :get,:uploadphoto => :post,
-                            :editfield => :get, :updatefield => :put, :cancelfield => :get,
-                            :search_titular => :get, :results_titular => :post,
+                            :changephoto => :get,
+                            :uploadphoto => :post,
+                            :editfield => :get,
+                            :updatefield => :put,
+                            :cancelfield => :get,
+                            :search_titular => :get,
+                            :results_titular => :post,
                             :update_titular => :put,
-                            :new_titular => :get, :create_titular => :post,
+                            :new_titular => :get,
+                            :create_titular => :post,
                             :show_imagen => :get,
                             :listado_historias_clinicas => :get,
                             :ver => [:post, :get],
                             :imprimir=> [:post, :get],
-                            :elimina_tit => :get
+                            :elimina_tit => :get,                          
+                           
                 }do |paciente|
                              
                             
