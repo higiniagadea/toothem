@@ -1,4 +1,36 @@
  <fieldset class="ui-widget-content ui-corner-all">
     <legend class="ui-widget ui-widget-header ui-corner-all" >Tratamientos</legend>
-  
-</fieldset>
+
+ <%unless @tratamientos.blank? %>
+  <table class="table-list">
+  <tr>
+
+    <th>Fecha</th>
+    <th>Profesional</th>
+    <th>Estado</th
+
+
+  </tr>
+
+<% @tratamientos.each do |tratamiento| %>
+  <tr>
+    <td><%=h tratamiento.fecha %></td>
+    <td><%=h tratamiento.profesional_id %></td>
+    <td><%=h tratamiento.estado_tratamiento_id%></td>
+
+    <td><%= link_to image_tag('magnifier_zoom_in.png'), tratamiento, :title => "Ver" %></td>
+    <td><%= link_to image_tag('pencil.png'), edit_tratamiento_path(tratamiento), :title => 'Editar' %></td>
+    <td><%= link_to image_tag('cancel.png'),tratamiento, :confirm => 'Esta seguro?', :method => :delete, :title=> 'Eliminar' %></td>
+
+  </tr>
+
+<% end %>
+  <%= will_paginate @tratamientos, :previous_label=>'Anterior', :next_label => 'Siguiente' %>
+  <%= link_to 'Crear Tratamiento', new_trat_paciente_path(@paciente)  %>
+<%end%>
+</table>
+    <table>
+      <tr><td style=" float: left; margin-left: 1000px">
+<%= link_to image_tag('add.png'), new_trat_paciente_path + "?paciente_id="+@paciente.id.to_s  %>Crear Tratamiento
+        </td></tr></table>
+ </fieldset>

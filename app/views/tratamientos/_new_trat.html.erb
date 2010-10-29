@@ -8,94 +8,66 @@
       <div class="errores">
           <ol style="list-style:none"></ol>
         </div>
-      <table id="form">
+      <table id="form" style="text-align: left" >
         <tr>
-          <td class="label"><h1>Paciente: <%= @paciente.nombre %></h1></td>
+          <th class="label"><h1>Paciente: <%= @paciente.nombre %></h1></th>
           <td></td >
         </tr>
         <tr>
          <td><label>Fecha</label></td>
-          <td>
+          <th>
             <span class="fecha" class="ui-widget-content">
                     <input class="ui-widget-content required "type="text" id="fecha" size="10" name= "tratamiento[fecha]" readonly="readonly" title="Ingrese una fecha" />
             </span>
-          </td>
-          <td class="label">Diente</td>
+          </th>
+          <th class="label">Diente</th>
           <td>
             <%= f.text_field :diente, :size=>10, :class=> 'ui-widget-content required', :title=> 'Diente debe ser numerico' %>
           </td>
-          <td class="label">Cara </td>
+          <th class="label">Cara </th>
           <td>
             <%= f.text_field :cara, :size=>10, :class=> 'ui-widget-content required', :title=> 'Cara no puede estar en blanco' %>
           </td>
         </tr>
         <tr>
-            <td class="label">Prestacion </td>
+            <th class="label">Prestacion </th>
             <td>
               <%= f.collection_select(:prestacion_id, Prestacion.all, :id, :descripcion, :class=> 'ui-widget-content required', :title=> 'Seleccione una prestacion') %>
             </td>
-            <td class="label">Estado del tratamiento</td>
+            <th class="label">Estado del tratamiento</th>
             <td>
               <%= f.collection_select(:estado_tratamiento_id, EstadoTratamiento.all, :id, :nombre, :class=>'ui-widget-content required', :title=> 'Seleccione un estado') %>
             </td>
          </tr>
          <tr>
-              <td class="label">Importe Cubierto </td>
+              <th class="label">Importe Cubierto </th>
               <td><%= f.text_field :importe_cubierto, :size=>10, :class=> 'ui-widget-content required', :title=> 'Importe Cubierto debe ser numerico' %>
               </td>
-              <td class="label">Coseguro</td>
+              <th class="label">Coseguro</th>
               <td><%= f.text_field :coseguro, :size=>10, :class=> 'ui-widget-content required', :title=> 'Coseguro debe ser numerico' %></td>
          </tr>
+         <table>
          <tr>
-            <td>
-              
-                  <%= f.submit 'Crear Tratamiento', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
-              
+            <td style=" float: left; margin-left: 1000px">
+                    <%= link_to 'Cancelar', paciente_path(@paciente) %>
+                  <%= f.submit 'Guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+                  
                   <%#= button_to_remote 'Agregar Tratamiento', :url=> asignar_tratamiento_ficha_url(@ficha), :method => :get, :success=> '$.fancybox.close();' %>
              
             </td>
 
          </tr>
+         </table>
       </table>
 
 
 
-    <%unless @tratamientos.blank?%>
-      <table class="table-list">
-          <tr>
-            <th>Prestacion</th>
-            <th>Diente</th>
-            <th>Cara</th
-
-            <th>Estado de tratamiento</th>
-            <th>Importe Cubierto</th>
-          </tr>
-
-            <% @tratamientos.each do |tratamiento| %>
-              <tr>
-                  <td><%=h tratamiento.prestacion.descripcion %></td>
-                  <td><%=h tratamiento.diente %></td>
-                  <td><%=h tratamiento.cara %></td>
-
-                  <td><%=h tratamiento.estado_tratamiento.nombre%></td>
-                  <td><%=h number_to_currency(tratamiento.importe_cubierto) %></td>
-
-
-                <td><%= link_to image_tag('magnifier_zoom_in.png'), tratamiento, :title => "Ver" %></td>
-                <td><%= link_to image_tag('pencil.png'), edit_tratamiento_path(tratamiento), :title => "Editar" %></td>
-                <td><%= link_to image_tag('cancel.png'), tratamiento, :confirm => 'Esta seguro que desea eliminar el tratamiento?', :method => :delete, :title => "Eliminar" %></td>
-
-              </tr>
-            <%end%>
-      </table>
-    <% end %>
+    
 <% end %>
 
-<div class="paginador">
-  <%= will_paginate @tratamientos, :previous_label=>'Anterior', :next_label => 'Siguiente' %>
-</div>
 
-<%= link_to 'Cancelar', paciente_path(@paciente) %>
+
+
 </fieldset>
 <script type="text/javascript">
    $(document).ready(function(){

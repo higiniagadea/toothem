@@ -66,7 +66,7 @@ ActionController::Routing::Routes.draw do |map|
                             :ver => [:post, :get],
                             :imprimir=> [:post, :get],
                             :elimina_tit => :get,                          
-                           
+                            :edit_tratamientos => :get
                 }do |paciente|
                              
                             

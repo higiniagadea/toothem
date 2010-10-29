@@ -3,7 +3,7 @@
 <% form_for(:historia_clinica_general, @historia_clinica_general,
             :url => paciente_historia_clinica_general_url(@paciente), :html=> {:method=> :put}) do |f| %>
 <%= f.error_messages %>
-
+<div id="pacientes-screen">
   <div id="pacientes-options">
     <div id="pacientes-nombre">
       <%=h @paciente.nombre %>
@@ -406,5 +406,5 @@
 
   </fieldset>
   <div style="clear:both;"></div>
-
+</div>
 </fieldset>

@@ -61,7 +61,7 @@ class HistoriasClinicasGeneralesController < ApplicationController
     respond_to do |format|
       if @historia_clinica_general.save
         flash[:notice] = 'Historia Clinica General creada.'
-        format.html {redirect_to @paciente}
+        format.html {render :partial=> 'pacientes/edit_datos_personales', :layout=> 'default'}
         #format.html{redirect_to edit_paciente_historia_clinica_general_path}
         #format.xml  { render :xml => @historia_clinica_general, :status => :created, :location => @historia_clinica_general }
      else

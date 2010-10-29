@@ -1,23 +1,22 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Datos de Obra Social</legend>
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Obra Social</legend>
 
    <%  unless @paciente.titular.blank? %>
          <table style=" text-align: left; "class="table-list">
                    
           <tr>
-          <th>Obra Social</th>
+          <th>Nombre</th>
           <th><%=h @paciente.titular.obra_social.nombre %></th>
           </tr>
-          <tr>
-          <tr><td><h1>Datos del Titular</h1></td></tr>
-          </tr>
-          <tr>
-          <th>Matricula</th>
-          <th><%=h @paciente.titular.matricula%></th>
-          </tr>
+         
+         
           <tr>
           <th>Titular</th>
           <th><%=h @paciente.titular.nombre%></th>
+          
+           
+          <th>Matricula</th>
+          <th><%=h @paciente.titular.matricula%></th>
           </tr>
           <tr>
             <th>Nro. de Afiliado</th>
@@ -25,7 +24,7 @@
           </tr>
           <table>
           <tr>
-          <td style=" float: left; margin-left:  250px"><%= link_to image_tag('cancel.png'), elimina_tit_paciente_path(@paciente), :confirm=> 'Esta seguro?'  %>Borrar</td></tr>
+          <td style=" float: left; margin-left:  1140px"><%= link_to image_tag('cancel.png'), elimina_tit_paciente_path(@paciente), :confirm=> 'Esta seguro?'  %>Borrar</td></tr>
           </table>
 
           <%else %>

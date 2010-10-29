@@ -1,6 +1,7 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Tratamientos</legend>
-<table class="table-list">
+<%unless @tratamientos.blank? %>
+  <table class="table-list">
   <tr>
   
     <th>Fecha</th>
@@ -23,7 +24,8 @@
   </tr>
 
 <% end %>
-
+  <%= will_paginate @tratamientos, :previous_label=>'Anterior', :next_label => 'Siguiente' %>
+<%end%>
 </table>
 </fieldset>
-<%= will_paginate @tratamientos, :previous_label=>'Anterior', :next_label => 'Siguiente' %>
+<%= link_to 'agregar', new_trat_paciente_path(@paciente) %>

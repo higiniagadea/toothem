@@ -8,10 +8,10 @@ class TratamientosController < ApplicationController
   def index
     @pagetitle = "Tratamientos"
    
-    @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5
+    @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id]
     respond_to do |format|
       #format.html {render :partial => 'edit', :layout=> 'default'}
-      format.xml  { render :xml => @tratamientos }
+      format.xml  { render :partial=> 'pacientes/edit_tratamientos', :layout=> 'default' }
     end
   end
 
@@ -31,22 +31,22 @@ class TratamientosController < ApplicationController
   def new
     @paciente = Paciente.find(params[:paciente_id])
     @tratamiento = Tratamiento.new
-    @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 4,  :conditions => ['paciente_id = ?', @paciente.id]
-    @ficha = Ficha.new(params[:ficha_id]) unless params[:ficha_id].blank?
+    @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5,  :conditions => ['paciente_id = ?', @paciente.id]
+    #@ficha = Ficha.new(params[:ficha_id]) unless params[:ficha_id].blank?
     respond_to do |format|
-      format.html { render :partial => 'new', :layout => false }
-      format.xml  { render :xml => @tratamiento }
+      format.html { render :partial => 'new_trat', :layout => 'default' }
+      #format.xml  { render :xml => @tratamiento }
     end
   end
 
    def new_trat
     @paciente = Paciente.find(params[:paciente_id])
     @tratamiento = Tratamiento.new
-    @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 4,  :conditions => ['paciente_id = ?', @paciente.id]
+    @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5,  :conditions => ['paciente_id = ?', @paciente.id]
     #@ficha = Ficha.new(params[:ficha_id]) unless params[:ficha_id].blank?
     respond_to do |format|
      format.html { render :partial => 'new_trat', :layout => 'default'}
-      format.xml  { render :xml => @tratamiento }
+      #format.xml  { render :partial=> 'pacientes/edit_tratamientos' }
     end
   end
 
@@ -67,8 +67,10 @@ class TratamientosController < ApplicationController
     respond_to do |format|
       if @tratamiento.save
         flash[:notice] = 'Tratamiento creado.'
-        format.html  { redirect_to new_tratamiento_path + "?paciente_id=" + @paciente.id.to_s }
-       else
+      format.html { redirect_to edit_paciente_path(@paciente) + '#tratamientos' }
+        format.html {render :partial=> 'pacientes/edit_tratamientos', :layout=> 'default' }
+    
+      else
         format.html {render :partial => 'new', :layout => 'default'}
         format.xml  { render :xml => @tratamiento.errors, :status => :unprocessable_entity }
 

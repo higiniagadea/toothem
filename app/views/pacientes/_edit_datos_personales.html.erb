@@ -30,12 +30,12 @@
          <tr>
           <th>
             Nombre y Apellido</th>
-          <td><%= f.text_field :nombre, :class=>'ui-widget-content required', :title=> 'Nombre y Apellido no puede estar vacio', :size=> 30 %>
+          <td><%= f.text_field :nombre, :class=>'ui-widget-content required', :title=> 'Nombre y Apellido no puede estar vacio', :size=> 20 %>
           </td>
          <th>
           Tipo Y Nro.  Documento</th>
           <td><%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion, {}, :class => 'ui-widget-content') %>
-          <%= f.text_field :matricula, :class => 'ui-widget-content required', :size=>23 %>
+          <%= f.text_field :matricula, :class => 'ui-widget-content required', :size=>22 %>
           </td>
           </tr>
 

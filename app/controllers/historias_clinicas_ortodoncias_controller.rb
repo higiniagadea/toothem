@@ -66,7 +66,7 @@ class HistoriasClinicasOrtodonciasController < ApplicationController
 
         flash[:notice] = 'Historia Clinica Ortodoncia creada.'
        
-        format.html{redirect_to @paciente }
+        format.html{render :partial=> 'pacientes/edit_datos_personales', :layout=> 'default'}
       else
         format.html { render :action => "new" }
         #format.xml  { render :xml => @historia_clinica_ortodoncia.errors, :status => :unprocessable_entity }
@@ -83,7 +83,7 @@ class HistoriasClinicasOrtodonciasController < ApplicationController
       if @historia_clinica_ortodoncia.update_attributes(params[:historia_clinica_ortodoncia])
         flash[:notice] = 'Historia Clinica Ortodoncia Actualizada.'
         
-        format.html {redirect_to @paciente }
+        format.html {render :partial=> 'pacientes/edit_datos_personales', :layout=> 'default' }
       else
         format.html { render :action => 'edit'}
        end
@@ -97,7 +97,7 @@ class HistoriasClinicasOrtodonciasController < ApplicationController
     @historia_clinica_ortodoncia.destroy
 
     respond_to do |format|
-      format.html {redirect_to @paciente}
+      format.html {render :partial=> 'pacientes/edit_datos_personales', :layout=> 'default'}
       
     end
   end

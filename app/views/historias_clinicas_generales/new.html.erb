@@ -1,10 +1,9 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Historia Clinica</legend>
+  <legend class="ui-widget ui-widget-content ui-corner-all ">Historia Clinica</legend>
 
 <% form_for(:historia_clinica_general, @historia_clinica_general, :url => {:method => :post, :action => "show"}) do |f| %>
         <%= f.error_messages %>
 
-<div id="pacientes-screen">
   <div id="pacientes-options"> 
     <div id="pacientes-nombre">
       <h1><%=h @paciente.nombre %></h1>
