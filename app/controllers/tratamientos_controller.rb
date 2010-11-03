@@ -18,7 +18,7 @@ class TratamientosController < ApplicationController
   # GET /tratamientos/1
   # GET /tratamientos/1.xml
   def show
-     @paciente = Paciente.find(params[:paciente_id])
+     
     @tratamiento = Tratamiento.find(params[:id])
 
     respond_to do |format|
@@ -93,7 +93,7 @@ class TratamientosController < ApplicationController
       if @tratamiento.update_attributes(params[:tratamiento])
         flash[:notice] = 'Tratamiento actualizado.'
       #  format.html {render :partial=> 'pacientes/edit_tratamientos', :layout=> 'default'}
-      format.html { redirect_to pacientes_path(@paciente)}
+      format.html { redirect_to @tratamiento}
        else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @tratamiento.errors, :status => :unprocessable_entity }

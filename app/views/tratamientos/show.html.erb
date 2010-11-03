@@ -43,11 +43,12 @@
 
 
 </table>
+</fieldset>
   <table>
     <tr>
       <td style=" float: left; margin-left:  1150px">
-<%#= link_to 'Editar', edit_tratamiento_path(@tratamiento) %> 
+<%#= link_to 'Volver', new_tratamiento_paciente_path +  "?paciente_id="+@paciente.id.to_s  %>
 <%= link_to 'Cancelar', edit_tratamiento_path(@tratamiento)  %>
     </td></tr>
   </table>
-</fieldset>
+
