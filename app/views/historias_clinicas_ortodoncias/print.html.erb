@@ -1,11 +1,12 @@
   
 <div id="pacientes-screen">
-    <table>
-    <tr>
-      <td>Historia Ortodoncica de: <%=h @paciente.nombre %></td>
-    </tr>
+    
+  <table>
+    <tr><td> Historia Ortodoncica de: <%=h @paciente.nombre %></td></tr>
+    <div id="pacientes-options">
     <tr><td style=" float: right; margin-right:  1100px "<%= link_to image_tag('printer.png'), imprimir_paciente_historia_clinica_ortodoncia_path(@paciente), :title => 'Imprimir', :popup => ['Imprimir', 'height=300,width=600'] %></td>
     </tr>
+    </div>
   </table>
 
   <fieldset class="pacientes-data">
@@ -488,7 +489,7 @@
 </fieldset>
   
 
-    <fieldset>
+    <fieldset class=" pacientes-data">
      <legend>Historia Bucodental</legend>
       <table class="historia_clinica">
      
@@ -653,7 +654,7 @@
       </table>
     </fieldset>
 
-     <fieldset>
+     <fieldset class=" pacientes-data">
     <legend>Examen Radiologico</legend>
        <table class="historia_clinica">
       
@@ -757,7 +758,7 @@
         </table>
       </fieldset>
 
-      <fieldset>
+      <fieldset class=" pacientes-data">
   <legend>Historia Ortodoncica</legend>
         <table class="historia_clinica">
          
@@ -795,7 +796,7 @@
         </table>
       </fieldset>
 
-      <fieldset>
+      <fieldset class=" pacientes-data" >
   <legend>Examen Bucal</legend>
         <table class="historia_clinica">
        
@@ -813,7 +814,7 @@
       </fieldset>
 
 
-  <fieldset>
+  <fieldset class=" pacientes-data">
  <legend>Articulacion Temporo Mandibular</legend>
     <table>
           
@@ -924,7 +925,7 @@
     </table>
   </fieldset>
 
- <fieldset>
+ <fieldset class=" pacientes-data">
  <legend>Otros Varios</legend>
         <table>       
       <tr>

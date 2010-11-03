@@ -1,11 +1,10 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Nuevo Tratamiento con ficha</legend>
+  <legend class="ui-widget ui-corner-all ui-widget-header">Nuevo Tratamiento</legend>
 
   <% form_for(@tratamiento) do |f|%>
       <%= f.error_messages(:header_message=>'Ingreso Incorrecto: ',:message=>'Se encontraron los siguientes errores') %>
       <%= f.hidden_field :paciente_id, 'value' => @paciente.id.to_s  %>
 
-<%#= TRATAMIENTO CON FICHA DE OBRA SOCIAL %>
 
   <div class="errores">
           <ol style="list-style:none"></ol>
@@ -47,10 +46,12 @@
               <td class="label">Coseguro</td>
               <td><%= f.text_field :coseguro, :size=>10, :class=> 'ui-widget-content required', :title=> 'Coseguro debe ser numerico' %></td>
          </tr>
+      </table>
+  <table>
          <tr>
-            <td>
-
-                  <%= f.submit 'Agregar Tratamiento', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+            <td style=" float: left; margin-left:  1100px">
+                  <%#= link_to 'Cancelar', paciente_path(@paciente) %>
+                  <%= f.submit 'Guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
 
                   <%# = button_to_remote 'Agregar Tratamiento', :url=> asignar_tratamiento_ficha_url(@ficha), :method => :get, :success=> '$.fancybox.close();' %>
 
@@ -89,14 +90,16 @@
               </tr>
             <%end%>
       </table>
-    <% end %>
+   <%= will_paginate @tratamientos, :previous_label=>'Anterior', :next_label => 'Siguiente' %>
+  <% end %>
+   
 <% end %>
 
 <div class="paginador">
-  <%= will_paginate @tratamientos, :previous_label=>'Anterior', :next_label => 'Siguiente' %>
+  <%#= will_paginate @tratamientos, :previous_label=>'Anterior', :next_label => 'Siguiente' %>
 </div>
 
-<%= link_to 'Cancelar', paciente_path(@paciente) %>
+
 </fieldset>
 <script type="text/javascript">
    $(document).ready(function(){

@@ -1,5 +1,5 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Historia Clinica</legend>
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Historia Clinica General</legend>
 <div id="pacientes-screen">
   <div id="pacientes-options">
     <div id="pacientes-nombre">
@@ -8,7 +8,7 @@
    
       <table>
         <tr>
-          <td style=" float: left; margin-left:  1100px"><%= link_to image_tag('pencil.png'), edit_paciente_historia_clinica_ortodoncia_path(@paciente), :title => 'Ver' %> 
+          <td style=" float: left; margin-left:  1050px"><%= link_to image_tag('pencil.png'), edit_paciente_historia_clinica_ortodoncia_path(@paciente), :title => 'Ver' %>
           <%= link_to image_tag('printer.png'), imprimir_paciente_historia_clinica_ortodoncia_path(@paciente), :title => 'Imprimir', :popup => ['Imprimir', 'height=300,width=600'] %>
           </td>
         </tr>
@@ -986,9 +986,13 @@
          </td>
       </tr>
 </table>
-
+  <table>
+    <tr>
+      <td style=" float: left; margin-left:  1050px">
         <%= link_to image_tag('printer.png'), imprimir_paciente_historia_clinica_ortodoncia_path(@paciente), :popup => ['Imprimir', 'height=300,width=600'] %>
-
+      </td>
+    </tr>
+  </table>
       </fieldset>
   <div style="clear:both"></div>
   </div>

@@ -873,3 +873,20 @@ tr.odd{
 
 
 
+.demo-show {
+    width: auto;
+    margin: 1em .5em;
+}
+.demo-show h3{
+    margin: 0;
+    padding: .25em;
+    font-size: 12px;
+
+}
+.demo-show h3 a{
+    font-weight: bold;
+}
+
+.demo-show div {
+    padding: .5em .25em;
+}

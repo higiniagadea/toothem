@@ -16,15 +16,16 @@ class PacientesController < ApplicationController
     #end
   #end
 
-  def new_trat
+  def new_tratamiento
     #params[:paciente][:consultorio_id] = session[:consultorio][:id]
     @paciente = Paciente.find(params[:paciente_id])
     @tratamiento = Tratamiento.new
+    
     respond_to do |format|
      #format.html {render :layout => 'default' }
      #format.html {render :controller => 'tratamientos', :action => 'new_trat'}  partial _new_trat crea el tratamiento
-     format.html {render :partial=> 'tratamientos/new_trat', :layout=> 'default'}
-     #format.html {redirect_to edit_paciente_path(@paciente) + '#tratamientos'}
+     format.html {render :partial=> 'tratamientos/new', :layout=> 'default'}
+     format.html {redirect_to edit_paciente_path(@paciente) + '#tratamientos'}
     end
   end
 
@@ -122,7 +123,9 @@ class PacientesController < ApplicationController
 
   # GET /pacientes/1/edit
   def edit
-    @paciente = Paciente.find_by_id(params[:id])
+     @paciente = Paciente.find_by_id(params[:id])
+    @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id.to_s])
+   
     @title = "Editando paciente"
      respond_to do |format|
       unless @paciente.blank?
@@ -327,17 +330,12 @@ class PacientesController < ApplicationController
    @paciente = Paciente.find(params[:id])
    @pagetitle = "Historias Clinicas de "+ @paciente.nombre
    respond_to do |format|
-    format.html{ render :partial => 'listado_historias_clinicas', :layout => false }
+    format.html{ render :partial => 'listado_historias_clinicas', :layout => 'default' }
    end
   end
 
-  def edit_tratamientos
-    @paciente = Paciente.find(params[:id])
-     @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id]
-    respond_to do |format|
-      format.html {render :partial=> 'edit_tratamientos', :layout => false}
-    end
-  end
+
+  
 
 def update_tratamiento
   @paciente = Paciente.find(params[:paciente_id])

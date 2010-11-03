@@ -1,5 +1,5 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Editando Historia Clinica</legend>
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Editando Historia Clinica General</legend>
 <% form_for(:historia_clinica_general, @historia_clinica_general,
             :url => paciente_historia_clinica_general_url(@paciente), :html=> {:method=> :put}) do |f| %>
 <%= f.error_messages %>
@@ -12,7 +12,7 @@
   
     <table>
     <tr>
-           <td style=" float: left; margin-left:  1100px"><%= link_to image_tag('printer.png'), imprimir_paciente_historia_clinica_general_path(@paciente), :title => 'Imprimir', :popup => ['Imprimir', 'height=300,width=600'] %>
+           <td style=" float: left; margin-left:  1050px"><%= link_to image_tag('printer.png'), imprimir_paciente_historia_clinica_general_path(@paciente), :title => 'Imprimir', :popup => ['Imprimir', 'height=300,width=600'] %>
            <%= f.submit 'Actualizar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
           </td>
         </tr>
@@ -397,7 +397,7 @@
  </table>
     <table>
   <tr>
-    <td  style=" float: left; margin-left:  1100px"><%= f.submit 'Actualizar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
+    <td  style=" float: left; margin-left:  1050px"><%= f.submit 'Actualizar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
   </tr>
   </table>
 <% end %>

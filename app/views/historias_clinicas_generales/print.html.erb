@@ -1,9 +1,10 @@
 <div id="pacientes-screen">
   <table>
-    <tr>
-      <td style=" text-align: right; ">Historia Clinica General de: <%=h @paciente.nombre %>
-       <%#= link_to image_tag('printer.png'), imprimir_paciente_historia_clinica_general_path(@paciente), :title => 'Imprimir', :popup => ['Imprimir', 'height=300,width=600'] %>
+    <tr><td>Historia Clinica General de: <%=h @paciente.nombre %></td></tr>
+        <div id="pacientes-options">
+          <tr><td><%= link_to image_tag('printer.png'), imprimir_paciente_historia_clinica_general_path(@paciente), :title => 'Imprimir', :popup => ['Imprimir', 'height=300,width=600'] %>
        </td></tr>
+  </div>
      </table>
     <fieldset class="pacientes-data">
    <table>
@@ -449,7 +450,7 @@
  
    </fieldset>
   <table>
-   <tr><td style=" text-align: left "><%= link_to image_tag('printer.png'), imprimir_paciente_historia_clinica_general_path(@paciente), :title => 'Imprimir', :popup => ['Imprimir', 'height=300,width=600'] %>
+   <tr><td style="margin-left:  1050px"><%= link_to image_tag('printer.png'), imprimir_paciente_historia_clinica_general_path(@paciente), :title => 'Imprimir', :popup => ['Imprimir', 'height=300,width=600'] %>
      </td></tr>
  </table>
 </div>

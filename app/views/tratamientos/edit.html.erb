@@ -39,21 +39,26 @@
   <td><%= f.text_field :importe_cubierto, :size => 10, :class=> 'ui-widget-content required', :title=> 'Importe debe ser numerico' %>
   </td>
   <td class="label">Coseguro</td>
-  <td><%= f.text_field :coseguro, :size=>10,  :class=> 'ui-widget-content required', :title=> 'Coseguro debe ser numerico' %></td>
+
+
+  <td
+    <%= f.text_field :coseguro, :size=>10,  :class=> 'ui-widget-content required', :title=> 'Coseguro debe ser numerico' %></td>
   </tr>
 
  
   
 </table>
 
-
-  <td>
-    <%= f.submit 'Actualizar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
-  </td>
+  <table><tr>
+  <td  style=" float: left; margin-left:  1050px">
+ <%= link_to 'Cancelar', edit_paciente_path(@paciente) %>
+  <%= f.submit 'Actualizar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+  </td></tr>
+  </table>
 <% end %>
 </fieldset>
-<%= link_to 'Ver', @tratamiento %> |
-<%= link_to 'Volver', tratamientos_path %>
+
+
 
 <script type="text/javascript">
   $("#edit_tratamiento").validate({

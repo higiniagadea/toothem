@@ -14,8 +14,8 @@
 <% @tratamientos.each do |tratamiento| %>
   <tr>
     <td><%=h tratamiento.fecha %></td>
-    <td><%=h tratamiento.profesional.nombre %></td>
-    <td><%=h tratamiento.estado_tratamiento.nombre%></td>
+    <td><%=h tratamiento.profesional_id %></td>
+    <td><%=h tratamiento.estado_tratamiento_id%></td>
     
     <td><%= link_to image_tag('magnifier_zoom_in.png'), tratamiento, :title => "Ver" %></td>
     <td><%= link_to image_tag('pencil.png'), edit_tratamiento_path(tratamiento), :title => 'Editar' %></td>
@@ -28,4 +28,4 @@
 <%end%>
 </table>
 </fieldset>
-<%= link_to 'agregar', new_trat_paciente_path(@paciente) %>
+<%= link_to 'agregar', new_tratamiento_paciente_path(@paciente) %>

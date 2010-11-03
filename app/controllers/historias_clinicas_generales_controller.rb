@@ -40,7 +40,7 @@ class HistoriasClinicasGeneralesController < ApplicationController
     @historia_clinica_general = HistoriaClinicaGeneral.new
   
      respond_to do |format|
-     format.html#historia clinica gral
+     format.html{render :layout => false}
     end
   end
 
@@ -49,10 +49,11 @@ class HistoriasClinicasGeneralesController < ApplicationController
 
      @historia_clinica_general = @paciente.historia_clinica_general
      @pagetitle = 'Editando Historia Clinica General' 
-    
+     respond_to do |format|
+     format.html{render :layout => false}
 
   end
-
+  end
   # POST /historias_clinicas_generales
   # POST /historias_clinicas_generales.xml
   def create
@@ -61,8 +62,8 @@ class HistoriasClinicasGeneralesController < ApplicationController
     respond_to do |format|
       if @historia_clinica_general.save
         flash[:notice] = 'Historia Clinica General creada.'
-        format.html {render :partial=> 'pacientes/edit_datos_personales', :layout=> 'default'}
-        #format.html{redirect_to edit_paciente_historia_clinica_general_path}
+        #format.html {render :partial=> 'pacientes/edit_datos_personales', :layout=> 'default'}
+        format.html{redirect_to(edit_paciente_path(@paciente) + '#clinicas')}
         #format.xml  { render :xml => @historia_clinica_general, :status => :created, :location => @historia_clinica_general }
      else
        format.html { render :action => "new" }
@@ -79,7 +80,7 @@ class HistoriasClinicasGeneralesController < ApplicationController
       if @historia_clinica_general.update_attributes(params[:historia_clinica_general])
         flash[:notice] = 'Historia Clinica General actualizada.'
   
-        format.html {redirect_to @paciente}
+        format.html {redirect_to(edit_paciente_path(@paciente) + '#clinicas')}
        # format.xml  { head :ok }
       #else
        # format.html { render :action => "edit" }
@@ -102,7 +103,7 @@ class HistoriasClinicasGeneralesController < ApplicationController
     @paciente.destroy
 
     respond_to do |format|
-      format.html { redirect_to @paciente}
+      format.html { redirect_to edit_paciente_path(@paciente) + '#datos_personales'}
     
     end
   end

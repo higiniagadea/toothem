@@ -6,9 +6,9 @@ class TratamientosController < ApplicationController
   before_filter :login_required
 
   def index
-    @pagetitle = "Tratamientos"
-   
-    @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id]
+  
+    
+    @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5
     respond_to do |format|
       #format.html {render :partial => 'edit', :layout=> 'default'}
       format.xml  { render :partial=> 'pacientes/edit_tratamientos', :layout=> 'default' }
@@ -34,21 +34,21 @@ class TratamientosController < ApplicationController
     @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5,  :conditions => ['paciente_id = ?', @paciente.id]
     #@ficha = Ficha.new(params[:ficha_id]) unless params[:ficha_id].blank?
     respond_to do |format|
-      format.html { render :partial => 'new_trat', :layout => 'default' }
+      format.html { render :partial => 'new', :layout => 'default' }
       #format.xml  { render :xml => @tratamiento }
     end
   end
 
-   def new_trat
-    @paciente = Paciente.find(params[:paciente_id])
-    @tratamiento = Tratamiento.new
-    @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5,  :conditions => ['paciente_id = ?', @paciente.id]
+   #def new_trat
+    #@paciente = Paciente.find(params[:paciente_id])
+    #@tratamiento = Tratamiento.new
+    #@tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5,  :conditions => ['paciente_id = ?', @paciente.id]
     #@ficha = Ficha.new(params[:ficha_id]) unless params[:ficha_id].blank?
-    respond_to do |format|
-     format.html { render :partial => 'new_trat', :layout => 'default'}
+    #respond_to do |format|
+     #format.html { render :partial => 'new_trat', :layout => 'default'}
       #format.xml  { render :partial=> 'pacientes/edit_tratamientos' }
-    end
-  end
+    #end
+  #end
 
 
   # GET /tratamientos/1/edit
@@ -62,13 +62,13 @@ class TratamientosController < ApplicationController
   def create
     @paciente = Paciente.find(params[:tratamiento][:paciente_id])
     @tratamiento = Tratamiento.new(params[:tratamiento])
-    @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 4, :conditions => ['paciente_id =?', @paciente.id.to_s])
+    @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id.to_s])
     #@ficha = Ficha.new(params[:ficha_id]) unless params[:ficha_id].blank?
     respond_to do |format|
       if @tratamiento.save
         flash[:notice] = 'Tratamiento creado.'
-      format.html { redirect_to edit_paciente_path(@paciente) + '#tratamientos' }
-        format.html {render :partial=> 'pacientes/edit_tratamientos', :layout=> 'default' }
+        format.html { redirect_to edit_paciente_path(@paciente) + '#tratamientos' }
+        #format.html {redirect_to pacientes_path(@paciente) }
     
       else
         format.html {render :partial => 'new', :layout => 'default'}

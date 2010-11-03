@@ -1,8 +1,11 @@
  <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Historia Clinica</legend>
+ 
  <% form_for(:historia_clinica_ortodoncia, @historia_clinica_ortodoncia, :url => {:method => :post, :action => "show"}) do |f| %>
         <%= f.error_messages %>
-
+  
+      
+  
 <div id="pacientes-screen">
   <div id="pacientes-options">
     <div id="pacientes-nombre">
@@ -10,17 +13,18 @@
     </div>
     <table>
         <tr>
-          <td style=" float: left; margin-left:  1100px"><%= link_to image_tag('printer.png'), imprimir_paciente_historia_clinica_ortodoncia_path(@paciente), :title => 'Imprimir', :popup => ['Imprimir', 'height=300,width=600'] %><%= f.submit 'Guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
+          <td style=" float: left; margin-left:  1050px"><%= link_to image_tag('printer.png'), imprimir_paciente_historia_clinica_ortodoncia_path(@paciente), :title => 'Imprimir', :popup => ['Imprimir', 'height=300,width=600'] %><%= f.submit 'Guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
         </tr>
       </table>
       </div>
      </div>
 
-     
+      <div class="demo-show">
  <fieldset class="pacientes-data">
-   <legend>Historia Familiar</legend>
-   <table class="historia_clinica">
-    <tr class="odd">
+   <h3><a href="javascript:void(0)">Historia familiar</a></h3>
+      <div>
+   <table id=" table-list">
+    <tr>
     
       <td class="labels">Nombre y Apellido del Padre:</td>
       <td><%= f.text_field :nombre_apellido_padre, :size=>10, :class=> 'ui-widget-content' %>
@@ -29,7 +33,11 @@
     <td><%= f.text_field :ocupacion_padre, :size=>10, :class=> 'ui-widget-content' %>
     </td>
     </tr>
-<tr>
+   </table>
+
+   
+ <table>
+   <tr>
     <td class="labels">Nombre y Apellido de la Madre: </td>
     <td><%= f.text_field :nombre_apellido_madre, :size=>10, :class=> 'ui-widget-content' %>
     </td>
@@ -67,13 +75,14 @@
     </tr>
  
  </table>
+      </div>
   </fieldset>
 
- <fieldset class="pacientes-data">
- <legend>Historia Medica</legend>
- <table class="historia-clinica">
+<fieldset class="pacientes-data">
+  <legend>Historia Medica</legend>
+   <table class="historia-clinica">
    <tr class="odd">
-   
+
     <td class="labels">Tratamiendo Medico: </td>
     <td><%= f.check_box :tratamiento_medico, :class=> 'ui-widget-content' %>
     </td>
@@ -102,14 +111,14 @@
     <td class="labels">Altura: </td>
     <td><%= f.text_field :altura, :size=> 3, :class=> 'ui-widget-content' %>
     </td>
-    
+
     <td class="labels">Peso: </td>
     <td><%= f.text_field :peso, :size=> 3, :class=> 'ui-widget-content' %>
     </td>
     <td class="labels">Condicion: </td>
-    <td><%= f.text_field :condicion, :size=>10 , :class=> 'ui-widget-content' %>
+    <td><%= f.text_field :condicion, :size=>10, :class=> 'ui-widget-content'  %>
     </td>
-    
+
  </tr>
  <tr class="odd">
     <td class="labels">Trastorno Psiquico: </td>
@@ -178,7 +187,7 @@
     <td><%= f.check_box :perdida_peso, :class=> 'ui-widget-content' %>
     </td>
     <td class="labels">Fiebre Reumatica: </td>
-    <td><%= f.check_box :fiebre_reumeatica, :class=> 'ui-widget-content' %>
+    <td><%= f.check_box :fiebre_reumeatica, :class=> 'ui-widget-content'%>
     </td>
     <td class="labels">Enfermedades Sanguineas: </td>
     <td><%= f.check_box :enfermedades_sanguineas, :class=> 'ui-widget-content' %>
@@ -225,7 +234,7 @@
     <td><%= f.check_box :jaquecas, :class=> 'ui-widget-content' %>
     </td>
     <td class="labels">Desordenes de piel: </td>
-    <td><%= f.check_box :desordenes_piel, :class=> 'ui-widget-content'  %>
+    <td><%= f.check_box :desordenes_piel, :class=> 'ui-widget-content' %>
     </td>
  </tr>
  <tr class="odd">
@@ -252,7 +261,7 @@
  </tr>
  <tr class="odd">
     <td class="labels">Trastornos Oseos: </td>
-    <td><%= f.check_box :trastornos_oseos, :class=> 'ui-widget-content' %>
+    <td><%= f.check_box :trastornos_oseos, :class=> 'ui-widget-content'%>
     </td>
     <td class="labels">Viruelas: </td>
     <td><%= f.check_box :viruelas, :class=> 'ui-widget-content' %>
@@ -343,7 +352,7 @@
     <td><%= f.check_box :sudoracion_fiebre_nocturna, :class=> 'ui-widget-content' %>
     </td>
     <td class="labels">Moretones Facilmente: </td>
-    <td><%= f.check_box :moretones_facilmente, :class=> 'ui-widget-content' %>
+    <td><%= f.check_box :moretones_facilmente, :class=> 'ui-widget-content'  %>
     </td>
     <td class="labels">Sangrado Excesivo de Heridas: </td>
     <td><%= f.check_box :sangrado_excesivo_heridas, :class=> 'ui-widget-content' %>
@@ -381,18 +390,18 @@
     <td><%= f.text_field :tipo_tabaco_usado, :size=>10, :class=> 'ui-widget-content' %>
     </td>
     <td class="labels">Cantidad de tabaco usado: </td>
-    <td><%= f.text_field :cantidad_tabaco_usado, :size=> 10, :class=> 'ui-widget-content' %>
+    <td><%= f.text_field :cantidad_tabaco_usado, :size=> 10, :class=> 'ui-widget-content'  %>
     </td>
  </tr>
  <tr>
     <td class="labels">Presion Arterial Promedio: </td>
-    <td><%= f.text_field :presion_arterial_promedio, :size=> 12, :class=> 'ui-widget-content' %>
+    <td><%= f.text_field :presion_arterial_promedio, :size=> 10, :class=> 'ui-widget-content' %>
     </td>
     <td class="labels">Farmacos consumidos en los ultimos años: </td>
     <td><%= f.text_field :farmacos_consumidos_ultimos_anios, :size=>10, :class=> 'ui-widget-content' %>
     </td>
  </tr>
- 
+
  <tr class="odd">
     <td class="labels">Otros: </td>
     <td><%= f.text_field :otros, :size=>10, :class=> 'ui-widget-content' %>
@@ -401,14 +410,13 @@
     <td><%= f.text_field :observaciones, :size=>10, :class=> 'ui-widget-content' %>
     </td>
  </tr>
- </table>
+  </table>
 </fieldset>
-
- <fieldset class="pacientes-data">
+         <fieldset class="pacientes-data">
  <legend>Historia bucodental</legend>
    <table class="historia_clinica">
  <tr class="odd">
-   
+
     <td class="labels">Fue al odontologo anteriormente?: </td>
     <td><%= f.check_box :fue_al_odontologo_anteriormente, :class=> 'ui-widget-content' %>
     </td>
@@ -416,7 +424,7 @@
     <td><%= f.text_field :fecha_ultimo_control_odontologico, :size=> 10, :class=> 'ui-widget-content' %>
     </td>
     <td class="labels">Razon de la concurrencia: </td>
-    <td><%= f.text_field :razon_concurrencia, :size=> 10, :class=> 'ui-widget-content' %>
+    <td><%= f.text_field :razon_concurrencia, :size=> 10, :class=> 'ui-widget-content'  %>
     </td>
  </tr>
  <tr>
@@ -439,7 +447,7 @@
     </td>
 </tr>
 <tr>
-  
+
     <td class="labels">Succion Digital: </td>
     <td><%= f.check_box :succion_digital, :class=> 'ui-widget-content' %>
     </td>
@@ -515,7 +523,7 @@
     <td><%= f.text_field :periodonto, :size=>10, :class=> 'ui-widget-content' %>
     </td>
 
-   
+
  </tr>
  <tr class="odd">
     <td class="labels">Usa hilo dental? </td>
@@ -549,12 +557,11 @@
  </tr>
     </table>
  </fieldset>
-  
- <fieldset class="pacientes-data">
-  <legend>Examen Radiologico</legend>
+        <fieldset class="pacientes-data">
+    <legend>Examen Radiologico</legend>
    <table class="historia_clinica">
  <tr>
-    
+
     <td class="labels">Anomalias Forma: </td>
     <td><%= f.check_box :anomalias_forma, :class=> 'ui-widget-content' %>
     </td>
@@ -655,12 +662,12 @@
  </tr>
    </table>
  </fieldset>
-   
- <fieldset class="pacientes-data">
-   <legend>Historia Ortodoncica</legend>
+         <fieldset class="pacientes-data">
+    <legend>Historia Ortodoncica</legend>
    <table class="historia_clinica">
 
  <tr>
+
     <td class="labels">Consulta ortodoncica previa: </td>
     <td><%= f.check_box :consulta_ortodoncica_previa, :class=> 'ui-widget-content' %>
     </td>
@@ -688,115 +695,10 @@
  </tr>
  </table>
  </fieldset>
- 
- 
- <fieldset class="pacientes-data">
-    <legend>Examen Bucal</legend>
-   <table class="historia-clinica">
-  
- <tr class="odd">
-   
-    <td class="labels">Dientes presentes en la boca: </td>
-    <td><%= f.text_field :dientes_presentes_boca, :size=>10, :class=> 'ui-widget-content' %>
-    </td>
-    <td class="labels">Evaluacion Clinica: </td>
-    <td><%= f.text_field :evaluacion_clinica, :size=>10, :class=> 'ui-widget-content' %>
-    </td>
- </tr>
-   </table>
- </fieldset>
-  
- <fieldset class="pacientes-data">
-    <legend>Articulacion temporo-mandibular</legend>
-   <table class="historia-clinica">
-   
- <tr class="odd">
-  
-    <td class="labels">Limitacion: </td>
-    <td><%= f.check_box :limitacion, :class=> 'ui-widget-content' %>
-    </td>
-    <td class="labels">Desviacion: </td>
-    <td><%= f.check_box :desviacion, :class=> 'ui-widget-content' %>
-    </td>
-    <td class="labels">Hipermovilidad: </td>
-    <td><%= f.check_box :hipermovilidad, :class=> 'ui-widget-content' %>
-    </td>
-</tr>
-<tr>
-    <td class="labels">Ruidos: </td>
-    <td><%= f.check_box :ruidos, :class=> 'ui-widget-content' %>
-    </td>
-    <td class="labels">Lateralidad: </td>
-    <td><%= f.check_box :lateralidad, :class=> 'ui-widget-content' %>
-    </td>
-    <td class="labels">Hacia la Izquierda: </td>
-    <td><%= f.check_box :hacia_izquierda, :class=> 'ui-widget-content' %>
-    </td>
-</tr>
-<tr class="odd">
-    <td class="labels">Hacia la Derecha: </td>
-    <td><%= f.check_box :hacia_derecha, :class=> 'ui-widget-content' %>
-    </td>
-    <td class="labels">Chasquido: </td>
-    <td><%= f.check_box :chasquido, :class=> 'ui-widget-content' %>
-    </td>
-    <td class="labels">Crepitacion: </td>
-    <td><%= f.check_box :crepitacion, :class=> 'ui-widget-content' %>
-    </td>
-</tr>
-<tr>
-    <td class="labels">Dolor: </td>
-    <td><%= f.check_box :dolor, :class=> 'ui-widget-content' %>
-    </td>
-    <td class="labels">Espontaneo: </td>
-    <td><%= f.check_box :espontaneo, :class=> 'ui-widget-content' %>
-    </td>
-    <td class="labels">Localizado: </td>
-    <td><%= f.check_box :localizado, :class=> 'ui-widget-content' %>
-    </td>
-</tr>
-<tr class="odd">
-    <td class="labels">Difuso: </td>
-    <td><%= f.check_box :difuso, :class=> 'ui-widget-content' %>
-    </td>
-    <td class="labels">Durante la funcion: </td>
-    <td><%= f.check_box :durante_funcion, :class=> 'ui-widget-content' %>
-    </td>
-    <td class="labels">Palpacion Articular Lateral: </td>
-    <td><%= f.check_box :palpacion_articular_lateral, :class=> 'ui-widget-content' %>
-    </td>
-</tr>
-<tr>
-    <td class="labels">Palpacion Articular Posterior: </td>
-    <td><%= f.check_box :palpacion_articular_posterior, :class=> 'ui-widget-content' %>
-    </td>
-    <td class="labels">Radiografia Panoramica: </td>
-    <td><%= f.check_box :radiografia_panoramica, :class=> 'ui-widget-content' %>
-    </td>
-</tr>
-<tr class="odd">
-    <td class="labels">Historial traba bloqueo mandibular: </td>
-    <td><%= f.check_box :historial_traba_bloqueo_mandibular, :class=> 'ui-widget-content' %>
-    </td>
-    <td class="labels">Con dolor: </td>
-    <td><%= f.check_box :con_dolor, :class=> 'ui-widget-content' %>
-    </td>
-</tr>
-<tr>
-    <td class="labels">Con ruido: </td>
-    <td><%= f.check_box :con_ruido, :class=> 'ui-widget-content' %>
-    </td>
-    <td class="labels">Con movimiento limitado: </td>
-    <td><%= f.check_box :con_movimiento_limitado, :class=> 'ui-widget-content' %>
-    </td>
-</tr>
-</table>
-</fieldset>
-
 <fieldset class="pacientes-data">
-    <legend>Otros varios</legend>
-    <table class="historia_clinica">
-    
+<legend>Otros varios</legend>
+  <table class="historia_clinica">
+
 <tr class="odd">
 
     <td class="labels">Examen de Tejidos blandos: </td>
@@ -830,8 +732,9 @@
 </table>
 </fieldset>
 
-<fieldset class="pacientes-data">
-    <table class="historia_clinica">
+  <fieldset class="pacientes-data">
+
+<table class="historia_clinica">
 <tr class="odd">
     <td class="labels">Tratamiento Primera Etapa: </td>
     <td><%= f.text_field :tratamiento_primera_etapa, :size=>10, :class=> 'ui-widget-content' %>
@@ -857,23 +760,27 @@
     <td><%= f.text_field :leyenda_declaracion_jurada, :size=>10, :class=> 'ui-widget-content' %>
     </td>
  </tr>
-    </table>
- <table>
-   <tr>
-     <td style=" float: left; margin-left:  1080px">
-    <%= f.submit 'Guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
-  </td>
-   </tr>
 </table>
+    <table>
+ <tr>
+   <td style=" float: left; margin-left:  1050px"><%= f.submit 'Guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
 
-</fieldset>
+ </tr>
+    </table>
+  </fieldset>
+
   
+ 
+
+
+
+
 <%  end %>
 
   <div style="clear:both;"></div>
 
- 
 
+      </div>
  </fieldset>
 
 

@@ -49,7 +49,7 @@ ActionController::Routing::Routes.draw do |map|
                 },
 
                 :member => {:new_tratamiento => [:get,:post],
-                            :new_trat => [:get, :post],
+                          
                             :update_tratamiento => [:get, :post],
                             :changephoto => :get,
                             :uploadphoto => :post,
@@ -66,7 +66,11 @@ ActionController::Routing::Routes.draw do |map|
                             :ver => [:post, :get],
                             :imprimir=> [:post, :get],
                             :elimina_tit => :get,                          
-                            :edit_tratamientos => :get
+                            :edit_tratamientos => :get,
+                            :parte1 => :get,
+                            :parte2 => :get,
+                            :parte3 => :get,
+                            :parte4 => :get
                 }do |paciente|
                              
                             

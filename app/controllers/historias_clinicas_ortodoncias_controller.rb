@@ -42,8 +42,8 @@ class HistoriasClinicasOrtodonciasController < ApplicationController
     @historia_clinica_ortodoncia = HistoriaClinicaOrtodoncia.new
     @title = "Historia Clinica Ortodoncica"
 
-    respond_to do |format|      
-      format.html #historia clinica ortod
+    respond_to do |format|
+     format.html{render :layout => false}
     end
        
   end
@@ -53,9 +53,12 @@ class HistoriasClinicasOrtodonciasController < ApplicationController
   def edit
    
     @historia_clinica_ortodoncia = @paciente.historia_clinica_ortodoncia
-    @title = 'Editando Historia Clinica Ortodoncica'
-
+   
+  respond_to do |format|
+     format.html{render :layout => false}
   end
+  end
+
   # POST /historias_clinicas_ortodoncias
   # POST /historias_clinicas_ortodoncias.xml
   def create
@@ -66,7 +69,7 @@ class HistoriasClinicasOrtodonciasController < ApplicationController
 
         flash[:notice] = 'Historia Clinica Ortodoncia creada.'
        
-        format.html{render :partial=> 'pacientes/edit_datos_personales', :layout=> 'default'}
+        format.html{redirect_to(edit_paciente_path(@paciente) + '#clinicas')}
       else
         format.html { render :action => "new" }
         #format.xml  { render :xml => @historia_clinica_ortodoncia.errors, :status => :unprocessable_entity }
@@ -83,7 +86,7 @@ class HistoriasClinicasOrtodonciasController < ApplicationController
       if @historia_clinica_ortodoncia.update_attributes(params[:historia_clinica_ortodoncia])
         flash[:notice] = 'Historia Clinica Ortodoncia Actualizada.'
         
-        format.html {render :partial=> 'pacientes/edit_datos_personales', :layout=> 'default' }
+      format.html{redirect_to(edit_paciente_path(@paciente) + '#clinicas')}
       else
         format.html { render :action => 'edit'}
        end
@@ -97,8 +100,8 @@ class HistoriasClinicasOrtodonciasController < ApplicationController
     @historia_clinica_ortodoncia.destroy
 
     respond_to do |format|
-      format.html {render :partial=> 'pacientes/edit_datos_personales', :layout=> 'default'}
-      
+      #format.html {render :partial=> 'pacientes/edit_datos_personales', :layout=> 'default'}
+        format.html{redirect_to(edit_paciente_path(@paciente) + '#clinicas')}
     end
   end
 

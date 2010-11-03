@@ -1,8 +1,10 @@
- <fieldset class="ui-widget-content ui-corner-all">
+
+
+<fieldset class="ui-widget-content ui-corner-all">
     <legend class="ui-widget ui-widget-header ui-corner-all" >Tratamientos</legend>
 
  <%unless @tratamientos.blank? %>
-  <table class="table-list">
+  <table style=" text-align: left "class="table-list">
   <tr>
 
     <th>Fecha</th>
@@ -20,17 +22,24 @@
 
     <td><%= link_to image_tag('magnifier_zoom_in.png'), tratamiento, :title => "Ver" %></td>
     <td><%= link_to image_tag('pencil.png'), edit_tratamiento_path(tratamiento), :title => 'Editar' %></td>
-    <td><%= link_to image_tag('cancel.png'),tratamiento, :confirm => 'Esta seguro?', :method => :delete, :title=> 'Eliminar' %></td>
+    <td><%= link_to image_tag('cancel.png'),tratamiento, :confirm => 'Esta seguro de eliminar el tratamiento?', :method => :delete, :title=> 'Eliminar' %></td>
 
   </tr>
 
-<% end %>
-  <%= will_paginate @tratamientos, :previous_label=>'Anterior', :next_label => 'Siguiente' %>
-  <%= link_to 'Crear Tratamiento', new_trat_paciente_path(@paciente)  %>
+
+ 
+  
 <%end%>
-</table>
+  <tr><td>
+  <%= will_paginate @tratamientos, :previous_label=>'Anterior', :next_label => 'Siguiente' %>
+    </td></tr>
+<%end%>
+ 
+  </table>
     <table>
-      <tr><td style=" float: left; margin-left: 1000px">
-<%= link_to image_tag('add.png'), new_trat_paciente_path + "?paciente_id="+@paciente.id.to_s  %>Crear Tratamiento
+      <tr><td style=" float: left; margin-left: 1050px">
+<%= link_to image_tag('add.png') + 'Crear Tratamiento', new_tratamiento_paciente_path + "?paciente_id="+@paciente.id.to_s  %>
         </td></tr></table>
+ 
+
  </fieldset>
