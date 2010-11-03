@@ -11,13 +11,14 @@ class TratamientosController < ApplicationController
     @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5
     respond_to do |format|
       #format.html {render :partial => 'edit', :layout=> 'default'}
-      format.xml  { render :partial=> 'pacientes/edit_tratamientos', :layout=> 'default' }
+     format.html
     end
   end
 
   # GET /tratamientos/1
   # GET /tratamientos/1.xml
   def show
+     @paciente = Paciente.find(params[:paciente_id])
     @tratamiento = Tratamiento.find(params[:id])
 
     respond_to do |format|
@@ -53,8 +54,9 @@ class TratamientosController < ApplicationController
 
   # GET /tratamientos/1/edit
   def edit
-    
+  
     @tratamiento = Tratamiento.find(params[:id])
+
   end
 
   # POST /tratamientos
@@ -83,12 +85,15 @@ class TratamientosController < ApplicationController
   # PUT /tratamientos/1
   # PUT /tratamientos/1.xml
   def update
-    @tratamiento = Tratamiento.find(params[:id])
+    
+   @tratamiento = Tratamiento.find(params[:id])
+   
+    
     respond_to do |format|
       if @tratamiento.update_attributes(params[:tratamiento])
         flash[:notice] = 'Tratamiento actualizado.'
-        format.html { redirect_to pacientes_path(@paciente)}
-        format.xml  { head :ok }
+      #  format.html {render :partial=> 'pacientes/edit_tratamientos', :layout=> 'default'}
+      format.html { redirect_to pacientes_path(@paciente)}
        else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @tratamiento.errors, :status => :unprocessable_entity }
@@ -105,9 +110,9 @@ class TratamientosController < ApplicationController
 
     respond_to do |format|
       flash[:notice] = 'Tratamiento eliminado'
-      format.html { redirect_to pacientes_path, :layout => 'default'}
+     format.html {redirect_to search_pacientes_url}
+     #format.html { render :partial=> 'pacientes/edit_datos_personales' }
      
-      format.xml  { head :ok }
     end
   end
 end

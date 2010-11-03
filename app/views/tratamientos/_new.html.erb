@@ -50,7 +50,7 @@
   <table>
          <tr>
             <td style=" float: left; margin-left:  1100px">
-                  <%#= link_to 'Cancelar', paciente_path(@paciente) %>
+                  <%#= link_to 'Cancelar', edit_paciente_path(@paciente) %>
                   <%= f.submit 'Guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
 
                   <%# = button_to_remote 'Agregar Tratamiento', :url=> asignar_tratamiento_ficha_url(@ficha), :method => :get, :success=> '$.fancybox.close();' %>

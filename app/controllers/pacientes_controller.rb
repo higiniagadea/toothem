@@ -338,11 +338,12 @@ class PacientesController < ApplicationController
   
 
 def update_tratamiento
-  @paciente = Paciente.find(params[:paciente_id])
+  @paciente = Paciente.find(params[:id])
   @tratamiento = Tratamiento.find(params[:id])
   respond_to do |format|
     if 
       @tratamiento.update_attributes(params[:tratamiento])
+    format.html { redirect_to edit_pacientes_path(@paciente) + '#tratamientos'}
     end
     format.html{ redirect_to(@tratamiento)}
   end

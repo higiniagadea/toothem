@@ -3,13 +3,14 @@
 
 <% form_for(@tratamiento) do |f| %>
   <%= f.error_messages(:header_message=>'Ingreso Incorrecto: ',:message=>'Se encontraron los siguientes errores') %>
- <div class="errores">
+      <%#= f.hidden_field :paciente_id, 'value' => @paciente.id.to_s  %>
+  <div class="errores">
           <ol style="list-style:none"></ol>
         </div>
 <table id="form">
   
 <tr>
-  <td><h1>Editando Tratamiento de :<%= @tratamiento.paciente.nombre %></h1></td></tr>
+  <td><h1>Paciente :<%= @tratamiento.paciente.nombre %></h1></td></tr>
 
 <tr>
   <td><label>Fecha</label></td>
@@ -39,22 +40,29 @@
   <td><%= f.text_field :importe_cubierto, :size => 10, :class=> 'ui-widget-content required', :title=> 'Importe debe ser numerico' %>
   </td>
   <td class="label">Coseguro</td>
-
-
-  <td
-    <%= f.text_field :coseguro, :size=>10,  :class=> 'ui-widget-content required', :title=> 'Coseguro debe ser numerico' %></td>
+  <td>
+    <%= f.text_field :coseguro, :size=>10, :class=> 'ui-widget-content', :title=> 'Coseguro debe ser numerico' %></td>
   </tr>
+</table>
+  <table>
+         <tr>
+            <td style=" float: left; margin-left:  1100px">
+                  <%#= link_to 'Cancelar', edit_tratamientos_paciente_path(@paciente) %>
+                  <%= f.submit 'Actualizar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
 
+                  <%# = button_to_remote 'Agregar Tratamiento', :url=> asignar_tratamiento_ficha_url(@ficha), :method => :get, :success=> '$.fancybox.close();' %>
+
+            </td>
+
+         </tr>
+      </table>
  
   
-</table>
 
-  <table><tr>
-  <td  style=" float: left; margin-left:  1050px">
- <%= link_to 'Cancelar', edit_paciente_path(@paciente) %>
-  <%= f.submit 'Actualizar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
-  </td></tr>
-  </table>
+
+  
+   
+  
 <% end %>
 </fieldset>
 

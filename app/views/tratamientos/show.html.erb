@@ -8,22 +8,16 @@
   <td class="label">Fecha</td>
   <td><%=h @tratamiento.fecha %> </td>
     
-
-<td class="label">Cara:</td>
-<td><%=h @tratamiento.cara %>
-</td>
 <td class="label">Diente:</td>
 <td><%=h @tratamiento.diente %>
 </td>
 
-</tr>
-
-<tr>
-<td class="label">Importe cubierto:</td>
-<td><%=h number_to_currency(@tratamiento.importe_cubierto) %>
+<td class="label">Cara:</td>
+<td><%=h @tratamiento.cara %>
 </td>
-</tr>
 
+
+</tr>
 <tr>
 <td class="label">Prestacion:</td>
 <td><%=h @tratamiento.prestacion.descripcion %>
@@ -38,12 +32,22 @@
 </td>
 
 </tr>
+
+<tr>
+<td class="label">Importe cubierto:</td>
+<td><%=h number_to_currency(@tratamiento.importe_cubierto) %>
+</td>
+<td class="label">Coseguro:</td>
+<td><%=h number_to_currency(@tratamiento.coseguro) %></td>
+</tr>
+
+
 </table>
   <table>
     <tr>
       <td style=" float: left; margin-left:  1150px">
 <%#= link_to 'Editar', edit_tratamiento_path(@tratamiento) %> 
-<%= link_to 'Cancelar', tratamientos_path %>
+<%= link_to 'Cancelar', edit_tratamiento_path(@tratamiento)  %>
     </td></tr>
   </table>
 </fieldset>
