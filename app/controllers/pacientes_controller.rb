@@ -253,7 +253,8 @@ class PacientesController < ApplicationController
       @paciente.update_attribute(:titular_id, @titular.id)
         flash[:notice] = 'Titular creado.'
         #format.html {redirect_to @paciente}
-         format.html {render :partial=> 'pacientes/edit_obra_social', :layout => 'default'}
+         #format.html {render :partial=> 'pacientes/edit_obra_social', :layout => 'default'}
+      format.html {redirect_to edit_paciente_path(@paciente) + '#obras_sociales'}
       else
         format.html { render :action => ""  }
       end
