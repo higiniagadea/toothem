@@ -4,7 +4,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :estados_tratamientos
 
-  map.resources :tratamientos, :member => {:new_trat => [:get, :post], :create_trat => :post}
+  map.resources :tratamientos, :member => {:eliminar => :get,:new_trat => [:get, :post], :create_trat => :post}
 
   map.resources :imagenes, :collection => {:new_archivo => :get}
               

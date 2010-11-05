@@ -22,9 +22,7 @@ class PacientesController < ApplicationController
     @tratamiento = Tratamiento.new
     
     respond_to do |format|
-     #format.html {render :layout => 'default' }
-     #format.html {render :controller => 'tratamientos', :action => 'new_trat'}  partial _new_trat crea el tratamiento
-     format.html {render :partial=> 'tratamientos/new', :layout=> 'default'}
+     format.html {render :partial=> 'tratamientos/new', :layout=> false}
      format.html {redirect_to edit_paciente_path(@paciente) + '#tratamientos'}
     end
   end
@@ -123,7 +121,8 @@ class PacientesController < ApplicationController
 
   # GET /pacientes/1/edit
   def edit
-     @paciente = Paciente.find_by_id(params[:id])
+    params[:paciente_id]
+    @paciente = Paciente.find_by_id(params[:id])
     @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id.to_s])
    
     @title = "Editando paciente"
@@ -306,7 +305,8 @@ class PacientesController < ApplicationController
        
         flash[:notice] = 'Paciente actualizado.'
         #format.html { redirect_to(@paciente) }
-        format.html {render :partial=> 'pacientes/edit_datos_personales', :layout => 'default'}
+        #format.html {render :partial=> 'pacientes/edit_datos_personales', :layout => 'default'}
+         format.html {redirect_to(edit_paciente_path(@paciente) + '#datos_personales') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -337,17 +337,6 @@ class PacientesController < ApplicationController
 
   
 
-def update_tratamiento
-  @paciente = Paciente.find(params[:id])
-  @tratamiento = Tratamiento.find(params[:id])
-  respond_to do |format|
-    if 
-      @tratamiento.update_attributes(params[:tratamiento])
-    format.html { redirect_to edit_pacientes_path(@paciente) + '#tratamientos'}
-    end
-    format.html{ redirect_to(@tratamiento)}
-  end
-end
 
 
 def ver

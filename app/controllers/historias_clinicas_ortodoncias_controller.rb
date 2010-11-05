@@ -43,7 +43,7 @@ class HistoriasClinicasOrtodonciasController < ApplicationController
     @title = "Historia Clinica Ortodoncica"
 
     respond_to do |format|
-     format.html{render :layout => false}
+     format.html{render :layout => 'historias_clinicas'}
     end
        
   end
@@ -55,7 +55,7 @@ class HistoriasClinicasOrtodonciasController < ApplicationController
     @historia_clinica_ortodoncia = @paciente.historia_clinica_ortodoncia
    
   respond_to do |format|
-     format.html{render :layout => false}
+     format.html{render :layout => 'historias_clinicas'}
   end
   end
 

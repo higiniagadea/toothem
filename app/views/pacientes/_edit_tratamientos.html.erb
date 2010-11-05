@@ -18,11 +18,12 @@
   <tr>
     <td><%=h tratamiento.fecha %></td>
     <td><%=h tratamiento.profesional_id %></td>
-    <td><%=h tratamiento.estado_tratamiento_id%></td>
-
-    <td><%= link_to image_tag('magnifier_zoom_in.png'), tratamiento, :title => "Ver" %></td>
-    <td><%= link_to image_tag('pencil.png'), edit_tratamiento_path(tratamiento), :title => 'Editar' %></td>
-    <td><%= link_to image_tag('cancel.png'),tratamiento, :confirm => 'Esta seguro de eliminar el tratamiento?', :method => :delete, :title=> 'Eliminar' %></td>
+    <td><%=h tratamiento.estado_tratamiento.nombre %></td>
+    <td></td>
+    <td></td>
+    <td><%= link_to image_tag('magnifier_zoom_in.png'), tratamiento, :title => "Ver", :id=> 'ver' %></td>
+    <td><%= link_to image_tag('pencil.png'), edit_tratamiento_path(tratamiento, :paciente_id => @paciente), :title => 'Editar', :id=> 'editar' %></td>
+    <td><%= link_to image_tag('cancel.png'),eliminar_tratamiento_path(tratamiento, :paciente_id => @paciente.id), :confirm => 'Esta seguro de eliminar el tratamiento?', :title=> 'Eliminar' %></td>
 
   </tr>
 
@@ -38,8 +39,28 @@
   </table>
     <table>
       <tr><td style=" float: left; margin-left: 1050px">
-<%= link_to image_tag('add.png') + 'Crear Tratamiento', new_tratamiento_paciente_path + "?paciente_id="+@paciente.id.to_s  %>
+<%= link_to image_tag('add.png') + 'Crear Tratamiento', new_tratamiento_paciente_path + "?paciente_id="+@paciente.id.to_s, :id=> 'nuevo'  %>
         </td></tr></table>
  
 
  </fieldset>
+<script type="text/javascript">
+    $('#ver').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+     $('#editar').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+     $('#nuevo').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+      </script>

@@ -379,37 +379,5 @@ ul#form label{
    color: #ddd;
  }
 
- 
-
-.demo-show {
-    width: auto;
-    margin: 1em .5em;
-}
-.demo-show h3{
-    margin: 0;
-    padding: .25em;
-    font-size: 12px;
-    
-}
-.demo-show h3 a{
-    font-weight: bold;
-}
-
-.demo-show div {
-    padding: .5em .25em;
-}
-
-.date{
-    width:80px;
-}
-.medium{
-    width:100px;
-}
-.small{
-    width:50px;
-}
-.v-small{
-    width:30px;
-}
 
 

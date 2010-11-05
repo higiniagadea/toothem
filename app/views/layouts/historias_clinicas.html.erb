@@ -1,0 +1,17 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Toothem</title>
+   <%= stylesheet_link_tag "main",'jquery-ui','ui-button','fancybox', "clickmenu"%>
+<%= stylesheet_link_tag 'datePicker', 'date.js', 'main'%>
+<%= javascript_include_tag 'qtip.js','jquery.boxy.js','jquery.datePicker-2.1.2','date.js', 'more-show'%>
+</head>
+<body>
+
+<p style="color: green"><%#= flash[:notice] %></p>
+
+<%= yield %>
+
+</body>
+</html>
+

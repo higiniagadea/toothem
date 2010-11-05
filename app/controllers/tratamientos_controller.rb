@@ -18,12 +18,12 @@ class TratamientosController < ApplicationController
   # GET /tratamientos/1
   # GET /tratamientos/1.xml
   def show
-     
-    @tratamiento = Tratamiento.find(params[:id])
-
+  #@paciente = Paciente.find_by_id(params[:id])
+  @tratamiento = Tratamiento.find(params[:id])
+  #@tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5,  :conditions => ['paciente_id = ?', @paciente.id]
     respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @tratamiento }
+       format.html{render :layout => false}
+     
     end
   end
 
@@ -54,9 +54,14 @@ class TratamientosController < ApplicationController
 
   # GET /tratamientos/1/edit
   def edit
-  
+    if params[:paciente_id]
+      @paciente = Paciente.find(params[:paciente_id])
+    end
     @tratamiento = Tratamiento.find(params[:id])
+    respond_to do |format|
+      format.html{render :layout => false}
 
+    end
   end
 
   # POST /tratamientos
@@ -85,7 +90,7 @@ class TratamientosController < ApplicationController
   # PUT /tratamientos/1
   # PUT /tratamientos/1.xml
   def update
-    
+   @paciente = Paciente.find(params[:tratamiento][:paciente_id])
    @tratamiento = Tratamiento.find(params[:id])
    
     
@@ -93,8 +98,9 @@ class TratamientosController < ApplicationController
       if @tratamiento.update_attributes(params[:tratamiento])
         flash[:notice] = 'Tratamiento actualizado.'
       #  format.html {render :partial=> 'pacientes/edit_tratamientos', :layout=> 'default'}
-      format.html { redirect_to @tratamiento}
-       else
+      #format.html { redirect_to @tratamiento}
+       format.html { redirect_to edit_paciente_path(@paciente) + '#tratamientos' }
+      else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @tratamiento.errors, :status => :unprocessable_entity }
       end
@@ -103,15 +109,15 @@ class TratamientosController < ApplicationController
 
   # DELETE /tratamientos/1
   # DELETE /tratamientos/1.xml
-  def destroy
-    
+  def eliminar
+    #@paciente = Paciente.find(params[:id])
     @tratamiento = Tratamiento.find(params[:id])
     @tratamiento.destroy
-
+    @paciente = Paciente.find(params[:paciente_id])
     respond_to do |format|
       flash[:notice] = 'Tratamiento eliminado'
-     format.html {redirect_to search_pacientes_url}
-     #format.html { render :partial=> 'pacientes/edit_datos_personales' }
+     #format.html {redirect_to search_pacientes_url}
+     format.html { redirect_to edit_paciente_path(@paciente) + '#tratamientos'}
      
     end
   end

@@ -728,10 +728,11 @@ input, select{
 .boxy-wrapper .bottom-right,
 .boxy-wrapper .bottom-left { width: 10px; height: 10px; padding: 0 }
 
-.boxy-wrapper .top-left { background: url('/images/boxy/boxy-nw.png'); }
+/*.boxy-wrapper .top-left { background: url('/images/boxy/boxy-nw.png'); }
 .boxy-wrapper .top-right { background: url('/images/boxy/boxy-ne.png'); }
 .boxy-wrapper .bottom-right { background: url('/images/boxy/boxy-se.png'); }
 .boxy-wrapper .bottom-left { background: url('/images/boxy/boxy-sw.png'); }
+*/
 
 /* IE6+7 hacks for the border. IE7 should support this natively but fails in conjuction with modal blackout bg. */
 /* NB: these must be absolute paths or URLs to your images */
@@ -872,7 +873,6 @@ tr.odd{
 }
 
 
-
 .demo-show {
     width: auto;
     margin: 1em .5em;
@@ -890,3 +890,7 @@ tr.odd{
 .demo-show div {
     padding: .5em .25em;
 }
+
+
+
+

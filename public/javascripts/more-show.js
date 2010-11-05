@@ -11,7 +11,7 @@ $(document).ready(function() {
 $(document).ready(function() {
   $('div.demo-show:eq(0) > div').hide();  
   $('div.demo-show:eq(0) > h3').click(function() {
-    $(this).next().slideToggle('fast');
+    $(this).next().slideToggle('slow');
   });
 });
 
@@ -20,8 +20,8 @@ $(document).ready(function() {
 $(document).ready(function() {
   $('div.demo-show:eq(1) > div:gt(0)').hide();  
   $('div.demo-show:eq(1) > h3').click(function() {
-    $(this).next('div:hidden').slideDown('fast')
-    .siblings('div:visible').slideUp('fast');
+    $(this).next('div:hidden').slideDown('slow')
+    .siblings('div:visible').slideUp('slow');
   });
 });
 
@@ -31,8 +31,8 @@ $(document).ready(function() {
 $(document).ready(function() {
   $('div.demo-show2:eq(0) > div').hide();
   $('div.demo-show2:eq(0) > h3').click(function() {
-    $(this).next('div').slideToggle('fast')
-    .siblings('div:visible').slideUp('fast');
+    $(this).next('div').slideToggle('slow')
+    .siblings('div:visible').slideUp('slow');
   });
 });
 
@@ -44,11 +44,11 @@ $(document).ready(function() {
     var $visibleSiblings = $nextDiv.siblings('div:visible');
 
     if ($visibleSiblings.length ) {
-      $visibleSiblings.slideUp('fast', function() {
-        $nextDiv.slideToggle('fast');
+      $visibleSiblings.slideUp('slow', function() {
+        $nextDiv.slideToggle('slow');
       });
     } else {
-       $nextDiv.slideToggle('fast');
+       $nextDiv.slideToggle('slow');
     }
   });
 });

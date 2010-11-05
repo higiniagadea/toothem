@@ -1,5 +1,5 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-widget-content ui-corner-all ">Historia Clinica</legend>
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Historia Clinica</legend>
 
 <% form_for(:historia_clinica_general, @historia_clinica_general, :url => {:method => :post, :action => "show"}) do |f| %>
         <%= f.error_messages %>
@@ -12,7 +12,7 @@
     <div id="pacientes-actions">
        <table>        
         <tr>
-           <td style=" float: left; margin-left:  1050px"><%= link_to image_tag('printer.png'), imprimir_paciente_historia_clinica_general_path(@paciente), :title => 'Imprimir', :popup => ['Imprimir', 'height=300,width=600'] %>
+           <td style=" float: left; margin-left:  900px"><%= link_to image_tag('printer.png'), imprimir_paciente_historia_clinica_general_path(@paciente), :title => 'Imprimir', :popup => ['Imprimir', 'height=300,width=600'] %>
            <%= f.submit 'Guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
           </td>
         </tr>
@@ -373,13 +373,17 @@
     <%= f.text_field :leyenda_declaracion_jurada, :size => 17, :class=> 'ui-widget-content'%>
     </td>
  </tr>
+ </table>
+
  <table>
    <tr>
-    <td style=" float: left; margin-left:  1050px"><%= link_to 'Volver', paciente_path(@paciente) %> <%= submit_tag "Guardar", :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+    <td style=" float: left; margin-left:  900px">
+    <%= submit_tag "Guardar", :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
     </td>
    </tr>
  </table>
- </table>
+
+ 
   </fieldset>
 <%end%>
 <div style="clear:both;"></div>

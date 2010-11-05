@@ -2,7 +2,7 @@
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Tratamiento</legend>
 <table id="table-list">
 
-<tr><td><h1>Tratamiento de: <%=h @tratamiento.paciente.nombre %> </h1></td></tr>
+<tr><td><h1> <%#=h @tratamiento.paciente.nombre %> </h1></td></tr>
 
 <tr>
   <td class="label">Fecha</td>
@@ -44,11 +44,5 @@
 
 </table>
 </fieldset>
-  <table>
-    <tr>
-      <td style=" float: left; margin-left:  1150px">
-<%#= link_to 'Volver', new_tratamiento_paciente_path +  "?paciente_id="+@paciente.id.to_s  %>
-<%= link_to 'Cancelar', edit_tratamiento_path(@tratamiento)  %>
-    </td></tr>
-  </table>
+ 
 
