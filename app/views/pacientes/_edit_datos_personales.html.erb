@@ -34,8 +34,9 @@
           </td>
          <th>
           Tipo Y Nro.  Documento</th>
-          <td><%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion, {}, :class => 'ui-widget-content') %>
-          <%= f.text_field :matricula, :class => 'ui-widget-content required', :size=>22 %>
+          <td class = 'ui-widget-content required'><%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion, {}) %>
+         
+          <%= @paciente.matricula %>
           </td>
           </tr>
 
@@ -117,7 +118,7 @@
           </tr>
           <tr>
             <th class="fieldname">Nro. de Afiliado</th>
-            <td><%= f.text_field :nro_afiliado, :class=> 'ui-widget-content required', :title=> 'Nro. de Afiliado no puede estar vacio', :size=>20 %> </td>
+            <td><%= @paciente.nro_afiliado %> </td>
           </tr>
           
           <table>
@@ -140,17 +141,8 @@
        errorLabelContainer: $("ol", $("#edit_paciente div.errores")),
        wrapper: 'li',
        meta: "validate",
-       
-       required:true,
-        rules: {
-         "paciente[matricula]": {required: true, remote:"/pacientes/verificar_matricula?paciente[matricula]=" + $('#paciente[matricula]').val()},
-         "paciente[nro_afiliado]": {required: true, remote:"/pacientes/verificar_nroafiliado?paciente[nro_afiliado]=" + $('#paciente[nro_afiliado').val()}
-        },
-         messages:{
-           "paciente[matricula]": {remote:"Nro. de Documento ya se encuentra cargado"},
-           "paciente[nro_afiliado]": {remote:"Nro. de Afiliado ya se encuentra cargado"}
-         }
-       
+       required:true
+ 
        
      });
 });
