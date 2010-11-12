@@ -8,7 +8,7 @@
   <tr>
     <td>N° Ficha </td>
     <td></td>
-     <td>Obra Social <%=  @paciente.titular.obra_social.nombre %></td>
+     <td>Obra Social <%#=  @paciente.titular.obra_social_id %></td>
   </tr>
   <tr>
     <td><label>Fecha</label></td>
@@ -21,6 +21,10 @@
     <td>Profesional </td>
   <td><%= f.collection_select(:profesional_id, Profesional.all, :id, :nombre, :class=> 'ui-widget-content required') %>
   </td>
+  </tr>
+  <tr>
+    <td>Estado</td>
+    <td><%= f.text_field :estado, :size=> 20, :class=> 'ui-widget-content required'%> </td>
   </tr>
 </table>
   <table id="listado-tratamientos">
@@ -53,10 +57,10 @@
   <table>
     <tr>
       
-      <td><%= link_to image_tag('add.png'), new_tratamiento_path + "?paciente_id=" + @paciente.id.to_s, :id=> 'ficha' %>Agregar Tratamiento</td>
+      <td><%#= link_to image_tag('add.png'), new_tratamiento_path + "?paciente_id=" + @paciente.id.to_s, :id=> 'ficha' %></td>
     </tr>
     <tr>
-    <td><%= f.submit 'Guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+    <td style=" float: left; margin-left: 1050px"><%= f.submit 'Guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
       <%end%>
     </td>
   </tr>

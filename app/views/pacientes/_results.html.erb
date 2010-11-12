@@ -1,12 +1,12 @@
 <% unless @pacientes.blank? %>
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Resultado de busqueda de Pacientes</legend>
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Resultado de b&uacute;squeda de Pacientes</legend>
  
   <table id="pacientes" class="table-search" >
     <tr>
       <th>Nombre y Apellido </th>
       <th>Tipo y Nro. Documento</th>
-      <th>Telefono Movil</th>
+      <th>Tel&eacute;fono Movil</th>
       
     </tr>
     <% @pacientes.each do |paciente| %>
@@ -27,7 +27,7 @@
   <%else%>
      
      
-     <td>No se encontraron pacientes segun el criterio de busqueda.</td>
+     <td>No se encontraron pacientes segun el criterio de b&uacute;squeda.</td>
      
 <%end%>
 
