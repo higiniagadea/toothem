@@ -37,8 +37,7 @@ class FichasController < ApplicationController
     @ficha = Ficha.new
 
     respond_to do |format|
-      format.html
-      format.xml  { render :xml => @ficha }
+      format.html{ render :layout => false }
       
       end
    end
