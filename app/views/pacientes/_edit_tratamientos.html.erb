@@ -40,7 +40,7 @@
     <table>
       <tr><td style=" float: left; margin-left: 900px">
 <%= link_to image_tag('add.png') + 'Crear Tratamiento', new_tratamiento_paciente_path + "?paciente_id="+@paciente.id.to_s, :id=> 'nuevo'  %></td>
-<td style=" float: left; margin-left: 900px"><%= link_to image_tag('add.png') + "Nueva Ficha", new_ficha_path + "?paciente_id="+@paciente.id.to_s %>
+<td style=" float: left; margin-left: 900px"><%= link_to image_tag('add.png') + "Nueva Ficha", new_ficha_path + "?paciente_id="+@paciente.id.to_s, :id => 'ficha' %>
         </td></tr></table>
  
 
@@ -59,6 +59,12 @@
 
     });
      $('#nuevo').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+     $('#ficha').fancybox(
         {
       'hideOnContentClick': false,
       'titleShow': false
