@@ -121,4 +121,27 @@ class TratamientosController < ApplicationController
      
     end
   end
+
+def buscar
+    @pagetitle = "Buscar Tratamiento"
+    respond_to do |format|
+      format.html {render :layout=> false}
+
+    end
+  end
+
+def resultado
+    respond_to do |format|
+
+      if params[:profesional].blank? && params[:fecha].blank?
+        format.html{render :text => "Ingrese", :layout => false }
+      else
+        @tratamientos = Tratamiento.basic_search(params)
+        format.html {render :layout => false}
+      end
+
+    end
+
+  end
+
 end

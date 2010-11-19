@@ -124,7 +124,7 @@ class PacientesController < ApplicationController
     params[:paciente_id]
     @paciente = Paciente.find_by_id(params[:id])
     @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id.to_s])
-   
+   @ficha = Ficha.all
     @title = "Editando paciente"
      respond_to do |format|
       unless @paciente.blank?

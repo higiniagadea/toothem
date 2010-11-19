@@ -18,7 +18,7 @@
     <th>
       Tipo Y Nro. de Documento</th>
     <th><%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion, {}, :class => 'ui-widget-content required') %>
-      <%= f.text_field :matricula,  :class =>"ui-widget-content required" , :size=> 22 , :title=> 'Nro. de Documento no puede estar vacio'%>
+      <%= f.text_field :matricula,  :class =>"ui-widget-content required" , :size=> 22 , :title=> 'Nro. de Documento no puede estar vacio', :maxlenght => 8%>
     </th>
     </tr>
     

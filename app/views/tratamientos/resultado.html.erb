@@ -1,19 +1,19 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Resultado</legend>
 <table class="table-list">
-  <tr class="<%  cycle('par','impar') %>">
+  <tr>
     <th>Fecha</th>
     <th>Profesional</th>
     <th>Estado</th>
   </tr>
 
-<% @fichas.each do |ficha| %>
+<% @tratamientos.each do |tratamiento| %>
   <tr>
-    <td><%=h ficha.fecha %></td>
-    <td><%=h ficha.profesional.nombre %></td>
-    <td><%=h ficha.estado %></td>
-    <td><%= link_to 'Ver Mas', ver_ficha_path, :id => 'Ver' %></td>
-    
+    <td><%=h tratamiento.fecha %></td>
+    <td><%=h tratamiento.profesional.nombre %></td>
+    <td><%=h tratamiento.estado_tratamiento.descripcion %></td>
+   
+    <td><%= link_to 'Ver Mas', ver_tratamiento_path(), :title => 'Vista Rapida', :id=> 'ver' %></td>
 
   </tr>
 <% end %>

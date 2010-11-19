@@ -1,0 +1,22 @@
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Ficha N°: </legend>
+  <table style="text-align: left ; " class=" table-list">
+    <tr>
+      <th>Obra Social</th>
+      <td><%=h @paciente.titular.obra_social_id %> </td>
+      <th>Fecha</th>
+      <td><%=h @ficha.fecha%></td>
+    </tr>
+    <tr>
+      <th>Profesional</th>
+      <td><%=h @ficha.profesional_id %></td>
+      <th>Estado</th>
+      <td><%=h @ficha.estado %></td>
+    </tr>
+
+  </table>
+
+
+
+
+</fieldset>

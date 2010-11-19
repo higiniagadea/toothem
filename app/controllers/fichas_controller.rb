@@ -101,7 +101,7 @@ class FichasController < ApplicationController
   def buscar
     @pagetitle = "Buscar Ficha"
     respond_to do |format|
-      format.html # buscar.html.erb
+      format.html {render :layout=> false}
 
     end
   end

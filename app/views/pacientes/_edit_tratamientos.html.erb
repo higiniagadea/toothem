@@ -6,13 +6,15 @@
 <%#  unless @tratamientos.blank? %>
 <% unless @paciente.titular.blank? %>
 
-    <table><tr>
-<td style=" float: left; margin-left: 1000px"><%= link_to image_tag('add.png') + "Nueva Ficha", new_ficha_path + "?paciente_id="+@paciente.id.to_s, :id => 'ficha' %>
-        </td></tr>
+    <table>
+
+        <tr><td style=" float: left; margin-left: 1000px"><%= link_to image_tag('add.png') + "Nueva Ficha", new_ficha_path + "?paciente_id="+@paciente.id.to_s, :id => 'ficha' %>
+        <%= link_to image_tag('zoom.png') + 'Buscar', buscar_fichas_path + "?paciente_id="+@paciente.id.to_s, :id=> 'buscar' %></td></tr>
  <%else%>
     </table>
     <table>
-       <tr><td style=" float: left; margin-left: 1000px"><%= link_to image_tag('add.png') + 'Crear Tratamiento', new_tratamiento_paciente_path + "?paciente_id="+@paciente.id.to_s, :id=> 'nuevo'  %></td>
+       <tr><td style=" float: left; margin-left: 1000px"><%= link_to image_tag('add.png') + 'Crear Tratamiento', new_tratamiento_paciente_path + "?paciente_id="+@paciente.id.to_s, :id=> 'nuevo'  %>
+       <%= link_to image_tag('zoom.png') + 'Buscar', buscar_tratamientos_path + "?paciente_id="+@paciente.id.to_s, :id => 'tratamiento' %></td>
        </tr>
 <%end%>
     </table>
@@ -78,6 +80,18 @@
 
     });
      $('#ficha').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+    $('#buscar').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+       $('#tratamiento').fancybox(
         {
       'hideOnContentClick': false,
       'titleShow': false
