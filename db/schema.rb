@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(:version => 30) do
     t.integer "profesional_id"
     t.integer "obra_social_id"
     t.integer "odontograma_id"
-    t.string  "estado",         :limit => 1, :null => false
+    t.text    "estado",         :null => false
   end
 
   create_table "historias_clinicas_generales", :force => true do |t|

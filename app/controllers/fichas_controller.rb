@@ -2,12 +2,7 @@ class FichasController < ApplicationController
   # GET /fichas
   # GET /fichas.xml
   layout 'default'
-  
-  def asignar_tratamiento
-    respond_to do |format|
-      format.js
-    end
-  end
+ 
 
   def index
 
@@ -57,9 +52,8 @@ class FichasController < ApplicationController
     @ficha.paciente_id = @paciente.id
      respond_to do |format|
       if @ficha.save
-       
-        flash[:notice] = 'Ficha Creada.'
-       format.html {redirect_to(@ficha)}
+       format.html {redirect_to edit_paciente_path(@paciente) + '#tratamientos'}
+       flash[:notice] = 'Ficha creada'
       else
          format.html { render :action => "new" }
          format.xml  { render :xml => @fichas.errors, :status => :unprocessable_entity }
@@ -107,17 +101,36 @@ class FichasController < ApplicationController
   end
 
   def resultado
+    @fichas = Ficha.find(:all, :conditions => ['fecha > ? and fecha < ?', params[:ficha][:fecha].to_date, params[:ficha][:fecha_hasta].to_date] )
     respond_to do |format|
 
-      if params[:profesional].blank? && params[:fecha].blank?
-        format.html{render :text => "Ingrese", :layout => false }
-      else
-        @fichas = Ficha.basic_search(params)
-        format.html {render :layout => false}
-      end
-
+      #if params[:profesional].blank? && params[:fecha].blank?
+       # format.html{render :text => "Ingrese", :layout => false }
+      #else
+       # @fichas = Ficha.basic_search(params)
+        #format.html {render :layout => false}
+      
+format.html {render :layout => false}
     end
 
+  end
+
+  def ver
+
+  @ficha = Ficha.find(:ficha_id)
+
+  respond_to do |format|
+    format.html{ render :layout=> false, :partial => 'ver'}
+   end
+
+  end
+
+  def listado
+      @fichas = Ficha.find(:ficha_id)
+      #@tratamientos = Tratamiento.find(:id)
+      respond_to do
+        format.html{ render :layout => false, :partial => 'listado'}
+      end
   end
 
 end

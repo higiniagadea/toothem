@@ -4,63 +4,35 @@
   <%= error_messages_for :ficha %>
   <%= f.hidden_field :paciente_id, 'value' => @paciente.id.to_s %>
  
-<table id="form">
+<table style=" text-align: left" >
   <tr>
-    <td>N° Ficha </td>
-    <td></td>
-     <td>Obra Social <%#=  @paciente.titular.obra_social_id %></td>
+    <th>N° Ficha </th>
+    <th></th>
+     <th>Obra Social <%=  @paciente.titular.obra_social.nombre %></th>
   </tr>
   <tr>
-    <td><label>Fecha</label></td>
-     <td><span class="fecha" class="ui-widget-content">
+    <th><label>Fecha</label></th>
+     <th><span class="fecha" class="ui-widget-content">
               <input class="ui-widget-content required "type="text" id="fecha" name="ficha[fecha]" readonly="readonly" size="10" />
-      </span></td>
+      </span></th>
 
 
-  
-    <td>Profesional </td>
-  <td><%= f.collection_select(:profesional_id, Profesional.all, :id, :nombre, :class=> 'ui-widget-content required') %>
-  </td>
+    <th>Profesional </th>
+  <th><%= f.collection_select(:profesional_id, Profesional.all, :id, :nombre, :class=> 'ui-widget-content required') %>
+  </th>
   </tr>
   <tr>
-    <td>Estado</td>
-    <td><%= f.text_field :estado, :size=> 20, :class=> 'ui-widget-content required'%> </td>
+    <th>Estado</th>
+    <th><%= f.collection_select(:estado_id, Estado.all, :id, :nombre, :size=> 14, :class=> 'ui-widget-content required')%> </th>
   </tr>
 </table>
-  <table id="listado-tratamientos">
-    <tr id="listado-encabezado">
-      <th>
-        Fecha
-      </th>
-      <th>
-        Diente
-      </th>
-      <th>
-        Cara
-      </th>
-      <th>
-        Prestacion
-      </th>
-      <th>
-        Estado
-      </th>
-      <th>
-        Importe
-      </th>
-      <th>
-        Coseguro
-      </th>
-    </tr>
-  </table>
+ 
 
-  <%= hidden_field_tag :tratamiento   %>
+  
   <table>
+    
     <tr>
-      
-      <td><%#= link_to image_tag('add.png'), new_tratamiento_path + "?paciente_id=" + @paciente.id.to_s, :id=> 'ficha' %></td>
-    </tr>
-    <tr>
-    <td style=" float: left; margin-left: 700px"><%= f.submit 'Guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+    <td style=" float: left; margin-left: 500px"><%= f.submit 'Guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
       <%end%>
     </td>
   </tr>
@@ -70,13 +42,9 @@
  
   
   </fieldset>
+<%#= link_to 'agregar', new_ficha_tratamiento_path + "?paciente_id="+@paciente.id.to_s, :id=> 'agregar' %>
 <script type="text/javascript">
-   $('#ficha').fancybox(
-        {
-      'hideOnContentClick': false,
-      'titleShow': false
 
-    });
-
- $("#fecha").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate:0});
+   
+  $("#fecha").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate:0});
 </script>

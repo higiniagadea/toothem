@@ -3,19 +3,45 @@
   <table style="text-align: left ; " class=" table-list">
     <tr>
       <th>Obra Social</th>
-      <td><%=h @paciente.titular.obra_social_id %> </td>
+      <td><%#=h @paciente.titular.obra_social_id %> </td>
       <th>Fecha</th>
       <td><%=h @ficha.fecha%></td>
     </tr>
     <tr>
       <th>Profesional</th>
-      <td><%=h @ficha.profesional_id %></td>
+      <td><%=#h @tratamiento.profesional_id %></td>
       <th>Estado</th>
       <td><%=h @ficha.estado %></td>
     </tr>
 
   </table>
+  
+  <table>
+    <tr>
+      <th>Fecha</th>
+      <th>Diente</th>
+      <th>Cara</th>
+      <th>Prestacion</th>
+      <th>Estado</th>
+    </tr>
+  </table>
+ <% @tratamientos.each do |tratamiento| %>
+              <tr>
+                  <td><%=h tratamiento.fecha %></td>
 
+                  <td><%=h tratamiento.diente %></td>
+                  <td><%=h tratamiento.cara %></td>
+                  <td><%=h tratamiento.prestacion.descripcion %></td>
+                  <td><%=h tratamiento.estado_id %></td>
+
+
+
+
+                <td><%#= link_to image_tag('pencil.png'), edit_tratamiento_path(tratamiento), :title => "Editar" %></td>
+                <td><%#= link_to image_tag('cancel.png'), tratamiento, :confirm => 'Esta seguro que desea eliminar el tratamiento?', :method => :delete, :title => "Eliminar" %></td>
+
+              </tr>
+            <%end%>
 
 
 

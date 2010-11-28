@@ -1,7 +1,7 @@
-<fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header"> Tratamientos</legend>
-  <table style="text-align: left">
-    <tr>
+<fieldset>
+  <legend>Tratamiento</legend>
+<table>
+   <tr>
       <th>Fecha</th>
       <th><%=h @tratamiento.fecha %></th>
 
@@ -31,13 +31,8 @@
       <th><%=h boolean_desc(@tratamiento.fue_liquidado)%></th>
     </tr>
 
- 
-
-  </table>
-
-</fieldset>
-<table>
-  <tr><td>
-<%= link_to 'Imprimir', imprimir_tratamiento_path(@tratamiento), :popup => ['Imprimir', 'height=200,width=400'] %>
-    </td></tr>
 </table>
+</fieldset>
+ <script type="text/javascript">
+          window.print();
+        </script>

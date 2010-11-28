@@ -11,8 +11,8 @@
   <tr>
     <td><%=h ficha.fecha %></td>
     <td><%=h ficha.profesional.nombre %></td>
-    <td><%=h ficha.estado %></td>
-    <td><%= link_to 'Ver Mas', ver_ficha_path, :id => 'Ver' %></td>
+    <td><%=h ficha.estado_id %></td>
+    <td><%= link_to 'Ver Mas', ver_ficha_path(ficha), :id => 'ver' %></td>
     
 
   </tr>
@@ -27,4 +27,5 @@
       'titleShow': false
 
     });
+     $.fancybox.resize();
   </script>

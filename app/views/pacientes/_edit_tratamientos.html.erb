@@ -3,51 +3,57 @@
 <fieldset class="ui-widget-content ui-corner-all">
     <legend class="ui-widget ui-widget-header ui-corner-all" >Tratamientos</legend>
 
-<%#  unless @tratamientos.blank? %>
-<% unless @paciente.titular.blank? %>
 
     <table>
-
-        <tr><td style=" float: left; margin-left: 1000px"><%= link_to image_tag('add.png') + "Nueva Ficha", new_ficha_path + "?paciente_id="+@paciente.id.to_s, :id => 'ficha' %>
-        <%= link_to image_tag('zoom.png') + 'Buscar', buscar_fichas_path + "?paciente_id="+@paciente.id.to_s, :id=> 'buscar' %></td></tr>
- <%else%>
+      <% unless @paciente.titular.blank? %>
+      <tr>
+        <td style=" float: left; margin-left: 1000px">
+          <%= link_to image_tag('add.png') + "Nueva Ficha", new_ficha_path + "?paciente_id="+@paciente.id.to_s, :id => 'ficha' %>
+              <%= link_to image_tag('zoom.png') + 'Buscar', buscar_fichas_path + "?paciente_id="+@paciente.id.to_s, :id=> 'buscar' %>
+        </td>
+      </tr>
+      
+      <%else%>
+      <tr>
+        <td style=" float: left; margin-left: 1000px">
+             <%= link_to image_tag('add.png') + 'Crear Tratamiento', new_tratamiento_paciente_path + "?paciente_id="+@paciente.id.to_s, :id=> 'nuevo'  %>
+             <%= link_to image_tag('zoom.png') + 'Buscar', buscar_tratamientos_path , :id => 'tratamiento' %>
+        </td>
+      </tr>
+      <%= render:partial => 'tratamientos/listado' %>
+      <%end%>
     </table>
-    <table>
-       <tr><td style=" float: left; margin-left: 1000px"><%= link_to image_tag('add.png') + 'Crear Tratamiento', new_tratamiento_paciente_path + "?paciente_id="+@paciente.id.to_s, :id=> 'nuevo'  %>
-       <%= link_to image_tag('zoom.png') + 'Buscar', buscar_tratamientos_path + "?paciente_id="+@paciente.id.to_s, :id => 'tratamiento' %></td>
-       </tr>
-<%end%>
-    </table>
+    
 
     
-      <% unless @tratamientos.blank? %>
-      <table style=" text-align: left "class="table-list">
+
+
+
+
+<% unless @fichas.blank? %>
+<table style=" text-align: left "class="table-list">
   <tr>
 
     <th>Fecha</th>
     <th>Profesional</th>
     <th>Estado</th>
+    <th>Acciones</th>
     </tr>
-      <% @tratamientos.each do |tratamiento| %>
-  <tr>
-    <td><%=h tratamiento.fecha %></td>
-    <td><%=h tratamiento.profesional_id %></td>
-    <td><%=h tratamiento.estado_tratamiento.nombre %></td>
-    <td></td>
-    <td></td>
-    <td><%= link_to image_tag('magnifier_zoom_in.png'), tratamiento, :title => "Ver", :id=> 'ver' %></td>
-    <td><%= link_to image_tag('pencil.png'), edit_tratamiento_path(tratamiento, :paciente_id => @paciente), :title => 'Editar', :id=> 'editar' %></td>
-    <td><%= link_to image_tag('cancel.png'),eliminar_tratamiento_path(tratamiento, :paciente_id => @paciente.id), :confirm => 'Esta seguro de eliminar el tratamiento?', :title=> 'Eliminar' %></td>
-
-  </tr>
-
-<%end%>
+      <% @fichas.each do |ficha| %>
+          <tr>
+            <td><%=h ficha.fecha %></td>
+            <td><%=h ficha.profesional_id %></td>
+            <td><%=h ficha.estado_id %></td>
+             <td><%= link_to image_tag('add.png') + 'Agregar Tratamiento', new_tratamiento_path + "?paciente_id="+@paciente.id.to_s + '&ficha_id='+ ficha.id.to_s, :id=> 'agregar' %></td>
+             <td><%= link_to 'listado', listado_fichas_path(ficha, @tratamientos) %> </td>
+          </tr>
+      <%end%>
+         
   <tr><td>
-  <%= will_paginate @tratamientos, :previous_label=>'Anterior', :next_label => 'Siguiente' %>
+ 
     </td></tr>
     <%end%>
     </table>
-
 
 
 
@@ -97,4 +103,11 @@
       'titleShow': false
 
     });
+     $('#agregar').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+    $.fancybox.resize();
       </script>

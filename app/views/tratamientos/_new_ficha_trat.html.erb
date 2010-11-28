@@ -4,14 +4,14 @@
   <% form_for(@tratamiento) do |f|%>
       <%= f.error_messages(:header_message=>'Ingreso Incorrecto: ',:message=>'Se encontraron los siguientes errores') %>
       <%= f.hidden_field :paciente_id, 'value' => @paciente.id.to_s  %>
-      <%= f.hidden_field :ficha_id, 'value' => @ficha.id.to_s unless params[:ficha_id].blank?  %>
+
 
   <div class="errores">
           <ol style="list-style:none"></ol>
         </div>
       <table id="form">
         <tr>
-          <td><h1>Paciente: <%= @paciente.nombre %> <%#= @ficha.id.to_s %> </h1></td>
+          <td><h1>Paciente: <%= @paciente.nombre %></h1></td>
           <td></td >
         </tr>
         <tr>
@@ -20,7 +20,7 @@
                     <input class="ui-widget-content required "type="text" id="fecha_trat" size="10" name="tratamiento[fecha]" readonly="readonly" title="Ingrese una fecha" />
             </span>
           </td>
-          <td>Diente</td> 
+          <td>Diente</td>
           <td>
             <%= f.text_field :diente, :size=>10, :class=> 'ui-widget-content required', :title=> 'Diente debe ser numerico' %>
           </td>
@@ -62,8 +62,35 @@
 
 
 
- 
-   
+    <%unless @tratamientos.blank?%>
+      <table class="table-list">
+          <tr>
+            <th>Prestacion</th>
+            <th>Diente</th>
+            <th>Cara</th>
+            <th>Estado de tratamiento</th>
+            <th>Importe Cubierto</th>
+          </tr>
+
+            <% @tratamientos.each do |tratamiento| %>
+              <tr>
+                  <td><%=h tratamiento.prestacion.descripcion %></td>
+                  <td><%=h tratamiento.diente %></td>
+                  <td><%=h tratamiento.cara %></td>
+                  <td><%=h tratamiento.estado_tratamiento.nombre%></td>
+                  <td><%=h number_to_currency(tratamiento.importe_cubierto) %></td>
+
+
+                <td><%= link_to image_tag('magnifier_zoom_in.png'), tratamiento, :title => "Ver" %></td>
+                <td><%= link_to image_tag('pencil.png'), edit_tratamiento_path(tratamiento), :title => "Editar" %></td>
+                <td><%= link_to image_tag('cancel.png'), tratamiento, :confirm => 'Esta seguro que desea eliminar el tratamiento?', :method => :delete, :title => "Eliminar" %></td>
+
+              </tr>
+            <%end%>
+      </table>
+   <%#= will_paginate @tratamientos, :previous_label=>'Anterior', :next_label => 'Siguiente' %>
+  <% end %>
+
 <% end %>
 
 <div class="paginador">
@@ -90,3 +117,4 @@
 
 });
 </script>
+

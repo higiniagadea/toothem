@@ -7,7 +7,7 @@ class CreateFichas < ActiveRecord::Migration
         t.column :profesional_id , :integer
         t.column :obra_social_id , :integer
         t.column :odontograma_id , :integer
-
+        t.column :estado_id , :integer
 
 
     end
