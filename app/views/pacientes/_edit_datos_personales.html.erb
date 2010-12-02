@@ -79,7 +79,7 @@
             </span>
           </td>
          <th>
-      Grupo Sanguineo</th>
+      Grupo Sangu&iacute;neo</th>
       <td><select name="paciente[grupo_sanguineo]" class ="ui-widget-content">
        <%= options_for_select(["A+","A-","B+","B-","AB+","AB-","O+","O-"], @paciente.grupo_sanguineo) %>
          </select>
@@ -88,26 +88,26 @@
 
           <tr>
           <th class="fieldname">
-            Teléfono</th>
+            Tel&eacute;fono</th>
           <td><%= f.text_field :telefono_particular, :class=> 'ui-widget-content ', :size=> 20 %>
           </td>
             <th class="fieldname">
-            Teléfono Celular</th>
+            Tel&eacute;fono Celular</th>
           <td><%= f.text_field :movil, :class=> 'ui-widget-content', :size=>20 %>
           </td>
           <th class="fieldname">
-            Teléfono Laboral</th>
+            Tel&eacute;fono Laboral</th>
           <td><%= f.text_field :telefono_laboral, :class=> 'ui-widget-content', :size=>20 %>
           </td>        
           </tr>
 
           <tr>
           <th class="fieldname">
-            Profesión</th>
+            Profesi&oacute;n</th>
           <td><%= f.text_field :profesion, :class=> 'ui-widget-content ', :size=>20  %>
           </td>
           <th class="fieldname">
-            Ocupación</th>
+            Ocupaci&oacute;n</th>
           <td><%= f.text_field :ocupacion, :class=> 'ui-widget-content ', :size=>20  %>
           </td>
 

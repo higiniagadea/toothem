@@ -1,44 +1,50 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Tratamiento</legend>
-<table id="table-list">
-
-<tr><td><h1> <%#=h @tratamiento.paciente.nombre %> </h1></td></tr>
-
+<table style="text-align: left">
 <tr>
-  <td class="label">Fecha</td>
-  <td><%=h @tratamiento.fecha %> </td>
+  <th>Fecha</th>
+  <th><%=h @tratamiento.fecha.strftime('%d/%m/%Y') %> </th>
     
-<td class="label">Diente:</td>
-<td><%=h @tratamiento.diente %>
-</td>
+<th>Diente:</th>
+<th><%=h @tratamiento.diente %>
+</th>
 
-<td class="label">Cara:</td>
-<td><%=h @tratamiento.cara %>
-</td>
+<th>Cara:</th>
+<th><%=h @tratamiento.cara %>
+</th>
 
 
 </tr>
 <tr>
-<td class="label">Prestacion:</td>
-<td><%=h @tratamiento.prestacion.descripcion %>
-</td>
+<th>Prestaci&oacute;n:</th>
+<th><%=h @tratamiento.prestacion.descripcion %>
+</th>
 
 
+
+
+
+<th>Estado tratamiento:</th>
+<th><%=h @tratamiento.estado_tratamiento_id %>
+</th>
 </tr>
 
-<tr>
-<td class="label">Estado tratamiento:</td>
-<td><%=h @tratamiento.estado_tratamiento.nombre %>
-</td>
 
+
+
+<tr>
+
+<th>Profesional</th>
+<th><%=h @tratamiento.profesional.nombre %></th>
+<th>Importe</th>
+<th><%=h number_to_currency(@tratamiento.importe_cubierto) %>
+</th>
 </tr>
-
 <tr>
-<td class="label">Importe cubierto:</td>
-<td><%=h number_to_currency(@tratamiento.importe_cubierto) %>
-</td>
-<td class="label">Coseguro:</td>
-<td><%=h number_to_currency(@tratamiento.coseguro) %></td>
+<th>Coseguro:</th>
+<th><%=h number_to_currency(@tratamiento.coseguro) %></th>
+<th>Fue liquidado?</th>
+<th><%=h boolean_desc(@tratamiento.fue_liquidado) %></th>
 </tr>
 
 

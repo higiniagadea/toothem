@@ -5,8 +5,10 @@ class CreateEstadosTratamientos < ActiveRecord::Migration
 
       t.timestamps
     end
-    EstadoTratamiento.create :nombre=> 'comenzado'
-    EstadoTratamiento.create :nombre=> 'terminado'
+    EstadoTratamiento.create :nombre=> 'a realizar'
+    EstadoTratamiento.create :nombre=> 'en proceso'
+    EstadoTratamiento.create :nombre=> 'en espera de verificacion'
+    EstadoTratamiento.create :nombre=> 'Finalizado'
   end
 
   def self.down

@@ -5,9 +5,7 @@ class TratamientosController < ApplicationController
 
   before_filter :login_required
 
-  def index
-  
-    
+  def index   
     @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5
     respond_to do |format|
       #format.html {render :partial => 'edit', :layout=> 'default'}
@@ -15,10 +13,14 @@ class TratamientosController < ApplicationController
     end
   end
 
+  
+
+
+
   # GET /tratamientos/1
   # GET /tratamientos/1.xml
   def show
-  #@paciente = Paciente.find_by_id(params[:id])
+  
   @tratamiento = Tratamiento.find(params[:id])
   #@tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5,  :conditions => ['paciente_id = ?', @paciente.id]
     respond_to do |format|
@@ -33,23 +35,14 @@ class TratamientosController < ApplicationController
     @paciente = Paciente.find(params[:paciente_id])
     @tratamiento = Tratamiento.new
     @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5,  :conditions => ['paciente_id = ?', @paciente.id]
-    #@ficha = Ficha.new(params[:ficha_id]) unless params[:ficha_id].blank?
+    @ficha = Ficha.find(params[:ficha_id]) unless params[:ficha_id].blank?   
     respond_to do |format|
-      format.html { render :partial => 'new', :layout => 'default' }
-      #format.xml  { render :xml => @tratamiento }
+      format.html { render :layout => false , :partial => 'new'}
+      
     end
   end
 
-   #def new_trat
-    #@paciente = Paciente.find(params[:paciente_id])
-    #@tratamiento = Tratamiento.new
-    #@tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5,  :conditions => ['paciente_id = ?', @paciente.id]
-    #@ficha = Ficha.new(params[:ficha_id]) unless params[:ficha_id].blank?
-    #respond_to do |format|
-     #format.html { render :partial => 'new_trat', :layout => 'default'}
-      #format.xml  { render :partial=> 'pacientes/edit_tratamientos' }
-    #end
-  #end
+ 
 
 
   # GET /tratamientos/1/edit
@@ -70,12 +63,12 @@ class TratamientosController < ApplicationController
     @paciente = Paciente.find(params[:tratamiento][:paciente_id])
     @tratamiento = Tratamiento.new(params[:tratamiento])
     @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id.to_s])
-    #@ficha = Ficha.new(params[:ficha_id]) unless params[:ficha_id].blank?
+   
     respond_to do |format|
       if @tratamiento.save
         flash[:notice] = 'Tratamiento creado.'
         format.html { redirect_to edit_paciente_path(@paciente) + '#tratamientos' }
-        #format.html {redirect_to pacientes_path(@paciente) }
+   
     
       else
         format.html {render :partial => 'new', :layout => 'default'}
@@ -90,15 +83,12 @@ class TratamientosController < ApplicationController
   # PUT /tratamientos/1
   # PUT /tratamientos/1.xml
   def update
-   @paciente = Paciente.find(params[:tratamiento][:paciente_id])
-   @tratamiento = Tratamiento.find(params[:id])
    
-    
+   @tratamiento = Tratamiento.find(params[:id])
+   @paciente = Paciente.find(params[:tratamiento][:paciente_id])
     respond_to do |format|
       if @tratamiento.update_attributes(params[:tratamiento])
-        flash[:notice] = 'Tratamiento actualizado.'
-      #  format.html {render :partial=> 'pacientes/edit_tratamientos', :layout=> 'default'}
-      #format.html { redirect_to @tratamiento}
+       flash[:notice] = 'Tratamiento actualizado.'
        format.html { redirect_to edit_paciente_path(@paciente) + '#tratamientos' }
       else
         format.html { render :action => "edit" }
@@ -110,15 +100,94 @@ class TratamientosController < ApplicationController
   # DELETE /tratamientos/1
   # DELETE /tratamientos/1.xml
   def eliminar
-    #@paciente = Paciente.find(params[:id])
+   
     @tratamiento = Tratamiento.find(params[:id])
     @tratamiento.destroy
     @paciente = Paciente.find(params[:paciente_id])
     respond_to do |format|
       flash[:notice] = 'Tratamiento eliminado'
-     #format.html {redirect_to search_pacientes_url}
+   
      format.html { redirect_to edit_paciente_path(@paciente) + '#tratamientos'}
      
     end
   end
+
+def buscar
+  @tratamiento = Tratamiento.new
+    respond_to do |format|
+      format.html {render :layout=> false}
+
+    end
+  end
+
+#def resultado
+ # @tratamientos = Tratamiento.find(:all, :conditions => ['fecha > ? and fecha < ?', params[:tratamiento][:fecha].to_date, params[:tratamiento][:fecha_hasta].to_date] )
+  #respond_to do |format|
+    #unless
+     # params[:profesional].blank? && params[:fecha].blank?
+      #  format.html{render :text => "Ingrese", :layout => false }
+      #else
+       # @tratamientos = Tratamiento.find(:all, :conditions => ['fecha > ? and fecha < ?', params[:tratamiento][:fecha].to_date, params[:tratamiento][:fecha_hasta].to_date] )
+        # @tratamientos = Tratamiento.basic_search(params)
+        #format.html {render :layout => false}
+      
+      
+   #    format.html {render :layout => false}
+ #end
+#end
+
+def resultado
+@profesionales = Profesional.find(:all, :conditions => ['nombre like ?', '%' + params[:profesional] + '%'], :select => 'id')
+    respond_to do |format|
+      params[:tratamiento][:profesionales] =  @profesionales
+      if params[:profesional].blank? && params[:fecha].blank?
+        format.html{render :text => "Ingrese los datos para realizar la busqueda", :layout => false }
+      else
+       @tratamientos = Tratamiento.busqueda(params)
+        format.html {render :layout => false}
+      
+
+    end
+
+  end
+end
+
+
+def imprimir
+   
+    @tratamiento = Tratamiento.find(params[:id])
+
+  respond_to do |format|
+   format.html {render :partial => 'reporte'}
+
+    end
+end
+
+def ver
+  #@tratamiento = Tratamiento.find(params[:id])
+@tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5
+  respond_to do |format|
+    format.html{ render :layout=> false, :partial => 'ver'}
+   end
+end
+
+def imprimir
+    @tratamiento = Tratamiento.find(params[:id])
+
+    respond_to do |format|
+      format.html {render :partial=> 'imprimir', :layout=> 'print'}   
+
+    end
+end
+
+
+def listado
+
+@paciente = Paciente.find(params[:id])
+@tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id.to_s]
+respond_to do |format|
+  format.html {redirect_to edit_paciente_path(@paciente) + '#tratamientos'}
+  #format.html {render  :layout=> false, :partial => 'listado'}
+end
+end
 end

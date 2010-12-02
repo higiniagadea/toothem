@@ -1,0 +1,38 @@
+<fieldset>
+  <legend>Tratamiento</legend>
+<table>
+   <tr>
+      <th>Fecha</th>
+      <th><%=h @tratamiento.fecha.strftime('%d/%m/%Y') %></th>
+
+      <th>Diente</th>
+      <th><%=h @tratamiento.diente %></th>
+
+      <th>Cara</th>
+      <th><%=h @tratamiento.cara%></th>
+    </tr>
+    <tr>
+      <th>Prestacion</th>
+      <th><%=h @tratamiento.prestacion.descripcion %></th>
+      <th>Estado</th>
+      <th><%=h @tratamiento.estado_tratamiento.nombre%></th>
+    </tr>
+    <tr>
+      <th>Profesional</th>
+      <th><%=h @tratamiento.profesional_id %></th>
+      <th>Importe</th>
+      <th><%=h number_to_currency(@tratamiento.importe_cubierto)%> </th>
+    </tr>
+
+    <tr>
+      <th>Coseguro</th>
+      <th><%=h number_to_currency(@tratamiento.coseguro) %></th>
+      <th>Fue lioquidado?</th>
+      <th><%=h boolean_desc(@tratamiento.fue_liquidado)%></th>
+    </tr>
+
+</table>
+</fieldset>
+ <script type="text/javascript">
+          window.print();
+        </script>

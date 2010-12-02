@@ -18,7 +18,7 @@
     <th>
       Tipo Y Nro. de Documento</th>
     <th><%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion, {}, :class => 'ui-widget-content required') %>
-      <%= f.text_field :matricula,  :class =>"ui-widget-content required" , :size=> 22 , :title=> 'Nro. de Documento no puede estar vacio'%>
+      <%= f.text_field :matricula,  :class =>"ui-widget-content required" , :size=> 22 , :title=> 'Nro. de Documento no puede estar vacio', :maxlenght => 8%>
     </th>
     </tr>
     
@@ -58,7 +58,7 @@
       </span>
     </td>
     <th>
-      Grupo Sanguineo</th>
+      Grupo Sangu&iacute;neo</th>
     <td><select name="paciente[grupo_sanguineo]" class ="ui-widget-content">
       <%= options_for_select(["A+","A-","B+","B-","AB+","AB-","O+","O-"], @paciente.grupo_sanguineo) %>
       </select>
@@ -67,26 +67,26 @@
 
     <tr>
     <th>
-      Teléfono</th>
+      Tel&eacute;fono</th>
     <td><%= f.text_field :telefono_particular, :class =>"ui-widget-content", :size=> 20 %>
     </td>
      <th>
-      Móvil</th>
+      M&oacute;vil</th>
      <td><%= f.text_field :movil, :class =>"ui-widget-content", :size=> 20 %>
     </td>
     <th>
-      Teléfono Laboral</th>
+      Tel&eacute;fono Laboral</th>
     <td><%= f.text_field :telefono_laboral, :class =>"ui-widget-content", :size=> 20 %>
     </td>
     </tr>
 
     <tr>
     <th>
-      Profesión</th>
+      Profesi&oacute;n</th>
     <td><%= f.text_field :profesion, :class =>"ui-widget-content", :size=>20 %>
     </td>
     <th>
-      Ocupación</th>
+      Ocupaci&oacute;n</th>
     <td><%= f.text_field :ocupacion, :class =>"ui-widget-content", :size=>20 %>
     </td>
     <th>
@@ -96,7 +96,7 @@
     </tr>
     <tr>
       <th>Nro. de Afiliado</th>
-      <td><%= f.text_field :nro_afiliado, :size=>20,:title=>'Nro. de Afiliado no puede estar vacio', :class=>'ui-widget-content required' %>
+      <td><%= f.text_field :nro_afiliado, :size=>20, :class=>'ui-widget-content required' %>
       </td>
     </tr>
     <table>
@@ -127,12 +127,13 @@
        
        rules: {
          "paciente[matricula]": {required: true, remote:"/pacientes/verificar_matricula?paciente[matricula]=" + $('#paciente[matricula]').val()},
-         "paciente[nro_afiliado]": {required: true, remote:"/pacientes/verificar_nroafiliado?paciente[nro_afiliado]=" + $('#paciente[nro_afiliado]').val()}
-
+         "paciente[nro_afiliado]": {required: true, remote:"/pacientes/verificar_nroafiliado?paciente[nro_afiliado]=" + $('#paciente[nro_afiliado]').val()},
+          "paciente[nro_afiliado]": {required: true, remote:"/pacientes/verificar_nroafiliado?paciente[nro_afiliado]=" + $('#paciente[nro_afiliado]').val(), digits:true}
        },
          messages:{
            "paciente[matricula]": {remote:"Nro. de Documento ya se encuentra cargado"},
            "paciente[nro_afiliado]": {remote:"Nro. de Afiliado ya se encuentra cargado"}
+            
          }
     });
             

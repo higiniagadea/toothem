@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 29) do
+ActiveRecord::Schema.define(:version => 30) do
 
   create_table "aranceles", :force => true do |t|
     t.integer "obra_social_id"
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(:version => 29) do
     t.integer "profesional_id"
     t.integer "obra_social_id"
     t.integer "odontograma_id"
+    t.text    "estado",         :null => false
   end
 
   create_table "historias_clinicas_generales", :force => true do |t|
@@ -376,7 +377,7 @@ ActiveRecord::Schema.define(:version => 29) do
 
   create_table "pacientes", :force => true do |t|
     t.string   "nombre",                              :null => false
-    t.integer  "tipo_documento_id",                   :null => false
+    t.integer  "tipo_documento_id"
     t.string   "matricula",            :limit => 50,  :null => false
     t.string   "sexo",                                :null => false
     t.string   "estado_civil",         :limit => 100
@@ -397,6 +398,8 @@ ActiveRecord::Schema.define(:version => 29) do
     t.integer  "localidad_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "usuario_id",                          :null => false
+    t.date     "deleted_at"
   end
 
   create_table "perfiles", :force => true do |t|
@@ -471,6 +474,7 @@ ActiveRecord::Schema.define(:version => 29) do
     t.string  "matricula"
     t.integer "obra_social_id"
     t.integer "consultorio_id"
+    t.integer "nro_afiliado",                  :null => false
   end
 
   create_table "tratamientos", :force => true do |t|
@@ -502,7 +506,6 @@ ActiveRecord::Schema.define(:version => 29) do
     t.string   "remember_token",            :limit => 40
     t.datetime "remember_token_expires_at"
     t.integer  "perfil_id"
-    t.integer  "consultorio_id"
   end
 
   add_index "usuarios", ["login"], :name => "index_usuarios_on_login", :unique => true

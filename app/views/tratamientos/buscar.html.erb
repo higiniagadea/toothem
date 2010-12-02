@@ -1,0 +1,119 @@
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Buscar Tratamientos </legend>
+<% form_remote_tag :url => resultado_tratamientos_path, :method => :post, :update => :search_hits do -%>
+  <table id="search-form">
+    <tr>
+      <th>Fecha desde</th>
+    <th><span class="fecha" class ="ui-widget-content">
+              <input class="ui-widget-content" type="text" id="fecha_desde" name="tratamiento[fecha]" readonly="readonly" size="10" />
+      </span>
+    </th>
+
+
+    <th>Hasta</th>
+    <th><span class="fecha" class ="ui-widget-content">
+              <input class="ui-widget-content" type="text" id="fecha_hasta" name="tratamiento[fecha_hasta]" readonly="readonly" size="10" />
+      </span>
+    </th>
+    </tr>
+    <tr>
+     <th>
+          <label>Profesional</label></th>
+        <th><%= text_field_tag :profesional,{}, :class=> 'ui-widget-content' %>
+        </th>
+
+    </tr>
+    <table>
+    <tr>
+        <th style=" float: left; margin-left:  500px">
+        
+          <%= submit_tag 'Buscar',  :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+
+        </th>
+      </tr>
+    
+    </table>
+  </table>
+  <div id ="search_hits">
+
+</div>
+</fieldset>
+<%end -%>
+
+
+
+<script type="text/javascript">
+
+ $("#fecha_desde").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate:0});
+$("#fecha_hasta").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate:0});
+
+$.validator.addMethod("dateRange", function() {
+        var hasta = $("#fecha_hasta").val().split('-');
+        var desde = $("#fecha_desde").val().split('-');
+        var anio_hasta = hasta[2];
+        var mes_hasta =  hasta[1];
+        var dia_hasta =  hasta[0];
+        var anio_desde = desde[2];
+        var mes_desde = desde[1];
+        var dia_desde = desde[0];
+        if (anio_desde > anio_hasta)
+           return false;
+           else
+             {
+                  if ((anio_desde == anio_hasta) && (mes_desde > mes_hasta))
+                  return false;
+                             else{
+                                  if ((anio_desde == anio_hasta) && (mes_desde == mes_hasta) && (dia_desde > dia_hasta))
+                                      return false;
+                                    else
+                                      return true;
+                             }
+
+             }
+
+}, "'Fecha desde' debe ser menor o igual a 'Fecha hasta'");
+
+// a new class rule to group all three methods
+$.validator.addClassRules({
+	requiredDateRange: {dateRange:true}
+});
+
+function formatDateTo(fecha){
+   var d = fecha.split('-');
+   var fdate = d[1].toString()+'-'+d[0].toString()+'-'+d[2].toString()
+   return fdate;
+}
+
+
+// overwrite default messages
+$.extend($.validator.messages, {
+	date: "Especificar fechas v&aacute;lidas"
+});
+
+var form = $("#dateRangeForm")
+form.validate({
+	submitHandler: function() {
+		//alert("Valid date range!");
+                this.form.submit();
+ 	},
+	groups: {
+		dateRange: "fecha_desde fecha_hasta"
+	},
+	errorPlacement: function(error) {
+		form.find(".errorContainer").append(error);
+	}
+});
+
+$("#validate").click(function() {
+	form.valid();
+	return true;
+});
+
+    
+
+</script>
+
+
+
+
+

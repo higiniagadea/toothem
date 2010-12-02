@@ -1,98 +1,50 @@
-<fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Ficha</legend>
 <% form_for(@ficha) do |f| %>
   <%= error_messages_for :ficha %>
-  <%#= f.hidden_field :paciente_id, 'value' => @paciente.id.to_s  %>
-
-<table id="form">
-  <tr>
-
-  </tr>
-  <tr>
-    <td><h1>Nombre y Apellido: <%= @ficha.paciente.nombre %></h1></td>
-  </tr>
-  <tr>
-    <td> </td>
-  </tr>
-  <tr>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-  </tr>
-
-  <% fields_for :tratamientos do |f_tratamiento| %>
-  <tr>
-    <td class="label">Fecha</td>
-  <td>  <%= f_tratamiento.date_select :fecha, :order => [:day, :month, :year],
-                                      :use_month_names => ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct','Nov','Dic']%>
-  </td>
-  </tr>
-
-  <tr>
-  <td class="label">Diente</td>
-    <td><%= f_tratamiento.text_field :diente, :size=>10 %>
-    </td>
-    <td class="label">Cara </td>
-    <td><%= f_tratamiento.text_field :cara, :size=>10 %>
-    </td>
-  </tr>
-
-  <tr>
-    <td class="label">Fecha Finalizacion </td>
-    <td><%= f_tratamiento.date_select  :fecha,
-                                       :order => [:day, :month, :year],
-                                       :use_month_names => ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct','Nov','Dic'] %>
-    </td>
-    <td class="label">Importe Cubierto </td>
-    <td><%= f_tratamiento.text_field :importe_cubierto, :size=>10 %>
-    </td>
-  </tr>
-
-  <tr>
-    <td class="label">Coseguro</td>
-    <td><%= f_tratamiento.text_field :coseguro, :size=>10 %></td>
-
-    <td class="label">Fue Liquidado </td>
-    <td><%= f_tratamiento.check_box :fue_liquidado %>
-    </td>
-  </tr>
-
-  <tr>
-    <td class="label">Fecha de Liquidacion </td>
-    <td><%= f_tratamiento.date_select  :fecha, :order => [:day, :month, :year],
-                                       :use_month_names => ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct','Nov','Dic'] %>
-    </td>
-   <td class="label">Estado del tratamiento</td>
-   <td><%= f_tratamiento.collection_select(:estado_tratamiento_id, EstadoTratamiento.all, :id, :nombre) %></td>
-  </tr>
-
-  <tr>
-  <td class="label">Prestacion </td>
-  <td><%= f_tratamiento.collection_select(:prestacion_id, Prestacion.all, :id, :descripcion) %>
-  </td>
-  <td class="label">Profesional </td>
-  <td><%= f_tratamiento.collection_select(:profesional_id, Profesional.all, :id, :nombre) %>
-  </td>
-  </tr>
-
-  <tr>
-    <td class="label">Ficha </td>
+  <%= f.hidden_field :paciente_id, 'value' => @paciente.id.to_s  %>
 
 
-    <td class="label">Odontograma</td>
-    <td><%= f_tratamiento.text_field :odontograma_id, :size=> 10 %> </td>
-  </tr>
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Ficha N° <%= @ficha.id %></legend>
 
+ 
+<table style=" text-align: left" >
   <tr>
-    <td>
-      <%= f.submit 'Crear Ficha' %>
-      <%end%>
+      
+     <th>Obra Social <%=  @ficha.paciente.titular.obra_social.nombre %></th>
+  </tr>
+  <tr>
+  
+    <th><label>Fecha</label></th>
+     <th><span class="fecha" class="ui-widget-content">
+              <input class="ui-widget-content required "type="text" id="fecha" name="ficha[fecha]" readonly="readonly" value="<%=@ficha.fecha.strftime('%d/%m/%y')%>" />
+      </span></th>
+  </tr>
+  <tr>
+
+    <th>Profesional </th>
+  <th><%= f.collection_select(:profesional_id, Profesional.all, :id, :nombre, :class=> 'ui-widget-content required') %>
+  </th>
+  
+  
+    <th>Estado</th>
+    <th><%= f.collection_select(:estado_id, Estado.all, :id, :nombre, :size=> 14, :class=> 'ui-widget-content required')%> </th>
+  </tr>
+</table>
+
+
+
+  <table>
+
+    <tr>
+    <td style=" float: left; margin-left: 500px"><%= f.submit 'Editar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+      
     </td>
   </tr>
   </table>
 </fieldset>
 <%end%>
+<script type="text/javascript">
+
+
+  $("#fecha").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate:0});
+</script>

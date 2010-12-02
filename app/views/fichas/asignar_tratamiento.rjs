@@ -1,2 +1,0 @@
-# TODO Operate on the page object
-#page << "$(#tratamiento).val( $(#tratamiento).val() + #{params[:fecha]} + \" -\" + #{params[:diente]} + ",")"

@@ -3,64 +3,116 @@
 <fieldset class="ui-widget-content ui-corner-all">
     <legend class="ui-widget ui-widget-header ui-corner-all" >Tratamientos</legend>
 
- <%unless @tratamientos.blank? %>
-  <table style=" text-align: left "class="table-list">
+
+    <table>
+      <% unless @paciente.titular.blank? %>
+      <tr>
+        <td style=" float: left; margin-left: 1000px">
+          <%= link_to image_tag('add.png') + "Nueva Ficha", new_ficha_path + "?paciente_id="+@paciente.id.to_s, :id => 'ficha' %>
+              <%= link_to image_tag('zoom.png') + 'Buscar', buscar_fichas_path + "?paciente_id="+@paciente.id.to_s, :id=> 'buscar' %>
+        </td>
+      </tr>
+      
+      <%else%>
+      <tr>
+        <td style=" float: left; margin-left: 1000px">
+             <%= link_to image_tag('add.png') + 'Crear Tratamiento', new_tratamiento_paciente_path + "?paciente_id="+@paciente.id.to_s, :id=> 'nuevo'  %>
+             <%= link_to image_tag('zoom.png') + 'Buscar', buscar_tratamientos_path , :id => 'tratamiento' %>
+        </td>
+      </tr>
+      <%= render:partial => 'tratamientos/listado' %>
+      <%end%>
+    </table>
+    
+
+    
+
+
+
+
+<% unless @fichas.blank? %>
+<table style=" text-align: left "class="table-list">
   <tr>
 
     <th>Fecha</th>
     <th>Profesional</th>
-    <th>Estado</th
-
-
-  </tr>
-
-<% @tratamientos.each do |tratamiento| %>
-  <tr>
-    <td><%=h tratamiento.fecha %></td>
-    <td><%=h tratamiento.profesional_id %></td>
-    <td><%=h tratamiento.estado_tratamiento.nombre %></td>
-    <td></td>
-    <td></td>
-    <td><%= link_to image_tag('magnifier_zoom_in.png'), tratamiento, :title => "Ver", :id=> 'ver' %></td>
-    <td><%= link_to image_tag('pencil.png'), edit_tratamiento_path(tratamiento, :paciente_id => @paciente), :title => 'Editar', :id=> 'editar' %></td>
-    <td><%= link_to image_tag('cancel.png'),eliminar_tratamiento_path(tratamiento, :paciente_id => @paciente.id), :confirm => 'Esta seguro de eliminar el tratamiento?', :title=> 'Eliminar' %></td>
-
-  </tr>
-
-
- 
-  
-<%end%>
+    <th>Estado</th>
+    <th>Acciones</th>
+    </tr>
+      <% @fichas.each do |ficha| %>
+          <tr>
+            <td><%=h ficha.fecha.strftime('%d/%m/%Y') %></td>
+            <td><%=h ficha.profesional.nombre %></td>
+            <td><%=h ficha.estado.nombre %></td>
+            
+             <td><%= link_to image_tag('zoom.png'), ficha, :title => 'Ver', :id => 'vista'%> </td>
+              <td><%= link_to image_tag('pencil.png'), edit_ficha_path(ficha, :paciente_id => @paciente.id), :title => 'Ver', :id => 'edicion' %> </td>
+             
+               <td><%= link_to image_tag('cancel.png'), eliminar_ficha_path(ficha, :paciente_id => @paciente.id), :confirm => 'Esta seguro de eliminar la ficha?', :title=> 'Eliminar'   %></td>
+               <td><%= link_to image_tag('add.png') + 'Agregar Tratamiento', new_tratamiento_path + "?paciente_id="+@paciente.id.to_s + '&ficha_id='+ ficha.id.to_s, :id=> 'agregar'  %></td>
+          </tr>
+      <%end%>
+         
   <tr><td>
-  <%= will_paginate @tratamientos, :previous_label=>'Anterior', :next_label => 'Siguiente' %>
-    </td></tr>
-<%end%>
  
-  </table>
-    <table>
-      <tr><td style=" float: left; margin-left: 1050px">
-<%= link_to image_tag('add.png') + 'Crear Tratamiento', new_tratamiento_paciente_path + "?paciente_id="+@paciente.id.to_s, :id=> 'nuevo'  %>
-        </td></tr></table>
+    </td></tr>
+    <%end%>
+    </table>
+
+
+
+
  
 
  </fieldset>
+
+
+
+
+
 <script type="text/javascript">
-    $('#ver').fancybox(
-        {
-      'hideOnContentClick': false,
-      'titleShow': false
-
-    });
-     $('#editar').fancybox(
-        {
-      'hideOnContentClick': false,
-      'titleShow': false
-
-    });
+    
      $('#nuevo').fancybox(
         {
       'hideOnContentClick': false,
       'titleShow': false
 
     });
+     $('#ficha').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+    $('#buscar').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+       $('#tratamiento').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+     $('#agregar').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+    $('#vista').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+    $('#edicion').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+    $.fancybox.resize();
       </script>

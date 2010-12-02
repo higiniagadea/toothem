@@ -31,30 +31,30 @@
   <th>
   <%=@paciente.fecha_nacimiento.blank? ? '-' : @paciente.fecha_nacimiento.strftime('%d/%m/%Y') %>
   </th>
-  <th>Grupo Sanguineo</th>
+  <th>Grupo Sangu&iacute;neo</th>
   <th><%=h @paciente.grupo_sanguineo%>
   </th>
 </tr>
 
 <tr>
-  <th>Telefono</th>
+  <th>Tel&eacute;fono</th>
   <th><%=h @paciente.telefono_particular %></th>
 
-  <th>Movil</th>
+  <th>M&oacute;vil</th>
   <th><%=h @paciente.movil %></th>
 </tr>
 
 <tr>
 
-  <th>Telefono Laboral</th>
+  <th>Tel&eacute;fono Laboral</th>
   <th><%=h @paciente.telefono_laboral %></th>
 
 
-  <th>Profesion</th>
+  <th>Profesi&oacute;n</th>
   <th><%=h @paciente.profesion %></th>
 </tr>
 <tr>
-  <th>Ocupacion</th>
+  <th>Ocupaci&oacute;n</th>
   <td><%=h @paciente.ocupacion %></td>
   <th>Nivel Escolar</th>
   <th><%=h @paciente.nivel_escolar %></th>

@@ -1,13 +1,13 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Historias Clinicas</legend>
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Historias Cl&iacute;nicas</legend>
 
 <table class="table-list">
   <tr>
 
 <%if @paciente.historia_clinica_general.blank? -%>
-    <%=  link_to image_tag('add.png') + 'Historia Clinica General', new_paciente_historia_clinica_general_path(@paciente),:id=>'new_general', :title => 'Nueva Historia Clinica' %>
+    <%=  link_to image_tag('add.png') + 'Historia Cl&iacute;nica General', new_paciente_historia_clinica_general_path(@paciente),:id=>'new_general', :title => 'Nueva Historia Clinica' %>
 <%elsif-%>
-    <%= link_to image_tag('pencil.png') + 'Historia Clinica General', edit_paciente_historia_clinica_general_path(@paciente, @historia_clinica_general),:id=> 'edit_general' ,:title => 'Ver' %>
+    <%= link_to image_tag('pencil.png') + 'Historia Cl&iacute;nica General', edit_paciente_historia_clinica_general_path(@paciente, @historia_clinica_general),:id=> 'edit_general' ,:title => 'Ver' %>
 <%end-%>
     
 </tr>

@@ -26,9 +26,13 @@
   </td>
   </tr>
    <tr>
-  <td class="label">Prestacion </td>
+  <td class="label">Prestaci&oacute;n </td>
   <td><%= f.collection_select(:prestacion_id, Prestacion.all, :id, :descripcion, :class=> 'ui-widget-content required', :title=> 'Descripcion no debe estar en blanco')%>
   </td>
+   <td>Profesional</td>
+            <td>
+              <%= f.collection_select(:profesional_id, Profesional.all, :id, :nombre, :class => 'ui-widget-content required', :title=> 'Seleccione un profesional') %>
+            </td>
    <td class="label">Estado del Tratamiento</td>
   <td><%= f.collection_select(:estado_tratamiento_id, EstadoTratamiento.all, :id, :nombre, :class=> 'ui-widget-content required', :title=> 'Estado no puede estar en blanco')%>
   </td>

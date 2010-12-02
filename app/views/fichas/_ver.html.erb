@@ -25,8 +25,8 @@
       <th>Prestacion</th>
       <th>Estado</th>
     </tr>
-
-
+    
+  
  <% @ficha.tratamientos.each do |tratamiento| %>
               <tr>
                   <td><%=h tratamiento.fecha.strftime('%d/%m/%Y') %></td>
@@ -36,7 +36,7 @@
                   <td><%=h tratamiento.estado_tratamiento.nombre %></td>
 
 
-                 
+                 <td id="lista"><%= image_tag 'add.png' %></td>
                 <td><%#= link_to image_tag('zoom.png'), tratamiento, :title => 'Ver', :id => 'vista'%></td>
                 <td><%#= link_to image_tag('pencil.png'), edit_tratamiento_path(tratamiento), :title => "Editar", :id => 'edicion' %></td>
                 <td><%#= link_to image_tag('cancel.png'), tratamiento, :confirm => 'Esta seguro que desea eliminar el tratamiento?', :method => :delete, :title => "Eliminar" %></td>
@@ -45,8 +45,24 @@
  <%  end %>
 </table>
 
-
+<%= link_to 'Imprimir', imprimir_ficha_path(@ficha, @tratamiento), :popup => ['Imprimir', 'height=200,width=400'] %>
 </fieldset>
 <script type="text/javascript">
-          window.print();
+ $(document).ready(function(){
+
+$('#lista img').each(function(){
+
+          $(this).qtip(
+          {
+            content: '<%= render :partial => 'mas_datos'  %>', // Give it some content
+            position: 'topRight', // Set its position
+            hide: {
+              fixed: true // Make it fixed so it can be hovered over
+            },
+            style: {
+              padding: '5px 15px', // Give it some extra padding
+              name: 'blue' // And style it with the preset dark theme
+            }
+          });
+        });
         </script>
