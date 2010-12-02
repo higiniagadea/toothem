@@ -70,14 +70,15 @@ class PacientesController < ApplicationController
   #end
 
   def result
-   
-    @pacientes = Paciente.paginate :page=> params[:page], :per_page=> 3, :conditions => ['paciente_id = ?', @paciente.id.to_s]
+  # @paciente = Paciente.find(params[:paciente][:id])
+    #@pacientes = Paciente.paginate :page=> params[:page], :per_page=> 3, :conditions => ['paciente_id = ?', @paciente.id.to_s]
     respond_to do |format|
 
       if params[:nombre].blank? && params[:matricula].blank?
         format.html{render :text => "Ingrese al menos un dato para realizar la busqueda ", :layout => false }
       elsif
         @pacientes = Paciente.basic_search(params)
+        
         format.html {render :partial=> 'results', :layout => false}
       
     end

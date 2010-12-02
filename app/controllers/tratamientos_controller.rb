@@ -137,13 +137,14 @@ def buscar
 #end
 
 def resultado
-@profesionales = Profesional.find(:all, :conditions => ['nombre like ?', '%' + params[:profesional] + '%'], :select => 'id')
-    respond_to do |format|
+#@profesionales = Profesional.find(:all, :conditions => ['nombre like ?', '%' + params[:profesional] + '%'], :select => 'id')
+ params[:tratamiento][:profesional_id] = params[:profesional] if params[:profesional]
+  respond_to do |format|
       params[:tratamiento][:profesionales] =  @profesionales
       if params[:profesional].blank? && params[:fecha].blank?
         format.html{render :text => "Ingrese los datos para realizar la busqueda", :layout => false }
       else
-       @tratamientos = Tratamiento.busqueda(params)
+       @tratamientos = Tratamiento.busqueda(params[:tratamiento])
         format.html {render :layout => false}
       
 
@@ -164,8 +165,8 @@ def imprimir
 end
 
 def ver
-  #@tratamiento = Tratamiento.find(params[:id])
-@tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5
+  @tratamiento = Tratamiento.find(params[:id])
+#@tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5
   respond_to do |format|
     format.html{ render :layout=> false, :partial => 'ver'}
    end

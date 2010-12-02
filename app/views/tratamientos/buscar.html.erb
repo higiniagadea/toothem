@@ -21,6 +21,7 @@
           <label>Profesional</label></th>
         <th><%= text_field_tag :profesional,{}, :class=> 'ui-widget-content' %>
         </th>
+        <%= hidden_field_tag :tratamiento_paciente_id, params[:paciente_id], :name => 'tratamiento[paciente_id]' %>
 
     </tr>
     <table>

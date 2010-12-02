@@ -21,18 +21,28 @@ class Tratamiento < ActiveRecord::Base
     }
   }
 
-  named_scope :by_profesional, lambda { |profesionales|
+  named_scope :by_tratamiento_paciente_id, lambda { |tratamiento_paciente_id|
    {
-     :include => :profesional,
-     :conditions => [ "profesionales.id IN (?)", profesionales ]
+    
+     :conditions => [ 'paciente_id= :tratamiento_paciente_id',
+       {:tratamiento_paciente_id => tratamiento_paciente_id}
+     ]
    }
  }
+
+   named_scope :by_profesional_id, lambda { |profesional|
+    {
+      :conditions => ['profesional_id= :profesional',
+                 {:profesional => profesional }]
+    }
+  }
 
 
 def self.busqueda(options)
   scope_builder do |builder|
     builder.by_fechas(options[:fecha_desde], options[:fecha_hasta]) unless options[:fecha_desde].blank? && options[:fecha_hasta].blank?
-    builder.by_profesional(options[:profesionales]) unless options[:profesionales].blank?
+    builder.by_tratamiento_paciente_id(options[:paciente_id]) unless options[:paciente_id].blank?
+    builder.by_profesional_id(options[:profesional]) unless options[:profesional].blank?
   end
 end
 

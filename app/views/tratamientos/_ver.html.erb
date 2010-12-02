@@ -3,7 +3,7 @@
   <table style="text-align: left">
     <tr>
       <th>Fecha</th>
-      <th><%=h @tratamiento.fecha.strftime('%d/%m/%Y') %></th>
+      <th><%=h @tratamiento.fecha %></th>
 
       <th>Diente</th>
       <th><%=h @tratamiento.diente %></th>
@@ -19,7 +19,7 @@
     </tr>
     <tr>
       <th>Profesional</th>
-      <th><%=h @tratamiento.profesional_id %></th>
+      <th><%=h @tratamiento.profesional.nombre %></th>
       <th>Importe</th>
       <th><%=h number_to_currency(@tratamiento.importe_cubierto)%> </th>
     </tr>
