@@ -71,7 +71,7 @@ class PacientesController < ApplicationController
 
   def result
    
-    #@pacientes = Paciente.paginate :page=> params[:page], :per_page=> 3, :conditions => ['paciente_id = ?', @paciente.id.to_s]
+    @pacientes = Paciente.paginate :page=> params[:page], :per_page=> 3, :conditions => ['paciente_id = ?', @paciente.id.to_s]
     respond_to do |format|
 
       if params[:nombre].blank? && params[:matricula].blank?
