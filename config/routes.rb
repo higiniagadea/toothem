@@ -1,7 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :fichas, :collection => { :buscar => :get, :resultado => :post},
                          :member => { :ver => [:post, :get],
-                                      :listado => [:post, :get] 
+                                      :listado => [:post, :get],
+                                      :eliminar => [:get],
+                                      :imprimir => [:post, :get]
                          }
                         
 

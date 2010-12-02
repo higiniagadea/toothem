@@ -51,25 +51,40 @@ class PacientesController < ApplicationController
   end
 
   #resultado de la busqueda de pacientes
-  def result
-    @paginatepacientes = Paciente.paginate :page=> params[:page], :per_page=> 10, :order=> 'nombre ASC'
+  #def result
+    #@paginatepacientes = Paciente.paginate :page=> params[:page], :per_page=> 10, :order=> 'nombre ASC'
    
 
-    respond_to do |format|
-      if params[:nombre].blank? && params[:matricula].blank?
+    #respond_to do |format|
+      #if params[:nombre].blank? && params[:matricula].blank?
+
+       #format.html{render :text => 'Ingrese al menos un dato para realizar la busqueda', :layout => false}
+      #elsif
+      #params[:nombre].size >= 3
+        #@pacientes = Paciente.basic_search(params)
+       # format.html{render :partial => 'results'}
+      #   format.html{render :text=> 'Debe ingresar al menos 3 caracteres en el campo de texto'}
+    #  end
+   # end
        
-       format.html{render :text => 'Ingrese al menos un dato para realizar la busqueda', :layout => false}
-      elsif
-      params[:nombre].size > 3
-        @pacientes = Paciente.basic_search(params)
-        format.html{render :partial => 'results'}
-      else
-        format.html{render :text=> 'Debe ingresar al menos 3 caracteres en el campo de texto'}
-      end
-    end
-   
-  end
+  #end
 
+  def result
+   
+    #@pacientes = Paciente.paginate :page=> params[:page], :per_page=> 3, :conditions => ['paciente_id = ?', @paciente.id.to_s]
+    respond_to do |format|
+
+      if params[:nombre].blank? && params[:matricula].blank?
+        format.html{render :text => "Ingrese al menos un dato para realizar la busqueda ", :layout => false }
+      elsif
+        @pacientes = Paciente.basic_search(params)
+        format.html {render :partial=> 'results', :layout => false}
+      
+    end
+
+  end
+  end
+  
   # GET /pacientes/1
   # GET /pacientes/1.xml
   def show
@@ -415,8 +430,10 @@ def verificar_nroafiliado_tit
 
 
 
-
-
 end
+
+
+
+
 
 

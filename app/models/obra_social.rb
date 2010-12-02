@@ -2,7 +2,7 @@ class ObraSocial < ActiveRecord::Base
   has_many :titulares
   has_many :aranceles
   has_many :tratamientos
-  
+  has_many :fichas
 #validates
   validates_presence_of :nombre, :message => ', debe ingresar un nombre y apellido'
   validates_presence_of :nro_max_codigos_por_mes => 'debe ingresar uno'

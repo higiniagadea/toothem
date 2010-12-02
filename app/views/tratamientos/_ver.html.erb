@@ -3,7 +3,7 @@
   <table style="text-align: left">
     <tr>
       <th>Fecha</th>
-      <th><%=h @tratamiento.fecha %></th>
+      <th><%=h @tratamiento.fecha.strftime('%d/%m/%Y') %></th>
 
       <th>Diente</th>
       <th><%=h @tratamiento.diente %></th>

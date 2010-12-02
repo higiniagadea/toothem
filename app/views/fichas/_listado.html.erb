@@ -1,1 +1,52 @@
-gfdgdfgfds
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Ficha N°:<%= @ficha.id  %>  </legend>
+  <table style="text-align: left ; " class=" table-list">
+    <tr>
+      <th>Obra Social</th>
+      <td><%= @ficha.paciente.titular.obra_social.nombre%> </td>
+      <th>Fecha</th>
+      <td><%=h @ficha.fecha.strftime('%d/%m/%Y') %></td>
+    </tr>
+    <tr>
+      <th>Profesional</th>
+      <td><%=h @ficha.profesional.nombre %></td>
+      <th>Estado</th>
+      <td><%=h @ficha.estado.nombre %></td>
+    </tr>
+
+  </table>
+
+   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Tratamientos</legend>
+  <table>
+    <tr>
+      <th>Fecha</th>
+      <th>Diente</th>
+      <th>Cara</th>
+      <th>Prestacion</th>
+      <th>Estado</th>
+    </tr>
+
+
+ <% @ficha.tratamientos.each do |tratamiento| %>
+              <tr>
+                  <td><%=h tratamiento.fecha.strftime('%d/%m/%Y') %></td>
+                  <td><%=h tratamiento.diente %></td>
+                  <td><%=h tratamiento.cara %></td>
+                  <td><%=h tratamiento.prestacion.descripcion %></td>
+                  <td><%=h tratamiento.estado_tratamiento.nombre %></td>
+
+
+                 
+                <td><%#= link_to image_tag('zoom.png'), tratamiento, :title => 'Ver', :id => 'vista'%></td>
+                <td><%#= link_to image_tag('pencil.png'), edit_tratamiento_path(tratamiento), :title => "Editar", :id => 'edicion' %></td>
+                <td><%#= link_to image_tag('cancel.png'), tratamiento, :confirm => 'Esta seguro que desea eliminar el tratamiento?', :method => :delete, :title => "Eliminar" %></td>
+
+              </tr>
+ <%  end %>
+</table>
+
+
+</fieldset>
+<script type="text/javascript">
+          window.print();
+        </script>

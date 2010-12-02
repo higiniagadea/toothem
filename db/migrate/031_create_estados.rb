@@ -8,7 +8,7 @@ class CreateEstados <  ActiveRecord::Migration
     Estado.create :nombre=> 'pendiente'
     Estado.create :nombre=> 'autorizada'
     Estado.create :nombre=> 'no autorizada'
-
+    Estado.create :nombre=> 'finalizada'
 
 
 

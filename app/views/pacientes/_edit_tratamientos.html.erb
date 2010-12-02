@@ -41,11 +41,15 @@
     </tr>
       <% @fichas.each do |ficha| %>
           <tr>
-            <td><%=h ficha.fecha %></td>
-            <td><%=h ficha.profesional_id %></td>
-            <td><%=h ficha.estado_id %></td>
-             <td><%= link_to image_tag('add.png') + 'Agregar Tratamiento', new_tratamiento_path + "?paciente_id="+@paciente.id.to_s + '&ficha_id='+ ficha.id.to_s, :id=> 'agregar' %></td>
-             <td><%= link_to 'listado', listado_fichas_path(ficha, @tratamientos) %> </td>
+            <td><%=h ficha.fecha.strftime('%d/%m/%Y') %></td>
+            <td><%=h ficha.profesional.nombre %></td>
+            <td><%=h ficha.estado.nombre %></td>
+            
+             <td><%= link_to image_tag('zoom.png'), ficha, :title => 'Ver', :id => 'vista'%> </td>
+              <td><%= link_to image_tag('pencil.png'), edit_ficha_path(ficha, :paciente_id => @paciente.id), :title => 'Ver', :id => 'edicion' %> </td>
+             
+               <td><%= link_to image_tag('cancel.png'), eliminar_ficha_path(ficha, :paciente_id => @paciente.id), :confirm => 'Esta seguro de eliminar la ficha?', :title=> 'Eliminar'   %></td>
+               <td><%= link_to image_tag('add.png') + 'Agregar Tratamiento', new_tratamiento_path + "?paciente_id="+@paciente.id.to_s + '&ficha_id='+ ficha.id.to_s, :id=> 'agregar'  %></td>
           </tr>
       <%end%>
          
@@ -67,18 +71,7 @@
 
 
 <script type="text/javascript">
-    $('#ver').fancybox(
-        {
-      'hideOnContentClick': false,
-      'titleShow': false
-
-    });
-     $('#editar').fancybox(
-        {
-      'hideOnContentClick': false,
-      'titleShow': false
-
-    });
+    
      $('#nuevo').fancybox(
         {
       'hideOnContentClick': false,
@@ -104,6 +97,18 @@
 
     });
      $('#agregar').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+    $('#vista').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+    $('#edicion').fancybox(
         {
       'hideOnContentClick': false,
       'titleShow': false

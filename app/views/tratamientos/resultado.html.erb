@@ -9,7 +9,7 @@
 
 <% @tratamientos.each do |tratamiento| %>
   <tr>
-    <th><%=h tratamiento.fecha %></th>
+    <th><%=h tratamiento.fecha.strftime('%d/%m/%Y') %></th>
     <th><%=h tratamiento.profesional_id %></th>
     <th><%=h tratamiento.estado_tratamiento.nombre %></th>
     <th><%= link_to 'Ver Mas', ver_tratamiento_path(tratamiento), :id=> 'vista' %></th>

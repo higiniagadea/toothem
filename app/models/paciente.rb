@@ -32,12 +32,12 @@ class Paciente < ActiveRecord::Base
           { :nombre => "%"+nombre.downcase+"%"} ]
     }
   }
-  named_scope :by_consultorio, lambda { |consultorio|
-    {
-      :conditions => ['consultorio_id = :consultorio',
-        { :consultorio => consultorio } ]
-    }
-  }
+  #named_scope :by_consultorio, lambda { |consultorio|
+    #{
+     # :conditions => ['consultorio_id = :consultorio',
+    #    { :consultorio => consultorio } ]
+   # }
+  #}
 
 
   def self.basic_search(options)

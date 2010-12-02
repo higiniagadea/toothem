@@ -19,8 +19,8 @@ class FichasController < ApplicationController
  def show
     @ficha = Ficha.find(params[:id])
     respond_to do |format|
-      format.html
-      format.xml  { render :xml => @ficha }
+   
+      format.html { render :layout => false }
     end
   end
 
@@ -39,7 +39,13 @@ class FichasController < ApplicationController
  
   # GET /fichas/1/edit
   def edit
+    if params[:paciente_id]
+      @paciente = Paciente.find(params[:paciente_id])
+    end
     @ficha = Ficha.find(params[:id])
+    respond_to do |format|
+      format.html {render :layout => false }
+    end
   end
 
   # POST /fichas
@@ -65,13 +71,14 @@ class FichasController < ApplicationController
   # PUT /fichas/1
   # PUT /fichas/1.xml
   def update
-     
+    
      @ficha = Ficha.find(params[:id])
-      respond_to do |format|
+     @paciente = Paciente.find(params[:ficha][:paciente_id])
+    respond_to do |format|
       if @ficha.update_attributes(params[:ficha])
        #@tratamiento.update_attribute(params[:tratamiento])
         flash[:notice] = 'Ficha actualizada.'
-        format.html { redirect_to(@ficha)}
+        format.html { redirect_to edit_paciente_path(@paciente) + '#tratamientos' }
         format.xml  { head :ok }
      else
         format.html { render :action => "edit" }
@@ -82,13 +89,14 @@ class FichasController < ApplicationController
 
   # DELETE /fichas/1
   # DELETE /fichas/1.xml
-  def destroy
+  def eliminar
     @ficha = Ficha.find(params[:id])
     @ficha.destroy
-
+    @paciente = Paciente.find(params[:paciente_id])
     respond_to do |format|
-      format.html { redirect_to(fichas_url) }
-      format.xml  { head :ok }
+      flash[:notice] = 'Tratamiento eliminado'
+      format.html { redirect_to edit_paciente_path(@paciente) + '#tratamientos' }
+  
     end
   end
 
@@ -101,35 +109,37 @@ class FichasController < ApplicationController
   end
 
   def resultado
-    @fichas = Ficha.find(:all, :conditions => ['fecha > ? and fecha < ?', params[:ficha][:fecha].to_date, params[:ficha][:fecha_hasta].to_date] )
+    #@fichas = Ficha.buscar(params[:ficha])
+    #Ficha.find(:all, :conditions => ['fecha > ? and fecha < ?', params[:ficha][:fecha].to_date, params[:ficha][:fecha_hasta].to_date] )
+    @profesionales = Profesional.find(:all, :conditions => ['nombre like ?', '%' + params[:profesional] + '%'], :select => 'id')
     respond_to do |format|
-
-      #if params[:profesional].blank? && params[:fecha].blank?
-       # format.html{render :text => "Ingrese", :layout => false }
-      #else
-       # @fichas = Ficha.basic_search(params)
-        #format.html {render :layout => false}
+      params[:ficha][:profesionales] =  @profesionales
+      if params[:profesional].blank? && params[:fecha].blank?
+        format.html{render :text => "Ingrese los datos para realizar la busqueda", :layout => false }
+      else
+       @fichas = Ficha.buscar(params)
+        format.html {render :layout => false}
       
-format.html {render :layout => false}
+
     end
 
   end
+  end
 
   def ver
-
-  @ficha = Ficha.find(:ficha_id)
+  #params[:tratamiento][:ficha_id]
+  @ficha = Ficha.find_by_id(params[:id], :include => 'tratamientos')
 
   respond_to do |format|
-    format.html{ render :layout=> false, :partial => 'ver'}
+    format.html {render :partial => 'ver', :layout => false}
    end
 
   end
 
-  def listado
-      @fichas = Ficha.find(:ficha_id)
-      #@tratamientos = Tratamiento.find(:id)
-      respond_to do
-        format.html{ render :layout => false, :partial => 'listado'}
+  def imprimir
+    @ficha = Ficha.find_by_id(params[:id], :include => 'tratamientos')
+      respond_to do |format|
+        format.html{ render :partial => 'listado' }
       end
   end
 

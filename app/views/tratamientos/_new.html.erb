@@ -34,6 +34,10 @@
             <td>
               <%= f.collection_select(:prestacion_id, Prestacion.all, :id, :descripcion, :class=> 'ui-widget-content required', :title=> 'Seleccione una prestacion') %>
             </td>
+            <td>Profesional</td>
+            <td>
+              <%= f.collection_select(:profesional_id, Profesional.all, :id, :nombre, :class => 'ui-widget-content required', :title=> 'Seleccione un profesional') %>
+            </td>
             <td>Estado del tratamiento</td>
             <td>
               <%= f.collection_select(:estado_tratamiento_id, EstadoTratamiento.all, :id, :nombre, :class=>'ui-widget-content required', :title=> 'Seleccione un estado') %>
