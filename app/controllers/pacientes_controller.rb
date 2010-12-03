@@ -76,12 +76,11 @@ class PacientesController < ApplicationController
 
       if params[:nombre].blank? && params[:matricula].blank?
         format.html{render :text => "Ingrese al menos un dato para realizar la busqueda " }
-      elsif
+      else
         params[:nombre].size >= 3
         @pacientes = Paciente.basic_search(params)
         format.html {render :partial => 'results', :layout => false }
-      else
-        format.html {render :text => 'debe ingresar al menos 3 caracteres en el campo de texto'}
+      
       end
     
 
