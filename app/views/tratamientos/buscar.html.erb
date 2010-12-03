@@ -1,4 +1,4 @@
-<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Buscar Tratamientos </legend>
 <% form_remote_tag :url => resultado_tratamientos_path, :method => :post, :update => :search_hits do -%>
   <table id="search-form">
@@ -19,7 +19,7 @@
     <tr>
      <th>
           <label>Profesional</label></th>
-        <th><%= text_field_tag :profesional,{}, :class=> 'ui-widget-content' %>
+        <th><%= collection_select(:get, :profesional_id, Profesional.all, :id, :nombre, :class=> 'ui-widget-content') %>
         </th>
         <%= hidden_field_tag :tratamiento_paciente_id, params[:paciente_id], :name => 'tratamiento[paciente_id]' %>
 

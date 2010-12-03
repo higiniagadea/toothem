@@ -23,10 +23,10 @@ class Ficha < ActiveRecord::Base
   # }
  #}
 
-   named_scope :by_profesional_id, lambda { |profesional|
+   named_scope :by_profesional_id, lambda { |profesional_id|
     {
-      :conditions => ['profesional_id= :profesional',
-                 {:profesional => profesional }]
+      :conditions => ['profesional_id= :profesional_id',
+                 {:profesional_id => profesional_id }]
     }
   }
 
@@ -42,7 +42,7 @@ class Ficha < ActiveRecord::Base
 def self.buscar(options)
   scope_builder do |builder|
     builder.by_fechas(options[:fecha_desde], options[:fecha_hasta]) unless options[:fecha_desde].blank? && options[:fecha_hasta].blank?
-    builder.by_profesional_id(options[:profesional]) unless options[:profesional].blank?
+    builder.by_profesional_id(options[:profesional_id]) unless options[:profesional_id].blank?
     builder.by_ficha_paciente_id(options[:paciente_id]) unless options[:paciente_id].blank?
   end
 end

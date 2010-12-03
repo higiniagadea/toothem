@@ -15,30 +15,18 @@
         <td><%=h paciente.tipo_documento.descripcion %>  <%=h paciente.matricula %></td>
         <td><%=h paciente.movil%></td>
         <td id="p_data_<%= paciente.id %>">
-        <td><%= link_to image_tag('magnifier_zoom_in.png'), ver_paciente_path(paciente), :title => "Vista Rapida", :id => 'ver_paciente_' + paciente.object_id.to_s%>
+        <td><%= link_to image_tag('magnifier_zoom_in.png'), ver_paciente_path(paciente), :title => "Vista Rapida", :id => 'ver_paciente_' + paciente.id.to_s %>
           <%= link_to image_tag('pencil.png'), edit_paciente_path(paciente), :title => "Editar" %></td>
          </td>
-        
      </tr>
-      
-       
-  <%end%>
-  </table>
-  <table>
-  <%#= will_paginate @pacientes, :previous_label=>'Anterior', :next_label => 'Siguiente' %>
-  </table>
-<%else%>
-     
-     
-      No se encontraron pacientes segun el criterio de b&uacute;squeda
-     
-<%end%>
-
+          
+    <%end%>
   
-</fieldset>
- 
-<%@pacientes.each do |paciente|%>
-    <script type="text/javascript">
+  
+    <%#= will_paginate @pacientes, :previous_label=>'Anterior', :next_label => 'Siguiente' %>
+     <%@pacientes.each do |paciente|%>
+     <script type="text/javascript">
+     
       // Only create tooltips when document is ready
       $(document).ready(function()
       {
@@ -56,16 +44,34 @@
               padding: '5px 15px', // Give it some extra padding
               name: 'blue' // And style it with the preset dark theme
             }
-          });
         });
+     })
 
-        $('#ver_paciente_'+<%= paciente.object_id.to_s %>).fancybox(
+
+
+
+    $('#ver_paciente_'+<%= paciente.id.to_s %>).fancybox(
         {
       'hideOnContentClick': false,
       'titleShow': false
 
     });
-     
-      
+
+ });
     </script>
+      <%end%>
+ 
+  
+<%else%>
+     
+     
+      No se encontraron pacientes segun el criterio de b&uacute;squeda
+     
+
+
+  </table>
+</fieldset>
+ 
+
+    
 <%end%>

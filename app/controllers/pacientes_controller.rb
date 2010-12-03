@@ -42,7 +42,7 @@ class PacientesController < ApplicationController
 
   #busqueda de pacientes
   def search
-    @pagetitle = "Buscar Paciente"
+   
     
    respond_to do |format|
       format.html # search.html.erb
@@ -75,13 +75,15 @@ class PacientesController < ApplicationController
     respond_to do |format|
 
       if params[:nombre].blank? && params[:matricula].blank?
-        format.html{render :text => "Ingrese al menos un dato para realizar la busqueda ", :layout => false }
+        format.html{render :text => "Ingrese al menos un dato para realizar la busqueda " }
       elsif
+        params[:nombre].size >= 3
         @pacientes = Paciente.basic_search(params)
-        
-        format.html {render :partial=> 'results', :layout => false}
-      
-    end
+        format.html {render :partial => 'results', :layout => false }
+      else
+        format.html {render :text => 'debe ingresar al menos 3 caracteres en el campo de texto'}
+      end
+    
 
   end
   end
@@ -364,7 +366,7 @@ def ver
     @archivo = Archivo.find(@paciente.archivo_id)
     end
   respond_to do |format|
-    format.html{ render :partial => 'ver'}
+    format.html{ render :layout => false, :partial => 'ver'}
    end
 end
 

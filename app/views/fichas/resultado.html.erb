@@ -3,6 +3,7 @@
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Resultado</legend>
 <table class="table-list">
   <tr class="<%  cycle('par','impar') %>">
+    <th>Obra Social</th>
     <th>Fecha</th>
     <th>Profesional</th>
     <th>Estado</th>
@@ -10,6 +11,7 @@
 
 <% @fichas.each do |ficha| %>
   <tr>
+    <td><%=h ficha.obra_social.nombre %></td>
     <td><%=h ficha.fecha.strftime('%d/%m/%Y') %></td>
     <td><%=h ficha.profesional.nombre %></td>
     <td><%=h ficha.estado_id %></td>

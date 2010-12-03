@@ -111,11 +111,12 @@ class FichasController < ApplicationController
   def resultado
     #@fichas = Ficha.buscar(params[:ficha])
     #Ficha.find(:all, :conditions => ['fecha > ? and fecha < ?', params[:ficha][:fecha].to_date, params[:ficha][:fecha_hasta].to_date] )
-    #@profesionales = Profesional.find(:all, :conditions => ['nombre like ?', '%' + params[:profesional] + '%'], :select => 'id')
-    params[:ficha][:profesional_id] = params[:profesional] if params[:profesional]
+    @profesionales = Profesional.find(:all, :conditions => ['nombre like ?', '%' + params[:profesional_id] + '%'], :select => 'id')
+    #@profesional = Profesional.find(params[:tratamiento][:profesional_id])
+    params[:ficha][:profesional_id] = params[:profesional_id] if params[:profesional_id]
     respond_to do |format|
-      params[:ficha][:profesionales] =  @profesionales
-      if params[:profesional].blank? && params[:fecha].blank?
+      params[:ficha][:profesional_id] =  @profesionales
+      if params[:profesional_id].blank? && params[:fecha].blank?
         format.html{render :text => "Ingrese los datos para realizar la busqueda", :layout => false }
       else
        @fichas = Ficha.buscar(params[:ficha])
