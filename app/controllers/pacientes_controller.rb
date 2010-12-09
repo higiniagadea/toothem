@@ -70,8 +70,8 @@ class PacientesController < ApplicationController
   #end
 
   def result
-  # @paciente = Paciente.find(params[:paciente][:id])
-    #@pacientes = Paciente.paginate :page=> params[:page], :per_page=> 3, :conditions => ['paciente_id = ?', @paciente.id.to_s]
+  
+    @pacientes = Paciente.paginate :page=> params[:page], :per_page=> 10 #:conditions => ['paciente_id = ?', @paciente.id.to_s]
     respond_to do |format|
 
       if params[:nombre].blank? && params[:matricula].blank?
@@ -427,6 +427,20 @@ def verificar_nroafiliado_tit
 
 
     format.json { render :json => !@titular}
+    end
+  end
+
+def verificar_numeroafiliado
+  @paciente = Paciente.find(:first, :conditions => {:nro_afiliado => params[:paciente][:nro_afiliado]})
+    respond_to do |format|
+    format.json { render :json => !@paciente}
+    end
+  end
+
+def verificar_numeromatricula
+  @titular = Titular.find(:first,:conditions => {:matricula => params[:titular][:matricula]})
+    respond_to do |format|
+    format.json { render :json => !@paciente}
     end
   end
 

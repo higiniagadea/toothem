@@ -4,7 +4,7 @@ class CreatePrestaciones < ActiveRecord::Migration
       t.string :codigo
       t.string :descripcion
       t.integer :consultorio_id
-
+      t.integer :valor
 
     end
   end

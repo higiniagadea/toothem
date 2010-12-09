@@ -30,7 +30,7 @@ class Tratamiento < ActiveRecord::Base
    }
  }
 
-   named_scope :by_profesional_id, lambda { |profesional|
+   named_scope :by_profesional_id, lambda { |profesional_id|
     {
       :conditions => ['profesional_id= :profesional_id',
                  {:profesional_id => profesional_id }]

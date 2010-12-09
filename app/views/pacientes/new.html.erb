@@ -4,9 +4,9 @@
 
 <% form_for(@paciente) do |f| %>
   <%= f.error_messages(:id => 'Error', :header_message=>'', :message=>'Se encontraron los siguientes errores') %>
-  <div class="errores">
-    <ol style="list-style:none"></ol>
-  </div>
+    <div class="errores">
+      <ol style="list-style:none"></ol>
+    </div>
 
   <table style="text-align: left ; "class="table-list">
 
@@ -96,7 +96,7 @@
     </tr>
     <tr>
       <th>Nro. de Afiliado</th>
-      <td><%= f.text_field :nro_afiliado, :size=>20, :class=>'ui-widget-content required' %>
+      <td><%= f.text_field :nro_afiliado, :size=>20, :class=>'ui-widget-content required', :title=> 'Nro. de Afiliado ingrese solo numeros' %>
       </td>
     </tr>
     <table>
@@ -128,12 +128,14 @@
        rules: {
          "paciente[matricula]": {required: true, remote:"/pacientes/verificar_matricula?paciente[matricula]=" + $('#paciente[matricula]').val()},
          "paciente[nro_afiliado]": {required: true, remote:"/pacientes/verificar_nroafiliado?paciente[nro_afiliado]=" + $('#paciente[nro_afiliado]').val()},
-          "paciente[nro_afiliado]": {required: true, remote:"/pacientes/verificar_nroafiliado?paciente[nro_afiliado]=" + $('#paciente[nro_afiliado]').val(), digits:true}
+         "paciente[nro_afiliado]": {required: true, remote:"/pacientes/verificar_numeroafiliado?paciente[nro_afiliado]=" + $('#paciente[nro_afiliado]').val(), number:true}
+       
        },
-         messages:{
+      messages:{
            "paciente[matricula]": {remote:"Nro. de Documento ya se encuentra cargado"},
            "paciente[nro_afiliado]": {remote:"Nro. de Afiliado ya se encuentra cargado"}
-            
+           
+           
          }
     });
             

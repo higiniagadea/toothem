@@ -3,19 +3,19 @@
   <table style="text-align: left ; " class=" table-list">
     <tr>
       <th>Obra Social</th>
-      <td><%= @ficha.paciente.titular.obra_social.nombre%> </td>
+      <th><%= @ficha.paciente.titular.obra_social.nombre%> </th>
       <th>Fecha</th>
-      <td><%=h @ficha.fecha.strftime('%d/%m/%Y') %></td>
+      <th><%=h @ficha.fecha.strftime('%d/%m/%Y') %></th>
     </tr>
     <tr>
       <th>Profesional</th>
-      <td><%=h @ficha.profesional.nombre %></td>
+      <th><%=h @ficha.profesional.nombre %></th>
       <th>Estado</th>
-      <td><%=h @ficha.estado.nombre %></td>
+      <th><%=h @ficha.estado.nombre %></th>
     </tr>
 
   </table>
-
+<% unless @ficha.tratamientos.blank? %>
    <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Tratamientos</legend>
   <table>
     <tr>
@@ -26,7 +26,7 @@
       <th>Estado</th>
     </tr>
     
-  
+ 
  <% @ficha.tratamientos.each do |tratamiento| %>
               <tr>
                   <td><%=h tratamiento.fecha.strftime('%d/%m/%Y') %></td>
@@ -38,15 +38,26 @@
 
                  <td id="lista"><%= image_tag 'add.png' %></td>
                 <td><%#= link_to image_tag('zoom.png'), tratamiento, :title => 'Ver', :id => 'vista'%></td>
-                <td><%#= link_to image_tag('pencil.png'), edit_tratamiento_path(tratamiento), :title => "Editar", :id => 'edicion' %></td>
+                <td><%= link_to image_tag('pencil.png'), edit_tratamiento_path(tratamiento, :paciente_id => @ficha.paciente_id, :ficha_id => @ficha.id), :title => "Editar", :id => 'edicion' %></td>
                 <td><%#= link_to image_tag('cancel.png'), tratamiento, :confirm => 'Esta seguro que desea eliminar el tratamiento?', :method => :delete, :title => "Eliminar" %></td>
 
               </tr>
  <%  end %>
+              
 </table>
+   <table>
+     <tr>
+       <td><%= link_to 'Imprimir', imprimir_ficha_path(@ficha, @tratamiento), :popup => ['Imprimir', 'height=200,width=400'] %></td>
+     </tr>
+   </table>
+<%else%>
 
-<%= link_to 'Imprimir', imprimir_ficha_path(@ficha, @tratamiento), :popup => ['Imprimir', 'height=200,width=400'] %>
+   No posee tratamientos
+<%end%>
 </fieldset>
+
+
+
 <script type="text/javascript">
  $(document).ready(function(){
 
@@ -65,4 +76,13 @@ $('#lista img').each(function(){
             }
           });
         });
+
+
+     $('#edicion').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+    })
         </script>

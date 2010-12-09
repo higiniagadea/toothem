@@ -47,6 +47,9 @@ class TratamientosController < ApplicationController
 
   # GET /tratamientos/1/edit
   def edit
+    if params[:ficha_id]
+      @ficha = Ficha.find(params[:ficha_id])
+    end
     if params[:paciente_id]
       @paciente = Paciente.find(params[:paciente_id])
     end
@@ -113,7 +116,8 @@ class TratamientosController < ApplicationController
   end
 
 def buscar
-  @tratamiento = Tratamiento.new
+  #@tratamiento = Tratamiento.new
+  #@paciente = Paciente.find(params[:paciente_id])
     respond_to do |format|
       format.html {render :layout=> false}
 
@@ -137,16 +141,16 @@ def buscar
 #end
 
 def resultado
-  #@profesional = Profesional.find(params[:tratamiento][:profesional_id])
-@profesionales = Profesional.find(:all, :conditions => ['nombre like ?', '%' + params[:profesional] + '%'], :select => 'id')
- params[:tratamiento][:profesional_id] = params[:profesional_id] if params[:profesional_id]
+ #raise "reerreeerree"
+ @profesionales = Profesional.find( params[:profesional][:profesional_id]) if params[:profesional][:profesional_id]
+  params[:tratamiento][:profesional_id] = params[:profesional][:profesional_id] if params[:profesional][:profesional_id]
   respond_to do |format|
-      params[:tratamiento][:profesionales_id] =  @profesionales
-      if params[:profesional_id].blank? && params[:fecha].blank?
+      params[:tratamiento][:profesional_id] =  @profesionales.id
+      if params[:profesional][:profesional_id].blank? && params[:fecha].blank?
         format.html{render :text => "Ingrese los datos para realizar la busqueda", :layout => false }
       else
        @tratamientos = Tratamiento.busqueda(params[:tratamiento])
-        format.html {render :layout => false}
+        format.html {render :partial => 'resultado', :layout => false}
       
 
     end

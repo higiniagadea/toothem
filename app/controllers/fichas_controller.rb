@@ -1,4 +1,4 @@
-class FichasController < ApplicationController
+  class FichasController < ApplicationController
   # GET /fichas
   # GET /fichas.xml
   layout 'default'
@@ -39,6 +39,7 @@ class FichasController < ApplicationController
  
   # GET /fichas/1/edit
   def edit
+    #@ficha = Ficha.find(params[:ficha_id]) unless params[:ficha_id].blank?
     if params[:paciente_id]
       @paciente = Paciente.find(params[:paciente_id])
     end
@@ -111,16 +112,16 @@ class FichasController < ApplicationController
   def resultado
     #@fichas = Ficha.buscar(params[:ficha])
     #Ficha.find(:all, :conditions => ['fecha > ? and fecha < ?', params[:ficha][:fecha].to_date, params[:ficha][:fecha_hasta].to_date] )
-    @profesionales = Profesional.find(:all, :conditions => ['nombre like ?', '%' + params[:profesional_id] + '%'], :select => 'id')
+    @profesionales = Profesional.find(params[:profesional][:profesional_id]) if params[:profesional][:profesional_id]
     #@profesional = Profesional.find(params[:tratamiento][:profesional_id])
-    params[:ficha][:profesional_id] = params[:profesional_id] if params[:profesional_id]
+    params[:ficha][:profesional_id] = params[:profesional][:profesional_id] if params[:profesional][:profesional_id]
     respond_to do |format|
-      params[:ficha][:profesional_id] =  @profesionales
-      if params[:profesional_id].blank? && params[:fecha].blank?
+      params[:ficha][:profesional_id] =  @profesionales.id
+      if params[:profesional][:profesional_id].blank? && params[:fecha].blank?
         format.html{render :text => "Ingrese los datos para realizar la busqueda", :layout => false }
       else
        @fichas = Ficha.buscar(params[:ficha])
-        format.html {render :layout => false}
+        format.html {render :partial => 'resultado', :layout => false}
       
 
     end
@@ -129,7 +130,7 @@ class FichasController < ApplicationController
   end
 
   def ver
-  #params[:tratamiento][:ficha_id]
+  
   @ficha = Ficha.find_by_id(params[:id], :include => 'tratamientos')
 
   respond_to do |format|
@@ -141,7 +142,7 @@ class FichasController < ApplicationController
   def imprimir
     @ficha = Ficha.find_by_id(params[:id], :include => 'tratamientos')
       respond_to do |format|
-        format.html{ render :partial => 'listado' }
+        format.html{ render :partial => 'imprimir' }
       end
   end
 

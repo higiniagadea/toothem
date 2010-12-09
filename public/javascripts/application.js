@@ -16,3 +16,25 @@ function ttip_edit_field(objeto, campof, id){
            }
         });
 }
+$(document).ready(function(){
+  //Oculta los notice
+    function runEffect() {
+
+        var selectedEffect = 'blind';
+
+        var options = {};
+
+        $(".notice-error div").hide(selectedEffect, options, 500);};
+        setTimeout(function() {
+            $(".notice-error div").hide('blind', {}, 500)
+        }, 4000);
+
+        $(".notice-error p").click(function() {
+                runEffect();
+                return false;
+        });
+
+
+})
+  
+   

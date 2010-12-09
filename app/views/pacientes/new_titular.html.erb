@@ -22,7 +22,7 @@
   
   <th>
     Matr&iacute;cula</th>
-  <td><%= f.text_field :matricula, :size=> 10, :class=> 'ui-widget-content required', :title=> 'Nro. de Documento no puede vacio' %>
+  <td><%= f.text_field :matricula, :size=> 10, :class=> 'ui-widget-content required', :title=> 'Nro. de Documento ingrese solo numeros' %>
   </td>
   </tr>
    <tr>
@@ -57,13 +57,14 @@
        meta: "validate",
         rules: {
          "titular[matricula]": {required:true, remote:"/pacientes/verificar_matricula_tit?titular[matricula]=" + $('#titular[matricula]').val()},
-         "titular[nro_afiliado]": {required:true, remote:"/pacientes/verificar_nroafiliado_tit?titular[nro_afiliado]=" + $('#titular[nro_afiliado]').val()}
-
+         "titular[nro_afiliado]": {required:true, remote:"/pacientes/verificar_nroafiliado_tit?titular[nro_afiliado]=" + $('#titular[nro_afiliado]').val()},
+          "titular[matricula]": {required:true, remote:"/pacientes/verificar_numeromatricula?titular[matricula]=" + $('#titular[matricula]').val()}, number:true
        },
        messages: {
          "titular[matricula]": {remote:'Nro. de Documento ya se encuentra cargado' },
-         "titular[nro_afiliado]": {remote:'Nro. de Afiliado ya se encuentra cargado'}
-       }
+         "titular[nro_afiliado]": {remote:'Nro. de Afiliado ya se encuentra cargado'},
+         "titular[matricula]":{remote: 'Ingrese solo numeros'}
+    }
 
     
      });

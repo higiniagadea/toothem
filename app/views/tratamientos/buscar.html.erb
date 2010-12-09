@@ -1,11 +1,12 @@
   <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Buscar Tratamientos </legend>
 <% form_remote_tag :url => resultado_tratamientos_path, :method => :post, :update => :search_hits do -%>
+   
   <table id="search-form">
     <tr>
       <th>Fecha desde</th>
     <th><span class="fecha" class ="ui-widget-content">
-              <input class="ui-widget-content" type="text" id="fecha_desde" name="tratamiento[fecha]" readonly="readonly" size="10" />
+              <input class="ui-widget-content" type="text" id="fecha_desde" name="tratamiento[fecha_desde]" readonly="readonly" size="10" />
       </span>
     </th>
 
@@ -19,20 +20,22 @@
     <tr>
      <th>
           <label>Profesional</label></th>
-        <th><%= collection_select(:get, :profesional_id, Profesional.all, :id, :nombre, :class=> 'ui-widget-content') %>
+        <th>
+          <%#= collection_select(:get, :profesional_id, Profesional.all, :id, :nombre, :class=> 'ui-widget-content') %>
+          <%=  select("profesional", "profesional_id", Profesional.all.collect {|p| [ p.nombre, p.id ] }) %>
         </th>
-        <%= hidden_field_tag :tratamiento_paciente_id, params[:paciente_id], :name => 'tratamiento[paciente_id]' %>
+       <%= hidden_field_tag :tratamiento_paciente_id, params[:paciente_id], :name => 'tratamiento[paciente_id]' %>
 
     </tr>
     <table>
     <tr>
         <th style=" float: left; margin-left:  500px">
-        
+
           <%= submit_tag 'Buscar',  :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
 
         </th>
       </tr>
-    
+
     </table>
   </table>
   <div id ="search_hits">
@@ -110,11 +113,6 @@ $("#validate").click(function() {
 	return true;
 });
 
-    
+
 
 </script>
-
-
-
-
-

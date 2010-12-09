@@ -1,6 +1,5 @@
-
-<fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Resultado</legend>
+<% unless @fichas.blank? %>
+<h1>Resultado</h1>
 <table class="table-list">
   <tr class="<%  cycle('par','impar') %>">
     <th>Obra Social</th>
@@ -14,18 +13,14 @@
     <td><%=h ficha.obra_social.nombre %></td>
     <td><%=h ficha.fecha.strftime('%d/%m/%Y') %></td>
     <td><%=h ficha.profesional.nombre %></td>
-    <td><%=h ficha.estado_id %></td>
-    <td><%= link_to 'Ver Mas', ver_ficha_path(ficha), :id => 'ver' %></td>
+    <td><%=h ficha.estado.nombre %></td>
+    <td></td>
+    <td><%= link_to 'Ver Mas', ver_ficha_path(ficha), :id => 'vermas_' + ficha.id.to_s %></td>
     
 
   </tr>
-<% end %>
-
-</table>
-</fieldset>
-<br />
-<script type="text/javascript">
-    $('#ver').fancybox(
+  <script type="text/javascript">
+    $('#vermas_<%= ficha.id.to_s %>').fancybox(
         {
       'hideOnContentClick': false,
       'titleShow': false
@@ -33,3 +28,10 @@
     });
      $.fancybox.resize();
   </script>
+<% end %>
+<%else%>
+  No se encontraron resultados con ese criterio de busqueda
+<%end%>
+</table>
+
+<br />

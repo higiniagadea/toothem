@@ -85,4 +85,15 @@ class PrestacionesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def verificar_codigo
+    @prestacion = Prestacion.find(:first, :conditions => {:codigo => params[:prestacion][:codigo]})
+    respond_to do |format|
+    format.json { render :json => !@prestacion}
+    end
+
+  end
+
+
+
 end

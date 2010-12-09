@@ -1,7 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :fichas, :collection => { :buscar => :get, :resultado => :post},
                          :member => { :ver => [:post, :get],
-                                      :listado => [:post, :get],
+                                      
                                       :eliminar => [:get],
                                       :imprimir => [:post, :get]
                          }
@@ -13,7 +13,7 @@ ActionController::Routing::Routes.draw do |map|
                               :member => {:eliminar => :get,
                               :ver => [:post, :get],
                               :imprimir => [:post, :get]
-                             
+
                               }
 
    map.resources :imagenes, :collection => {:new_archivo => :get}
@@ -29,7 +29,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :items
 
 
-  map.resources :prestaciones
+  map.resources :prestaciones, :collection => {:verificar_codigo => [:get]}
 
 
   map.resources :items
@@ -55,7 +55,8 @@ ActionController::Routing::Routes.draw do |map|
                                 :verificar_matricula => [:get],
                                  :verificar_nroafiliado_tit => [:get],
                             :verificar_matricula_tit => [:get],
-                                
+                            :verificar_numeroafiliado => [:get],
+                           :verificar_numeromatricula => [:get]
                 },
 
                 :member => {:new_tratamiento => [:get,:post],

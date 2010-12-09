@@ -4,6 +4,9 @@
 <% form_for(@tratamiento) do |f| %>
   <%= f.error_messages(:header_message=>'Ingreso Incorrecto: ',:message=>'Se encontraron los siguientes errores') %>
       <%= f.hidden_field :paciente_id, 'value' => @paciente.id.to_s  %>
+  <% if params[:ficha_id] %>
+  <%= f.hidden_field :ficha_id,'value' =>  @ficha  %>
+  <%end%>
   <div class="errores">
           <ol style="list-style:none"></ol>
         </div>
@@ -29,11 +32,16 @@
   <td class="label">Prestaci&oacute;n </td>
   <td><%= f.collection_select(:prestacion_id, Prestacion.all, :id, :descripcion, :class=> 'ui-widget-content required', :title=> 'Descripcion no debe estar en blanco')%>
   </td>
+  <% unless params[:ficha_id]%>
    <td>Profesional</td>
             <td>
               <%= f.collection_select(:profesional_id, Profesional.all, :id, :nombre, :class => 'ui-widget-content required', :title=> 'Seleccione un profesional') %>
             </td>
-   <td class="label">Estado del Tratamiento</td>
+    <%else%>
+         <%= f.hidden_field :profesional_id, 'value' =>  @ficha.profesional_id %>
+    <%end%>
+
+  <td class="label">Estado del Tratamiento</td>
   <td><%= f.collection_select(:estado_tratamiento_id, EstadoTratamiento.all, :id, :nombre, :class=> 'ui-widget-content required', :title=> 'Estado no puede estar en blanco')%>
   </td>
 

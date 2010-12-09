@@ -17,7 +17,7 @@
       <tr>
         <td style=" float: left; margin-left: 1000px">
              <%= link_to image_tag('add.png') + 'Crear Tratamiento', new_tratamiento_paciente_path + "?paciente_id="+@paciente.id.to_s, :id=> 'nuevo'  %>
-             <%= link_to image_tag('zoom.png') + 'Buscar', buscar_tratamientos_path , :id => 'tratamiento' %>
+             <%= link_to image_tag('zoom.png') + 'Buscar', buscar_tratamientos_path +  "?paciente_id="+@paciente.id.to_s, :id => 'tratamiento' %>
         </td>
       </tr>
       <%= render:partial => 'tratamientos/listado' %>
@@ -45,13 +45,27 @@
             <td><%=h ficha.profesional.nombre %></td>
             <td><%=h ficha.estado.nombre %></td>
             
-             <td><%= link_to image_tag('zoom.png'), ficha, :title => 'Ver', :id => 'vista'%> </td>
-              <td><%= link_to image_tag('pencil.png'), edit_ficha_path(ficha, :paciente_id => @paciente.id), :title => 'Ver', :id => 'edicion' %> </td>
+             <td><%= link_to image_tag('zoom.png'), ficha, :title => 'Ver', :id => 'vista_' + ficha.id.to_s%> </td>
+              <td><%= link_to image_tag('pencil.png'), edit_ficha_path(ficha, :paciente_id => @paciente.id), :title => 'Ver', :id => 'edicion_' + ficha.id.to_s %> </td>
              
-               <td><%= link_to image_tag('cancel.png'), eliminar_ficha_path(ficha, :paciente_id => @paciente.id), :confirm => 'Esta seguro de eliminar la ficha?', :title=> 'Eliminar'   %></td>
+               <td><%= link_to image_tag('cancel.png'), eliminar_ficha_path(ficha, :paciente_id => @paciente.id), :confirm => 'Se borrara la ficha y todos sus tratamientos asociados, esta seguro?', :title=> 'Eliminar'   %></td>
                <td><%= link_to image_tag('add.png') + 'Agregar Tratamiento', new_tratamiento_path + "?paciente_id="+@paciente.id.to_s + '&ficha_id='+ ficha.id.to_s, :id=> 'agregar'  %></td>
           </tr>
-      <%end%>
+      <script type="text/javascript">
+             $('#vista_<%= ficha.id.to_s %>').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+    $('#edicion_<%= ficha.id.to_s %>').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+          </script>
+  <%end%>
          
   <tr><td>
  
@@ -102,17 +116,6 @@
       'titleShow': false
 
     });
-    $('#vista').fancybox(
-        {
-      'hideOnContentClick': false,
-      'titleShow': false
-
-    });
-    $('#edicion').fancybox(
-        {
-      'hideOnContentClick': false,
-      'titleShow': false
-
-    });
+   
     $.fancybox.resize();
       </script>

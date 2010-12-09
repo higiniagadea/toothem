@@ -21,7 +21,7 @@
     <tr>
      <th>
           <label>Profesional</label></th>
-        <th><%= collection_select(:get::profesional_id, Profesional.all, :id, :nombre, :class=> 'ui-widget-content', :name => 'ficha[:profesional_id]') %>
+        <th><%= select("profesional", "profesional_id", Profesional.all.collect {|p| [ p.nombre, p.id ] }) %>
         </th>
           <%= hidden_field_tag :ficha_paciente_id, params[:paciente_id], :name => 'ficha[paciente_id]' %>
     </tr>
