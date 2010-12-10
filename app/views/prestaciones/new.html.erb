@@ -6,34 +6,34 @@
   <div class="errores">
     <ol style="list-style:none"></ol>
   </div>
-  <table id="form">
+  <table>
     <tr>
     <td>
-      <label>Código de prestacion</label></td>
-    <td><%= f.text_field :codigo, :class => 'required ui-widget-content', :title => 'Codigo no puede estar en blanco' %>
+      Código de prestacion</td>
+    <td><%= f.text_field :codigo, :class => 'required', :title => 'Codigo no puede estar en blanco' %>
     </td>
-    </tr>
+    </tr> 
     <tr>
     <td>
-      <label>Descripción</label></td>
-    <td><%= f.text_field :descripcion, :class => 'required ui-widget-content', :title => 'Descripcion no puede estar en blanco' %>
+      Descripción</td>
+    <td><%= f.text_field :descripcion, :class => 'required', :title => 'Descripcion no puede estar en blanco' %>
     </td>
     </tr>
-    
-   
-    <%#= f.collection_select(:consultorio_id, Consultorio.all, :id, :nombre) %>
+       
   </table>
+
   <table>
     <tr>
     <td  style=" float: left; margin-left:  1100px">
-      
       <%= f.submit 'Guardar',  :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
-<%= link_to 'Cancelar', prestaciones_path %>
+      <%= link_to 'Cancelar', prestaciones_path %>
     </td>
     </tr>
   </table>
+  
+<% end %> 
 </fieldset>
-<% end %>
+
 
 <script type="text/javascript">
   $(document).ready(function(){
@@ -43,14 +43,9 @@
        errorLabelContainer: $("ol", $("#new_prestacion div.errores")),
        wrapper: 'li',
        meta: "validate",
+       required:true
 
-       rules: {
-         "prestacion[codigo]":{required:true, remote:"/prestaciones/verificar_codigo?prestacion[codigo]=" + $('#prestacion[codigo]').val()}
-       },
-       messages:{
-         "prestacion[codigo]": {remote:'Codigo ya se encuentra cargado'}
-
-     }
+       
     });
 
   </script>
