@@ -48,7 +48,7 @@ class PrestacionesController < ApplicationController
     respond_to do |format|
       if @prestacion.save
         flash[:notice] = 'Prestacion creada.'
-        format.html { redirect_to(@prestacion) }
+        format.html { redirect_to prestaciones_path }
         format.xml  { render :xml => @prestacion, :status => :created, :location => @prestacion }
       else
         format.html { render :action => "new" }
@@ -89,7 +89,7 @@ class PrestacionesController < ApplicationController
   def verificar_codigo
     @prestacion = Prestacion.find(:first, :conditions => {:codigo => params[:prestacion][:codigo]})
     respond_to do |format|
-    format.json { render :json => !@prestacion}
+    format.json {render :json => @prestacion}
     end
 
   end
