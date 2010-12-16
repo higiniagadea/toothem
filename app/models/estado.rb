@@ -1,5 +1,4 @@
 class Estado < ActiveRecord::Base
-  has_many :fichas
-
+ has_many :fichas
 
 end

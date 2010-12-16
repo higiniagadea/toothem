@@ -1,7 +1,7 @@
 <% unless @fichas.blank? %>
 <h1>Resultado</h1>
 <table class="table-list">
-  <tr class="<%  cycle('par','impar') %>">
+  <tr>
     <th>Obra Social</th>
     <th>Fecha</th>
     <th>Profesional</th>
@@ -15,8 +15,8 @@
     <td><%=h ficha.profesional.nombre %></td>
     <td><%=h ficha.estado.nombre %></td>
     <td></td>
-    <td><%= link_to 'Ver Mas', ver_ficha_path(ficha), :id => 'vermas_' + ficha.id.to_s %></td>
-    
+    <td><%= link_to 'Ver Mas', ver_ficha_path(ficha), :id => 'vermas_' + ficha.id.to_s %>
+        </td>
 
   </tr>
   <script type="text/javascript">
@@ -29,9 +29,9 @@
      $.fancybox.resize();
   </script>
 <% end %>
+
 <%else%>
   No se encontraron resultados con ese criterio de busqueda
 <%end%>
 </table>
-
 <br />

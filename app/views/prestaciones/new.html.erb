@@ -1,5 +1,5 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-all">
-  <legend class="ui-widget  ui-corner-all ui-widget-header">Nueva Prestacion</legend>
+  <legend class="ui-widget  ui-corner-all ui-widget-header">Nueva Prestaci&oacute;n</legend>
 
 <% form_for(@prestacion) do |f| %>
   <%= f.error_messages(:id => 'Error', :header_message=>'', :message=>'Se encontraron los siguientes errores') %>
@@ -9,24 +9,30 @@
   <table>
     <tr>
     <td>
-      Código de prestacion</td>
-    <td><%= f.text_field :codigo, :class => 'required', :title => 'Codigo no puede estar en blanco' %>
+      C&oacute;digo de prestaci&oacute;n</td>
+    <td><%= f.text_field :codigo, :class => 'required ui-widget-content', :size=> 22, :title => 'Codigo no puede estar en blanco', :onkeypress=> 'return validar(event)' %>
     </td>
     </tr> 
     <tr>
     <td>
-      Descripción</td>
-    <td><%= f.text_field :descripcion, :class => 'required', :title => 'Descripcion no puede estar en blanco' %>
+      Descripci&oacute;n</td>
+    <td><%= f.text_field :descripcion, :class => 'required ui-widget-content', :size=> 22, :title => 'Descripcion no puede estar en blanco' %>
     </td>
     </tr>
-       
+    <tr>
+      <td>
+        Valor por defecto
+      </td>
+      <td><%= f.text_field :valor, :size=> 22, :class => 'ui-widget-content' %></td>
+    </tr>
   </table>
 
   <table>
     <tr>
-    <td  style=" float: left; margin-left:  1100px">
-      <%= f.submit 'Guardar',  :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+    <td  style=" float: left; margin-left:  1000px">
       <%= link_to 'Cancelar', prestaciones_path %>
+      <%= f.submit 'Guardar',  :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+      
     </td>
     </tr>
   </table>
@@ -36,16 +42,33 @@
 
 
 <script type="text/javascript">
+  
+
+function validar(e) { // 1
+    tecla = (document.all) ? e.keyCode : e.which; // 2
+    if (tecla==8) return true; // 3
+    patron =/\d/; //4
+    te = String.fromCharCode(tecla); // 5
+    return patron.test(te); // 6
+}
+
   $(document).ready(function(){
     $("#new_prestacion").validate({
         //errorLabelContainer: $("#new_paciente div.errores")
        errorContainer: $("#new_prestacion div.errores"),
        errorLabelContainer: $("ol", $("#new_prestacion div.errores")),
        wrapper: 'li',
-       meta: "validate",
-       required:true
-
-       
-    });
+       meta: "validate" ,
+       rules: {
+         "prestacion[codigo]": {required: true, remote:"/prestaciones/verificar_codigo?prestacion[codigo]=" + $('#prestacion[codigo]').val()}
+       },
+       messages:{
+        "prestacion[codigo]": {remote:"el Codigo ya se encuentra cargado"} 
+       }
+ });
+    
+  });
+   
+  
 
   </script>

@@ -20,7 +20,8 @@ class Paciente < ActiveRecord::Base
   validates_presence_of :domicilio_particular, :message => 'No puede estar en blanco'
   validates_presence_of :fecha_nacimiento, :message=> 'No puede estar en blanco'
   validates_uniqueness_of :nro_afiliado, :message=> 'Ya existe ese numero '
-  named_scope :by_matricula, lambda { |matricula|
+
+   named_scope :by_matricula, lambda { |matricula|
     {
       :conditions=> ['lower(matricula) LIKE :matricula',
           { :matricula => "%"+matricula.downcase+"%"} ]
@@ -32,6 +33,7 @@ class Paciente < ActiveRecord::Base
           { :nombre => "%"+nombre.downcase+"%"} ]
     }
   }
+ 
   #named_scope :by_consultorio, lambda { |consultorio|
     #{
      # :conditions => ['consultorio_id = :consultorio',
@@ -42,9 +44,9 @@ class Paciente < ActiveRecord::Base
 
   def self.basic_search(options)
     scope_builder do |builder|
-
-      builder.by_matricula(options[:matricula]) if options[:matricula]
       builder.by_nombre(options[:nombre]) if options[:nombre]
+      builder.by_matricula(options[:matricula]) if options[:matricula]
+      
       #builder.by_consultorio
 
     end

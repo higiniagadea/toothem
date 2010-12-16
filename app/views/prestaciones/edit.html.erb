@@ -1,34 +1,64 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Prestacion</legend>
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Prestaci&oacute;n</legend>
 
 <% form_for(@prestacion) do |f| %>
   <%= f.error_messages(:id => 'Error', :header_message=>'', :message=>'Se encontraron los siguientes errores') %>
-  <table id="form">
-    <tr>
-    <td>
-      <label>Código</label></td>
-    <td><%= f.text_field :codigo %>
-    </td>
-    </tr>
-    <tr>
-    <td>
-      <label>Descripción</label></td>
-    <td>|<%= f.text_field :descripcion %>
-    </td>
-    </tr>
-    <tr>
-    <td>
-      <label>Consultorio</label></td>
-    <td><%= f.collection_select(:consultorio_id, Consultorio.all, :id, :nombre) %>
-    </td>
-    </tr>
-    <td>
-      <label></label>
-      <%= f.submit 'Actualizar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
-    </td>
-  </table>
-</fieldset>
-<% end %>
 
-<%= link_to 'Ver', @prestacion %> |
-<%= link_to 'Volver', prestaciones_path %>
+   <div class="errores">
+    <ol style="list-style:none"></ol>
+  </div>
+  <table>
+    <tr>
+    <td>
+      <label>C&oacute;digo de prestaci&oacute;n</label></td>
+    <td><%= f.text_field :codigo, :class => 'required ui-widget-content', :size=> 20, :title => 'Codigo no puede estar en blanco' %>
+    </td>
+    </tr>
+    <tr>
+    <td>
+      <label>Descripci&oacute;n</label></td>
+    <td><%= f.text_field :descripcion, :class => 'required ui-widget-content', :size=> 20, :title => 'Descripcion no puede estar en blanco'%>
+    </td>
+    </tr>
+    <tr>
+      <td>
+        Valor por defecto
+      </td>
+      <td><%= f.text_field :valor, :size=> 20, :class => 'ui-widget-content' %></td>
+    </tr>
+  </table>
+  <table>
+    <tr>
+    <td  style=" float: left; margin-left: 350px">
+    <%= link_to 'Cancelar', prestaciones_path %>
+      <%= f.submit 'Guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+       
+    </td>
+    </tr>
+  </table>
+  <% end %>
+</fieldset>
+
+
+<script type="text/javascript">
+  
+
+$(document).ready(function(){
+    $(".edit_prestacion" ).validate({
+        //errorLabelContainer: $("#new_paciente div.errores")
+       errorContainer: $(".edit_prestacion div.errores"),
+       errorLabelContainer: $("ol", $(".edit_prestacion div.errores")),
+       wrapper: 'li',
+       meta: "validate",
+       rules: {
+         "prestacion[codigo]": {required: true, remote:"/prestaciones/verificar_codigo?prestacion[codigo]=" + $('#prestacion[codigo]').val()}
+       },
+       messages:{
+        "prestacion[codigo]": {remote:"el Codigo ya se encuentra cargado"}
+       }
+
+    });
+  });
+
+  </script>
+

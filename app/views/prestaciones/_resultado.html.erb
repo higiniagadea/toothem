@@ -1,0 +1,55 @@
+<% unless @prestaciones.blank? %>
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Prestaciones</legend>
+
+<table class="table-list">
+  <tr>
+    <th>C&oacute;digo de prestaci&oacute;n</th>
+    <th>Descripci&oacute;n</th>
+    <th>Valor</th>
+  </tr>
+
+<% @prestaciones.each do |prestacion| %>
+  <tr>
+    <td><%=h prestacion.codigo %></td>
+    <td><%=h prestacion.descripcion %></td>
+    <td><%=h number_to_currency(prestacion.valor) %></td>
+    <td><%= link_to image_tag('magnifier_zoom_in.png'), prestacion, :title => 'Ver', :id => 'ver_p_' + prestacion.id.to_s%>
+        <%= link_to image_tag('pencil.png'), edit_prestacion_path(prestacion), :title => 'Editar', :id => 'edit_p_' + prestacion.id.to_s %>
+        <%= link_to image_tag('cancel.png'), prestacion, :title => 'Eliminar', :confirm => 'Está seguro? No podrá deshacer esta acción', :method => :delete %></td>
+  </tr>
+  <script type="text/javascript">
+  $(document).ready(function(){
+ $('#ver_p_'+<%= prestacion.id.to_s %>).fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+
+    $('#edit_p_'+<%= prestacion.id.to_s %>).fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+    });
+    </script>
+
+
+
+
+<% end %>
+
+
+  <%else%>
+  No se encontraron resultados
+  <%end%>
+</table>
+<%= will_paginate @prestaciones, :previous_label=>'<<Anterior', :next_label => 'Siguiente>>' %>
+
+ 
+</fieldset>
+
+<br />
+

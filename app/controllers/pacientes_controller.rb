@@ -70,19 +70,23 @@ class PacientesController < ApplicationController
   #end
 
   def result
-  
-    @pacientes = Paciente.paginate :page=> params[:page], :per_page=> 10 #:conditions => ['paciente_id = ?', @paciente.id.to_s]
+
+    #@pacientes = Paciente.paginate :page=> params[:page], :per_page=> 10  => ['paciente_id = ?', @paciente.id.to_s]
     respond_to do |format|
 
       if params[:nombre].blank? && params[:matricula].blank?
         format.html{render :text => "Ingrese al menos un dato para realizar la busqueda " }
-      else
-        params[:nombre].size >= 3
+      elsif
+          params[:nombre].size > 2
+
         @pacientes = Paciente.basic_search(params)
         format.html {render :partial => 'results', :layout => false }
-      
+      else
+        params[:nombre].size  < 2
+
+        format.html {render :text=> 'Ingrese al menos tres caracteres para realizar la busqueda'}
       end
-    
+
 
   end
   end
@@ -90,19 +94,20 @@ class PacientesController < ApplicationController
   # GET /pacientes/1
   # GET /pacientes/1.xml
   def show
-    @title = "Pacientes. Datos personales"
-    @paciente = Paciente.find(params[:id])
-    #@imagenes = Imagen.find_all_by_paciente_id(@paciente)
+   #@pacientes = Paciente.paginate :page=> params[:page], :per_page=> 5, :conditions => ['paciente_id in ?', @paciente.id]
+    @imagenes = Imagen.find_all_by_paciente_id(@paciente)
     
-    #unless @paciente.archivo_id.blank?
-     # @archivo = Archivo.find(@paciente.archivo_id)
-    #end
+    unless @paciente.archivo_id.blank?
+     @archivo = Archivo.find(@paciente.archivo_id)
+    end
+     
     respond_to do |format|
 
       format.html # show.html.erb
-      format.xml  { render :xml => @paciente }
+      
     end
   end
+
   def show_imagen
     @imagen = Imagen.find(params [:id])
     respond_to do |format|
@@ -143,6 +148,7 @@ class PacientesController < ApplicationController
     @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id.to_s])
     @fichas = Ficha.find_all_by_paciente_id(@paciente.id)
     @title = "Editando paciente"
+    @prestaciones = Prestacion.find(:all)
      respond_to do |format|
       unless @paciente.blank?
       unless @paciente.archivo_id.blank?
@@ -444,7 +450,13 @@ def verificar_numeromatricula
     end
   end
 
+def verificar_longitud
+  @paciente = Paciente.find(:first, :conditions => {:matricula => params[:paciente][:matricula]})
+    respond_to do |format|
+    format.json { render :json => !@paciente}
+    end
 
+end
 
 end
 

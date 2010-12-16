@@ -72,7 +72,7 @@ class CreateHistoriasClinicasGenerales < ActiveRecord::Migration
       t.column :farmacos_consumidos_ultimos_anios, :text, :null => true
       t.column :otros, :text, :null => true
       t.column :observaciones, :text, :null => true
-      t.column :leyenda_declaracion_jurada, :text, :null => true
+      t.column :leyenda_declaracion_jurada, :boolean, :null => true
 
 
 

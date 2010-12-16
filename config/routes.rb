@@ -29,7 +29,12 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :items
 
 
-  map.resources :prestaciones, :collection => {:verificar_codigo => [:get]}
+  map.resources :prestaciones, :collection => {:verificar_codigo => [:get], 
+                                               
+                                               :buscar => :get,
+                                               :resultado => [:post]
+                                               },
+                               :member => {:listado => [:get, :post]}
 
 
   map.resources :items
@@ -56,7 +61,8 @@ ActionController::Routing::Routes.draw do |map|
                                  :verificar_nroafiliado_tit => [:get],
                             :verificar_matricula_tit => [:get],
                             :verificar_numeroafiliado => [:get],
-                           :verificar_numeromatricula => [:get]
+                           :verificar_numeromatricula => [:get],
+                           :verificar_longitud => [:get]
                 },
 
                 :member => {:new_tratamiento => [:get,:post],
