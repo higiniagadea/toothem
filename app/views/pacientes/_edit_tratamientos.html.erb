@@ -7,17 +7,17 @@
     <table>
       <% unless @paciente.titular.blank? %>
       <tr>
-        <td style=" float: left; margin-left: 1000px">
+        <td style=" float: left; margin-left: 900px">
           <%= link_to image_tag('add.png') + "Nueva Ficha", new_ficha_path + "?paciente_id="+@paciente.id.to_s, :id => 'ficha' %>
-              <%= link_to image_tag('zoom.png') + 'Buscar', buscar_fichas_path + "?paciente_id="+@paciente.id.to_s, :id=> 'buscar' %>
+              <%= link_to image_tag('magnifier_zoom_in.png') + 'Buscar', buscar_fichas_path + "?paciente_id="+@paciente.id.to_s, :id=> 'buscar' %>
         </td>
       </tr>
       
       <%else%>
       <tr>
-        <td style=" float: left; margin-left: 1000px">
+        <td style=" float: left; margin-left: 900px">
              <%= link_to image_tag('add.png') + 'Crear Tratamiento', new_tratamiento_paciente_path + "?paciente_id="+@paciente.id.to_s, :id=> 'nuevo'  %>
-             <%= link_to image_tag('zoom.png') + 'Buscar', buscar_tratamientos_path +  "?paciente_id="+@paciente.id.to_s, :id => 'tratamiento' %>
+             <%= link_to image_tag('magnifier_zoom_in.png') + 'Buscar', buscar_tratamientos_path +  "?paciente_id="+@paciente.id.to_s, :id => 'tratamiento' %>
         </td>
       </tr>
       <%= render:partial => 'tratamientos/listado' %>
@@ -45,7 +45,7 @@
             <td><%=h ficha.profesional.nombre %></td>
             <td><%=h ficha.estado.nombre %></td>
             
-             <td><%= link_to image_tag('zoom.png'), ficha, :title => 'Ver', :id => 'vista_' + ficha.id.to_s%> </td>
+             <td><%= link_to image_tag('magnifier_zoom_in.png'), ficha, :title => 'Ver', :id => 'vista_' + ficha.id.to_s%> </td>
               <td><%= link_to image_tag('pencil.png'), edit_ficha_path(ficha, :paciente_id => @paciente.id), :title => 'Ver', :id => 'edicion_' + ficha.id.to_s %> </td>
              
                <td><%= link_to image_tag('cancel.png'), eliminar_ficha_path(ficha, :paciente_id => @paciente.id), :confirm => 'Se borrara la ficha y todos sus tratamientos asociados, esta seguro?', :title=> 'Eliminar'   %></td>

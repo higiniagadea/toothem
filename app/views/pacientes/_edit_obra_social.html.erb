@@ -6,25 +6,34 @@
                    
           <tr>
           <th>Nombre</th>
+          <th></th>
           <th><%=h @paciente.titular.obra_social.nombre %></th>
+          
           </tr>
          
          
           <tr>
           <th>Titular</th>
+          <th></th>
           <th><%=h @paciente.titular.nombre%></th>
-          
-           
+          </tr>
+
+          <tr>
           <th>Matr&iacute;cula</th>
+          <th></th>
           <th><%=h @paciente.titular.matricula%></th>
           </tr>
+
           <tr>
             <th>Nro. de Afiliado</th>
+            <th></th>
             <th><%=h @paciente.titular.nro_afiliado %></th>
           </tr>
+         </table>
+
           <table>
           <tr>
-          <td style=" float: left; margin-left:  1050px"><%= link_to image_tag('cancel.png') + 'Borrar Titular', elimina_tit_paciente_path(@paciente), :confirm=> 'Esta seguro?'  %></td></tr>
+          <td style=" float: left; margin-left:  950px"><%= link_to image_tag('cancel.png') + 'Borrar Titular', elimina_tit_paciente_path(@paciente), :confirm=> 'Esta seguro?'  %></td></tr>
           </table>
 
           <%else %>
@@ -45,7 +54,7 @@
               <td><%= link_to image_tag('user_add.png') + 'Asignar Obra Social con Titular Existente', search_titular_paciente_url + "?paciente_id="+@paciente.id.to_s, :id=> 'busc_titular'%>
              </td></tr>
          <%end %>
-         </table>
+         
 
 </fieldset><br/>
 
