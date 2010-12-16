@@ -10,19 +10,19 @@
 
 <tr>
   <th>Sexo</th>
-  <th><%=h @paciente.sexo %></th>
+  <th><%=h @paciente.sexo.blank? ? '-' : @paciente.sexo %></th>
 
   <th>Estado Civil</th>
-  <th><%=h @paciente.estado_civil %></th>
+  <th><%=h @paciente.estado_civil.blank? ? '-' : @paciente.estado_civil  %></th>
 </tr>
 
 <tr>
   <th>Domicilio</th>
-  <th><%=h @paciente.domicilio_particular %></th>
+  <th><%=h @paciente.domicilio_particular.blank? ? '-' : @paciente.domicilio_particular %></th>
 </tr>
 <tr>
 <th>Domicilio Laboral</th>
-  <th><%=h @paciente.domicilio_laboral%>
+  <th><%=h @paciente.domicilio_laboral.blank? ? '-' : @paciente.domicilio_laboral%>
   </th>
 </tr>
 
@@ -38,26 +38,26 @@
 
 <tr>
   <th>Tel&eacute;fono</th>
-  <th><%=h @paciente.telefono_particular %></th>
+  <th><%=h @paciente.telefono_particular.blank? ? '-' : @paciente.telefono_particular %></th>
 
   <th>M&oacute;vil</th>
-  <th><%=h @paciente.movil %></th>
+  <th><%=h @paciente.movil.blank? ?  '-' : @paciente.movil %></th>
 </tr>
 
 <tr>
 
   <th>Tel&eacute;fono Laboral</th>
-  <th><%=h @paciente.telefono_laboral %></th>
+  <th><%=h @paciente.telefono_laboral.blank? ? '-' : @paciente.telefono_laboral %></th>
 
 
   <th>Profesi&oacute;n</th>
-  <th><%=h @paciente.profesion %></th>
+  <th><%=h @paciente.profesion.blank? ? '-' : @paciente.profesion %></th>
 </tr>
 <tr>
   <th>Ocupaci&oacute;n</th>
-  <td><%=h @paciente.ocupacion %></td>
+  <td><%=h @paciente.ocupacion.blank? ? '-' : @paciente.ocupacion %></td>
   <th>Nivel Escolar</th>
-  <th><%=h @paciente.nivel_escolar %></th>
+  <th><%=h @paciente.nivel_escolar.blank? ? '-' : @paciente.nivel_escolar %></th>
 </tr>
 
 <tr>
@@ -67,7 +67,7 @@
   </tr>
 <tr>
   <th>Nro. de Afiliado</th>
-  <th><%=h @paciente.nro_afiliado  %> </th>
+  <th><%=h @paciente.nro_afiliado.blank? ? '-' : @paciente.nro_afiliado  %> </th>
 </tr>
 
 

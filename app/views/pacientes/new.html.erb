@@ -13,12 +13,12 @@
     <tr>
     <th>
       Nombre y Apellido</th>
-    <th><%= f.text_field :nombre, :class => 'required ui-widget-content', :title=> 'Nombre y Apellido no puede estar vacio'%>
+    <th><%= f.text_field :nombre, :class => 'required ui-widget-content', :title=> 'Nombre y Apellido no puede estar vacio', :onkeypress=> 'return validate(event)'%>
     </th>
     <th>
       Tipo Y Nro. de Documento</th>
     <th><%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion, {}, :class => 'ui-widget-content required') %>
-      <%= f.text_field :matricula,  :class =>"ui-widget-content required" , :size=> 22 , :title=> 'Nro. de Documento no puede estar vacio', :maxlenght => 8%>
+      <%= f.text_field :matricula,  :class =>"ui-widget-content required" , :size=> 22 , :title=> 'Ingrese su documento, entre 6 a 10 caracteres', :onkeypress=> 'return validar(event)'%>
     </th>
     </tr>
     
@@ -68,40 +68,40 @@
     <tr>
     <th>
       Tel&eacute;fono</th>
-    <td><%= f.text_field :telefono_particular, :class =>"ui-widget-content", :size=> 20 %>
+    <td><%= f.text_field :telefono_particular, :class =>"ui-widget-content", :size=> 20, :onkeypress=> 'return validar(event)' %>
     </td>
      <th>
       M&oacute;vil</th>
-     <td><%= f.text_field :movil, :class =>"ui-widget-content", :size=> 20 %>
+     <td><%= f.text_field :movil, :class =>"ui-widget-content", :size=> 20, :onkeypress=> 'return validar(event)' %>
     </td>
     <th>
       Tel&eacute;fono Laboral</th>
-    <td><%= f.text_field :telefono_laboral, :class =>"ui-widget-content", :size=> 20 %>
+    <td><%= f.text_field :telefono_laboral, :class =>"ui-widget-content", :size=> 20, :onkeypress=> 'return validar(event)' %>
     </td>
     </tr>
 
     <tr>
     <th>
       Profesi&oacute;n</th>
-    <td><%= f.text_field :profesion, :class =>"ui-widget-content", :size=>20 %>
+    <td><%= f.text_field :profesion, :class =>"ui-widget-content", :size=>20, :onkeypress=> 'return validate(event)' %>
     </td>
     <th>
       Ocupaci&oacute;n</th>
-    <td><%= f.text_field :ocupacion, :class =>"ui-widget-content", :size=>20 %>
+    <td><%= f.text_field :ocupacion, :class =>"ui-widget-content", :size=>20, :onkeypress=> 'return validate(event)' %>
     </td>
     <th>
       Nivel Escolar</th>
-    <td><%= f.text_field :nivel_escolar, :class =>"ui-widget-content", :size=> 20 %>
+    <td><%= f.text_field :nivel_escolar, :class =>"ui-widget-content", :size=> 20, :onkeypress=> 'return validate(event)' %>
     </td>
     </tr>
     <tr>
       <th>Nro. de Afiliado</th>
-      <td><%= f.text_field :nro_afiliado, :size=>20, :class=>'ui-widget-content required', :title=> 'Nro. de Afiliado ingrese solo numeros' %>
+      <td><%= f.text_field :nro_afiliado, :size=>20, :class=>'ui-widget-content required', :title=> 'Nro. de Afiliado no puede estar vacio', :onkeypress=> 'return validar(event)' %>
       </td>
     </tr>
     <table>
       <tr>
-       <td style=" float: left; margin-left:  1100px"><%= link_to 'Cancelar', search_pacientes_path %> <%= f.submit 'Guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+       <td style=" float: left; margin-left: 1000px"><%= link_to 'Cancelar', search_pacientes_path %> <%= f.submit 'Guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
     </td>
 
     </tr>
@@ -117,6 +117,21 @@
 </fieldset>
 
 <script type="text/javascript">
+ function validar(e) { // 1
+    tecla = (document.all) ? e.keyCode : e.which; // 2
+    if (tecla==8) return true; // 3
+    patron =/\d/; //4
+    te = String.fromCharCode(tecla); // 5
+    return patron.test(te); // 6
+}
+function validate(e) { // 1
+    tecla = (document.all) ? e.keyCode : e.which; // 2
+    if (tecla==8) return true; // 3
+    patron =/[A-Za-zñÑ\s]/; //4
+    te = String.fromCharCode(tecla); // 5
+    return patron.test(te); // 6
+}
+
   $(document).ready(function(){
     $("#new_paciente").validate({
         //errorLabelContainer: $("#new_paciente div.errores")
@@ -128,8 +143,8 @@
        rules: {
          "paciente[matricula]": {required: true, remote:"/pacientes/verificar_matricula?paciente[matricula]=" + $('#paciente[matricula]').val()},
          "paciente[nro_afiliado]": {required: true, remote:"/pacientes/verificar_nroafiliado?paciente[nro_afiliado]=" + $('#paciente[nro_afiliado]').val()},
-         "paciente[nro_afiliado]": {required: true, remote:"/pacientes/verificar_numeroafiliado?paciente[nro_afiliado]=" + $('#paciente[nro_afiliado]').val(), number:true}
-       
+         "paciente[nro_afiliado]": {required: true, remote:"/pacientes/verificar_numeroafiliado?paciente[nro_afiliado]=" + $('#paciente[nro_afiliado]').val(), number:true},
+       "paciente[matricula]": {required: true, remote:"/pacientes/verificar_longitud?paciente[matricula]=" + $('#paciente[matricula]').val(),  rangelength: [6, 10]}
        },
       messages:{
            "paciente[matricula]": {remote:"Nro. de Documento ya se encuentra cargado"},

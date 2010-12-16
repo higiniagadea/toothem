@@ -1,26 +1,24 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Prestacion</legend>
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Prestaci&oacute;n</legend>
  <table class="table-list">
  <tr>
   <td>
-  <label>Codigo:</label></td>
+  <label>C&oacute;digo de prestacion:</label></td>
   <td><%=h @prestacion.codigo %>
   </td>
     </tr>
     <tr>
   <td>
-  <label>Descripcion:</label></td>
+  <label>Descripci&oacute;n:</label></td>
   <td><%=h @prestacion.descripcion %>
   </td>
     </tr>
     <tr>
      <td>
-     <label>Consultorio:</label></td>
-     <td><%=h @prestacion.consultorio_id %>
+     <label>Valor por defecto:</label></td>
+     <td><%=h @prestacion.valor %>
      </td>
      </tr>
   </table>
 </fieldset>
 
-<%= link_to 'Editar', edit_prestacion_path(@prestacion) %> |
-<%= link_to 'Volver', prestaciones_path %>

@@ -6,7 +6,7 @@
     <tr>
       <th>Nombre y Apellido </th>
       <th>Tipo y Nro. Documento</th>
-      <th>Tel&eacute;fono Movil</th>
+      <th> M&oacute;vil</th>
       
     </tr>
     <% @pacientes.each do |paciente| %>
@@ -21,17 +21,21 @@
      </tr>
           
     <%end%>
-    
+   
  <%else%>
 
 
       No se encontraron pacientes segun el criterio de b&uacute;squeda
-  </table>
-</fieldset>
+  
 
 <%end%>
+ <%#= will_paginate @pacientes, :previous_label=>'Anterior', :next_label => 'Siguiente' %>
   
-     <%@pacientes.each do |paciente|%>
+</table>
+</fieldset>
+
+
+<%@pacientes.each do |paciente|%>
      <script type="text/javascript">
      
       // Only create tooltips when document is ready
@@ -67,5 +71,5 @@
  });
     </script>
       <%end%>
- 
+
   

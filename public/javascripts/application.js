@@ -35,6 +35,10 @@ $(document).ready(function(){
         });
 
 
+    $(":submit").button();
+    $(":button").button();
+
+
 })
   
    

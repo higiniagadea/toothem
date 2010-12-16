@@ -1,0 +1,63 @@
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header"  >Buscar Prestaciones</legend>
+
+     <div class="search-form">
+         <div class="errores">
+         <ol style="list-style:none"></ol>
+         </div>
+       <%  form_remote_tag :url=> resultado_prestaciones_path,
+                      :method => :post,
+                      :update => :search_hits do -%>
+      <table  style=" text-align: left; "class="table-search">
+        <tr>
+          <th>C&oacute;digo de Prestaci&oacute;n</th>
+          <td><%= text_field_tag :codigo,{}, :class => 'required ui-widget-content' %></td>
+        </tr>
+        <tr>
+          <th>Descripci&oacute;n</th>
+          <td><%= text_field_tag :descripcion, {}, :class=> 'ui-widget-content' %></td>
+        </tr>
+      </table>
+   
+    <table>
+        <tr>
+          <td style=" float: left; margin-left:  400px"> <%= submit_tag 'Buscar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
+          <td id="texto"><%= image_tag('help.png') %></td>
+
+          </tr>
+
+      </table>
+<%end -%>
+       
+     </div>
+ <td id="errorExplanation"></td>
+<div id="search_hits"></div>
+</fieldset>
+
+
+<script type="text/javascript">
+
+  
+
+$(document).ready(function(){
+
+$('#texto img').each(function(){
+
+          $(this).qtip(
+          {
+            content: '<%= render :partial => 'texto'  %>', // Give it some content
+            position: 'topRight', // Set its position
+            hide: {
+              fixed: true // Make it fixed so it can be hovered over
+            },
+            style: {
+              padding: '5px 15px', // Give it some extra padding
+              name: 'blue' // And style it with the preset dark theme
+            }
+          });
+
+});
+});
+     
+
+</script>
