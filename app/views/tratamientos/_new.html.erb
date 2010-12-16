@@ -22,11 +22,11 @@
           </td>
           <td>Diente</td> 
           <td>
-            <%= f.text_field :diente, :size=>10, :class=> 'ui-widget-content required', :title=> 'Diente debe ser numerico' %>
+            <%= f.text_field :diente, :size=>10, :class=> 'ui-widget-content required', :title=> 'Diente no puede estar en blanco', :onkeypress=> 'return validar(event)' %>
           </td>
           <td>Cara </td>
           <td>
-            <%= f.text_field :cara, :size=>10, :class=> 'ui-widget-content required', :title=> 'Cara no puede estar en blanco' %>
+            <%= f.text_field :cara, :size=>10, :class=> 'ui-widget-content required', :title=> 'Cara no puede estar en blanco', :onkeypress=> 'return validar(event)' %>
           </td>
         </tr>
         <tr>
@@ -45,10 +45,10 @@
          </tr>
          <tr>
               <td>Importe Cubierto </td>
-              <td><%= f.text_field :importe_cubierto, :size=>10, :class=> 'ui-widget-content required', :title=> 'Importe Cubierto debe ser numerico' %>
+              <td><%= f.text_field :importe_cubierto, :size=>10, :class=> 'ui-widget-content required', :title=> 'Importe Cubierto no puede estar en blanco', :onkeypress=> 'return validar(event)' %>
               </td>
               <td>Coseguro</td>
-              <td><%= f.text_field :coseguro, :size=>10, :class=> 'ui-widget-content required', :title=> 'Coseguro debe ser numerico' %></td>
+              <td><%= f.text_field :coseguro, :size=>10, :class=> 'ui-widget-content required', :title=> 'Coseguro no puede estar en blanco', :onkeypress=> 'return validate(event)' %></td>
          </tr>
       </table>
   <table>
@@ -77,6 +77,13 @@
 
 </fieldset>
 <script type="text/javascript">
+  function validar(e) { // 1
+    tecla = (document.all) ? e.keyCode : e.which; // 2
+    if (tecla==8) return true; // 3
+    patron =/\d/; //4
+    te = String.fromCharCode(tecla); // 5
+    return patron.test(te); // 6
+}
    $(document).ready(function(){
     $("#new_tratamiento").validate({
         //errorLabelContainer: $("#new_paciente div.errores")
