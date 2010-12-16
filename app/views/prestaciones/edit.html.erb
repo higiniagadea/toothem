@@ -11,13 +11,13 @@
     <tr>
     <td>
       <label>C&oacute;digo de prestaci&oacute;n</label></td>
-    <td><%= f.text_field :codigo, :class => 'required ui-widget-content', :size=> 20, :title => 'Codigo no puede estar en blanco' %>
+    <td><%= f.text_field :codigo, :class => 'required ui-widget-content', :size=> 20, :title => 'Codigo no puede estar en blanco', :onkeypress=> 'return validar(event)' %>
     </td>
     </tr>
     <tr>
     <td>
       <label>Descripci&oacute;n</label></td>
-    <td><%= f.text_field :descripcion, :class => 'required ui-widget-content', :size=> 20, :title => 'Descripcion no puede estar en blanco'%>
+    <td><%= f.text_field :descripcion, :class => 'required ui-widget-content', :size=> 20, :title => 'Descripcion no puede estar en blanco', :onkeypress=> 'return validate(event)'%>
     </td>
     </tr>
     <tr>
@@ -41,6 +41,20 @@
 
 
 <script type="text/javascript">
+  function validar(e) { // 1
+    tecla = (document.all) ? e.keyCode : e.which; // 2
+    if (tecla==8) return true; // 3
+    patron =/\d/; //4
+    te = String.fromCharCode(tecla); // 5
+    return patron.test(te); // 6
+}
+function validate(e) { // 1
+    tecla = (document.all) ? e.keyCode : e.which; // 2
+    if (tecla==8) return true; // 3
+    patron =/[A-Za-zñÑ\s]/; //4
+    te = String.fromCharCode(tecla); // 5
+    return patron.test(te); // 6
+}
   
 
 $(document).ready(function(){

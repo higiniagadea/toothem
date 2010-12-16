@@ -29,11 +29,11 @@
   
 
 <%end%>
- <%#= will_paginate @pacientes, :previous_label=>'Anterior', :next_label => 'Siguiente' %>
+ 
   
 </table>
 </fieldset>
-
+<%= will_paginate @paciente, :previous_label=>'Anterior', :next_label => 'Siguiente' %>
 
 <%@pacientes.each do |paciente|%>
      <script type="text/javascript">

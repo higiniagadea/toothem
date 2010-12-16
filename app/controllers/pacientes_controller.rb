@@ -70,8 +70,8 @@ class PacientesController < ApplicationController
   #end
 
   def result
-
-    #@pacientes = Paciente.paginate :page=> params[:page], :per_page=> 10  => ['paciente_id = ?', @paciente.id.to_s]
+  
+    
     respond_to do |format|
 
       if params[:nombre].blank? && params[:matricula].blank?
@@ -81,6 +81,7 @@ class PacientesController < ApplicationController
 
         @pacientes = Paciente.basic_search(params)
         format.html {render :partial => 'results', :layout => false }
+        @pacientes = Paciente.paginate :page=> params[:page], :per_page=> 10
       else
         params[:nombre].size  < 2
 
@@ -89,6 +90,7 @@ class PacientesController < ApplicationController
 
 
   end
+   
   end
   
   # GET /pacientes/1
