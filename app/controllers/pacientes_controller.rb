@@ -71,7 +71,6 @@ class PacientesController < ApplicationController
 
   def result
   
-    
     respond_to do |format|
 
       if params[:nombre].blank? && params[:matricula].blank?
@@ -81,7 +80,7 @@ class PacientesController < ApplicationController
 
         @pacientes = Paciente.basic_search(params)
         format.html {render :partial => 'results', :layout => false }
-        @pacientes = Paciente.paginate :page=> params[:page], :per_page=> 10
+        @pacientes = @pacientes.paginate :page=> params[:page], :per_page=> 2
       else
         params[:nombre].size  < 2
 
@@ -96,7 +95,8 @@ class PacientesController < ApplicationController
   # GET /pacientes/1
   # GET /pacientes/1.xml
   def show
-   #@pacientes = Paciente.paginate :page=> params[:page], :per_page=> 5, :conditions => ['paciente_id in ?', @paciente.id]
+ 
+ 
     @imagenes = Imagen.find_all_by_paciente_id(@paciente)
     
     unless @paciente.archivo_id.blank?
