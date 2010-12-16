@@ -196,4 +196,15 @@ respond_to do |format|
   #format.html {render  :layout=> false, :partial => 'listado'}
 end
 end
+
+
+#def verificar_longitud
+#@tratamiento = Tratamiento.find(:first, :conditions => {:diente => params[:tratamiento][:diente]     })
+ #   respond_to do |format|
+  #  format.json { render :json => !@tratamiento}
+   # end
+#end
+
+
+
 end

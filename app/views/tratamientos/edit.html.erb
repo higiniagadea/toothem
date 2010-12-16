@@ -10,10 +10,9 @@
   <div class="errores">
           <ol style="list-style:none"></ol>
         </div>
-<table id="form">
+<table>
+ 
   
-<tr>
-  <td><h1><%#= @tratamiento.paciente.nombre %></h1></td></tr>
 
 <tr>
   <td><label>Fecha</label></td>
@@ -22,10 +21,10 @@
       </span></td>
  
   <td class="label">Diente</td>
-  <td><%= f.text_field :diente, :size => 10 , :class=> 'ui-widget-content required', :title=> 'Diente debe ser numerico'%>
+  <td><%= f.text_field :diente, :size => 10 , :class=> 'ui-widget-content required', :title=> 'Diente no puede estar en blanco, maximo dos caracteres', :onkeypress=> 'return validar(event)'%>
   </td>
   <td class="label">Cara</td>
-  <td><%= f.text_field :cara, :size => 10, :class=> 'ui-widget-content required', :title=> 'Cara no debe estar en blanco' %>
+  <td><%= f.text_field :cara, :size => 10, :class=> 'ui-widget-content required', :title=> 'Cara no puede estar en blanco, maximo dos caracteres', :onkeypress=> 'return validar(event)' %>
   </td>
   </tr>
    <tr>
@@ -49,11 +48,11 @@
   </tr>
   <tr>
     <td class="label">Importe Cubierto </td>
-  <td><%= f.text_field :importe_cubierto, :size => 10, :class=> 'ui-widget-content required', :title=> 'Importe debe ser numerico' %>
+  <td><%= f.text_field :importe_cubierto, :size => 10, :class=> 'ui-widget-content required', :title=> 'Importe debe ser numerico', :onkeypress=> 'return validar(event)' %>
   </td>
   <td class="label">Coseguro</td>
   <td>
-    <%= f.text_field :coseguro, :size=>10, :class=> 'ui-widget-content', :title=> 'Coseguro debe ser numerico' %></td>
+    <%= f.text_field :coseguro, :size=>10, :class=> 'ui-widget-content', :title=> 'Coseguro debe ser numerico', :onkeypress=> 'return validar(event)' %></td>
   </tr>
 </table>
   <table>
@@ -62,7 +61,7 @@
                  
                   <%= f.submit 'Editar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
 
-                  <%# = button_to_remote 'Agregar Tratamiento', :url=> asignar_tratamiento_ficha_url(@ficha), :method => :get, :success=> '$.fancybox.close();' %>
+                  
 
             </td>
 
@@ -81,6 +80,13 @@
 
 
 <script type="text/javascript">
+  function validar(e) { // 1
+    tecla = (document.all) ? e.keyCode : e.which; // 2
+    if (tecla==8) return true; // 3
+    patron =/\d/; //4
+    te = String.fromCharCode(tecla); // 5
+    return patron.test(te); // 6
+}
   $("#edit_tratamiento").validate({
         //errorLabelContainer: $("#new_paciente div.errores")
        errorContainer: $("#edit_tratamiento div.errores"),

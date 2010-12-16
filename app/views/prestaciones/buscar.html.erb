@@ -8,7 +8,7 @@
        <%  form_remote_tag :url=> resultado_prestaciones_path,
                       :method => :post,
                       :update => :search_hits do -%>
-      <table  style=" text-align: left; "class="table-search">
+      <table  style=" text-align: left">
         <tr>
           <th>C&oacute;digo de Prestaci&oacute;n</th>
           <td><%= text_field_tag :codigo,{}, :class => 'required ui-widget-content' %></td>
@@ -22,7 +22,7 @@
     <table>
         <tr>
           <td style=" float: left; margin-left:  400px"> <%= submit_tag 'Buscar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
-          <td id="texto"><%= image_tag('help.png') %></td>
+          <td id="text"><%= image_tag('help.png') %></td>
 
           </tr>
 
@@ -36,12 +36,10 @@
 
 
 <script type="text/javascript">
-
-  
-
 $(document).ready(function(){
 
-$('#texto img').each(function(){
+
+$('#text img').each(function(){
 
           $(this).qtip(
           {
@@ -54,10 +52,9 @@ $('#texto img').each(function(){
               padding: '5px 15px', // Give it some extra padding
               name: 'blue' // And style it with the preset dark theme
             }
-          });
+          })
+        });
+});
 
-});
-});
-     
 
 </script>

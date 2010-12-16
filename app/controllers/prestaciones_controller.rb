@@ -4,7 +4,7 @@ class PrestacionesController < ApplicationController
   layout 'default'
  before_filter :login_required
   def index
- @prestaciones = Prestacion.paginate :page=> params[:page], :per_page=> 10
+ @prestaciones = Prestacion.paginate :page=> params[:page], :per_page=> 2
    
     respond_to do |format|
       format.html # index.html.erb
@@ -103,17 +103,13 @@ class PrestacionesController < ApplicationController
 
   def resultado
       
-    respond_to do |format|
-
-      #if params[:codigo].blank? && params[:descripcion].blank?
-        #format.html{render :text => "Ingrese al menos un dato para realizar la busqueda " }
-      #else
+    respond_to do |format|     
         @prestaciones = Prestacion.basic_search(params)
-        
+        @prestaciones = @prestaciones.paginate :page => params[:page], :per_page => 2
         format.html {render :partial => 'resultado', :layout => false }
-       @prestaciones = @prestaciones.paginate :page => params[:page], :per_page => 10
+       
       end
-    end
+  end
 
  def verificar_codigo
   @prestacion = Prestacion.find(:first, :conditions => {:codigo => params[:prestacion][:codigo]})

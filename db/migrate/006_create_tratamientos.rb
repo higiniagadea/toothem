@@ -2,8 +2,8 @@
   def self.up
     create_table "tratamientos" do |t|
       t.column :fecha, :date
-      t.column :diente, :integer
-      t.column :cara, :string, :limit => 10
+      t.column :diente, :integer, :limit => 2
+      t.column :cara, :integer, :limit => 2
       t.column :fecha_finalizacion, :date
       t.column :importe_cubierto, :float
       t.column :coseguro, :float

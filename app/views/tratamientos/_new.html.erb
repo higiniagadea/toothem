@@ -11,7 +11,7 @@
         </div>
       <table id="form">
         <tr>
-          <td><h1>Paciente: <%= @paciente.nombre %> <%#= @ficha.id.to_s %> </h1></td>
+          <td><h1>Paciente: <%= @paciente.nombre %> </h1></td>
           <td></td >
         </tr>
         <tr>
@@ -22,11 +22,11 @@
           </td>
           <td>Diente</td> 
           <td>
-            <%= f.text_field :diente, :size=>10, :class=> 'ui-widget-content required', :title=> 'Diente debe ser numerico' %>
+            <%= f.text_field :diente, :size=>10, :class=> 'ui-widget-content required', :title=> 'Diente no puede estar en blanco, maximo dos caracteres', :onkeypress=> 'return validar(event)' %>
           </td>
           <td>Cara </td>
           <td>
-            <%= f.text_field :cara, :size=>10, :class=> 'ui-widget-content required', :title=> 'Cara no puede estar en blanco' %>
+            <%= f.text_field :cara, :size=>10, :class=> 'ui-widget-content required', :title=> 'Cara no puede estar en blanco, maximo dos caracteres', :onkeypress=> 'return validar(event)' %>
           </td>
         </tr>
         <tr>
@@ -34,10 +34,14 @@
             <td>
               <%= f.collection_select(:prestacion_id, Prestacion.all, :id, :descripcion, :class=> 'ui-widget-content required', :title=> 'Seleccione una prestacion') %>
             </td>
-            <td>Profesional</td>
+            <% unless params[:ficha_id]%>
+   <td>Profesional</td>
             <td>
               <%= f.collection_select(:profesional_id, Profesional.all, :id, :nombre, :class => 'ui-widget-content required', :title=> 'Seleccione un profesional') %>
             </td>
+    <%else%>
+         <%= f.hidden_field :profesional_id, 'value' =>  @ficha.profesional_id %>
+    <%end%>
             <td>Estado del tratamiento</td>
             <td>
               <%= f.collection_select(:estado_tratamiento_id, EstadoTratamiento.all, :id, :nombre, :class=>'ui-widget-content required', :title=> 'Seleccione un estado') %>
@@ -45,19 +49,19 @@
          </tr>
          <tr>
               <td>Importe Cubierto </td>
-              <td><%= f.text_field :importe_cubierto, :size=>10, :class=> 'ui-widget-content required', :title=> 'Importe Cubierto debe ser numerico' %>
+              <td><%= f.text_field :importe_cubierto, :size=>10, :class=> 'ui-widget-content required', :title=> 'Importe Cubierto no puede estar en blanco', :onkeypress=> 'return validar(event)' %>
               </td>
               <td>Coseguro</td>
-              <td><%= f.text_field :coseguro, :size=>10, :class=> 'ui-widget-content required', :title=> 'Coseguro debe ser numerico' %></td>
+              <td><%= f.text_field :coseguro, :size=>10, :class=> 'ui-widget-content required', :title=> 'Coseguro no puede estar en blanco,maximo dos caracteres', :onkeypress=> 'return validar(event)' %></td>
          </tr>
       </table>
   <table>
          <tr>
             <td style=" float: left; margin-left:  600px">
-                  <%#= link_to 'Cancelar', edit_paciente_path(@paciente) %>
+                  
                   <%= f.submit 'Guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
 
-                  <%# = button_to_remote 'Agregar Tratamiento', :url=> asignar_tratamiento_ficha_url(@ficha), :method => :get, :success=> '$.fancybox.close();' %>
+                 
 
             </td>
 
@@ -77,6 +81,13 @@
 
 </fieldset>
 <script type="text/javascript">
+  function validar(e) { // 1
+    tecla = (document.all) ? e.keyCode : e.which; // 2
+    if (tecla==8) return true; // 3
+    patron =/\d/; //4
+    te = String.fromCharCode(tecla); // 5
+    return patron.test(te); // 6
+}
    $(document).ready(function(){
     $("#new_tratamiento").validate({
         //errorLabelContainer: $("#new_paciente div.errores")
@@ -84,7 +95,12 @@
        errorLabelContainer: $("ol", $("#new_tratamiento div.errores")),
        wrapper: 'li',
        meta: "validate"
-     });
+   
+  
+      
+      
+
+  });
 
 
 

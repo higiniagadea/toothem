@@ -16,7 +16,7 @@
     <tr>
      <td>
      <label>Valor por defecto:</label></td>
-     <td><%=h @prestacion.valor %>
+     <td><%=h number_to_currency(@prestacion.valor) %>
      </td>
      </tr>
   </table>

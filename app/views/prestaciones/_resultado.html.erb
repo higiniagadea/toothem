@@ -46,7 +46,8 @@
   No se encontraron resultados
   <%end%>
 </table>
-<%= will_paginate @prestaciones, :previous_label=>'<<Anterior', :next_label => 'Siguiente>>' %>
+<%= will_paginate @prestaciones, :previous_label=>'<<Anterior', :next_label => 'Siguiente>>', :params=> {:controller => "prestaciones", :action => 'resultado' }
+   %>
 
  
 </fieldset>
