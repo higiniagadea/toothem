@@ -102,7 +102,7 @@ class PrestacionesController < ApplicationController
 
 
   def resultado
-    
+  
     respond_to do |format|     
         @prestaciones = Prestacion.basic_search(params)
         

@@ -44,10 +44,11 @@
             <td><%=h ficha.fecha.strftime('%d/%m/%Y') %></td>
             <td><%=h ficha.profesional.nombre %></td>
             <td><%=h ficha.estado.nombre %></td>
-            
-             <td><%= link_to image_tag('magnifier_zoom_in.png'), ficha, :title => 'Ver', :id => 'vista_' + ficha.id.to_s%> </td>
-              <td><%= link_to image_tag('pencil.png'), edit_ficha_path(ficha, :paciente_id => @paciente.id), :title => 'Ver', :id => 'edicion_' + ficha.id.to_s %> </td>
-             
+          
+             <td><%= link_to image_tag('magnifier_zoom_in.png'), ficha, :title => 'Ver', :id => 'vista_' + ficha.id.to_s%> 
+              <% unless ficha.estado_id == 4 %>
+             <%= link_to image_tag('pencil.png'), edit_ficha_path(ficha, :paciente_id => @paciente.id), :title => 'Ver', :id => 'edicion_' + ficha.id.to_s  %> </td>
+              <%end%>
                <td><%= link_to image_tag('cancel.png'), eliminar_ficha_path(ficha, :paciente_id => @paciente.id), :confirm => 'Se borrara la ficha y todos sus tratamientos asociados, esta seguro?', :title=> 'Eliminar'   %></td>
                <td><%= link_to image_tag('add.png') + 'Agregar Tratamiento', new_tratamiento_path + "?paciente_id="+@paciente.id.to_s + '&ficha_id='+ ficha.id.to_s, :id=> 'agregar_' + ficha.id.to_s   %></td>
           </tr>
@@ -71,14 +72,16 @@
 
     });
           </script>
+  
   <%end%>
-         
+    
   <tr><td>
  
     </td></tr>
     <%end%>
-    </table>
 
+    </table>
+<%= will_paginate @fichas, :previous_label=>'Anterior', :next_label => 'Siguiente' %>
 
 
 

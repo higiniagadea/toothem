@@ -35,7 +35,7 @@
 </table>
 </fieldset>
 
-<%= will_paginate @pacientes, :previous_label=>'Anterior', :next_label => 'Siguiente' %>
+
 <%@pacientes.each do |paciente|%>
      <script type="text/javascript">
      
@@ -74,3 +74,4 @@
       <%end%>
 
   
+<%= will_paginate @pacientes, :previous_label=>'Anterior', :next_label => 'Siguiente', :params => {:controller => "pacientes", :action=> "result", :nombre => 'nombre' } %>

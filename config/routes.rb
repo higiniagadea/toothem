@@ -14,7 +14,7 @@ ActionController::Routing::Routes.draw do |map|
                               :ver => [:post, :get],
                               :imprimir => [:post, :get],
                               :verificar_longitud => [:post, :get]
-                               
+                              
                               }
 
    map.resources :imagenes, :collection => {:new_archivo => :get}
@@ -56,7 +56,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :pacientes,
                 :collection => {:search => :get, 
-                                :result => :post,
+                                :result => [:post, :get],
                                 :verificar_nroafiliado => [:get],
                                 :verificar_matricula => [:get],
                                  :verificar_nroafiliado_tit => [:get],
