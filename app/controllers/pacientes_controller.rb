@@ -42,11 +42,8 @@ class PacientesController < ApplicationController
 
   #busqueda de pacientes
   def search
-   
-    
    respond_to do |format|
       format.html # search.html.erb
-      
     end
   end
 
@@ -68,47 +65,40 @@ class PacientesController < ApplicationController
    # end
        
   #end
-
   def result
-  
+    @pacientes = Paciente.basic_search(params).paginate  :page=> params[:page], :per_page=> 8#basic_search(params)
     respond_to do |format|
-
       if params[:nombre].blank? && params[:matricula].blank?
         format.html{render :text => "Ingrese al menos un dato para realizar la busqueda " }
       elsif
           params[:nombre].size > 2
-
-        @pacientes = Paciente.basic_search(params)
+        
+        #@pacientes = @pacientes.paginate :page=> params[:page], :per_page=> 2
         format.html {render :partial => 'results', :layout => false }
-        @pacientes = @pacientes.paginate :page=> params[:page], :per_page=> 2
+        #format.html{render :layout => false}
       else
         params[:nombre].size  < 2
-
         format.html {render :text=> 'Ingrese al menos tres caracteres para realizar la busqueda'}
       end
-
-
-  end
+    end
    
   end
   
   # GET /pacientes/1
   # GET /pacientes/1.xml
-  def show
- 
- 
-    @imagenes = Imagen.find_all_by_paciente_id(@paciente)
-    
-    unless @paciente.archivo_id.blank?
-     @archivo = Archivo.find(@paciente.archivo_id)
-    end
+#  def show
+ #   @paciente = Paciente.find(params[:id])
+  #  @imagenes = Imagen.find_all_by_paciente_id(@paciente)
+   # unless @paciente.archivo_id.blank?
+    # @archivo = Archivo.find(@paciente.archivo_id)
+    #end
      
-    respond_to do |format|
+    #respond_to do |format|
 
-      format.html # show.html.erb
+   #   format.html # show.html.erb
       
-    end
-  end
+  #  end
+ # end
 
   def show_imagen
     @imagen = Imagen.find(params [:id])
@@ -151,6 +141,7 @@ class PacientesController < ApplicationController
     @fichas = Ficha.find_all_by_paciente_id(@paciente.id)
     @title = "Editando paciente"
     @prestaciones = Prestacion.find(:all)
+    @fichas = @fichas.paginate(:page=> params[:page], :per_page=> 5)
      respond_to do |format|
       unless @paciente.blank?
       unless @paciente.archivo_id.blank?

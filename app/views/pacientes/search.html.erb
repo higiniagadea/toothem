@@ -6,7 +6,7 @@
          <ol style="list-style:none"></ol>
          </div>
 
-<%  form_remote_tag :url=> result_pacientes_path,
+<%  form_remote_tag :url=> url_for(:action => 'result'),
                       :method => :post,
                       :update => :search_hits do -%>
 
@@ -16,7 +16,7 @@
         <td><%=  collection_select(:get, :tipo_documento_id, TipoDocumento.all, :id, :descripcion, {}, :class =>"ui-widget-content required") %> </td>
           
         <th>Nro:</th>
-          <td> <%= text_field_tag :matricula,{}, :class => 'ui-widget-content required', :title=> 'Ingrese Nro. de Documento' %></td>
+          <td> <%= text_field_tag :matricula,{}, :class => 'ui-widget-content required', :title=> 'Ingrese Nro. de Documento', :onkeypress=> 'return validate(event)' %></td>
         </tr>
 
         <tr>
@@ -46,6 +46,13 @@
 
 
 <script type="text/javascript">
+  function validate(e) { // 1
+    tecla = (document.all) ? e.keyCode : e.which; // 2
+    if (tecla==8) return true; // 3
+    patron =/\d/; //4
+    te = String.fromCharCode(tecla); // 5
+    return patron.test(te); // 6
+}
  $(document).ready(function(){
 
 
