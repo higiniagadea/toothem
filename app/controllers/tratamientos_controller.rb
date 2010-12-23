@@ -141,7 +141,7 @@ def buscar
 #end
 
 def resultado
- #raise "reerreeerree"
+ 
  @profesionales = Profesional.find( params[:profesional][:profesional_id]) if params[:profesional][:profesional_id]
   params[:tratamiento][:profesional_id] = params[:profesional][:profesional_id] if params[:profesional][:profesional_id]
   respond_to do |format|
@@ -150,8 +150,8 @@ def resultado
         format.html{render :text => "Ingrese los datos para realizar la busqueda", :layout => false }
       else
        @tratamientos = Tratamiento.busqueda(params[:tratamiento])
-        format.html {render :partial => 'resultado', :layout => false}
-      
+        format.html {render :partial => 'resultado', :layout => false }
+     
 
     end
 
@@ -187,14 +187,16 @@ def imprimir
 end
 
 
-def listado
+def listados
 
 @paciente = Paciente.find(params[:id])
-@tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id.to_s]
+
 respond_to do |format|
-  format.html {redirect_to edit_paciente_path(@paciente) + '#tratamientos'}
-  #format.html {render  :layout=> false, :partial => 'listado'}
-end
+   
+  format.html {render :partial => 'listados', :layout=> false }
+  @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha DESC'
+  end
+  
 end
 
 

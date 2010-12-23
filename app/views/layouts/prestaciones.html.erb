@@ -1,0 +1,19 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Toothem</title>
+   <%= javascript_include_tag  'jquery.validate.min.js', 'messages_es.js',
+      "jquery.ui.widget.js" ,"jquery.ui.button.js","jquery.livequery.js", 'app.js','qtip.js',
+      'jquery.safeenter.js', 'jquery.easing.pack.js','jquery.mousewheel.pack.js','jquery.fancybox.pack.js',
+      'jquery.autocomplete.js', 'jquery.clickmenu.js','jquery.maskedinput.min.js'%><!--,-->
+    <%= stylesheet_link_tag "main",'jquery-ui','ui-button','fancybox', "clickmenu"%>
+    <%#= stylesheet_link_tag 'main'%>
+    <%= javascript_include_tag 'qtip.js','jquery.boxy.js','jquery.datePicker-2.1.2','date.js', 'more-show'%>
+</head>
+<body>
+
+              <%= yield %>
+
+
+</body>
+</html>

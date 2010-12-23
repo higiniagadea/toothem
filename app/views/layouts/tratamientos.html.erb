@@ -4,14 +4,42 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title>Tratamientos: <%= controller.action_name %></title>
-  <%= stylesheet_link_tag 'scaffold' %>
+   <title>Toothem</title>
+   <%= stylesheet_link_tag "main",'jquery-ui','ui-button','fancybox', "clickmenu"%>
+<%= stylesheet_link_tag 'datePicker', 'date.js', 'main'%>
+<%= javascript_include_tag 'qtip.js','jquery.boxy.js','jquery.datePicker-2.1.2','date.js', 'more-show'%>
 </head>
 <body>
 
-<p style="color: green"><%= flash[:notice] %></p>
+<%if flash[:notice]%>
+          <div class="notice-error">
+              <div  id="notice" class="ui-state-highlight ui-corner-all" style=" padding: 0 .7em;">
+                <p><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
+                  <%= flash[:notice] %>
+                </p>
+              </div>
+          </div>
+          <br/>
 
-<%= yield %>
+            <%end%>
+            <%if flash[:error]%>
+          <div class="notice-error">
+          <div id="error" class="notice-error ui-state-error ui-corner-all" style="padding: 0 .7em;">
+            <p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
+            <%= flash[:error]%>
+            </p>
+          </div>
+          </div>
+          <br/>
+
+
+          <%end%>
+
+
+
+              <%= yield %>
+
+
 
 </body>
 </html>

@@ -110,10 +110,7 @@
   end
 
   def resultado
-    #@fichas = Ficha.buscar(params[:ficha])
-    #Ficha.find(:all, :conditions => ['fecha > ? and fecha < ?', params[:ficha][:fecha].to_date, params[:ficha][:fecha_hasta].to_date] )
     @profesionales = Profesional.find(params[:profesional][:profesional_id]) if params[:profesional][:profesional_id]
-    #@profesional = Profesional.find(params[:tratamiento][:profesional_id])
     params[:ficha][:profesional_id] = params[:profesional][:profesional_id] if params[:profesional][:profesional_id]
     respond_to do |format|
       params[:ficha][:profesional_id] =  @profesionales.id
@@ -122,9 +119,7 @@
       else
        @fichas = Ficha.buscar(params[:ficha])
         format.html {render :partial => 'resultado', :layout => false}
-      
-
-    end
+      end
 
   end
   end
@@ -136,9 +131,9 @@
   respond_to do |format|
     format.html {render :partial => 'ver', :layout => false}
    end
-
   end
 
+  
   def imprimir
     @ficha = Ficha.find_by_id(params[:id], :include => 'tratamientos')
       respond_to do |format|

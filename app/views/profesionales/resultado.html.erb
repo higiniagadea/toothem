@@ -18,8 +18,9 @@
   </tr>
 <% end %>
   <%else%>
-  noooooooooooo
+No se encontraron resultados
   <%end%>
 </table>
 </fieldset>
 <br />
+<%= will_paginate @profesionales, :previous_label=>'Anterior', :next_label => 'Siguiente', :params => {:controller => "profesionales", :action=> "resultado"  } %>

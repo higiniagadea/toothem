@@ -43,43 +43,29 @@ class PacientesController < ApplicationController
   #busqueda de pacientes
   def search
    respond_to do |format|
-      format.html # search.html.erb
+      format.html
     end
   end
 
-  #resultado de la busqueda de pacientes
-  #def result
-    #@paginatepacientes = Paciente.paginate :page=> params[:page], :per_page=> 10, :order=> 'nombre ASC'
-   
-
-    #respond_to do |format|
-      #if params[:nombre].blank? && params[:matricula].blank?
-
-       #format.html{render :text => 'Ingrese al menos un dato para realizar la busqueda', :layout => false}
-      #elsif
-      #params[:nombre].size >= 3
-        #@pacientes = Paciente.basic_search(params)
-       # format.html{render :partial => 'results'}
-      #   format.html{render :text=> 'Debe ingresar al menos 3 caracteres en el campo de texto'}
-    #  end
-   # end
-       
-  #end
+  
   def result
-    @pacientes = Paciente.basic_search(params).paginate  :page=> params[:page], :per_page=> 8#basic_search(params)
+    
     respond_to do |format|
       if params[:nombre].blank? && params[:matricula].blank?
         format.html{render :text => "Ingrese al menos un dato para realizar la busqueda " }
       elsif
-          params[:nombre].size > 2
-        
-        #@pacientes = @pacientes.paginate :page=> params[:page], :per_page=> 2
-        format.html {render :partial => 'results', :layout => false }
-        #format.html{render :layout => false}
+          params[:nombre].size > 2 || params[:matricula].size > 2
+                  
+        format.html{render :partial=> 'result', :layout => false }
+         
+        @pacientes = Paciente.basic_search(params).paginate  :page=> params[:page], :per_page=> 10, :order => 'nombre ASC'
+       
       else
-        params[:nombre].size  < 2
+        params[:nombre].size  < 2 || params[:matricula].size < 2
         format.html {render :text=> 'Ingrese al menos tres caracteres para realizar la busqueda'}
       end
+
+      
     end
    
   end
@@ -141,15 +127,19 @@ class PacientesController < ApplicationController
     @fichas = Ficha.find_all_by_paciente_id(@paciente.id)
     @title = "Editando paciente"
     @prestaciones = Prestacion.find(:all)
-    @fichas = @fichas.paginate(:page=> params[:page], :per_page=> 5)
+
+    @fichas = @fichas.paginate(:page=> params[:page], :per_page=> 1, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha')
      respond_to do |format|
       unless @paciente.blank?
       unless @paciente.archivo_id.blank?
          @archivo = Archivo.find(@paciente.archivo_id)
        end
    
-
-        format.html unless @paciente.id.blank?
+  if params[:paginacion]
+    format.html   {redirect_to edit_paciente_path(@paciente, :page => params[:page]) + '#tratamientos'}
+  else
+          format.html unless @paciente.id.blank?
+  end
       else
         format.html {redirect_to search_pacientes_path}
       end

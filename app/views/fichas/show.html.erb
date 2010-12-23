@@ -2,10 +2,12 @@
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Ficha N° <%= @ficha.id %> </legend>
   <table style="text-align: left">
     <tr>
-     
-      <th>Obra Social</th>
-      <td><%=h @ficha.paciente.titular.obra_social.nombre %></td>
+   
+    <th>Obra Social</th>
+    <td><%= @ficha.obra_social.nombre %> </td>
+    
     </tr>
+    
     <tr>
       <th>Fecha</th>
       <td><%=h @ficha.fecha.strftime('%d/%m/%Y') %></td>

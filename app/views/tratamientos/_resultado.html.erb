@@ -1,4 +1,5 @@
-  <% unless @tratamientos.blank? %>
+
+ <% unless @tratamientos.blank? %>
 
 <h1>Resultado</h1>
 <table class="table-list">
@@ -36,3 +37,11 @@
     });
     $.fancybox.resize();
       </script>
+
+<%= will_paginate @tratamientos, :previous_label=>'Anterior', :next_label => 'Siguiente',
+                              :class => 'tratam pagination',
+                              :params => {:controller => "tratamientos", :action=> "resultado"
+
+                               } %>
+
+
