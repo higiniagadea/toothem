@@ -11,11 +11,11 @@
       <table  style=" text-align: left">
         <tr>
           <th>C&oacute;digo de Prestaci&oacute;n</th>
-          <td><%= text_field_tag :codigo,{}, :class => 'required ui-widget-content' %></td>
+          <td><%= text_field_tag :codigo,{}, :class => 'required ui-widget-content', :onkeypress=> 'return validate(event)' %></td>
         </tr>
         <tr>
           <th>Descripci&oacute;n</th>
-          <td><%= text_field_tag :descripcion, {}, :class=> 'ui-widget-content' %></td>
+          <td><%= text_field_tag :descripcion, {}, :class=> 'ui-widget-content', :onkeypress=> 'return validar(event)' %></td>
         </tr>
       </table>
    
@@ -36,6 +36,21 @@
 
 
 <script type="text/javascript">
+  function validate(e) { // 1
+    tecla = (document.all) ? e.keyCode : e.which; // 2
+    if (tecla==8) return true; // 3
+    patron =/\d/; //4
+    te = String.fromCharCode(tecla); // 5
+    return patron.test(te); // 6
+}
+function validar(e) { // 1
+    tecla = (document.all) ? e.keyCode : e.which; // 2
+    if (tecla==8) return true; // 3
+    patron =/[A-Za-zñÑ\s]/; //4
+    te = String.fromCharCode(tecla); // 5
+    return patron.test(te); // 6
+}
+
 $(document).ready(function(){
 
 

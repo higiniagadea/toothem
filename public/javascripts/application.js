@@ -40,5 +40,75 @@ $(document).ready(function(){
 
 
 })
-  
-   
+  jQuery.ajaxSetup({'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript,application/javascript,text/html")}})
+    $(":submit").button();
+    $(":button").button();
+    $(function() {
+  $('input[datatype=numeric]').keypress(function(e) {
+    tecla = (document.all) ? e.keyCode : e.which;
+    if (tecla==8) return true;
+    patron =/\d/;
+    te = String.fromCharCode(tecla);
+    return patron.test(te);
+   });
+
+   jQuery.ajaxSetup({
+  'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")}
+   })
+
+  jQuery(document).ready(function($) {
+    $('div.ajax-pagination a').live('click', function() {
+    $('#resultados').load(this.href)
+    return false
+  });
+ 
+
+  $('div.result a').live('click', function() {
+    $('#resultados').load(this.href)
+    return false
+  });
+
+ $('div.ajax-pagination a').live('click', function() {
+    $('#trata').load(this.href)
+    return false
+  });
+ 
+
+  $('div.tratam a').live('click', function() {
+    $('#trata').load(this.href)
+    return false
+  });
+
+
+
+$('div.ajax-pagination a').live('click', function() {
+    $('#ficha_pag').load(this.href)
+    return false
+  });
+
+
+  $('div.ficha_pag a').live('click', function() {
+    $('#fich').load(this.href)
+    return false
+  });
+
+$('div.ajax-pagination a').live('click', function() {
+    $('#presta ').load(this.href)
+    return false
+  });
+
+
+  $('div.pres a').live('click', function() {
+    $('#presta').load(this.href)
+    return false
+  });
+
+
+
+
+
+
+
+
+})
+    })

@@ -3,18 +3,24 @@
 
 <% form_for(@obra_social) do |f| %>
   <%= f.error_messages(:id => 'Error', :header_message => '', :message=>'Se encontraron los siguientes errores') %>
+
+  <div class="errores">
+      <ol style="list-style:none"></ol>
+    </div>
+
+
   <table id="form">
     <tr>
     <td>
       <label>Nombre</label></td>
-    <td><%= f.text_field :nombre, :class=> 'ui-widget-content' %>
+    <td><%= f.text_field :nombre, :class=> 'ui-widget-content required' , :title=> 'Nombre no puede estar vacio'%>
     </td>
     </tr>
 
     <tr>
     <td>
       <label>Códigos por mes</label></td>
-    <td><%= f.text_field :nro_max_codigos_por_mes, :class=> 'ui-widget-content' %>
+    <td><%= f.text_field :nro_max_codigos_por_mes, :class=> 'ui-widget-content required', :title=> 'Ingrese maximo numero de codigos' %>
     </td>
     </tr>
     <tr>
@@ -35,10 +41,24 @@
     <td><%= f.check_box :incluye_ficha, :class=>'ui-widget-content'  %>
     </td>
     </tr>
-    <td>
-      <label></label>
+
+  </table>
+      <table>
+        <tr>
+          <td style=" float: left; margin-left: 1000px">
       <%= f.submit 'Guardar' , :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
-    </td>
+          </td></tr>
   </table>
 <% end %>
 </fieldset>
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#new_obra_social").validate({
+        //errorLabelContainer: $("#new_paciente div.errores")
+       errorContainer: $("#new_obra_social div.errores"),
+       errorLabelContainer: $("ol", $("#new_obra_social div.errores")),
+       wrapper: 'li',
+       meta: "validate"
+    });
+});
+</script>

@@ -117,13 +117,16 @@ def buscar
   end
 
   def resultado
+    
     respond_to do |format|
     
       if params[:nombre].blank? && params[:documento].blank?
         format.html{render :text => "Ingrese Nombre y Documento ", :layout => false }
       else
         @profesionales = Profesional.basic_search(params)
+        
         format.html {render :layout => false}
+        @profesionales = Profesional.paginate :page=> params[:page], :per_page => 2
       end
 
     end

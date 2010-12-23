@@ -24,7 +24,7 @@
     
     <tr>
     <th>Domicilio Particular</th>
-    <td colspan="3"><%= f.text_field :domicilio_particular, :title=> 'Domicilio no puede estar vacio', :size=>88, :class =>"ui-widget-content required"%>
+    <td colspan="3"><%= f.text_field :domicilio_particular, :title=> 'Domicilio Particular no puede estar vacio', :size=>88, :class =>"ui-widget-content required"%>
     </td>
     </tr>
     
@@ -101,7 +101,7 @@
     </tr>
     <table>
       <tr>
-       <td style=" float: left; margin-left: 1000px"><%= link_to 'Cancelar', search_pacientes_path %> <%= f.submit 'Guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+       <td style=" float: left; margin-left: 1000px"><%= link_to 'Cancelar', search_pacientes_path %> <%= f.submit 'Guardar', :onkeypress => 'return ChecaTecla' %>
     </td>
 
     </tr>
@@ -117,6 +117,9 @@
 </fieldset>
 
 <script type="text/javascript">
+
+
+ 
  function validar(e) { // 1
     tecla = (document.all) ? e.keyCode : e.which; // 2
     if (tecla==8) return true; // 3
@@ -152,12 +155,17 @@ function validate(e) { // 1
            
            
          }
+
+
+
     });
             
 
-     });
     
-   $("#fecha_nacimiento").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate: 0});
 
+
+ 
+   $("#fecha_nacimiento").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate: 0});
+ });
 
 </script>

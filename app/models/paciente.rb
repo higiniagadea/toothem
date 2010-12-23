@@ -51,6 +51,6 @@ class Paciente < ActiveRecord::Base
 
     end
   end
-
-
+ 
+  
 end

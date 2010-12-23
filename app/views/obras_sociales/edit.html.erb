@@ -8,14 +8,14 @@
    <tr>
     <td>
       <label>Nombre</label></td>
-    <td><%= f.text_field :nombre, :class=> 'ui-widget-content' %>
+    <td><%= f.text_field :nombre, :class=> 'ui-widget-content', :title=> 'Nombre no puede estar vacio' %>
     </td>
    </tr>
 
    <tr>
      <td>
       <label>Códigos por mes</label></td>
-     <td><%= f.text_field :nro_max_codigos_por_mes, :class=> 'ui-widget-content' %>
+     <td><%= f.text_field :nro_max_codigos_por_mes, :class=> 'ui-widget-content', :title=> 'Ingrese maximo numero de codigos' %>
     </td>
    </tr>
    <tr>

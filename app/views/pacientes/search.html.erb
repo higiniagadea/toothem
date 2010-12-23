@@ -6,7 +6,7 @@
          <ol style="list-style:none"></ol>
          </div>
 
-<%  form_remote_tag :url=> url_for(:action => 'result'),
+<%  form_remote_tag :url=> url_for(:controller => 'pacientes', :action => 'result'),
                       :method => :post,
                       :update => :search_hits do -%>
 
@@ -21,31 +21,35 @@
 
         <tr>
           <th>Apellido/Nombre</th>
-        <td><%= text_field_tag :nombre,{}, :class => 'ui-widget-content required', :title=> 'Ingrese Nombre Y Apellido' %></td>
+        <td><%= text_field_tag :nombre,{}, :class => 'ui-widget-content required', :title=> 'Ingrese Nombre Y Apellido', :onkeypress=> 'return validar(event)'  %></td>
 
         </tr>
       </table>
 
      <table>
         <tr>
-          <td style=" float: left; margin-left:  400px"> <%= submit_tag 'Buscar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
+          <td style=" float: left; margin-left:  400px"> <%= submit_tag 'Buscar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all', :onkeyup => 'return tecla(event)' %></td>
           <td id="ayuda"><%= image_tag 'help.png' %></td>
           
           </tr>
-        
+       
       </table>
 
   <%end -%>
-  
+   <div id="search_hits"></div>
 </div>
-  <td id="errorExplanation"></td>
-<div id="search_hits"></div>
+  
+
+
 </fieldset>
 
 
 
 
 <script type="text/javascript">
+ 
+
+
   function validate(e) { // 1
     tecla = (document.all) ? e.keyCode : e.which; // 2
     if (tecla==8) return true; // 3
@@ -53,6 +57,18 @@
     te = String.fromCharCode(tecla); // 5
     return patron.test(te); // 6
 }
+
+
+function validar(e) { // 1
+    tecla = (document.all) ? e.keyCode : e.which; // 2
+    if (tecla==8) return true; // 3
+    patron =/[A-Za-zñÑ\s]/; //4
+    te = String.fromCharCode(tecla); // 5
+    return patron.test(te); // 6
+}
+
+
+
  $(document).ready(function(){
 
 
@@ -81,6 +97,9 @@ $('#ayuda img').each(function(){
        wrapper: 'li',
        meta: "validate"
      });
+
+
+
 
 
 });

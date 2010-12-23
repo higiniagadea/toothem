@@ -9,12 +9,12 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :estados_tratamientos
 
-  map.resources :tratamientos,:collection => {:buscar => :get, :resultado => :post} ,
+  map.resources :tratamientos,:collection => {:buscar => :get, :resultado => [:post, :get]} ,
                               :member => {:eliminar => :get,
                               :ver => [:post, :get],
                               :imprimir => [:post, :get],
-                              :verificar_longitud => [:post, :get]
-                              
+                              :verificar_longitud => [:post, :get],
+                              :listados => [ :get]
                               }
 
    map.resources :imagenes, :collection => {:new_archivo => :get}
@@ -30,11 +30,11 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :items
 
 
-  map.resources :prestaciones, :collection => {:verificar_codigo => [:get], 
-                                               
+  map.resources :prestaciones, :collection => {:verificar_codigo => [:get],                                               
                                                :buscar => :get,
-                                               :resultado => [:post]
+                                               :resultado => [:post, :get]
                                                },
+                                                 
                                :member => {:listado => [:get, :post], :texto => [:get, :post]}
 
 
@@ -66,8 +66,7 @@ ActionController::Routing::Routes.draw do |map|
                            :verificar_longitud => [:get]
                 },
 
-                :member => {:new_tratamiento => [:get,:post],
-                          
+                :member => {:new_tratamiento => [:get,:post],                          
                             :update_tratamiento => [:get, :post],
                             :changephoto => :get,
                             :uploadphoto => :post,

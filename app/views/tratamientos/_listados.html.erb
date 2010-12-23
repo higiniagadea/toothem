@@ -1,15 +1,14 @@
-
-<% unless @tratamientos.blank? %>
+<div id="trata">
+ <% unless @tratamientos.blank? %>
       <table style=" text-align: left "class="table-list">
-  <tr>
-
+   <tr>
     <th>Fecha</th>
     <th>Profesional</th>
     <th>Estado</th>
     <th>Acciones</th>
     </tr>
       <% @tratamientos.each do |tratamiento| %>
-  <tr>
+   <tr>
     <td><%=h tratamiento.fecha.strftime('%d/%m/%Y') %></td>
     <td><%=h tratamiento.profesional.nombre %></td>
     <td><%=h tratamiento.estado_tratamiento.nombre %></td>
@@ -17,26 +16,33 @@
     <td><%= link_to image_tag('pencil.png'), edit_tratamiento_path(tratamiento, :paciente_id => @paciente), :title => 'Editar', :id=> 'editar_'+ tratamiento.id.to_s %></td>
     <td><%= link_to image_tag('cancel.png'),eliminar_tratamiento_path(tratamiento, :paciente_id => @paciente.id), :confirm => 'Esta seguro de eliminar el tratamiento?', :title=> 'Eliminar' %></td>
 
-  </tr>
-  <script type="text/javascript">
-    $(document).ready(function(){
+   </tr>
+      <script type="text/javascript">
+      $(document).ready(function(){
       $('#ver_<%= tratamiento.id.to_s %>').fancybox(
         {
       'hideOnContentClick': false,
       'titleShow': false
 
-    });
-     $('#editar_<%= tratamiento.id.to_s %>').fancybox(
+      });
+      $('#editar_<%= tratamiento.id.to_s %>').fancybox(
         {
       'hideOnContentClick': false,
       'titleShow': false
 
-    });
-    })
-  </script>
-<%end%>
-  <tr><td>
-  <%= will_paginate @tratamientos, :previous_label=>'Anterior', :next_label => 'Siguiente' , :params => {:controller => 'tratamientos', :action => 'listado'} %>
-    </td></tr>
+      });
+        })
+      </script>
+         <%end%>
+ 
+
+
       </table>
+
+ <%= will_paginate @tratamientos, :previous_label=>'Anterior', :next_label => 'Siguiente' , 
+                                  :class => 'tratam pagination',
+                                  :params => {:controller => "tratamientos", :action=> "listados"} %>
 <% end%>
+</div>
+
+
