@@ -20,18 +20,26 @@
           <%= link_to image_tag('pencil.png'), edit_paciente_path(paciente), :title => "Editar" %></td>
          </td>
      </tr>
-    
+     <script type="text/javascript">
+      {
+      
+      $(document).ready(function()
+      {
+        $('#ver_paciente_<%= paciente.id.to_s %>').fancybox(
+        {
+        'hideOnContentClick': false,
+        'titleShow': false
+
+        });
+    })
+    }
+    </script>
     <%end%>
 
    
  <%else%>
-
-
       No se encontraron pacientes segun el criterio de b&uacute;squeda
-  
-
-<%end%>
- 
+ <%end%> 
   
 </table>
 
@@ -39,8 +47,7 @@
      <script type="text/javascript">
 
       // Only create tooltips when document is ready
-      $(document).ready(function()
-      {
+      $(document).ready(function() {
         // Use the each() method to gain access to each of the elements attributes
         $('#p_data_<%= paciente.id %> img').each(function()
         {
@@ -55,24 +62,18 @@
               padding: '5px 15px', // Give it some extra padding
               name: 'blue' // And style it with the preset dark theme
             }
-        });
+          });
      })
 
+})
 
 
-
-    $('#ver_paciente_<%= paciente.id.to_s %>').fancybox(
-        {
-      'hideOnContentClick': false,
-      'titleShow': false
-
-    });
-
+   
    
     
 
 
- });
+
     </script>
       <%end%>
 
@@ -81,6 +82,6 @@
                               :class => 'result pagination',
                               :params => {:controller => "pacientes", :action=> "result",
                               
-                              :nombre => params[:nombre]    } %>
+                              :nombre => params[:nombre]} %>
 </fieldset>
 </div>

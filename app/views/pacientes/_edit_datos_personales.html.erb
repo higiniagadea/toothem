@@ -20,7 +20,7 @@
     
         <table>
           <tr>
-          <td style=" float: left; margin-left:  1100px"> <%= link_to image_tag('printer.png'), imprimir_paciente_path, :title => 'Imprimir'%>
+          <td style=" float: left; margin-left:  1010px"> <%= link_to image_tag('printer.png'), imprimir_paciente_path, :title => 'Imprimir'%>
           <%= link_to image_tag('cancel.png'), @paciente, :title=> 'Eliminar Paciente', :confirm => 'Esta seguro? No podrá deshacer esta acción', :method => :delete %></td>
         
           </tr>
@@ -28,34 +28,28 @@
   
         <table style=" text-align: left; "class="tablelist">
          <tr>
-          <th>
-            Nombre y Apellido</th>
+          <th>Nombre y Apellido</th>
           <td><%= f.text_field :nombre, :class=>'ui-widget-content required', :title=> 'Nombre y Apellido no puede estar vacio', :size=> 20, :onkeypress=> 'return validate(event)' %>
           </td>
-         <th>
-          Tipo Y Nro.  Documento</th>
-          <td> <%= @paciente.tipo_documento.descripcion %>
-         
-          <%= @paciente.matricula %> 
+         <th>Tipo Y Nro.  Documento</th>
+          <td> <%= @paciente.tipo_documento.descripcion %> <%= @paciente.matricula %>
           </td>
           </tr>
 
           <tr>
-            <th >
-            Domicilio Particular </th>
+            <th>Domicilio Particular </th>
           <td colspan="3"><%= f.text_field :domicilio_particular, :size=>88, :class=>'ui-widget-content required', :title=> 'Domicilio Particular no puede estar vacio' %>
           </td>
           </tr>
 
-            <tr>
-          <th>
-            Domicilio Laboral</th>
+          <tr>
+          <th>Domicilio Laboral</th>
           <td colspan="3"><%= f.text_field :domicilio_laboral, :size=>88, :class=> 'ui-widget-content' %>
           </td>
           </tr>
+
           <tr>
-          <th>
-            Sexo</th>
+          <th>Sexo</th>
           <td><select name="paciente[sexo]" class="ui-widget-content">
               <%=  options_for_select([ "Masculino", "Femenino" ], @paciente.sexo)%>
             </select>
@@ -63,8 +57,7 @@
           
 
           
-          <th >
-            Estado civil</th>
+          <th>Estado civil</th>
           <td><select name="paciente[estado_civil]" class="ui-widget-content">
               <%=  options_for_select([ "Soltero/a", "Casado/a","Divorciado/a","Viudo/a","Otro" ], @paciente.estado_civil)%>
             </select>
@@ -76,14 +69,14 @@
           <th>Fecha de Nacimiento </th>
           <td><span class="fecha_nacimiento" class ="ui-widget-content">
               <input class="ui-widget-content required " title="Fecha de Nacimiento no puede estar en blanco" type="text" id="fecha_nacimiento" name="paciente[fecha_nacimiento]" readonly="readonly" value="<%=@paciente.fecha_nacimiento.strftime('%d/%m/%y')%>" />
-            </span>
+              </span>
           </td>
-         <th>
-      Grupo Sangu&iacute;neo</th>
-      <td><select name="paciente[grupo_sanguineo]" class ="ui-widget-content">
-       <%= options_for_select(["A+","A-","B+","B-","AB+","AB-","O+","O-"], @paciente.grupo_sanguineo) %>
-         </select>
-        </td>
+
+          <th>Grupo Sangu&iacute;neo</th>
+          <td><select name="paciente[grupo_sanguineo]" class ="ui-widget-content">
+          <%= options_for_select(["A+","A-","B+","B-","AB+","AB-","O+","O-"], @paciente.grupo_sanguineo) %>
+             </select>
+          </td>
           </tr>
 
           <tr>
@@ -102,20 +95,19 @@
           </tr>
 
           <tr>
-          <th>
-            Profesi&oacute;n</th>
+          <th>Profesi&oacute;n</th>
           <td><%= f.text_field :profesion, :class=> 'ui-widget-content ', :size=>20 , :onkeypress=> 'return validate(event)' %>
           </td>
-          <th >
-            Ocupaci&oacute;n</th>
+
+          <th>Ocupaci&oacute;n</th>
           <td><%= f.text_field :ocupacion, :class=> 'ui-widget-content ', :size=>20 , :onkeypress=> 'return validate(event)' %>
           </td>
 
-          <th>
-            Nivel Escolar</th>
+          <th>Nivel Escolar</th>
           <td><%= f.text_field :nivel_escolar, :class=> 'ui-widget-content', :size=>20, :onkeypress=> 'return validate(event)'  %>
           </td>
           </tr>
+
           <tr>
             <th>Nro. de Afiliado</th>
             <td><%= @paciente.nro_afiliado %> </td>
@@ -126,7 +118,7 @@
           <td style=" float: left; margin-left:  1000px"><%= f.submit 'Editar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
           </td>
           </tr>
-          </table>
+           </table>
 
         </table>
 </fieldset>
