@@ -1,28 +1,28 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Tratamientos</legend>
     
-<% unless @paciente.titular.blank? -%>
-  <div style="float:right">
 
-  <table>
-      <% unless @fichas.blank? %>
+  
+<% unless @paciente.titular.blank?  -%>
+  <table>    
       <tr>
         <td style=" margin-left: 900px">          
           <%= link_to image_tag('add.png') + "Nueva Ficha", new_ficha_path + "?paciente_id="+@paciente.id.to_s, :id => 'ficha' %>
           <%= link_to image_tag('magnifier_zoom_in.png') + 'Buscar', buscar_fichas_path + "?paciente_id="+@paciente.id.to_s, :id=> 'buscar' %>
         </td>
       </tr>
-      <%end%>
-  </table>
-  </div>
+      
+  
+  
 
    
   <%else%>
 
    <%= render:partial => 'tratamientos/listados' %>
-  
+
   <%end -%>
   
+  </table>
   <script type="text/javascript">
      $('#ficha').fancybox(
         {
@@ -63,10 +63,10 @@
                 <%end%>
              
              <td><%= link_to image_tag('cancel.png'), eliminar_ficha_path(ficha, :paciente_id => @paciente.id), :confirm => 'Se borrara la ficha y todos sus tratamientos asociados, esta seguro?', :title=> 'Eliminar'   %>
-                 <% unless ficha.estado_id == 4 || unless @paciente.titular.blank? %>
+                 <% unless ficha.estado_id == 4 %>
                  <%= link_to image_tag('add.png') + 'Agregar Tratamiento', new_tratamiento_path + "?paciente_id="+@paciente.id.to_s + '&ficha_id='+ ficha.id.to_s, :id=> 'agregar_' + ficha.id.to_s   %></td>
                 <%end%>
-                <%end%>
+            
              </tr>
 
       <script type="text/javascript">

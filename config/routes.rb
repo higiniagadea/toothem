@@ -59,11 +59,11 @@ ActionController::Routing::Routes.draw do |map|
                                 :result => [:post, :get],
                                 :verificar_nroafiliado => [:get],
                                 :verificar_matricula => [:get],
-                                 :verificar_nroafiliado_tit => [:get],
-                            :verificar_matricula_tit => [:get],
-                            :verificar_numeroafiliado => [:get],
-                           :verificar_numeromatricula => [:get],
-                           :verificar_longitud => [:get]
+                                :verificar_nroafiliado_tit => [:get],
+                                :verificar_matricula_tit => [:get],
+                                :verificar_numeroafiliado => [:get],
+                                :verificar_numeromatricula => [:get],
+                                :verificar_longitud => [:get]
                 },
 
                 :member => {:new_tratamiento => [:get,:post],                          
@@ -83,11 +83,8 @@ ActionController::Routing::Routes.draw do |map|
                             :ver => [:post, :get],
                             :imprimir=> [:post, :get],
                             :elimina_tit => :get,                          
-                            :edit_tratamientos => :get,
-                            :parte1 => :get,
-                            :parte2 => :get,
-                            :parte3 => :get,
-                            :parte4 => :get
+                            :edit_tratamientos => :get
+                           
                 }do |paciente|
                              
                             
