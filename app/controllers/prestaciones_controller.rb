@@ -5,7 +5,7 @@ class PrestacionesController < ApplicationController
  before_filter :login_required
  layout 'default'
   def index
- @prestaciones = Prestacion.paginate :page=> params[:page], :per_page=> 2
+ @prestaciones = Prestacion.paginate :page=> params[:page], :per_page=> 5
    
     respond_to do |format|
       format.html # index.html.erb
@@ -107,7 +107,7 @@ class PrestacionesController < ApplicationController
     respond_to do |format|     
         @prestaciones = Prestacion.basic_search(params).paginate :page => params[:page], :per_page => 10
         
-        format.html {render :partial => 'resultado', :layout => 'prestaciones' }
+        format.html {render :partial => 'resultado', :layout => false }
        
       end
   end

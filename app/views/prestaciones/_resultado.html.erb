@@ -21,14 +21,14 @@
   </tr>
   <script type="text/javascript">
   $(document).ready(function(){
- $('#ver_p_'+<%= prestacion.id.to_s %>).fancybox(
+ $('#ver_p_<%= prestacion.id.to_s %>').fancybox(
         {
       'hideOnContentClick': false,
       'titleShow': false
 
     });
 
-    $('#edit_p_'+<%= prestacion.id.to_s %>).fancybox(
+    $('#edit_p_<%= prestacion.id.to_s %>').fancybox(
         {
       'hideOnContentClick': false,
       'titleShow': false
