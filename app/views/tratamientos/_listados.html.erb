@@ -1,12 +1,12 @@
 <div id="trata">
 
   <table>
-
   <tr>
       <td style=" float: left; margin-left: 870px"><%= link_to image_tag('add.png') + "Crear Tratamiento", new_tratamiento_paciente_path + "?paciente_id="+@paciente.id.to_s, :id=> 'nuevo'  %>
       <%= link_to image_tag('magnifier_zoom_in.png') + "Buscar", buscar_tratamientos_path +  "?paciente_id="+@paciente.id.to_s, :id => 'tratamient' %></td>
       </tr>
   </table>
+ 
 <table style=" text-align: left "class="table-list">
   <% unless  @tratamientos.blank?%>
 
@@ -52,11 +52,8 @@
 </table>
 
 
- <%= will_paginate @tratamientos, :previous_label=>'Anterior', :next_label => 'Siguiente' , 
-                                  :class => 'tratam pagination',
-                                  :params => {:controller => "tratamientos", :action=> "listados"} %>
+ 
 
-</div>
 
 
 
@@ -84,3 +81,8 @@
       });
         </script>
 
+<%= will_paginate @tratamientos, :previous_label=>'Anterior', :next_label => 'Siguiente' ,
+                                  :class => 'tratam pagination',
+                                  :params => {:controller => "tratamientos", :action=> "listados"} %>
+
+</div>
