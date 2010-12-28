@@ -36,7 +36,7 @@
                   <td><%=h tratamiento.estado_tratamiento.nombre %></td>
 
 
-                 <td id="lista"><%= image_tag 'add.png' %></td>
+                 <td id="lista"><%#= image_tag 'add.png' %></td>
                 <td><%#= link_to image_tag('zoom.png'), tratamiento, :title => 'Ver', :id => 'vista'%></td>
                 <td><%= link_to image_tag('pencil.png'), edit_tratamiento_path(tratamiento, :paciente_id => @ficha.paciente_id, :ficha_id => @ficha.id), :title => "Editar", :id => 'edicion' %></td>
                 <td><%#= link_to image_tag('cancel.png'), tratamiento, :confirm => 'Esta seguro que desea eliminar el tratamiento?', :method => :delete, :title => "Eliminar" %></td>

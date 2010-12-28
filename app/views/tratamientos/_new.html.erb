@@ -53,7 +53,7 @@
               <td><%= f.text_field :importe_cubierto, :size=>10, :class=> 'ui-widget-content required', :title=> 'Importe Cubierto no puede estar en blanco', :onkeypress=> 'return validar(event)' %>
               </td>
               <td>Coseguro</td>
-              <td><%= f.text_field :coseguro, :size=>10, :class=> 'ui-widget-content required', :title=> 'Coseguro no puede estar en blanco,maximo dos caracteres', :onkeypress=> 'return validar(event)' %></td>
+              <td><%= f.text_field :coseguro, :size=>10, :class=> 'ui-widget-content required', :title=> 'Coseguro no puede estar en blanco', :onkeypress=> 'return validar(event)' %></td>
          </tr>
       </table>
   <table>
@@ -95,11 +95,7 @@
        errorContainer: $("#new_tratamiento div.errores"),
        errorLabelContainer: $("ol", $("#new_tratamiento div.errores")),
        wrapper: 'li',
-       meta: "validate"
-       
-   
-  
-      
+       meta: "validate" 
       
 
   });
