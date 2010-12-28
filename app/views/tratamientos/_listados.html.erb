@@ -17,7 +17,7 @@
     <td><%= link_to image_tag('cancel.png'),eliminar_tratamiento_path(tratamiento, :paciente_id => @paciente.id), :confirm => 'Esta seguro de eliminar el tratamiento?', :title=> 'Eliminar' %></td>
 
    </tr>
-      <script type="text/javascript">
+    <script type="text/javascript">
       $(document).ready(function(){
       $('#ver_<%= tratamiento.id.to_s %>').fancybox(
         {
@@ -31,14 +31,39 @@
       'titleShow': false
 
       });
+      
+      
+      
+      
+      $('#nuevo').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+    $('#tratamient').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
         })
       </script>
-         <%end%>
+    <%end%>
  
 
 
       </table>
+    <div style="float:right">
+      <table>
 
+      <tr>
+        <td style=" margin-left: 900px"><%= link_to image_tag('add.png') + "Crear Tratamiento", new_tratamiento_paciente_path + "?paciente_id="+@paciente.id.to_s, :id=> 'nuevo'  %>
+         <%= link_to image_tag('magnifier_zoom_in.png') + "Buscar", buscar_tratamientos_path +  "?paciente_id="+@paciente.id.to_s, :id => 'tratamient' %></td>
+      </tr>
+
+     </table>
+    </div>
  <%= will_paginate @tratamientos, :previous_label=>'Anterior', :next_label => 'Siguiente' , 
                                   :class => 'tratam pagination',
                                   :params => {:controller => "tratamientos", :action=> "listados"} %>

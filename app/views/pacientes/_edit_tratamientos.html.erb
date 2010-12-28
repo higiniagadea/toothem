@@ -3,58 +3,27 @@
     
 <% unless @paciente.titular.blank? -%>
   <div style="float:right">
+
   <table>
-      
+      <% unless @fichas.blank? %>
       <tr>
-        <td style=" margin-left: 900px">
-          
+        <td style=" margin-left: 900px">          
           <%= link_to image_tag('add.png') + "Nueva Ficha", new_ficha_path + "?paciente_id="+@paciente.id.to_s, :id => 'ficha' %>
-              <%= link_to image_tag('magnifier_zoom_in.png') + 'Buscar', buscar_fichas_path + "?paciente_id="+@paciente.id.to_s, :id=> 'buscar' %>
+          <%= link_to image_tag('magnifier_zoom_in.png') + 'Buscar', buscar_fichas_path + "?paciente_id="+@paciente.id.to_s, :id=> 'buscar' %>
         </td>
       </tr>
+      <%end%>
   </table>
   </div>
-      <%else%>
 
-  
- <div style="float:right">
-
-   <table>
-      <tr>
-      <td style=" margin-left: 900px"><%= link_to image_tag('add.png') + "Crear Tratamiento", new_tratamiento_paciente_path + "?paciente_id="+@paciente.id.to_s, :id=> 'nuevo'  %>
-         <%= link_to image_tag('magnifier_zoom_in.png') + "Buscar", buscar_tratamientos_path +  "?paciente_id="+@paciente.id.to_s, :id => 'tratamient' %></td>
-      </tr>
-            
-    </table>
- </div>
+   
+  <%else%>
 
    <%= render:partial => 'tratamientos/listados' %>
   
   <%end -%>
-
-
-
-
-
-
+  
   <script type="text/javascript">
-
-
-    $('#nuevo').fancybox(
-        {
-      'hideOnContentClick': false,
-      'titleShow': false
-
-    });
-    $('#tratamient').fancybox(
-        {
-      'hideOnContentClick': false,
-      'titleShow': false
-
-    });
-
-
-     
      $('#ficha').fancybox(
         {
       'hideOnContentClick': false,
@@ -67,11 +36,8 @@
       'titleShow': false
 
     });
-       
-
-
-    
-      </script>
+        
+  </script>
 
 
 <div id="ficha_pag">
@@ -79,30 +45,33 @@
 <% unless @fichas.blank? %>
 <table style=" text-align: left "class="table-list">
   <tr>
-
     <th>Fecha</th>
     <th>Profesional</th>
     <th>Estado</th>
     <th>Acciones</th>
-    </tr>
+  </tr>
       <% @fichas.each do |ficha| %>
           <tr>
             <td><%=h ficha.fecha.strftime('%d/%m/%Y') %></td>
             <td><%=h ficha.profesional.nombre %></td>
             <td><%=h ficha.estado.nombre %></td>
 
-             <td><%= link_to image_tag('magnifier_zoom_in.png'), ficha, :title => 'Ver', :id => 'vista_' + ficha.id.to_s%>
-              <% unless ficha.estado_id == 4 || unless @paciente.titular.blank? %>
-             <%= link_to image_tag('pencil.png'), edit_ficha_path(ficha, :paciente_id => @paciente.id), :title => 'Ver', :id => 'edicion_' + ficha.id.to_s  %> </td>
-              <%end%>
-      <%end%>
+             <td><%= link_to image_tag('magnifier_zoom_in.png'), ficha, :title => 'Ver', :id => 'vista_' + ficha.id.to_s%></td>
+                 <% unless ficha.estado_id == 4 || unless @paciente.titular.blank? %>
+             <td><%= link_to image_tag('pencil.png'), edit_ficha_path(ficha, :paciente_id => @paciente.id), :title => 'Ver', :id => 'edicion_' + ficha.id.to_s  %> </td>
+                 <%end%>
+                <%end%>
              
-               <td><%= link_to image_tag('cancel.png'), eliminar_ficha_path(ficha, :paciente_id => @paciente.id), :confirm => 'Se borrara la ficha y todos sus tratamientos asociados, esta seguro?', :title=> 'Eliminar'   %></td>
-               <% unless ficha.estado_id == 4 || @paciente.titular.blank?  %>
-               <td><%= link_to image_tag('add.png') + 'Agregar Tratamiento', new_tratamiento_path + "?paciente_id="+@paciente.id.to_s + '&ficha_id='+ ficha.id.to_s, :id=> 'agregar_' + ficha.id.to_s   %></td>
-               <%end%>
-                    </tr>
+             <td><%= link_to image_tag('cancel.png'), eliminar_ficha_path(ficha, :paciente_id => @paciente.id), :confirm => 'Se borrara la ficha y todos sus tratamientos asociados, esta seguro?', :title=> 'Eliminar'   %>
+                 <% unless ficha.estado_id == 4 || unless @paciente.titular.blank? %>
+                 <%= link_to image_tag('add.png') + 'Agregar Tratamiento', new_tratamiento_path + "?paciente_id="+@paciente.id.to_s + '&ficha_id='+ ficha.id.to_s, :id=> 'agregar_' + ficha.id.to_s   %></td>
+                <%end%>
+                <%end%>
+             </tr>
+
       <script type="text/javascript">
+        $(document).ready(function()
+      {
       $('#vista_<%= ficha.id.to_s %>').fancybox(
         {
       'hideOnContentClick': false,
@@ -121,21 +90,21 @@
       'titleShow': false
 
     });
-          </script>
+    });
+     </script>
 
-       <%end%>
+          <%end%>
 
 
 <%end%>
 
 </table>
-
 <%= will_paginate @fichas, :previous_label=>'Anterior', :next_label => 'Siguiente',
                            :class => 'fich pagination' ,
                            :params => {:controller => 'pacientes', :action=> 'edit', :paginacion => true, :page=> params[:page]}
                            %>
 </div>
- </fieldset>
+</fieldset>
 
    
 
