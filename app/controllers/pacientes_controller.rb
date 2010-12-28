@@ -128,7 +128,7 @@ class PacientesController < ApplicationController
     @title = "Editando paciente"
     @prestaciones = Prestacion.find(:all)
 
-    @fichas = @fichas.paginate(:page=> params[:page], :per_page=> 1, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha')
+    @fichas = @fichas.paginate(:page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha')
      respond_to do |format|
       unless @paciente.blank?
       unless @paciente.archivo_id.blank?

@@ -45,10 +45,10 @@ $(document).ready(function(){
     $(":button").button();
     $(function() {
   $('input[datatype=numeric]').keypress(function(e) {
-    tecla = (document.all) ? e.keyCode : e.which;
-    if (tecla==8) return true;
+    key = (document.all) ? e.keyCode : e.which;
+    if (key==8) return true;
     patron =/\d/;
-    te = String.fromCharCode(tecla);
+    te = String.fromCharCode(key);
     return patron.test(te);
    });
 
