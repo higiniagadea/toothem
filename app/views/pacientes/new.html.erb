@@ -146,8 +146,8 @@ function validate(e) { // 1
        rules: {
          "paciente[matricula]": {required: true, remote:"/pacientes/verificar_matricula?paciente[matricula]=" + $('#paciente[matricula]').val()},
          "paciente[nro_afiliado]": {required: true, remote:"/pacientes/verificar_nroafiliado?paciente[nro_afiliado]=" + $('#paciente[nro_afiliado]').val()},
-         "paciente[nro_afiliado]": {required: true, remote:"/pacientes/verificar_numeroafiliado?paciente[nro_afiliado]=" + $('#paciente[nro_afiliado]').val(), number:true},
-       "paciente[matricula]": {required: true, remote:"/pacientes/verificar_longitud?paciente[matricula]=" + $('#paciente[matricula]').val(),  rangelength: [6, 10]}
+         "paciente[nro_afiliado]": {required: true, remote:"/pacientes/verificar_numeroafiliado?paciente[nro_afiliado]=" + $('#paciente[nro_afiliado]').val(), number:true}
+      
        },
       messages:{
            "paciente[matricula]": {remote:"Nro. de Documento ya se encuentra cargado"},
