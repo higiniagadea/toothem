@@ -6,7 +6,8 @@
 <br/>
 <br/>
 <% prestaciones =  Prestacion.find(:all, :conditions => [ "id NOT IN
-                                                                    (SELECT prestacion_id FROM obras_sociales AS os INNER JOIN aranceles
+                                                                    (SELECT prestacion_id FROM obras_sociales AS os
+                                                                     INNER JOIN aranceles
                                                                      ON obra_social_id = os.id
                                                                      WHERE os.id =?)", @arancel.obra_social_id])%>
   <table id="form">

@@ -1,8 +1,9 @@
 class PrestacionesController < ApplicationController
   # GET /prestaciones
   # GET /prestaciones.xml
-  layout 'default'
+  
  before_filter :login_required
+ layout 'default'
   def index
  @prestaciones = Prestacion.paginate :page=> params[:page], :per_page=> 2
    

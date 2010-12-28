@@ -15,8 +15,8 @@
   <tr>
   
     <th><label>Fecha</label></th>
-     <th><span class="fecha" class="ui-widget-content">
-              <input class="ui-widget-content required "type="text" id="fecha" name="ficha[fecha]" readonly="readonly" value="<%=@ficha.fecha.strftime('%d/%m/%y')%>" />
+     <th><span class="fecha_ficha" class="ui-widget-content">
+              <input class="ui-widget-content required "type="text" id="fecha_ficha" name="ficha[fecha]"  size="10" title="Ingrese una fecha" readonly="readonly" value="<%=  @ficha.fecha.strftime('%d/%m/%Y') %>" />
       </span></th>
   </tr>
   <tr>
@@ -45,7 +45,7 @@
 <%end%>
 <script type="text/javascript">
   $(document).ready(function(){
-   $("#edit_ficha").validate({
+   $("#edit_ficha_" + <%= @ficha.id.to_s %>).validate({
         //errorLabelContainer: $("#new_paciente div.errores")
        errorContainer: $("#edit_ficha div.errores"),
        errorLabelContainer: $("ol", $("#edit_ficha div.errores")),
@@ -53,6 +53,6 @@
        meta: "validate"
      });
 
-
-  $("#fecha").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate:0});
+});
+  $("#fecha_ficha").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate:0});
 </script>

@@ -1,6 +1,7 @@
 class ArancelesController < ApplicationController
 
   before_filter(:get_obra_social)
+  before_filter :login_required
   layout 'default'
 
   def index

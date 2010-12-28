@@ -1,8 +1,10 @@
   class FichasController < ApplicationController
   # GET /fichas
   # GET /fichas.xml
-  layout 'default'
- 
+
+  before_filter :login_required
+    layout 'default'
+
 
   def index
 

@@ -18,13 +18,13 @@
       <tr>
         <th>
           Nombre y Apellido</th>
-        <td><%= text_field_tag :nombre,{}, :class=> 'ui-widget-content', :name => 'titular[nombre]'  %>
+        <td><%= text_field_tag :nombre,{}, :class=> 'ui-widget-content', :name => 'titular[nombre]', :onkeypress=> 'return validate(event)'  %>
         </td>
       </tr>
       <tr>
         <th>
           Matr&iacute;cula</th>
-        <td><%= text_field_tag :matricula,{}, :class=> 'ui-widget-content', :name => 'titular[matricula]' %>
+        <td><%= text_field_tag :matricula,{}, :class=> 'ui-widget-content', :name => 'titular[matricula]', :onkeypress=> 'return validar(event)' %>
         </td>
       </tr>
       
@@ -43,6 +43,20 @@
  <%end -%>
 
 <script type="text/javascript">
+  function validar(e) { // 1
+    tecla = (document.all) ? e.keyCode : e.which; // 2
+    if (tecla==8) return true; // 3
+    patron =/\d/; //4
+    te = String.fromCharCode(tecla); // 5
+    return patron.test(te); // 6
+}
+function validate(e) { // 1
+    tecla = (document.all) ? e.keyCode : e.which; // 2
+    if (tecla==8) return true; // 3
+    patron =/[A-Za-zñÑ\s]/; //4
+    te = String.fromCharCode(tecla); // 5
+    return patron.test(te); // 6
+}
 $.fancybox.resize();
 </script>
 
