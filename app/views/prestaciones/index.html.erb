@@ -20,24 +20,25 @@
   </tr>
 
   <script type="text/javascript">
-  $(document).ready(function(){
- $('#prest_'+<%= prestacion.id.to_s %>).fancybox(
+  $(document).ready(function()
+  {
+
+    $('#prest_<%= prestacion.id.to_s %>').fancybox(
+    {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+
+    $('#vist_<%= prestacion.id.to_s %>').fancybox(
         {
       'hideOnContentClick': false,
       'titleShow': false
 
     });
 
-    $('#vist_'+<%= prestacion.id.to_s %>).fancybox(
-        {
-      'hideOnContentClick': false,
-      'titleShow': false
+ });
 
-    });
-
-
-
-    });
 
 
     </script>
