@@ -63,13 +63,8 @@ $(document).ready(function(){
        errorContainer: $(".edit_prestacion div.errores"),
        errorLabelContainer: $("ol", $(".edit_prestacion div.errores")),
        wrapper: 'li',
-       meta: "validate",
-       rules: {
-         "prestacion[codigo]": {required: true, remote:"/prestaciones/verificar_codigo?prestacion[codigo]=" + $('#prestacion[codigo]').val()}
-       },
-       messages:{
-        "prestacion[codigo]": {remote:"el Codigo ya se encuentra cargado"}
-       }
+       meta: "validate"
+      
 
     });
   });

@@ -55,8 +55,8 @@ ActionController::Routing::Routes.draw do |map|
 
 
   map.resources :pacientes,
-                :collection => {:search => :get, 
-                                :result => [:post, :get],
+                :collection => {:search => [:get, :post],
+                                :result => [:get, :post],
                                 :verificar_nroafiliado => [:get],
                                 :verificar_matricula => [:get],
                                 :verificar_nroafiliado_tit => [:get],
