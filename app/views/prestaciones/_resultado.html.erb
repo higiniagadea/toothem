@@ -37,23 +37,26 @@
     });
     </script>
 
-
+</table>
+  </fieldset>
 
 
 <% end %>
 
 
   <%else%>
+
   No se encontraron resultados
+  
   <%end%>
-</table>
+
 <%= will_paginate @prestaciones, :previous_label=>'<<Anterior', :next_label => 'Siguiente>>',
                                  :class => 'pres pagination',
                                  :params=> {:controller => "prestaciones", :action => 'resultado' }
                                                                                                 %>
 
  
-</fieldset>
+
 
 <br />
 </div>

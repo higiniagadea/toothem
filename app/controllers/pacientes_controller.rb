@@ -52,7 +52,7 @@ class PacientesController < ApplicationController
     
     respond_to do |format|
       if params[:nombre].blank? && params[:matricula].blank?
-        format.html{render :text => "Ingrese al menos un dato para realizar la busqueda " }
+        format.html{render :text => "Ingrese al menos un dato para realizar la b&uacute;squeda " }
       elsif
           params[:nombre].size > 2 || params[:matricula].size > 2
                   
@@ -62,7 +62,7 @@ class PacientesController < ApplicationController
        
       else
         params[:nombre].size  < 2 || params[:matricula].size < 2
-        format.html {render :text=> 'Ingrese al menos tres caracteres para realizar la busqueda'}
+        format.html {render :text=> 'Ingrese al menos tres caracteres para realizar la b&uacute;squeda'}
       end
 
       
@@ -123,13 +123,14 @@ class PacientesController < ApplicationController
   def edit
     params[:paciente_id]
     @paciente = Paciente.find_by_id(params[:id])
-    @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id.to_s])
+    @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha DESC')
     @fichas = Ficha.find_all_by_paciente_id(@paciente.id)
     @title = "Editando paciente"
     @prestaciones = Prestacion.find(:all)
+    @fichas = Ficha.paginate(:page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha DESC')
 
-    @fichas = @fichas.paginate(:page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha')
-     respond_to do |format|
+
+    respond_to do |format|
       unless @paciente.blank?
       unless @paciente.archivo_id.blank?
          @archivo = Archivo.find(@paciente.archivo_id)
