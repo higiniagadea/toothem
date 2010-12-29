@@ -28,27 +28,28 @@
           <td>Cara </td>
           <td>
             <%= f.text_field :cara, :size=>10, :class=> 'ui-widget-content required', :title=> 'Cara no puede estar en blanco, maximo dos caracteres', :onkeypress=> 'return validar(event)' %>
-          </td>
-        </tr>
-        <tr>
-            <td>Prestaci&oacute;n </td>
-            <td>
+               </td>
+              </tr>
+              <tr>
+              <td>Prestaci&oacute;n </td>
+              <td>
               <%= f.collection_select(:prestacion_id, Prestacion.all, :id, :descripcion, :class=> 'ui-widget-content required', :title=> 'Seleccione una prestacion') %>
-            </td>
-            <% unless params[:ficha_id]%>
-   <td>Profesional</td>
-            <td>
+              </td>
+              <% unless params[:ficha_id]%>
+              <td>Profesional</td>
+              <td>
               <%= f.collection_select(:profesional_id, Profesional.all, :id, :nombre, :class => 'ui-widget-content required', :title=> 'Seleccione un profesional') %>
-            </td>
-    <%else%>
-         <%= f.hidden_field :profesional_id, 'value' =>  @ficha.profesional_id %>
-    <%end%>
-            <td>Estado del tratamiento</td>
-            <td>
+              </td>
+              <%else%>
+              <%= f.hidden_field :profesional_id, 'value' =>  @ficha.profesional_id %>
+              <%end%>
+              <td>Estado del tratamiento</td>
+              <td>
               <%= f.collection_select(:estado_tratamiento_id, EstadoTratamiento.all, :id, :nombre, :class=>'ui-widget-content required', :title=> 'Seleccione un estado') %>
-            </td>
-         </tr>
-         <tr>
+              </td>
+              </tr>
+
+              <tr>
               <td>Importe Cubierto </td>
               <td><%= f.text_field :importe_cubierto, :size=>10, :class=> 'ui-widget-content required', :title=> 'Importe Cubierto no puede estar en blanco', :onkeypress=> 'return validar(event)' %>
               </td>
