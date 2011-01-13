@@ -3,46 +3,85 @@
 
 <% form_for(@obra_social) do |f| %>
   <%= f.error_messages(:id => 'Error', :header_message=>'', :message=>'Se encontraron los siguientes errores') %>
-
- <table id="form">
+<div class="errores">
+    <ol style="list-style:none"></ol>
+  </div>
+ <table>
    <tr>
     <td>
-      <label>Nombre</label></td>
-    <td><%= f.text_field :nombre, :class=> 'ui-widget-content', :title=> 'Nombre no puede estar vacio' %>
+    Nombre</td>
+    <td><%= f.text_field :nombre, :class=> 'required ui-widget-content', :title=> 'Nombre no puede estar vacio', :onkeypress=> 'return validate(event)' %>
     </td>
    </tr>
 
    <tr>
      <td>
-      <label>Códigos por mes</label></td>
-     <td><%= f.text_field :nro_max_codigos_por_mes, :class=> 'ui-widget-content', :title=> 'Ingrese maximo numero de codigos' %>
+      Códigos por mes</td>
+     <td><%= f.text_field :nro_max_codigos_por_mes, :class=> 'ui-widget-content', :title=> 'Ingrese maximo numero de codigos', :onkeypress=> 'return validar(event)' %>
     </td>
    </tr>
    <tr>
     <td>
-      <label>Auditoria previa</label></td>
+      Auditoria previa</td>
     <td><%= f.check_box :auditoria_previa, :class=> 'ui-widget-content' %>
     </td>
    </tr>
 
    <tr>
     <td>
-      <label>Auditoria post</label></td>
+      Auditoria post</td>
     <td><%= f.check_box :auditoria_post, :class=> 'ui-widget-content' %>
     </td>
    </tr>
 
    <tr>
     <td>
-      <label>Incluye ficha</label></td>
+      Incluye ficha</td>
     <td><%= f.check_box :incluye_ficha, :class=> 'ui-widget-content' %>
     </td>
    </tr>
-    <td>
-      <label></label>
-      <%= f.submit 'Actualizar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all'  %>
+ </table>
+  
+  <table>
+    <tr>
+    <td style=" float: left; margin-left: 200px">
+      <%= link_to 'Cancelar', obras_sociales_path %>
+      <%= f.submit 'Guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all'  %>
     </td>
+    </tr>
   </table>
 <% end %>
 </fieldset>
-<%= link_to 'Volver', obras_sociales_path(@obras_sociales) %>
+<script type="text/javascript">
+
+
+function validar(e) { // 1
+    tecla = (document.all) ? e.keyCode : e.which; // 2
+    if (tecla==8) return true; // 3
+    patron =/\d/; //4
+    te = String.fromCharCode(tecla); // 5
+    return patron.test(te); // 6
+}
+function validate(e) { // 1
+    tecla = (document.all) ? e.keyCode : e.which; // 2
+    if (tecla==8) return true; // 3
+    patron =/[A-Za-zñÑ\s]/; //4
+    te = String.fromCharCode(tecla); // 5
+    return patron.test(te); // 6
+}
+
+  $(document).ready(function(){
+    $(".edit_obra_social").validate({
+        //errorLabelContainer: $("#new_paciente div.errores")
+       errorContainer: $(".edit_obra_social div.errores"),
+       errorLabelContainer: $("ol", $(".edit_obra_social div.errores")),
+       wrapper: 'li',
+       meta: "validate"
+
+ });
+
+  });
+
+  
+
+  </script>

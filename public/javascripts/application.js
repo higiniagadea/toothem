@@ -103,7 +103,16 @@ $('div.ajax-pagination a').live('click', function() {
     return false
   });
 
+$('div.ajax-pagination a').live('click', function() {
+    $('#obra ').load(this.href)
+    return false
+  });
 
+
+  $('div.social a').live('click', function() {
+    $('#obra').load(this.href)
+    return false
+  });
 
 
 

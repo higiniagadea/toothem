@@ -14,22 +14,36 @@
   <tr>
       <td>
         <label>Importe Cubierto</label></td>
-      <td><%= f.text_field :importe_cubierto, :size=> 10, :class=>'ui-widget-content' %>
+      <td><%= f.text_field :importe_cubierto, :size=> 10, :class=>'ui-widget-content', :onkeypress=> 'return validate(event)' %>
       </td>
   </tr>
   <tr>
       <td>
         <label>Coseguro</label></td>
-      <td><%= f.text_field :coseguro, :size=> 10, :class=>'ui-widget-content' %>
+      <td><%= f.text_field :coseguro, :size=> 10, :class=>'ui-widget-content', :onkeypress=> 'return validate(event)' %>
       </td>
   </tr>
-      <td>
-        <label></label></td>
-      <td><%= f.submit 'Actualizar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+</table>
+  <table>
+    <tr>        
+      <td><%= f.submit 'Guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
       </td>
+    </tr>
 </table>
 </fieldset>
 <% end %>
 
 <%=  link_to 'Volver', obras_sociales_path %>
-    
+
+<script type="text/javascript">
+  function validate(e) { // 1
+    tecla = (document.all) ? e.keyCode : e.which; // 2
+    if (tecla==8) return true; // 3
+    patron =/\d/; //4
+    te = String.fromCharCode(tecla); // 5
+    return patron.test(te); // 6
+}
+
+
+
+</script>

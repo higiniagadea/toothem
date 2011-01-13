@@ -17,7 +17,7 @@ class ArancelesController < ApplicationController
     @pagetitle = "Aranceles de "+ @obra_social.nombre
     @formulario = params[:arancel]
     respond_to do |format|
-      format.html {render @formulario}
+      format.html {render :layout => false }
     end
   end
 
@@ -53,7 +53,9 @@ class ArancelesController < ApplicationController
   def edit
     @pagetitle = "Editando arancel de " + @obra_social.nombre
     @arancel = @obra_social.aranceles.find(params[:id])
-    
+    respond_to do |format|
+      format.html {render :layout => false}
+    end
   end
 
   def update
@@ -85,5 +87,7 @@ class ArancelesController < ApplicationController
     @obra_social= ObraSocial.find(params[:obra_social_id])
   end
 
+  
+  
 
 end

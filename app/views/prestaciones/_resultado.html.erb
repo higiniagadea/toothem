@@ -16,8 +16,8 @@
     <td><%=h prestacion.descripcion %></td>
     <td><%=h number_to_currency(prestacion.valor) %></td>
     <td><%= link_to image_tag('magnifier_zoom_in.png'), prestacion, :title => 'Ver', :id => 'ver_p_' + prestacion.id.to_s%>
-        <%= link_to image_tag('pencil.png'), edit_prestacion_path(prestacion), :title => 'Editar', :id => 'edit_p_' + prestacion.id.to_s %>
-        <%= link_to image_tag('cancel.png'), prestacion, :title => 'Eliminar', :confirm => 'Está seguro? No podrá deshacer esta acción', :method => :delete %></td>
+       <%= link_to image_tag('pencil.png'), edit_prestacion_path(prestacion), :title => 'Editar', :id => 'edit_p_' + prestacion.id.to_s %>
+       <%= link_to image_tag('cancel.png'), prestacion, :title => 'Eliminar', :confirm => 'Está seguro? No podrá deshacer esta acción', :method => :delete %></td>
   </tr>
   <script type="text/javascript">
   $(document).ready(function(){
@@ -37,12 +37,12 @@
     });
     </script>
 
-</table>
-  </fieldset>
+
+
 
 
 <% end %>
-
+</table>
 
   <%else%>
 
@@ -59,4 +59,5 @@
 
 
 <br />
+  </fieldset>
 </div>
