@@ -1,5 +1,5 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Nuevo Paciente</legend>
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Obras Sociales</legend>
 
 <table class="table-list">
   <tr>
@@ -21,14 +21,45 @@
     <td><%=h boolean_desc(obra_social.incluye_ficha) %></td>
     
     
-    <td><%= link_to image_tag('magnifier_zoom_in.png'), obra_social, :title => "Ver" %>
-        <%= link_to image_tag('pencil.png'), edit_obra_social_path(obra_social), :title => "Editar" %>
+    <td><%= link_to image_tag('magnifier_zoom_in.png'), obra_social, :title => "Ver", :id => 'siete_' + obra_social.id.to_s  %>
+        <%= link_to image_tag('pencil.png'), edit_obra_social_path(obra_social), :title => "Editar", :id=> 'seis_' + obra_social.id.to_s   %>
         <%= link_to image_tag('cancel.png'), obra_social, :confirm => '¿Está seguro? No podrá deshacer esta acción', :method => :delete, :title => "Eliminar" %>
-        <%= link_to image_tag('money_dollar.png'), new_obra_social_arancel_path(obra_social), :title => "Aranceles"%></td>
+        <%= link_to image_tag('money_dollar.png'), new_obra_social_arancel_path(obra_social), :title => "Aranceles", :id => 'nueve_' + obra_social.id.to_s%>
+        <%= link_to 'buscar', busqueda_obra_social_aranceles_path(obra_social, @aranceles) %>
+        </td>
   </tr>
+
+   <script type="text/javascript">
+  $(document).ready(function(){
+ $('#siete_<%= obra_social.id.to_s %>').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+
+    $('#seis_<%= obra_social.id.to_s %>').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+ $('#nueve_<%= obra_social.id.to_s %>').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+
+    });
+    </script>
+
+
+
 <% end %>
 </table>
 </fieldset>
-<br />
-<br />
+
 <%= will_paginate @obras_sociales, :previous_label=>'Anterior', :next_label => 'Siguiente' %>
+
+

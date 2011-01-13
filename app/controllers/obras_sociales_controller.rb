@@ -6,8 +6,8 @@ class ObrasSocialesController < ApplicationController
   def index
     
   #  @obras_sociales = ObraSocial.find(:all,:conditions => ['consultorio_id in (?)', current_usuario.consultorios])
-    @obras_sociales = ObraSocial.paginate :page=> params[:page], :per_page=> 5
-    @pagetitle = "Obras sociales"
+    @obras_sociales = ObraSocial.paginate :page=> params[:page], :per_page=> 10
+  
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @obras_sociales }
@@ -18,8 +18,8 @@ class ObrasSocialesController < ApplicationController
   def show
     @obra_social = ObraSocial.find(params[:id])
     respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @obra_social }
+    
+      format.html  { render :layout => false }
     end
   end
 
@@ -27,17 +27,19 @@ class ObrasSocialesController < ApplicationController
   # GET /obras_sociales/new.xml
   def new
     @obra_social = ObraSocial.new
-    @pagetitle = "Nueva obra social"
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @obra_social }
+ respond_to do |format|
+      format.html {render :layout => 'default'}
     end
+    
   end
 
   # GET /obras_sociales/1/edit
   def edit
     @obra_social = ObraSocial.find(params[:id])
-    @pagetitle = "Editar obra social"
+  
+    respond_to do |format|
+      format.html {render :layout => false}
+    end
   end
 
   # POST /obras_sociales
@@ -49,11 +51,11 @@ class ObrasSocialesController < ApplicationController
     respond_to do |format|
       if @obra_social.save
         flash[:notice] = 'Obra Social creada.'
-        format.html { redirect_to(@obra_social) }
-        format.xml  { render :xml => @obra_social, :status => :created, :location => @obra_social }
+        format.html { redirect_to obras_sociales_path }
+        
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @obra_social.errors, :status => :unprocessable_entity }
+        
       end
     end
   end
@@ -62,15 +64,15 @@ class ObrasSocialesController < ApplicationController
   # PUT /obras_sociales/1.xml
   def update
     @obra_social = ObraSocial.find(params[:id])
-    @pagetitle = "Editar obra social"
+  
     respond_to do |format|
       if @obra_social.update_attributes(params[:obra_social])
         flash[:notice] = 'Obra Social actualizada'
-        format.html { redirect_to(@obra_social) }
-        format.xml  { head :ok }
+        format.html { redirect_to obras_sociales_path }
+        
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @obra_social.errors, :status => :unprocessable_entity }
+       
       end
     end
   end
@@ -96,14 +98,34 @@ class ObrasSocialesController < ApplicationController
   end
   def resultado
     respond_to do |format|
-      if params[:nombre].blank? && params[:auditoria_previa].blank? && params[:auditoria_post].blank? && params[:incluye_ficha].blank?
-        format.html{render :text => "Debe ingresar al menos un parametro", :layout => false }
-      else
-        @obras_sociales = ObraSocial.basic_search(params)
-        format.html {render :layout => false}
+      
+        @obras_sociales = ObraSocial.basic_search(params).paginate :page => params[:page], :per_page => 10
+        format.html {render :partial => 'resultado', :layout => false}
       end
           
     end
-      
+
+  def busqueda
+    respond_to do |format|
+      format.html # buscar.html.erb
   end
+  end
+
+
+  def resultados
+    @arancel = @obra_social.aranceles.find(params[:id])
+    respond_to do |format|
+
+        @aranceles = Arancel.busq(params).paginate :page => params[:page], :per_page => 10
+        format.html {render :partial => 'resultados', :layout => false}
+      end
+  end
+
+  def lista
+    @aranceles = @obra_social.aranceles.find(params[:id])
+    respond_to do |format|
+      format.html {render :partial => 'lista'}
+    end
+  end
+  
 end

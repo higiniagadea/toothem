@@ -5,16 +5,6 @@ class PacientesController < ApplicationController
   before_filter :login_required
   layout 'default'
 
-  #def new_ficha
-   # params[:paciente][:consultorio_id] = session[:consultorio][:id]
-    #@paciente = Paciente.find(params[:paciente_id])
-    #@tratamiento = Tratamiento.new
-    #respond_to do |format|
-     #format.html {render :layout => 'layout'}
-     #format.html {render :controller => 'ficha', :action => 'new'} # _new solo agrega a la lista el tratamiento
-     
-    #end
-  #end
 
   def new_tratamiento
     #params[:paciente][:consultorio_id] = session[:consultorio][:id]
@@ -312,8 +302,7 @@ class PacientesController < ApplicationController
       if @paciente.update_attributes(params[:paciente])
        
         flash[:notice] = 'Paciente actualizado.'
-        #format.html { redirect_to(@paciente) }
-        #format.html {render :partial=> 'pacientes/edit_datos_personales', :layout => 'default'}
+      
          format.html {redirect_to(edit_paciente_path(@paciente) + '#datos_personales') }
         format.xml  { head :ok }
       else

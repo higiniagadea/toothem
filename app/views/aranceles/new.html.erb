@@ -1,41 +1,51 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class ="ui-widget ui-widget-content ui-corner-all ui-widget-header">Nuevo Arancel</legend>
+  <legend class ="ui-widget ui-widget-content ui-corner-all ui-widget-header">Arancel</legend>
 
 <%  form_for(:arancel, @arancel, :url => {:method => :post, :action => "index"})do |f| %>
   <%= f.error_messages(:id => 'error', :header_message=>'', :message=>'Se encontraron los siguientes errores') %>
-<br/>
-<br/>
-<% prestaciones =  Prestacion.find(:all, :conditions => [ "id NOT IN
+
+  
+  <% prestaciones =  Prestacion.find(:all, :conditions => [ "id NOT IN
                                                                     (SELECT prestacion_id FROM obras_sociales AS os
                                                                      INNER JOIN aranceles
                                                                      ON obra_social_id = os.id
                                                                      WHERE os.id =?)", @arancel.obra_social_id])%>
-  <table id="form">
+  
     <% unless prestaciones.blank? -%>
+  <table>
+
+
       <tr>
-        <td>Prestación</td>
-        <td>Importe Cubierto</td>
-        <td>Coseguro</td>
+        <td>Prestacion</td>
+        <td><%= f.collection_select(:prestacion_id, prestaciones, :id, :codigo_descripcion) %>
+        </td>
       </tr>
       <tr>
-        <td>
-          <%= f.collection_select(:prestacion_id, prestaciones, :id, :codigo_descripcion) %>
+        <td>Importe cubierto</td>
+        <td><%= f.text_field :importe_cubierto, :size => 10, :class=>'ui-widget-content ', :onkeypress=> 'return validar(event)' %>
         </td>
-        <td>
-          <%= f.text_field :importe_cubierto, :size => 10, :class=>'ui-widget-content ' %>
+      </tr>
+      <tr>
+        <td>Coseguro</td>
+        <td>  <%= f.text_field :coseguro, :size => 10, :class=>'ui-widget-content required', :div=> 'obras_sociales/', :onkeypress=> 'return validar(event)' %>
         </td>
-        <td>
-          <%= f.text_field :coseguro, :size => 10, :class=>'ui-widget-content required', :div=> 'obras_sociales/' %>
-        </td>
-        <td>
+      </tr>
+
+
+  </table>
+      <table>
+        <tr>
+        <td style=" float: left; margin-left:  500px">
           <%= f.submit 'Crear', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
         </td>
-      </tr>
+        </tr>
     <%  else -%>
       <a style ="font-weight: bold;">No existen mas prestaciones para agregar</a>
     <% end -%>
   </table>
 <% end %>
+
+  <% unless @aranceles.blank? %>
 <table class="table-list">
   
   <tr class="<%  cycle('par','impar') %>">
@@ -50,19 +60,35 @@
     <td><%=h arancel.prestacion.descripcion %></td>
     <td><%= number_to_currency(arancel.importe_cubierto)%></td>
     <td><%= number_to_currency(arancel.coseguro)%></td>
-    <td><%= link_to image_tag('pencil.png'), edit_obra_social_arancel_path(@obra_social, arancel), :title => 'Editar' %></td>
+    <td><%= link_to image_tag('pencil.png'), edit_obra_social_arancel_path(@obra_social, arancel), :title => 'Editar', :id => 'ocho_' + arancel.id.to_s %></td>
    
     <td><%= link_to image_tag('cancel.png'), [@obra_social,arancel], :confirm => 'Esta seguro que desea eliminar el arancel?', :method => :delete, :title => 'Eliminar' %></td>
+ </tr>
+ <script type="text/javascript">
 
 
 
-  </tr>
-<% end %>
+  function validar(e) { // 1
+    tecla = (document.all) ? e.keyCode : e.which; // 2
+    if (tecla==8) return true; // 3
+    patron =/\d/; //4
+    te = String.fromCharCode(tecla); // 5
+    return patron.test(te); // 6
+}
+
+  $(document).ready(function(){
+ $('#ocho_<% arancel.id.to_s %>').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+});
+</script>
+ <% end %>
+ <%else%>
+ No posee Aranceles
+ <%end%>
 </table>
 </fieldset>
 
-<div class="paginador">
-  <%= will_paginate @aranceles%>
-</div>
-
-<%= link_to 'Volver', obras_sociales_path %>

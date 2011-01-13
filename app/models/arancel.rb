@@ -9,3 +9,6 @@ class Arancel < ActiveRecord::Base
   #validates_presence_of :prestacion_id,:obra_social_id,:importe_cubierto,:coseguro,:message => ', no debe estar vacío'
   validates_uniqueness_of :prestacion_id, :scope => [:obra_social_id], :message => ', debe ser único en esta obra social'
 end
+
+
+

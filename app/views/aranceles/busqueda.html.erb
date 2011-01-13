@@ -1,55 +1,37 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Buscar Obras Sociales</legend>
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Buscar Aranceles</legend>
 
- <% form_remote_tag :url => resultado_obras_sociales_path,
+ <% form_remote_tag :url => url_for(:controller => 'obras_sociales', :action => 'resultados'),
                     :method => :post,
                     :update => :search_hits do -%>
     <table style=" text-align: left">
       <tr>
-      <th>Nombre</th>
-      <td><%= text_field_tag :nombre, {}, :class => 'ui-widget-content', :onkeypress=> 'return validar(event)' %>
-        </td>
+      <td>Prestaci&oacute;n </td>
+              <td>
+             <%=  select("prestacion", "prestacion_id", Prestacion.all.collect {|p| [ p.descripcion, p.id ] }) %>
+              </td>
       </tr>
 
-      <tr>
-        <th>Auditoria previa</th>
-        <td><%= check_box_tag :auditoria_previa, :class => 'ui-widget-content' %>
-        </td>
-      </tr>
 
-      <tr>
-        <th>Auditoria post</th>
-        <td><%= check_box_tag :auditoria_post, :class => 'ui-widget-content' %>
-        </td>
-      </tr>
-
-      <tr>
-        <th>Incluye ficha</th>
-        <td><%= check_box_tag :incluye_ficha, :class => 'ui-widget-content' %>
-        </td>
-      </tr>
     </table>
+  
   <table>
+    
     <tr>
         <td  style=" float: left; margin-left:  400px"><%= submit_tag 'Buscar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all'  %>
         </td>
-        <td id="tex"><%= image_tag('help.png') %></td>
+        <td id="texti"><%= image_tag('help.png') %></td>
     </tr>
-      </table>
+  </table>
+
 <%end -%>
 <div id ="search_hits">
-  
+
 </div>
 </fieldset>
 
 <script type="text/javascript">
-  function validate(e) { // 1
-    tecla = (document.all) ? e.keyCode : e.which; // 2
-    if (tecla==8) return true; // 3
-    patron =/\d/; //4
-    te = String.fromCharCode(tecla); // 5
-    return patron.test(te); // 6
-}
+  
 function validar(e) { // 1
     tecla = (document.all) ? e.keyCode : e.which; // 2
     if (tecla==8) return true; // 3
@@ -61,11 +43,11 @@ function validar(e) { // 1
 $(document).ready(function(){
 
 
-$('#tex img').each(function(){
+$('#texti img').each(function(){
 
           $(this).qtip(
           {
-            content: '<%= render :partial => 'tex'  %>', // Give it some content
+            content: '<%= render :partial => 'textito'  %>', // Give it some content
             position: 'topRight', // Set its position
             hide: {
               fixed: true // Make it fixed so it can be hovered over

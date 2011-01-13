@@ -1,0 +1,70 @@
+<div id="obra">
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Obra Social</legend>
+
+    <table class="table-list">
+      <tr class="<%  cycle('par','impar') %>">
+        <th>Nombre</th>
+        <th>Auditoria previa</th>
+        <th>Auditoria post</th>
+        <th>Nro max codigos por mes</th>
+        <th>Incluye ficha</th>
+
+
+      </tr>
+
+    <% @obras_sociales.each do |obra_social| %>
+      <tr>
+        <td><%=h obra_social.nombre %></td>
+        <td><%=h boolean_desc(obra_social.auditoria_previa)%></td>
+        <td><%=h boolean_desc(obra_social.auditoria_post) %></td>
+        <td><%=h obra_social.nro_max_codigos_por_mes %></td>
+        <td><%=h boolean_desc(obra_social.incluye_ficha) %></td>
+
+
+        <td><%= link_to image_tag('magnifier_zoom_in.png'), obra_social, :title => 'Ver', :id => 'uno_' + obra_social.id.to_s  %>
+        <%= link_to image_tag('pencil.png'), edit_obra_social_path(obra_social), :title => 'Edicion', :id => 'dos_' + obra_social.id.to_s %>
+        <%= link_to image_tag('cancel.png'), obra_social, :confirm => '¿Está seguro? No podrá deshacer esta acción', :method => :delete %>
+        <%= link_to image_tag('money_dollar.png'), new_obra_social_arancel_path(obra_social), :title => "Aranceles", :id => 'tres_' + obra_social.id.to_s %></td>
+      </tr>
+
+      <script type="text/javascript">
+  $(document).ready(function(){
+ $('#uno_<%= obra_social.id.to_s %>').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+
+    $('#dos_<%= obra_social.id.to_s %>').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+
+
+    $('#tres_<%= obra_social.id.to_s %>').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+
+    
+    });
+    </script>
+
+    <% end %>
+      </table>
+  <table>
+
+
+  <%= will_paginate @obras_sociales, :previous_label=>'<<Anterior', :next_label => 'Siguiente>>',
+                                 :class => 'social pagination',
+                                 :params=> {:controller => "obras_sociales", :action => 'resultado' }
+                                                                                                %>
+    </table>
+</fieldset>
+</div>
