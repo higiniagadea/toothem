@@ -41,7 +41,7 @@ class PacientesController < ApplicationController
   def result
     
     respond_to do |format|
-      if params[:nombre].blank? && params[:matricula].blank?
+      if params[:nombre].blank? && params[:matricula].blank? 
         format.html{render :text => "Ingrese al menos un dato para realizar la b&uacute;squeda " }
       elsif
           params[:nombre].size > 2 || params[:matricula].size > 2
@@ -115,7 +115,7 @@ class PacientesController < ApplicationController
     @paciente = Paciente.find_by_id(params[:id])
     @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha DESC')
     @fichas = Ficha.find_all_by_paciente_id(@paciente.id)
-    @title = "Editando paciente"
+    
     @prestaciones = Prestacion.find(:all)
     @fichas = Ficha.paginate(:page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha DESC')
 
@@ -213,7 +213,7 @@ class PacientesController < ApplicationController
   #resultado de la busqueda de titulares
   def results_titular
     @paciente = Paciente.find(params[:id])
-    @titulares = Titular.basic_search_in_pacientes(params[:titular])
+    @titulares = Titular.basic_search_in_pacientes(params[:titular])          
     #@titulares = Titular.find_all_by_obra_social_id(params[:obra_social].to_i)
     respond_to do |format|
       format.html {render :layout => false}
@@ -297,7 +297,7 @@ class PacientesController < ApplicationController
     unless @paciente.archivo_id.blank?
       @archivo = Archivo.find(@paciente.archivo_id)
     end
-    @title = "Editando paciente"
+   
     respond_to do |format|
       if @paciente.update_attributes(params[:paciente])
        
@@ -344,7 +344,7 @@ def ver
     @archivo = Archivo.find(@paciente.archivo_id)
     end
   respond_to do |format|
-    format.html{ render :layout => false, :partial => 'ver'}
+    format.html{ render  :partial => 'ver', :layout => false}
    end
 end
 

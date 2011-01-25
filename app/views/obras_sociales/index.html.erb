@@ -1,7 +1,7 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Obras Sociales</legend>
-
-<table class="table-list">
+ <% unless @obras_sociales.blank? %>
+<table style=" text-align: left;">
   <tr>
     <th>Nombre</th>
     <th>Auditoria previa</th>
@@ -17,16 +17,17 @@
     <td><%=h obra_social.nombre %></td>
     <td><%=h boolean_desc(obra_social.auditoria_previa)%></td>
     <td><%=h boolean_desc(obra_social.auditoria_post) %></td>
-    <td><%=h obra_social.nro_max_codigos_por_mes %></td>
+    <td><%=h obra_social.nro_max_codigos_por_mes.blank? ? '-' : obra_social.nro_max_codigos_por_mes %></td>
     <td><%=h boolean_desc(obra_social.incluye_ficha) %></td>
     
     
     <td><%= link_to image_tag('magnifier_zoom_in.png'), obra_social, :title => "Ver", :id => 'siete_' + obra_social.id.to_s  %>
         <%= link_to image_tag('pencil.png'), edit_obra_social_path(obra_social), :title => "Editar", :id=> 'seis_' + obra_social.id.to_s   %>
         <%= link_to image_tag('cancel.png'), obra_social, :confirm => '¿Está seguro? No podrá deshacer esta acción', :method => :delete, :title => "Eliminar" %>
-        <%= link_to image_tag('money_dollar.png'), new_obra_social_arancel_path(obra_social), :title => "Aranceles", :id => 'nueve_' + obra_social.id.to_s%>
-        <%= link_to 'buscar', busqueda_obra_social_aranceles_path(obra_social, @aranceles) %>
-        </td>
+        <%#= link_to 'Nuevo Arancel', new_obra_social_arancel_path(obra_social), :title => "Aranceles" %>
+        <%#= link_to 'Buscar Aranceles', busqueda_obra_social_aranceles_path(obra_social, @aranceles) %>
+        <%= link_to 'Aranceles', obra_social_aranceles_path(obra_social, @aranceles)%>
+    </td>
   </tr>
 
    <script type="text/javascript">
@@ -44,12 +45,8 @@
       'titleShow': false
 
     });
- $('#nueve_<%= obra_social.id.to_s %>').fancybox(
-        {
-      'hideOnContentClick': false,
-      'titleShow': false
 
-    });
+   
 
     });
     </script>
@@ -57,6 +54,9 @@
 
 
 <% end %>
+  <%else%>
+  No existen obras sociales cargadas
+  <%end%>
 </table>
 </fieldset>
 

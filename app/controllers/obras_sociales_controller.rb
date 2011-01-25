@@ -6,7 +6,7 @@ class ObrasSocialesController < ApplicationController
   def index
     
   #  @obras_sociales = ObraSocial.find(:all,:conditions => ['consultorio_id in (?)', current_usuario.consultorios])
-    @obras_sociales = ObraSocial.paginate :page=> params[:page], :per_page=> 10
+    @obras_sociales = ObraSocial.paginate :page=> params[:page], :per_page=> 10, :order => 'nombre ASC'
   
     respond_to do |format|
       format.html # index.html.erb
@@ -19,7 +19,7 @@ class ObrasSocialesController < ApplicationController
     @obra_social = ObraSocial.find(params[:id])
     respond_to do |format|
     
-      format.html  { render :layout => false }
+      format.html  { render :layout => false}
     end
   end
 
@@ -51,7 +51,7 @@ class ObrasSocialesController < ApplicationController
     respond_to do |format|
       if @obra_social.save
         flash[:notice] = 'Obra Social creada.'
-        format.html { redirect_to obras_sociales_path }
+        format.html { redirect_to obras_sociales_path}
         
       else
         format.html { render :action => "new" }
@@ -80,15 +80,21 @@ class ObrasSocialesController < ApplicationController
   # DELETE /obras_sociales/1
   # DELETE /obras_sociales/1.xml
   def destroy
-    @obra_social = ObraSocial.find(params[:id])
-    @obra_social.destroy
+      @obra_social = ObraSocial.find(params[:id])
+      @titular = Titular.find_by_obra_social_id(@obra_social.id)
 
+      
     respond_to do |format|
-      flash[:notice] = 'Obra Social eliminada'
-      format.html { redirect_to(obras_sociales_url) }
-      format.xml  { head :ok }
-    end
-  end
+      if @titular.blank?
+       @obra_social.destroy
+       flash[:notice] = 'Obra Social eliminada'
+      else
+        flash[:notice] = 'No se puede eliminar la Obra Social, ya que hay operaciones realizadas asociadas a la misma'
+         format.html { redirect_to(obras_sociales_url) }
+      end
+      end
+      end
+
   def buscar
     @pagetitle = "Buscar obra social"
     respond_to do |format|
@@ -99,33 +105,16 @@ class ObrasSocialesController < ApplicationController
   def resultado
     respond_to do |format|
       
-        @obras_sociales = ObraSocial.basic_search(params).paginate :page => params[:page], :per_page => 10
-        format.html {render :partial => 'resultado', :layout => false}
+        @obras_sociales = ObraSocial.basic_search(params).paginate :page => params[:page], :per_page => 10, :order => 'nombre ASC'
+        format.html {render :partial => 'resultado', :layout =>false}
       end
           
     end
 
-  def busqueda
-    respond_to do |format|
-      format.html # buscar.html.erb
-  end
-  end
-
-
-  def resultados
-    @arancel = @obra_social.aranceles.find(params[:id])
-    respond_to do |format|
-
-        @aranceles = Arancel.busq(params).paginate :page => params[:page], :per_page => 10
-        format.html {render :partial => 'resultados', :layout => false}
-      end
-  end
-
-  def lista
-    @aranceles = @obra_social.aranceles.find(params[:id])
-    respond_to do |format|
-      format.html {render :partial => 'lista'}
-    end
-  end
   
+ 
+
+  
+
+
 end

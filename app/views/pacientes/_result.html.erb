@@ -11,29 +11,27 @@
       
     </tr>
     <% @pacientes.each do |paciente| %>
-     <tr class="<%=  cycle('par','impar')%>">
+     <tr>
         <td><%=h paciente.nombre %></td>
-        <td><%=h paciente.tipo_documento.descripcion %>  <%=h paciente.matricula %></td>
-        <td><%=h paciente.movil  %></td>
+        <td><%=h paciente.tipo_documento.descripcion %><%=h paciente.matricula %></td>
+        <td><%=h paciente.movil.blank? ? '-' : paciente.movil  %></td>
         <td id="p_data_<%= paciente.id %>">
         <td><%= link_to image_tag('magnifier_zoom_in.png'), ver_paciente_path(paciente), :title => "Vista Rapida", :id => 'ver_paciente_' + paciente.id.to_s %>
           <%= link_to image_tag('pencil.png'), edit_paciente_path(paciente), :title => "Editar" %></td>
          </td>
-     </tr>
-     <script type="text/javascript">
-      {
-      
-      $(document).ready(function()
-      {
+         <script type="text/javascript">
         $('#ver_paciente_<%= paciente.id.to_s %>').fancybox(
         {
         'hideOnContentClick': false,
         'titleShow': false
 
         });
-    });
-    
+
+
+
     </script>
+     </tr>
+     
     <%end%>
 
    

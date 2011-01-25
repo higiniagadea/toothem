@@ -1,7 +1,16 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class ="ui-widget ui-widget-content ui-corner-all ui-widget-header">Aranceles</legend>
-<table class="table-list">
-  <tr class="<%  cycle('par','impar') %>">
+  <table>
+    <tr><td style=" float: left; margin-left: 990px">
+      <%= link_to 'Nuevo Arancel', new_obra_social_arancel_path(@obra_social), :id => 'nuevo_a' + @obra_social.id.to_s %>
+  
+ 
+      </td>
+    </tr>
+  </table>
+<% unless @aranceles.blank? %>
+  <table  style=" text-align: left;">
+  <tr>
     <th>Prestación</th>
     <th>Importe cubierto</th>
     <th>Coseguro</th>
@@ -11,21 +20,47 @@
 <% @aranceles.each do |arancel| %>
   <tr class ="<%= arancel.id %>">
     <td><%=h arancel.prestacion.descripcion %></td>
-    <td><%=h arancel.importe_cubierto%></td>
+    <td><%= number_to_currency(arancel.importe_cubierto) %></td>
     <td><%= number_to_currency(arancel.coseguro)%></td>
 
-    
-    <td ><%= link_to image_tag('pencil.png'), edit_obra_social_arancel_path(arancel, @obra_social), :title=> 'Editar'%></td>
+    <td><%= link_to image_tag('magnifier_zoom_in.png'), obra_social_arancel_path(@obra_social, arancel), :title=> 'Ver', :id => 'ver_a' + @obra_social.id.to_s %>
+        <%= link_to image_tag('pencil.png'), edit_obra_social_arancel_path(@obra_social, arancel), :title=> 'Editar', :id => 'editar_a' + @obra_social.id.to_s %>
+        <%= link_to image_tag('cancel.png'), [@obra_social,arancel], :confirm => 'Esta seguro que desea eliminar el arancel?', :method => :delete, :title=> 'Eliminar' %></td>
 
-    <td><%= link_to image_tag('cancel.png'), [@obra_social,arancel], :confirm => 'Esta seguro que desea eliminar el arancel?', :method => :delete, :title=>'Eliminar' %></td>
-    
+  <script type="text/javascript">
+ $('#editar_a<%= @obra_social.id.to_s %>').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
 
+    });
+
+    $('#ver_a<%= @obra_social.id.to_s %>').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+
+     $('#nuevo_a<%= @obra_social.id.to_s %>').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+        });
+      
+
+    </script>
 
   </tr>
 <% end %>
+  <%else%>
+  La Obra Social no posee Aranceles
+  <%end%>
 </table>
+  
 </fieldset>
+ 
 
-<div class="paginador">
-  <%= will_paginate @aranceles%>
-</div>
+ <%= will_paginate @aranceles, :previous_label =>'Anterior', :next_label => 'Siguiente' %>
+
+ 

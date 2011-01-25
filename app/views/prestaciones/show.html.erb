@@ -1,23 +1,23 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Prestaci&oacute;n</legend>
- <table class="table-list">
+ <table style=" text-align: left;"">
  <tr>
-  <td>
-  <label>C&oacute;digo de prestaci&oacute;n:</label></td>
-  <td><%=h @prestacion.codigo %>
-  </td>
+  <th>
+  C&oacute;digo de prestaci&oacute;n:</th>
+  <th><%=h @prestacion.codigo %>
+  </th>
     </tr>
     <tr>
-  <td>
-  <label>Descripci&oacute;n:</label></td>
-  <td><%=h @prestacion.descripcion %>
-  </td>
+  <th>
+  Descripci&oacute;n:</th>
+  <th><%=h @prestacion.descripcion %>
+  </th>
     </tr>
     <tr>
-     <td>
-     <label>Valor por defecto:</label></td>
-     <td><%=h number_to_currency(@prestacion.valor) %>
-     </td>
+     <th>
+     Valor por defecto:</th>
+     <th><%=h number_to_currency(@prestacion.valor) %>
+     </th>
      </tr>
   </table>
 </fieldset>

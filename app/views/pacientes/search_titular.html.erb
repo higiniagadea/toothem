@@ -5,10 +5,7 @@
 
 <% form_remote_tag :url => results_titular_paciente_path(@paciente),
                     :method => :post, :update => :search_hits do -%>
- 
-
-
-<table  style="text-align: left ; "class="table-list" >
+<table  style="text-align: left ;" >
       <tr>
         <th>
           Obra Social</th>
@@ -27,20 +24,20 @@
         <td><%= text_field_tag :matricula,{}, :class=> 'ui-widget-content', :name => 'titular[matricula]', :onkeypress=> 'return validar(event)' %>
         </td>
       </tr>
-      
+      </table>
       <table>
         <td  style=" float: left; margin-left: 185px"><%= submit_tag 'Buscar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
         </td>
       </table>
-      </table>
+      
 
 
  <div id ="search_hits">
 
 </div>
-
-</fieldset>
  <%end -%>
+</fieldset>
+
 
 <script type="text/javascript">
   function validar(e) { // 1
@@ -57,7 +54,7 @@ function validate(e) { // 1
     te = String.fromCharCode(tecla); // 5
     return patron.test(te); // 6
 }
-$.fancybox.resize();
+
 </script>
 
   

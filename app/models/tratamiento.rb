@@ -1,4 +1,4 @@
-class Tratamiento < ActiveRecord::Base
+  class Tratamiento < ActiveRecord::Base
   belongs_to :paciente
   belongs_to :prestacion
   belongs_to :profesional

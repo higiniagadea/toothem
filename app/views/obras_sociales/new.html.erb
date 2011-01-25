@@ -9,35 +9,35 @@
     </div>
 
 
-  <table>
+  <table style=" text-align: left;">
     <tr>
-    <td>
-     Nombre</td>
+    <th>
+     Nombre</th>
     <td><%= f.text_field :nombre, :class=> 'ui-widget-content required' , :title=> 'Nombre no puede estar vacio',:onkeypress=> 'return validate(event)' %>
     </td>
     </tr>
 
     <tr>
-    <td>
-     Códigos por mes</td>
+    <th>
+     Códigos por mes</th>
     <td><%= f.text_field :nro_max_codigos_por_mes, :class=> 'ui-widget-content', :onkeypress=> 'return validar(event)' %>
     </td>
     </tr>
     <tr>
-    <td>
-    Auditoria previa</td>
+    <th>
+    Auditoria previa</th>
     <td><%= f.check_box :auditoria_previa, :class=> 'ui-widget-content' %>
     </td>
     </tr>
     <tr>
-    <td>
-      Auditoria post</td>
+    <th>
+      Auditoria post</th>
     <td><%= f.check_box :auditoria_post, :class=> 'ui-widget-content' %>
     </td>
     </tr>
     <tr>
-    <td>
-      Incluye ficha</td>
+    <th>
+      Incluye ficha</th>
     <td><%= f.check_box :incluye_ficha, :class=>'ui-widget-content'  %>
     </td>
     </tr>

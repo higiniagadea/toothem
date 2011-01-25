@@ -1,6 +1,6 @@
 class ObraSocial < ActiveRecord::Base
   has_many :titulares
-  has_many :aranceles
+  has_many :aranceles, :dependent => :destroy
   has_many :tratamientos
   has_many :fichas
 #validates
@@ -12,7 +12,7 @@ class ObraSocial < ActiveRecord::Base
   named_scope :by_nombre, lambda { |nombre|
     {
       :conditions=> ['lower(nombre) LIKE :nombre ',
-          { :nombre => "%"+nombre.downcase+"%"} ]
+          { :nombre => '%'+nombre.downcase+'%'} ]
     }
   }
   named_scope :by_auditoria_previa, lambda { |auditoria_previa|
@@ -33,12 +33,7 @@ class ObraSocial < ActiveRecord::Base
         { :incluye_ficha => incluye_ficha } ]
     }
   }
-   named_scope :by_prestacion_id, lambda { |prestacion_id|
-    {
-      :conditions => ['prestacion_id= :prestacion_id',
-                 {:prestacion_id => prestacion_id }]
-    }
-  }
+  
 
   named_scope :limitar, :limit => 15
 
@@ -56,10 +51,5 @@ class ObraSocial < ActiveRecord::Base
       
       end
     
- def self.busq(options)
-  scope_builder do |builder|
-    builder.by_prestacion_id(options[:prestacion_id]) if options[:prestacion_id]
-  end
-  
-end
+
 end

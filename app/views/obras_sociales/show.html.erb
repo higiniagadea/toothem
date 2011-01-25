@@ -1,34 +1,34 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-totd">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Obra Social</legend>
-<table class="table-list">
+<table style=" text-align: left;">
   <tr>
-  <td>Nombre:</td>
+  <th>Nombre:</th>
   <td><%=h @obra_social.nombre %>
 </td>
   </tr>
 
 <tr>
-<td>Auditoria Previa</td>
+<th>Auditoria Previa</th>
 <td><%=h boolean_desc(@obra_social.auditoria_previa) %>
 </td>
 </tr>
 
 <tr>
-<td> Auditoria Posterior:</td>
+<th> Auditoria Posterior:</th>
 <td> <%=h boolean_desc(@obra_social.auditoria_post) %>
 </td>
 </tr>
 
 <tr>
-<td>  Incluye ficha:</td>
+<th>  Incluye ficha:</th>
 <td><%=h boolean_desc(@obra_social.incluye_ficha) %>
 </td>
 </tr>
 
 <tr>
-<td>
-  Nro max codigos por mes:</td>
-<td><%=h @obra_social.nro_max_codigos_por_mes %>
+<th>
+  Nro m&aacute;ximos de c&oacute;digos por mes:</th>
+<td><%=h @obra_social.nro_max_codigos_por_mes.blank?  ? '-' : @obra_social.nro_max_codigos_por_mes %>
 </td>
 </tr>
 </table>

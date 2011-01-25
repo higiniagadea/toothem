@@ -4,9 +4,9 @@ class ClinicasController < ApplicationController
   
   layout 'default'
   before_filter  :generar_submenus
-
+before_filter :login_required
   def index
-    @pagetitle = "Clínicas"
+    
     @clinicas = Clinica.paginate :page=> params[:page], :per_page=>5, :order=> 'nombre ASC'
 
     respond_to do |format|
@@ -29,7 +29,7 @@ class ClinicasController < ApplicationController
   # GET /clinicas/new
   # GET /clinicas/new.xml
   def new
-    @pagetitle = "Nueva clínica"
+    
     @clinica = Clinica.new
 
     respond_to do |format|
@@ -40,14 +40,14 @@ class ClinicasController < ApplicationController
 
   # GET /clinicas/1/edit
   def edit
-    @pagetitle = "Editar clínica"
+    
     @clinica = Clinica.find(params[:id])
   end
 
   # POST /clinicas
   # POST /clinicas.xml
   def create
-    @pagetitle = "Nueva clínica"
+   
     @clinica = Clinica.new(params[:clinica])
 
     respond_to do |format|

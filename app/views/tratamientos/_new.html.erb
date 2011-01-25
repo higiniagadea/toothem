@@ -10,50 +10,50 @@
   <div class="errores">
           <ol style="list-style:none"></ol>
         </div>
-      <table id="form">
+      <table style=" text-align: left;">
         <tr>
           <td><h1>Paciente: <%= @paciente.nombre %> </h1></td>
           <td></td >
         </tr>
         <tr>
-         <td><label>Fecha</label></td>
+         <th>Fecha</th>
           <td><span class="fecha" class="ui-widget-content">
                     <input class="ui-widget-content required "type="text" id="fecha_trat" size="10" name="tratamiento[fecha]" readonly="readonly" title="Ingrese una fecha" />
             </span>
           </td>
-          <td>Diente</td> 
+          <th>Diente</th>
           <td>
             <%= f.text_field :diente, :size=>10, :class=> 'ui-widget-content required', :title=> 'Diente no puede estar en blanco, maximo dos caracteres', :onkeypress=> 'return validar(event)' %>
           </td>
-          <td>Cara </td>
+          <th>Cara </th>
           <td>
             <%= f.text_field :cara, :size=>10, :class=> 'ui-widget-content required', :title=> 'Cara no puede estar en blanco, maximo dos caracteres', :onkeypress=> 'return validar(event)' %>
                </td>
               </tr>
               <tr>
-              <td>Prestaci&oacute;n </td>
+              <th>Prestaci&oacute;n </th>
               <td>
               <%= f.collection_select(:prestacion_id, Prestacion.all, :id, :descripcion, :class=> 'ui-widget-content required', :title=> 'Seleccione una prestacion') %>
               </td>
               <% unless params[:ficha_id]%>
-              <td>Profesional</td>
+              <th>Profesional</th>
               <td>
               <%= f.collection_select(:profesional_id, Profesional.all, :id, :nombre, :class => 'ui-widget-content required', :title=> 'Seleccione un profesional') %>
               </td>
               <%else%>
               <%= f.hidden_field :profesional_id, 'value' =>  @ficha.profesional_id %>
               <%end%>
-              <td>Estado del tratamiento</td>
+              <th>Estado del tratamiento</th>
               <td>
               <%= f.collection_select(:estado_tratamiento_id, EstadoTratamiento.all, :id, :nombre, :class=>'ui-widget-content required', :title=> 'Seleccione un estado') %>
               </td>
               </tr>
 
               <tr>
-              <td>Importe Cubierto </td>
+              <th>Importe Cubierto </th>
               <td><%= f.text_field :importe_cubierto, :size=>10, :class=> 'ui-widget-content required', :title=> 'Importe Cubierto no puede estar en blanco', :onkeypress=> 'return validar(event)' %>
               </td>
-              <td>Coseguro</td>
+              <th>Coseguro</th>
               <td><%= f.text_field :coseguro, :size=>10, :class=> 'ui-widget-content required', :title=> 'Coseguro no puede estar en blanco', :onkeypress=> 'return validar(event)' %></td>
          </tr>
       </table>
@@ -67,7 +67,7 @@
 
             </td>
 
-         </tr>
+         </tr>  
       </table>
 
 
