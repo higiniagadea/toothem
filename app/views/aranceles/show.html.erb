@@ -1,22 +1,22 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class ="ui-widget ui-widget-content ui-corner-all ui-widget-header">Arancel</legend>
-<table class="table-list">
+<table style=" text-align: left;">
   <tr>
-  <td>Prestación:</td>
+  <th>Prestación:</th>
   <td><%=h @arancel.prestacion.codigo %> - <%=h @arancel.prestacion.descripcion %>
   </td>
   </tr>
 
 
   <tr>
-  <td>Importe Cubierto:</td>
-  <td><%=h @arancel.importe_cubierto%>
+  <th>Importe Cubierto:</th>
+  <td><%=h number_to_currency(@arancel.importe_cubierto) %>
   </td>
   </tr>
 
   <tr>
-  <td>Coseguro:</td>
-  <td><%=h @arancel.coseguro %>
+  <th>Coseguro:</th>
+  <td><%=h number_to_currency(@arancel.coseguro) %>
   </td>
   </tr>
 </table>

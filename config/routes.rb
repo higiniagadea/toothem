@@ -140,7 +140,7 @@ ActionController::Routing::Routes.draw do |map|
 
 
    map.resources :obras_sociales, :collection => {:buscar => :get, :resultado => [:post, :get]} do |obra_social|
-     obra_social.resources :aranceles, :collection => {:busqueda => [:get, :post], :resultados => [:post, :get]}, :lista => [:get, :post]
+     obra_social.resources :aranceles, :collection => {:busqueda => [:get, :post], :resultados => [:post, :get]}
                                      
   end
   # Sample resource route within a namespace:

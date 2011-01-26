@@ -7,23 +7,23 @@
    <div class="errores">
     <ol style="list-style:none"></ol>
   </div>
-  <table>
+  <table style=" text-align: left;"">
     <tr>
-    <td>
-     C&oacute;digo de prestaci&oacute;n</td>
-    <td><%= f.text_field :codigo, :class => 'required ui-widget-content', :size=> 20, :title => 'Codigo no puede estar en blanco', :onkeypress=> 'return validar(event)' %>
-    </td>
+    <th>
+     C&oacute;digo de prestaci&oacute;n</th>
+    <th><%= f.text_field :codigo, :class => 'required ui-widget-content', :size=> 20, :title => 'Codigo no puede estar en blanco', :onkeypress=> 'return validar(event)' %>
+    </th>
     </tr>
     <tr>
-    <td>
-     Descripci&oacute;n</td>
-    <td><%= f.text_field :descripcion, :class => 'required ui-widget-content', :size=> 20, :title => 'Descripcion no puede estar en blanco', :onkeypress=> 'return validate(event)'%>
-    </td>
+    <th>
+     Descripci&oacute;n</th>
+    <th><%= f.text_field :descripcion, :class => 'required ui-widget-content', :size=> 20, :title => 'Descripcion no puede estar en blanco', :onkeypress=> 'return validate(event)'%>
+    </th>
     </tr>
     <tr>
-      <td>
+      <th>
         Valor por defecto
-      </td>
+      </th>
       <td><%= f.text_field :valor, :size=> 20, :class => 'ui-widget-content' %></td>
     </tr>
   </table>

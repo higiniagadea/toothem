@@ -33,6 +33,12 @@ class Paciente < ActiveRecord::Base
           { :nombre => "%"+nombre.downcase+"%"} ]
     }
   }
+  named_scope :by_tipo_documento_id, lambda { |tipo_documento_id|
+    {
+      :conditions => ['tipo_documento_id= :tipo_documento_id',
+                 {:tipo_documento_id => tipo_documento_id }]
+    }
+  }
  
   #named_scope :by_consultorio, lambda { |consultorio|
     #{
@@ -46,7 +52,7 @@ class Paciente < ActiveRecord::Base
     scope_builder do |builder|
       builder.by_nombre(options[:nombre]) if options[:nombre]
       builder.by_matricula(options[:matricula]) if options[:matricula]
-      
+       builder.by_tipo_documento_id(options[:tipo_documento_id]) if options[:tipo_documento_id]
       #builder.by_consultorio
 
     end

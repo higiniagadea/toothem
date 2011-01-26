@@ -8,23 +8,22 @@
     <ol style="list-style:none"></ol>
   </div>
   
-  <table>
+  <table  style=" text-align: left;">
     <tr>
-    <td>
-      C&oacute;digo de prestaci&oacute;n</td>
+    <th>
+      C&oacute;digo de prestaci&oacute;n</th>
     <td><%= f.text_field :codigo, :class => 'required ui-widget-content', :size=> 22, :title => 'Codigo no puede estar en blanco', :onkeypress=> 'return validar(event)' %>
     </td>
     </tr> 
     <tr>
-    <td>
-      Descripci&oacute;n</td>
+    <th>
+      Descripci&oacute;n</th>
     <td><%= f.text_field :descripcion, :class => 'required ui-widget-content', :size=> 22, :title => 'Descripcion no puede estar en blanco', :onkeypress=> 'return validate(event)' %>
     </td>
     </tr>
     <tr>
-      <td>
-        Valor por defecto
-      </td>
+      <th>
+        Valor por defecto</th>
       <td><%= f.text_field :valor, :size=> 22, :class => 'ui-widget-content' %></td>
     </tr>
   </table>

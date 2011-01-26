@@ -1,4 +1,4 @@
-<% unless @aranceles.blank? %>
+
 <table class="table-list">
 
   <tr class="<%  cycle('par','impar') %>">
@@ -15,10 +15,7 @@
     <td><%= number_to_currency(arancel.coseguro)%></td>
     <td><%= link_to image_tag('pencil.png'), edit_obra_social_arancel_path(@obra_social, arancel), :title => 'Editar', :id => 'ocho_' + arancel.id.to_s %></td>
 
-    <td><%= link_to image_tag('cancel.png'), [@obra_social,arancel], :confirm => 'Esta seguro que desea eliminar el arancel?', :method => :delete, :title => 'Eliminar' %></td>
+    <td><%= link_to image_tag('cancel.png'), [@obra_social, arancel], :confirm => 'Esta seguro que desea eliminar el arancel?', :method => :delete, :title => 'Eliminar' %></td>
  </tr>
 </table>
-<%end%>
-<%else%>
-no
 <%end%>

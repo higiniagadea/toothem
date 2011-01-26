@@ -84,6 +84,7 @@ class PrestacionesController < ApplicationController
     @prestacion.destroy
 
     respond_to do |format|
+      flash[:notice] = 'Prestacion eliminada'
       format.html { redirect_to(prestaciones_url) }
       format.xml  { head :ok }
     end
@@ -95,7 +96,7 @@ class PrestacionesController < ApplicationController
 
 
   def buscar
-    @pagetitle = "Buscar Prestaciones"
+  
     respond_to do |format|
       format.html 
     end

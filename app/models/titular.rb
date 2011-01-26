@@ -2,7 +2,7 @@
 class Titular < ActiveRecord::Base
   has_many :pacientes
   
-  belongs_to :obra_social
+  belongs_to :obra_social, :dependent => :destroy
 
  #validates
    validates_presence_of :nombre, :message => ', debe ingresar un nombre'

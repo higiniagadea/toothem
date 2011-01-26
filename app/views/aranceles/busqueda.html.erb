@@ -1,34 +1,46 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Buscar Aranceles</legend>
 
- <% form_remote_tag :url => url_for(:controller => 'obras_sociales', :action => 'resultados'),
-                    :method => :post,
-                    :update => :search_hits do -%>
-    <table style=" text-align: left">
-      <tr>
-      <td>Prestaci&oacute;n </td>
-              <td>
-             <%=  select("prestacion", "prestacion_id", Prestacion.all.collect {|p| [ p.descripcion, p.id ] }) %>
-              </td>
-      </tr>
-
-
-    </table>
-  
-  <table>
-    
-    <tr>
-        <td  style=" float: left; margin-left:  400px"><%= submit_tag 'Buscar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all'  %>
-        </td>
-        <td id="texti"><%= image_tag('help.png') %></td>
+ <table>
+    <tr><td style=" float: left; margin-left: 200px"><%= link_to 'Nuevo Arancel', new_obra_social_arancel_path(@obra_social), :title => "Aranceles", :id => 'veinte_' + @obra_social.id.to_s %></td>
     </tr>
   </table>
 
-<%end -%>
+
+ <% form_remote_tag :url => url_for(:controller => 'aranceles', :action => 'resultados'),
+                    :method => :post,
+                    :update => :search_hits do -%>
+ 
+
+    <table style=" text-align: left">
+      
+      <tr><th>Obra Social: <%= @obra_social.nombre %></th>
+      </tr>
+      <tr>
+        <th>Prestaci&oacute;n
+          <%=  select("arancel", "prestacion_id", Prestacion.all.collect {|p| [ p.descripcion, p.id ] }) %>
+
+
+        </th>
+      </tr>
+    </table>
+  
+    <table>
+    
+    <tr>
+        <td  style=" float: left; margin-left:  200px"><%= submit_tag 'Buscar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all'  %>
+        </td>
+        <td id="texti"><%= image_tag('help.png') %></td>
+    </tr>
+    </table>
+ <%end -%>
+
 <div id ="search_hits">
 
 </div>
-</fieldset>
+
+  </fieldset>
+ 
 
 <script type="text/javascript">
   
@@ -40,7 +52,13 @@ function validar(e) { // 1
     return patron.test(te); // 6
 }
 
-$(document).ready(function(){
+$(document).ready(function(){   
+ $('#veinte_<%= @obra_social.id.to_s %>').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
 
 
 $('#texti img').each(function(){

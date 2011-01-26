@@ -10,29 +10,27 @@
   <div class="errores">
           <ol style="list-style:none"></ol>
         </div>
-<table>
- 
-  
+<table style=" text-align: left;">
 
 <tr>
-  <td><label>Fecha</label></td>
+  <th>Fecha</th>
     <td><span class="fecha" class="ui-widget-content">
         <input class="ui-widget-content "type="text" id="fecha" size="10" name="tratamiento[fecha]" value="<%=@tratamiento.fecha.strftime('%d/%m/%Y')%>" />
       </span></td>
  
-  <td class="label">Diente</td>
+  <th>Diente</th>
   <td><%= f.text_field :diente, :size => 10 , :class=> 'ui-widget-content required', :title=> 'Diente no puede estar en blanco, maximo dos caracteres', :onkeypress=> 'return validar(event)'%>
   </td>
-  <td class="label">Cara</td>
+  <th>Cara</th>
   <td><%= f.text_field :cara, :size => 10, :class=> 'ui-widget-content required', :title=> 'Cara no puede estar en blanco, maximo dos caracteres', :onkeypress=> 'return validar(event)' %>
   </td>
   </tr>
    <tr>
-  <td class="label">Prestaci&oacute;n </td>
+  <th>Prestaci&oacute;n </th>
   <td><%= f.collection_select(:prestacion_id, Prestacion.all, :id, :descripcion, :class=> 'ui-widget-content required', :title=> 'Descripcion no debe estar en blanco')%>
   </td>
   <% unless params[:ficha_id]%>
-   <td>Profesional</td>
+   <th>Profesional</th>
             <td>
               <%= f.collection_select(:profesional_id, Profesional.all, :id, :nombre, :class => 'ui-widget-content required', :title=> 'Seleccione un profesional') %>
             </td>
@@ -40,17 +38,17 @@
          <%= f.hidden_field :profesional_id, 'value' =>  @ficha.profesional_id %>
     <%end%>
 
-  <td class="label">Estado del Tratamiento</td>
+  <th>Estado del Tratamiento</th>
   <td><%= f.collection_select(:estado_tratamiento_id, EstadoTratamiento.all, :id, :nombre, :class=> 'ui-widget-content required', :title=> 'Estado no puede estar en blanco')%>
   </td>
 
 
   </tr>
   <tr>
-    <td class="label">Importe Cubierto </td>
+    <th>Importe Cubierto </th>
   <td><%= f.text_field :importe_cubierto, :size => 10, :class=> 'ui-widget-content required', :title=> 'Importe debe ser numerico', :onkeypress=> 'return validar(event)' %>
   </td>
-  <td class="label">Coseguro</td>
+  <th>Coseguro</th>
   <td>
     <%= f.text_field :coseguro, :size=>10, :class=> 'ui-widget-content', :title=> 'Coseguro debe ser numerico', :onkeypress=> 'return validar(event)' %></td>
   </tr>

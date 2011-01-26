@@ -1,39 +1,53 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class ="ui-widget ui-widget-content ui-corner-all ui-widget-header">Arancel</legend>
-<%  form_for(:arancel, @arancel, :url => obra_social_arancel_path(@obra_social, @arancel), :html => {:method => :put}) do |f|   %>
+<%  form_for(:arancel, @arancel, :url => obra_social_arancel_path(@obra_social, @arancel), :html => {:method => :put, :id => 'edit_form'}) do |f|   %>
 
   <%= f.error_messages(:id => 'error', :header_message=>'', :message=>'Se encontraron los siguientes errores') %>
-<table id="form">
+
+    <div class="errores">
+      <ol style="list-style:none"></ol>
+    </div>
+  
+ <%# prestaciones =  Prestacion.find(:all, :conditions => [ "id NOT IN
+                                                                    (SELECT prestacion_id FROM obras_sociales AS os
+                                                                     INNER JOIN aranceles
+                                                                     ON obra_social_id = os.id
+                                                                     WHERE os.id =?)", @arancel.obra_social_id])%>
+  <table style=" text-align: left;">
+    <%# unless prestaciones.blank? -%>
+
+      <tr>
+        <th>Prestacion</th>
+        <td>
+          <%#= f.collection_select(:prestacion_id, prestaciones, :id, :codigo_descripcion, :size => 10) %>
+        <%= @arancel.prestacion.descripcion   %>
+        </td>
+  </tr>
   <tr>
-      <td>
-        <label>Prestacion</label></td>
-      <td><%= @arancel.prestacion.descripcion %>
-        
+      <th>
+        Importe Cubierto</th>
+      <td><%= f.text_field :importe_cubierto, :size=> 10, :class=>'ui-widget-content required', :onkeypress=> 'return validate(event)' , :title => 'Importe no puede estar vacio' %>
       </td>
   </tr>
   <tr>
-      <td>
-        <label>Importe Cubierto</label></td>
-      <td><%= f.text_field :importe_cubierto, :size=> 10, :class=>'ui-widget-content', :onkeypress=> 'return validate(event)' %>
-      </td>
-  </tr>
-  <tr>
-      <td>
-        <label>Coseguro</label></td>
-      <td><%= f.text_field :coseguro, :size=> 10, :class=>'ui-widget-content', :onkeypress=> 'return validate(event)' %>
+      <th>
+       Coseguro</th>
+      <td><%= f.text_field :coseguro, :size=> 10, :class=>'ui-widget-content required', :onkeypress=> 'return validate(event)', :title => 'Coseguro no puede estar vacio' %>
       </td>
   </tr>
 </table>
   <table>
     <tr>        
-      <td><%= f.submit 'Guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+      <td style=" float: left; margin-left:300px">
+        <%= link_to 'Cancelar', obra_social_aranceles_path(@obra_social) %>
+        <%= f.submit 'Guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
       </td>
     </tr>
 </table>
 </fieldset>
 <% end %>
+<%#end%>
 
-<%=  link_to 'Volver', obras_sociales_path %>
 
 <script type="text/javascript">
   function validate(e) { // 1
@@ -43,6 +57,16 @@
     te = String.fromCharCode(tecla); // 5
     return patron.test(te); // 6
 }
+
+  $(document).ready(function(){
+   $("#edit_form").validate({
+        //errorLabelContainer: $("#new_paciente div.errores")
+       errorContainer: $("#edit_form div.errores"),
+       errorLabelContainer: $("ol", $("#edit_form div.errores")),
+       wrapper: 'li',
+       meta: "validate"
+     })
+   })
 
 
 

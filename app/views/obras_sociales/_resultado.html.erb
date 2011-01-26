@@ -1,9 +1,10 @@
 <div id="obra">
-<fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Obra Social</legend>
+  <h1>Resultado de la Busqueda</h1>
+ <% unless @obras_sociales.blank? %>
 
-    <table class="table-list">
-      <tr class="<%  cycle('par','impar') %>">
+
+    <table style=" text-align: left;">
+      <tr>
         <th>Nombre</th>
         <th>Auditoria previa</th>
         <th>Auditoria post</th>
@@ -25,7 +26,9 @@
         <td><%= link_to image_tag('magnifier_zoom_in.png'), obra_social, :title => 'Ver', :id => 'uno_' + obra_social.id.to_s  %>
         <%= link_to image_tag('pencil.png'), edit_obra_social_path(obra_social), :title => 'Edicion', :id => 'dos_' + obra_social.id.to_s %>
         <%= link_to image_tag('cancel.png'), obra_social, :confirm => '¿Está seguro? No podrá deshacer esta acción', :method => :delete %>
-        <%= link_to image_tag('money_dollar.png'), new_obra_social_arancel_path(obra_social), :title => "Aranceles", :id => 'tres_' + obra_social.id.to_s %></td>
+        <%= link_to 'Aranceles', obra_social_aranceles_path(obra_social, @aranceles), :title => "Aranceles" %>
+         <%#= link_to 'buscar', busqueda_obra_social_aranceles_path(obra_social, @aranceles) %>
+        </td>
       </tr>
 
       <script type="text/javascript">
@@ -44,27 +47,23 @@
 
     });
 
-
-    $('#tres_<%= obra_social.id.to_s %>').fancybox(
-        {
-      'hideOnContentClick': false,
-      'titleShow': false
-
-    });
-
+   
     
     });
     </script>
 
     <% end %>
       </table>
-  <table>
+  <%else %>
+  No se encontraron resultados
+  <%end%>
 
 
-  <%= will_paginate @obras_sociales, :previous_label=>'<<Anterior', :next_label => 'Siguiente>>',
+
+  <%= will_paginate @obras_sociales, :previous_label=>'Anterior', :next_label => 'Siguiente',
                                  :class => 'social pagination',
                                  :params=> {:controller => "obras_sociales", :action => 'resultado' }
                                                                                                 %>
-    </table>
-</fieldset>
+<br/>
+
 </div>

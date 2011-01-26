@@ -3,7 +3,7 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Prestaciones</legend>
 
-<table class="table-list">
+<table style=" text-align: left;">
   <tr>
     <th>C&oacute;digo de prestaci&oacute;n</th>
     <th>Descripci&oacute;n</th>
@@ -50,7 +50,7 @@
   
   <%end%>
 
-<%= will_paginate @prestaciones, :previous_label=>'<<Anterior', :next_label => 'Siguiente>>',
+<%= will_paginate @prestaciones, :previous_label =>'Anterior', :next_label => 'Siguiente',
                                  :class => 'pres pagination',
                                  :params=> {:controller => "prestaciones", :action => 'resultado' }
                                                                                                 %>
