@@ -9,12 +9,13 @@
       t.column :coseguro, :float
       t.column :fue_liquidado, :boolean
       t.column :fecha_liquidacion, :date
-
-
+      t.column :observaciones, :string
+     
 
       t.column :odontograma_id, :integer
       t.column :paciente_id, :integer
       t.column :prestacion_id, :integer
+   
       t.column :profesional_id, :integer
       t.column :obra_social_id, :integer
       t.column :estado_tratamiento_id, :integer

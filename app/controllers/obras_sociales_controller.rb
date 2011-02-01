@@ -82,39 +82,35 @@ class ObrasSocialesController < ApplicationController
   def destroy
       @obra_social = ObraSocial.find(params[:id])
       @titular = Titular.find_by_obra_social_id(@obra_social.id)
-
-      
+    
     respond_to do |format|
       if @titular.blank?
        @obra_social.destroy
        flash[:notice] = 'Obra Social eliminada'
+       format.html { redirect_to obras_sociales_path}
+       
+       
       else
         flash[:notice] = 'No se puede eliminar la Obra Social, ya que hay operaciones realizadas asociadas a la misma'
          format.html { redirect_to(obras_sociales_url) }
       end
-      end
-      end
+    end
+   end
 
   def buscar
-    @pagetitle = "Buscar obra social"
+   
     respond_to do |format|
       format.html # buscar.html.erb
 
     end
   end
   def resultado
-    respond_to do |format|
-      
+    respond_to do |format|      
         @obras_sociales = ObraSocial.basic_search(params).paginate :page => params[:page], :per_page => 10, :order => 'nombre ASC'
         format.html {render :partial => 'resultado', :layout =>false}
       end
           
-    end
-
-  
- 
-
-  
+    end 
 
 
 end

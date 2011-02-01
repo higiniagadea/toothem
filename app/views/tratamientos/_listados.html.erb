@@ -3,7 +3,15 @@
   <table>
   <tr>
       <td style=" float: left; margin-left: 870px"><%= link_to image_tag('add.png') + "Crear Tratamiento", new_tratamiento_paciente_path + "?paciente_id="+@paciente.id.to_s, :id=> 'nuevo'  %>
-      <%= link_to image_tag('magnifier_zoom_in.png') + "Buscar", buscar_tratamientos_path +  "?paciente_id="+@paciente.id.to_s, :id => 'tratamient' %></td>
+      </td>
+      <script type="text/javascript">
+            $('#nuevo').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+    </script>
       </tr>
   </table>
  
@@ -12,18 +20,38 @@
 
    <tr>
     <th>Fecha</th>
-    <th>Profesional</th>
+    <th>Prestacion</th>
+    <th>Diente</th>
+    <th>Cara</th>
     <th>Estado</th>
-    <th>Acciones</th>
     </tr>
       <% @tratamientos.each do |tratamiento| %>
    <tr>
-    <td><%=h tratamiento.fecha.strftime('%d/%m/%Y') %></td>
-    <td><%=h tratamiento.profesional.nombre %></td>
+    <td><%=h tratamiento.fecha.strftime('%d/%m/%Y')%></td>
+  
+    <td><%=h tratamiento.prestacion.descripcion %></td>
+    <td><%=h tratamiento.diente %></td>
+    <td><%=h tratamiento.cara %></td>
     <td><%=h tratamiento.estado_tratamiento.nombre %></td>
+      
     <td><%= link_to image_tag('magnifier_zoom_in.png'), tratamiento, :title => "Ver", :id=> 'ver_' + tratamiento.id.to_s %></td>
-    <td><%= link_to image_tag('pencil.png'), edit_tratamiento_path(tratamiento, :paciente_id => @paciente), :title => 'Editar', :id=> 'editar_'+ tratamiento.id.to_s %></td>
-    <td><%= link_to image_tag('cancel.png'),eliminar_tratamiento_path(tratamiento, :paciente_id => @paciente.id), :confirm => 'Esta seguro de eliminar el tratamiento?', :title=> 'Eliminar' %></td>
+    <% if tratamiento.estado_tratamiento_id != 5  %>
+ 
+      <td> <%= link_to image_tag('pencil.png'), edit_tratamiento_path(tratamiento, :paciente_id => @paciente), :title => 'Editar', :id=> 'editar_'+ tratamiento.id.to_s %></td>
+    <%else%>
+       <% if tratamiento.fue_liquidado == false  %>
+      <td> <%= link_to image_tag('pencil.png'), edit_tratamiento_path(tratamiento, :paciente_id => @paciente), :title => 'Editar', :id=> 'editar_'+ tratamiento.id.to_s %></td>
+    <%end%><%end%>
+ 
+
+
+    <% if tratamiento.estado_tratamiento_id != 5   %>
+    <td><%= link_to image_tag('cancel.png'), eliminar_tratamiento_path(tratamiento, :paciente_id => @paciente.id), :confirm => 'Esta seguro de eliminar el tratamiento?', :title=> 'Eliminar' %></td>
+   <%else %>
+    <%  if tratamiento.fue_liquidado ==  false %>
+    <td><%= link_to image_tag('cancel.png'), eliminar_tratamiento_path(tratamiento, :paciente_id => @paciente.id), :confirm => 'Esta seguro de eliminar el tratamiento?', :title=> 'Eliminar' %></td>
+    <%end %>
+    <%end%>
 
    </tr>
      <script type="text/javascript">
@@ -40,48 +68,19 @@
       'titleShow': false
 
       });
+               
+           
       })
+ 
       </script>
      <%end%>
+   <%else%>
+   No posee tratamientos
  <% end%>
+   </table>
 
 
-
-    
-       
-</table>
-
-
- 
-
-
-
-
-
-
-<script type="text/javascript">
-      $(document).ready(function(){
-         $('#nuevo').fancybox(
-        {
-      'hideOnContentClick': false,
-      'titleShow': false
-
-    });
-    $('#tratamient').fancybox(
-        {
-      'hideOnContentClick': false,
-      'titleShow': false
-
-    });
-
-
-
-
-
-      });
-        </script>
-
-<%= will_paginate @tratamientos, :previous_label=>'Anterior', :next_label => 'Siguiente' ,
+<%= will_paginate @tratamientos, :previous_label =>'Anterior', :next_label => 'Siguiente' ,
                                   :class => 'tratam pagination',
                                   :params => {:controller => "tratamientos", :action=> "listados"} %>
 

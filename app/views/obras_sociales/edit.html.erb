@@ -10,14 +10,14 @@
    <tr>
     <th>
     Nombre</th>
-    <td><%= f.text_field :nombre, :class=> 'required ui-widget-content', :title=> 'Nombre no puede estar vacio', :onkeypress=> 'return validate(event)' %>
+    <td><%= f.text_field :nombre, :class=> 'required ui-widget-content', :size =>10, :title=> 'Nombre no puede estar vacio', :onkeypress=> 'return validate(event)' %>
     </td>
    </tr>
 
    <tr>
      <th>
       Códigos por mes</th>
-     <td><%= f.text_field :nro_max_codigos_por_mes, :class=> 'ui-widget-content', :title=> 'Ingrese maximo numero de codigos', :onkeypress=> 'return validar(event)' %>
+     <td><%= f.text_field :nro_max_codigos_por_mes, :size =>10, :class=> 'ui-widget-content', :title=> 'Ingrese maximo numero de codigos', :onkeypress=> 'return validar(event)' %>
     </td>
    </tr>
    <tr>

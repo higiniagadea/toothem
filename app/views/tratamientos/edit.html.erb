@@ -4,18 +4,26 @@
 <% form_for(@tratamiento) do |f| %>
   <%= f.error_messages(:header_message=>'Ingreso Incorrecto: ',:message=>'Se encontraron los siguientes errores') %>
       <%= f.hidden_field :paciente_id, 'value' => @paciente.id.to_s  %>
-  <% if params[:ficha_id] %>
-  <%= f.hidden_field :ficha_id,'value' =>  @ficha  %>
-  <%end%>
+ 
   <div class="errores">
           <ol style="list-style:none"></ol>
         </div>
 <table style=" text-align: left;">
+ <tr>
+          <td><h1>Paciente: <%= @paciente.nombre %> </h1></td>
+        </tr>
+        <tr>
+         <% unless @paciente.titular.blank? %>
+          <th>Obra Social :<%=h @paciente.titular.obra_social.nombre %></th>
+         <%else%>
+          <td>No posee obra social</td>
 
+                      <%end%>
+        </tr>
 <tr>
   <th>Fecha</th>
     <td><span class="fecha" class="ui-widget-content">
-        <input class="ui-widget-content "type="text" id="fecha" size="10" name="tratamiento[fecha]" value="<%=@tratamiento.fecha.strftime('%d/%m/%Y')%>" />
+        <input class="ui-widget-content required "type="text" id="fecha" size="10" name="tratamiento[fecha]" value="<%=  @tratamiento.fecha.strftime('%d/%m/%Y')%> " readonly="readonly" />
       </span></td>
  
   <th>Diente</th>
@@ -26,17 +34,42 @@
   </td>
   </tr>
    <tr>
-  <th>Prestaci&oacute;n </th>
-  <td><%= f.collection_select(:prestacion_id, Prestacion.all, :id, :descripcion, :class=> 'ui-widget-content required', :title=> 'Descripcion no debe estar en blanco')%>
+     <th>Prestaci&oacute;n </th>
+       <td>
+         <%= f.collection_select(:prestacion_id, @paciente.titular.obra_social.prestaciones, :id, :descripcion,
+                                                                                                  {:include_blank => 'Seleccione'},
+                                                                                                  :class=> 'ui-widget-content required',
+                                                                                                  :title=> 'Seleccione una prestacion'
+                                                                                                  ) %>
+       </td>
+     <th>Arancel</th>
+          <td><span id="actualizar_arancel"><%= observe_field("tratamiento_prestacion_id", :frequency => 0.1,
+                                                                  :url => {:action => 'actualizar_arancel', :controller => 'tratamientos'},
+                                                                  :with => "'arancel=' + $('#tratamiento_prestacion_id').val()") %></span></td>
+          </tr>
+
+
+
+
+     
+  <tr>
+    <th>Importe Cubierto </th>
+  <td><%=h number_to_currency(@tratamiento.importe_cubierto) %>
   </td>
-  <% unless params[:ficha_id]%>
-   <th>Profesional</th>
-            <td>
-              <%= f.collection_select(:profesional_id, Profesional.all, :id, :nombre, :class => 'ui-widget-content required', :title=> 'Seleccione un profesional') %>
-            </td>
-    <%else%>
-         <%= f.hidden_field :profesional_id, 'value' =>  @ficha.profesional_id %>
-    <%end%>
+  <th>Coseguro</th>
+  <td><%=h number_to_currency(@tratamiento.coseguro) %>
+    </td>
+  </tr>
+
+          
+    <tr>
+              <th>Profesional</th>
+              <td>
+              <%= f.collection_select(:profesional_id, Profesional.all, :id, :nombre, {:include_blank => 'Seleccione'},
+                                                                                                  :class=> 'ui-widget-content required',
+                                                                                                  :title=> 'Seleccione un profesional') %>
+              </td>
+
 
   <th>Estado del Tratamiento</th>
   <td><%= f.collection_select(:estado_tratamiento_id, EstadoTratamiento.all, :id, :nombre, :class=> 'ui-widget-content required', :title=> 'Estado no puede estar en blanco')%>
@@ -44,14 +77,23 @@
 
 
   </tr>
+   
   <tr>
-    <th>Importe Cubierto </th>
-  <td><%= f.text_field :importe_cubierto, :size => 10, :class=> 'ui-widget-content required', :title=> 'Importe debe ser numerico', :onkeypress=> 'return validar(event)' %>
-  </td>
-  <th>Coseguro</th>
-  <td>
-    <%= f.text_field :coseguro, :size=>10, :class=> 'ui-widget-content', :title=> 'Coseguro debe ser numerico', :onkeypress=> 'return validar(event)' %></td>
+    <th>Fue liquidado?</th>
+    <td><%= f.check_box :fue_liquidado, :class=> 'ui-widget-content required'  %> </td>
+
+    <th>Fecha De finalizacion</th>
+   <td><span class="fecha_finalizacion" class="ui-widget-content">
+        <input class="ui-widget-content required" type="text" id="fecha_finalizacion" size="10" name="tratamiento[fecha_finalizacion]" readonly="readonly"   />
+      </span></td>
+
+
   </tr>
+
+   <tr>
+                <th>Observaciones</th>
+                <td><%= f.text_field :observaciones, :size => 10, :class=> 'ui-widget-content' %> </td>
+              </tr>
 </table>
   <table>
          <tr>
