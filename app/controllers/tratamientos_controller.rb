@@ -6,14 +6,31 @@ class TratamientosController < ApplicationController
   before_filter :login_required
 
   def index   
-    @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5
+    @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5,  :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha ASC'
     respond_to do |format|
       #format.html {render :partial => 'edit', :layout=> 'default'}
      format.html
     end
   end
 
-  
+  def actualizar_arancel
+    @arancel = Arancel.find_by_prestacion_id(params[:arancel].to_i)
+ respond_to do |format|
+
+ 
+ format.html {
+   render :update do |page|
+     if @arancel.blank?
+       page['actualizar_arancel'].replace_html '-'
+     else
+       page['actualizar_arancel'].replace_html @arancel.coseguro
+     end
+     
+     #page << '$("#actualizar_arancel").text(#{@arancel.coseguro})'
+   end
+ }
+    end
+  end
 
 
 
@@ -35,7 +52,7 @@ class TratamientosController < ApplicationController
     @paciente = Paciente.find(params[:paciente_id])
     @tratamiento = Tratamiento.new
     @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5,  :conditions => ['paciente_id = ?', @paciente.id]
-    @ficha = Ficha.find(params[:ficha_id]) unless params[:ficha_id].blank?   
+    #@obra_social = Obra_Social.find(params[:obra_social_id]) unless params[:obra_social_id].blank?
     respond_to do |format|
       format.html { render :layout => false , :partial => 'new'}
       
@@ -102,8 +119,7 @@ class TratamientosController < ApplicationController
 
   # DELETE /tratamientos/1
   # DELETE /tratamientos/1.xml
-  def eliminar
-   
+  def eliminar   
     @tratamiento = Tratamiento.find(params[:id])
     @tratamiento.destroy
     @paciente = Paciente.find(params[:paciente_id])
@@ -188,13 +204,11 @@ end
 
 
 def listados
-
-@paciente = Paciente.find(params[:id])
+  @paciente = Paciente.find(params[:id])
 
 respond_to do |format|
-   
+  @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 2,  :order => 'fecha ASC'
   format.html {render :partial => 'listados', :layout=> false }
-  @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha DESC'
   end
   
 end

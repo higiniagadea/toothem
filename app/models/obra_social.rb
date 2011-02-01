@@ -1,9 +1,12 @@
 class ObraSocial < ActiveRecord::Base
+  acts_as_paranoid
+
   has_many :titulares
   has_many :aranceles, :dependent => :destroy
   has_many :tratamientos
   has_many :fichas
-#validates
+  has_many :prestaciones, :through => :aranceles
+
   validates_presence_of :nombre, :message => ', debe ingresar un nombre y apellido'
   
   #validates_inclusion_of :nro_max_codigos_por_mes, :in => 1..999, :message => 'el número máximo de códigos por mes debe ser un número entre 1 y 999'

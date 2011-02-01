@@ -5,7 +5,7 @@
   <% form_for(@tratamiento) do |f|%>
       <%= f.error_messages(:header_message=>'Ingreso Incorrecto: ',:message=>'Se encontraron los siguientes errores') %>
       <%= f.hidden_field :paciente_id, 'value' => @paciente.id.to_s  %>
-      <%= f.hidden_field :ficha_id, 'value' => @ficha.id.to_s unless params[:ficha_id].blank?  %>
+      <%#= f.hidden_field :obra_social_id, 'value' => @tratamiento.id.to_s unless params[:obra_social_id].blank?  %>
 
   <div class="errores">
           <ol style="list-style:none"></ol>
@@ -13,72 +13,110 @@
       <table style=" text-align: left;">
         <tr>
           <td><h1>Paciente: <%= @paciente.nombre %> </h1></td>
-          <td></td >
+          <td></td>
+         <% unless @paciente.titular.blank? %>
+          <td><h1>Obra Social :<%=h @paciente.titular.obra_social.nombre %></h1></td>
+     <%else%>
+          <td>No posee obra social</td>         
+       <%end%>
         </tr>
+
         <tr>
          <th>Fecha</th>
-          <td><span class="fecha" class="ui-widget-content">
+         <td><span class="fecha" class="ui-widget-content">
                     <input class="ui-widget-content required "type="text" id="fecha_trat" size="10" name="tratamiento[fecha]" readonly="readonly" title="Ingrese una fecha" />
             </span>
-          </td>
-          <th>Diente</th>
-          <td>
-            <%= f.text_field :diente, :size=>10, :class=> 'ui-widget-content required', :title=> 'Diente no puede estar en blanco, maximo dos caracteres', :onkeypress=> 'return validar(event)' %>
-          </td>
-          <th>Cara </th>
-          <td>
-            <%= f.text_field :cara, :size=>10, :class=> 'ui-widget-content required', :title=> 'Cara no puede estar en blanco, maximo dos caracteres', :onkeypress=> 'return validar(event)' %>
-               </td>
-              </tr>
-              <tr>
-              <th>Prestaci&oacute;n </th>
-              <td>
-              <%= f.collection_select(:prestacion_id, Prestacion.all, :id, :descripcion, :class=> 'ui-widget-content required', :title=> 'Seleccione una prestacion') %>
-              </td>
-              <% unless params[:ficha_id]%>
-              <th>Profesional</th>
-              <td>
-              <%= f.collection_select(:profesional_id, Profesional.all, :id, :nombre, :class => 'ui-widget-content required', :title=> 'Seleccione un profesional') %>
-              </td>
-              <%else%>
-              <%= f.hidden_field :profesional_id, 'value' =>  @ficha.profesional_id %>
-              <%end%>
-              <th>Estado del tratamiento</th>
-              <td>
-              <%= f.collection_select(:estado_tratamiento_id, EstadoTratamiento.all, :id, :nombre, :class=>'ui-widget-content required', :title=> 'Seleccione un estado') %>
-              </td>
-              </tr>
+         </td>
 
-              <tr>
-              <th>Importe Cubierto </th>
-              <td><%= f.text_field :importe_cubierto, :size=>10, :class=> 'ui-widget-content required', :title=> 'Importe Cubierto no puede estar en blanco', :onkeypress=> 'return validar(event)' %>
-              </td>
-              <th>Coseguro</th>
-              <td><%= f.text_field :coseguro, :size=>10, :class=> 'ui-widget-content required', :title=> 'Coseguro no puede estar en blanco', :onkeypress=> 'return validar(event)' %></td>
+         <th>Diente</th>
+         <td>
+            <%= f.text_field :diente, :size=>10, :class=> 'ui-widget-content required', :title=> 'Diente no puede estar en blanco, maximo dos caracteres', :onkeypress=> 'return validar(event)' %>
+         </td>
+         <th>Cara </th>
+         <td>
+            <%= f.text_field :cara, :size=>10, :class=> 'ui-widget-content required', :title=> 'Cara no puede estar en blanco, maximo dos caracteres', :onkeypress=> 'return validar(event)' %>
+         </td>
          </tr>
+
+         <tr>
+         <th>Prestaci&oacute;n </th>
+         <td>
+            <%= f.collection_select(:prestacion_id, @paciente.titular.obra_social.prestaciones, :id, :descripcion,
+                                                                                                  {:include_blank => 'Seleccione'},
+                                                                                                  :class=> 'ui-widget-content required',
+                                                                                                  :title=> 'Seleccione una prestacion'
+                                                                                                  ) %>
+          </td>
+
+          <th>Arancel</th>
+          <td><span id="actualizar_arancel"><%= observe_field("tratamiento_prestacion_id", :frequency => 0.1,
+                                                                  :url => {:action => 'actualizar_arancel', :controller => 'tratamientos'},
+                                                                  :with => "'arancel=' + $('#tratamiento_prestacion_id').val()") %></span></td>
+          </tr>
+
+          <tr>
+          <th>Importe Cubierto </th>
+          <td><%= f.text_field :importe_cubierto, :size=>10, :class=> 'ui-widget-content required', :title=> 'Importe Cubierto no puede estar en blanco', :onkeypress=> 'return validar(event)' %>
+          </td>
+          <th>Coseguro</th>
+          <td><%= f.text_field :coseguro, :size=>10, :class=> 'ui-widget-content required', :title=> 'Coseguro no puede estar en blanco', :onkeypress=> 'return validar(event)' %></td>
+          </tr>
+
+          <tr>
+          <th>Fue liquidado?</th>
+          <td><%= f.check_box :fue_liquidado %></td>
+          <% if @tratamiento.fue_liquidado == true %>
+           <th>Fecha De finalizacion</th>
+   <td><span class="fecha_finalizacion" class="ui-widget-content">
+        <input class="ui-widget-content "type="text" id="fecha_finalizacion" size="10" name="tratamiento[fecha_finalizacion]" readonly="readonly"  />
+      </span></td>
+         <%else%>
+      <%end%>
+          </tr>
+
+          <tr>
+          <th>Profesional</th>
+          <td>
+              <%= f.collection_select(:profesional_id, Profesional.all, :id, :nombre, {:include_blank => 'Seleccione'},
+                                                                                                  :class=> 'ui-widget-content required',
+                                                                                                  :title=> 'Seleccione un profesional') %>
+          </td>
+              
+
+          <th>Estado del tratamiento</th>
+          <td>
+          <%= f.collection_select(:estado_tratamiento_id, EstadoTratamiento.all, :id, :nombre, {:include_blank => 'Seleccione'},
+                                                                                                  :class=> 'ui-widget-content required',
+                                                                                                  :title=> 'Seleccione un estado') %>
+          </td>
+          </tr>
+
+              
+          <tr>
+          <th>Observaciones</th>
+          <td><%= f.text_field :observaciones, :size => 10, :class=> 'ui-widget-content' %> </td>
+          </tr>
       </table>
   <table>
          <tr>
             <td style=" float: left; margin-left:  600px">
-                  
+
                   <%= f.submit 'Guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
 
-                 
+
 
             </td>
 
-         </tr>  
+         </tr>
       </table>
 
 
 
- 
-   
+
+
 <% end %>
 
-<div class="paginador">
-  <%#= will_paginate @tratamientos, :previous_label=>'Anterior', :next_label => 'Siguiente' %>
-</div>
+
 
 
 </fieldset>
@@ -96,8 +134,8 @@
        errorContainer: $("#new_tratamiento div.errores"),
        errorLabelContainer: $("ol", $("#new_tratamiento div.errores")),
        wrapper: 'li',
-       meta: "validate" 
-      
+       meta: "validate"
+
 
   });
 
@@ -105,7 +143,7 @@
 
  $("#fecha_trat").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Jutdo','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate :0 });
 
-
+$("#fecha_finalizacion").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Jutdo','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate:0});
 
 });
 </script>

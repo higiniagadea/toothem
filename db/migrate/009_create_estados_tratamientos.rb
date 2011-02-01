@@ -5,9 +5,11 @@ class CreateEstadosTratamientos < ActiveRecord::Migration
 
       t.timestamps
     end
-    EstadoTratamiento.create :nombre=> 'a realizar'
-    EstadoTratamiento.create :nombre=> 'en proceso'
-    EstadoTratamiento.create :nombre=> 'en espera de verificacion'
+   
+    EstadoTratamiento.create :nombre=> 'A realizar'
+     EstadoTratamiento.create :nombre=> 'A autorizar por Obra Social'
+    EstadoTratamiento.create :nombre=> 'En proceso'
+    EstadoTratamiento.create :nombre=> 'En espera de verificacion'
     EstadoTratamiento.create :nombre=> 'Finalizado'
   end
 

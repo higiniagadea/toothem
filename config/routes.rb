@@ -9,7 +9,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :estados_tratamientos
 
-  map.resources :tratamientos,:collection => {:buscar => :get, :resultado => [:post, :get]} ,
+  map.resources :tratamientos,:collection => {:buscar => :get, :resultado => [:post, :get], :actualizar_arancel => [:get, :post]} ,
                               :member => {:eliminar => :get,
                               :ver => [:post, :get],
                               :imprimir => [:post, :get],
