@@ -91,7 +91,8 @@ class TratamientosController < ApplicationController
   # POST /tratamientos.xml
   def create
     @paciente = Paciente.find(params[:tratamiento][:paciente_id])
-  @arancel = Arancel.find_by_prestacion_id(params[:arancel].to_i)
+    @obra_social = ObraSocial.find(params[:tratamiento][:obra_social_id])
+    @arancel = Arancel.find_by_prestacion_id(params[:arancel].to_i)
     @tratamiento = Tratamiento.new(params[:tratamiento])
      #arancel = Arancel.find_by_prestacion_id(params[:arancel].to_i)
     #params[:tratamiento][:importe_cubierto] = arancel.importe_cubierto.to_i

@@ -1,7 +1,7 @@
 
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-corner-all ui-widget-header">Nuevo Tratamiento</legend>
-
+<% unless @paciente.titular.blank? %>
   <% form_for(@tratamiento) do |f|%>
       <%= f.error_messages(:header_message=>'Ingreso Incorrecto: ',:message=>'Se encontraron los siguientes errores') %>
       <%= f.hidden_field :paciente_id, 'value' => @paciente.id.to_s  %>
@@ -114,10 +114,10 @@
 
 
 
-
-<% end %>
-
-
+  <%end%>
+<%else%>
+  No posee obra social
+  <%end%>
 
 
 </fieldset>
