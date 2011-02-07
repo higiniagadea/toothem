@@ -17,9 +17,9 @@
     </th>
     <th>
       Tipo Y Nro. de Documento</th>
-    <th><%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion, {}, :class => 'ui-widget-content required') %>
+    <td><%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion, {:include_blank => 'Seleccione' , :class=> "ui-widget-content required", :title=> 'Seleccione tipo documento'}) %>
       <%= f.text_field :matricula,  :class =>"ui-widget-content required" , :size=> 22 , :title=> 'Ingrese su documento, entre 6 a 10 caracteres', :onkeypress=> 'return validar(event)'%>
-    </th>
+    </td>
     </tr>
     
     <tr>

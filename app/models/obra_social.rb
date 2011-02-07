@@ -1,7 +1,7 @@
 class ObraSocial < ActiveRecord::Base
   acts_as_paranoid
 
-  has_many :titulares
+  has_many :titulares, :dependent => :destroy
   has_many :aranceles, :dependent => :destroy
   has_many :tratamientos
   has_many :fichas

@@ -4,26 +4,23 @@
 <% form_for(@tratamiento) do |f| %>
   <%= f.error_messages(:header_message=>'Ingreso Incorrecto: ',:message=>'Se encontraron los siguientes errores') %>
       <%= f.hidden_field :paciente_id, 'value' => @paciente.id.to_s  %>
- 
+   
   <div class="errores">
           <ol style="list-style:none"></ol>
         </div>
 <table style=" text-align: left;">
- <tr>
+<tr>
           <td><h1>Paciente: <%= @paciente.nombre %> </h1></td>
-        </tr>
-        <tr>
+          <td></td>
          <% unless @paciente.titular.blank? %>
-          <th>Obra Social :<%=h @paciente.titular.obra_social.nombre %></th>
+          <td><h1>Obra Social :<%=h @paciente.titular.obra_social.nombre %></h1></td>
          <%else%>
           <td>No posee obra social</td>
-
-                      <%end%>
+         <%end%>
         </tr>
-<tr>
   <th>Fecha</th>
     <td><span class="fecha" class="ui-widget-content">
-        <input class="ui-widget-content required "type="text" id="fecha" size="10" name="tratamiento[fecha]" value="<%=  @tratamiento.fecha.strftime('%d/%m/%Y')%> " readonly="readonly" />
+        <input class="ui-widget-content required "type="text" id="fecha" size="10" name="tratamiento[fecha]" value="<%=  @tratamiento.fecha.strftime('%d/%m/%Y')%> " readonly="readonly" title="Ingrese una fecha"/>
       </span></td>
  
   <th>Diente</th>
@@ -42,24 +39,24 @@
                                                                                                   :title=> 'Seleccione una prestacion'
                                                                                                   ) %>
        </td>
-     <th>Arancel</th>
-          <td><span id="actualizar_arancel"><%= observe_field("tratamiento_prestacion_id", :frequency => 0.1,
-                                                                  :url => {:action => 'actualizar_arancel', :controller => 'tratamientos'},
+     <th>Importe Cubierto</th>
+          <td><span id="actualizar_importe"><%= observe_field("tratamiento_prestacion_id", :frequency => 0.1,
+                                                                  :url => {:action => 'actualizar_importe', :controller => 'tratamientos'},
                                                                   :with => "'arancel=' + $('#tratamiento_prestacion_id').val()") %></span></td>
-          </tr>
+
+    <th>Coseguro</th>
+          <td><span id="actualizar_coseguro"><%= observe_field("tratamiento_prestacion_id", :frequency => 0.1,
+                                                                  :url => {:action => 'actualizar_coseguro', :controller => 'tratamientos'},
+                                                                  :with => "'arancel=' + $('#tratamiento_prestacion_id').val()") %></span></td>
+
+
+   </tr>
 
 
 
 
      
-  <tr>
-    <th>Importe Cubierto </th>
-  <td><%=h number_to_currency(@tratamiento.importe_cubierto) %>
-  </td>
-  <th>Coseguro</th>
-  <td><%=h number_to_currency(@tratamiento.coseguro) %>
-    </td>
-  </tr>
+ 
 
           
     <tr>
@@ -82,18 +79,18 @@
     <th>Fue liquidado?</th>
     <td><%= f.check_box :fue_liquidado, :class=> 'ui-widget-content required'  %> </td>
 
+
+  
     <th>Fecha De finalizacion</th>
-   <td><span class="fecha_finalizacion" class="ui-widget-content">
-        <input class="ui-widget-content required" type="text" id="fecha_finalizacion" size="10" name="tratamiento[fecha_finalizacion]" readonly="readonly"   />
+ <td><span class="fecha" class="ui-widget-content">
+        <input class="ui-widget-content required "type="text" id="fecha_finalizacion" size="10" name="tratamiento[fecha_finalizacion]"  readonly="readonly" title="Ingrese una fecha"/>
       </span></td>
-
-
   </tr>
 
    <tr>
-                <th>Observaciones</th>
-                <td><%= f.text_field :observaciones, :size => 10, :class=> 'ui-widget-content' %> </td>
-              </tr>
+        <th>Observaciones</th>
+        <td><%= f.text_field :observaciones, :size => 10, :class=> 'ui-widget-content' %> </td>
+   </tr>
 </table>
   <table>
          <tr>

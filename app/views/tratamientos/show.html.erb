@@ -13,31 +13,20 @@
 <th>Cara:</th>
 <td><%=h @tratamiento.cara %>
 </td>
-
-
 </tr>
 <tr>
 <th>Prestaci&oacute;n:</th>
 <td><%=h @tratamiento.prestacion.descripcion %>
 </td>
-
-
-
-
-
 <th>Estado tratamiento:</th>
 <td><%=h @tratamiento.estado_tratamiento.nombre %>
 </td>
 </tr>
-
-
-
-
 <tr>
 
 <th>Profesional</th>
 <td><%=h @tratamiento.profesional.nombre %></td>
-<th>Importe</th>
+<th>Importe Cubierto</th>
 <td><%=h number_to_currency(@tratamiento.importe_cubierto) %>
 </td>
 </tr>

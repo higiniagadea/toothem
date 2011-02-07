@@ -81,9 +81,11 @@ class TitularesController < ApplicationController
   # DELETE /titulares/1.xml
   def destroy
     @titular = Titular.find(params[:id])
+
     @titular.destroy
 
     respond_to do |format|
+
       flash[:notice] = 'Titular eliminado'
       
       format.html { redirect_to titulares_path }

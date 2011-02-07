@@ -35,8 +35,8 @@
     <td><%=h tratamiento.estado_tratamiento.nombre %></td>
       
     <td><%= link_to image_tag('magnifier_zoom_in.png'), tratamiento, :title => "Ver", :id=> 'ver_' + tratamiento.id.to_s %></td>
+
     <% if tratamiento.estado_tratamiento_id != 5  %>
- 
       <td> <%= link_to image_tag('pencil.png'), edit_tratamiento_path(tratamiento, :paciente_id => @paciente), :title => 'Editar', :id=> 'editar_'+ tratamiento.id.to_s %></td>
     <%else%>
        <% if tratamiento.fue_liquidado == false  %>

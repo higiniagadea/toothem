@@ -1,4 +1,6 @@
 class Arancel < ActiveRecord::Base
+  acts_as_paranoid
+  
   belongs_to :prestacion
   belongs_to :obra_social
 
