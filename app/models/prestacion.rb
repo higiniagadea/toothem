@@ -1,5 +1,5 @@
 class Prestacion < ActiveRecord::Base
-
+acts_as_paranoid
 
   belongs_to :consultorio
   has_many :obras_sociales, :through => :aranceles

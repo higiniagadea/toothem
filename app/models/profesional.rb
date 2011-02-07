@@ -1,4 +1,5 @@
 class Profesional < ActiveRecord::Base
+  acts_as_paranoid
   belongs_to :estado_laboral
   belongs_to :tipo_documento
   belongs_to :consultorio

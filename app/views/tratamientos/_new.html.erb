@@ -5,7 +5,7 @@
   <% form_for(@tratamiento) do |f|%>
       <%= f.error_messages(:header_message=>'Ingreso Incorrecto: ',:message=>'Se encontraron los siguientes errores') %>
       <%= f.hidden_field :paciente_id, 'value' => @paciente.id.to_s  %>
-      <%#= f.hidden_field :obra_social_id, 'value' => @tratamiento.id.to_s unless params[:obra_social_id].blank?  %>
+    
 
   <div class="errores">
           <ol style="list-style:none"></ol>
@@ -16,9 +16,9 @@
           <td></td>
          <% unless @paciente.titular.blank? %>
           <td><h1>Obra Social :<%=h @paciente.titular.obra_social.nombre %></h1></td>
-     <%else%>
+         <%else%>
           <td>No posee obra social</td>         
-       <%end%>
+         <%end%>
         </tr>
 
         <tr>
@@ -48,18 +48,19 @@
                                                                                                   ) %>
           </td>
 
-          <th>Arancel</th>
-          <td><span id="actualizar_arancel"><%= observe_field("tratamiento_prestacion_id", :frequency => 0.1,
-                                                                  :url => {:action => 'actualizar_arancel', :controller => 'tratamientos'},
-                                                                  :with => "'arancel=' + $('#tratamiento_prestacion_id').val()") %></span></td>
-          </tr>
-
-          <tr>
-          <th>Importe Cubierto </th>
-          <td><%= f.text_field :importe_cubierto, :size=>10, :class=> 'ui-widget-content required', :title=> 'Importe Cubierto no puede estar en blanco', :onkeypress=> 'return validar(event)' %>
-          </td>
-          <th>Coseguro</th>
-          <td><%= f.text_field :coseguro, :size=>10, :class=> 'ui-widget-content required', :title=> 'Coseguro no puede estar en blanco', :onkeypress=> 'return validar(event)' %></td>
+          <th>Importe Cubierto</th>
+          <td><span id="actualizar_importe"><%= observe_field("tratamiento_prestacion_id", :frequency => 0.1,
+                                                                                           :url => {:action => 'actualizar_importe',
+                                                                                           :controller => 'tratamientos'},
+                                                                                           :with => "'arancel=' + $('#tratamiento_prestacion_id').val()") %></span></td>
+          
+             <th>Coseguro</th>
+          <td><span id="actualizar_coseguro"><%= observe_field("tratamiento_prestacion_id", :frequency => 0.1,
+                                                                                           :url => {:action => 'actualizar_coseguro',
+                                                                                           :controller => 'tratamientos'},
+                                                                                           :with => "'arancel=' + $('#tratamiento_prestacion_id').val()") %></span></td>
+              
+        
           </tr>
 
           <tr>

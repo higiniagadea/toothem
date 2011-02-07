@@ -86,12 +86,13 @@ class ObrasSocialesController < ApplicationController
     respond_to do |format|
       if @titular.blank?
        @obra_social.destroy
+       
        flash[:notice] = 'Obra Social eliminada'
        format.html { redirect_to obras_sociales_path}
        
        
       else
-        flash[:notice] = 'No se puede eliminar la Obra Social, ya que hay operaciones realizadas asociadas a la misma'
+         flash[:notice] = 'No se puede eliminar la Obra Social, ya que hay operaciones  asociadas a la misma'
          format.html { redirect_to(obras_sociales_url) }
       end
     end

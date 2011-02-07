@@ -7,28 +7,42 @@ class TratamientosController < ApplicationController
 
   def index   
     @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5,  :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha ASC'
-    respond_to do |format|
-      #format.html {render :partial => 'edit', :layout=> 'default'}
+    respond_to do |format|     
      format.html
     end
   end
 
-  def actualizar_arancel
+  def actualizar_importe
     @arancel = Arancel.find_by_prestacion_id(params[:arancel].to_i)
- respond_to do |format|
-
- 
+ respond_to do |format| 
  format.html {
    render :update do |page|
      if @arancel.blank?
-       page['actualizar_arancel'].replace_html '-'
+       page['actualizar_importe'].replace_html '-'
      else
-       page['actualizar_arancel'].replace_html @arancel.coseguro
+       page['actualizar_importe'].replace_html @arancel.importe_cubierto
+      
      end
-     
-     #page << '$("#actualizar_arancel").text(#{@arancel.coseguro})'
+          
    end
- }
+   }
+    end
+  end
+
+  def actualizar_coseguro
+    @arancel = Arancel.find_by_prestacion_id(params[:arancel].to_i)
+ respond_to do |format|
+ format.html {
+   render :update do |page|
+     if @arancel.blank?
+       page['actualizar_coseguro'].replace_html '-'
+     else
+       page['actualizar_coseguro'].replace_html @arancel.coseguro
+
+     end
+
+   end
+   }
     end
   end
 
@@ -36,13 +50,11 @@ class TratamientosController < ApplicationController
 
   # GET /tratamientos/1
   # GET /tratamientos/1.xml
-  def show
-  
+  def show  
   @tratamiento = Tratamiento.find(params[:id])
-  #@tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5,  :conditions => ['paciente_id = ?', @paciente.id]
+  
     respond_to do |format|
        format.html{render :layout => false}
-     
     end
   end
 
@@ -52,14 +64,12 @@ class TratamientosController < ApplicationController
     @paciente = Paciente.find(params[:paciente_id])
     @tratamiento = Tratamiento.new
     @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5,  :conditions => ['paciente_id = ?', @paciente.id]
-    #@obra_social = Obra_Social.find(params[:obra_social_id]) unless params[:obra_social_id].blank?
+    
     respond_to do |format|
       format.html { render :layout => false , :partial => 'new'}
       
     end
-  end
-
- 
+  end 
 
 
   # GET /tratamientos/1/edit
@@ -81,15 +91,18 @@ class TratamientosController < ApplicationController
   # POST /tratamientos.xml
   def create
     @paciente = Paciente.find(params[:tratamiento][:paciente_id])
+  @arancel = Arancel.find_by_prestacion_id(params[:arancel].to_i)
     @tratamiento = Tratamiento.new(params[:tratamiento])
+     #arancel = Arancel.find_by_prestacion_id(params[:arancel].to_i)
+    #params[:tratamiento][:importe_cubierto] = arancel.importe_cubierto.to_i
+    #params[:tratamiento][:coseguro] = arancel.coseguro.to_i
+
     @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id.to_s])
    
     respond_to do |format|
       if @tratamiento.save
         flash[:notice] = 'Tratamiento creado.'
-        format.html { redirect_to edit_paciente_path(@paciente) + '#tratamientos' }
-   
-    
+        format.html { redirect_to edit_paciente_path(@paciente) + '#tratamientos' }    
       else
         format.html {render :partial => 'new', :layout => 'default'}
         format.xml  { render :xml => @tratamiento.errors, :status => :unprocessable_entity }
@@ -102,10 +115,10 @@ class TratamientosController < ApplicationController
 
   # PUT /tratamientos/1
   # PUT /tratamientos/1.xml
-  def update
-   
+  def update   
    @tratamiento = Tratamiento.find(params[:id])
    @paciente = Paciente.find(params[:tratamiento][:paciente_id])
+
     respond_to do |format|
       if @tratamiento.update_attributes(params[:tratamiento])
        flash[:notice] = 'Tratamiento actualizado.'
@@ -120,12 +133,16 @@ class TratamientosController < ApplicationController
   # DELETE /tratamientos/1
   # DELETE /tratamientos/1.xml
   def eliminar   
-    @tratamiento = Tratamiento.find(params[:id])
-    @tratamiento.destroy
+    @tratamiento = Tratamiento.find(params[:id])    
     @paciente = Paciente.find(params[:paciente_id])
-    respond_to do |format|
+    
+    if @tratamiento.fue_liquidado == false 
+      flash[:notice] = 'El tratamiento no puede ser borrado ya que no fue liquidado'
+    else
+      @tratamiento.destroy
       flash[:notice] = 'Tratamiento eliminado'
-   
+    end
+    respond_to do |format|   
      format.html { redirect_to edit_paciente_path(@paciente) + '#tratamientos'}
      
     end
@@ -156,8 +173,7 @@ def buscar
  #end
 #end
 
-def resultado
- 
+def resultado 
  @profesionales = Profesional.find( params[:profesional][:profesional_id]) if params[:profesional][:profesional_id]
   params[:tratamiento][:profesional_id] = params[:profesional][:profesional_id] if params[:profesional][:profesional_id]
   respond_to do |format|
@@ -166,28 +182,24 @@ def resultado
         format.html{render :text => "Ingrese los datos para realizar la busqueda", :layout => false }
       else
        @tratamientos = Tratamiento.busqueda(params[:tratamiento])
-        format.html {render :partial => 'resultado', :layout => false }
-     
-
-    end
-
+        format.html {render :partial => 'resultado', :layout => false } 
+      end
   end
 end
 
 
-def imprimir
-   
-    @tratamiento = Tratamiento.find(params[:id])
+def imprimir   
+  @tratamiento = Tratamiento.find(params[:id])
 
   respond_to do |format|
    format.html {render :partial => 'reporte'}
-
-    end
+  end
 end
+
 
 def ver
   @tratamiento = Tratamiento.find(params[:id])
-#@tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5
+
   respond_to do |format|
     format.html{ render :layout=> false, :partial => 'ver'}
    end
@@ -197,8 +209,7 @@ def imprimir
     @tratamiento = Tratamiento.find(params[:id])
 
     respond_to do |format|
-      format.html {render :partial=> 'imprimir', :layout=> 'print'}   
-
+      format.html {render :partial=> 'imprimir', :layout=> 'print'}
     end
 end
 
@@ -207,19 +218,20 @@ def listados
   @paciente = Paciente.find(params[:id])
 
 respond_to do |format|
-  @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 2,  :order => 'fecha ASC'
   format.html {render :partial => 'listados', :layout=> false }
+  @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 10,  :order => 'fecha ASC'
+  
   end
   
 end
 
 
-def verificar_longitud
-@tratamiento = Tratamiento.find(:first, :conditions => {:diente => params[:tratamiento][:diente]})
-   respond_to do |format|
-    format.json { render :json => !@tratamiento}
-   end
-end
+#def verificar_longitud
+#@tratamiento = Tratamiento.find(:first, :conditions => {:diente => params[:tratamiento][:diente]})
+   #respond_to do |format|
+    #format.json { render :json => !@tratamiento}
+   #end
+#end
 
 
 
