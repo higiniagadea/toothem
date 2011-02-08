@@ -76,19 +76,19 @@
 
   </tr>
    
-  <tr>
-    <th>Fue liquidado?</th>
-    <td><%= f.check_box :fue_liquidado, :class=> 'ui-widget-content required'  %> </td>
-
-
   
+    
+    <%#= f.check_box :fue_liquidado, :class=> 'ui-widget-content required'  %> 
+
+
+    <tr>
     <th>Fecha De finalizacion</th>
  <td><span class="fecha" class="ui-widget-content">
         <input class="ui-widget-content required "type="text" id="fecha_finalizacion" size="10" name="tratamiento[fecha_finalizacion]"  readonly="readonly" title="Ingrese una fecha"/>
       </span></td>
-  </tr>
 
-   <tr>
+
+   
         <th>Observaciones</th>
         <td><%= f.text_field :observaciones, :size => 10, :class=> 'ui-widget-content' %> </td>
    </tr>
