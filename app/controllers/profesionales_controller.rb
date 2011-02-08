@@ -39,8 +39,8 @@ class ProfesionalesController < ApplicationController
     @profesional = Profesional.new
 
     respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @profesional }
+      
+      format.html  { render :layout => 'default' }
     end
   end
 
@@ -109,7 +109,7 @@ class ProfesionalesController < ApplicationController
 
 
 def buscar
-    @pagetitle = "Buscar Profesional"
+ 
     respond_to do |format|
       format.html # buscar.html.erb
 
@@ -118,19 +118,15 @@ def buscar
 
   def resultado
     
-    respond_to do |format|
-    
-      if params[:nombre].blank? && params[:documento].blank?
-        format.html{render :text => "Ingrese Nombre y Documento ", :layout => false }
-      else
+    respond_to do |format|  
+     
         @profesionales = Profesional.basic_search(params)
+         format.html {render :partial => 'resultado', :layout => false }
         
-        format.html {render :layout => false}
-        @profesionales = Profesional.paginate :page=> params[:page], :per_page => 2
       end
 
     end
 
-  end
+
   
 end

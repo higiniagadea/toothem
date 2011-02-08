@@ -1,22 +1,21 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class ="ui-widget ui-widget-content ui-corner-all ui-widget-header">Clinica</legend>
-<table id="form">
+  <legend class ="ui-widget ui-widget-content ui-corner-all ui-widget-header">Clinicas</legend>
+<table style=" text-align: left; ">
   <tr>
-  <td><label>Nombre:</label></td>
+  <th>Nombre</th>
   <td><%=h @clinica.nombre %>
 </td>
   </tr>
 <tr>
-  <td><label>Direccion:</label></td>
-  <td>|<%=h @clinica.direccion %>
+  <th>Direccion</th>
+  <td><%=h @clinica.direccion %>
 </td>
 </tr>
 
 <tr>
-  <td><label>Cuit:</label></td>
-  <td>|<%=h @clinica.cuit %>
+  <th>Cuit</th>
+  <td><%=h @clinica.cuit %>
 </td>
 </tr>
 </table>
 </fieldset>
-<%= link_to 'Volver', clinicas_path %>
