@@ -63,18 +63,7 @@
         
           </tr>
 
-          <tr>
-          <th>Fue liquidado?</th>
-          <td><%= f.check_box :fue_liquidado %></td>
-          <% if @tratamiento.fue_liquidado == true %>
-           <th>Fecha De finalizacion</th>
-         <td><span class="fecha_finalizacion" class="ui-widget-content">
-         <input class="ui-widget-content "type="text" id="fecha_finalizacion" size="10" name="tratamiento[fecha_finalizacion]" readonly="readonly"  />
-         </span></td>
-         <%else%>
-         <%end%>
-         </tr>
-
+      
           <tr>
           <th>Profesional</th>
           <td>
