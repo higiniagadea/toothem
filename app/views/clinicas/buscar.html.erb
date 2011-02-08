@@ -1,14 +1,16 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header"  >Buscar Prestaciones</legend>
-        <div class="errores">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header"  >Buscar Clinicas</legend>
+
+  <div class="search-form">
+         <div class="errores">
          <ol style="list-style:none"></ol>
          </div>
 
-       <table>
+<table>
     <tr><td style=" float: left; margin-left: 990px">
-      <%= link_to  image_tag('add.png') + 'Nueva Prestacion', new_prestacion_path, :id => 'nueva_prestac' %>
+      <%= link_to  image_tag('add.png') + 'Nueva Clinica', new_clinica_path, :id => 'nueva_clinica' %>
       <script type="text/javascript">
-            $('#nueva_prestac').fancybox(
+            $('#nueva_clinica').fancybox(
         {
       'hideOnContentClick': false,
       'titleShow': false
@@ -19,39 +21,51 @@
       </td>
     </tr>
   </table>
- 
-       <%  form_remote_tag :url=> resultado_prestaciones_path,
+<%  form_remote_tag :url=> url_for(:controller => 'clinicas', :action => 'resultado'),
                       :method => :post,
                       :update => :search_hits do -%>
-      <table  style=" text-align: left">
+
+      <table  style=" text-align: left; ">
         <tr>
-          <th>C&oacute;digo de Prestaci&oacute;n</th>
-          <td><%= text_field_tag :codigo,{}, :class => 'required ui-widget-content', :onkeypress=> 'return validate(event)' %></td>
+          <th>Nombre</th>
+        <td><%= text_field_tag :nombre,{}, :class =>"ui-widget-content required", :onkeypress => 'return valida(event)' %> </td>
+
+        <th>Direccion</th>
+          <td> <%= text_field_tag :direccion,{}, :class => 'ui-widget-content ', :onkeypress => 'return valida(event)'%></td>
         </tr>
+
         <tr>
-          <th>Descripci&oacute;n</th>
-          <td><%= text_field_tag :descripcion, {}, :class=> 'ui-widget-content', :onkeypress=> 'return validar(event)' %></td>
+          <th>CUIT</th>
+        <td><%= text_field_tag :cuit,{}, :class => 'ui-widget-content ', :onkeypress => 'return validate(event)'%></td>
+
         </tr>
       </table>
-   
-    <table>
+
+     <table>
         <tr>
           <td style=" float: left; margin-left:  400px"> <%= submit_tag 'Buscar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
-          <td id="text"><%= image_tag('help.png') %></td>
+          <td id="ayuda_clinica"><%= image_tag 'help.png' %></td>
 
           </tr>
 
       </table>
-<%end -%>
+
+  <%end -%>
 
 
-    
- <td id="errorExplanation"></td>
-<div id="search_hits"></div>
+   <div id="search_hits"></div>
+</div>
 </fieldset>
-
-
 <script type="text/javascript">
+function valida(e) { // 1
+    tecla = (document.all) ? e.keyCode : e.which; // 2
+    if (tecla==8) return true; // 3
+    patron =/\w/; //4
+    te = String.fromCharCode(tecla); // 5
+    return patron.test(te); // 6
+}
+
+
   function validate(e) { // 1
     tecla = (document.all) ? e.keyCode : e.which; // 2
     if (tecla==8) return true; // 3
@@ -59,6 +73,8 @@
     te = String.fromCharCode(tecla); // 5
     return patron.test(te); // 6
 }
+
+
 function validar(e) { // 1
     tecla = (document.all) ? e.keyCode : e.which; // 2
     if (tecla==8) return true; // 3
@@ -67,14 +83,14 @@ function validar(e) { // 1
     return patron.test(te); // 6
 }
 
-$(document).ready(function(){
+ $(document).ready(function(){
 
 
-$('#text img').each(function(){
+$('#ayuda_clinica img').each(function(){
 
           $(this).qtip(
           {
-            content: '<%= render :partial => 'texto'  %>', // Give it some content
+            content: '<%= render :partial => 'ayuda_clinica'  %>', // Give it some content
             position: 'topRight', // Set its position
             hide: {
               fixed: true // Make it fixed so it can be hovered over
@@ -85,8 +101,11 @@ $('#text img').each(function(){
             }
           });
         });
-})
 
 
+
+
+
+});
 
 </script>

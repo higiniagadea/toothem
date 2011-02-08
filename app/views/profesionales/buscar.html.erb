@@ -1,31 +1,76 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Buscar Profesional</legend>
+   <table>
+    <tr><td style=" float: left; margin-left: 990px">
+      <%= link_to  image_tag('add.png') + 'Nuevo Profesional', new_profesional_path %>
+        </td>
+    </tr>
+  </table>
+
 <% form_remote_tag :url => resultado_profesionales_path,
                     :method => :post, 
                     :update => :search_hits do -%>
 
-    <table id="search-form">
+    <table style=" text-align: left">
       <tr>
-        <td>
-          <label>Nombre</label></td>
-        <td><%= text_field_tag :nombre,{}, :class=> 'ui-widget-content' %>
+        <th>
+          Nombre</th>
+        <td><%= text_field_tag :nombre,{}, :class=> 'ui-widget-content ', :onkeypress=> 'return validar(event)' %>
         </td>
       </tr>
       <tr>
-        <td>
-          <label for="documento">Documento</label></td>
-        <td><%= text_field_tag :documento,{}, :class=> 'ui-widget-content' %>
+        <th>
+          Documento</th>
+        <td><%= text_field_tag :documento,{}, :class=> 'ui-widget-content', :onkeypress=> 'return validate(event)' %>
         </td>
       </tr>
+    </table>
+  <table>
       <tr>
-        <td>
-          <label></label>
+        <td style=" float: left; margin-left:  400px">
           <%= submit_tag 'Buscar',  :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
         </td>
+         <td id="texto_prof"><%= image_tag('help.png') %></td>
       </tr>
       </table>
-</fieldset>
-<%end -%>
-<div id ="search_hits">
 
-</div>
+<%end -%>
+
+
+<div id ="search_hits"></div>
+</fieldset>
+<script type="text/javascript">
+  function validate(e) { // 1
+    tecla = (document.all) ? e.keyCode : e.which; // 2
+    if (tecla==8) return true; // 3
+    patron =/\d/; //4
+    te = String.fromCharCode(tecla); // 5
+    return patron.test(te); // 6
+}
+function validar(e) { // 1
+    tecla = (document.all) ? e.keyCode : e.which; // 2
+    if (tecla==8) return true; // 3
+    patron =/[A-Za-zñÑ\s]/; //4
+    te = String.fromCharCode(tecla); // 5
+    return patron.test(te); // 6
+}
+$(document).ready(function(){
+
+
+$('#texto_prof img').each(function(){
+
+          $(this).qtip(
+          {
+            content: '<%= render :partial => 'texto_prof'  %>', // Give it some content
+            position: 'topRight', // Set its position
+            hide: {
+              fixed: true // Make it fixed so it can be hovered over
+            },
+            style: {
+              padding: '5px 15px', // Give it some extra padding
+              name: 'blue' // And style it with the preset dark theme
+            }
+          });
+        });
+})
+</script>

@@ -5,35 +5,60 @@
 <div class="errores">
     <ol style="list-style:none"></ol>
   </div>
-  <table id="form">
+  <table  style=" text-align: left; ">
   <tr>
-  <td>
-    <label for="nombre">Nombre </label></td>
-  <td><%= f.text_field :nombre, :class=> 'ui-widget-content required', :id=> 'new_clinica', :title=> 'Ingrese el Nombre' %>
+ 
+    <th>Nombre </th>
+  <td><%= f.text_field :nombre, :class=> 'ui-widget-content required', :title=> 'Ingrese el Nombre', :size => 15, :onkeypress=> 'return valida(event)' %>
   </td>
   </tr>
 
   <tr>
-  <td>
-    <label for="direccion">Direccion </label></td>
-  <td><%= f.text_field :direccion, :class=> 'ui-widget-content' %>
+
+    <th>Direccion </th>
+  <td><%= f.text_field :direccion, :class=> 'ui-widget-content required', :size => 15, :title => 'Ingrese la direccion', :onkeypress=> 'return valida(event)' %>
   </td>
   </tr>
 
   <tr>
-  <td>
-    <label for="cuit">CUIT</label></td>
-  <td><%= f.text_field :cuit, :class=> 'ui-widget-content required', :id=> 'new_clinica', :title=> 'Ingrese el CUIT' %>
+ 
+    <th>CUIT</th>
+  <td><%= f.text_field :cuit, :class=> 'ui-widget-content required', :size => 15, :title=> 'Ingrese el CUIT', :onkeypress=> 'return validate(event)' %>
   </td>
   </tr>
-
-  <td>
-    <label></label><%= f.submit 'Crear', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
-  </td>
+  </table>
+  <table><tr>
+  <td  style=" float: left; margin-left: 200px">
+   <%= f.submit 'Guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+  </td></tr>
 </table>
 </fieldset>
 <% end %>
 <script type="text/javascript">
+
+function valida(e) { // 1
+    tecla = (document.all) ? e.keyCode : e.which; // 2
+    if (tecla==8) return true; // 3
+    patron =/\w/; //4
+    te = String.fromCharCode(tecla); // 5
+    return patron.test(te); // 6
+}
+ function validate(e) { // 1
+    tecla = (document.all) ? e.keyCode : e.which; // 2
+    if (tecla==8) return true; // 3
+    patron =/\d/; //4
+    te = String.fromCharCode(tecla); // 5
+    return patron.test(te); // 6
+}
+
+
+function validar(e) { // 1
+    tecla = (document.all) ? e.keyCode : e.which; // 2
+    if (tecla==8) return true; // 3
+    patron =/[A-Za-zñÑ\s]/; //4
+    te = String.fromCharCode(tecla); // 5
+    return patron.test(te); // 6
+}
   $(document).ready(function(){
     $("#new_clinica").validate({
         //errorLabelContainer: $("#new_paciente div.errores")

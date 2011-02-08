@@ -91,7 +91,8 @@ class TratamientosController < ApplicationController
   # POST /tratamientos.xml
   def create
     @paciente = Paciente.find(params[:tratamiento][:paciente_id])
-  @arancel = Arancel.find_by_prestacion_id(params[:arancel].to_i)
+ 
+    @arancel = Arancel.find_by_prestacion_id(params[:arancel].to_i)
     @tratamiento = Tratamiento.new(params[:tratamiento])
      #arancel = Arancel.find_by_prestacion_id(params[:arancel].to_i)
     #params[:tratamiento][:importe_cubierto] = arancel.importe_cubierto.to_i
@@ -136,11 +137,11 @@ class TratamientosController < ApplicationController
     @tratamiento = Tratamiento.find(params[:id])    
     @paciente = Paciente.find(params[:paciente_id])
     
-    if @tratamiento.fue_liquidado == false 
+    if @tratamiento.fue_liquidado == true
       flash[:notice] = 'El tratamiento no puede ser borrado ya que no fue liquidado'
     else
       @tratamiento.destroy
-      flash[:notice] = 'Tratamiento eliminado'
+      flash[:notice] = 'tratamiento liquidado'
     end
     respond_to do |format|   
      format.html { redirect_to edit_paciente_path(@paciente) + '#tratamientos'}

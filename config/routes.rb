@@ -41,7 +41,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :items
 
 
-  map.resources :clinicas
+  map.resources :clinicas, :collection => {:buscar => :get, :resultado => [:get, :post]}
 
   map.resources :consultorios
 

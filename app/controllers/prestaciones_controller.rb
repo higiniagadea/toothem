@@ -31,7 +31,7 @@ class PrestacionesController < ApplicationController
    
     respond_to do |format|
     
-      format.html  { render :layout=> 'default' }
+      format.html  { render :layout=> false }
     end
   end
 

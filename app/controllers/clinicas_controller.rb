@@ -21,8 +21,8 @@ before_filter :login_required
     @clinica = Clinica.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @clinica }
+    
+      format.html { render :layout => false }
     end
   end
 
@@ -33,15 +33,18 @@ before_filter :login_required
     @clinica = Clinica.new
 
     respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @clinica }
+     
+      format.html  { render :layout=> false }
     end
   end
 
   # GET /clinicas/1/edit
-  def edit
-    
+  def edit    
     @clinica = Clinica.find(params[:id])
+
+    respond_to do |format|
+      format.html {render :layout => false}
+    end
   end
 
   # POST /clinicas
@@ -54,10 +57,10 @@ before_filter :login_required
       if @clinica.save
         flash[:notice] = 'Clinica creada.'
         format.html { redirect_to(clinicas_url) }
-        format.xml  { render :xml => @clinica, :status => :created, :location => @clinica }
+     
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @clinica.errors, :status => :unprocessable_entity }
+      
       end
     end
   end
@@ -66,15 +69,15 @@ before_filter :login_required
   # PUT /clinicas/1.xml
   def update
     @clinica = Clinica.find(params[:id])
-    @pagetitle = "Editar clínica"
+   
     respond_to do |format|
       if @clinica.update_attributes(params[:clinica])
         flash[:notice] = 'Clinica actualizada.'
         format.html { redirect_to(clinicas_url) }
-        format.xml  { head :ok }
+       
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @clinica.errors, :status => :unprocessable_entity }
+        
       end
     end
   end
@@ -91,13 +94,26 @@ before_filter :login_required
       else
         flash[:error] = 'Imposible eliminar la clínica ya que posee consultorios asociados'
       end
-      format.html { redirect_to(clinicas_url) }
-
-    
-
-    
-      
+      format.html { redirect_to(clinicas_url) }     
      
     end
   end
-end
+
+
+  def buscar
+   respond_to do |format|
+      format.html
+  end
+  end
+
+    def resultado
+
+    respond_to do |format|
+        @clinicas = Clinica.basic_search(params).paginate :page => params[:page], :per_page => 10
+
+        format.html {render :partial => 'resultado', :layout => false }
+
+      end
+  end
+
+  end

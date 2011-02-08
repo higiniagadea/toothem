@@ -1,7 +1,7 @@
 
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-corner-all ui-widget-header">Nuevo Tratamiento</legend>
-
+<% unless @paciente.titular.blank? %>
   <% form_for(@tratamiento) do |f|%>
       <%= f.error_messages(:header_message=>'Ingreso Incorrecto: ',:message=>'Se encontraron los siguientes errores') %>
       <%= f.hidden_field :paciente_id, 'value' => @paciente.id.to_s  %>
@@ -15,7 +15,7 @@
           <td><h1>Paciente: <%= @paciente.nombre %> </h1></td>
           <td></td>
          <% unless @paciente.titular.blank? %>
-          <td><h1>Obra Social :<%=h @paciente.titular.obra_social.nombre %></h1></td>
+          <td><h1>Obra Social :<%=h @paciente.titular.obra_social.nombre  %></h1></td>
          <%else%>
           <td>No posee obra social</td>         
          <%end%>
@@ -68,12 +68,12 @@
           <td><%= f.check_box :fue_liquidado %></td>
           <% if @tratamiento.fue_liquidado == true %>
            <th>Fecha De finalizacion</th>
-   <td><span class="fecha_finalizacion" class="ui-widget-content">
-        <input class="ui-widget-content "type="text" id="fecha_finalizacion" size="10" name="tratamiento[fecha_finalizacion]" readonly="readonly"  />
-      </span></td>
+         <td><span class="fecha_finalizacion" class="ui-widget-content">
+         <input class="ui-widget-content "type="text" id="fecha_finalizacion" size="10" name="tratamiento[fecha_finalizacion]" readonly="readonly"  />
+         </span></td>
          <%else%>
-      <%end%>
-          </tr>
+         <%end%>
+         </tr>
 
           <tr>
           <th>Profesional</th>
@@ -114,10 +114,10 @@
 
 
 
-
-<% end %>
-
-
+  <%end%>
+<%else%>
+  No posee obra social
+  <%end%>
 
 
 </fieldset>

@@ -28,7 +28,7 @@ class ObrasSocialesController < ApplicationController
   def new
     @obra_social = ObraSocial.new
  respond_to do |format|
-      format.html {render :layout => 'default'}
+      format.html {render :layout => false}
     end
     
   end
@@ -108,7 +108,7 @@ class ObrasSocialesController < ApplicationController
   def resultado
     respond_to do |format|      
         @obras_sociales = ObraSocial.basic_search(params).paginate :page => params[:page], :per_page => 10, :order => 'nombre ASC'
-        format.html {render :partial => 'resultado', :layout =>false}
+        format.html {render :partial => 'resultado', :layout => false }
       end
           
     end 

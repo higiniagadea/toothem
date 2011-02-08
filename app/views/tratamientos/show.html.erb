@@ -26,13 +26,10 @@
 
 <th>Profesional</th>
 <td><%=h @tratamiento.profesional.nombre %></td>
-<th>Importe Cubierto</th>
-<td><%=h number_to_currency(@tratamiento.importe_cubierto) %>
-</td>
+
 </tr>
 <tr>
-<th>Coseguro:</th>
-<td><%=h number_to_currency(@tratamiento.coseguro) %></td>
+
 <th>Fue liquidado?</th>
 <td><%=h boolean_desc(@tratamiento.fue_liquidado) %></td>
 </tr>
