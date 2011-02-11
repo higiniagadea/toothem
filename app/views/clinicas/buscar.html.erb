@@ -85,7 +85,15 @@ function validar(e) { // 1
 
  $(document).ready(function(){
 
+$(function() {
+   $('input:text').keydown(function(e){
+        if (e.keyCode == 13) {
+       jQuery.ajax({data:jQuery.param(jQuery(this).serializeArray()) + '&amp;authenticity_token=' + encodeURIComponent('m8ZBBJYuVqedoImX6WhqtBqF8ZufnPSyqeuZiFuQfhc='), success:function(request){jQuery('#search_hits').html(request);}, type:'post', url:'/clinicas/resultado'});
+       return false;
+        }
+      });
 
+});
 $('#ayuda_clinica img').each(function(){
 
           $(this).qtip(

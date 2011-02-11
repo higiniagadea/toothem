@@ -136,6 +136,14 @@ function validate(e) { // 1
 }
 
   $(document).ready(function(){
+     $(function() {
+        $('input:text').keydown(function(e){
+        if (e.keyCode == 13) {
+            $('form').submit();
+        }
+      });
+     });
+     
     $("#new_paciente").validate({
         //errorLabelContainer: $("#new_paciente div.errores")
        errorContainer: $("#new_paciente div.errores"),

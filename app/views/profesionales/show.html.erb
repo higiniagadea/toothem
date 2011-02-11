@@ -1,74 +1,63 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Profesional</legend>
-  <table style=" text-align: left;">
-    <tr>
-  <th>
-  Nombre</th>
+ <table style=" text-align: left;">
+ <tr>
+  <th> Nombre</th>
   <td><%=h @profesional.nombre %>
-</td>
-   
-<th>
- Tipo documento:</th>
-  <td><%=h @profesional.tipo_documento.descripcion %>
-</td>
+  </td>
+ 
+      <th>Consultorio
+      </th>
+      <td><%= @profesional.consultorio.nombre%> </td>
     </tr>
 
-    
-    <tr>
-<th>
-  Documento</th>
-<td><%=h @profesional.documento %>
-</td>
-    
-<th>
- Matricula profesional</th>
-<td><%=h @profesional.matricula_profesional %>
-</td>
-    </tr>
-    <tr>
-<th>
-  Direccion</th>
-<td><%=h @profesional.direccion %>
-</td>
-    
-<th>
-Telefono</th>
-<td><%=h @profesional.telefono.blank? ? '-' :@profesional.telefono %>
-</td>
-    </tr>
-    <tr>
-<th>
- Movil</th>
-<td><%=h @profesional.movil.blank? ? '-' :@profesional.movil %>
-</td>
-   
-<th>
-  Email</th>
-<td><%=h @profesional.email %>
-</td>
-    </tr>
-    <tr>
-<th>
- Fecha nacimiento</th>
-<td><%=h @profesional.fecha_nacimiento %>
-</td>
-    
-<th>
-  Fecha ingreso</th>
-<td><%=h @profesional.fecha_ingreso %>
-</td>
-    </tr>
-    <tr>
 
-<th>
-  Consultorio</th>
-<td><%=h @profesional.consultorio_id %>
-</td>
+    <tr>
+      <th>Tipo Documento</th>
+      <td><%= @profesional.tipo_documento.descripcion  %> </td>
    
-<th>
-  Estado laboral</th>
-<td><%=h @profesional.estado_laboral.descripcion %>
-</td>
+
+  <th> Documento</th>
+  <td><%=h @profesional.documento %>
+  </td>
+    </tr>
+    
+    <tr>
+      <th>Matricula Profesional</th>
+      <td><%= @profesional.matricula_profesional  %> </td>
+   
+      <th>E-mail</th>
+      <td><%=@profesional.email %> </td>
+    </tr>
+    <tr>
+      <th>Telefono</th>
+      <td><%= @profesional.telefono.blank? ? '-' :@profesional.telefono %> </td>
+  
+      <th>Movil</th>
+      <td><%= @profesional.movil.blank? ? '-' :@profesional.movil %> </td>
+    </tr>
+
+    <tr>
+      <th>Fecha de Nacimiento</th>
+      <td><%= @profesional.fecha_nacimiento.strftime('%d/%m/%y')%> </td>
+    
+      <th>Fecha de Ingreso</th>
+      <td><%=@profesional.fecha_ingreso.blank? ? '-' :@profesional.fecha_ingreso %> </td>
+    </tr>
+
+    <tr>
+      <th>Estado Laboral</th>
+      <td><%= @profesional.estado_laboral.descripcion %> </td>
+   
+      <th></th>
     </tr>
   </table>
+  <table>
+    <tr>
+  <td style=" float: left; margin-left: 1000px">
+    <%= link_to 'Volver', buscar_profesionales_path %>
+  
+  </td>
+    </tr>
+</table>
 </fieldset>

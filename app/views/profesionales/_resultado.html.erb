@@ -1,20 +1,27 @@
+<div id="profesionales ">
+  
 <% unless @profesionales.blank? %>
-<h1>Resultado de la Busqueda de Profesionales</h1>
-<table style=" text-align: left">
+
+  <h1>Resultado de la b&uacute;squeda </h1>
+<table style=" text-align: left" class="listado">
   <tr>
     <th>Nombre</th>
     <th>Documento</th>
+    <th>Acciones</th>
+  
   </tr>
 
 <% @profesionales.each do |profesional| %>
-  <tr>
+  <tr class="<%= cycle('par','impar') -%>">
     <td><%=h profesional.nombre %></td>
     <td><%=h profesional.documento %></td>
-    <td><%= link_to image_tag('magnifier_zoom_in.png'), profesional, :title => 'Ver' %></td>
-    <td><%= link_to image_tag('pencil.png'), edit_profesional_path(profesional), :title => 'Editar' %></td>
-    <td><%= link_to image_tag('cancel.png'), profesional, :title => 'Eliminar', :confirm => 'Esta seguro?', :method => :delete %></td>
+    <td><%= link_to image_tag('magnifier_zoom_in.png'), profesional, :title => 'Ver' %>
+    <%= link_to image_tag('pencil.png'), edit_profesional_path(profesional), :title => 'Editar' %>
+    <%= link_to image_tag('cancel.png'), profesional, :title => 'Eliminar', :confirm => 'Esta seguro?', :method => :delete %></td>
+
 
   </tr>
+ 
 <% end %>
   <%else%>
 No se encontraron resultados
@@ -22,4 +29,10 @@ No se encontraron resultados
 </table>
 
 
-<%#= will_paginate @profesionales, :previous_label=>'Anterior', :next_label => 'Siguiente', :params => {:controller => "profesionales", :action=> "resultado"  } %>
+<%= will_paginate @profesionales, :previous_label =>'Anterior', :next_label => 'Siguiente',
+                                  :class => 'profesional pagination',
+                                  :params => {:controller => "profesionales", :action => "resultado"
+                                  
+                                  }  %>
+
+</div>

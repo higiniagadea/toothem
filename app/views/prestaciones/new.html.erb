@@ -30,8 +30,8 @@
 
   <table>
     <tr>
-    <td  style=" float: left; margin-left:  200px">
-      <%= link_to 'Cancelar', prestaciones_path %>
+    <td  style=" float: left; margin-left:  220px">
+   
       <%= f.submit 'Guardar',  :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
       
     </td>
@@ -61,6 +61,14 @@ function validate(e) { // 1
 }
 
   $(document).ready(function(){
+     $(function() {
+        $('input:text').keydown(function(e){
+        if (e.keyCode == 13) {
+            $('form').submit();
+        }
+      });
+     });
+     
     $("#new_prestacion").validate({
         //errorLabelContainer: $("#new_paciente div.errores")
        errorContainer: $("#new_prestacion div.errores"),

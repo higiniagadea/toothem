@@ -1,6 +1,6 @@
 <h1>Resultado de la Busqueda</h1>
 <% unless @aranceles.blank? %>
-<table style=" text-align: left;">
+<table style=" text-align: left;" class="listado">
 
   <tr>
     <th>Prestación</th>
@@ -10,7 +10,7 @@
     <th></th>
   </tr>
 <% @aranceles.each do |arancel| %>
-  <tr class ="<%= arancel.id %>">
+  <tr class="<%= cycle('par','impar') -%>">
     <td><%=h arancel.prestacion.descripcion %></td>
     <td><%= number_to_currency(arancel.importe_cubierto)%></td>
     <td><%= number_to_currency(arancel.coseguro)%></td>

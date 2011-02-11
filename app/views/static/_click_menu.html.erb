@@ -20,6 +20,7 @@
                                   <%  @subsubitems = Item.find(:all, :conditions => ['parent_id = ?', subitem.id], :order => 'orden') %>
                                     <% unless @subsubitems.blank? %>
                                         <li>
+                                          <%=  format_str(subitem.nombre) %>
                                           <ul>
                                               <% @subsubitems.each do |subsubitem| %>
                                                   <li onclick="javascript:location.href='<%= subsubitem.url %>'">

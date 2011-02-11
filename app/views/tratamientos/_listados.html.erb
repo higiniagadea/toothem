@@ -15,10 +15,10 @@
       </tr>
   </table>
  
-<table style=" text-align: left "class="table-list">
+<table style=" text-align: left "class="listado">
   <% unless  @tratamientos.blank?%>
 
-   <tr>
+   <tr class="<%= cycle('par','impar') -%>">
     <th>Fecha</th>
     <th>Prestacion</th>
     <th>Diente</th>

@@ -115,7 +115,8 @@
           
           <table>
             <tr>
-          <td style=" float: left; margin-left:  1000px"><%= f.submit 'Editar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+
+          <td style=" float: left; margin-left:  950px"><%= link_to 'Volver', search_pacientes_path  %> <%= f.submit 'Actualizar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
           </td>
           </tr>
            </table>
@@ -143,6 +144,13 @@ function validate(e) { // 1
 
 
   $(document).ready(function(){
+     $(function() {
+        $('input:text').keydown(function(e){
+        if (e.keyCode == 13) {
+            $('form').submit();
+        }
+      });
+     });
     $("#edit_paciente_" + <%= @paciente.id.to_s %>).validate({
         //errorLabelContainer: $("#edit_datos div.errores")
        errorContainer: $("#edit_paciente div.errores"),

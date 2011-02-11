@@ -2,7 +2,7 @@
   <legend class ="ui-widget ui-widget-content ui-corner-all ui-widget-header">Aranceles</legend>
   <table>
     <tr><td style=" float: left; margin-left: 990px">
-      <%= link_to 'Nuevo Arancel', new_obra_social_arancel_path(@obra_social), :id => 'nuevo_a' %>
+      <%= link_to  image_tag('add.png') + 'Nuevo Arancel', new_obra_social_arancel_path(@obra_social), :id => 'nuevo_a' %>
       <script type="text/javascript">
             $('#nuevo_a').fancybox(
         {
@@ -16,16 +16,16 @@
     </tr>
   </table>
 <% unless @aranceles.blank? %>
-  <table  style=" text-align: left;">
+  <table  style=" text-align: left;" class="listado">
   <tr>
     <th>Prestación</th>
     <th>Importe cubierto</th>
     <th>Coseguro</th>
-    <th></th>
-    <th></th>
+    <th>Acciones</th>
+    
   </tr>
 <% @aranceles.each do |arancel| %>
-  <tr class ="<%= arancel.id %>">
+  <tr class="<%= cycle('par','impar') -%>">
     <td><%=h arancel.prestacion.descripcion %></td>
     <td><%= number_to_currency(arancel.importe_cubierto) %></td>
     <td><%= number_to_currency(arancel.coseguro)%></td>

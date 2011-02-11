@@ -1,24 +1,24 @@
 <div id="resultados">
 <% unless @pacientes.blank? %>
-<fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Resultado de la b&uacute;squeda de Pacientes</legend>
+<h1>Resultado de la b&uacute;squeda </h1>
  
-  <table id="pacientes" >
+  <table  class="listado" >
     <tr>
       <th>Nombre y Apellido </th>
       <th>Tipo y Nro. Documento</th>
       <th> M&oacute;vil</th>
-      
+      <th>Acciones</th>
     </tr>
     <% @pacientes.each do |paciente| %>
-     <tr>
+     <tr class="<%= cycle('par','impar') -%>">
         <td><%=h paciente.nombre %></td>
         <td><%=h paciente.tipo_documento.descripcion %><%=h paciente.matricula %></td>
         <td><%=h paciente.movil.blank? ? '-' : paciente.movil  %></td>
-        <td id="p_data_<%= paciente.id %>">
+      
         <td><%= link_to image_tag('magnifier_zoom_in.png'), ver_paciente_path(paciente), :title => "Vista Rapida", :id => 'ver_paciente_' + paciente.id.to_s %>
           <%= link_to image_tag('pencil.png'), edit_paciente_path(paciente), :title => "Editar" %></td>
-         </td>
+        
+     </tr>
          <script type="text/javascript">
         $('#ver_paciente_<%= paciente.id.to_s %>').fancybox(
         {
@@ -30,7 +30,7 @@
 
 
     </script>
-     </tr>
+    
      
     <%end%>
 
@@ -81,5 +81,5 @@
                               :params => {:controller => "pacientes", :action=> "result",
                               
                               :nombre => params[:nombre]} %>
-</fieldset>
+
 </div>

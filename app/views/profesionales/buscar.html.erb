@@ -7,7 +7,7 @@
     </tr>
   </table>
 
-<% form_remote_tag :url => resultado_profesionales_path,
+<% form_remote_tag :url =>  url_for(:controller => 'profesionales', :action => 'resultado') ,
                     :method => :post, 
                     :update => :search_hits do -%>
 
@@ -25,20 +25,25 @@
         </td>
       </tr>
     </table>
+
   <table>
       <tr>
         <td style=" float: left; margin-left:  400px">
-          <%= submit_tag 'Buscar',  :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
-        </td>
+          <%= submit_tag 'Buscar',  :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
          <td id="texto_prof"><%= image_tag('help.png') %></td>
       </tr>
       </table>
 
+  <div id ="search_hits"></div>
+
+
 <%end -%>
 
+ 
 
-<div id ="search_hits"></div>
+
 </fieldset>
+
 <script type="text/javascript">
   function validate(e) { // 1
     tecla = (document.all) ? e.keyCode : e.which; // 2
@@ -55,6 +60,15 @@ function validar(e) { // 1
     return patron.test(te); // 6
 }
 $(document).ready(function(){
+    $(function() {
+   $('input:text').keydown(function(e){
+        if (e.keyCode == 13) {
+            jQuery.ajax({data:jQuery.param(jQuery(this).serializeArray()) + '&amp;authenticity_token=' + encodeURIComponent('ucA0H+h+SkRtPNXrbmVPgxYiV7ofXaTpnrnUO+PUm7k='), success:function(request){jQuery('#search_hits').html(request);}, type:'post', url:'/profesionales/resultado'}); return false;
+            return false;
+        }
+      });
+
+});
 
 
 $('#texto_prof img').each(function(){

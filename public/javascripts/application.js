@@ -1,3 +1,6 @@
+
+
+
 function ttip_edit_field(objeto, campof, id){
     $("#"+objeto).qtip(
         {
@@ -16,8 +19,26 @@ function ttip_edit_field(objeto, campof, id){
            }
         });
 }
+
 $(document).ready(function(){
-  //Oculta los notice
+
+
+ 
+     /*$('input:text').keypress(function(e){
+        if (e.keyCode == 13) {
+            //on_submit
+            return false;
+        }
+      });*/
+
+      /*$('input:text').keypress(function(e){
+        if (e.keyCode == 13) {
+            $('form').submit();
+        }
+      }); */
+
+
+//Oculta los notice
     function runEffect() {
 
         var selectedEffect = 'blind';
@@ -51,6 +72,10 @@ $(document).ready(function(){
     te = String.fromCharCode(key);
     return patron.test(te);
    });
+
+
+
+
 
    jQuery.ajaxSetup({
   'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")}
@@ -114,8 +139,27 @@ $('div.ajax-pagination a').live('click', function() {
     return false
   });
 
+$('div.ajax-pagination a').live('click', function() {
+    $('#clinicas ').load(this.href)
+    return false
+  });
 
 
+  $('div.clinica a').live('click', function() {
+    $('#clinicas').load(this.href)
+    return false
+  });
+
+$('div.ajax-pagination a').live('click', function() {
+    $('#profesionales ').load(this.href)
+    return false
+  });
+
+
+  $('div.profesional a').live('click', function() {
+    $('#profesionales').load(this.href)
+    return false
+  });
 
 
 
