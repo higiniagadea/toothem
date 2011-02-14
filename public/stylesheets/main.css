@@ -187,7 +187,7 @@ table#datos-rpi-titulares tr.even{
 
 .listado{
     border-collapse: collapse;
-    border: 1px solid #aed0ea;
+    border: 1px solid #F2F2F2;
 }
 .listado td{
     padding-left: 7px;
@@ -195,7 +195,7 @@ table#datos-rpi-titulares tr.even{
     text-align: left;
     
 }
-.listado th{
+.listados th{
     padding:4px;
     text-align: center;
     

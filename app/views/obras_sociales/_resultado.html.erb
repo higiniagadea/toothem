@@ -25,7 +25,7 @@
 
         <td><%= link_to image_tag('magnifier_zoom_in.png'), obra_social, :title => 'Ver', :id => 'uno_' + obra_social.id.to_s  %>
         <%= link_to image_tag('pencil.png'), edit_obra_social_path(obra_social), :title => 'Edicion', :id => 'dos_' + obra_social.id.to_s %>
-        <%= link_to image_tag('cancel.png'), obra_social, :confirm => '¿Está seguro? No podrá deshacer esta acción', :method => :delete %>
+        <%= link_to image_tag('cancel.png'), obra_social, :confirm => '¿Está seguro? No podrá deshacer esta acción', :method => :delete, :title => 'Eliminar' %>
         <%= link_to image_tag('money_dollar.png'), obra_social_aranceles_path(obra_social, @aranceles), :title => "Aranceles" %>
          <%#= link_to 'buscar', busqueda_obra_social_aranceles_path(obra_social, @aranceles) %>
         </td>

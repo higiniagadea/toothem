@@ -114,7 +114,7 @@ class ProfesionalesController < ApplicationController
 
   def resultado
    respond_to do |format|         
-       @profesionales = Profesional.basic_search(params).paginate(:page => params[:page], :per_page=> 1, :order => 'nombre ASC')
+       @profesionales = Profesional.basic_search(params).paginate(:page => params[:page], :per_page=> 10, :order => 'nombre ASC')
         format.html {render :partial => 'resultado', :layout => false}
       end
 

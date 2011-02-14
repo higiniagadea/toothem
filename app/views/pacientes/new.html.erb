@@ -8,7 +8,7 @@
       <ol style="list-style:none"></ol>
     </div>
 
-  <table style="text-align: left ; "class="table-list">
+  <table style="text-align: left">
 
     <tr>
     <th>
@@ -17,7 +17,7 @@
     </th>
     <th>
       Tipo Y Nro. de Documento</th>
-    <td><%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion, {:include_blank => 'Seleccione' , :class=> "ui-widget-content required", :title=> 'Seleccione tipo documento'}) %>
+    <td><%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion, {:include_blank => 'Seleccione'}, :class=> "ui-widget-content required", :title=> 'Seleccione tipo documento') %>
       <%= f.text_field :matricula,  :class =>"ui-widget-content required" , :size=> 22 , :title=> 'Ingrese su documento, entre 6 a 10 caracteres', :onkeypress=> 'return validar(event)'%>
     </td>
     </tr>
@@ -37,13 +37,13 @@
     <th>
       Sexo</th>
     <td><select name="paciente[sexo]" class ="ui-widget-content">
-        <%=  options_for_select([ "Masculino", "Femenino" ], @paciente.sexo)%>
+        <%=  options_for_select(["Seleccione", "Masculino", "Femenino"], @paciente.sexo) %>
       </select>
     </td>
     <th>
       Estado Civil</th>
     <td><select name="paciente[estado_civil]" class ="ui-widget-content">
-        <%=  options_for_select([ "Soltero/a", "Casado/a","Divorciado/a","Viudo/a","Otro" ], @paciente.estado_civil)%>
+        <%=  options_for_select(["Seleccione", "Soltero/a", "Casado/a","Divorciado/a","Viudo/a","Otro" ], @paciente.estado_civil)%>
       </select>
     </td>
     </tr>

@@ -68,7 +68,7 @@ class PrestacionesController < ApplicationController
     respond_to do |format|
       if @prestacion.update_attributes(params[:prestacion])
         flash[:notice] = 'Prestacion actualizada'
-        format.html { redirect_to prestaciones_path }
+        format.html { redirect_to buscar_prestaciones_path }
         
       else
         format.html { render :action => "edit" }

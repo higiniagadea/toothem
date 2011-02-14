@@ -13,7 +13,7 @@
   </td>
    <th>
     Consultorio </th>
-    <td><%= f.collection_select(:consultorio_id, Consultorio.all, :id, :nombre, :title=> 'Seleccione un consultorio' ) %>
+    <td><%= f.collection_select(:consultorio_id, Consultorio.all, :id, :nombre, {:include_blank => 'Seleccione'}, :class=> 'ui-widget-content required', :title=> 'Seleccione un consultorio' ) %>
 
   </td>
   </tr>
@@ -21,7 +21,7 @@
   <tr>
   <th>
    Tipo documento </th>
-  <td><%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion, :class =>"ui-widget-content required", :title=> 'Seleccione un tipo documento') %>
+  <td><%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion,{:include_blank=> 'Seleccione'}, :class =>"ui-widget-content required", :title=> 'Seleccione un tipo documento') %>
     
   </td>
   <th>
@@ -74,7 +74,7 @@
   <tr>
   <th>
    Estado Laboral</th>
-  <td><%= f.collection_select :estado_laboral_id, EstadoLaboral.all, :id, :descripcion, :title=> 'Seleccione un estado',  :class =>"ui-widget-content " %>
+  <td><%= f.collection_select :estado_laboral_id, EstadoLaboral.all, :id, :descripcion, {:include_blank => 'Seleccione'}, :title=> 'Seleccione un estado',  :class =>"ui-widget-content " %>
   </td>
   </tr>
 </table>
