@@ -40,6 +40,7 @@ div#header{
     height: 60px;
     min-width: 950px;
 }
+
 div#logo{
     text-indent: 20px;
     font-size:30px;
@@ -189,17 +190,18 @@ table#datos-rpi-titulares tr.even{
     border-collapse: collapse;
     border: 1px solid #F2F2F2;
 }
-.listado td{
+/*.listado th par{
     padding-left: 7px;
     padding-right: 7px;
     text-align: left;
+    border: 1px solid #F2F2F2;
     
 }
-.listados th{
+.listado th impar{
     padding:4px;
     text-align: center;
     
-}
+}*/
 
 .listado-titulares{
     border-collapse: collapse;

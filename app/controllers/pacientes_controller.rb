@@ -318,6 +318,7 @@ class PacientesController < ApplicationController
     @paciente = Paciente.find(params[:id])
     @paciente.destroy
     respond_to do |format|
+       flash[:notice] = 'Paciente Eliminado.'
       format.html { redirect_to(search_pacientes_url) }
       format.xml  { head :ok }
     end
