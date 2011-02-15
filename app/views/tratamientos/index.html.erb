@@ -1,18 +1,18 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Tratamientos</legend>
 <%unless @tratamientos.blank? %>
-  <table class="table-list">
+  <table class="listado">
   <tr>
   
     <th>Fecha</th>
     <th>Profesional</th>
     <th>Estado</th
-    
+    <th>Acciones</th>
    
   </tr>
 
 <% @tratamientos.each do |tratamiento| %>
-  <tr>
+  <tr  class="<%= cycle('par','impar') -%>">
     <td><%=h tratamiento.fecha.strftime('%m/%d/%Y') %></td>
     <td><%=h tratamiento.profesional_id %></td>
     <td><%=h tratamiento.estado_tratamiento_id%></td>

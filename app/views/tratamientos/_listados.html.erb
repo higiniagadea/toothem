@@ -15,15 +15,17 @@
       </tr>
   </table>
  
-<table style=" text-align: left "class="table-list">
+<table style=" text-align: left "class="listado">
   <% unless  @tratamientos.blank?%>
 
-   <tr>
+   <tr class="<%= cycle('par','impar') -%>">
     <th>Fecha</th>
     <th>Prestacion</th>
     <th>Diente</th>
     <th>Cara</th>
     <th>Estado</th>
+    <th>Acciones</th>
+
     </tr>
       <% @tratamientos.each do |tratamiento| %>
    <tr>
@@ -34,22 +36,22 @@
     <td><%=h tratamiento.cara %></td>
     <td><%=h tratamiento.estado_tratamiento.nombre %></td>
       
-    <td><%= link_to image_tag('magnifier_zoom_in.png'), tratamiento, :title => "Ver", :id=> 'ver_' + tratamiento.id.to_s %></td>
+    <td><%= link_to image_tag('magnifier_zoom_in.png'), tratamiento, :title => "Ver", :id=> 'ver_' + tratamiento.id.to_s %>
 
     <% if tratamiento.estado_tratamiento_id != 5  %>
-      <td> <%= link_to image_tag('pencil.png'), edit_tratamiento_path(tratamiento, :paciente_id => @paciente), :title => 'Editar', :id=> 'editar_'+ tratamiento.id.to_s %></td>
+      <%= link_to image_tag('pencil.png'), edit_tratamiento_path(tratamiento, :paciente_id => @paciente), :title => 'Editar', :id=> 'editar_'+ tratamiento.id.to_s %>
     <%else%>
        <% if tratamiento.fue_liquidado == false  %>
-      <td> <%= link_to image_tag('pencil.png'), edit_tratamiento_path(tratamiento, :paciente_id => @paciente), :title => 'Editar', :id=> 'editar_'+ tratamiento.id.to_s %></td>
+     <%= link_to image_tag('pencil.png'), edit_tratamiento_path(tratamiento, :paciente_id => @paciente), :title => 'Editar', :id=> 'editar_'+ tratamiento.id.to_s %>
     <%end%><%end%>
  
 
 
     <% if tratamiento.estado_tratamiento_id != 5   %>
-    <td><%= link_to image_tag('cancel.png'), eliminar_tratamiento_path(tratamiento, :paciente_id => @paciente.id), :confirm => 'Esta seguro de eliminar el tratamiento?', :title=> 'Eliminar' %></td>
+    <%= link_to image_tag('cancel.png'), eliminar_tratamiento_path(tratamiento, :paciente_id => @paciente.id), :confirm => 'Esta seguro de eliminar el tratamiento?', :title=> 'Eliminar' %>
    <%else %>
     <%  if tratamiento.fue_liquidado ==  false %>
-    <td><%= link_to image_tag('cancel.png'), eliminar_tratamiento_path(tratamiento, :paciente_id => @paciente.id), :confirm => 'Esta seguro de eliminar el tratamiento?', :title=> 'Eliminar' %></td>
+    <%= link_to image_tag('cancel.png'), eliminar_tratamiento_path(tratamiento, :paciente_id => @paciente.id), :confirm => 'Esta seguro de eliminar el tratamiento?', :title=> 'Eliminar' %></td>
     <%end %>
     <%end%>
 

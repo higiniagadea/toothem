@@ -1,21 +1,40 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class ="ui-widget ui-widget-content ui-corner-all ui-widget-header">Clinicas</legend>
-<table class="table-list">
+<table class="listado" >
   <tr>
     <th>Nombre</th>
     <th>Direccion</th>
     <th>Cuit</th>
+    <th>Acciones</th>
   </tr>
 
 <% @clinicas.each do |clinica| %>
-  <tr class="<%= cycle('','odd') %>">
+  <tr class="<%= cycle('par','impar') -%>">
     <td><%=h clinica.nombre %></td>
     <td><%=h clinica.direccion %></td>
     <td><%=h clinica.cuit %></td>
-    <td><%= link_to image_tag('magnifier_zoom_in.png'), clinica, :title => 'Ver' %>
-    <%= link_to image_tag('pencil.png'), edit_clinica_path(clinica), :title => 'Editar' %>
+    <td><%= link_to image_tag('magnifier_zoom_in.png'), clinica, :title => 'Ver', :id => 'vista_clinica_' + clinica.id.to_s %>
+    <%= link_to image_tag('pencil.png'), edit_clinica_path(clinica), :title => 'Editar', :id => 'editar_clinica_' + clinica.id.to_s %>
     <%= link_to image_tag('cancel.png'), clinica, :title => 'Eliminar', :confirm => 'Esta seguro? No podrá deshacer esta acción', :method => :delete %></td>
   </tr>
+      <script type="text/javascript">
+  $(document).ready(function(){
+ $('#vista_clinica_<%= clinica.id.to_s %>').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+
+    $('#editar_clinica_<%= clinica.id.to_s %>').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+    });
+    </script>
+
 <% end %>
 </table>
 </fieldset>

@@ -217,8 +217,20 @@ div#opciones-menu{
     text-align:right;
     font-size:12px;
   }
- 
+.listado{
+    border-collapse: collapse;
+    border: 1px solid #9A2EFE;
+}
 
+.listado tr.par {
+     background-color: #9A2EFE;
+        margin: 0 auto;
+   
+}
+.listado tr.impar {
+    background-color: #DDD;
+       margin: 0 auto;
+}
 
 
 
@@ -458,10 +470,10 @@ table {
 
 
 }
-.table-search td.impar{
+.table-search tr.impar{
     background-color: #eaeaea;
 }
-.table-search td.par{
+.table-search tr.par{
     background-color: #DDDDDD;
 
 }

@@ -6,7 +6,7 @@ class TratamientosController < ApplicationController
   before_filter :login_required
 
   def index   
-    @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5,  :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha ASC'
+    @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 10,  :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha ASC'
     respond_to do |format|     
      format.html
     end

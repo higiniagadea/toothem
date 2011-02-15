@@ -1,21 +1,21 @@
 <div id="obra">
-  <h1>Resultado de la Busqueda</h1>
+  <h1>Resultado de la B&uacute;squeda</h1>
  <% unless @obras_sociales.blank? %>
 
 
-    <table style=" text-align: left;">
+    <table style=" text-align: left;" class="listado">
       <tr>
         <th>Nombre</th>
         <th>Auditoria previa</th>
         <th>Auditoria post</th>
         <th>Nro max codigos por mes</th>
         <th>Incluye ficha</th>
-
+        <th>Acciones</th>
 
       </tr>
 
     <% @obras_sociales.each do |obra_social| %>
-      <tr>
+      <tr class="<%= cycle('par','impar') -%>">
         <td><%=h obra_social.nombre %></td>
         <td><%=h boolean_desc(obra_social.auditoria_previa)%></td>
         <td><%=h boolean_desc(obra_social.auditoria_post) %></td>
@@ -25,8 +25,8 @@
 
         <td><%= link_to image_tag('magnifier_zoom_in.png'), obra_social, :title => 'Ver', :id => 'uno_' + obra_social.id.to_s  %>
         <%= link_to image_tag('pencil.png'), edit_obra_social_path(obra_social), :title => 'Edicion', :id => 'dos_' + obra_social.id.to_s %>
-        <%= link_to image_tag('cancel.png'), obra_social, :confirm => '¿Está seguro? No podrá deshacer esta acción', :method => :delete %>
-        <%= link_to 'Aranceles', obra_social_aranceles_path(obra_social, @aranceles), :title => "Aranceles" %>
+        <%= link_to image_tag('cancel.png'), obra_social, :confirm => '¿Está seguro? No podrá deshacer esta acción', :method => :delete, :title => 'Eliminar' %>
+        <%= link_to image_tag('money_dollar.png'), obra_social_aranceles_path(obra_social, @aranceles), :title => "Aranceles" %>
          <%#= link_to 'buscar', busqueda_obra_social_aranceles_path(obra_social, @aranceles) %>
         </td>
       </tr>

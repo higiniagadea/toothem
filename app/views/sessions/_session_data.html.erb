@@ -1,7 +1,8 @@
 
-<%unless current_usuario.nil?%>
+    <%unless current_usuario.nil?%>
   <b>Usuario: </b> <%= current_usuario.login%><br/>
-  <b>Consultorio:</b><%= collection_select(:get, :consultorio_id, Consultorio.all, :id, :nombre) %>
-  
+  <b>Consultorio: </b><%= collection_select(:get, :consultorio_id, Consultorio.all, :id, :nombre) %> |
+ 
+  <%= link_to 'Cerrar Sesion', :controller => 'sessions', :action => 'destroy' %>
  
 <%end%>

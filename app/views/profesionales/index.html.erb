@@ -1,25 +1,28 @@
+<% unless @profesionales.blank? %>
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Profesionales</legend>
-<% unless @profesionales.blank? %>
-  <table class="table-list">
+
+  <table style=" text-align: left;" class="listado">
   <tr>
     <th>Nombre</th>
     <th>Consultorio</th>
     <th>Matrícula Profesional</th>
-   
+    <th>Acciones</th>
+
   </tr>
 
 <% @profesionales.each do |profesional| %>
-  <tr class="<%= cycle('','odd') %>">
+  <tr class="<%= cycle('par','impar') -%>">
     <td><%=h profesional.nombre %></td>
      <td><%=h profesional.consultorio_id %></td>
       <td><%=h profesional.matricula_profesional %></td>
 
-    <td><%= link_to image_tag('magnifier_zoom_in.png'), profesional, :title => 'Ver' %></td>
-    <td><%= link_to image_tag('pencil.png'), edit_profesional_path(profesional), :title => 'Editar' %></td>
-    <td><%= link_to image_tag('cancel.png'), profesional, :confirm => 'Esta seguro?', :method => :delete, :title => 'Eliminar'%></td>
+    <td><%= link_to image_tag('magnifier_zoom_in.png'), profesional, :title => 'Ver' %>
+    <%= link_to image_tag('pencil.png'), edit_profesional_path(profesional), :title => 'Editar' %>
+    <%= link_to image_tag('cancel.png'), profesional, :confirm => 'Esta seguro?', :method => :delete, :title => 'Eliminar'%></td>
     
   </tr>
+
 <% end %>
   <%else%>
   No hay profesionales cargados

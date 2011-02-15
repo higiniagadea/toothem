@@ -45,8 +45,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :consultorios
 
-  map.resources :titulares,
-                :collection => {:buscar => :get, :resultado => :post}
+  map.resources :titulares, :collection => {:buscar => :get, :resultado => :post}
              
 
   map.resources :estados_laborales
@@ -96,7 +95,7 @@ ActionController::Routing::Routes.draw do |map|
 
                             end
 
-  map.resources :profesionales, :collection => {:buscar => :get, :resultado => :post}
+  map.resources :profesionales, :collection => {:buscar => :get, :resultado => [:get, :post]}
   
   map.resources :archivos
                 

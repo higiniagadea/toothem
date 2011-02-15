@@ -13,7 +13,7 @@
   </td>
    <th>
     Consultorio </th>
-    <td><%= f.collection_select(:consultorio_id, Consultorio.all, :id, :nombre, :title=> 'Seleccione un consultorio' ) %>
+    <td><%= f.collection_select(:consultorio_id, Consultorio.all, :id, :nombre, {:include_blank => 'Seleccione'}, :class=> 'ui-widget-content required', :title=> 'Seleccione un consultorio' ) %>
 
   </td>
   </tr>
@@ -21,7 +21,7 @@
   <tr>
   <th>
    Tipo documento </th>
-  <td><%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion, :class =>"ui-widget-content required", :title=> 'Seleccione un tipo documento') %>
+  <td><%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion,{:include_blank=> 'Seleccione'}, :class =>"ui-widget-content required", :title=> 'Seleccione un tipo documento') %>
     
   </td>
   <th>
@@ -74,14 +74,14 @@
   <tr>
   <th>
    Estado Laboral</th>
-  <td><%= f.collection_select :estado_laboral_id, EstadoLaboral.all, :id, :descripcion, :title=> 'Seleccione un estado',  :class =>"ui-widget-content " %>
+  <td><%= f.collection_select :estado_laboral_id, EstadoLaboral.all, :id, :descripcion, {:include_blank => 'Seleccione'}, :title=> 'Seleccione un estado',  :class =>"ui-widget-content " %>
   </td>
   </tr>
 </table>
   <table>
     <tr>
   <td style=" float: left; margin-left:  950px">
-    <%= link_to 'Cancelar', buscar_profesionales_path %>
+    <%= link_to 'Volver', buscar_profesionales_path %>
     <%= f.submit 'Guardar',  :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
   </td>
     </tr>
@@ -113,6 +113,14 @@ function validate(e) { // 1
     return patron.test(te); // 6
 }
    $(document).ready(function(){
+     $(function() {
+        $('input:text').keydown(function(e){
+        if (e.keyCode == 13) {
+            $('form').submit();
+        }
+      });
+     });
+     
     $("#new_profesional").validate({
         //errorLabelContainer: $("#new_paciente div.errores")
        errorContainer: $("#new_profesional div.errores"),

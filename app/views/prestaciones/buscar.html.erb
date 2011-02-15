@@ -1,10 +1,6 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header"  >Buscar Prestaciones</legend>
-        <div class="errores">
-         <ol style="list-style:none"></ol>
-         </div>
-
-       <table>
+     <table>
     <tr><td style=" float: left; margin-left: 990px">
       <%= link_to  image_tag('add.png') + 'Nueva Prestacion', new_prestacion_path, :id => 'nueva_prestac' %>
       <script type="text/javascript">
@@ -68,7 +64,15 @@ function validar(e) { // 1
 }
 
 $(document).ready(function(){
+ $(function() {
+   $('input:text').keydown(function(e){
+        if (e.keyCode == 13) {
+           jQuery.ajax({data:jQuery.param(jQuery(this).serializeArray()) + '&amp;authenticity_token=' + encodeURIComponent('m8ZBBJYuVqedoImX6WhqtBqF8ZufnPSyqeuZiFuQfhc='), success:function(request){jQuery('#search_hits').html(request);}, type:'post', url:'/prestaciones/resultado'});
+           return false;
+        }
+      });
 
+});
 
 $('#text img').each(function(){
 

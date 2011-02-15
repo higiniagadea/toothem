@@ -5,7 +5,7 @@ class PrestacionesController < ApplicationController
  before_filter :login_required
  layout 'default'
   def index
- @prestaciones = Prestacion.paginate :page=> params[:page], :per_page=> 5
+ @prestaciones = Prestacion.paginate :page=> params[:page], :per_page=> 10
    
     respond_to do |format|
       format.html # index.html.erb
@@ -20,7 +20,7 @@ class PrestacionesController < ApplicationController
     
     respond_to do |format|
       
-      format.html  { render :layout => false }
+      format.html{ render :layout => false }
     end
   end
 
@@ -68,7 +68,7 @@ class PrestacionesController < ApplicationController
     respond_to do |format|
       if @prestacion.update_attributes(params[:prestacion])
         flash[:notice] = 'Prestacion actualizada'
-        format.html { redirect_to prestaciones_path }
+        format.html { redirect_to buscar_prestaciones_path }
         
       else
         format.html { render :action => "edit" }
@@ -103,8 +103,7 @@ class PrestacionesController < ApplicationController
   end
 
 
-  def resultado
-  
+  def resultado  
     respond_to do |format|     
         @prestaciones = Prestacion.basic_search(params).paginate :page => params[:page], :per_page => 10
         

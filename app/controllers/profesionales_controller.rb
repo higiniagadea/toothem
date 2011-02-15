@@ -7,35 +7,31 @@ class ProfesionalesController < ApplicationController
   # GET /profesionales.xml
   layout 'default'
   def index
- 
-    #@pagetitle = "Profesionales"
     #@profesionales = Profesional.paginate :page=> params[:page], :conditions => ['consultorio_id in (?)', current_usuario.consultorios], :per_page=>15, :order=> 'nombre ASC'
     #@profesionales = Profesional.find(:all,:conditions => ['consultorio_id in (?)', current_usuario.consultorios])
    
-    @profesionales = Profesional.paginate :page=> params[:page], :per_page => 5
-     @pagetitle = "Profesionales"
+    @profesionales = Profesional.paginate :page=> params[:page], :per_page => 10
+   
     respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @profesionales }
+      format.html {render :layout => 'default'}
+      
     end
   end
 
   # GET /profesionales/1
   # GET /profesionales/1.xml
-  def show
-    @pagetitle = "Ver profesional"
-    @profesional = Profesional.find(params[:id])
-   
+  def show   
+    @profesional = Profesional.find(params[:id])   
     respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @profesional }
+    
+      format.html { render :layout => 'default'}
     end
   end
 
   # GET /profesionales/new
   # GET /profesionales/new.xml
   def new
-    @pagetitle = "Nuevo profesional"
+    
     @profesional = Profesional.new
 
     respond_to do |format|
@@ -46,25 +42,28 @@ class ProfesionalesController < ApplicationController
 
   # GET /profesionales/1/edit
   def edit
-    @pagetitle = "Editar profesional"
+  
     @profesional = Profesional.find(params[:id])
+    respond_to do |format|
+      format.html {render :layout => 'default'}
+    end
   end
 
   # POST /profesionales
   # POST /profesionales.xml
   def create
-    @pagetitle = "Nuevo profesional"
+   
     params[:profesional][:consultorio_id]= current_usuario.consultorios
     @profesional = Profesional.new(params[:profesional])
 
     respond_to do |format|
       if @profesional.save
         flash[:notice] = 'Profesional creado.'
-        format.html { redirect_to(profesionales_url) }
-        format.xml  { render :xml => @profesional, :status => :created, :location => @profesional }
+        format.html { redirect_to buscar_profesionales_path  }
+       
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @profesional.errors, :status => :unprocessable_entity }
+        
       end
     end
   end
@@ -72,17 +71,17 @@ class ProfesionalesController < ApplicationController
   # PUT /profesionales/1
   # PUT /profesionales/1.xml
   def update
-    @pagetitle = "Editar profesional"
+  
     @profesional = Profesional.find(params[:id])
 
     respond_to do |format|
       if @profesional.update_attributes(params[:profesional])
-        flash[:notice] = 'Los datos del profesional se han actualizado.'
-        format.html { redirect_to(profesionales_url) }
-        format.xml  { head :ok }
+        flash[:notice] = 'Profesional actualizado.'
+        format.html { redirect_to buscar_profesionales_path  }
+       
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @profesional.errors, :status => :unprocessable_entity }
+       
       end
     end
   end
@@ -92,40 +91,34 @@ class ProfesionalesController < ApplicationController
   def destroy
     @profesional = Profesional.find(params[:id])
 
-    if @profesional.fichas.blank? #&& @profesional.tratamientos.blank?
+    if @profesional.fichas.blank? 
       @profesional.destroy
       flash[:notice] = 'Profesional eliminado'
     else
       flash[:error] = "Imposible eliminar el profesional ya que posee registros asociados"
-    end
-
-    
+    end   
 
     respond_to do |format|
-      format.html { redirect_to(profesionales_url) }
-      format.xml  { head :ok }
+      format.html { redirect_to buscar_profesionales_path }
+     
     end
   end
 
 
-def buscar
- 
+  def buscar
     respond_to do |format|
-      format.html # buscar.html.erb
+      format.html 
 
     end
   end
 
   def resultado
-    
-    respond_to do |format|  
-     
-        @profesionales = Profesional.basic_search(params)
-         format.html {render :partial => 'resultado', :layout => false }
-        
+   respond_to do |format|         
+       @profesionales = Profesional.basic_search(params).paginate(:page => params[:page], :per_page=> 10, :order => 'nombre ASC')
+        format.html {render :partial => 'resultado', :layout => false}
       end
 
-    end
+  end
 
 
   

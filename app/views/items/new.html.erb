@@ -13,8 +13,8 @@
     <%if params[:nombre] == "root"%>
       <%  params[:item][:parent_id]= 0 %>
     <%  end %>
-
-    <%= f.collection_select(:parent_id, Item.find(:all, :conditions => 'parent_id = 0 or parent_id = 1'), :id, :nombre,{}, :class =>'normal') %>
+<%#= f.collection_select(:parent_id, Item.find(:all, :conditions => 'parent_id = 0 or parent_id = 1'), :id, :nombre,{}, :class =>'normal') %>
+    <%= f.collection_select(:parent_id, Item.all, :id, :nombre,{}, :class =>'normal') %>
   </li>
   <li>
     <label for="url">URL </label>

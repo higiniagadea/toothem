@@ -1,16 +1,17 @@
 <div id="presta">
 <% unless @prestaciones.blank? %>
-  <h1>Resultado de la b&uacute;squeda de Prestaciones</h1>
+  <h1>Resultado de la b&uacute;squeda </h1>
 
-<table style=" text-align: left;">
+<table style=" text-align: left;" class="listado">
   <tr>
     <th>C&oacute;digo de prestaci&oacute;n</th>
     <th>Descripci&oacute;n</th>
     <th>Valor</th>
+    <th>Acciones</th>
   </tr>
 
 <% @prestaciones.each do |prestacion| %>
-  <tr>
+  <tr class="<%= cycle('par','impar') -%>">
     <td><%=h prestacion.codigo %></td>
     <td><%=h prestacion.descripcion %></td>
     <td><%=h number_to_currency(prestacion.valor) %></td>
@@ -54,9 +55,4 @@
                                  :params=> {:controller => "prestaciones", :action => 'resultado' }
                                                                                                 %>
 
- 
-
-
-<br />
-  </fieldset>
 </div>

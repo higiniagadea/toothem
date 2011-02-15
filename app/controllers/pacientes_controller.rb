@@ -62,19 +62,19 @@ class PacientesController < ApplicationController
   
   # GET /pacientes/1
   # GET /pacientes/1.xml
-#  def show
- #   @paciente = Paciente.find(params[:id])
-  #  @imagenes = Imagen.find_all_by_paciente_id(@paciente)
-   # unless @paciente.archivo_id.blank?
-    # @archivo = Archivo.find(@paciente.archivo_id)
-    #end
+ def show
+  @paciente = Paciente.find(params[:id])
+    @imagenes = Imagen.find_all_by_paciente_id(@paciente)
+    unless @paciente.archivo_id.blank?
+     @archivo = Archivo.find(@paciente.archivo_id)
+    end
      
-    #respond_to do |format|
+    respond_to do |format|
 
-   #   format.html # show.html.erb
+      format.html # show.html.erb
       
-  #  end
- # end
+    end
+ end
 
   def show_imagen
     @imagen = Imagen.find(params [:id])
@@ -115,7 +115,7 @@ class PacientesController < ApplicationController
     @paciente = Paciente.find_by_id(params[:id])
     @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 10, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha ASC')
     @fichas = Ficha.find_all_by_paciente_id(@paciente.id)
-    
+   @profesionales = Profesional.paginate(:page => params[:page], :per_page => 2)
     @prestaciones = Prestacion.find(:all)
     @fichas = Ficha.paginate(:page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha DESC')
 
@@ -318,6 +318,7 @@ class PacientesController < ApplicationController
     @paciente = Paciente.find(params[:id])
     @paciente.destroy
     respond_to do |format|
+       flash[:notice] = 'Paciente Eliminado.'
       format.html { redirect_to(search_pacientes_url) }
       format.xml  { head :ok }
     end

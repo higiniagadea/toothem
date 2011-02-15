@@ -1,15 +1,16 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Prestaciones</legend>
 <% unless @prestaciones.blank?  %>
-<table style=" text-align: left;">
+<table style=" text-align: left;" class="listado">
   <tr>
     <th>C&oacute;digo de Prestaci&oacute;n</th>
     <th>Descripci&oacute;n</th>
     <th>Valor</th>
+    <th>Acciones</th>
   </tr>
 
 <% @prestaciones.each do |prestacion| %>
-  <tr>
+  <tr class="<%= cycle('par','impar') -%>">
     <td><%=h prestacion.codigo %></td>
     <td><%=h prestacion.descripcion %></td>
     <td><%=h number_to_currency(prestacion.valor) %></td>
