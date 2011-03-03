@@ -13,7 +13,7 @@
     <tr>
     <th>
      Nombre</th>
-    <td><%= f.text_field :nombre, :size =>10  , :class=> 'ui-widget-content required' , :title=> 'Nombre no puede estar vacio',:onkeypress=> 'return validate(event)' %>
+    <td><%= f.text_field :nombre, :size =>10  , :class=> 'ui-widget-content required' , :title=> 'Ingrese un Nombre',:onkeypress=> 'return validate(event)' %>
     </td>
     </tr>
 
@@ -54,6 +54,8 @@
   </table>
 <% end %>
 </fieldset>
+
+
 <script type="text/javascript">
   function validar(e) { // 1
     tecla = (document.all) ? e.keyCode : e.which; // 2
@@ -82,7 +84,13 @@ $(document).ready(function(){
        errorContainer: $("#new_obra_social div.errores"),
        errorLabelContainer: $("ol", $("#new_obra_social div.errores")),
        wrapper: 'li',
-       meta: "validate"
+       meta: "validate",
+       rules :{
+         "obra_social[nombre]": {required: true, rangelength: [3,30] }
+        
+       }
+          
+      
     });
 });
 </script>

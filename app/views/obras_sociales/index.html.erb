@@ -26,7 +26,7 @@
         <%= link_to image_tag('cancel.png'), obra_social, :confirm => '¿Está seguro? No podrá deshacer esta acción', :method => :delete, :title => "Eliminar" %>
         <%#= link_to 'Nuevo Arancel', new_obra_social_arancel_path(obra_social), :title => "Aranceles" %>
         <%#= link_to 'Buscar Aranceles', busqueda_obra_social_aranceles_path(obra_social, @aranceles) %>
-        <%= link_to 'Aranceles', obra_social_aranceles_path(obra_social, @aranceles)%>
+        <%= link_to image_tag('money_dollar.png'), obra_social_aranceles_path(obra_social, @aranceles)%>
     </td>
   </tr>
 
@@ -55,11 +55,12 @@
 
 <% end %>
   <%else%>
-  No existen obras sociales cargadas
+  No existen Obras Sociales cargadas
   <%end%>
 </table>
+  <table><tr>
+      <td style=" float: left; margin-left:  1100px"><%= link_to 'Cancelar', buscar_obras_sociales_path %></td>
+
+    </tr>  </table>
 </fieldset>
-
 <%= will_paginate @obras_sociales, :previous_label=>'Anterior', :next_label => 'Siguiente' %>
-
-

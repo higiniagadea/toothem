@@ -22,7 +22,7 @@
   
   <th>
     Matr&iacute;cula</th>
-  <td><%= f.text_field :matricula, :size=> 10, :class=> 'ui-widget-content required', :title=> 'Nro. de Documento ingrese solo numeros', :onkeypress=> 'return validar(event)' %>
+  <td><%= f.text_field :matricula, :size=> 10, :class=> 'ui-widget-content required', :title=> 'Ingrese el Nro. de Documento ', :onkeypress=> 'return validar(event)' %>
   </td>
   </tr>
    <tr>
@@ -78,7 +78,7 @@ function validate(e) { // 1
        wrapper: 'li',
        meta: "validate",
         rules: {
-         "titular[matricula]": {required:true, remote:"/pacientes/verificar_matricula_tit?titular[matricula]=" + $('#titular[matricula]').val()},
+         "titular[matricula]": {required:true, remote:"/pacientes/verificar_matricula_tit?titular[matricula]=" + $('#titular[matricula]').val(), rangelength: [6, 10]},
          "titular[nro_afiliado]": {required:true, remote:"/pacientes/verificar_nroafiliado_tit?titular[nro_afiliado]=" + $('#titular[nro_afiliado]').val()}
           
        },

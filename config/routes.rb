@@ -15,8 +15,13 @@ ActionController::Routing::Routes.draw do |map|
                               :imprimir => [:post, :get],
                               :verificar_longitud => [:post, :get],
                               :listados => [ :get]
+                              
                               }
 
+  map.resources :tareas
+
+  map.resources :turnos, :collection => {:buscar => :get, :resultado => [:post, :get]}
+  
    map.resources :imagenes, :collection => {:new_archivo => :get}
               
   #map.resources :historias_clinicas_ortodoncias
@@ -82,7 +87,8 @@ ActionController::Routing::Routes.draw do |map|
                             :ver => [:post, :get],
                             :imprimir=> [:post, :get],
                             :elimina_tit => :get,                          
-                            :edit_tratamientos => :get
+                            :edit_tratamientos => :get,
+                            :prueba => [:get, :post]
                            
                 }do |paciente|
                              

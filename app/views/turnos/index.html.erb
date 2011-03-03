@@ -1,0 +1,102 @@
+<table>
+
+<p>
+  <%#=link_to_remote 'Crear Evento', :url => {:controller => :turnos, :action => :new} %>
+  <%= link_to 'evento', new_turno_path, :id => 'nuevo' %>
+  
+</p>
+ <div id = "create_turno">
+  </div>
+<script type="text/javascript">
+  $(document).ready(function(){
+      // page is now ready, initialize the calendar...
+      $('#calendar').fullCalendar({
+          editable: true,
+          header: {
+              left: 'prev,next',
+              center: 'title'
+              /*right: 'month,agendaWeek,agendaDay'*/
+          },
+          defaultView: 'agendaWeek',
+          height: 600,
+          slotMinutes: 30,
+          minTime : 8,
+          maxTime : 21,
+          firstDay : 1,
+          allDaySlot : false,
+          weekends: false,
+          defaultEventMinutes : 30,
+          weekMode : 'fixed',
+          
+          monthNames : ['Enero' , 'Febrero' , 'Marzo' , 'Abril' , 'Mayo' , 'Junio' , 'Julio' ,
+                         'Agosto' , 'Septiembre' , 'Octubre' , 'Noviembre' , 'Diciembre' ],
+
+          dayNamesShort : ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
+          
+          loading: function(bool){
+              if (bool)
+                  $('#loading').show();
+              else
+                  $('#loading').hide();
+          },
+          
+          events: "/turnos/get_turnos",
+
+          timeFormat: 'h:mm t{ - h:mm t} ',
+
+          dragOpacity: "0.5",
+          eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc){
+              //if (confirm("Are you sure about this change?")) {
+                  moveEvent(event, dayDelta, minuteDelta, allDay);
+              //}
+              //else {
+              //    revertFunc();
+              //}
+          },
+
+          eventResize: function(event, dayDelta, minuteDelta, revertFunc){
+              //if (confirm("Are you sure about this change?")) {
+                  resizeEvent(event, dayDelta, minuteDelta);
+              //}
+              //else {
+              //    revertFunc();
+              //}
+          },
+
+          eventClick: function(event, jsEvent, view){
+              showEventDetails(event);
+          }
+
+
+
+
+      });
+         $('#nuevo').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+        });
+        $.fancybox.resize();
+
+  });
+</script>
+<div>
+  <div id='calendar'>
+  </div>
+</div>
+<div id = "desc_dialog" style ="display:none;">
+  <div id = "turno_desc">
+  </div>
+  <br/>
+  <br/>
+  <div id = "turno_actions">
+    <span id = "edit_turno"></span>
+    <span id = "delete_turno"></span>
+  </div>
+</div>
+<div id = "create_turno_dialog" style ="display:none;">
+ 
+</div>
+
+</table>

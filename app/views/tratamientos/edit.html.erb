@@ -12,11 +12,11 @@
 <tr>
           <td><h1>Paciente: <%= @paciente.nombre %> </h1></td>
           <td></td>
-         <% unless @paciente.titular.blank? %>
+       
           <td><h1>Obra Social :<%=h @paciente.titular.obra_social.nombre %></h1></td>
-         <%else%>
-          <td>No posee obra social</td>
-         <%end%>
+       
+         
+       
         </tr>
         <tr>
   <th>Fecha</th>
@@ -50,23 +50,13 @@
                                                                   :url => {:action => 'actualizar_coseguro', :controller => 'tratamientos'},
                                                                   :with => "'arancel=' + $('#tratamiento_prestacion_id').val()") %></span></td>
 
-
    </tr>
-
-
-
-
-     
- 
-
           
     <tr>
-              <th>Profesional</th>
-              <td>
-              <%= f.collection_select(:profesional_id, Profesional.all, :id, :nombre, {:include_blank => 'Seleccione'},
-                                                                                                  :class=> 'ui-widget-content required',
-                                                                                                  :title=> 'Seleccione un profesional') %>
-              </td>
+         <th>Profesional</th>
+         <td>
+         <%= f.collection_select(:profesional_id, Profesional.all, :id, :nombre, :class=> 'ui-widget-content required',  :title=> 'Seleccione un profesional') %>
+         </td>
 
 
   <th>Estado del Tratamiento</th>
@@ -84,13 +74,13 @@
     <tr>
     <th>Fecha De finalizacion</th>
  <td><span class="fecha" class="ui-widget-content">
-        <input class="ui-widget-content required "type="text" id="fecha_finalizacion" size="10" name="tratamiento[fecha_finalizacion]"  readonly="readonly" title="Ingrese una fecha"/>
+        <input class="ui-widget-content required"type="text" id="fecha_finalizacion" size="10" name="tratamiento[fecha_finalizacion]"  readonly="readonly" title="Ingrese la fecha de finalizacion"/>
       </span></td>
+    </tr>
 
-
-   
+    <tr>
         <th>Observaciones</th>
-        <td><%= f.text_field :observaciones, :size => 10, :class=> 'ui-widget-content' %> </td>
+        <td><%= f.text_area :observaciones,  :class=> 'ui-widget-content' ,  :cols => 12, :rows => 4 %> </td>
    </tr>
 </table>
   <table>
@@ -133,13 +123,20 @@ $(document).ready(function(){
         }
       });
      });
-  $("#edit_tratamiento").validate({
+  $(".edit_tratamiento").validate({
         //errorLabelContainer: $("#new_paciente div.errores")
-       errorContainer: $("#edit_tratamiento div.errores"),
-       errorLabelContainer: $("ol", $("#edit_tratamiento div.errores")),
+       errorContainer: $(".edit_tratamiento div.errores"),
+       errorLabelContainer: $("ol", $(".edit_tratamiento div.errores")),
        wrapper: 'li',
-       meta: "validate"
+       meta: "validate",
+          rules :{
+          "tratamiento[diente]": {required: true, rangelength: [1,3]},
+           "tratamiento[cara]": {required: true, rangelength: [1,3]}
+       }
      });
+
+
+     
 $("#fecha").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Jutdo','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate:0});
 $("#fecha_finalizacion").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Jutdo','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate:0});
 

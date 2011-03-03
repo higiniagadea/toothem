@@ -5,7 +5,7 @@ class Paciente < ActiveRecord::Base
   belongs_to :consultorio
   belongs_to :archivo
   has_many :tratamiento, :dependent => :destroy
-
+  has_many :turnos
 
 
   belongs_to :tipo_documento
@@ -50,9 +50,9 @@ class Paciente < ActiveRecord::Base
 
   def self.basic_search(options)
     scope_builder do |builder|
-      builder.by_nombre(options[:nombre]) if options[:nombre]
-      builder.by_matricula(options[:matricula]) if options[:matricula]
-       builder.by_tipo_documento_id(options[:tipo_documento_id]) if options[:tipo_documento_id]
+      builder.by_nombre(options[:nombre]) unless options[:nombre].blank?
+      builder.by_matricula(options[:matricula]) unless options[:matricula].blank?
+       builder.by_tipo_documento_id(options[:tipo_documento_id]) unless options[:tipo_documento_id].blank?
       #builder.by_consultorio
 
     end

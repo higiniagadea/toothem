@@ -1,0 +1,94 @@
+<fieldset class="ui-widget ui-widget-content ui-corner-all">
+  <legend class="ui-widget  ui-corner-all ui-widget-header">Nuevo Evento (tarea)</legend>
+  <% form_for(@tarea) do |f| %>
+  <%= f.error_messages(:id => 'error', :header_message => '', :message => 'Ocurrió un error al intentar guardar el registro')  %>
+
+
+  <div class="errores">
+          <ol style="list-style:none"></ol>
+  </div>
+
+  <table style=" text-align: left;" >
+    <tr>
+      <th>Profesional</th>
+          <td>
+              <%= f.collection_select(:profesional_id, Profesional.all, :id, :nombre, {:include_blank => 'Seleccione'},
+                                                                                                  :class=> 'ui-widget-content required',
+                                                                                                  :title=> 'Seleccione un profesional') %>
+          </td>
+    </tr>
+    <tr>
+      <th>Fecha</th>
+      <td><span class="fecha" class ="ui-widget-content">
+              <input class="ui-widget-content required" title="Ingrese la fecha" size="15" type="text" id="fecha" name="tarea[fecha]" readonly="readonly" />
+          </span>
+      </td>
+    </tr>
+
+    <tr>
+      <th>Hora</th>
+      <td><%= f.text_field :hora, :class =>"ui-widget-content required" , :title => 'Ingrese la hora', :size=> 15, :onkeypress=> 'return validar(event)' %> </td>
+    </tr>
+
+    <tr>
+      <th>Duracion</th>
+      <td><%= f.text_field :duracion , :class =>"ui-widget-content required", :size=> 15, :title => 'Ingrese la duracion', :onkeypress=> 'return validar(event)'  %> </td>
+    </tr>
+    <tr>
+      <th>Tarea</th>
+      <td><%= f.text_area :observaciones ,  :class =>"ui-widget-content required", :cols => 12, :rows => 4 %> </td>
+    </tr>
+  </table>
+
+   <table>
+    <tr>
+  <td style=" float: left; margin-left: 200px">
+
+    <%= f.submit 'Guardar',  :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+  </td>
+    </tr>
+</table>
+</fieldset>
+<%end%>
+
+<script type="text/javascript">
+
+function validar(e) { // 1
+    tecla = (document.all) ? e.keyCode : e.which; // 2
+    if (tecla==8) return true; // 3
+    patron =/\d/; //4
+    te = String.fromCharCode(tecla); // 5
+    return patron.test(te); // 6
+}
+function validate(e) { // 1
+    tecla = (document.all) ? e.keyCode : e.which; // 2
+    if (tecla==8) return true; // 3
+    patron =/[A-Za-zñÑ\s]/; //4
+    te = String.fromCharCode(tecla); // 5
+    return patron.test(te); // 6
+}
+
+  $(document).ready(function(){
+     $(function() {
+        $('input:text').keydown(function(e){
+        if (e.keyCode == 13) {
+            $('form').submit();
+        }
+      });
+     });
+      $("#new_turno").validate({
+        //errorLabelContainer: $("#new_paciente div.errores")
+       errorContainer: $("#new_turno div.errores"),
+       errorLabelContainer: $("ol", $("#new_turno div.errores")),
+       wrapper: 'li',
+       meta: "validate"
+
+
+  });
+
+  $("#fecha").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate: 0});
+  });
+
+
+
+  </script>

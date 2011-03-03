@@ -61,9 +61,13 @@
   La Obra Social no posee Aranceles
   <%end%>
 </table>
+
   
 </fieldset>
- 
+   <table><tr>
+      <td style=" float: left; margin-left:  1100px"><%= link_to 'Cancelar', buscar_obras_sociales_path %></td>
+
+    </tr>  </table>
 
  <%= will_paginate @aranceles, :previous_label =>'Anterior', :next_label => 'Siguiente' %>
 

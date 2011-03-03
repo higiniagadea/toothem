@@ -25,7 +25,7 @@
       <tr>
         <th>Importe Cubierto</th>
         <td>
-          <%= f.text_field :importe_cubierto, :size => 10, :class=>'ui-widget-content required ', :onkeypress=> 'return validar(event)', :title => 'Importe no puede estar vacio' %>
+          <%= f.text_field :importe_cubierto, :size => 10, :class=>'ui-widget-content required ', :onkeypress=> 'return validar(event)', :title => 'Ingrese un importe valido' %>
         </td>
       </tr>
       <tr>
@@ -59,7 +59,7 @@
   function validar(e) { // 1
     tecla = (document.all) ? e.keyCode : e.which; // 2
     if (tecla==8) return true; // 3
-    patron =/\d/; //4
+    patron =/[d.,]; //4
     te = String.fromCharCode(tecla); // 5
     return patron.test(te); // 6
 }
@@ -78,7 +78,10 @@
        errorContainer: $("#nuevo_form div.errores"),
        errorLabelContainer: $("ol", $("#nuevo_form div.errores")),
        wrapper: 'li',
-       meta: "validate"
+       meta: "validate",
+       rules :{
+           "arancel[importe_cubierto]": {required: true, digits: true, rangelength: [1, 10]}
+       }
      });
    })
 

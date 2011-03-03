@@ -10,7 +10,7 @@
    <tr>
     <th>
     Nombre</th>
-    <td><%= f.text_field :nombre, :class=> 'required ui-widget-content', :size =>10, :title=> 'Nombre no puede estar vacio', :onkeypress=> 'return validate(event)' %>
+    <td><%= f.text_field :nombre, :class=> 'required ui-widget-content', :size =>10, :title=> 'Ingrese un nombre', :onkeypress=> 'return validate(event)' %>
     </td>
    </tr>
 
@@ -83,7 +83,11 @@ function validate(e) { // 1
        errorContainer: $(".edit_obra_social div.errores"),
        errorLabelContainer: $("ol", $(".edit_obra_social div.errores")),
        wrapper: 'li',
-       meta: "validate"
+       meta: "validate",
+        rules :{
+         "obra_social[nombre]": {required: true, rangelength: [3,30] }
+
+       }
 
  });
 

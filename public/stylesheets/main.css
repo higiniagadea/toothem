@@ -188,9 +188,9 @@ table#datos-rpi-titulares tr.even{
 
 .listado{
     border-collapse: collapse;
-    border: 1px solid #F2F2F2;
+   border: 1px solid #F8ECE0;
 }
-/*.listado th par{
+.listado th par{
     padding-left: 7px;
     padding-right: 7px;
     text-align: left;
@@ -201,11 +201,11 @@ table#datos-rpi-titulares tr.even{
     padding:4px;
     text-align: center;
     
-}*/
+}
 
 .listado-titulares{
     border-collapse: collapse;
-    border: 1px solid #aed0ea;
+    border: 1px solid #FFCC76;
 }
 .listado-titulares td{
     padding-left: 7px;
