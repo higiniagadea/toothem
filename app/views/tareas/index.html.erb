@@ -1,0 +1,28 @@
+<fieldset class="ui-widget ui-widget-content ui-corner-all">
+  <legend class="ui-widget  ui-corner-all ui-widget-header">Evento(tarea)</legend>
+
+<table style=" text-align: left;" class="listado">
+  <tr>
+    <th>Profesional</th>
+    <th>Fecha</th>
+    <th>Hora</th>
+    <th>Duracion</th>
+    <th>Acciones</th>
+
+  </tr>
+
+<% @tareas.each do |tarea| %>
+  <tr class="<%= cycle('par','impar') -%>">
+    <td><%=h tarea.profesional_id %> </td>
+    <td><%=h tarea.fecha.strftime('%d/%m/%Y')%></td>
+    <td><%=h tarea.hora %></td>
+    <td><%=h tarea.duracion %></td>
+
+    <td><%= link_to 'editar', edit_tarea_path(tarea)  %> </td>
+    <td><%= link_to 'ver', tarea_path(tarea)%> </td>
+  </tr>
+<%end%>
+
+
+</table>
+</fieldset>

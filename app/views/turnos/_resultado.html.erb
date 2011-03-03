@@ -1,0 +1,24 @@
+
+
+<h1>Resultado de la Busqueda</h1>
+<table class="table-list">
+  <tr>
+    <th>Profesional</th>
+    <th>Fecha</th>
+    <th>Hora</th>
+    <th>Duracion</th>
+    <th>Paciente</th>
+  </tr>
+<% @turnos.each do |turno| %>
+  <tr>
+    <td><%=h turno.profesional_id %> </td>
+    <td><%=h turno.fecha.strftime('%d/%m/%Y') %> </td>
+    <td><%=h turno.hora %></td>
+    <td><%=h turno.duracion %></td>
+    <td><%=h turno.paciente %> </td>
+  </tr>
+  <%end%>
+
+
+</table>
+

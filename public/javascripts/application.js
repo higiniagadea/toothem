@@ -81,12 +81,13 @@ $(document).ready(function(){
   'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")}
    })
 
-  jQuery(document).ready(function($) {
+
+ jQuery(document).ready(function($) {
     $('div.ajax-pagination a').live('click', function() {
-    $('#resultados').load(this.href)
-    return false
+   $('#resultados').load(this.href)
+   return false
   });
- 
+
 
   $('div.result a').live('click', function() {
     $('#resultados').load(this.href)
@@ -150,7 +151,7 @@ $('div.ajax-pagination a').live('click', function() {
     return false
   });
 
-$('div.ajax-pagination a').live('click', function() {
+  $('div.ajax-pagination a').live('click', function() {
     $('#profesionales ').load(this.href)
     return false
   });
@@ -161,7 +162,34 @@ $('div.ajax-pagination a').live('click', function() {
     return false
   });
 
+  $('div.ajax-pagination a').live('click', function() {
+    $('#turno ').load(this.href)
+    return false
+  });
+
+
+  $('div.turnos a').live('click', function() {
+    $('#turno').load(this.href)
+    return false
+  });
 
 
 })
     })
+    
+    
+
+   /* $(function () {
+  $('#resultados th a').live('click', function () {
+    $.load(this.href);
+    return false;
+  });
+});
+
+$(function () {
+  $('#resultados th a, #resultados .pagination a').live('click',function () {
+      $.load(this.href);
+      return false;
+    }
+  );
+})*/

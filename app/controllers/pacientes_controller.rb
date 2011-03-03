@@ -9,8 +9,9 @@ class PacientesController < ApplicationController
   def new_tratamiento
     #params[:paciente][:consultorio_id] = session[:consultorio][:id]
     @paciente = Paciente.find(params[:paciente_id])
-    @tratamiento = Tratamiento.new
     
+    @tratamiento = Tratamiento.new
+    @arancel = Arancel.find_by_prestacion_id(params[:arancel].to_i)
     respond_to do |format|
      format.html {render :partial=> 'tratamientos/new', :layout=> false}
      format.html {redirect_to edit_paciente_path(@paciente) + '#tratamientos'}
@@ -42,10 +43,11 @@ class PacientesController < ApplicationController
     
     respond_to do |format|
       if params[:nombre].blank? && params[:matricula].blank? 
-        format.html{render :text => "Ingrese al menos un dato para realizar la b&uacute;squeda " }
+      format.html{render :text => "Ingrese al menos un dato para realizar la b&uacute;squeda " }
+     #format.html{redirect_to buscar_clinicas_path}
       elsif
           params[:nombre].size > 2 || params[:matricula].size > 2
-                  
+        
         format.html{render :partial=> 'result', :layout => false }
          
         @pacientes = Paciente.basic_search(params).paginate  :page=> params[:page], :per_page=> 10, :order => 'nombre ASC'
@@ -53,6 +55,7 @@ class PacientesController < ApplicationController
       else
         params[:nombre].size  < 2 || params[:matricula].size < 2
         format.html {render :text=> 'Ingrese al menos tres caracteres para realizar la b&uacute;squeda'}
+      #format.html{redirect_to buscar_clinicas_path}
       end
 
       
@@ -113,12 +116,13 @@ class PacientesController < ApplicationController
   def edit
     params[:paciente_id]
     @paciente = Paciente.find_by_id(params[:id])
+   
     @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 10, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha ASC')
     @fichas = Ficha.find_all_by_paciente_id(@paciente.id)
-   @profesionales = Profesional.paginate(:page => params[:page], :per_page => 2)
+    @profesionales = Profesional.paginate(:page => params[:page], :per_page => 2)
     @prestaciones = Prestacion.find(:all)
     @fichas = Ficha.paginate(:page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha DESC')
-
+ @turnos = Turno.find(:all)
 
     respond_to do |format|
       unless @paciente.blank?
@@ -387,7 +391,7 @@ def elimina_tit
   @paciente.update_attribute(:titular_id, nil)
    respond_to do |format|
       format.html {redirect_to(edit_paciente_path(@paciente) + '#obra_social') }
-      format.xml  { head :ok }
+      
 end
 end
 
@@ -404,8 +408,6 @@ def verificar_matricula_tit
 def verificar_nroafiliado_tit
   @titular = Titular.find(:first, :conditions => {:nro_afiliado => params[:titular][:nro_afiliado]})
     respond_to do |format|
-
-
     format.json { render :json => !@titular}
     end
   end
@@ -430,6 +432,14 @@ def verificar_longitud
     format.json { render :json => !@paciente}
     end
 
+end
+
+def prueba
+  @paciente = Paciente.find(params[:id])
+
+  respond_to do |format|
+    format.html{ render :partial => 'prueba', :layout => 'default'}
+   end
 end
 
 end

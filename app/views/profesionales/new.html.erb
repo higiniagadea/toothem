@@ -26,7 +26,7 @@
   </td>
   <th>
  Documento</th>
-  <td><%= f.text_field :documento, :class =>"ui-widget-content required", :title => 'Documento no puede estar en blanco', :onkeypress=> 'return validar(event)' %>
+  <td><%= f.text_field :documento, :class =>"ui-widget-content required", :title => 'Ingrese un documento valido', :onkeypress=> 'return validar(event)' %>
   </td>
   </tr>
 
@@ -94,7 +94,7 @@
   function validar(e) { // 1
     tecla = (document.all) ? e.keyCode : e.which; // 2
     if (tecla==8) return true; // 3
-    patron =/\d/; //4
+    patron =/[\d-.]/; //4
     te = String.fromCharCode(tecla); // 5
     return patron.test(te); // 6
 }
@@ -120,17 +120,21 @@ function validate(e) { // 1
         }
       });
      });
-     
+
     $("#new_profesional").validate({
         //errorLabelContainer: $("#new_paciente div.errores")
        errorContainer: $("#new_profesional div.errores"),
        errorLabelContainer: $("ol", $("#new_profesional div.errores")),
        wrapper: 'li',
-       meta: "validate"
-
+       meta: "validate",
+       rules :{
+         "profesional[documento]": {required: true, digits: true, rangelength: [6, 10]}
+    }
+    })
+    
 
   });
-   })
+ 
 
   $("#fecha_nacimiento").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Jutdo','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110',  maxDate: 0});
   $("#fecha_ingreso").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Jutdo','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110',  maxDate: 0});

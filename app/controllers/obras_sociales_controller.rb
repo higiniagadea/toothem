@@ -68,7 +68,7 @@ class ObrasSocialesController < ApplicationController
     respond_to do |format|
       if @obra_social.update_attributes(params[:obra_social])
         flash[:notice] = 'Obra Social actualizada'
-        format.html { redirect_to buscar_obras_sociales_path }
+        format.html { redirect_to obras_sociales_path }
         
       else
         format.html { render :action => "edit" }

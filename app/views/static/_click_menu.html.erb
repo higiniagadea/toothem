@@ -38,8 +38,8 @@
                         </ul>
                       </li>
                 <% else %>
-                      <li id="primero" onclick="javascript:location.href='<%#= modulo.url %>'">
-                        <%#= format_str(modulo.nombre) %>
+                      <li id="primero" onclick="javascript:location.href='<%= modulo.url %>'">
+                        <%= format_str(modulo.nombre) %>
                       </li>
                 <% end %>
         <% end %>

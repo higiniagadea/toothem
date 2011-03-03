@@ -2,7 +2,7 @@
 <% unless @pacientes.blank? %>
 <h1>Resultado de la b&uacute;squeda </h1>
  
-  <table  class="listado" >
+  <table style=" text-align: left;" class="listado" >
     <tr>
       <th>Nombre y Apellido </th>
       <th>Tipo y Nro. Documento</th>
@@ -36,22 +36,22 @@
 
    
  <%else%>
-      No se encontraron pacientes segun el criterio de b&uacute;squeda
+     <td style="color:red">No se encontraron pacientes segun el criterio de b&uacute;squeda</td>
  <%end%> 
   
 </table>
 
-<%@pacientes.each do |paciente|%>
+<%#@pacientes.each do |paciente|%>
      <script type="text/javascript">
 
       // Only create tooltips when document is ready
-      $(document).ready(function() {
+     /* $(document).ready(function() {
         // Use the each() method to gain access to each of the elements attributes
-        $('#p_data_<%= paciente.id %> img').each(function()
+        $('#p_data_<%#= paciente.id %> img').each(function()
         {
           $(this).qtip(
           {
-            content: '<%= render :partial => 'static/menu_pacientes', :locals => {:paciente => paciente} %>', // Give it some content
+            content: '<%#= render :partial => 'static/menu_pacientes', :locals => {:paciente => paciente} %>', // Give it some content
             position: 'topRight', // Set its position
             hide: {
               fixed: true // Make it fixed so it can be hovered over
@@ -61,20 +61,22 @@
               name: 'blue' // And style it with the preset dark theme
             }
           });
-     })
+       })
 
 })
 
 
-   
+   */
    
     
 
 
 
     </script>
-      <%end%>
+      <%#end%>
 
+
+<%#= render 'result' %>
   
 <%= will_paginate @pacientes, :previous_label=>'Anterior', :next_label => 'Siguiente',
                               :class => 'result pagination',
@@ -83,3 +85,7 @@
                               :nombre => params[:nombre]} %>
 
 </div>
+
+<script type="text/javascript">
+/*$('#resultados').html('<%#= escape_javascript(render :partial=> 'result') %>');*/
+</script>

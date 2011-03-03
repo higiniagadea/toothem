@@ -5,20 +5,22 @@
   <% form_for(@tratamiento) do |f|%>
       <%= f.error_messages(:header_message=>'Ingreso Incorrecto: ',:message=>'Se encontraron los siguientes errores') %>
       <%= f.hidden_field :paciente_id, 'value' => @paciente.id.to_s  %>
-    
+      <%= f.hidden_field :obra_social_id, 'value' => @paciente.titular.obra_social_id.to_s %>
 
   <div class="errores">
           <ol style="list-style:none"></ol>
-        </div>
+  </div>
+
       <table style=" text-align: left;">
         <tr>
           <td><h1>Paciente: <%= @paciente.nombre %> </h1></td>
           <td></td>
-         <% unless @paciente.titular.blank? %>
-          <td><h1>Obra Social :<%=h @paciente.titular.obra_social.nombre  %></h1></td>
-         <%else%>
-          <td>No posee obra social</td>         
-         <%end%>
+         
+          <td><h1></h1></td>
+        
+          <td><h1>Obra Social: <%= @paciente.titular.obra_social.nombre %> </h1></td>
+          
+       
         </tr>
 
         <tr>
@@ -46,6 +48,7 @@
                                                                                                   :class=> 'ui-widget-content required',
                                                                                                   :title=> 'Seleccione una prestacion'
                                                                                                   ) %>
+
           </td>
 
           <th>Importe Cubierto</th>
@@ -53,14 +56,17 @@
                                                                                            :url => {:action => 'actualizar_importe',
                                                                                            :controller => 'tratamientos'},
                                                                                            :with => "'arancel=' + $('#tratamiento_prestacion_id').val()") %></span></td>
-          
+       
+
+
+
              <th>Coseguro</th>
           <td><span id="actualizar_coseguro"><%= observe_field("tratamiento_prestacion_id", :frequency => 0.1,
                                                                                            :url => {:action => 'actualizar_coseguro',
                                                                                            :controller => 'tratamientos'},
                                                                                            :with => "'arancel=' + $('#tratamiento_prestacion_id').val()") %></span></td>
               
-        
+       
           </tr>
 
       
@@ -73,18 +79,17 @@
           </td>
               
 
-          <th>Estado del tratamiento</th>
-          <td>
-          <%= f.collection_select(:estado_tratamiento_id, EstadoTratamiento.all, :id, :nombre, {:include_blank => 'Seleccione'},
-                                                                                                  :class=> 'ui-widget-content required',
-                                                                                                  :title=> 'Seleccione un estado') %>
-          </td>
+         
+    <th>Estado del Tratamiento</th>
+  <td><%= f.collection_select(:estado_tratamiento_id, EstadoTratamiento.all, :id, :nombre, :class=> 'ui-widget-content required', :title=> 'Estado no puede estar en blanco')%>
+  </td>
+         
           </tr>
 
               
           <tr>
           <th>Observaciones</th>
-          <td><%= f.text_field :observaciones, :size => 10, :class=> 'ui-widget-content' %> </td>
+          <td><%= f.text_area :observaciones, :class=> 'ui-widget-content' ,  :cols => 12, :rows => 4 %> </td>
           </tr>
       </table>
   <table>
@@ -132,7 +137,11 @@
        errorContainer: $("#new_tratamiento div.errores"),
        errorLabelContainer: $("ol", $("#new_tratamiento div.errores")),
        wrapper: 'li',
-       meta: "validate"
+       meta: "validate",
+       rules :{
+          "tratamiento[diente]": {required: true, rangelength: [1,3]},
+           "tratamiento[cara]": {required: true, rangelength: [1,3]}
+       }
 
 
   });

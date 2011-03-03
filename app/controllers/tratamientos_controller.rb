@@ -51,8 +51,8 @@ class TratamientosController < ApplicationController
   # GET /tratamientos/1
   # GET /tratamientos/1.xml
   def show  
-  @tratamiento = Tratamiento.find(params[:id])
-  
+  @tratamiento = Tratamiento.find(params[:id]) 
+    
     respond_to do |format|
        format.html{render :layout => false}
     end
@@ -62,9 +62,10 @@ class TratamientosController < ApplicationController
   # GET /tratamientos/new.xml
   def new
     @paciente = Paciente.find(params[:paciente_id])
+    @obra_social = ObraSocial.find(params[:obra_social_id]) unless params[:obra_social_id].blank?
     @tratamiento = Tratamiento.new
     @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5,  :conditions => ['paciente_id = ?', @paciente.id]
-    
+    @arancel = Arancel.find_by_prestacion_id(params[:arancel].to_i)
     respond_to do |format|
       format.html { render :layout => false , :partial => 'new'}
       
@@ -90,24 +91,22 @@ class TratamientosController < ApplicationController
   # POST /tratamientos
   # POST /tratamientos.xml
   def create
-    @paciente = Paciente.find(params[:tratamiento][:paciente_id])
- 
+    @paciente = Paciente.find(params[:tratamiento][:paciente_id])  
     @arancel = Arancel.find_by_prestacion_id(params[:arancel].to_i)
+     
     @tratamiento = Tratamiento.new(params[:tratamiento])
-     #arancel = Arancel.find_by_prestacion_id(params[:arancel].to_i)
+    #arancel = Arancel.find_by_prestacion_id(params[:arancel].to_i)
     #params[:tratamiento][:importe_cubierto] = arancel.importe_cubierto.to_i
     #params[:tratamiento][:coseguro] = arancel.coseguro.to_i
 
     @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id.to_s])
    
     respond_to do |format|
-      if @tratamiento.save
+      if  @tratamiento.save
         flash[:notice] = 'Tratamiento creado.'
         format.html { redirect_to edit_paciente_path(@paciente) + '#tratamientos' }    
       else
         format.html {render :partial => 'new', :layout => 'default'}
-        format.xml  { render :xml => @tratamiento.errors, :status => :unprocessable_entity }
-
       end
     end
   end
@@ -119,14 +118,13 @@ class TratamientosController < ApplicationController
   def update   
    @tratamiento = Tratamiento.find(params[:id])
    @paciente = Paciente.find(params[:tratamiento][:paciente_id])
-
-    respond_to do |format|
+   respond_to do |format|
       if @tratamiento.update_attributes(params[:tratamiento])
        flash[:notice] = 'Tratamiento actualizado.'
        format.html { redirect_to edit_paciente_path(@paciente) + '#tratamientos' }
       else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @tratamiento.errors, :status => :unprocessable_entity }
+          format.html { render :action => "edit" }
+        
       end
     end
   end
@@ -220,7 +218,7 @@ def listados
 
 respond_to do |format|
   format.html {render :partial => 'listados', :layout=> false }
-  @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 10,  :order => 'fecha ASC'
+  @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 10, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha ASC' 
   
   end
   
