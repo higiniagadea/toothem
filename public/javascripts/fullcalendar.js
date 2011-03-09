@@ -50,8 +50,8 @@ var defaults = {
 		day: 'dddd, MMM d, yyyy'
 	},
 	columnFormat: {
-		//month: 'ddd',
-		//week: 'ddd M/d',
+		month: 'ddd',
+		week: 'ddd M/d',
 		day: 'dddd M/d'
 	},
 	timeFormat: { // for event elements
@@ -73,7 +73,8 @@ var defaults = {
 		//today: 'Hoy',
 		month: 'month',
 		week: 'week',
-		day: 'day'
+                day: false
+		
 	},
 
 	// jquery-ui theming
