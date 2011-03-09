@@ -10,7 +10,7 @@
   <div class="errores">
           <ol style="list-style:none"></ol>
   </div>
-
+  
       <table style=" text-align: left;">
         <tr>
           <td><h1>Paciente: <%= @paciente.nombre %> </h1></td>
@@ -81,10 +81,11 @@
 
          
     <th>Estado del Tratamiento</th>
-  <td><%= f.collection_select(:estado_tratamiento_id, EstadoTratamiento.all, :id, :nombre, :class=> 'ui-widget-content required', :title=> 'Estado no puede estar en blanco')%>
-  </td>
-         
-          </tr>
+    <td><%= f.collection_select(:estado_tratamiento_id, EstadoTratamiento.all, :id, :nombre, :class=> 'ui-widget-content required',  :title=> 'Seleccione un Estado') %>
+   
+
+   </td>
+        </tr>
 
               
           <tr>

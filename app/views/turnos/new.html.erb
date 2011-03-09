@@ -1,7 +1,7 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-all">
   <legend class="ui-widget  ui-corner-all ui-widget-header">Nuevo Evento</legend>
 
- <% remote_form_for @turno, :url => {:action => :create} do |f| %>
+ <% form_for @turno do |f| %>
 
   <div class="errores">
           <ol style="list-style:none"></ol>
@@ -10,8 +10,8 @@
 
     <%= label_tag 'AGENDA_TURNO', 'Turno'  %>
     <%= radio_button_tag 'AGENDA', 'TURNO',true, :value => 1 %>
-    <%= label_tag 'AGENDA_TAREA', 'Tarea'   %>
-    <%= radio_button_tag 'AGENDA', 'TAREA',false, :value => 2  %>
+    <%#= label_tag 'AGENDA_TAREA', 'Tarea'   %>
+    <%#= radio_button_tag 'AGENDA', 'TAREA',false, :value => 2  %>
   
   <table style=" text-align: left;">
   <th>
@@ -53,9 +53,9 @@
 
    <table style=" text-align: left;">
     <th>
-     <div id="tareas">
-       Tareas:&nbsp  <%= f.text_area :observaciones, :title => 'Ingrese la tarea', :class =>"ui-widget-content required", :cols => 12, :rows => 4  %>
-     </div>
+     <!--<div id="tareas">
+       Tareas:  <%#= f.text_area :observaciones, :title => 'Ingrese la tarea', :class =>"ui-widget-content required", :cols => 12, :rows => 4  %>
+     </div> -->
     </th>
    </table>
 
@@ -125,18 +125,18 @@ function validate(e) { // 1
          if ($("input[name='AGENDA']:checked").val()== '1') {
            $('#turnos').show();
            $('#tareas').hide();
-            $("#fancybox-outer").width(340);
-            $("#fancybox-outer").height(280);
+           $("#fancybox-outer").width(340);
+           $("#fancybox-outer").height(280);
            $("#fancybox-inner").width(320);
-            $("#fancybox-inner").height(300);
+           $("#fancybox-inner").height(300);
      
          }else{
            $('#tareas').show();
            $('#turnos').hide();
-            $("#fancybox-outer").width(340);
-            $("#fancybox-outer").height(330);
+           $("#fancybox-outer").width(340);
+           $("#fancybox-outer").height(330);
            $("#fancybox-inner").width(320);
-            $("#fancybox-inner").height(320);
+           $("#fancybox-inner").height(320);
    
          }
 };

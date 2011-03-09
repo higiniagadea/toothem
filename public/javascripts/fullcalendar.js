@@ -50,8 +50,8 @@ var defaults = {
 		day: 'dddd, MMM d, yyyy'
 	},
 	columnFormat: {
-		month: 'ddd',
-		week: 'ddd M/d',
+		//month: 'ddd',
+		//week: 'ddd M/d',
 		day: 'dddd M/d'
 	},
 	timeFormat: { // for event elements
@@ -70,7 +70,7 @@ var defaults = {
 		next: '&nbsp;&#9658;&nbsp;',
 		prevYear: '&nbsp;&lt;&lt;&nbsp;',
 		nextYear: '&nbsp;&gt;&gt;&nbsp;',
-		today: 'today',
+		//today: 'Hoy',
 		month: 'month',
 		week: 'week',
 		day: 'day'
