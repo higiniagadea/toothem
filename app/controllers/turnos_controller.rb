@@ -1,12 +1,12 @@
 class TurnosController < ApplicationController
   layout 'default' 
 
-  #  def show
-    #@turno = Turno.find(params[:id])
-    #respond_to do |format|
-     # format.html { render :layout => 'default'}
-    #end
-  #end
+    def show
+    @turno = Turno.find(params[:id])
+    respond_to do |format|
+      format.html { render :layout => 'default'}
+   end
+  end
 
 # def index
 #   @turnos = Turno.first
@@ -32,7 +32,7 @@ respond_to do |format|
     events = []
     @turnos.each do |turno|
     #turnos << {:id => turno.id, :fecha => turno.fecha, :profesional => turno.profesional_id, :hora => turno.hora, :duracion => turno.duracion }# || "Some cool description here...", :start => "#{turno.fecha_comienzo.iso8601}", :end => "#{turno.fecha_fin.iso8601}"}
-    events << {:id => turno.id, :title => turno.profesional_id.to_s, :description =>  'Algo para ver si anda', :start => "#{turno.fecha.to_time.iso8601}", :end => "#{turno.fecha.to_time.iso8601}", :allDay => true}
+    events << {:id => turno.id, :title => turno.profesional_id.to_s, :description =>  'Algo para ver si anda', :start => "#{turno.fecha.iso8601}", :end => "#{turno.fecha.iso8601}", :allDay => true}
     end
     render :text => events.to_json
   end
@@ -61,7 +61,7 @@ respond_to do |format|
   def update
     @turno = Turno.find_by_id(params[turno][:id])
    render :update do |page|
-      page<<"$('#calendar').fullCalendar( 'refetchEvents' )"
+      page<<"$('#calendar').fullCalendar()"
       page<<"$('#desc_dialog').dialog('destroy')"
     end
   end

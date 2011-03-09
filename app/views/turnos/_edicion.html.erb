@@ -1,9 +1,8 @@
+<div id="event_desc">
 <fieldset class="ui-widget ui-widget-content ui-corner-all">
   <legend class="ui-widget  ui-corner-all ui-widget-header">Nuevo Evento</legend>
-  <% form_for(@turno) do |f| %>
-  <%= f.error_messages(:id => 'error', :header_message => '', :message => 'Ocurrió un error al intentar guardar el registro')  %>
-
-
+  <% form_for @turno do |f| %>
+  
   <div class="errores">
           <ol style="list-style:none"></ol>
   </div>
@@ -152,4 +151,5 @@ function validate(e) { // 1
 };
 
 
-  </script>
+  </script>+
+</div>

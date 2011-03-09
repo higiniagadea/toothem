@@ -1,1 +1,1 @@
-#page.replace_html 'create_turno', :partial => 'form'
+#page.replace_html 'create_event', :partial => 'new'

@@ -40,13 +40,13 @@
     </tr>
 
     <tr>
-      <th>Hora</th>
+      <th>Desde</th>
       <td><%= f.time_select :hora, :class =>"ui-widget-content required" , :title => 'Ingrese la hora', :size=> 15, :onkeypress=> 'return validar(event)' %> </td>
     </tr>
 
     <tr>
-      <th>Duracion</th>
-      <td><%= f.text_field :duracion , :class =>"ui-widget-content required", :size=> 15, :title => 'Ingrese la duracion', :onkeypress=> 'return validar(event)'  %> </td>
+      <th>Hasta</th>
+      <td><%#= f.time_select :hora, :class =>"ui-widget-content required" , :title => 'Ingrese la hora', :size=> 15, :onkeypress=> 'return validar(event)' %>  </td>
     </tr>
    </table>
 
@@ -61,7 +61,7 @@
 
 
    <table>
-    <tr><td  style=" float: left; margin-left:  200px"><%= f.submit 'guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
+    <tr><td  style=" float: left; margin-left:  300px"><%= f.submit 'guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
     </tr>
   </table>
 
@@ -125,9 +125,9 @@ function validate(e) { // 1
          if ($("input[name='AGENDA']:checked").val()== '1') {
            $('#turnos').show();
            $('#tareas').hide();
-           $("#fancybox-outer").width(340);
+           $("#fancybox-outer").width(440);
            $("#fancybox-outer").height(280);
-           $("#fancybox-inner").width(320);
+           $("#fancybox-inner").width(400);
            $("#fancybox-inner").height(300);
      
          }else{
