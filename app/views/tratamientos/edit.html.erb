@@ -60,7 +60,7 @@
 
 
   <th>Estado del Tratamiento</th>
-  <td><%= f.collection_select(:estado_tratamiento_id, EstadoTratamiento.all, :id, :nombre, :class=> 'ui-widget-content required', :title=> 'Estado no puede estar en blanco')%>
+  <td><%= f.collection_select(:estado_tratamiento_id, EstadoTratamiento.find(:all, :conditions =>  'id <= 4'), :id, :nombre, :class=> 'ui-widget-content required', :title=> 'Estado no puede estar en blanco')%>
   </td>
 
 
