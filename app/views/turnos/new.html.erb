@@ -31,17 +31,10 @@
           </td>
       </tr>
 
-    <tr>
-      <th>Fecha</th>
-      <td><span class="fecha_t" class ="ui-widget-content">
-              <input class="ui-widget-content required" title="Ingrese la fecha" type="text" id="fecha_t"  size="15" name="turno[fecha]" readonly="readonly" />
-          </span>
-      </td>
-    </tr>
-
+    
     <tr>
       <th>Desde</th>
-      <td><%= f.datetime_select :hora, :class =>"ui-widget-content required" , :title => 'Ingrese la hora', :size=> 15, :onkeypress=> 'return validar(event)' %> </td>
+      <td><%= f.datetime_select :fecha_hora, :class =>"ui-widget-content required" , :title => 'Ingrese la hora', :size=> 15, :onkeypress=> 'return validar(event)' %> </td>
     </tr>
 
     <tr>
