@@ -14,12 +14,15 @@ class TurnosController < ApplicationController
 #     format.html
 #   end
 # end
-   def new
+   def new    
     @turno = Turno.new
     @profesional = Profesional.find(params[:profesional_id]) unless params[:profesional_id].blank?
-respond_to do |format|
-  format.html{render :layout => false}
-  end
+   
+
+     respond_to do |format|
+     format.html{render :layout => false}
+    end
+
    end
  
   def edit
@@ -32,7 +35,7 @@ respond_to do |format|
     events = []
     @turnos.each do |turno|
     #turnos << {:id => turno.id, :fecha => turno.fecha, :profesional => turno.profesional_id, :hora => turno.hora, :duracion => turno.duracion }# || "Some cool description here...", :start => "#{turno.fecha_comienzo.iso8601}", :end => "#{turno.fecha_fin.iso8601}"}
-    events << {:id => turno.id, :title => turno.profesional_id.to_s, :description =>  'Algo para ver si anda', :start => "#{turno.fecha_hora.iso8601}", :end => "#{turno.fecha_hora.iso8601}", :allDay => true}
+    events << {:id => turno.id.to_s, :title => turno.profesional_id.to_s,  :start => "#{turno.fecha_hora.iso8601}", :end => "#{turno.duracion.to_s}", :allDay => true}
     end
     render :text => events.to_json
   end
@@ -40,11 +43,14 @@ respond_to do |format|
   # POST /profesionales
   # POST /profesionales.xml
   def create
+  
    @turno = Turno.new(params[:turno])
    @profesional = Profesional.find(params[:profesional_id]) unless params[:profesional_id].blank?
+   
 
-    respond_to do |format|
-   if  @turno.save
+   respond_to do |format|
+    if  @turno.save
+      flash[:notice] = 'Turno guardado'
      format.html{redirect_to turnos_path}
     #render :update do |page|
   
@@ -67,12 +73,13 @@ respond_to do |format|
   end
 
   def destroy
-    @turno = Turno.find(params[:id])
+    @turno = Turno.find_by_id(params[:id])
     @turno.destroy
-    render :update do |page|
-      page<<"$('#calendar').fullCalendar( 'refetchEvents' )"
+
+    #render :update do |page|
+     # page<<"$('#calendar').fullCalendar( 'refetchEvents' )"
       #page<<"$('#desc_dialog').dialog('destroy')"
-    end
+
  
   end
 
@@ -110,6 +117,26 @@ respond_to do |format|
        end
     end
   end
+
+  def buscar_dni   
+  @turno = Turno.new
+  respond_to do |format|
+      format.html{ render :layout => false }
+    end
+  end
+
+  def result
   
+    respond_to do |format|
+      
+    end
+  end
+
+  def asignar_paciente
+     @paciente = Paciente.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
+  end
   
 end

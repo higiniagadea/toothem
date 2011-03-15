@@ -1,6 +1,6 @@
 <table>
 <p>
-  <%#=link_to_remote 'Crear Evento', :url => {:controller => :turnos, :action => :new} %>
+ 
 <%= link_to 'Nuevo Evento', new_turno_path, :id => 'nuevo' %>
   
 </p>
@@ -53,13 +53,17 @@
           events:[
             <% for turno in Turno.all -%>
               {
-                title  : 'Profesional: <%= turno.profesional.nombre %>',
+                id : 'turno: <%= turno.id.to_s %>',
+                title  : 'Profesional: <%= turno.profesional.nombre %>',              
                 start  : 'Desde: <%= turno.fecha_hora.to_s %>',
                 end : 'Hasta: <%= turno.fecha_hora.to_s %>',
                 allDay : false
+                
               },
             <% end %>
+
               ],
+               
            /* [
         {
             title  : 'event1',
@@ -103,7 +107,11 @@
           },
 
           eventClick: function(event, jsEvent, view){
-              showEventDetails(event);
+            if (confirm("esta seguro?"),event.destroy) {
+            window.open(event.destroy);
+            return false;
+        }
+                   showEventDetails(event);
           }
 
 
