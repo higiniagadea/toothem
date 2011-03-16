@@ -5,10 +5,9 @@
     <tr>
      <th>
           <label>Elija un Profesional</label></th>
-        <th>
-          <%#= collection_select(:profesional_id, Profesional.all, :id, :nombre, :class=> 'ui-widget-content') %>
+        <th>          
           <%=  select("profesional", "profesional_id", Profesional.all.collect {|p| [ p.nombre, p.id ] }) %>
-        <%#= hidden_field_tag :turno_paciente_id, params[:paciente_id], :name => 'turno[paciente_id]' %>
+        
         </th>
 
     </tr>
@@ -18,6 +17,7 @@
               <input class="ui-widget-content" type="text" id="fecha_desde" name="turno[fecha_desde]" readonly="readonly" size="10" />
       </span>
     </th>
+ 
 
     <th>Hasta</th>
     <th><span class="fecha" class ="ui-widget-content">
@@ -38,10 +38,14 @@
 
     </table>
   
-  <div id ="search_hits"></div>
+  <div id="search_hits"></div>
 
  </fieldset>
 <%end%>
+
+
+
+
 <script type="text/javascript">
 
  $("#fecha_desde").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate:0});
@@ -108,7 +112,5 @@ $("#validate").click(function() {
 	form.valid();
 	return true;
 });
-
-
 
 </script>

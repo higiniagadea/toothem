@@ -6,24 +6,24 @@
   <div class="errores">
           <ol style="list-style:none"></ol>
   </div>
-  
+
 
     <%= label_tag 'AGENDA_TURNO', 'Turno'  %>
     <%= radio_button_tag 'AGENDA', 'TURNO',true, :value => 1 %>
     <%#= label_tag 'AGENDA_TAREA', 'Tarea'   %>
     <%#= radio_button_tag 'AGENDA', 'TAREA',false, :value => 2  %>
-  
+
   <table style=" text-align: left;">
   <th>
    <div id="turnos">
      Documento <%= f.text_field :paciente_id, :class =>"ui-widget-content", :title => 'Ingrese un documento para realizar la busqueda', :size => 15, :onkeypress=> 'return validar(event)', :readonly => 'readonly' %>
-   
 
-    <%= link_to image_tag('magnifier_zoom_in.png'), buscar_dni_turnos_path, :id => 'buscar' %>
+
+    <%= link_to image_tag('zoom.png'), buscar_dni_turnos_path, :id => 'buscar' %>
        </div>
   </th>
   </table>
-  
+
   <table style=" text-align: left;" >
     <tr>
       <th>Profesional</th>
@@ -34,11 +34,11 @@
           </td>
       </tr>
 
-    
+
     <tr>
       <th>Fecha</th>
       <td><%= f.datetime_select :fecha_hora, :order => [:day, :month, :year], :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
-                                                                                                  'Octubre', 'Noviembre', 'Diciembre'], :prompt => false, :size=> 15 %> </td>
+                                                                                                  'Octubre', 'Noviembre', 'Diciembre'], :prompt => false, :class =>"ui-widget-content required" , :title => 'Ingrese la hora', :size=> 15, :onkeypress=> 'return validar(event)' %> </td>
     </tr>
 
     <tr>

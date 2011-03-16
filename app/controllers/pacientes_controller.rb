@@ -335,12 +335,7 @@ class PacientesController < ApplicationController
    end
   end
 
-
-  
-
-
-
-def ver
+  def ver
   @paciente = Paciente.find(params[:id])
    @imagenes = Imagen.find_all_by_paciente_id(@paciente)
 
@@ -385,8 +380,6 @@ def verificar_nroafiliado
 #elimina el titular asignado al paciente
 def elimina_tit
   @paciente = Paciente.find(params[:id])
-  #@titular = Titular.find(params[:id])
-
   @paciente.update_attribute(:titular_id, nil)
    respond_to do |format|
       format.html {redirect_to(edit_paciente_path(@paciente) + '#obra_social') }
@@ -433,13 +426,6 @@ def verificar_longitud
 
 end
 
-def prueba
-  @paciente = Paciente.find(params[:id])
-
-  respond_to do |format|
-    format.html{ render :partial => 'prueba', :layout => 'default'}
-   end
-end
 
 end
 

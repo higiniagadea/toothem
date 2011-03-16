@@ -76,7 +76,7 @@
       <%#end%>
 
 
-<%#= render 'result' %>
+
   
 <%= will_paginate @pacientes, :previous_label=>'Anterior', :next_label => 'Siguiente',
                               :class => 'result pagination',
@@ -85,7 +85,3 @@
                               :nombre => params[:nombre]} %>
 
 </div>
-
-<script type="text/javascript">
-/*$('#resultados').html('<%#= escape_javascript(render :partial=> 'result') %>');*/
-</script>

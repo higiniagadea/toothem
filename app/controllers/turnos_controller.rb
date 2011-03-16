@@ -27,6 +27,9 @@ class TurnosController < ApplicationController
  
   def edit
     @turno = Turno.find_by_id(params[:id])
+    respond_to do |format|
+      format.html{render :layout => false}
+    end
     
   end
 
@@ -65,16 +68,26 @@ class TurnosController < ApplicationController
   
   
   def update
-    @turno = Turno.find_by_id(params[turno][:id])
-   render :update do |page|
-      page<<"$('#calendar').fullCalendar()"
-      page<<"$('#desc_dialog').dialog('destroy')"
-    end
+    @turno = Turno.find(params[:id])
+   respond_to do |format|
+       if @turno.update_attributes(params[:turno])
+         flash[:notice] = 'Turno Actualizado'
+         format.html{redirect_to turnos_path}
+       end
+
+     end
   end
 
+
   def destroy
-    @turno = Turno.find_by_id(params[:id])
-    @turno.destroy
+    @turno = Turno.find_by_id(params[:id])      
+     respond_to do |format|
+       if @turno.destroy
+         flash[:notice] = 'Turno eliminado'
+         format.html{redirect_to turnos_path}
+       end
+      
+     end
 
     #render :update do |page|
      # page<<"$('#calendar').fullCalendar( 'refetchEvents' )"
@@ -108,18 +121,20 @@ class TurnosController < ApplicationController
 
     respond_to do |format|
       params[:turno][:profesional_id] =  @profesionales.id
-       if  params[:turno][:fecha_desde].blank?
+      if params[:profesional][:profesional_id].blank? && params[:fecha].blank?
         format.html{render :text => "Ingrese la fecha para realizar la busqueda", :layout => false }
-       else
-        @turnos = Turno.basic_search(params)
+       elsif
+        @turnos = Turno.basic_search(params[:turno])
         format.html{render :partial=> 'resultado', :layout => false}
 
        end
+      
     end
   end
 
   def buscar_dni   
-  @turno = Turno.new
+   @turno = Turno.new
+   #@pacientes = Paciente.find()
   respond_to do |format|
       format.html{ render :layout => false }
     end

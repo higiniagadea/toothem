@@ -149,9 +149,7 @@ class TratamientosController < ApplicationController
   end
 
 def buscar
-  #@tratamiento = Tratamiento.new
-  #@paciente = Paciente.find(params[:paciente_id])
-    respond_to do |format|
+      respond_to do |format|
       format.html {render :layout=> false}
 
     end
@@ -190,7 +188,6 @@ end
 
 def imprimir   
   @tratamiento = Tratamiento.find(params[:id])
-
   respond_to do |format|
    format.html {render :partial => 'reporte'}
   end
@@ -199,7 +196,6 @@ end
 
 def ver
   @tratamiento = Tratamiento.find(params[:id])
-
   respond_to do |format|
     format.html{ render :layout=> false, :partial => 'ver'}
    end
@@ -207,7 +203,6 @@ end
 
 def imprimir
     @tratamiento = Tratamiento.find(params[:id])
-
     respond_to do |format|
       format.html {render :partial=> 'imprimir', :layout=> 'print'}
     end
@@ -224,15 +219,5 @@ respond_to do |format|
   end
   
 end
-
-
-#def verificar_longitud
-#@tratamiento = Tratamiento.find(:first, :conditions => {:diente => params[:tratamiento][:diente]})
-   #respond_to do |format|
-    #format.json { render :json => !@tratamiento}
-   #end
-#end
-
-
 
 end

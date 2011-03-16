@@ -27,7 +27,7 @@ class ObrasSocialesController < ApplicationController
   # GET /obras_sociales/new.xml
   def new
     @obra_social = ObraSocial.new
- respond_to do |format|
+     respond_to do |format|
       format.html {render :layout => false}
     end
     
