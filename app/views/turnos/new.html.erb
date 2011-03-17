@@ -37,7 +37,7 @@
     
     <tr>
       <th>Fecha</th>
-      <td><%= f.datetime_select :fecha_hora, :order => [:day, :month, :year], :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
+      <td><%= f.datetime_select :fecha_hora, :order => [:day, :month, :year], :start_year => 2010, :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
                                                                                                   'Octubre', 'Noviembre', 'Diciembre'], :prompt => false, :size=> 15 %> </td>
     </tr>
 
@@ -102,14 +102,6 @@ function validate(e) { // 1
         });
 
 
-
-      $("#new_turno").validate({
-        //errorLabelContainer: $("#new_paciente div.errores")
-       errorContainer: $("#new_turno div.errores"),
-       errorLabelContainer: $("ol", $("#new_turno div.errores")),
-       wrapper: 'li',
-       meta: "validate"
-       });
 
       $('#AGENDA_turno').click(function(){
       mostrar_evento();

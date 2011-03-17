@@ -134,7 +134,7 @@ class TurnosController < ApplicationController
 
   def buscar_dni   
    @turno = Turno.new
-   #@pacientes = Paciente.find()
+   #@pacientes = Paciente.new
   respond_to do |format|
       format.html{ render :layout => false }
     end

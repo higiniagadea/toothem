@@ -57,8 +57,8 @@
                 title  : 'Profesional: <%= turno.profesional.nombre %>',              
                 start  : 'Desde: <%= turno.fecha_hora.to_s %>',
                 end : 'Hasta: <%= turno.fecha_hora.to_s %>',
-                allDay : false
-                
+                allDay : false,
+                url: 'http://localhost:3000/pacientes/search'
               },
             <% end %>
 
@@ -106,12 +106,12 @@
               //}
           },
 
-          eventClick: function(event, jsEvent, view){
+          eventClick: function(event, jsEvent){
             if (confirm("esta seguro?"),event.destroy) {
             window.open(event.destroy);
             return false;
         }
-                   showEventDetails(event);
+                 
           }
 
 
