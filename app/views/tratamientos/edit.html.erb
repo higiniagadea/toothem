@@ -57,25 +57,21 @@
          <td>
          <%= f.collection_select(:profesional_id, Profesional.all, :id, :nombre, :class=> 'ui-widget-content required',  :title=> 'Seleccione un profesional') %>
          </td>
-
+    </tr>
+    <tr>
 
   <th>Estado del Tratamiento</th>
   <td><span class="estado_tratamiento_id"><%= f.collection_select(:estado_tratamiento_id, EstadoTratamiento.all, :id, :nombre, :class=> 'ui-widget-content required', :title=> 'Estado no puede estar en blanco', :id => 'estado')%>
     </span></td>
 
 
-  </tr>
-    
-  
-
-
-    <tr>
-    <th>Fecha De finalizacion</th>
- <span class="fecha" class="ui-widget-content">
-        <input class="ui-widget-content required"type="text" id="fecha_finalizacion" size="10" name="tratamiento[fecha_finalizacion]"  readonly="readonly" title="Ingrese la fecha de finalizacion"/>
+ 
+    <td>
+      <span class="ui-widget-content fecha_f"><input class="ui-widget-content required" type="text" id="fecha_finalizacion" size="10" name="tratamiento[fecha_finalizacion]"  readonly="readonly" title="Ingrese la fecha de finalizacion"/>
       </span>
-    </tr>
-
+      
+    </td>
+  </tr>
     <tr>
         <th>Observaciones</th>
         <td><%= f.text_area :observaciones,  :class=> 'ui-widget-content' ,  :cols => 12, :rows => 4 %> </td>
@@ -113,27 +109,34 @@
     te = String.fromCharCode(tecla); // 5
     return patron.test(te); // 6
 }
+
+function deshabilitar_campo()
+      {
+       $('.fecha_f').hide();
+      };
+
+       function habilitar_campo()
+       {
+           alert('Ingrese la fecha de finalizacion')
+           if ($('#tratamiento_estado_tratamiento_id').val() == '5' )
+             {
+               //alert('hola');
+              $('.fecha_f').show();
+             }
+             else{
+                $('.fecha_f').hide();
+             }
+       };
+
+
+
+
 $(document).ready(function(){
     deshabilitar_campo();
 
 
-      function deshabilitar_campo()
-      {
-       $('.fecha').hide();
-      };
       
-       function habilitar_campo()
-       {
-          $('.fecha').show();
-           if ($('#estado_tratamiento_id').val() == 5 )
-             {
-              $('.fecha').show();
-             }
-       };
-
-       $("#estado_tratamiento_id").change(function(){
-          habilitar_campo();
-        });
+       $("#tratamiento_estado_tratamiento_id").change(habilitar_campo);
 
    $(function() {
         $('input:text').keydown(function(e){
