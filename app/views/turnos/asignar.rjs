@@ -1,0 +1,1 @@
+page << "$('#paciente_matricula').val('#{@paciente.matricula}');"

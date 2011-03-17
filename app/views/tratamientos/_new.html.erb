@@ -81,7 +81,8 @@
 
          
     <th>Estado del Tratamiento</th>
-    <td><%= f.collection_select(:estado_tratamiento_id, EstadoTratamiento.all, :id, :nombre, :class=> 'ui-widget-content required',  :title=> 'Seleccione un Estado') %>
+    <td>
+<%= f.collection_select(:estado_tratamiento_id, EstadoTratamiento.find(:all, :conditions =>  'id <= 4'), :id, :nombre, :class=> 'ui-widget-content required',  :title=> 'Seleccione un Estado') %>
    
 
    </td>
@@ -125,7 +126,7 @@
     return patron.test(te); // 6
 }
    $(document).ready(function(){
-      $(function() {
+         $(function() {
         $('input:text').keydown(function(e){
         if (e.keyCode == 13) {
             $('form').submit();

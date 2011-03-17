@@ -60,22 +60,20 @@
 
 
   <th>Estado del Tratamiento</th>
-  <td><%= f.collection_select(:estado_tratamiento_id, EstadoTratamiento.find(:all, :conditions =>  'id <= 4'), :id, :nombre, :class=> 'ui-widget-content required', :title=> 'Estado no puede estar en blanco')%>
-  </td>
+  <td><span class="estado_tratamiento_id"><%= f.collection_select(:estado_tratamiento_id, EstadoTratamiento.all, :id, :nombre, :class=> 'ui-widget-content required', :title=> 'Estado no puede estar en blanco', :id => 'estado')%>
+    </span></td>
 
 
   </tr>
-   
-  
     
-    <%#= f.check_box :fue_liquidado, :class=> 'ui-widget-content required'  %> 
+  
 
 
     <tr>
     <th>Fecha De finalizacion</th>
- <td><span class="fecha" class="ui-widget-content">
+ <span class="fecha" class="ui-widget-content">
         <input class="ui-widget-content required"type="text" id="fecha_finalizacion" size="10" name="tratamiento[fecha_finalizacion]"  readonly="readonly" title="Ingrese la fecha de finalizacion"/>
-      </span></td>
+      </span>
     </tr>
 
     <tr>
@@ -116,6 +114,27 @@
     return patron.test(te); // 6
 }
 $(document).ready(function(){
+    deshabilitar_campo();
+
+
+      function deshabilitar_campo()
+      {
+       $('.fecha').hide();
+      };
+      
+       function habilitar_campo()
+       {
+          $('.fecha').show();
+           if ($('#estado_tratamiento_id').val() == 5 )
+             {
+              $('.fecha').show();
+             }
+       };
+
+       $("#estado_tratamiento_id").change(function(){
+          habilitar_campo();
+        });
+
    $(function() {
         $('input:text').keydown(function(e){
         if (e.keyCode == 13) {

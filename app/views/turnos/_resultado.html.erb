@@ -1,24 +1,35 @@
 
-
+<% unless @turnos.blank? %>
 <h1>Resultado de la Busqueda</h1>
-<table class="table-list">
+<table style=" text-align: left;" class="listado">
   <tr>
     <th>Profesional</th>
-    <th>Fecha</th>
-    <th>Hora</th>
+    <th>Fecha</th>   
     <th>Duracion</th>
-    <th>Paciente</th>
+   <th>Paciente</th>
   </tr>
 <% @turnos.each do |turno| %>
-  <tr>
-    <td><%=h turno.profesional_id %> </td>
-    <td><%=h turno.fecha.strftime('%d/%m/%Y') %> </td>
-    <td><%=h turno.hora %></td>
+  <tr  class="<%= cycle('par','impar') -%>">
+    <td><%=h turno.profesional.nombre %> </td>
+    <td><%=h turno.fecha_hora.strftime('%d/%m/%Y') %> </td>    
     <td><%=h turno.duracion %></td>
-    <td><%=h turno.paciente %> </td>
+    <td><%#=h turno.paciente.nombre %></td>
+    <td><%= link_to image_tag('pencil.png'), edit_turno_path(turno), :id => 'editar_' + turno.id.to_s%>
+        <%= link_to image_tag('cancel.png'), turno, :confirm => 'Esta seguro?', :method => :delete %>      </td>
+ 
   </tr>
-  <%end%>
+  <script type="text/javascript">
+       $('#editar_<%= turno.id.to_s %> ').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
 
+        });
+</script>
+  <%end%>
+<%else%>
+  No se encontraron resultados
+  <%end%>
 
 </table>
 

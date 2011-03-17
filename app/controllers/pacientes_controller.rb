@@ -8,8 +8,7 @@ class PacientesController < ApplicationController
 
   def new_tratamiento
     #params[:paciente][:consultorio_id] = session[:consultorio][:id]
-    @paciente = Paciente.find(params[:paciente_id])
-    
+    @paciente = Paciente.find(params[:paciente_id])    
     @tratamiento = Tratamiento.new
     @arancel = Arancel.find_by_prestacion_id(params[:arancel].to_i)
     respond_to do |format|
@@ -122,7 +121,7 @@ class PacientesController < ApplicationController
     @profesionales = Profesional.paginate(:page => params[:page], :per_page => 2)
     @prestaciones = Prestacion.find(:all)
     @fichas = Ficha.paginate(:page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha DESC')
- @turnos = Turno.find(:all)
+    @turnos = Turno.find(:all)
 
     respond_to do |format|
       unless @paciente.blank?
@@ -336,12 +335,7 @@ class PacientesController < ApplicationController
    end
   end
 
-
-  
-
-
-
-def ver
+  def ver
   @paciente = Paciente.find(params[:id])
    @imagenes = Imagen.find_all_by_paciente_id(@paciente)
 
@@ -386,8 +380,6 @@ def verificar_nroafiliado
 #elimina el titular asignado al paciente
 def elimina_tit
   @paciente = Paciente.find(params[:id])
-  #@titular = Titular.find(params[:id])
-
   @paciente.update_attribute(:titular_id, nil)
    respond_to do |format|
       format.html {redirect_to(edit_paciente_path(@paciente) + '#obra_social') }
@@ -434,13 +426,6 @@ def verificar_longitud
 
 end
 
-def prueba
-  @paciente = Paciente.find(params[:id])
-
-  respond_to do |format|
-    format.html{ render :partial => 'prueba', :layout => 'default'}
-   end
-end
 
 end
 

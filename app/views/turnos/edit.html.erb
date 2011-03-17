@@ -1,12 +1,11 @@
-<div id="event_desc">
 <fieldset class="ui-widget ui-widget-content ui-corner-all">
   <legend class="ui-widget  ui-corner-all ui-widget-header">Nuevo Evento</legend>
-  <% form_for @turno do |f| %>
-  
+
+ <% form_for @turno do |f| %>
+
   <div class="errores">
           <ol style="list-style:none"></ol>
   </div>
-
 
 
     <%= label_tag 'AGENDA_TURNO', 'Turno'  %>
@@ -14,79 +13,61 @@
     <%#= label_tag 'AGENDA_TAREA', 'Tarea'   %>
     <%#= radio_button_tag 'AGENDA', 'TAREA',false, :value => 2  %>
 
-<table>
-    <tr>
-    <td style=" float: left; margin-left: 1000px">
+  <table style=" text-align: left;">
+  <th>
+   <div id="turnos">
+     Documento <%= f.text_field :paciente_id, :class =>"ui-widget-content", :title => 'Ingrese un documento para realizar la busqueda', :size => 15, :onkeypress=> 'return validar(event)', :readonly => 'readonly' %>
 
-    <%= link_to image_tag('add.png') + 'Nuevo Paciente', new_paciente_path %>
-    </td>
-    </tr>
 
-</table>
-
-    <table style=" text-align: left;">
-    <th>
-  <div id="turnos">
-     Documento <%= f.text_field :paciente_id, :class =>"ui-widget-content required", :size => 15 %>
-   </div> 
-    </th>
+    <%= link_to image_tag('zoom.png'), buscar_dni_turnos_path, :id => 'buscar' %>
+       </div>
+  </th>
   </table>
 
-    <table style=" text-align: left;" >
-      <tr>
+  <table style=" text-align: left;" >
+    <tr>
       <th>Profesional</th>
           <td>
               <%= f.collection_select(:profesional_id, Profesional.all, :id, :nombre, {:include_blank => 'Seleccione'},
-                                                                                                  :class=> 'ui-widget-content required',
-                                                                                                  :title=> 'Seleccione un profesional') %>
+                                                                                       :class=> 'ui-widget-content required',
+                                                                                       :title=> 'Seleccione un profesional') %>
           </td>
-    </tr>
+      </tr>
+
 
     <tr>
       <th>Fecha</th>
-      <td><span class="fecha_t" class ="ui-widget-content">
-              <input class="ui-widget-content required" title="Ingrese la fecha" type="text" id="fecha_t"  size="15" name="turno[fecha]" readonly="readonly" />
-          </span>
-      </td>
-    </tr>
-
-    <tr>
-      <th>Hora</th>
-      <td><%= f.time_select :hora, :class =>"ui-widget-content required" , :title => 'Ingrese la hora', :size=> 15, :onkeypress=> 'return validar(event)' %> </td>
+      <td><%= f.datetime_select :fecha_hora, :order => [:day, :month, :year], :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
+                                                                                                  'Octubre', 'Noviembre', 'Diciembre'], :prompt => false, :class =>"ui-widget-content required" , :title => 'Ingrese la hora', :size=> 15, :onkeypress=> 'return validar(event)' %> </td>
     </tr>
 
     <tr>
       <th>Duracion</th>
-      <td><%= f.text_field :duracion , :class =>"ui-widget-content required", :size=> 15, :title => 'Ingrese la duracion', :onkeypress=> 'return validar(event)'  %> </td>
-    </tr>
+      <td><select name="turno[duracion]" class ="ui-widget-content"><%= options_for_select(["30", "45", "60", "90", "120"], @turno.duracion) %>
+      </select> minutos</td>
+      </tr>
+   </table>
 
- </table>
 
-  <!--<table style=" text-align: left;">
-    <th>
+   <table style=" text-align: left;">
+  <!--  <th>
      <div id="tareas">
-       Tareas:  <%#= f.text_area :observaciones, :class =>"ui-widget-content required", :cols => 12, :rows => 4  %>
+       Tareas:  <%#= f.text_area :observaciones, :title => 'Ingrese la tarea', :class =>"ui-widget-content required", :cols => 12, :rows => 4  %>
      </div>
-    </th>
-  </table> -->
-
-
-
+    </th> -->
+   </table>
 
 
    <table>
-    <tr>
-  <td style=" float: left; margin-left: 200px">
-
-    <%= f.submit 'Guardar',  :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
-  </td>
+    <tr><td  style=" float: left; margin-left:  300px"><%= f.submit 'guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
     </tr>
-</table>
-</fieldset>
+  </table>
+
 <%end%>
 
-<script type="text/javascript">
+</fieldset>
 
+<script type="text/javascript">
 function validar(e) { // 1
     tecla = (document.all) ? e.keyCode : e.which; // 2
     if (tecla==8) return true; // 3
@@ -102,7 +83,7 @@ function validate(e) { // 1
     return patron.test(te); // 6
 }
 
-  $(document).ready(function(){
+   $(document).ready(function(){
      mostrar_evento();
 
      $(function() {
@@ -111,7 +92,15 @@ function validate(e) { // 1
             $('form').submit();
         }
       });
+
      });
+        $('#buscar').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+        });
+
 
 
       $("#new_turno").validate({
@@ -142,14 +131,19 @@ function validate(e) { // 1
          if ($("input[name='AGENDA']:checked").val()== '1') {
            $('#turnos').show();
            $('#tareas').hide();
+           $("#fancybox-outer").width(440);
+           $("#fancybox-outer").height(280);
+           $("#fancybox-inner").width(400);
+           $("#fancybox-inner").height(300);
      
          }else{
            $('#tareas').show();
            $('#turnos').hide();
+           $("#fancybox-outer").width(340);
+           $("#fancybox-outer").height(330);
+           $("#fancybox-inner").width(320);
+           $("#fancybox-inner").height(320);
    
          }
 };
-
-
-  </script>+
-</div>
+</script>

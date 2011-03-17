@@ -6,7 +6,7 @@
   <div class="errores">
           <ol style="list-style:none"></ol>
   </div>
-  <%#=f.hidden_field :id, :value => @turno.id %>
+  
 
     <%= label_tag 'AGENDA_TURNO', 'Turno'  %>
     <%= radio_button_tag 'AGENDA', 'TURNO',true, :value => 1 %>
@@ -16,8 +16,11 @@
   <table style=" text-align: left;">
   <th>
    <div id="turnos">
-     Documento <%= f.text_field :paciente_id, :class =>"ui-widget-content required", :title => 'Ingrese un documento para realizar la busqueda', :size => 15, :onkeypress=> 'return validar(event)' %>
-     </div>
+     Documento <%= f.text_field :paciente_id, :class =>"ui-widget-content", :title => 'Ingrese un documento para realizar la busqueda', :size => 15, :onkeypress=> 'return validar(event)', :readonly => 'readonly' %>
+   
+
+    <%= link_to image_tag('magnifier_zoom_in.png'), buscar_dni_turnos_path, :id => 'buscar' %>
+       </div>
   </th>
   </table>
   
@@ -33,23 +36,25 @@
 
     
     <tr>
-      <th>Desde</th>
-      <td><%= f.datetime_select :fecha_hora, :class =>"ui-widget-content required" , :title => 'Ingrese la hora', :size=> 15, :onkeypress=> 'return validar(event)' %> </td>
+      <th>Fecha</th>
+      <td><%= f.datetime_select :fecha_hora, :order => [:day, :month, :year], :start_year => 2010, :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
+                                                                                                  'Octubre', 'Noviembre', 'Diciembre'], :prompt => false, :size=> 15 %> </td>
     </tr>
 
     <tr>
-      <th>Hasta</th>
-      <td><%#= f.time_select :hora, :class =>"ui-widget-content required" , :title => 'Ingrese la hora', :size=> 15, :onkeypress=> 'return validar(event)' %>  </td>
-    </tr>
+      <th>Duracion</th>
+      <td><select name="turno[duracion]" class ="ui-widget-content"><%= options_for_select(["30", "45", "60", "90", "120"], @turno.duracion) %>
+      </select> minutos</td>
+      </tr>
    </table>
 
 
    <table style=" text-align: left;">
-    <th>
-     <!--<div id="tareas">
+  <!--  <th>
+     <div id="tareas">
        Tareas:  <%#= f.text_area :observaciones, :title => 'Ingrese la tarea', :class =>"ui-widget-content required", :cols => 12, :rows => 4  %>
-     </div> -->
-    </th>
+     </div>
+    </th> -->
    </table>
 
 
@@ -87,16 +92,16 @@ function validate(e) { // 1
             $('form').submit();
         }
       });
+
      });
+        $('#buscar').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+        });
 
 
-      $("#new_turno").validate({
-        //errorLabelContainer: $("#new_paciente div.errores")
-       errorContainer: $("#new_turno div.errores"),
-       errorLabelContainer: $("ol", $("#new_turno div.errores")),
-       wrapper: 'li',
-       meta: "validate"
-       });
 
       $('#AGENDA_turno').click(function(){
       mostrar_evento();
