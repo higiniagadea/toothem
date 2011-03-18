@@ -61,13 +61,13 @@
     <tr>
 
   <th>Estado del Tratamiento</th>
-  <td><span class="estado_tratamiento_id"><%= f.collection_select(:estado_tratamiento_id, EstadoTratamiento.all, :id, :nombre, :class=> 'ui-widget-content required', :title=> 'Estado no puede estar en blanco', :id => 'estado')%>
+  <td><span class="estado_tratamiento_id"><%= f.collection_select(:estado_tratamiento_id, EstadoTratamiento.all, :id, :nombre, :class=> 'ui-widget-content required', :title=> 'Estado no puede estar en blanco')%>
     </span></td>
 
 
  
     <td>
-      <span class="ui-widget-content fecha_f"><input class="ui-widget-content required" type="text" id="fecha_finalizacion" size="10" name="tratamiento[fecha_finalizacion]"  readonly="readonly" title="Ingrese la fecha de finalizacion"/>
+      <span class="ui-widget-content fecha_f"><input class="ui-widget-content" type="text" id="fecha_finalizacion" size="10" name="tratamiento[fecha_finalizacion]"  readonly="readonly" title="Ingrese la fecha de finalizacion"/>
       </span>
       
     </td>
@@ -117,11 +117,13 @@ function deshabilitar_campo()
 
        function habilitar_campo()
        {
-           alert('Ingrese la fecha de finalizacion')
+       
            if ($('#tratamiento_estado_tratamiento_id').val() == '5' )
+     
              {
-               //alert('hola');
+               alert('Ingrese la fecha de finalizacion');
               $('.fecha_f').show();
+                 
              }
              else{
                 $('.fecha_f').hide();
@@ -132,11 +134,10 @@ function deshabilitar_campo()
 
 
 $(document).ready(function(){
-    deshabilitar_campo();
-
-
-      
+    deshabilitar_campo();     
        $("#tratamiento_estado_tratamiento_id").change(habilitar_campo);
+
+
 
    $(function() {
         $('input:text').keydown(function(e){
