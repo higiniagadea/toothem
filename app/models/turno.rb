@@ -21,14 +21,27 @@ class Turno < ActiveRecord::Base
   }
 
 
+     named_scope :by_paciente_id_matricula, lambda { |paciente_id_matricula|
+    {
+      :conditions=> ['lower(matricula) LIKE :matricula',
+          { :paciente_id_matricula => "%"+matricula.downcase+"%"} ]
+    }
+  }
+
+
 def self.basic_search(options)
   scope_builder do |builder|
     builder.by_fechas(options[:fecha_desde], options[:fecha_hasta]) unless options[:fecha_desde].blank? && options[:fecha_hasta].blank?
-    builder.by_paciente_id(options[:paciente_id]) unless options[:paciente_id].blank?
+    
     builder.by_profesional_id(options[:profesional_id]) unless options[:profesional_id].blank?
   end
 end
 
+def self.buscar(options)
+  scope_builder do |builder|
+   builder.by_paciente_id_matricula(options[:paciente_id_matricula]) unless options[:paciente_id_matricula].blank?
+  end
+end
 
 end
 

@@ -1,5 +1,6 @@
 class TurnosController < ApplicationController
-  layout 'default' 
+  before_filter :login_required
+  layout 'default'
 
     def show
     @turno = Turno.find(params[:id])
@@ -16,6 +17,7 @@ class TurnosController < ApplicationController
 # end
    def new    
     @turno = Turno.new
+    @paciente = Paciente.find(params[:paciente_id])
     @profesional = Profesional.find(params[:profesional_id]) unless params[:profesional_id].blank?
    
 
@@ -48,6 +50,7 @@ class TurnosController < ApplicationController
   def create
   
    @turno = Turno.new(params[:turno])
+    @paciente = Paciente.find(params[:turno][:paciente_id])
    @profesional = Profesional.find(params[:profesional_id]) unless params[:profesional_id].blank?
    
 
@@ -105,7 +108,7 @@ class TurnosController < ApplicationController
     #end
   #end
 
-  def buscar
+  def cambios
     respond_to do |format|
       format.html {render :layout=> 'default'}
 
@@ -114,11 +117,8 @@ class TurnosController < ApplicationController
 
 
   def resultado
- 
     @profesionales = Profesional.find(params[:profesional][:profesional_id]) if params[:profesional][:profesional_id]
-
     params[:turno][:profesional_id] = params[:profesional][:profesional_id] if params[:profesional][:profesional_id]
-
     respond_to do |format|
       params[:turno][:profesional_id] =  @profesionales.id
       if params[:profesional][:profesional_id].blank? && params[:fecha].blank?
@@ -127,31 +127,34 @@ class TurnosController < ApplicationController
         @turnos = Turno.basic_search(params[:turno])
         format.html{render :partial=> 'resultado', :layout => false}
 
-       end
-      
+       end      
     end
   end
 
-  def buscar_dni   
-   @turno = Turno.new
-   #@pacientes = Paciente.new
-  respond_to do |format|
+  def buscar  
+    respond_to do |format|
       format.html{ render :layout => false }
     end
   end
 
+
+
   def result
-  
+  @paciente = Paciente.all
     respond_to do |format|
-      
+    format.html{render :layout => false}
     end
   end
 
-  def asignar_paciente
-     @paciente = Paciente.find(params[:id])
+
+
+
+def asignar_dni
+    @paciente = Paciente.find(params[:id])
     respond_to do |format|
       format.js
     end
-  end
+end
+ 
   
 end
