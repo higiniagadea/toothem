@@ -54,7 +54,7 @@
             <% for turno in Turno.all -%>
               {
                 id : 'turno: <%= turno.id.to_s %>',
-                title  : 'Profesional: <%= turno.profesional.nombre %>',              
+                title  : 'Profesional: <%= turno.profesional_id %>',
                 start  : 'Desde: <%= turno.fecha_hora.to_s %>',
                 end : 'Hasta: <%= turno.fecha_hora.to_s %>',
                 allDay : false,

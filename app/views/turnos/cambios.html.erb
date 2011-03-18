@@ -1,6 +1,9 @@
  <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Cambios de Agenda</legend>
-<% form_remote_tag :url => resultado_turnos_path, :method => :post, :update => :search_hits do -%>
+<% form_remote_tag :url => resultado_turnos_path,
+                   :method => :post,
+                   :update => :search_hits do -%>
+  
   <table style=" text-align: left;">
     <tr>
      <th>

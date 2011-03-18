@@ -172,7 +172,7 @@ def buscar
 #end
 
 def resultado 
- @profesionales = Profesional.find( params[:profesional][:profesional_id]) if params[:profesional][:profesional_id]
+ @profesionales = Profesional.find(params[:profesional][:profesional_id]) if params[:profesional][:profesional_id]
   params[:tratamiento][:profesional_id] = params[:profesional][:profesional_id] if params[:profesional][:profesional_id]
   respond_to do |format|
       params[:tratamiento][:profesional_id] =  @profesionales.id

@@ -110,28 +110,23 @@
     return patron.test(te); // 6
 }
 
+
 function deshabilitar_campo()
       {
        $('.fecha_f').hide();
       };
 
        function habilitar_campo()
-       {
-       
-           if ($('#tratamiento_estado_tratamiento_id').val() == '5' )
-     
+       {       
+           if ($('#tratamiento_estado_tratamiento_id').val() == '5' )     
              {
                alert('Ingrese la fecha de finalizacion');
-              $('.fecha_f').show();
-                 
+              $('.fecha_f').show();                 
              }
              else{
                 $('.fecha_f').hide();
              }
        };
-
-
-
 
 $(document).ready(function(){
     deshabilitar_campo();     
