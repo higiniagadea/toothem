@@ -1,5 +1,5 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-all">
-  <legend class="ui-widget  ui-corner-all ui-widget-header">Nuevo Evento</legend>
+  <legend class="ui-widget  ui-corner-all ui-widget-header">Modificar Evento</legend>
 
  <% form_for @turno do |f| %>
 
@@ -10,17 +10,17 @@
 
     <%= label_tag 'AGENDA_TURNO', 'Turno'  %>
     <%= radio_button_tag 'AGENDA', 'TURNO',true, :value => 1 %>
-    <%#= label_tag 'AGENDA_TAREA', 'Tarea'   %>
-    <%#= radio_button_tag 'AGENDA', 'TAREA',false, :value => 2  %>
+    <%= label_tag 'AGENDA_TAREA', 'Tarea'   %>
+    <%= radio_button_tag 'AGENDA', 'TAREA',false, :value => 2  %>
 
   <table style=" text-align: left;">
-  <th>
-   <div id="turnos">
-     Documento <%= f.text_field :paciente_id, :class =>"ui-widget-content", :title => 'Ingrese un documento para realizar la busqueda', :size => 15, :onkeypress=> 'return validar(event)', :readonly => 'readonly' %>
+   <th>
+     <div id="turnos">
+     Documento <%= text_field_tag :paciente_desc,{}, :class =>"ui-widget-content", :title => 'Ingrese un documento para realizar la busqueda', :size => 15, :onkeypress=> 'return validar(event)', :readonly => 'readonly', :id => 'dni' %>
+        <%= link_to image_tag('magnifier_zoom_in.png'), "javascript:", :rel => buscar_dni_pacientes_path, :id => 'busc' %>
+        <%= f.hidden_field :paciente_id %>
 
-
-    <%= link_to image_tag('magnifier_zoom_in.png'), buscar_dni_turnos_path, :id => 'buscar' %>
-       </div>
+     </div>
   </th>
   </table>
 
@@ -38,7 +38,7 @@
     <tr>
       <th>Fecha</th>
       <td><%= f.datetime_select :fecha_hora, :order => [:day, :month, :year], :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
-                                                                                                  'Octubre', 'Noviembre', 'Diciembre'], :prompt => false, :class =>"ui-widget-content required" , :title => 'Ingrese la hora', :size=> 15, :onkeypress=> 'return validar(event)' %> </td>
+                                                                                                  'Octubre', 'Noviembre', 'Diciembre'], :prompt => false, :class =>"ui-widget-content required" , :title => 'Ingrese la hora' %> </td>
     </tr>
 
     <tr>
@@ -50,11 +50,11 @@
 
 
    <table style=" text-align: left;">
-  <!--  <th>
+  <th>
      <div id="tareas">
-       Tareas:  <%#= f.text_area :observaciones, :title => 'Ingrese la tarea', :class =>"ui-widget-content required", :cols => 12, :rows => 4  %>
+       Tareas:  <%= f.text_area :observaciones, :title => 'Ingrese la tarea', :class =>"ui-widget-content required", :cols => 12, :rows => 4  %>
      </div>
-    </th> -->
+    </th>
    </table>
 
 
@@ -94,12 +94,7 @@ function validate(e) { // 1
       });
 
      });
-        $('#buscar').fancybox(
-        {
-      'hideOnContentClick': false,
-      'titleShow': false
-
-        });
+       
 
 
 
@@ -122,6 +117,52 @@ function validate(e) { // 1
       $("#fecha_t").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate: 0});
 
 
+$('#busc').click(function()
+      {
+        // Destroy currrent tooltip if present
+        if($(this).data("qtip")) $(this).qtip("destroy");
+        $(this).qtip({
+
+               content: {
+                  url: $(this).attr('rel'), // Use the rel attribute of each element for the url to load
+                  title: {
+                     text: $(this).attr('title') // Give the tooltip a title using each elements text
+                     //button: '<%#= image_tag 'fancybox/fancy_close.png' %>' // Show a close link in the title
+                  }
+               },
+               position: {
+                  corner: {
+                     target: 'bottomMiddle', // Position the tooltip above the link
+                     tooltip: 'topMiddle'}
+                  },
+                  adjust: {
+                     screen: true // Keep the tooltip on-screen at all times
+                  },
+               show: {
+                  when: false, // Don't specify a show event
+                  ready: true // Show the tooltip when ready
+               },
+               hide: false, // Don't specify a hide event
+
+               style: {
+                  width: 600,
+                  border: {
+                     width: 1,
+                     radius: 10
+                  },
+                  padding: 5,
+                  textAlign: 'left',
+                  tip: true, // Give it a speech bubble tip with automatic corner detection
+                  name: 'light' // Style it according to the preset 'cream' style
+               }
+
+            });
+
+
+      });
+
+
+
 
 
  });
@@ -131,17 +172,17 @@ function validate(e) { // 1
          if ($("input[name='AGENDA']:checked").val()== '1') {
            $('#turnos').show();
            $('#tareas').hide();
-           $("#fancybox-outer").width(440);
+           $("#fancybox-outer").width(480);
            $("#fancybox-outer").height(280);
-           $("#fancybox-inner").width(400);
+           $("#fancybox-inner").width(460);
            $("#fancybox-inner").height(300);
      
          }else{
            $('#tareas').show();
            $('#turnos').hide();
-           $("#fancybox-outer").width(340);
+           $("#fancybox-outer").width(490);
            $("#fancybox-outer").height(330);
-           $("#fancybox-inner").width(320);
+           $("#fancybox-inner").width(460);
            $("#fancybox-inner").height(320);
    
          }

@@ -1,13 +1,21 @@
- <fieldset class="ui-widget ui-widget-content ui-corner-top">
+
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Cambios de Agenda</legend>
-<% form_remote_tag :url => resultado_turnos_path,
-                   :method => :post,
-                   :update => :search_hits do -%>
+ <% form_remote_tag  :url => resultado_turnos_path,
+                     :method => :post,
+                     :update => :search_hits do -%>
   
   <table style=" text-align: left;">
+    <th>
+      <div id="turnos">
+   Documento <%= text_field_tag :paciente_desc,{}, :class =>"ui-widget-content required", :title => 'Ingrese un documento para realizar la busqueda', :size => 15, :onkeypress=> 'return validar(event)', :readonly => 'readonly', :id => 'dni' %>
+      <%= link_to image_tag('magnifier_zoom_in.png'), "javascript:", :rel => buscar_dni_pacientes_path, :id => 'buscar' %>
+        <%= hidden_field_tag  :paciente_id %>
+      </div>
+  </th>
     <tr>
-     <th>
-          <label>Elija un Profesional</label></th>
+     
+         <th> <label>Elija un Profesional</label></th>
         <th>          
           <%=  select("profesional", "profesional_id", Profesional.all.collect {|p| [ p.nombre, p.id ] }) %>
         
@@ -22,7 +30,7 @@
     </th>
  
 
-    <th>Hasta</th>
+    <th>Fecha Hasta</th>
     <th><span class="fecha" class ="ui-widget-content">
               <input class="ui-widget-content" type="text" id="fecha_hasta" name="turno[fecha_hasta]" readonly="readonly" size="10" />
       </span>
@@ -50,70 +58,55 @@
 
 
 <script type="text/javascript">
+   $(document).ready(function(){
+  $('#buscar').click(function()
+      {
+        // Destroy currrent tooltip if present
+        if($(this).data("qtip")) $(this).qtip("destroy");
+        $(this).qtip({
+
+               content: {
+                  url: $(this).attr('rel'), // Use the rel attribute of each element for the url to load
+                  title: {
+                     text: $(this).attr('title') // Give the tooltip a title using each elements text
+                     //button: '<%#= image_tag 'fancybox/fancy_close.png' %>' // Show a close link in the title
+                  }
+               },
+               position: {
+                  corner: {
+                     target: 'bottomMiddle', // Position the tooltip above the link
+                     tooltip: 'topMiddle'}
+                  },
+                  adjust: {
+                     screen: true // Keep the tooltip on-screen at all times
+                  },
+               show: {
+                  when: false, // Don't specify a show event
+                  ready: true // Show the tooltip when ready
+               },
+               hide: false, // Don't specify a hide event
+
+               style: {
+                  width: 500,
+                  border: {
+                     width: 1,
+                     radius: 10
+                  },
+                  padding: 5,
+                  textAlign: 'left',
+                  tip: true, // Give it a speech bubble tip with automatic corner detection
+                  name: 'light' // Style it according to the preset 'cream' style
+               }
+
+            });
+
+
+      });
+    
 
  $("#fecha_desde").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate:0});
 $("#fecha_hasta").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate: +1});
 
-$.validator.addMethod("dateRange", function() {
-        var hasta = $("#fecha_hasta").val().split('-');
-        var desde = $("#fecha_desde").val().split('-');
-        var anio_hasta = hasta[2];
-        var mes_hasta =  hasta[1];
-        var dia_hasta =  hasta[0];
-        var anio_desde = desde[2];
-        var mes_desde = desde[1];
-        var dia_desde = desde[0];
-        if (anio_desde > anio_hasta)
-           return false;
-           else
-             {
-                  if ((anio_desde == anio_hasta) && (mes_desde > mes_hasta))
-                  return false;
-                             else{
-                                  if ((anio_desde == anio_hasta) && (mes_desde == mes_hasta) && (dia_desde > dia_hasta))
-                                      return false;
-                                    else
-                                      return true;
-                             }
-
-             }
-
-}, "'Fecha desde' debe ser menor o igual a 'Fecha hasta'");
-
-// a new class rule to group all three methods
-$.validator.addClassRules({
-	requiredDateRange: {dateRange:true}
-});
-
-function formatDateTo(fecha){
-   var d = fecha.split('-');
-   var fdate = d[1].toString()+'-'+d[0].toString()+'-'+d[2].toString()
-   return fdate;
-}
-
-
-// overwrite default messages
-$.extend($.validator.messages, {
-	date: "Especificar fechas v&aacute;lidas"
-});
-
-var form = $("#dateRangeForm")
-form.validate({
-	submitHandler: function() {
-		//alert("Valid date range!");
-                this.form.submit();
- 	},
-	groups: {
-		dateRange: "fecha_desde fecha_hasta"
-	},
-	errorPlacement: function(error) {
-		form.find(".errorContainer").append(error);
-	}
-});
-
-$("#validate").click(function() {
-	form.valid();
-	return true;
 });
 
 </script>

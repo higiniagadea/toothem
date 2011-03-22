@@ -57,6 +57,11 @@ class Paciente < ActiveRecord::Base
 
     end
   end
- 
+
+  def self.buscar(options)
+      scope_builder do |builder|
+       builder.by_matricula(options[:matricula]) unless options[:matricula].blank?
+      end
+  end
   
 end

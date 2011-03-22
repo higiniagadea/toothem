@@ -12,6 +12,7 @@ class TratamientosController < ApplicationController
     end
   end
 
+  #muestra el importe dependiendo del arancel
   def actualizar_importe
     @arancel = Arancel.find_by_prestacion_id(params[:arancel].to_i)
  respond_to do |format| 
@@ -29,6 +30,7 @@ class TratamientosController < ApplicationController
     end
   end
 
+  #muestra el coseguro dependiendo del arancel
   def actualizar_coseguro
     @arancel = Arancel.find_by_prestacion_id(params[:arancel].to_i)
  respond_to do |format|
@@ -130,8 +132,7 @@ class TratamientosController < ApplicationController
     end
   end
 
-  # DELETE /tratamientos/1
-  # DELETE /tratamientos/1.xml
+ 
   def eliminar   
     @tratamiento = Tratamiento.find(params[:id])    
     @paciente = Paciente.find(params[:paciente_id])
@@ -155,21 +156,6 @@ def buscar
     end
   end
 
-#def resultado
- # @tratamientos = Tratamiento.find(:all, :conditions => ['fecha > ? and fecha < ?', params[:tratamiento][:fecha].to_date, params[:tratamiento][:fecha_hasta].to_date] )
-  #respond_to do |format|
-    #unless
-     # params[:profesional].blank? && params[:fecha].blank?
-      #  format.html{render :text => "Ingrese", :layout => false }
-      #else
-       # @tratamientos = Tratamiento.find(:all, :conditions => ['fecha > ? and fecha < ?', params[:tratamiento][:fecha].to_date, params[:tratamiento][:fecha_hasta].to_date] )
-        # @tratamientos = Tratamiento.basic_search(params)
-        #format.html {render :layout => false}
-      
-      
-   #    format.html {render :layout => false}
- #end
-#end
 
 def resultado 
  @profesionales = Profesional.find(params[:profesional][:profesional_id]) if params[:profesional][:profesional_id]

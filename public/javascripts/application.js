@@ -64,16 +64,17 @@ $(document).ready(function(){
   jQuery.ajaxSetup({'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript,application/javascript,text/html")}})
     $(":submit").button();
     $(":button").button();
+
     $(function() {
-  $('input[datatype=numeric]').keypress(function(e) {
+    $('input[datatype=numeric]').keypress(function(e) {
     key = (document.all) ? e.keyCode : e.which;
     if (key==8) return true;
     patron =/\d/;
     te = String.fromCharCode(key);
     return patron.test(te);
-   });
+    });
 
-
+    })
 
 
 
@@ -107,7 +108,7 @@ $(document).ready(function(){
 
 
 
-$('div.ajax-pagination a').live('click', function() {
+  $('div.ajax-pagination a').live('click', function() {
     $('#ficha_pag').load(this.href)
     return false
   });
@@ -118,7 +119,7 @@ $('div.ajax-pagination a').live('click', function() {
     return false
   });
 
-$('div.ajax-pagination a').live('click', function() {
+  $('div.ajax-pagination a').live('click', function() {
     $('#presta ').load(this.href)
     return false
   });
@@ -129,7 +130,7 @@ $('div.ajax-pagination a').live('click', function() {
     return false
   });
 
-$('div.ajax-pagination a').live('click', function() {
+  $('div.ajax-pagination a').live('click', function() {
     $('#obra ').load(this.href)
     return false
   });
@@ -140,7 +141,7 @@ $('div.ajax-pagination a').live('click', function() {
     return false
   });
 
-$('div.ajax-pagination a').live('click', function() {
+  $('div.ajax-pagination a').live('click', function() {
     $('#clinicas ').load(this.href)
     return false
   });
@@ -163,20 +164,19 @@ $('div.ajax-pagination a').live('click', function() {
   });
 
   $('div.ajax-pagination a').live('click', function() {
-    $('#turno ').load(this.href)
+    $('#turnos ').load(this.href)
     return false
   });
 
 
-  $('div.turnos a').live('click', function() {
-    $('#turno').load(this.href)
+  $('div.turno a').live('click', function() {
+    $('#turnos').load(this.href)
     return false
   });
 
 
-})
-    })
-    
+});
+     
     
 
    /* $(function () {

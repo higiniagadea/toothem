@@ -1,0 +1,39 @@
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Busqueda de pacientes</legend>
+
+  <div style="float:right" id="cerrar-qtip">
+       <%= image_tag('fancybox/fancy_close.png')%>
+     </div>
+     <script type="text/javascript">
+       $('#cerrar-qtip').click(function(){$('.qtip').remove();});
+     </script>
+
+
+
+<% form_remote_for @paciente,
+                   :url => result_dni_pacientes_path,
+                   :method => :post,
+                   :update => :search_hits do |f| -%>
+
+  <table style=" text-align: left;">
+    <tr>
+      <th>Documento</th>
+      <td><%= f.text_field :matricula, :class => 'ui-widget-content', :size => 15 %> </td>
+    </tr>
+  </table>
+  
+<table>
+    <tr>
+        <th style=" float: left; margin-left:  250px">
+
+          <%= f.submit 'Buscar',  :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+
+        </th>
+      </tr>
+<div id="search_hits"></div>
+    </table>
+
+  
+
+ </fieldset>
+<%end%>

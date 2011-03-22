@@ -20,7 +20,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :tareas
 
-  map.resources :turnos, :collection => {:cambios => :get, :resultado => [:post, :get], :get_turnos => :get, :buscar_dni => [:get, :post], :result => [:get, :post]}
+  map.resources :turnos, :collection => {:cambios => :get, :resultado => [:get, :post], :get_turnos => :get}
   
    map.resources :imagenes, :collection => {:new_archivo => :get}
               
@@ -67,7 +67,9 @@ ActionController::Routing::Routes.draw do |map|
                                 :verificar_matricula_tit => [:get],
                                 :verificar_numeroafiliado => [:get],
                                 :verificar_numeromatricula => [:get],
-                                :verificar_longitud => [:get]
+                                :verificar_longitud => [:get],
+                                :buscar_dni => [:get, :post],
+                                :result_dni => [:get, :post]
                 },
 
                 :member => {:new_tratamiento => [:get,:post],                          
@@ -88,7 +90,7 @@ ActionController::Routing::Routes.draw do |map|
                             :imprimir=> [:post, :get],
                             :elimina_tit => :get,                          
                             :edit_tratamientos => :get,
-                            :prueba => [:get, :post]
+                            :asignar => :get
                            
                 }do |paciente|
                              

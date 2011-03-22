@@ -9,15 +9,9 @@ class TurnosController < ApplicationController
    end
   end
 
-# def index
-#   @turnos = Turno.first
-#   respond_to do |format|
-#     format.html
-#   end
-# end
    def new    
     @turno = Turno.new
-    @paciente = Paciente.find(params[:paciente_id])
+    
     @profesional = Profesional.find(params[:profesional_id]) unless params[:profesional_id].blank?
    
 
@@ -35,25 +29,23 @@ class TurnosController < ApplicationController
     
   end
 
+  #muestra los turnos en el calendario
    def get_turnos    
     @turnos = Turno.find(:all, :include => 'profesional')
     events = []
     @turnos.each do |turno|
-    #turnos << {:id => turno.id, :fecha => turno.fecha, :profesional => turno.profesional_id, :hora => turno.hora, :duracion => turno.duracion }# || "Some cool description here...", :start => "#{turno.fecha_comienzo.iso8601}", :end => "#{turno.fecha_fin.iso8601}"}
+   
     events << {:id => turno.id.to_s, :title => turno.profesional_id.to_s,  :start => "#{turno.fecha_hora.iso8601}", :end => "#{turno.duracion.to_s}", :allDay => true}
     end
     render :text => events.to_json
   end
   
-  # POST /profesionales
-  # POST /profesionales.xml
+ 
   def create
-  
-   @turno = Turno.new(params[:turno])
-    @paciente = Paciente.find(params[:turno][:paciente_id])
+ 
+   @turno = Turno.new(params[:turno])   
    @profesional = Profesional.find(params[:profesional_id]) unless params[:profesional_id].blank?
-   
-
+ 
    respond_to do |format|
     if  @turno.save
       flash[:notice] = 'Turno guardado'
@@ -84,54 +76,44 @@ class TurnosController < ApplicationController
 
   def destroy
     @turno = Turno.find_by_id(params[:id])      
-     respond_to do |format|
-       if @turno.destroy
-         flash[:notice] = 'Turno eliminado'
-         format.html{redirect_to turnos_path}
-       end
-      
-     end
-
-    #render :update do |page|
-     # page<<"$('#calendar').fullCalendar( 'refetchEvents' )"
-      #page<<"$('#desc_dialog').dialog('destroy')"
-
+    @turno.destroy
+     render :update do |page|
+      page<<"$('#desc_dialog').dialog('destroy')"
+     
+    end
  
   end
 
 
-  #def resize
-   #@turno = Turno.find_by_id params[:id]
-    #if @turno
-     # @turno.endtime = (params[:minute_delta].to_i).minutes.from_now((params[:day_delta].to_i).days.from_now(@turno.endtime))
-      #@turno.save
-    #end
-  #end
-
-  def cambios
+  def buscar
     respond_to do |format|
       format.html {render :layout=> 'default'}
 
     end
   end
 
-
-  def resultado
+#resultado de la busqueda de turnos
+  def resultado    
     @profesionales = Profesional.find(params[:profesional][:profesional_id]) if params[:profesional][:profesional_id]
     params[:turno][:profesional_id] = params[:profesional][:profesional_id] if params[:profesional][:profesional_id]
+
     respond_to do |format|
       params[:turno][:profesional_id] =  @profesionales.id
-      if params[:profesional][:profesional_id].blank? && params[:fecha].blank?
-        format.html{render :text => "Ingrese la fecha para realizar la busqueda", :layout => false }
+
+      if params[:profesional][:profesional_id].blank? || params[:turno][:fecha_desde].blank? || params[:turno][:fecha_hasta].blank?
+        format.html{render :text => "Ingrese las fechas para realizar la busqueda", :layout => false }
        elsif
-        @turnos = Turno.basic_search(params[:turno])
-        format.html{render :partial=> 'resultado', :layout => false}
+         format.html{render :partial=> 'resultado', :layout => false}
+         @turnos = Turno.basic_search(params[:turno]).paginate(:page => params[:page], :per_page=> 1)
+        
+      end
 
-       end      
     end
-  end
 
-  def buscar  
+  end
+  
+
+  def buscar_dni
     respond_to do |format|
       format.html{ render :layout => false }
     end
@@ -139,8 +121,8 @@ class TurnosController < ApplicationController
 
 
 
-  def result
-  @paciente = Paciente.all
+  def result_dni
+ 
     respond_to do |format|
     format.html{render :layout => false}
     end
