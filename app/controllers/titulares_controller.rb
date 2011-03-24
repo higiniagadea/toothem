@@ -1,6 +1,5 @@
 class TitularesController < ApplicationController
-  # GET /titulares
-  # GET /titulares.xml
+  
   layout 'default'
    before_filter :login_required
   def index
@@ -12,8 +11,7 @@ class TitularesController < ApplicationController
     end
   end
 
-  # GET /titulares/1
-  # GET /titulares/1.xml
+ 
   def show
   @titular = Titular.find(params[:id])
 
@@ -23,8 +21,6 @@ class TitularesController < ApplicationController
     end
   end
 
-  # GET /titulares/new
-  # GET /titulares/new.xml
   def new
     @titular = Titular.new
    
@@ -34,14 +30,13 @@ class TitularesController < ApplicationController
     end
   end
 
-  # GET /titulares/1/edit
+  
   def edit
     @titular = Titular.find(params[:id])
   
   end
 
-  # POST /titulares
-  # POST /titulares.xml
+ 
   def create
     @titular = Titular.new(params[:titular])
  
@@ -60,8 +55,7 @@ class TitularesController < ApplicationController
   end
   
 
-  # PUT /titulares/1
-  # PUT /titulares/1.xml
+ 
   def update
     @titular = Titular.find(params[:id])
 
@@ -77,8 +71,7 @@ class TitularesController < ApplicationController
     end
   end
 
-  # DELETE /titulares/1
-  # DELETE /titulares/1.xml
+  
   def destroy
     @titular = Titular.find(params[:id])
 

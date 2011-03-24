@@ -24,7 +24,7 @@
           firstDay : 1,
           allDaySlot : false,
           columnFormat:'ddd d/M',
-          titleFormat : "MMM d[ yyyy]{ '&#8212;'[ MMMMM] d yyyy}",
+          titleFormat : "MMM d[ yyyy]{ '&#8212;'[ MMMMM] d 'del' yyyy}",
           weekends: false,
           defaultEventMinutes : 30,
 
@@ -43,22 +43,24 @@
 
           dayNamesShort : ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
           
-          loading: function(bool){
-              if (bool)
-                  $('#loading').show();
-              else
-                  $('#loading').hide();
-          },
+          //loading: function(bool){
+           //   if (bool)
+             //     $('#loading').show();
+              //else
+                //  $('#loading').hide();
+          //},
           
           events:[
             <% for turno in Turno.all -%>
               {
                 id : 'turno: <%= turno.id.to_s %>',
-                title  : 'Profesional: <%= turno.profesional_id %>',
-                start  : 'Desde: <%= turno.fecha_hora.to_s %>',
-                end : 'Hasta: <%= turno.fecha_hora.to_s %>',
+                title  : 'Profesional: <%= turno.profesional.nombre.to_s %>',
+                start  : 'Desde: <%= turno.fecha_hora.iso8601 %>',
+                //end : 'Hasta: <%#= (turno.fecha_hora.iso8601 + (60 * turno.duracion.to_s)) %>',
+                end : 'Hasta: <%= turno.fecha_hora.iso8601 %>',
                 allDay : false,
-                url: 'http://localhost:3000/pacientes/search'
+               
+                url: '<%= eliminar_turno_path(turno) %>'
               },
             <% end %>
 
@@ -107,10 +109,17 @@
           },
 
           eventClick: function(event, jsEvent){
-            if (confirm("esta seguro?"),event.destroy) {
-            window.open(event.destroy);
-            return false;
+             if (event.url) {
+              if (confirm('Esta seguro de eliminar el turno?Esta accion no se puede deshacer.')){
+                event.url;
+              //return false;
+              }else{
+                return false;
+              }
+
+
         }
+      
                  
           }
 

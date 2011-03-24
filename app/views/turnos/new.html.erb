@@ -17,10 +17,10 @@
     
   <th>
      <div id="turnos">
-     Documento <%= f.text_field :paciente_id, :class =>"ui-widget-content", :title => 'Ingrese un documento para realizar la busqueda', :size => 15, :onkeypress=> 'return validar(event)', :readonly => 'readonly' %>
-   
-
-     <%#= link_to image_tag('magnifier_zoom_in.png'), edit_turno_path, :id => 'buscar' %>
+     Documento <%= text_field_tag :paciente_desc,{}, :class =>"ui-widget-content", :title => 'Ingrese un documento para realizar la busqueda', :size => 15, :onkeypress=> 'return validar(event)', :readonly => 'readonly', :id => 'dni' %>
+        <%= link_to image_tag('magnifier_zoom_in.png'), "javascript:", :rel => buscar_dni_pacientes_path, :id => 'buscar' %>
+        <%= f.hidden_field :paciente_id %>
+     
      </div>
   </th>
 
@@ -43,9 +43,9 @@
                                                                                                   'Octubre', 'Noviembre', 'Diciembre'], :prompt => false, :size=> 15 %> </td>
     </tr>
 
-    <tr>
+   <tr>
       <th>Duracion</th>
-      <td><select name="turno[duracion]" class ="ui-widget-content"><%= options_for_select(["30", "45", "60", "90", "120"], @turno.duracion) %>
+      <td><select name="turno[duracion]" class ="ui-widget-content required"><%= options_for_select(["30", "45", "60", "90", "120"], @turno.duracion)%>
       </select> minutos</td>
     </tr>
 
@@ -55,14 +55,14 @@
    <table style=" text-align: left;">
    <th>
      <div id="tareas">
-       Tareas:  <%= f.text_area :observaciones, :title => 'Ingrese la tarea', :class =>"ui-widget-content required", :cols => 12, :rows => 4  %>
+       Tareas:  <%= f.text_area :observaciones, :title => 'Ingrese la tarea', :class =>"ui-widget-content", :cols => 12, :rows => 4  %>
      </div>
    </th>
    </table>
 
 
    <table>
-    <tr><td  style=" float: left; margin-left:  300px"><%= f.submit 'guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
+    <tr><td  style=" float: left; margin-left:  400px"><%= f.submit 'guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
     </tr>
    </table>
 
@@ -88,6 +88,15 @@ function validate(e) { // 1
 
    $(document).ready(function(){
      mostrar_evento();
+  $("#new_turno").validate({
+        //errorLabelContainer: $("#new_paciente div.errores")
+       errorContainer: $("#new_turno div.errores"),
+       errorLabelContainer: $("ol", $("#new_turno div.errores")),
+       wrapper: 'li',
+       meta: "validate"
+
+
+  });
 
      $(function() {
         $('input:text').keydown(function(e){
@@ -97,12 +106,7 @@ function validate(e) { // 1
       });
 
      });
-        $('#buscar').fancybox(
-        {
-      'hideOnContentClick': false,
-      'titleShow': false
-
-        });
+    
 
 
 
@@ -118,6 +122,60 @@ function validate(e) { // 1
 
 
 
+  $('#buscar').click(function()
+      {
+        // Destroy currrent tooltip if present
+        if($(this).data("qtip")) $(this).qtip("destroy");
+        $(this).qtip({
+
+               content: {
+                  url: $(this).attr('rel'), // Use the rel attribute of each element for the url to load
+                  title: {
+                     text: $(this).attr('title') // Give the tooltip a title using each elements text
+                     //button: '<%#= image_tag 'fancybox/fancy_close.png' %>' // Show a close link in the title
+                  }
+               },
+               position: {
+                  corner: {
+                     target: 'bottomMiddle', // Position the tooltip above the link
+                     tooltip: 'topMiddle'}
+                  },
+                  adjust: {
+                     screen: true // Keep the tooltip on-screen at all times
+                  },
+               show: {
+                  when: false, // Don't specify a show event
+                  ready: true // Show the tooltip when ready
+               },
+               hide: false, // Don't specify a hide event
+
+               style: {
+                  width: 600,
+                  border: {
+                     width: 1,
+                     radius: 10
+                  },
+                  padding: 5,
+                  textAlign: 'left',
+                  tip: true, // Give it a speech bubble tip with automatic corner detection
+                  name: 'light' // Style it according to the preset 'cream' style
+               }
+
+            });
+
+
+      });
+
+
+
+
+
+
+
+
+
+
+
 
  });
 
@@ -126,18 +184,21 @@ function validate(e) { // 1
          if ($("input[name='AGENDA']:checked").val()== '1') {
            $('#turnos').show();
            $('#tareas').hide();
-           $("#fancybox-outer").width(480);
-           $("#fancybox-outer").height(280);
-           $("#fancybox-inner").width(460);
-           $("#fancybox-inner").height(300);
+         
+
+           //$("#fancybox-outer").width(550);
+           //$("#fancybox-outer").height(280);
+           //$("#fancybox-inner").width(460);
+           //$("#fancybox-inner").height(300);
      
          }else{
            $('#tareas').show();
            $('#turnos').hide();
-           $("#fancybox-outer").width(490);
-           $("#fancybox-outer").height(330);
-           $("#fancybox-inner").width(460);
-           $("#fancybox-inner").height(320);
+       
+           //$("#fancybox-outer").width(490);
+           //$("#fancybox-outer").height(330);
+           //$("#fancybox-inner").width(460);
+           //$("#fancybox-inner").height(320);
    
          }
 };

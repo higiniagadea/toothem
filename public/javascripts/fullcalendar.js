@@ -1164,7 +1164,7 @@ function MonthView(element, calendar) {
 		t.title = formatDate(start, opt('titleFormat'));
 		t.start = start;
 		t.end = end;
-		t.visStart = visStart;
+                t.visStart = visStart;
 		t.visEnd = visEnd;
 		renderBasic(rowCnt, nwe ? 5 : 7, true);
 	}

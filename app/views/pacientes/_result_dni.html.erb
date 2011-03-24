@@ -8,9 +8,8 @@
       <tr>
         <td><%= paciente.nombre %></td>
         <td><%= paciente.matricula %></td>
-        <td><%#= button_to_remote 'Asignar', :url => asignar_paciente_turnos_path(paciente), :method => :get,
-                                                  :success => '$.fancybox.close();'%>
-        </td>
+        <td><%= button_to_remote 'asignar', :url => asignar_paciente_path(paciente), :success => "$('.qtip').remove()", :method => :get %> </td>
+
       </tr>
     <% end %>
   </table>

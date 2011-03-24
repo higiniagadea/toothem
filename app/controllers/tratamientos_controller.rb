@@ -12,6 +12,7 @@ class TratamientosController < ApplicationController
     end
   end
 
+  #muestra el importe dependiendo del arancel
   def actualizar_importe
     @arancel = Arancel.find_by_prestacion_id(params[:arancel].to_i)
  respond_to do |format| 
@@ -29,6 +30,7 @@ class TratamientosController < ApplicationController
     end
   end
 
+  #muestra el coseguro dependiendo del arancel
   def actualizar_coseguro
     @arancel = Arancel.find_by_prestacion_id(params[:arancel].to_i)
  respond_to do |format|
@@ -38,7 +40,7 @@ class TratamientosController < ApplicationController
        page['actualizar_coseguro'].replace_html '-'
      else
        page['actualizar_coseguro'].replace_html @arancel.coseguro
-
+       
      end
 
    end
@@ -48,8 +50,7 @@ class TratamientosController < ApplicationController
 
 
 
-  # GET /tratamientos/1
-  # GET /tratamientos/1.xml
+  
   def show  
   @tratamiento = Tratamiento.find(params[:id]) 
     
@@ -58,8 +59,7 @@ class TratamientosController < ApplicationController
     end
   end
 
-  # GET /tratamientos/new
-  # GET /tratamientos/new.xml
+
   def new
     @paciente = Paciente.find(params[:paciente_id])
     @obra_social = ObraSocial.find(params[:obra_social_id]) unless params[:obra_social_id].blank?
@@ -74,7 +74,7 @@ class TratamientosController < ApplicationController
   end 
 
 
-  # GET /tratamientos/1/edit
+  
   def edit
     if params[:ficha_id]
       @ficha = Ficha.find(params[:ficha_id])
@@ -89,8 +89,7 @@ class TratamientosController < ApplicationController
     end
   end
 
-  # POST /tratamientos
-  # POST /tratamientos.xml
+  
   def create
     @paciente = Paciente.find(params[:tratamiento][:paciente_id])  
     @arancel = Arancel.find_by_prestacion_id(params[:arancel].to_i)
@@ -101,7 +100,7 @@ class TratamientosController < ApplicationController
     #params[:tratamiento][:coseguro] = arancel.coseguro.to_i
 
     @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id.to_s])
-   
+    @tratamiento.coseguro = @arancel.coseguro
     respond_to do |format|
       if  @tratamiento.save
         flash[:notice] = 'Tratamiento creado.'
@@ -114,8 +113,7 @@ class TratamientosController < ApplicationController
 
   
 
-  # PUT /tratamientos/1
-  # PUT /tratamientos/1.xml
+
   def update   
    @tratamiento = Tratamiento.find(params[:id])
    @paciente = Paciente.find(params[:tratamiento][:paciente_id])
@@ -130,8 +128,7 @@ class TratamientosController < ApplicationController
     end
   end
 
-  # DELETE /tratamientos/1
-  # DELETE /tratamientos/1.xml
+ 
   def eliminar   
     @tratamiento = Tratamiento.find(params[:id])    
     @paciente = Paciente.find(params[:paciente_id])
@@ -155,21 +152,6 @@ def buscar
     end
   end
 
-#def resultado
- # @tratamientos = Tratamiento.find(:all, :conditions => ['fecha > ? and fecha < ?', params[:tratamiento][:fecha].to_date, params[:tratamiento][:fecha_hasta].to_date] )
-  #respond_to do |format|
-    #unless
-     # params[:profesional].blank? && params[:fecha].blank?
-      #  format.html{render :text => "Ingrese", :layout => false }
-      #else
-       # @tratamientos = Tratamiento.find(:all, :conditions => ['fecha > ? and fecha < ?', params[:tratamiento][:fecha].to_date, params[:tratamiento][:fecha_hasta].to_date] )
-        # @tratamientos = Tratamiento.basic_search(params)
-        #format.html {render :layout => false}
-      
-      
-   #    format.html {render :layout => false}
- #end
-#end
 
 def resultado 
  @profesionales = Profesional.find(params[:profesional][:profesional_id]) if params[:profesional][:profesional_id]

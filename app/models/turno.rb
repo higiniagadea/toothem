@@ -6,7 +6,7 @@ class Turno < ActiveRecord::Base
 
   named_scope :by_fechas, lambda { |fecha_desde, fecha_hasta|
     {
-     :conditions => ['fecha between :fecha_desde and :fecha_hasta',
+     :conditions => ['fecha_hora between :fecha_desde and :fecha_hasta',
         { :fecha_desde => fecha_desde,
          :fecha_hasta => fecha_hasta} ]
     }
@@ -20,28 +20,24 @@ class Turno < ActiveRecord::Base
     }
   }
 
-
-     named_scope :by_paciente_id_matricula, lambda { |paciente_id_matricula|
+  named_scope :by_paciente_id, lambda { |paciente_id|
     {
-      :conditions=> ['lower(matricula) LIKE :matricula',
-          { :paciente_id_matricula => "%"+matricula.downcase+"%"} ]
+      :conditions => ['paciente_id= :paciente_id',
+                 {:paciente_id => paciente_id }]
     }
   }
+
+
 
 
 def self.basic_search(options)
   scope_builder do |builder|
     builder.by_fechas(options[:fecha_desde], options[:fecha_hasta]) unless options[:fecha_desde].blank? && options[:fecha_hasta].blank?
-    
+     builder.by_paciente_id(options[:paciente_id]) unless options[:paciente_id].blank?
     builder.by_profesional_id(options[:profesional_id]) unless options[:profesional_id].blank?
   end
 end
 
-def self.buscar(options)
-  scope_builder do |builder|
-   builder.by_paciente_id_matricula(options[:paciente_id_matricula]) unless options[:paciente_id_matricula].blank?
-  end
-end
 
 end
 

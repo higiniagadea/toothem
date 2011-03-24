@@ -1,0 +1,37 @@
+
+<h1>Resultado de la busqueda</h1>
+<% unless @turnos.blank? %>
+  <table style=" text-align: left;" class="listado">
+    <tr>
+      <th>Profesional</th>
+      <th>Fecha  y Hora </th>
+      <th>Duracion</th>
+      <th>Paciente</th>
+      <th>Acciones</th>
+    </tr>
+    <%  @turnos.each do |turno| %>
+      <tr>
+        <td><%=h turno.profesional.nombre %></td>
+        <td><%=h turno.fecha_hora.strftime('%d/%m/%Y') %></td>
+        <td><%=h turno.duracion %>minutos</td>
+        <td><%=h turno.paciente.nombre.to_s %> </td>
+
+        <td><%= link_to image_tag('pencil.png'), edit_turno_path(turno), :id => 'editar_' + turno.id.to_s, :title => 'Editar' %>
+        <%= link_to image_tag('cancel.png'), turno, :confirm => 'Esta seguro?', :method => :delete, :title=> 'Eliminar'%>
+        </td>
+      </tr>
+      <script type="text/javascript">
+    $('#editar_<%= turno.id.to_s %> ').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+    $.fancybox.resize();
+      </script>
+    <% end %>
+      <%else%>
+      No se encontraron resultados segun los criterios de busqueda
+      <%end%>
+  </table>
+
