@@ -20,7 +20,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :tareas
 
-  map.resources :turnos, :collection => {:cambios => :get, :resultado => [:get, :post], :get_turnos => :get}
+  map.resources :turnos, :collection => {:cambios => :get, :resultado => [:get, :post], :get_turnos => :get},
+                         :member => {:eliminar => :get}
   
    map.resources :imagenes, :collection => {:new_archivo => :get}
               

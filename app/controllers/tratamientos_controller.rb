@@ -40,7 +40,7 @@ class TratamientosController < ApplicationController
        page['actualizar_coseguro'].replace_html '-'
      else
        page['actualizar_coseguro'].replace_html @arancel.coseguro
-
+       
      end
 
    end
@@ -50,8 +50,7 @@ class TratamientosController < ApplicationController
 
 
 
-  # GET /tratamientos/1
-  # GET /tratamientos/1.xml
+  
   def show  
   @tratamiento = Tratamiento.find(params[:id]) 
     
@@ -60,8 +59,7 @@ class TratamientosController < ApplicationController
     end
   end
 
-  # GET /tratamientos/new
-  # GET /tratamientos/new.xml
+
   def new
     @paciente = Paciente.find(params[:paciente_id])
     @obra_social = ObraSocial.find(params[:obra_social_id]) unless params[:obra_social_id].blank?
@@ -76,7 +74,7 @@ class TratamientosController < ApplicationController
   end 
 
 
-  # GET /tratamientos/1/edit
+  
   def edit
     if params[:ficha_id]
       @ficha = Ficha.find(params[:ficha_id])
@@ -91,8 +89,7 @@ class TratamientosController < ApplicationController
     end
   end
 
-  # POST /tratamientos
-  # POST /tratamientos.xml
+  
   def create
     @paciente = Paciente.find(params[:tratamiento][:paciente_id])  
     @arancel = Arancel.find_by_prestacion_id(params[:arancel].to_i)
@@ -103,7 +100,7 @@ class TratamientosController < ApplicationController
     #params[:tratamiento][:coseguro] = arancel.coseguro.to_i
 
     @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id.to_s])
-   
+    @tratamiento.coseguro = @arancel.coseguro
     respond_to do |format|
       if  @tratamiento.save
         flash[:notice] = 'Tratamiento creado.'
@@ -116,8 +113,7 @@ class TratamientosController < ApplicationController
 
   
 
-  # PUT /tratamientos/1
-  # PUT /tratamientos/1.xml
+
   def update   
    @tratamiento = Tratamiento.find(params[:id])
    @paciente = Paciente.find(params[:tratamiento][:paciente_id])

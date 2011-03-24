@@ -8,9 +8,9 @@
   <table style=" text-align: left;">
     <th>
       <div id="turnos">
-   Documento <%= text_field_tag :paciente_desc,{}, :class =>"ui-widget-content required", :title => 'Ingrese un documento para realizar la busqueda', :size => 15, :onkeypress=> 'return validar(event)', :readonly => 'readonly', :id => 'dni' %>
+       Documento <%= text_field_tag :paciente_desc,{}, :class =>"ui-widget-content required", :title => 'Ingrese un documento para realizar la busqueda', :size => 15, :onkeypress=> 'return validar(event)', :readonly => 'readonly', :id => 'dni' %>
       <%= link_to image_tag('magnifier_zoom_in.png'), "javascript:", :rel => buscar_dni_pacientes_path, :id => 'buscar' %>
-        <%= hidden_field_tag  :paciente_id %>
+        <%= hidden_field_tag :paciente_id %>
       </div>
   </th>
     <tr>

@@ -1,7 +1,6 @@
 
 class PacientesController < ApplicationController
-  # GET /pacientes
-  # GET /pacientes.xml
+ 
   before_filter  :generar_submenus
   before_filter :login_required
   layout 'default'
@@ -26,7 +25,7 @@ class PacientesController < ApplicationController
     @pacientes = Paciente.paginate :page=> params[:page], :per_page=> 5, :order=> 'nombre ASC'
    
     respond_to do |format|
-      format.html # index.html.erb
+      format.html 
       format.xml  { render :xml => @pacientes }
     end
   end
@@ -55,7 +54,7 @@ class PacientesController < ApplicationController
       else
         params[:nombre].size  < 2 || params[:matricula].size < 2
         format.html {render :text=> 'Ingrese al menos tres caracteres para realizar la b&uacute;squeda'}
-      #format.html{redirect_to buscar_clinicas_path}
+    
       end
 
       
@@ -63,8 +62,7 @@ class PacientesController < ApplicationController
    
   end
   
-  # GET /pacientes/1
-  # GET /pacientes/1.xml
+ 
  def show
   @paciente = Paciente.find(params[:id])
     @imagenes = Imagen.find_all_by_paciente_id(@paciente)
@@ -74,7 +72,7 @@ class PacientesController < ApplicationController
      
     respond_to do |format|
 
-      format.html # show.html.erb
+      format.html
       
     end
  end
@@ -253,7 +251,7 @@ class PacientesController < ApplicationController
       if @titular.save
       @paciente.update_attribute(:titular_id, @titular.id)
         flash[:notice] = 'Titular creado.'
-        #format.html {redirect_to @paciente}
+       
          #format.html {render :partial=> 'pacientes/edit_obra_social', :layout => 'default'}
       format.html {redirect_to edit_paciente_path(@paciente) + '#obras_sociales'}
       else

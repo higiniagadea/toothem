@@ -6,23 +6,7 @@
   <div class="errores">
           <ol style="list-style:none"></ol>
   </div>
-
-
-    <%= label_tag 'AGENDA_TURNO', 'Turno'  %>
-    <%= radio_button_tag 'AGENDA', 'TURNO',true, :value => 1 %>
-    <%= label_tag 'AGENDA_TAREA', 'Tarea'   %>
-    <%= radio_button_tag 'AGENDA', 'TAREA',false, :value => 2  %>
-
-  <table style=" text-align: left;">
-   <th>
-     <div id="turnos">
-     Documento <%= text_field_tag :paciente_desc,{}, :class =>"ui-widget-content", :title => 'Ingrese un documento para realizar la busqueda', :size => 15, :onkeypress=> 'return validar(event)', :readonly => 'readonly', :id => 'dni' %>
-        <%= link_to image_tag('magnifier_zoom_in.png'), "javascript:", :rel => buscar_dni_pacientes_path, :id => 'busc' %>
-        <%= f.hidden_field :paciente_id %>
-
-     </div>
-  </th>
-  </table>
+  
 
   <table style=" text-align: left;" >
     <tr>
@@ -46,16 +30,7 @@
       <td><select name="turno[duracion]" class ="ui-widget-content"><%= options_for_select(["30", "45", "60", "90", "120"], @turno.duracion) %>
       </select> minutos</td>
       </tr>
-   </table>
-
-
-   <table style=" text-align: left;">
-  <th>
-     <div id="tareas">
-       Tareas:  <%= f.text_area :observaciones, :title => 'Ingrese la tarea', :class =>"ui-widget-content required", :cols => 12, :rows => 4  %>
-     </div>
-    </th>
-   </table>
+   </table> 
 
 
    <table>
@@ -84,7 +59,7 @@ function validate(e) { // 1
 }
 
    $(document).ready(function(){
-     mostrar_evento();
+    
 
      $(function() {
         $('input:text').keydown(function(e){
@@ -106,13 +81,7 @@ function validate(e) { // 1
        meta: "validate"
        });
 
-      $('#AGENDA_turno').click(function(){
-      mostrar_evento();
-      });
-
-      $('#AGENDA_tarea').click(function(){
-      mostrar_evento();
-      });
+     
 
       $("#fecha_t").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate: 0});
 
@@ -168,23 +137,5 @@ $('#busc').click(function()
  });
 
 
-      function mostrar_evento (){
-         if ($("input[name='AGENDA']:checked").val()== '1') {
-           $('#turnos').show();
-           $('#tareas').hide();
-           $("#fancybox-outer").width(480);
-           $("#fancybox-outer").height(280);
-           $("#fancybox-inner").width(460);
-           $("#fancybox-inner").height(300);
-     
-         }else{
-           $('#tareas').show();
-           $('#turnos').hide();
-           $("#fancybox-outer").width(490);
-           $("#fancybox-outer").height(330);
-           $("#fancybox-inner").width(460);
-           $("#fancybox-inner").height(320);
-   
-         }
-};
+
 </script>

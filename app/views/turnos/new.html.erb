@@ -17,7 +17,7 @@
     
   <th>
      <div id="turnos">
-     Documento <%= text_field_tag :paciente_desc,{}, :class =>"ui-widget-content required", :title => 'Ingrese un documento para realizar la busqueda', :size => 15, :onkeypress=> 'return validar(event)', :readonly => 'readonly', :id => 'dni' %>
+     Documento <%= text_field_tag :paciente_desc,{}, :class =>"ui-widget-content", :title => 'Ingrese un documento para realizar la busqueda', :size => 15, :onkeypress=> 'return validar(event)', :readonly => 'readonly', :id => 'dni' %>
         <%= link_to image_tag('magnifier_zoom_in.png'), "javascript:", :rel => buscar_dni_pacientes_path, :id => 'buscar' %>
         <%= f.hidden_field :paciente_id %>
      
@@ -43,7 +43,7 @@
                                                                                                   'Octubre', 'Noviembre', 'Diciembre'], :prompt => false, :size=> 15 %> </td>
     </tr>
 
-    <tr>
+   <tr>
       <th>Duracion</th>
       <td><select name="turno[duracion]" class ="ui-widget-content required"><%= options_for_select(["30", "45", "60", "90", "120"], @turno.duracion)%>
       </select> minutos</td>
@@ -55,7 +55,7 @@
    <table style=" text-align: left;">
    <th>
      <div id="tareas">
-       Tareas:  <%= f.text_area :observaciones, :title => 'Ingrese la tarea', :class =>"ui-widget-content required", :cols => 12, :rows => 4  %>
+       Tareas:  <%= f.text_area :observaciones, :title => 'Ingrese la tarea', :class =>"ui-widget-content", :cols => 12, :rows => 4  %>
      </div>
    </th>
    </table>
@@ -106,12 +106,7 @@ function validate(e) { // 1
       });
 
      });
-       /* $('#buscar').fancybox(
-        {
-      'hideOnContentClick': false,
-      'titleShow': false
-
-        });*/
+    
 
 
 
@@ -189,6 +184,8 @@ function validate(e) { // 1
          if ($("input[name='AGENDA']:checked").val()== '1') {
            $('#turnos').show();
            $('#tareas').hide();
+         
+
            //$("#fancybox-outer").width(550);
            //$("#fancybox-outer").height(280);
            //$("#fancybox-inner").width(460);
@@ -197,6 +194,7 @@ function validate(e) { // 1
          }else{
            $('#tareas').show();
            $('#turnos').hide();
+       
            //$("#fancybox-outer").width(490);
            //$("#fancybox-outer").height(330);
            //$("#fancybox-inner").width(460);

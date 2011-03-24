@@ -1,4 +1,4 @@
-<div id="turnos">
+
 <h1>Resultado de la busqueda</h1>
 <% unless @turnos.blank? %>
   <table style=" text-align: left;" class="listado">
@@ -12,9 +12,9 @@
     <%  @turnos.each do |turno| %>
       <tr>
         <td><%=h turno.profesional.nombre %></td>
-        <td><%=h turno.fecha_hora.iso8601 %></td>
-        <td><%=h turno.duracion %></td>
-        <td><%=h turno.paciente.nombre %> </td>
+        <td><%=h turno.fecha_hora.strftime('%d/%m/%Y') %></td>
+        <td><%=h turno.duracion %>minutos</td>
+        <td><%=h turno.paciente.nombre.to_s %> </td>
 
         <td><%= link_to image_tag('pencil.png'), edit_turno_path(turno), :id => 'editar_' + turno.id.to_s, :title => 'Editar' %>
         <%= link_to image_tag('cancel.png'), turno, :confirm => 'Esta seguro?', :method => :delete, :title=> 'Eliminar'%>
@@ -34,8 +34,4 @@
       No se encontraron resultados segun los criterios de busqueda
       <%end%>
   </table>
-<%= will_paginate @turnos, :previous_label =>'Anterior', :next_label => 'Siguiente',
-                                  :class => 'turno pagination',
-                                  :params => {:controller => "turnos", :action => "resultado"} %>
 
-</div>
