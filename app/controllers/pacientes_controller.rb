@@ -17,6 +17,20 @@ class PacientesController < ApplicationController
     end
   end
 
+  #def new_pago
+ 
+   # @paciente = Paciente.find(params[:paciente_id])
+    #@pagopaciente = PagoPaciente.new(params[:id])
+    
+    #respond_to do |format|
+
+     #format.html {render :partial => 'pagos_pacientes/new', :layout => 'default'}
+     #format.html {redirect_to edit_paciente_path(@paciente) + '#cuenta_cte'}
+    #end
+
+#  end
+
+
   def index
     @pagetitle = "Pacientes"
     consultorios = []
@@ -43,7 +57,7 @@ class PacientesController < ApplicationController
     respond_to do |format|
       if params[:nombre].blank? && params[:matricula].blank? 
       format.html{render :text => "Ingrese al menos un dato para realizar la b&uacute;squeda " }
-     #format.html{redirect_to buscar_clinicas_path}
+   
       elsif
           params[:nombre].size > 2 || params[:matricula].size > 2
         
@@ -120,7 +134,8 @@ class PacientesController < ApplicationController
     @prestaciones = Prestacion.find(:all)
     @fichas = Ficha.paginate(:page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha DESC')
     @turnos = Turno.find(:all)
-
+    @pagos_pacientes = PagoPaciente.paginate(:page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id.to_s])
+     
     respond_to do |format|
       unless @paciente.blank?
       unless @paciente.archivo_id.blank?

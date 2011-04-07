@@ -1,0 +1,29 @@
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Periodo</legend>
+  <table style=" text-align: left;">
+    <tr>
+      <th>Mes</th>
+      <td><%= @periodo.mes %> </td>
+    </tr>
+
+    <tr>
+      <th>Año</th>
+      <td><%= @periodo.anio  %> </td>
+    </tr>
+    
+    <tr>
+      <th>Fue liquidado?</th>
+      <td><%=h @periodo.fue_liquidado  %> </td>
+    </tr>
+
+    <tr>
+      <th>Fecha de Finalizacion</th>
+      <td><%= boolean_desc(@periodo.fecha_liquidacion) %> </td>
+    </tr>
+
+    <tr>
+      <th>Fue liquidado?</th>
+      <td><%= @periodo.fue_liquidado  %> </td>
+    </tr>
+  </table>
+</fieldset>

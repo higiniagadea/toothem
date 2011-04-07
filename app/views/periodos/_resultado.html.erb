@@ -1,0 +1,43 @@
+<% unless @periodos.blank? %>
+  <h1>Resultado de la b&uacute;squeda </h1>
+
+<table style=" text-align: left;" class="listados">
+  <tr>
+    <th>Mes</th>
+    <th>Año</th>
+    <th>Fue liquidado</th>
+    <th>Fecha de liquidacion</th>
+    <th>Acciones</th>
+  </tr>
+
+<% @periodos.each do |periodo| %>
+  <tr class="<%= cycle('par','impar') -%>">
+    <td><%=h periodo.mes %></td>
+    <td><%=h periodo.anio %></td>
+    <td><%=h boolean_desc(periodo.fue_liquidado) %></td>
+     <td><%=h periodo.fecha_liquidacion.blank? ? '-' : periodo.fecha_liquidacion %></td>
+     <td>
+   <% if  periodo.fue_liquidado != true %>
+    <%= link_to image_tag('pencil.png'), edit_periodo_path(periodo), :title => 'Editar', :id => 'edit_periodo' + periodo.id.to_s %>
+       <%= link_to image_tag('cancel.png'), periodo, :title => 'Eliminar', :confirm => 'Está seguro? No podrá deshacer esta acción', :method => :delete %></td>
+  <%end%>
+
+         <script type="text/javascript">
+        $('#edit_periodo<%= periodo.id.to_s %>').fancybox(
+            {
+         'hideOnContentClick': false,
+         'titleShow': false
+
+        });
+
+    </script>
+  </tr>
+
+<% end %>
+</table>
+
+  <%else%>
+
+  No se encontraron resultados
+
+  <%end%>

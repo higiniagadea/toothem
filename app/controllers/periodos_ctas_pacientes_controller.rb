@@ -1,0 +1,2 @@
+class PeriodosCtasPacientesController < ApplicationController
+end

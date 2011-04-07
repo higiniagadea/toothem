@@ -4,10 +4,13 @@ class Paciente < ActiveRecord::Base
   belongs_to :titular, :dependent => :destroy
   belongs_to :consultorio
   belongs_to :archivo
-  has_many :tratamiento, :dependent => :destroy
+  has_many :tratamientos, :dependent => :destroy
   has_many :turnos
 
-
+  has_many :pagos_pacientes, :dependent => :destroy
+  has_many :saldos_pacientes
+  
+  
   belongs_to :tipo_documento
   has_one :historia_clinica_general, :dependent => :destroy
   has_one :historia_clinica_ortodoncia, :dependent => :destroy

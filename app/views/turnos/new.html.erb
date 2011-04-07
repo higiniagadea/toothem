@@ -17,7 +17,7 @@
     
   <th>
      <div id="turnos">
-     Documento <%= text_field_tag :paciente_desc,{}, :class =>"ui-widget-content", :title => 'Ingrese un documento para realizar la busqueda', :size => 15, :onkeypress=> 'return validar(event)', :readonly => 'readonly', :id => 'dni' %>
+     Documento <%= text_field_tag :paciente_desc,{}, :class =>"ui-widget-content required", :title => 'Ingrese un documento para realizar la busqueda', :size => 15, :onkeypress=> 'return validar(event)', :readonly => 'readonly', :id => 'dni' %>
         <%= link_to image_tag('magnifier_zoom_in.png'), "javascript:", :rel => buscar_dni_pacientes_path, :id => 'buscar' %>
         <%= f.hidden_field :paciente_id %>
      
@@ -40,7 +40,7 @@
     <tr>
       <th>Fecha</th>
       <td><%= f.datetime_select :fecha_hora, :order => [:day, :month, :year], :start_year => 2010, :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
-                                                                                                  'Octubre', 'Noviembre', 'Diciembre'], :prompt => false, :size=> 15 %> </td>
+                                                                                                  'Octubre', 'Noviembre', 'Diciembre'], :prompt => false, :size=> 15, :prompt => {:day => '-', :month => '-', :year => '-'} %> </td>
     </tr>
 
    <tr>
@@ -118,7 +118,7 @@ function validate(e) { // 1
       mostrar_evento();
       });
 
-      $("#fecha_t").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate: 0});
+      $("#fecha_t").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1920:2110', maxDate: 0, showWeek: true});
 
 
 

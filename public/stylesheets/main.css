@@ -185,11 +185,41 @@ table#datos-rpi-titulares tr.even{
     background-color: #FFF;
 }
 
+.listados{
+    border-collapse: collapse;
+   border: 1px solid #F8ECE0;
+   width : 45%;  
+
+}
+
+.listados th p{
+    padding-left: 7px;
+    padding-right: 7px;
+    text-align: left;
+    border: 1px solid #F2F2F2;
+    
+}
+.listados th i{
+    padding:4px;
+    text-align: center;
+    
+}
+.listados th.a-right{
+    text-align: right;
+}
+.listados tr.par {
+     background-color: #FFF;
+}
+.listados tr.impar {
+    background-color: #DDD;
+}
 
 .listado{
     border-collapse: collapse;
    border: 1px solid #F8ECE0;
+   width : 35%;
 }
+
 .listado th par{
     padding-left: 7px;
     padding-right: 7px;

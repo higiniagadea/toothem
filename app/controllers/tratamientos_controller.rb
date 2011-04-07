@@ -67,6 +67,8 @@ class TratamientosController < ApplicationController
     @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5,  :conditions => ['paciente_id = ?', @paciente.id]
    
     @arancel = Arancel.find_by_prestacion_id(params[:arancel].to_i)
+
+
     respond_to do |format|
       format.html { render :layout => false , :partial => 'new'}
       
@@ -100,7 +102,7 @@ class TratamientosController < ApplicationController
     #params[:tratamiento][:coseguro] = arancel.coseguro.to_i
 
     @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id.to_s])
-    @tratamiento.coseguro = @arancel.coseguro
+  
     respond_to do |format|
       if  @tratamiento.save
         flash[:notice] = 'Tratamiento creado.'
@@ -137,7 +139,7 @@ class TratamientosController < ApplicationController
       flash[:notice] = 'El tratamiento no puede ser borrado ya que no fue liquidado'
     else
       @tratamiento.destroy
-      flash[:notice] = 'tratamiento liquidado'
+      flash[:notice] = 'tratamiento eliminado'
     end
     respond_to do |format|   
      format.html { redirect_to edit_paciente_path(@paciente) + '#tratamientos'}
