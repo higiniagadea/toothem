@@ -3,7 +3,7 @@
   <table>
   <tr>
 
-      <td style=" float: left; margin-left: 870px"><%= link_to image_tag('add.png') + "Crear Tratamiento", new_tratamiento_paciente_path + "?paciente_id="+@paciente.id.to_s, :id=> 'nuevo'  %>
+      <td style=" float: left; margin-left: 870px"><%= link_to image_tag('add.png') + "Nuevo Tratamiento", new_tratamiento_paciente_path + "?paciente_id="+@paciente.id.to_s, :id=> 'nuevo'  %>
     
       </td>
       <script type="text/javascript">
@@ -17,9 +17,9 @@
       </tr>
   </table>
 
-<table style=" text-align: left "class="listado">
-  <% unless  @tratamientos.blank?%>
 
+  <% unless  @tratamientos.blank?%>
+<table style=" text-align: left "class="listado">
    <tr>
     <th>Fecha</th>
     <th>Prestacion</th>
@@ -31,7 +31,7 @@
     </tr>
       <% @tratamientos.each do |tratamiento| %>
    <tr  class="<%= cycle('par','impar') -%>">
-    <td><%=h tratamiento.fecha.strftime('%d/%m/%Y')%></td>
+    <td><%=h tratamiento.fecha.strftime('%d/%m/%Y').blank? ? '-' :tratamiento.fecha.strftime('%d/%m/%Y') %></td>
   
     <td><%=h tratamiento.prestacion.descripcion %></td>
     <td><%=h tratamiento.diente %></td>

@@ -24,7 +24,8 @@
           firstDay : 1,
           allDaySlot : false,
           columnFormat:'ddd d/M',
-          titleFormat : "MMM d[ yyyy]{ '&#8212;'[ MMMMM] d 'del' yyyy}",
+         // titleFormat : "MMM d[ yyyy]{ '&#8212;' d 'del' yyyy}",
+           titleFormat : "MMM d[ yyyy]{ '&#8212;'[MMM] dd 'del' yyyy}",
           weekends: false,
           defaultEventMinutes : 30,
 
@@ -36,7 +37,7 @@
 
           unselectAuto: false,
           weekMode : false,
-      
+ 
           
           monthNamesShort : ['Enero' , 'Febrero' , 'Marzo' , 'Abril' , 'Mayo' , 'Junio' , 'Julio' ,
                         'Agosto' , 'Septiembre' , 'Octubre' , 'Noviembre' , 'Diciembre' ],
@@ -53,15 +54,16 @@
           events:[
             <% for turno in Turno.all -%>
               {
-                id : 'turno: <%= turno.id.to_s %>',
-                title  : 'Profesional: <%= turno.profesional.nombre.to_s %>',
-                start  : 'Desde: <%= turno.fecha_hora.iso8601 %>',
-                //end : 'Hasta: <%#= (turno.fecha_hora.iso8601 + (60 * turno.duracion.to_s)) %>',
-                end : 'Hasta: <%= turno.fecha_hora.iso8601 %>',
-                allDay : false,
+               id : 'turno: <%= turno.id.to_s %>',
+               title  : 'Profesional: <%= turno.profesional.nombre.to_s %>',
+                //otro : 'otro <%= turno.paciente_id.to_s  %> ',
+               start  : 'Fecha: <%= turno.fecha_hora.iso8601 %>',
+               end : 'Duracion: <%= (turno.fecha_hora + (60 * turno.duracion)) %>',
+               allDay : false,               
+               url: '<%= eliminar_turno_path(turno) %>'
                
-                url: '<%= eliminar_turno_path(turno) %>'
               },
+
             <% end %>
 
               ],

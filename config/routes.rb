@@ -18,6 +18,8 @@ ActionController::Routing::Routes.draw do |map|
                               
                               }
 
+  map.resources :periodos, :collection => {:buscar => :get, :resultado => [:get, :post]}
+
   map.resources :tareas
 
   map.resources :turnos, :collection => {:cambios => :get, :resultado => [:get, :post], :get_turnos => :get},
@@ -53,6 +55,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :titulares, :collection => {:buscar => :get, :resultado => :post}
              
+map.resources :pagos_pacientes #:member => {:new => [:get, :post]}
 
   map.resources :estados_laborales
 
@@ -73,7 +76,9 @@ ActionController::Routing::Routes.draw do |map|
                                 :result_dni => [:get, :post]
                 },
 
-                :member => {:new_tratamiento => [:get,:post],                          
+                :member => {:new_tratamiento => [:get,:post],
+                            :new_pago => [:get,:post],
+                           
                             :update_tratamiento => [:get, :post],
                             :changephoto => :get,
                             :uploadphoto => :post,

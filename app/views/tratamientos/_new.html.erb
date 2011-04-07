@@ -52,7 +52,7 @@
           </td>
 
           <th>Importe Cubierto</th>
-          <td><span id="actualizar_importe"><%= observe_field("tratamiento_prestacion_id", :frequency => 0.1,
+          <td><span id="actualizar_importe" name="tratamiento[importe_cubierto]"><%= observe_field("tratamiento_prestacion_id", :frequency => 0.1,
                                                                                            :url => {:action => 'actualizar_importe',
                                                                                            :controller => 'tratamientos'},
                                                                                            :with => "'arancel=' + $('#tratamiento_prestacion_id').val()") %></span></td>
@@ -61,7 +61,7 @@
 
 
              <th>Coseguro</th>
-          <td><span id="actualizar_coseguro"><%= observe_field("tratamiento_prestacion_id", :frequency => 0.1,
+          <td><span id="actualizar_coseguro" name="tratamiento[coseguro]"><%= observe_field("tratamiento_prestacion_id", :frequency => 0.1,
                                                                                            :url => {:action => 'actualizar_coseguro',
                                                                                            :controller => 'tratamientos'},
                                                                                            :with => "'arancel=' + $('#tratamiento_prestacion_id').val()") %></span></td>
@@ -150,7 +150,7 @@
 
 
 
- $("#fecha_trat").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Jutdo','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate :0 });
+ $("#fecha_trat").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Jutdo','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1920:2110', minDate : 1 - 1 });
 
 $("#fecha_finalizacion").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Jutdo','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate:0});
 

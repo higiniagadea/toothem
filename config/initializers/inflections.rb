@@ -31,9 +31,9 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'tipo_documento', 'tipos_documento'
   inflect.irregular 'estado_laboral', 'estados_laborales'
   inflect.irregular 'estado_civil', 'estados_civiles'
-  
-  
-
+  inflect.irregular 'pago_paciente', 'pagos_pacientes'
+  inflect.irregular 'periodo', 'periodos'
+  inflect.irregular 'turno', 'turnos'
 
 
 #   inflect.uncountable %w( fish sheep )
