@@ -8,7 +8,7 @@ belongs_to :saldo_paciente
 
     named_scope :by_anio, lambda { |anio|
     {
-      :conditions=> ['lower(anio) LIKE :anio',
+      :conditions=> ['age(anio) LIKE :anio',
           { :anio=> "%"+anio.downcase+"%"} ]
     }
   }

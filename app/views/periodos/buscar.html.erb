@@ -16,7 +16,7 @@
       <table  style=" text-align: left; "class="table-search">
        <tr>
       <th>Año</th>
-      <td><%= date_select('periodo', 'anio',  :include_blank => false, :default => { :year => '1970' }, :order => [:year], :prompt => {:year => 'Seleccione'}) %> </td>
+      <td><%= select('periodo', 'anio', (2011..2120).to_a,  :include_blank => false, :default => { :year => '1970' },:prompt => {:year => 'Seleccione'}) %> </td>
     </tr>
 
       </table>

@@ -43,7 +43,8 @@
                                                                                                   'Octubre', 'Noviembre', 'Diciembre'], :prompt => false, :size=> 15, :prompt => {:day => '-', :month => '-', :year => '-'} %> </td>
     </tr>
 
-   <tr>
+
+           <tr>
       <th>Duracion</th>
       <td><select name="turno[duracion]" class ="ui-widget-content required"><%= options_for_select(["30", "45", "60", "90", "120"], @turno.duracion)%>
       </select> minutos</td>
@@ -98,6 +99,7 @@ function validate(e) { // 1
 
   });
 
+
      $(function() {
         $('input:text').keydown(function(e){
         if (e.keyCode == 13) {
@@ -118,7 +120,8 @@ function validate(e) { // 1
       mostrar_evento();
       });
 
-      $("#fecha_t").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1920:2110', maxDate: 0, showWeek: true});
+     
+ ;
 
 
 
@@ -178,7 +181,13 @@ function validate(e) { // 1
 
 
  });
+ $("#fechat").timePicker({startTime: "02.00", // Using string. Can take string or Date object.
+  endTime: new Date(0, 0, 0, 15, 30, 0), // Using Date object here.
+  show24Hours: false,
+  separator: '.',
+  step: 15
 
+  });
 
       function mostrar_evento (){
          if ($("input[name='AGENDA']:checked").val()== '1') {
@@ -201,5 +210,6 @@ function validate(e) { // 1
            //$("#fancybox-inner").height(320);
    
          }
+
 };
 </script>
