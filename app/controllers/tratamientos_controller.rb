@@ -198,7 +198,7 @@ def listados
 
 respond_to do |format|
   format.html {render :partial => 'listados', :layout=> false }
-  @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 10, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha ASC' 
+  @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 10, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha ASC'
   
   end
   

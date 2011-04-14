@@ -65,16 +65,25 @@ class PeriodosController < ApplicationController
     end
   end
 
-  def resultado
-    respond_to do |format|
-      if params[:anio].blank?
-        format.html{render :text => "Seleccione un Año para realizar la busqueda " }
-      elsif
-         format.html{render :partial=> 'resultado', :layout => false }
+  #def resultado
+  #  respond_to do |format|
+   #   if params[:periodo][:mes].blank?
+    #    format.html{render :text => "Seleccione un Año para realizar la busqueda " }
+     # elsif
+      #   format.html{render :partial=> 'resultado', :layout => false }
 
-        @periodos = Periodo.buscar(params).paginate  :page=> params[:page], :per_page=> 10, :order => 'anio DESC'
+       # @periodos = Periodo.buscar(params[:mes])
+      #end
+    #end
+  #end
+
+  def resultado
+    respond_to do |format|     
+     
+        @periodos = Periodo.buscar(params)
+        format.html {render :partial => 'resultado', :layout => false}
       end
-    end
+ 
   end
 
 

@@ -217,7 +217,7 @@ table#datos-rpi-titulares tr.even{
 .listado{
     border-collapse: collapse;
    border: 1px solid #F8ECE0;
-   width : 35%;
+   width : 65%;
 }
 
 .listado th par{

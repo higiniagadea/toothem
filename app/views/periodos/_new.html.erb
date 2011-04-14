@@ -11,14 +11,14 @@
 
   <table  style=" text-align: left;">
     <tr>
-      <th>Mes</th>
-      <td><%= f.date_select :mes, :class => 'required', :order => [:month], :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
-                                                       'Octubre', 'Noviembre', 'Diciembre'], :size=> 15 ,   :prompt => {:month => 'Seleccione'} %> </td>
+      <th>Periodo</th>
+      <td><%= f.date_select :mes, :class => 'required', :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
+                                                       'Octubre', 'Noviembre', 'Diciembre'], :size=> 15 ,   :prompt => {:day => 'Seleccione' , :month => 'Seleccione', :year => 'Seleccione'} %> </td>
     </tr>
 
     <tr>
-      <th>Año</th>
-      <td><%= f.date_select :anio, :order => [:year], :prompt => false, :size=> 15, :class => 'required', :prompt => {:year => 'Seleccione'} %> </td>
+      
+      <td><%#= f.date_select :anio, :order => [:year], :prompt => false, :size=> 15, :class => 'required', :prompt => {:year => 'Seleccione'} %> </td>
     </tr>
    <!--<tr>
     <tr>
@@ -52,10 +52,10 @@
 
 <script type="text/javascript">  
 $(document).ready(function(){
-    $("#new_periodo").validate({
+    $(".new_periodo").validate({
         //errorLabelContainer: $("#new_paciente div.errores")
-       errorContainer: $("#new_periodo div.errores"),
-       errorLabelContainer: $("ol", $("#new_periodo div.errores")),
+       errorContainer: $(".new_periodo div.errores"),
+       errorLabelContainer: $("ol", $(".new_periodo div.errores")),
        wrapper: 'li',
        meta: "validate"
     });

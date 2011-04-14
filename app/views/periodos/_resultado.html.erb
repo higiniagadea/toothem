@@ -3,8 +3,7 @@
 
 <table style=" text-align: left;" class="listados">
   <tr>
-    <th>Mes</th>
-    <th>Año</th>
+    <th>Fecha</th>   
     <th>Fue liquidado</th>
     <th>Fecha de liquidacion</th>
     <th>Acciones</th>
@@ -12,8 +11,8 @@
 
 <% @periodos.each do |periodo| %>
   <tr class="<%= cycle('par','impar') -%>">
-    <td><%=h periodo.mes %></td>
-    <td><%=h periodo.anio %></td>
+    <td><%= periodo.mes %></td>
+  
     <td><%=h boolean_desc(periodo.fue_liquidado) %></td>
      <td><%=h periodo.fecha_liquidacion.blank? ? '-' : periodo.fecha_liquidacion %></td>
      <td>
@@ -35,9 +34,6 @@
 
 <% end %>
 </table>
-
-  <%else%>
-
-  No se encontraron resultados
-
-  <%end%>
+<%else%>
+  No existen periodos cargados
+<%end%>

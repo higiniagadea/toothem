@@ -128,13 +128,13 @@ class PacientesController < ApplicationController
     params[:paciente_id]
     @paciente = Paciente.find_by_id(params[:id])
    
-    @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 10, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha ASC')
+    @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 1, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha ASC')
     @fichas = Ficha.find_all_by_paciente_id(@paciente.id)
     @profesionales = Profesional.paginate(:page => params[:page], :per_page => 2)
     @prestaciones = Prestacion.find(:all)
     @fichas = Ficha.paginate(:page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha DESC')
     @turnos = Turno.find(:all)
-    @pagos_pacientes = PagoPaciente.paginate(:page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id.to_s])
+    @pagos_pacientes = PagoPaciente.paginate(:page=> params[:page], :per_page=> 2, :conditions => ['paciente_id = ?', @paciente.id.to_s])
      
     respond_to do |format|
       unless @paciente.blank?

@@ -4,18 +4,18 @@ class Periodo < ActiveRecord::Base
 belongs_to :saldo_paciente
 
  validates_presence_of :mes, :message=> 'No puede estar en blanco'
- validates_presence_of :anio, :message=> 'No puede estar en blanco'
+ #validates_presence_of :anio, :message=> 'No puede estar en blanco'
 
-    named_scope :by_anio, lambda { |anio|
+    named_scope :by_mes, lambda { |mes|
     {
-      :conditions=> ['age(anio) LIKE :anio',
-          { :anio=> "%"+anio.downcase+"%"} ]
+      :conditions => ['age(mes) LIKE :mes',
+          { :mes => mes } ]
     }
   }
 
   def self.buscar(options)
       scope_builder do |builder|
-       builder.by_anio(options[:anio]) unless options[:anio].blank?
+       builder.by_mes(options[:mes]) unless options[:mes].blank?
       end
   end
 end

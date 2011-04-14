@@ -1,15 +1,16 @@
 class PagosPacientesController < ApplicationController
 layout 'default'
 
-  def index    
-    @pagos_pacientes = PagoPaciente.paginate :page=> params[:page], :per_page=> 5
+  def index
+    @paciente = Paciente.find(params[:id])
+    @pagos_pacientes = PagoPaciente.paginate :page=> params[:page], :per_page=> 10
     respond_to do |format|
       format.html{render :layout => 'default'}
       
     end
   end
 
- 
+
  def show
     @pago_paciente = PagoPaciente.find(params[:id])
     respond_to do |format|

@@ -174,6 +174,16 @@ $(document).ready(function(){
     return false
   });
 
+ $('div.ajax-pagination a').live('click', function() {
+    $('#busq_turnos').load(this.href)
+    return false
+  });
+
+
+  $('div.bturnos a').live('click', function() {
+    $('#busq_turnos').load(this.href)
+    return false
+  });
 
 });
      

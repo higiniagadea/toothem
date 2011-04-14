@@ -1,6 +1,6 @@
 <% unless @pagos_pacientes.blank? %>
 <h1>Pagos</h1>
-<table style=" text-align: left "class="listado">
+<table style=" text-align: left "class="listados">
     <tr>
       <th>Nro.de recibo</th>      
       <th>Fecha</th>
@@ -39,5 +39,8 @@
 
 
   </table>
-
-
+<table>
+ <%= will_paginate @pagos_pacientes, :previous_label =>'Anterior', :next_label => 'Siguiente' ,
+                                  :class => 'tratam pagination',
+                                  :params => {:controller => "pagos_pacientes", :action => 'lista'} %>
+</table>

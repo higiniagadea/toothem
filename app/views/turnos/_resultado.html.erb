@@ -1,4 +1,4 @@
-
+<div id="busq_turnos">
 <h1>Resultado de la busqueda</h1>
 <% unless @turnos.blank? %>
   <table style=" text-align: left;" class="listado">
@@ -27,11 +27,21 @@
       'titleShow': false
 
     });
-    $.fancybox.resize();
+
       </script>
     <% end %>
       <%else%>
       No se encontraron resultados segun los criterios de busqueda
       <%end%>
   </table>
+<table>
+  <tr><td>
+<%= will_paginate @turnos, :previous_label => 'Anterior', :next_label => 'Siguiente',
+                                  :class => 'bturnos pagination',
+                                  :params => {:controller => "turnos", :action => "resultado"
 
+                                  }  %>
+    </td>
+  </tr>
+</table>
+</div>
