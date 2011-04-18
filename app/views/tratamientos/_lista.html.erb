@@ -1,38 +1,17 @@
- <fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Cuentas Corrientes</legend>
- 
-  <table>
-     <tr>
-       <td style=" float: left; margin-left: 900px"><%= link_to image_tag('add.png') + 'Nuevo Pago', new_pago_paciente_url(:paciente_id=> @paciente.id.to_s), :id => 'pago' %>
-       </td>
-     </tr>
-      <script type="text/javascript">
-
-      $('#pago').fancybox(
-        {
-      'hideOnContentClick': false,
-      'titleShow': false
-
-      });
-
-      </script>
-   </table>
-  
-
- <% unless @tratamientos.blank? %>
+<% unless @tratamientos.blank? %>
     <h1>Tratamientos</h1>
 
 <table style=" text-align: left "class="listados">
   <tr>
-    <th>Prestacion</th>   
-    <th>Fecha de finalizacion</th>   
+    <th>Prestacion</th>
+    <th>Fecha de finalizacion</th>
     <th>Coseguro</th>
     <th>Fue liquidado?</th>
     <th>Estado</th>
   </tr>
 
  <% @tratamientos.each do |tratamiento| %>
-  
+
   <tr class="<%= cycle('par','impar') -%>">
     <th><%=h tratamiento.prestacion.descripcion %> </th>
     <th><%=h tratamiento.fecha_finalizacion.blank? ? '-': tratamiento.fecha_finalizacion.strftime('%d/%m/%Y') %></th>
@@ -63,17 +42,5 @@
     <table>
        <%= will_paginate @tratamientos, :previous_label =>'Anterior', :next_label => 'Siguiente' ,
                                   :class => 'tratam pagination',
-                                  :params => {:controller => "tratamientos", :action=> "listados"} %>
+                                  :params => {:controller => "tratamientos", :action=> "lista"} %>
     </table>
-  <table>
-  <%= render :partial => 'pagos_pacientes/index' %>
-  </table>
-
-
-
-<% end %>
-
-
-
-
- </fieldset>

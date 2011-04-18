@@ -184,12 +184,12 @@ $(document).ready(function(){
   });
 
  $('div.ajax-pagination a').live('click', function() {
-    $('#pacientepago').load(this.href)
+    $('#2').load(this.href)
     return false
   });
 
-  $('div.pacientep a').live('click', function() {
-    $('#pacientepago').load(this.href)
+  $('div.1 a').live('click', function() {
+    $('#2').load(this.href)
     return false
   });
 
