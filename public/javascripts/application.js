@@ -184,12 +184,12 @@ $(document).ready(function(){
   });
 
  $('div.ajax-pagination a').live('click', function() {
-    $('#2').load(this.href)
+    $('#cuenta').load(this.href)
     return false
   });
 
-  $('div.1 a').live('click', function() {
-    $('#2').load(this.href)
+  $('div.cuentas a').live('click', function() {
+    $('#cuenta').load(this.href)
     return false
   });
 

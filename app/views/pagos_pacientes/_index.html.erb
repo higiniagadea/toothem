@@ -1,7 +1,8 @@
-
+<div id="cuentas">
 <% unless @pagos_pacientes.blank? %>
-<div id="2">
-<h1>Pagos</h1>
+
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Pagos</legend>
 
 <table style=" text-align: left "class="listados">
     <tr>
@@ -44,7 +45,8 @@
   </table>
 <table>
  <%= will_paginate @pagos_pacientes, :previous_label =>'Anterior', :next_label => 'Siguiente' ,
-                                  :class => '1 pagination',
-                                  :params => {:controller => "pagos_pacientes", :action => "index"} %>
+                                  :class => 'cuenta pagination',
+                                  :params =>{:controller => "pagos_pacientes", :action => 'index'} %>
 </table>
+</fieldset>
 </div>
