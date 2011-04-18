@@ -1,5 +1,5 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-corner-all ui-widget-header">Nuevo Periodo</legend>
+  <legend class="ui-widget ui-corner-all ui-widget-header">Nuevo Per&iacute;odo</legend>
 <% form_for(@periodo) do |f|  %>
  <%= f.error_messages(:id => 'error', :header_message => '', :message => 'Ocurrió un error al intentar guardar el registro')  %>
 
@@ -11,9 +11,9 @@
 
   <table  style=" text-align: left;">
     <tr>
-      <th>Periodo</th>
-      <td><%= f.date_select :mes, :class => 'required', :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
-                                                       'Octubre', 'Noviembre', 'Diciembre'], :size=> 15 ,   :prompt => {:day => 'Seleccione' , :month => 'Seleccione', :year => 'Seleccione'} %> </td>
+      <th>Per&iacute;odo</th>
+      <td><%= f.date_select :mes,  :order => [:year], :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
+                                                       'Octubre', 'Noviembre', 'Diciembre'], :class => 'required', :title => 'Ingrese un periodo', :size=> 15 , :prompt => {:year => 'Seleccione'} %> </td>
     </tr>
 
     <tr>
@@ -51,14 +51,15 @@
 
 
 <script type="text/javascript">  
-$(document).ready(function(){
+ $(document).ready(function(){
     $(".new_periodo").validate({
         //errorLabelContainer: $("#new_paciente div.errores")
        errorContainer: $(".new_periodo div.errores"),
        errorLabelContainer: $("ol", $(".new_periodo div.errores")),
        wrapper: 'li',
        meta: "validate"
+     
     });
-});
-  
+
+ });
 </script>

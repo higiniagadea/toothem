@@ -3,12 +3,14 @@ layout 'default'
 
   def index
     @paciente = Paciente.find(params[:id])
-    @pagos_pacientes = PagoPaciente.paginate :page=> params[:page], :per_page=> 10
+    @pagos_pacientes = PagoPaciente.paginate :page=> params[:page], :per_page=> 2, :conditions => ['paciente_id = ?', @paciente.id.to_s]
     respond_to do |format|
-      format.html{render :layout => 'default'}
+      format.html{render :partial => 'index', :layout => false}
       
     end
   end
+
+
 
 
  def show

@@ -88,31 +88,26 @@ $(document).ready(function(){
    $('#resultados').load(this.href)
    return false
   });
-
-
+  
   $('div.result a').live('click', function() {
     $('#resultados').load(this.href)
     return false
   });
 
- $('div.ajax-pagination a').live('click', function() {
+  $('div.ajax-pagination a').live('click', function() {
     $('#trata').load(this.href)
     return false
   });
- 
 
   $('div.tratam a').live('click', function() {
     $('#trata').load(this.href)
     return false
   });
 
-
-
   $('div.ajax-pagination a').live('click', function() {
     $('#ficha_pag').load(this.href)
     return false
   });
-
 
   $('div.ficha_pag a').live('click', function() {
     $('#fich').load(this.href)
@@ -124,7 +119,6 @@ $(document).ready(function(){
     return false
   });
 
-
   $('div.pres a').live('click', function() {
     $('#presta').load(this.href)
     return false
@@ -134,7 +128,6 @@ $(document).ready(function(){
     $('#obra ').load(this.href)
     return false
   });
-
 
   $('div.social a').live('click', function() {
     $('#obra').load(this.href)
@@ -146,7 +139,6 @@ $(document).ready(function(){
     return false
   });
 
-
   $('div.clinica a').live('click', function() {
     $('#clinicas').load(this.href)
     return false
@@ -156,8 +148,6 @@ $(document).ready(function(){
     $('#profesionales ').load(this.href)
     return false
   });
-
-
   $('div.profesional a').live('click', function() {
     $('#profesionales').load(this.href)
     return false
@@ -167,7 +157,6 @@ $(document).ready(function(){
     $('#turnos ').load(this.href)
     return false
   });
-
 
   $('div.turno a').live('click', function() {
     $('#turnos').load(this.href)
@@ -179,12 +168,32 @@ $(document).ready(function(){
     return false
   });
 
-
   $('div.bturnos a').live('click', function() {
     $('#busq_turnos').load(this.href)
     return false
   });
 
+  $('div.ajax-pagination a').live('click', function() {
+    $('#periodo_result').load(this.href)
+    return false
+  });
+
+  $('div.periodos a').live('click', function() {
+    $('#periodo_result').load(this.href)
+    return false
+  });
+
+ $('div.ajax-pagination a').live('click', function() {
+    $('#pacientepago').load(this.href)
+    return false
+  });
+
+  $('div.pacientep a').live('click', function() {
+    $('#pacientepago').load(this.href)
+    return false
+  });
+
+ 
 });
      
     

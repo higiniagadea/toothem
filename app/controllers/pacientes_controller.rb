@@ -135,7 +135,7 @@ class PacientesController < ApplicationController
     @fichas = Ficha.paginate(:page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha DESC')
     @turnos = Turno.find(:all)
     @pagos_pacientes = PagoPaciente.paginate(:page=> params[:page], :per_page=> 2, :conditions => ['paciente_id = ?', @paciente.id.to_s])
-     
+    
     respond_to do |format|
       unless @paciente.blank?
       unless @paciente.archivo_id.blank?

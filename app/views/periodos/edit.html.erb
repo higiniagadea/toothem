@@ -1,5 +1,5 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-corner-all ui-widget-header">Periodo</legend>
+  <legend class="ui-widget ui-corner-all ui-widget-header">Per&iacute;odo</legend>
 <% form_for(@periodo) do |f|  %>
  <%= f.error_messages(:id => 'error', :header_message => '', :message => 'Ocurrió un error al intentar guardar el registro')  %>
 
@@ -24,7 +24,7 @@
     </tr>
 
     <tr>
-      <th>Fecha de liquidacion</th>
+      <th>Fecha de liquidaci&oacute;n</th>
       <td><%= f.date_select :fecha_liquidacion, :order => [:day,:month,:year],  :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
                                                        'Octubre', 'Noviembre', 'Diciembre'], :class=> 'ui-widget-content required'  %> </td>
     </tr>

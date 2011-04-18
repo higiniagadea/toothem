@@ -63,7 +63,7 @@
     <table>
        <%= will_paginate @tratamientos, :previous_label =>'Anterior', :next_label => 'Siguiente' ,
                                   :class => 'tratam pagination',
-                                  :params => {:controller => "tratamientos", :action=> " listados"} %>
+                                  :params => {:controller => "pacientes", :action=> "edit"} %>
     </table>
   <table>
   <%= render :partial => 'pagos_pacientes/index' %>

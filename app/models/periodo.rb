@@ -8,14 +8,14 @@ belongs_to :saldo_paciente
 
     named_scope :by_mes, lambda { |mes|
     {
-      :conditions => ['age(mes) LIKE :mes',
+      :conditions => ["to_char(mes,'yyyy') = :mes",
           { :mes => mes } ]
     }
   }
 
   def self.buscar(options)
       scope_builder do |builder|
-       builder.by_mes(options[:mes]) unless options[:mes].blank?
+       builder.by_mes(options) unless options.blank?
       end
   end
 end

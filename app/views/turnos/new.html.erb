@@ -88,14 +88,13 @@ function validate(e) { // 1
 }
 
    $(document).ready(function(){
-     mostrar_evento();
+
   $(".new_turno").validate({
         //errorLabelContainer: $("#new_paciente div.errores")
        errorContainer: $(".new_turno div.errores"),
        errorLabelContainer: $("ol", $(".new_turno div.errores")),
        wrapper: 'li',
        meta: "validate"
-
 
   });
 
