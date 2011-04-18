@@ -18,7 +18,7 @@
   <table style=" text-align: left;">
     <tr>
       <th>Documento</th>
-      <td><%= f.text_field :matricula, :class => 'ui-widget-content', :size => 15 %> </td>
+      <td><%= f.text_field :matricula, :class => 'ui-widget-content required', :size => 15,  :onkeypress=> 'return validar(event)' %> </td>
     </tr>
   </table>
   
@@ -37,3 +37,12 @@
 
  </fieldset>
 <%end%>
+<script type="text/javascript">
+function validar(e) { // 1
+    tecla = (document.all) ? e.keyCode : e.which; // 2
+    if (tecla==8) return true; // 3
+    patron =/\d/; //4
+    te = String.fromCharCode(tecla); // 5
+    return patron.test(te); // 6
+}
+</script>

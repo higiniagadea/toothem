@@ -1,10 +1,9 @@
-<div id="periodo_result">
 <% unless @periodos.blank? %>
   <h1>Resultado de la b&uacute;squeda </h1>
 
 <table style=" text-align: left;" class="listados">
   <tr>
-    <th>Fecha</th>   
+    <th>Fecha</th>
     <th>Fue liquidado</th>
     <th>Fecha de liquidaci&oacute;n</th>
     <th>Acciones</th>
@@ -12,8 +11,8 @@
 
 <% @periodos.each do |periodo| %>
   <tr class="<%= cycle('par','impar') -%>">
-    <td><%= periodo.mes.strftime('%Y') %></td>
-  
+    <td><%= periodo.mes %></td>
+
     <td><%=h boolean_desc(periodo.fue_liquidado) %></td>
      <td><%=h periodo.fecha_liquidacion.blank? ? '-' : periodo.fecha_liquidacion %></td>
      <td>
@@ -34,14 +33,8 @@
   </tr>
 
 <% end %>
-
+</table>
 <%else%>
-  No existen per&iacute;odos segun el criterio de b&uacute;squeda
+  No existen per&iacute;odos cargados
 <%end%>
-  </table>
-  <%= will_paginate @periodos, :previous_label =>'Anterior', :next_label => 'Siguiente',
-                                  :class => 'periodos pagination',
-                                  :params => {:controller => "periodos", :action => "resultado"
 
-                                  }  %>
-</div>

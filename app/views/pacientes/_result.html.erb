@@ -2,7 +2,7 @@
 <% unless @pacientes.blank? %>
 <h1>Resultado de la b&uacute;squeda </h1>
  
-  <table style=" text-align: left;" class="listado" >
+  <table style=" text-align: left;" class="listados" >
     <tr>
       <th>Nombre y Apellido </th>
       <th>Tipo y Nro. Documento</th>
@@ -80,8 +80,8 @@
   
 <%= will_paginate @pacientes, :previous_label=>'Anterior', :next_label => 'Siguiente',
                               :class => 'result pagination',
-                              :params => {:controller => "pacientes", :action=> "result",
+                              :params => {:controller => "pacientes", :action=> "result"
                               
-                              :nombre => params[:nombre]} %>
+                             } %>
 
 </div>

@@ -1,2 +1,0 @@
-class PeriodosCtasPacientesController < ApplicationController
-end

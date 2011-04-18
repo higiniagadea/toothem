@@ -1,6 +1,16 @@
-class PeriodosController < ApplicationController
+ class PeriodosController < ApplicationController
 
   layout 'default'
+
+
+ def show
+   
+    @periodo = Periodo.find(params[:id])
+    respond_to do |format|
+
+      format.html{render :layout => 'default'}
+    end
+  end
 
 
   def index
@@ -24,17 +34,16 @@ class PeriodosController < ApplicationController
      @periodo = Periodo.new(params[:periodo])
 
     respond_to do |format|
-      if @periodo.save
-        flash[:notice] = 'Periodo Guardado'
-        format.html { redirect_to buscar_periodos_path}
-
-      else
-        format.html { render :partial => "new"}
-
+      
+       if @periodo.save
+        flash[:notice] = 'Per&iacute;odo Guardado'
+        format.html { redirect_to buscar_periodos_path}    
+       else
+          format.html { render :partial => 'new' }
       end
     end
+ 
   end
-
 
   def edit
     @periodo = Periodo.find(params[:id])
@@ -49,7 +58,7 @@ class PeriodosController < ApplicationController
 
     respond_to do |format|
       if @periodo.update_attributes(params[:periodo])
-        flash[:notice] = 'Periodo actualizado'
+        flash[:notice] = 'Per&iacute;odo actualizado'
         format.html { redirect_to buscar_periodos_path }
 
       else
@@ -65,16 +74,27 @@ class PeriodosController < ApplicationController
     end
   end
 
-  def resultado
-    respond_to do |format|
-      if params[:anio].blank?
-        format.html{render :text => "Seleccione un Año para realizar la busqueda " }
-      elsif
-         format.html{render :partial=> 'resultado', :layout => false }
+  #def resultado
+  #  respond_to do |format|
+   #   if params[:periodo][:mes].blank?
+    #    format.html{render :text => "Seleccione un Año para realizar la busqueda " }
+     # elsif
+      #   format.html{render :partial=> 'resultado', :layout => false }
 
-        @periodos = Periodo.buscar(params).paginate  :page=> params[:page], :per_page=> 10, :order => 'anio DESC'
-      end
-    end
+       # @periodos = Periodo.buscar(params[:mes])
+      #end
+    #end
+  #end
+
+  def resultado
+    respond_to do |format|     
+       params[:anio] = params[:periodo]['mes(1i)'.to_sym]
+     
+        @periodos = Periodo.buscar(params[:anio]).paginate :page=> params[:page], :per_page=> 12, :order => 'mes DESC'
+        format.html{render :partial => 'resultado', :layout => false}
+    
+    
+  end
   end
 
 
@@ -82,10 +102,10 @@ class PeriodosController < ApplicationController
    @periodo = Periodo.find_by_id(params[:id])
 
     if @periodo.fue_liquidado == true
-      flash[:notice] = 'El periodo no puede ser borrado ya que no fue liquidado'
+      flash[:notice] = 'El per&iacute;odo no puede ser borrado ya que no fue liquidado'
     else
       @periodo.destroy
-      flash[:notice] = 'Periodo eliminado'
+      flash[:notice] = 'Per&iacute;odo eliminado'
     end
    respond_to do |format|
       

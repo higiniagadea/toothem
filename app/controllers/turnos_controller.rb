@@ -49,11 +49,6 @@ class TurnosController < ApplicationController
     if  @turno.save
       flash[:notice] = 'El registro se ha guardado correctamente'
      format.html{redirect_to turnos_path}
-    #render :update do |page|
-  
-     # page<<"$('#calendar').fullCalendar()"
-      #page<<"$('#create_turno_dialog').dialog('destroy')"
-
     end
     end 
   end
@@ -101,14 +96,15 @@ class TurnosController < ApplicationController
 
   def resultado
     @profesionales = Profesional.find(params[:profesional][:profesional_id]) if params[:profesional][:profesional_id]
-    params[:turno][:profesional_id] = params[:profesional][:profesional_id] if params[:profesional][:profesional_id]
+    params[:turno][:profesional_id] = params[:profesional][:profesional_id] if params[:profesional][:profesional_id].blank?
     respond_to do |format|
       params[:turno][:profesional_id] =  @profesionales.id
       if params[:turno][:fecha_desde].blank? || params[:turno][:fecha_hasta].blank?
         format.html{render :text => "Ingrese las fechas para realizar la busqueda", :layout => false }
        elsif
-        @turnos = Turno.basic_search(params[:turno])
-        format.html{render :partial=> 'resultado', :layout => false}
+         format.html{render :partial=> 'resultado', :layout => false}
+        @turnos = Turno.basic_search(params[:turno]).paginate(:page => params[:page], :per_page=> 2)
+        
 
        end
     end

@@ -1,18 +1,18 @@
-
+<% unless @periodos.blank? %>
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Periodos</legend>
-  <table style=" text-align: left;" class="listado">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Per&iacute;odos</legend>
+  <table style=" text-align: left;" class="listados">
     <tr>
       <th>Mes</th>
-      <th>Año</th>
+      
       <th>Fue liquidado</th>
-      <th>Fecha de liquidacion</th>
+      <th>Fecha de liquidaci&oacute;n</th>
       <th>Acciones</th>
     </tr>
     <% @periodos.each do |periodo| %>
     <tr class="<%= cycle('par','impar')-%>">
       <td><%=h periodo.mes.strftime('%d/%m/%y') %></td>
-      <td><%=h periodo.anio.strftime('%d/%m/%y') %></td>
+    
       <td><%=h boolean_desc(periodo.fue_liquidado) %></td>
       <td><%=h periodo.fecha_liquidacion.blank? ? '-' : periodo.fecha_liquidacion %></td>
 
@@ -40,5 +40,7 @@
 
         
   </table>
-
+<%else%>
+  No existen per&iacute;odos segun el criterio de b&uacute;squeda
+<%end%>
 </fieldset>
