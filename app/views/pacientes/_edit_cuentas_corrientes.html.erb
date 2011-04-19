@@ -1,6 +1,7 @@
- <fieldset class="ui-widget ui-widget-content ui-corner-top">
+
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Cuentas Corrientes</legend>
- 
+ <div id="cuenta_p">
   <table>
      <tr>
        <td style=" float: left; margin-left: 900px"><%= link_to image_tag('add.png') + 'Nuevo Pago', new_pago_paciente_url(:paciente_id=> @paciente.id.to_s), :id => 'pago' %>
@@ -20,7 +21,8 @@
   
 
  <% unless @tratamientos.blank? %>
-    <h1>Tratamientos</h1>
+   
+   <h1>Tratamientos</h1>
 
 <table style=" text-align: left "class="listados">
   <tr>
@@ -62,18 +64,20 @@
     <br/>
     <table>
        <%= will_paginate @tratamientos, :previous_label =>'Anterior', :next_label => 'Siguiente' ,
-                                  :class => 'tratam pagination',
+                                  :class => 'cuent_trat pagination',
                                   :params => {:controller => "tratamientos", :action=> "listados"} %>
     </table>
-  <table>
-  <%= render :partial => 'pagos_pacientes/index' %>
-  </table>
+
+ 
+ 
 
 
 
 <% end %>
 
 
+</div>
 
-
- </fieldset>
+ 
+ <%= render :partial => 'pagos_pacientes/index' %>
+  </fieldset>
