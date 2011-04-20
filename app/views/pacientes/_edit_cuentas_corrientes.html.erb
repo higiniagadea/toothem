@@ -1,7 +1,7 @@
 
-<fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Cuentas Corrientes</legend>
- <div id="cuenta_p">
+<fieldset class="ui-widget ui-widget-content ui-corner-all">
+  <legend class="ui-widget  ui-corner-all ui-widget-header">Cuenta Corriente</legend>
+ 
   <table>
      <tr>
        <td style=" float: left; margin-left: 900px"><%= link_to image_tag('add.png') + 'Nuevo Pago', new_pago_paciente_url(:paciente_id=> @paciente.id.to_s), :id => 'pago' %>
@@ -19,65 +19,11 @@
       </script>
    </table>
   
+<%= render :partial => 'tratamientos/listado' %>
 
- <% unless @tratamientos.blank? %>
-   
-   <h1>Tratamientos</h1>
 
-<table style=" text-align: left "class="listados">
-  <tr>
-    <th>Prestacion</th>   
-    <th>Fecha de finalizacion</th>   
-    <th>Coseguro</th>
-    <th>Fue liquidado?</th>
-    <th>Estado</th>
-  </tr>
+<%= render :partial => 'pagos_pacientes/orden' %>
+ </fieldset>
+ 
 
- <% @tratamientos.each do |tratamiento| %>
   
-  <tr class="<%= cycle('par','impar') -%>">
-    <th><%=h tratamiento.prestacion.descripcion %> </th>
-    <th><%=h tratamiento.fecha_finalizacion.blank? ? '-': tratamiento.fecha_finalizacion.strftime('%d/%m/%Y') %></th>
-    <th><%=h number_to_currency(tratamiento.coseguro) %></th>
-    <th><%=h boolean_desc(tratamiento.fue_liquidado) %></th>
-    <th><%=h tratamiento.estado_tratamiento.nombre %></th>
-
-    <td><% if tratamiento.estado_tratamiento_id != 5  %>
-      <%= link_to image_tag('pencil.png'), edit_tratamiento_path(tratamiento, :paciente_id => @paciente), :title => 'Editar', :id=> 'edit'+ tratamiento.id.to_s%>
-     <%end%></td>
-  </tr>
- <script type="text/javascript">
-
-      $('#edit<%= tratamiento.id.to_s %>').fancybox(
-        {
-      'hideOnContentClick': false,
-      'titleShow': false
-
-      });
-
-
-
-      </script>
- <% end %>
-   </table>
-    <br/>
-    <br/>
-    <table>
-       <%= will_paginate @tratamientos, :previous_label =>'Anterior', :next_label => 'Siguiente' ,
-                                  :class => 'cuent_trat pagination',
-                                  :params => {:controller => "tratamientos", :action=> "listados"} %>
-    </table>
-
- 
- 
-
-
-
-<% end %>
-
-
-</div>
-
- 
- <%= render :partial => 'pagos_pacientes/index' %>
-  </fieldset>

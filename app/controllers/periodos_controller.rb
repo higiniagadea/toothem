@@ -88,15 +88,14 @@
 
   def resultado
     respond_to do |format|     
-       params[:anio] = params[:periodo]['mes(1i)'.to_sym]
-     
-        @periodos = Periodo.buscar(params[:anio]).paginate :page=> params[:page], :per_page=> 12, :order => 'mes DESC'
-        format.html{render :partial => 'resultado', :layout => false}
+    params[:anio] = params[:periodo]['mes(1i)'.to_sym]
     
-    
+        @periodos = Periodo.buscar(params[:anio]).paginate :page=> params[:page], :per_page=> 2, :order => 'mes DESC'
+        format.html{render :partial => 'resultado', :layout => false}   
+  
   end
   end
-
+ 
 
    def destroy
    @periodo = Periodo.find_by_id(params[:id])
