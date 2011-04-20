@@ -31,7 +31,7 @@
     </tr>
       <% @tratamientos.each do |tratamiento| %>
    <tr  class="<%= cycle('par','impar') -%>">
-    <td><%=h tratamiento.fecha.strftime('%d/%m/%Y').blank? ? '-' :tratamiento.fecha.strftime('%d/%m/%Y') %></td>
+    <td><%=h tratamiento.fecha.blank? ? '-' :tratamiento.fecha.strftime('%d/%m/%Y') %></td>
   
     <td><%=h tratamiento.prestacion.descripcion %></td>
     <td><%=h tratamiento.diente %></td>
