@@ -12,8 +12,7 @@
   <table  style=" text-align: left;">
     <tr>
       <th>Per&iacute;odo</th>
-      <td><%= f.date_select :mes,  :order => [:year], :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
-                                                       'Octubre', 'Noviembre', 'Diciembre'], :class => 'required', :title => 'Ingrese un periodo', :size=> 15 , :prompt => {:year => 'Seleccione'} %> </td>
+      <td><%= f.date_select(:mes,  :order => [:year], :start_year => 2011, :class => 'required', :title => 'Ingrese un periodo', :size=> 15 , :prompt => {:year => 'Seleccione'}) %> </td>
     </tr>
 
     <tr>

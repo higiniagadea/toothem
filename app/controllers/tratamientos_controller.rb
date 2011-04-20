@@ -101,7 +101,7 @@ class TratamientosController < ApplicationController
     #arancel = Arancel.find_by_prestacion_id(params[:arancel].to_i)
     #params[:tratamiento][:importe_cubierto] = arancel.importe_cubierto.to_i
     #params[:tratamiento][:coseguro] = arancel.coseguro.to_i
-
+   
     @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id.to_s])
   
     respond_to do |format|

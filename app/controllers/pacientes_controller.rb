@@ -129,7 +129,7 @@ class PacientesController < ApplicationController
     @paciente = Paciente.find_by_id(params[:id])
    
     @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 10, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha ASC')
-    @pagos_pacientes = PagoPaciente.paginate(:page=> params[:page], :per_page=> 1, :conditions => ['paciente_id = ?', @paciente.id.to_s] , :order => 'fecha ASC')
+    @pagos_pacientes = PagoPaciente.paginate(:page=> params[:page], :per_page=> 10, :conditions => ['paciente_id = ?', @paciente.id.to_s] , :order => 'fecha ASC')
     @fichas = Ficha.find_all_by_paciente_id(@paciente.id)
     @profesionales = Profesional.paginate(:page => params[:page], :per_page => 2)
     @prestaciones = Prestacion.find(:all)
@@ -450,11 +450,11 @@ end
 
 def liquidar
   @paciente = Paciente.find(params[:id])
-
+  
 
 respond_to do |format|
-  @pagos_pacientes = PagoPaciente.find(:all)
-  format.html{render :partial => 'liquidacion'}
+ @periodos = Periodo.find(:all)
+  format.html{render :partial => 'orden', :layout => 'default'}
 end
 end
 

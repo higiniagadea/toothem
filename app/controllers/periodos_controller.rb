@@ -3,18 +3,19 @@
   layout 'default'
 
 
- def show
+ #def show
    
-    @periodo = Periodo.find(params[:id])
-    respond_to do |format|
+  #  @periodo = Periodo.find(params[:id])
+   # respond_to do |format|
 
-      format.html{render :layout => 'default'}
-    end
-  end
+    #  format.html{render :layout => 'default'}
+    #end
+  #end
 
 
   def index
-      @periodos = Periodo.paginate :page=> params[:page], :per_page=> 10
+   
+      @periodos = Periodo.paginate :page=> params[:page], :per_page=> 10, :order => 'mes DESC'
 
     respond_to do |format|
      format.html # index.html.erb
@@ -90,7 +91,7 @@
     respond_to do |format|     
     params[:anio] = params[:periodo]['mes(1i)'.to_sym]
     
-        @periodos = Periodo.buscar(params[:anio]).paginate :page=> params[:page], :per_page=> 2, :order => 'mes DESC'
+        @periodos = Periodo.buscar(params[:anio]).paginate :page=> params[:page], :per_page=> 10, :order => 'mes DESC'
         format.html{render :partial => 'resultado', :layout => false}   
   
   end
@@ -112,6 +113,5 @@
    end
 
   end
-
 
 end

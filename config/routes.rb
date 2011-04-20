@@ -18,7 +18,7 @@ ActionController::Routing::Routes.draw do |map|
                               :listado => [:get]
                               }
 
-  map.resources :periodos, :collection => {:buscar => :get, :resultado => [:get, :post]}
+  map.resources :periodos, :collection => {:buscar => :get, :resultado => [:get, :post]}, :member => {:liquidar => [:get, :post]}
 
   map.resources :tareas
 
@@ -73,8 +73,8 @@ map.resources :pagos_pacientes #:member => {:new => [:get, :post]}
                                 :verificar_numeromatricula => [:get],
                                 :verificar_longitud => [:get],
                                 :buscar_dni => [:get, :post],
-                                :result_dni => [:get, :post],
-                                :liquidar => [:get, :post]
+                                :result_dni => [:get, :post]
+                                
                 },
 
                 :member => {:new_tratamiento => [:get,:post],
