@@ -82,9 +82,7 @@
  
       </script>
      <%end%>
-   <%else%>
-  No posee tratamientos
- <% end%>
+  
    
    </table>
 
@@ -94,4 +92,6 @@
                                   :params => {:controller => "tratamientos", :action=> "listados"} %>
 
 </div>
-
+ <%else%>
+  No posee tratamientos
+ <% end%>
