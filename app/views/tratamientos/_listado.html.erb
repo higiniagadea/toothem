@@ -1,7 +1,11 @@
-<% unless @tratamientos.blank? %>
-    <h1>Tratamientos</h1>
+<div id="cuenta_p">
+<h1>Tratamientos</h1>
+ <% unless @tratamientos.blank? %>
+
+
 
 <table style=" text-align: left "class="listados">
+
   <tr>
     <th>Prestacion</th>
     <th>Fecha de finalizacion</th>
@@ -20,7 +24,7 @@
     <th><%=h tratamiento.estado_tratamiento.nombre %></th>
 
     <td><% if tratamiento.estado_tratamiento_id != 5  %>
-      <%= link_to image_tag('pencil.png'), edit_tratamiento_path(tratamiento, :paciente_id => @paciente), :title => 'Editar', :id=> 'edit'+ tratamiento.id.to_s%>
+      <%#= link_to image_tag('pencil.png'), edit_tratamiento_path(tratamiento, :paciente_id => @paciente), :title => 'Editar', :id=> 'edit'+ tratamiento.id.to_s%>
      <%end%></td>
   </tr>
  <script type="text/javascript">
@@ -36,11 +40,18 @@
 
       </script>
  <% end %>
+  <%else%>
+  No posee tratamientos
    </table>
     <br/>
     <br/>
     <table>
        <%= will_paginate @tratamientos, :previous_label =>'Anterior', :next_label => 'Siguiente' ,
-                                  :class => 'tratam pagination',
-                                  :params => {:controller => "tratamientos", :action=> "lista"} %>
+                                  :class => 'cuent_trat pagination',
+                                  :params => {:controller => "tratamientos", :action=> "listado"} %>
     </table>
+
+
+<% end %>
+
+    </div>

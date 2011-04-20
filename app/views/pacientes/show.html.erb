@@ -3,10 +3,10 @@
 <div id="pacientes-screen">
   <div id= "pacientes-photo">
     
-    <% if @paciente.archivo_id.blank? %>
-      <%= image_tag('nouser.jpg') %>
+    <%# if @paciente.archivo_id.blank? %>
+      <%#= image_tag('nouser.jpg') %>
     <%else%>
-      <%= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id = ' + @archivo.id.to_s)), :alt => 'imagen del paciente' %>
+      <%#= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id = ' + @archivo.id.to_s)), :alt => 'imagen del paciente' %>
     <%end%>
   </div>
   <div id="pacientes-options">
@@ -192,7 +192,7 @@
            </div>
         </p>
       <p>
-           <%= imagen.observaciones %>
+           <%#= imagen.observaciones %>
        
       </p>
          </div>
@@ -232,7 +232,7 @@
    <fieldset class="ui-widget-content ui-corner-all">
     <legend class="ui-widget ui-widget-header ui-corner-all" >Fichas</legend>
 
-    <%= link_to "Nueva Ficha", new_ficha_path + "?paciente_id="+@paciente.id.to_s %>
+    <%#= link_to "Nueva Ficha", new_ficha_path + "?paciente_id="+@paciente.id.to_s %>
     <table class="show-data">
       <tr>
         <td></td>

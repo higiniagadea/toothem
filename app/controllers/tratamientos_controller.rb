@@ -12,18 +12,6 @@ class TratamientosController < ApplicationController
     end
   end
 
-  def lista
-
-  @paciente = Paciente.find(params[:id])
-
-    respond_to do |format|
-
-     @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 1, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha ASC'
-     format.html {render :partial => 'listados', :layout=> false }
-    end
-
-end
-
 
   #muestra el importe dependiendo del arancel
   def actualizar_importe
@@ -217,6 +205,15 @@ respond_to do |format|
   
 end
 
+def listado
+  @paciente = Paciente.find(params[:id])
+  
+  respond_to do |format|   
+
+    @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 1, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha ASC'
+    format.html {render :partial => 'listado', :layout=> false }
+  end
+end
 
 
 end

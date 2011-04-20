@@ -2,12 +2,13 @@ class PagosPacientesController < ApplicationController
 layout 'default'
 
   def orden
-    @paciente = Paciente.find(params[:id])
+     @paciente = Paciente.find(params[:id])
+    
     
     respond_to do |format|
-      @pagos_pacientes = PagoPaciente.paginate :page=> params[:page], :per_page=> 1, :conditions => ['paciente_id = ?', @paciente.id.to_s]
-      format.html{render :partial => 'index', :layout => false}
-      
+     
+      format.html{render :partial => 'orden', :layout => false }
+       @pagos_pacientes = PagoPaciente.paginate :page=> params[:page], :per_page=> 1, :conditions => ['paciente_id = ?', @paciente.id], :order => 'fecha DESC'
     end
   end
 

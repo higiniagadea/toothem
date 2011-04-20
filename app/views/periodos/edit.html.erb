@@ -11,7 +11,7 @@
 
   <table  style=" text-align: left;">
     <tr>
-      <th>Mes</th>
+      <th>Periodo</th>
       <td><%= f.date_select :mes, :order => [:month], :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
                                                      'Octubre', 'Noviembre', 'Diciembre'], :size=> 15 , :class=> 'ui-widget-content required',  :prompt => {:month => 'Seleccione'} %> </td>
 
@@ -24,9 +24,10 @@
     </tr>
 
     <tr>
-      <th>Fecha de liquidaci&oacute;n</th>
-      <td><%= f.date_select :fecha_liquidacion, :order => [:day,:month,:year],  :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
-                                                       'Octubre', 'Noviembre', 'Diciembre'], :class=> 'ui-widget-content required'  %> </td>
+      <th>Fecha de liquidacion</th>
+    <td><span class="fecha_liquidacion" class ="ui-widget-content">
+              <input class="ui-widget-content" size="15" type="text" id="fecha_liquid" name="periodo[fecha_liquidacion]" readonly="readonly" />
+      </span></td>
     </tr>
 
   </table>
@@ -56,6 +57,6 @@
 
 
     });
-
+$("#fecha_liquid").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Jutdo','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110',  maxDate: 0});
    });
 </script>

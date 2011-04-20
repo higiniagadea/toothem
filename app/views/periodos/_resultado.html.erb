@@ -12,10 +12,10 @@
 
 <% @periodos.each do |periodo| %>
   <tr class="<%= cycle('par','impar') -%>">
-    <td><%= periodo.mes.strftime('%Y') %></td>
+    <td><%= periodo.mes.strftime('%m/%Y') %></td>
   
     <td><%=h boolean_desc(periodo.fue_liquidado) %></td>
-     <td><%=h periodo.fecha_liquidacion.blank? ? '-' : periodo.fecha_liquidacion %></td>
+     <td><%=h periodo.fecha_liquidacion.blank? ? '-' : periodo.fecha_liquidacion.strftime('%d/%m/%Y') %></td>
      <td>
    <% if  periodo.fue_liquidado != true %>
     <%= link_to image_tag('pencil.png'), edit_periodo_path(periodo), :title => 'Editar', :id => 'edit_periodo' + periodo.id.to_s %>
@@ -41,7 +41,5 @@
   </table>
   <%= will_paginate @periodos, :previous_label =>'Anterior', :next_label => 'Siguiente',
                                   :class => 'periodos pagination',
-                                  :params => {:controller => "periodos", :action => "resultado"
-
-                                  }  %>
+                                  :params => {:controller => "periodos", :action => "resultado" } %>
 </div>
