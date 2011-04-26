@@ -154,7 +154,7 @@ $(document).ready(function(){
   });
 
   $('div.ajax-pagination a').live('click', function() {
-    $('#turnos ').load(this.href)
+    $('#turnos').load(this.href)
     return false
   });
 
@@ -174,12 +174,12 @@ $(document).ready(function(){
   });
 
   $('div.ajax-pagination a').live('click', function() {
-    $('#periodo_result').load(this.href)
+    $('#periodoresult').load(this.href)
     return false
   });
 
   $('div.periodos a').live('click', function() {
-    $('#periodo_result').load(this.href)
+    $('#periodoresult').load(this.href)
     return false
   });
 
