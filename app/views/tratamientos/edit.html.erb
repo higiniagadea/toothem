@@ -121,10 +121,12 @@ function deshabilitar_campo()
            if ($('#tratamiento_estado_tratamiento_id').val() == '5' )     
              {
                alert('Ingrese la fecha de finalizacion');
-              $('.fecha_f').show();                 
+              $('.fecha_f').show();
+              $('#fecha_finalizacion').attr('class', 'ui-widget-content required')
              }
              else{
                 $('.fecha_f').hide();
+                $('#fecha_finalizacion').attr('class', 'ui-widget-content')
              }
        };
 

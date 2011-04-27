@@ -12,8 +12,7 @@
   <table  style=" text-align: left;">
     <tr>
       <th>Per&iacute;odo</th>
-      <td><%= f.date_select :mes,  :order => [:year], :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
-                                                       'Octubre', 'Noviembre', 'Diciembre'], :class => 'required', :title => 'Ingrese un periodo', :size=> 15 , :prompt => {:year => 'Seleccione'} %> </td>
+      <td><%= f.date_select(:mes,  :order => [:month, :year], :use_month_names => ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], :start_year => 2011, :class => "required", :title => 'Ingrese un periodo', :size=> 15 , :prompt => {:month => 'Seleccione', :year => 'Seleccione'}) %> </td>
     </tr>
 
     <tr>
@@ -53,11 +52,15 @@
 <script type="text/javascript">  
  $(document).ready(function(){
     $(".new_periodo").validate({
+      rules:{
+        "periodo[mes_2i]":{reqired :true}
+      },
         //errorLabelContainer: $("#new_paciente div.errores")
        errorContainer: $(".new_periodo div.errores"),
        errorLabelContainer: $("ol", $(".new_periodo div.errores")),
        wrapper: 'li',
        meta: "validate"
+      
      
     });
 

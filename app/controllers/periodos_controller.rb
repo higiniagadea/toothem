@@ -3,18 +3,19 @@
   layout 'default'
 
 
- def show
+ #def show
    
-    @periodo = Periodo.find(params[:id])
-    respond_to do |format|
+  #  @periodo = Periodo.find(params[:id])
+   # respond_to do |format|
 
-      format.html{render :layout => 'default'}
-    end
-  end
+    #  format.html{render :layout => 'default'}
+    #end
+  #end
 
 
   def index
-      @periodos = Periodo.paginate :page=> params[:page], :per_page=> 10
+   
+      @periodos = Periodo.paginate :page=> params[:page], :per_page=> 12, :order => 'mes DESC'
 
     respond_to do |format|
      format.html # index.html.erb
@@ -39,7 +40,7 @@
         flash[:notice] = 'Per&iacute;odo Guardado'
         format.html { redirect_to buscar_periodos_path}    
        else
-          format.html { render :partial => 'new' }
+          format.html { render :partial => 'new', :layout => 'default' }
       end
     end
  
@@ -88,10 +89,10 @@
 
   def resultado
     respond_to do |format|     
-    params[:anio] = params[:periodo]['mes(1i)'.to_sym]
+    params[:mes] = params[:periodo]['mes(1i)'.to_sym]
     
-        @periodos = Periodo.buscar(params[:anio]).paginate :page=> params[:page], :per_page=> 2, :order => 'mes DESC'
-        format.html{render :partial => 'resultado', :layout => false}   
+        @periodos = Periodo.buscar(params[:mes]).paginate :page=> params[:page], :per_page=> 12 , :order => 'mes DESC'
+        format.html {render :partial => 'resultado'}
   
   end
   end
@@ -112,6 +113,5 @@
    end
 
   end
-
 
 end

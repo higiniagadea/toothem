@@ -91,26 +91,26 @@ class PacientesController < ApplicationController
     #end
  #end
 
-  def show_imagen
-    @imagen = Imagen.find(params [:id])
-    respond_to do |format|
-      format.html {redirect_to show_imagen_path(@imagen)}
-    end
-  end
+  #def show_imagen
+   #@imagen = Imagen.find(params [:id])
+   #respond_to do |format|
+    #  format.html {redirect_to show_imagen_path(@imagen)}
+    #end
+  #end
 
-  def changephoto
-    @paciente = Paciente.find(params[:id])
-    @value = params[:value]
-    unless @paciente.archivo_id.blank?
-      @archivo_ant = Archivo.find(@paciente.archivo_id)
-    end
-    @archivo = Archivo.new
+  #def changephoto
+   # @paciente = Paciente.find(params[:id])
+    #@value = params[:value]
+    #unless @paciente.archivo_id.blank?
+     # @archivo_ant = Archivo.find(@paciente.archivo_id)
+    #end
+    #@archivo = Archivo.new
 
-    respond_to do |format|
-      format.html {render :layout => false}# changephoto.html.erb
+    #respond_to do |format|
+     # format.html {render :layout => false}# changephoto.html.erb
     
-    end
-  end
+    #end
+  #end
 
 
   
@@ -129,7 +129,7 @@ class PacientesController < ApplicationController
     @paciente = Paciente.find_by_id(params[:id])
    
     @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 10, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha ASC')
-    @pagos_pacientes = PagoPaciente.paginate(:page=> params[:page], :per_page=> 1, :conditions => ['paciente_id = ?', @paciente.id.to_s] , :order => 'fecha ASC')
+    @pagos_pacientes = PagoPaciente.paginate(:page=> params[:page], :per_page=> 10, :conditions => ['paciente_id = ?', @paciente.id.to_s] , :order => 'fecha ASC')
     @fichas = Ficha.find_all_by_paciente_id(@paciente.id)
     @profesionales = Profesional.paginate(:page => params[:page], :per_page => 2)
     @prestaciones = Prestacion.find(:all)
@@ -450,11 +450,11 @@ end
 
 def liquidar
   @paciente = Paciente.find(params[:id])
-
+  @periodos = Periodo.find(:all)
 
 respond_to do |format|
-  @pagos_pacientes = PagoPaciente.find(:all)
-  format.html{render :partial => 'liquidacion'}
+ 
+  format.html{render :partial => 'liquidacion', :layout => 'default'}
 end
 end
 

@@ -154,7 +154,7 @@ $(document).ready(function(){
   });
 
   $('div.ajax-pagination a').live('click', function() {
-    $('#turnos ').load(this.href)
+    $('#turnos').load(this.href)
     return false
   });
 
@@ -174,27 +174,27 @@ $(document).ready(function(){
   });
 
   $('div.ajax-pagination a').live('click', function() {
-    $('#periodo_result').load(this.href)
+    $('#periodoresult').load(this.href)
     return false
   });
 
   $('div.periodos a').live('click', function() {
-    $('#periodo_result').load(this.href)
+    $('#periodoresult').load(this.href)
     return false
   });
 
  $('div.ajax-pagination a').live('click', function() {
-    $('#cuenta').load(this.href)
+    $('#cuentas').load(this.href)
     return false
   });
 
-  $('div.cuentas a').live('click', function() {
-    $('#cuenta').load(this.href)
+  $('div.cuenta a').live('click', function() {
+    $('#cuentas').load(this.href)
     return false
   });
 
 
- $('div.ajax-pagination a').live('click', function() {
+ /*$('div.ajax-pagination a').live('click', function() {
     $('#cuenta_p').load(this.href)
     return false
   });
@@ -202,7 +202,7 @@ $(document).ready(function(){
   $('div.cuent_trat a').live('click', function() {
     $('#cuenta_p').load(this.href)
     return false
-  });
+  });*/
  
 });
      
