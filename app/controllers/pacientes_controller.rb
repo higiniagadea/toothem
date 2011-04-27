@@ -91,26 +91,26 @@ class PacientesController < ApplicationController
     #end
  #end
 
-  def show_imagen
-    @imagen = Imagen.find(params [:id])
-    respond_to do |format|
-      format.html {redirect_to show_imagen_path(@imagen)}
-    end
-  end
+  #def show_imagen
+   #@imagen = Imagen.find(params [:id])
+   #respond_to do |format|
+    #  format.html {redirect_to show_imagen_path(@imagen)}
+    #end
+  #end
 
-  def changephoto
-    @paciente = Paciente.find(params[:id])
-    @value = params[:value]
-    unless @paciente.archivo_id.blank?
-      @archivo_ant = Archivo.find(@paciente.archivo_id)
-    end
-    @archivo = Archivo.new
+  #def changephoto
+   # @paciente = Paciente.find(params[:id])
+    #@value = params[:value]
+    #unless @paciente.archivo_id.blank?
+     # @archivo_ant = Archivo.find(@paciente.archivo_id)
+    #end
+    #@archivo = Archivo.new
 
-    respond_to do |format|
-      format.html {render :layout => false}# changephoto.html.erb
+    #respond_to do |format|
+     # format.html {render :layout => false}# changephoto.html.erb
     
-    end
-  end
+    #end
+  #end
 
 
   
@@ -450,11 +450,11 @@ end
 
 def liquidar
   @paciente = Paciente.find(params[:id])
-  
+  @periodos = Periodo.find(:all)
 
 respond_to do |format|
- @periodos = Periodo.find(:all)
-  format.html{render :partial => 'orden', :layout => 'default'}
+ 
+  format.html{render :partial => 'liquidacion', :layout => 'default'}
 end
 end
 

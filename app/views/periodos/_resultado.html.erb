@@ -1,4 +1,4 @@
-<div id="periodo_result">
+  <div id="periodoresult">
 <% unless @periodos.blank? %>
   <h1>Resultado de la b&uacute;squeda </h1>
 
@@ -41,5 +41,5 @@
   </table>
   <%= will_paginate @periodos, :previous_label =>'Anterior', :next_label => 'Siguiente',
                                   :class => 'periodos pagination',
-                                  :params => {:controller => "periodos", :action => "resultado" } %>
+                                  :params => {:controller => "periodos", :action => "resultado"} %>
 </div>

@@ -79,7 +79,7 @@ map.resources :pagos_pacientes #:member => {:new => [:get, :post]}
 
                 :member => {:new_tratamiento => [:get,:post],
                             :new_pago => [:get,:post],
-                           
+                           :liquidar => [:get, :post],
                             :update_tratamiento => [:get, :post],
                             :changephoto => :get,
                             :uploadphoto => :post,
