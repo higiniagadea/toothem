@@ -126,6 +126,40 @@
     return patron.test(te); // 6
 }
    $(document).ready(function(){
+     $("#fecha_trat").datepicker({
+       dateFormat: 'dd-mm-yy',
+       dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+       monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Jutdo','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+       buttonImage: '<%= image_path("22/calendar.png")%>',
+       buttonImageOnly: true,
+       showOn:'button',
+       changeYear: true,
+       yearRange: '1920:2110',
+       minDate : 1 - 1,
+       beforeShowDay: function (day) {
+           var day = day.getDay();
+           if (day == 0 || day == 6) {
+             return [false, "somecssclass"]
+           } else {
+             return [true, "someothercssclass"]
+           }
+         }
+         });
+
+         $("#fecha_finalizacion").datepicker({
+           dateFormat: 'dd-mm-yy',
+           dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+           monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Jutdo','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+           buttonImage: '<%= image_path("22/calendar.png")%>',
+           buttonImageOnly: true,
+           showOn:'button',
+           changeYear: true,
+           yearRange: '1960:2110',
+           
+           maxDate:0});
+         
+
+
          $(function() {
         $('input:text').keydown(function(e){
         if (e.keyCode == 13) {
@@ -150,9 +184,9 @@
 
 
 
- $("#fecha_trat").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Jutdo','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1920:2110', minDate : 1 - 1 });
+ 
 
-$("#fecha_finalizacion").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Jutdo','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate:0});
+
 
 });
 </script>
