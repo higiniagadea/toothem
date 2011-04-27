@@ -6,12 +6,11 @@
 development:
   adapter: jdbcpostgresql
   encoding: unicode
-  adapter: postgresql
   database: toothem_development
   pool: 5
   username: toothem
   password: toothem
-  host: 10.1.0.8
+  host: localhost
   port: 5432
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -54,13 +53,13 @@ test:
   #min_messages: warning
 
 production:
-  adapter:  postgresql
+  adapter:  jdbcpostgresql
   encoding: unicode
   database: toothem_production
   pool: 5
   username: toothem
   password: toothem
-  host: 10.1.0.8
+  host: localhost
   port: 5432
 
   # Connect on a TCP socket. Omitted by default since the client uses a
