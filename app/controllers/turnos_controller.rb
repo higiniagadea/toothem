@@ -48,11 +48,13 @@ class TurnosController < ApplicationController
    respond_to do |format|
     if  @turno.save
       flash[:notice] = 'El registro se ha guardado correctamente'
-     format.html{redirect_to turnos_path}
+     format.html {redirect_to turnos_path}
+   else
+        format.html {render :action => 'new'}
     end
-    end 
+    
   end
-
+  end
 
   
   

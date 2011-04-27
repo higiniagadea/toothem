@@ -4,6 +4,8 @@ class Turno < ActiveRecord::Base
   belongs_to :profesional
   belongs_to :paciente
 
+   validates_presence_of :fecha, :message => 'Fecha no puede estar en blanco'
+
   named_scope :by_fechas, lambda { |fecha_desde, fecha_hasta|
     {
      :conditions => ['fecha_hora between :fecha_desde and :fecha_hasta',
