@@ -73,10 +73,10 @@ function validate(e) { // 1
 
 
 
-      $("#new_turno").validate({
+      $(".edit_turno").validate({
         //errorLabelContainer: $("#new_paciente div.errores")
-       errorContainer: $("#new_turno div.errores"),
-       errorLabelContainer: $("ol", $("#new_turno div.errores")),
+       errorContainer: $(".edit_turno div.errores"),
+       errorLabelContainer: $("ol", $(".edit_turno div.errores")),
        wrapper: 'li',
        meta: "validate"
        });
@@ -86,49 +86,7 @@ function validate(e) { // 1
       $("#fecha_t").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate: 0});
 
 
-$('#busc').click(function()
-      {
-        // Destroy currrent tooltip if present
-        if($(this).data("qtip")) $(this).qtip("destroy");
-        $(this).qtip({
 
-               content: {
-                  url: $(this).attr('rel'), // Use the rel attribute of each element for the url to load
-                  title: {
-                     text: $(this).attr('title') // Give the tooltip a title using each elements text
-                     //button: '<%#= image_tag 'fancybox/fancy_close.png' %>' // Show a close link in the title
-                  }
-               },
-               position: {
-                  corner: {
-                     target: 'bottomMiddle', // Position the tooltip above the link
-                     tooltip: 'topMiddle'}
-                  },
-                  adjust: {
-                     screen: true // Keep the tooltip on-screen at all times
-                  },
-               show: {
-                  when: false, // Don't specify a show event
-                  ready: true // Show the tooltip when ready
-               },
-               hide: false, // Don't specify a hide event
-
-               style: {
-                  width: 600,
-                  border: {
-                     width: 1,
-                     radius: 10
-                  },
-                  padding: 5,
-                  textAlign: 'left',
-                  tip: true, // Give it a speech bubble tip with automatic corner detection
-                  name: 'light' // Style it according to the preset 'cream' style
-               }
-
-            });
-
-
-      });
 
 
 

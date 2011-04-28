@@ -5,7 +5,7 @@ class TurnosController < ApplicationController
     def show
     @turno = Turno.find(params[:id])
     respond_to do |format|
-      format.html { render :layout => 'default'}
+      format.html{ render :partial => 'prueba', :layout => 'default'}
    end
   end
 
@@ -48,24 +48,23 @@ class TurnosController < ApplicationController
    respond_to do |format|
     if  @turno.save
       flash[:notice] = 'El registro se ha guardado correctamente'
-     format.html {redirect_to turnos_path}
-   else
-        format.html {render :action => 'new'}
-    end
-    
+      format.html{redirect_to turnos_path}
+    elsif
+     flash[:notice] = 'El registro  no se ha guardado'
+      format.html{redirect_to turnos_path}
   end
   end
-
+  end
   
   
   def update
     @turno = Turno.find(params[:id])
+    
    respond_to do |format|
        if @turno.update_attributes(params[:turno])
          flash[:notice] = 'Turno Actualizado'
          format.html{redirect_to turnos_path}
        end
-
      end
   end
 

@@ -4,8 +4,7 @@
 <%= link_to 'Nuevo Evento', new_turno_path, :id => 'nuevo' %>
   
 </p>
- <div id = "create_turno">
-  </div>
+
 <script type="text/javascript">
   $(document).ready(function(){
       // page is now ready, initialize the calendar...
@@ -43,19 +42,13 @@
                         'Agosto' , 'Septiembre' , 'Octubre' , 'Noviembre' , 'Diciembre' ],
 
           dayNamesShort : ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
-          
-          //loading: function(bool){
-           //   if (bool)
-             //     $('#loading').show();
-              //else
-                //  $('#loading').hide();
-          //},
+       
           
           events:[
             <% for turno in Turno.all -%>
               {
                id : 'turno: <%= turno.id.to_s %>',
-               title  : 'Profesional: <%= turno.profesional.nombre %> Duracion: <%= turno.duracion %> minutos ',
+               title  : 'Profesional: <%= turno.profesional.nombre %>',
                start : 'Fecha: <%= turno.fecha_hora.iso8601 %>',
                end : 'Duracion: <%= (turno.fecha_hora + (60 * turno.duracion)) %>',
                allDay : false,
@@ -66,25 +59,8 @@
 
             <% end %>
 
-              ],
-               
-           /* [
-        {
-            title  : 'event1',
-            start  : '2011-03-10',
-            allDay : false 
-        },
-        {
-            title  : 'event2',
-            start  : '2011-03-09',
-            allDay : false
-        },
-        {
-            title  : 'event3',
-            start  : '2011-03-08',
-            allDay : false // will make the time show
-        }
-    ],*/
+              ],              
+
 
           timeFormat: 'h:mm t{ - h:mm t} ',
           
