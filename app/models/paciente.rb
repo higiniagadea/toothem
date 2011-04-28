@@ -5,7 +5,7 @@ class Paciente < ActiveRecord::Base
   belongs_to :consultorio
   belongs_to :archivo
   has_many :tratamientos, :dependent => :destroy
-  has_many :turnos
+  has_many :turnos, :dependent => :destroy
 
   has_many :pagos_pacientes, :dependent => :destroy
   has_many :saldos_pacientes

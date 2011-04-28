@@ -17,7 +17,7 @@
     
   <th>
      <div id="turnos">
-     Documento <%= text_field_tag :paciente_desc,{}, :class =>"ui-widget-content required", :title => 'Ingrese un documento para realizar la busqueda', :size => 15, :onkeypress=> 'return validar(event)', :readonly => 'readonly', :id => 'dni' %>
+     Documento <%= text_field_tag :paciente_desc,{}, :class =>"ui-widget-content", :title => 'Ingrese un documento para realizar la busqueda', :size => 15, :onkeypress=> 'return validar(event)', :readonly => 'readonly', :id => 'dni' %>
         <%= link_to image_tag('magnifier_zoom_in.png'), "javascript:", :rel => buscar_dni_pacientes_path, :id => 'buscar' %>
         <%= f.hidden_field :paciente_id %>
      
@@ -39,14 +39,14 @@
     
     <tr>
       <th>Fecha</th>
-      <td><%= f.datetime_select(:fecha_hora, :order => [:day, :month, :year], :start_year => 2011,  :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
-                                                                                                  'Octubre', 'Noviembre', 'Diciembre'], :prompt => false, :size=> 15)%> </td>
+      <td><%= f.datetime_select :fecha_hora, :order => [:day, :month, :year], :start_year => 2011,  :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
+                                                                                                  'Octubre', 'Noviembre', 'Diciembre'], :prompt => false, :size=> 15 %> </td>
     </tr>
 
 
            <tr>
       <th>Duracion</th>
-      <td><select name="turno[duracion]" class ="ui-widget-content required"><%= options_for_select(["30", "45", "60", "90", "120"], @turno.duracion)%>
+      <td><select name="turno[duracion]" class ="ui-widget-content"><%= options_for_select(["30", "45", "60", "90", "120"], @turno.duracion)%>
       </select> minutos</td>
     </tr>
 
@@ -87,43 +87,34 @@ function validate(e) { // 1
     return patron.test(te); // 6
 }
 
-   $(document).ready(function(){
+   
+    
+    $(document).ready(function(){
+      //validacion
+      $(".new_turno").validate({
+        //errorLabelContainer: $(".new_paciente div.errores")
+        errorContainer: $(".new_turno div.errores"),
+        errorLabelContainer: $("ol", $(".new_turno div.errores")),
+        wrapper: 'li',
+        meta: "validate"
 
-  $(".new_turno").validate({
-        //errorLabelContainer: $("#new_paciente div.errores")
-       errorContainer: $(".new_turno div.errores"),
-       errorLabelContainer: $("ol", $(".new_turno div.errores")),
-       wrapper: 'li',
-       meta: "validate"
-
-  });
+      });
 
 
-     $(function() {
-        $('input:text').keydown(function(e){
-        if (e.keyCode == 13) {
-            $('form').submit();
+
+     //enter
+   $(function() {
+       $('input:text').keydown(function(e){
+     if (e.keyCode == 13) {
+          $('form').submit();
         }
       });
 
      });
-    
 
 
 
-      $('#AGENDA_turno').click(function(){
-      mostrar_evento();
-      });
-
-      $('#AGENDA_tarea').click(function(){
-      mostrar_evento();
-      });
-
-     
- ;
-
-
-
+  
   $('#buscar').click(function()
       {
         // Destroy currrent tooltip if present
@@ -164,35 +155,23 @@ function validate(e) { // 1
                }
 
             });
+         });
 
+   });
+  
+   $('#AGENDA_turno').click(function(){
+      mostrar_evento();
+    });
 
+      $('#AGENDA_tarea').click(function(){
+      mostrar_evento();
       });
-
-
-
-
-
-
-
-
-
-
-
-
- });
- $("#fechat").timePicker({startTime: "02.00", // Using string. Can take string or Date object.
-  endTime: new Date(0, 0, 0, 15, 30, 0), // Using Date object here.
-  show24Hours: false,
-  separator: '.',
-  step: 15
-
-  });
 
       function mostrar_evento (){
          if ($("input[name='AGENDA']:checked").val()== '1') {
            $('#turnos').show();
            $('#tareas').hide();
-         
+
 
            //$("#fancybox-outer").width(550);
            //$("#fancybox-outer").height(280);
@@ -202,13 +181,19 @@ function validate(e) { // 1
          }else{
            $('#tareas').show();
            $('#turnos').hide();
-       
+
            //$("#fancybox-outer").width(490);
            //$("#fancybox-outer").height(330);
            //$("#fancybox-inner").width(460);
            //$("#fancybox-inner").height(320);
    
-         }
+       }
 
-};
+       };
+
+
+
+   
+
+       
 </script>
