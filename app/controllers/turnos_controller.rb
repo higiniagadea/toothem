@@ -44,15 +44,19 @@ class TurnosController < ApplicationController
  
    @turno = Turno.new(params[:turno])   
    @profesional = Profesional.find(params[:profesional_id]) unless params[:profesional_id].blank?
- 
+ #unless @turno.valid?
+  # errores = ''
+#@turno.errors.each { |a, msgg| errores += a + '- '+msgg+'<br/>'  }
+ #  raise errores
+ #end
    respond_to do |format|
     if  @turno.save
       flash[:notice] = 'El registro se ha guardado correctamente'
       format.html{redirect_to turnos_path}
-    elsif
-     flash[:notice] = 'El registro  no se ha guardado'
+    else
+      flash[:notice] = 'El registro  no se ha guardado'
       format.html{redirect_to turnos_path}
-  end
+    end
   end
   end
   

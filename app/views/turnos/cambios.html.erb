@@ -9,7 +9,7 @@
 
 <% form_remote_tag  :url => resultado_turnos_path,
                      :method => :post,
-                     :update => :search_hits do -%>
+                     :update => :search_hit do -%>
   
   <table style=" text-align: left;">
     <th>
@@ -55,7 +55,7 @@
 
     </table>
   
-  <div id="search_hits"></div>
+  <div id="search_hit"></div>
 
  </fieldset>
 <%end%>
