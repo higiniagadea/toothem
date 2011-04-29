@@ -1,9 +1,11 @@
 <table>
-<p>
- 
-<%= link_to 'Nuevo Evento', new_turno_path, :id => 'nuevo' %>
-  
+
+<p> 
+<%= link_to 'Nuevo Evento', new_turno_path, :id => 'nuevo' %>  
 </p>
+
+<div id='calendar'>
+</div>
 
 <script type="text/javascript">
   $(document).ready(function(){
@@ -48,7 +50,7 @@
             <% for turno in Turno.all -%>
               {
                id : 'turno: <%= turno.id.to_s %>',
-               title  : 'Profesional: <%= turno.profesional.nombre %>',
+               title  : 'Profesional: <%= turno.profesional.nombre %> Duracion: <%= turno.duracion %>minutos Paciente : <%= turno.paciente.nombre.to_s %> ' ,
                start : 'Fecha: <%= turno.fecha_hora.iso8601 %>',
                end : 'Duracion: <%= (turno.fecha_hora + (60 * turno.duracion)) %>',
                allDay : false,
@@ -115,24 +117,10 @@
 
   });
 </script>
-<div>
-  <div id='calendar'>
-  </div>
-</div>
 
-<div id = "desc_dialog" style ="display:none;">
-  <div id = "event_desc">
-  </div>
-  <br/>
-  <br/>
-  <div id = "event_actions">
-    <span id = "edit_event"></span>
+  
 
-    <span id = "delete_event"></span>
-  </div>
-</div>
-<div id = "create_event_dialog" style ="display:none;">
- 
-</div>
+
+
 
 </table>
