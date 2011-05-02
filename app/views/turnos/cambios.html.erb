@@ -1,20 +1,21 @@
-
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Cambios de Agenda</legend>
-
+ 
 
      <script type="text/javascript">
        $('#cerrar-qtip').click(function(){$('.qtip').remove();});
      </script>
 
-<% form_remote_tag  :url => resultado_turnos_path,
+<% form_remote_tag  :url => resultado_turnos_path, :html => {:id => 'form'},
                      :method => :post,
                      :update => :search_hit do -%>
-  
+  <div class="errores">
+          <ol style="list-style:none"></ol>
+  </div>
   <table style=" text-align: left;">
     <th>
       <div id="turnos">
-       Documento <%= text_field_tag :paciente_desc,{}, :class =>"ui-widget-content required", :title => 'Ingrese un documento para realizar la busqueda', :size => 15, :onkeypress=> 'return validar(event)', :readonly => 'readonly', :id => 'dni' %>
+       Documento <%= text_field_tag :paciente_desc,{}, :class =>"ui-widget-content required", :title => 'Ingrese un numero de documento', :size => 15, :onkeypress=> 'return validar(event)', :readonly => 'readonly', :id => 'dni' %>
       <%= link_to image_tag('magnifier_zoom_in.png'), "javascript:", :rel => buscar_dni_pacientes_path, :id => 'buscar' %>
         <%= hidden_field_tag :paciente_id %>
       </div>
@@ -22,8 +23,8 @@
     <tr>
      
          <th> <label>Elija un Profesional</label></th>
-        <th>          
-          <%=  select("profesional", "profesional_id", Profesional.all.collect {|p| [ p.nombre, p.id ] }) %>
+        <th>
+          <%= select("profesional", "profesional_id", Profesional.all.collect {|p| [ p.nombre, p.id]}, :include_blank => 'Seleccione') %>
         
         </th>
 
@@ -31,7 +32,7 @@
     <tr>
       <th>Fecha desde</th>
     <th><span class="fecha" class ="ui-widget-content">
-              <input class="ui-widget-content" type="text" id="fecha_desde" name="turno[fecha_desde]" readonly="readonly" size="10" />
+              <input class="ui-widget-content required" type="text" id="fecha_desde" title="Seleccione las fechas" name="turno[fecha_desde]" readonly="readonly" size="10" />
       </span>
     </th>
  
@@ -108,8 +109,17 @@
 
 
       })
-    
+  $('#profesional_profesional_id').attr('class', 'required'),
+   $('#profesional_profesional_id').attr('title', 'Seleccione un profesional'),
+ $("#form").validate({
+        //errorLabelContainer: $("#new_paciente div.errores")
+       errorContainer: $("#form div.errores"),
+       errorLabelContainer: $("ol", $("#form div.errores")),
+       wrapper: 'li',
+       meta: "validate"
+       
 
+ });
 
  $("#fecha_desde").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110',  minDate: '-1', maxDate : 1 - 1});
 $("#fecha_hasta").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110',minDate: '+0D', maxDate: +30});

@@ -1,5 +1,5 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-all">
-  <legend class="ui-widget  ui-corner-all ui-widget-header">Nuevo Evento (tarea)</legend>
+  <legend class="ui-widget  ui-corner-all ui-widget-header">Modificar Evento</legend>
   <% form_for(@tarea) do |f| %>
   <%= f.error_messages(:id => 'error', :header_message => '', :message => 'Ocurrió un error al intentar guardar el registro')  %>
 
@@ -19,20 +19,18 @@
     </tr>
     <tr>
       <th>Fecha</th>
-      <td><span class="fecha" class ="ui-widget-content">
-              <input class="ui-widget-content required" title="Ingrese la fecha" size="15" type="text" id="fecha" name="tarea[fecha]" readonly="readonly" />
-          </span>
-      </td>
-    </tr>
+       <td><%= f.datetime_select :fecha_hora, :order => [:day, :month, :year], :start_year => 2011,  :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
+                                                                                              'Octubre', 'Noviembre', 'Diciembre'], :prompt => false %>
 
-    <tr>
-      <th>Hora</th>
-      <td><%= f.text_field :hora, :class =>"ui-widget-content required" , :title => 'Ingrese la hora', :size=> 15, :onkeypress=> 'return validar(event)' %> </td>
+       </td>
+
     </tr>
+   
 
     <tr>
       <th>Duracion</th>
-      <td><%= f.text_field :duracion , :class =>"ui-widget-content required", :size=> 15, :title => 'Ingrese la duracion', :onkeypress=> 'return validar(event)'  %> </td>
+        <td><select name="tarea[duracion]" class ="ui-widget-content required"><%= options_for_select(["30", "45", "60", "90", "120"], @tarea.duracion)%>
+      </select> minutos</td>
     </tr>
     <tr>
       <th>Tarea</th>
@@ -76,10 +74,10 @@ function validate(e) { // 1
         }
       });
      });
-      $("#new_tarea").validate({
+      $("#edit_tarea").validate({
         //errorLabelContainer: $("#new_paciente div.errores")
-       errorContainer: $("#new_tarea div.errores"),
-       errorLabelContainer: $("ol", $("#new_tarea div.errores")),
+       errorContainer: $("#edit_tarea div.errores"),
+       errorLabelContainer: $("ol", $("#edit_tarea div.errores")),
        wrapper: 'li',
        meta: "validate"
 

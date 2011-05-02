@@ -47,15 +47,18 @@
        
           
           events:[
+           
             <% for turno in Turno.all -%>
+           
+           
               {
                id : 'turno: <%= turno.id.to_s %>',
-               title  : 'Profesional: <%= turno.profesional.nombre %> Duracion: <%= turno.duracion %>minutos Paciente : <%= turno.paciente.nombre.to_s %> ' ,
+               title  : 'Profesional: <%= turno.profesional.nombre %> Duracion: <%= turno.duracion %>minutos Paciente: <%= turno.paciente.nombre  %> ' ,
                start : 'Fecha: <%= turno.fecha_hora.iso8601 %>',
                end : 'Duracion: <%= (turno.fecha_hora + (60 * turno.duracion)) %>',
                allDay : false,
                 
-               url: '<%= eliminar_turno_path(turno) %>'
+            url: '<%= eliminar_turno_path(turno) %>'
                
               },
 

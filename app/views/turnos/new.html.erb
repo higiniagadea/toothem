@@ -54,18 +54,21 @@
       <td><select name="turno[duracion]" class ="ui-widget-content required"><%= options_for_select(["30", "45", "60", "90", "120"], @turno.duracion)%>
       </select> minutos</td>
     </tr>
-
+    <tr>
+      <th>Observaciones</th>
+      <td><%= f.text_area :observaciones, :class =>"ui-widget-content", :cols => 12, :rows => 5 %> </td>
+    </tr>
    </table>
 
 
-   <table style=" text-align: left;">
+   <!--<table style=" text-align: left;">
    <th>
      <div id="tareas">
-       Tareas:  <%= f.text_area :observaciones, :title => 'Ingrese la tarea', :class =>"ui-widget-content", :cols => 12, :rows => 4  %>
+       Tareas:  <%#= f.text_area :observaciones, :title => 'Ingrese la tarea', :class =>"ui-widget-content", :cols => 12, :rows => 4  %>
      </div>
    </th>
    </table>
-
+-->
 
    <table>
     <tr><td  style=" float: left; margin-left:  400px"><%= f.submit 'guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
@@ -73,6 +76,12 @@
    </table>
 
 <%end%>
+
+
+<!--<td><span class="time" class="ui-widget-content">
+              <input class="ui-widget-content required" id="time" name="turno[observaciones]" readonly="readonly" />
+      </span>
+    </td>-->
 
 </fieldset>
 
@@ -101,15 +110,29 @@ function validate(e) { // 1
         errorContainer: $(".new_turno div.errores"),
         errorLabelContainer: $("ol", $(".new_turno div.errores")),
         wrapper: 'li',
-        meta: "validate"
-       
+        meta: "validate"   
        
 
       });
 
+   //$('#time').datetimepicker({
+     //showSecond: true,
+	//timeFormat: 'hh:mm:ss',
+	//stepHour: 1,
+	//stepMinute: 10,
+	//stepSecond: 10,buttonImage: '<%#= image_path("22/calendar.png")%>',
+        //buttonImageOnly: true,
+        //showOn:'button',
+        //changeYear: true,
+        //yearRange: '1960:2110',
+        //dateFormat: 'dd-mm-yy',
+        //dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+        //monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']
+   //});
 
+   
 
-     //enter
+    
    $(function() {
        $('input:text').keydown(function(e){
      if (e.keyCode == 13) {

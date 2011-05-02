@@ -105,7 +105,8 @@ class TurnosController < ApplicationController
     respond_to do |format|
       params[:turno][:profesional_id] =  @profesionales.id
       if params[:turno][:fecha_desde].blank? || params[:turno][:fecha_hasta].blank?
-        format.html{render :text => "Ingrese las fechas para realizar la busqueda", :layout => false }
+     
+      format.html{render :text => "Todos los datos son requeridos para realizar la b&uacute;squeda", :layout => false }
        elsif
          format.html{render :partial=> 'resultado', :layout => false}
         @turnos = Turno.basic_search(params[:turno]).paginate(:page => params[:page], :per_page=> 2)
