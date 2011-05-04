@@ -9,6 +9,18 @@ class TurnosController < ApplicationController
    end
   end
 
+    def turno_tarea
+       @turno = Turno.new
+       @profesional = Profesional.find(params[:profesional_id]) unless params[:profesional_id].blank?
+       @tarea = Tarea.new
+       
+      respond_to do |format|
+        format.html{render :layout => false}
+      end
+    end
+
+
+
    def new    
     @turno = Turno.new
     
@@ -51,11 +63,9 @@ class TurnosController < ApplicationController
  #end
    respond_to do |format|
     if  @turno.save
-      flash[:notice] = 'El registro se ha guardado correctamente'
+      flash[:notice] = 'Turno guardado'
       format.html{redirect_to turnos_path}
-    else
-      flash[:notice] = 'El registro  no se ha guardado'
-      format.html{redirect_to turnos_path}
+ 
     end
   end
   end
@@ -105,7 +115,8 @@ class TurnosController < ApplicationController
     respond_to do |format|
       params[:turno][:profesional_id] =  @profesionales.id
       if params[:turno][:fecha_desde].blank? || params[:turno][:fecha_hasta].blank?
-        format.html{render :text => "Ingrese las fechas para realizar la busqueda", :layout => false }
+     
+      format.html{render :text => "Todos los datos son requeridos para realizar la b&uacute;squeda", :layout => false }
        elsif
          format.html{render :partial=> 'resultado', :layout => false}
         @turnos = Turno.basic_search(params[:turno]).paginate(:page => params[:page], :per_page=> 2)

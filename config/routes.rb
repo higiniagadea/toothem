@@ -22,7 +22,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :tareas
 
-  map.resources :turnos, :collection => {:cambios => :get, :resultado => [:get, :post], :get_turnos => :get},
+  map.resources :turnos, :collection => {:cambios => :get, :resultado => [:get, :post], :turno_tarea => :get, :get_turnos => :get},
                          :member => {:eliminar => :get, :prueba => :get}
   
    map.resources :imagenes, :collection => {:new_archivo => :get}
@@ -61,7 +61,10 @@ map.resources :pagos_pacientes #:member => {:new => [:get, :post]}
 
   map.resources :tipos_documento
 
+map.resources :pagos_obras_sociales, :collection => {:buscar_cta_cte => [:get, :post], :result_cta_cte => [:get, :post]}
+               
 
+  
   map.resources :pacientes,
                 :collection => {:search => [:get, :post],
                                 :result => [:get, :post],

@@ -1,34 +1,29 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-all">
-  <legend class="ui-widget  ui-corner-all ui-widget-header">Nuevo Evento</legend>
+  <legend class="ui-widget  ui-corner-all ui-widget-header">Nuevo Turno</legend>
 
-     <%= label_tag 'AGENDA_TURNO', 'Turno'  %>
-    <%= radio_button_tag 'AGENDA', 'TURNO',true, :value => 1 %>
-    <%= label_tag 'AGENDA_TAREA', 'Tarea'   %>
-    <%= radio_button_tag 'AGENDA', 'TAREA',false, :value => 2  %>
+     <script type="text/javascript">
+       $('#cerrar-qtip').click(function(){$('.qtip').remove();});
+     </script>
 
-  
 <% form_for @turno do |f| %>
 
   <div class="errores">
           <ol style="list-style:none"></ol>
   </div>
-  
 
-
-  
   <table style=" text-align: left;">
-    
+
   <th>
      <div id="turnos">
      Documento <%= text_field_tag :paciente_desc,{}, :class =>"ui-widget-content required", :title => 'Ingrese un documento para realizar la busqueda', :size => 15, :onkeypress=> 'return validar(event)', :readonly => 'readonly', :id => 'dni' %>
         <%= link_to image_tag('magnifier_zoom_in.png'), "javascript:", :rel => buscar_dni_pacientes_path, :id => 'buscar' %>
         <%= f.hidden_field :paciente_id %>
-     
+
      </div>
   </th>
 
   </table>
-  
+
   <table style=" text-align: left;" >
     <tr>
       <th>Profesional</th>
@@ -39,33 +34,36 @@
           </td>
     </tr>
 
-    
+
     <tr>
-       
+
       <th>Fecha</th>
       <td><%= f.datetime_select :fecha_hora, :order => [:day, :month, :year], :start_year => 2011,  :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
                                                                                               'Octubre', 'Noviembre', 'Diciembre'], :prompt => false %>
-        
+
 </td>
-       
+
    </tr>
            <tr>
       <th>Duracion</th>
       <td><select name="turno[duracion]" class ="ui-widget-content required"><%= options_for_select(["30", "45", "60", "90", "120"], @turno.duracion)%>
       </select> minutos</td>
     </tr>
-
+    <tr>
+      <th>Observaciones</th>
+      <td><%= f.text_area :observaciones, :class =>"ui-widget-content", :cols => 12, :rows => 5 %> </td>
+    </tr>
    </table>
 
 
-   <table style=" text-align: left;">
+   <!--<table style=" text-align: left;">
    <th>
      <div id="tareas">
-       Tareas:  <%= f.text_area :observaciones, :title => 'Ingrese la tarea', :class =>"ui-widget-content", :cols => 12, :rows => 4  %>
+       Tareas:  <%#= f.text_area :observaciones, :title => 'Ingrese la tarea', :class =>"ui-widget-content", :cols => 12, :rows => 4  %>
      </div>
    </th>
    </table>
-
+-->
 
    <table>
     <tr><td  style=" float: left; margin-left:  400px"><%= f.submit 'guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
@@ -73,6 +71,12 @@
    </table>
 
 <%end%>
+
+
+<!--<td><span class="time" class="ui-widget-content">
+              <input class="ui-widget-content required" id="time" name="turno[observaciones]" readonly="readonly" />
+      </span>
+    </td>-->
 
 </fieldset>
 
@@ -92,8 +96,8 @@ function validate(e) { // 1
     return patron.test(te); // 6
 }
 
-   
-    
+
+
     $(document).ready(function(){
       //validacion
       $(".new_turno").validate({
@@ -102,27 +106,11 @@ function validate(e) { // 1
         errorLabelContainer: $("ol", $(".new_turno div.errores")),
         wrapper: 'li',
         meta: "validate"
-       
-       
+
 
       });
 
-
-
-     //enter
-   $(function() {
-       $('input:text').keydown(function(e){
-     if (e.keyCode == 13) {
-          $('form').submit();
-        }
-      });
-
-     });
-
-
-
-  
-  $('#buscar').click(function()
+$('#buscar').click(function()
       {
         // Destroy currrent tooltip if present
         if($(this).data("qtip")) $(this).qtip("destroy");
@@ -150,7 +138,7 @@ function validate(e) { // 1
                hide: false, // Don't specify a hide event
 
                style: {
-                  width: 600,
+                  width: 500,
                   border: {
                      width: 1,
                      radius: 10
@@ -162,48 +150,9 @@ function validate(e) { // 1
                }
 
             });
-         });
-
-   });
-  
-   $('#AGENDA_turno').click(function(){
-      mostrar_evento();
-    });
-
-      $('#AGENDA_tarea').click(function(){
-      mostrar_evento();
-      });
-
-      function mostrar_evento (){
-         if ($("input[name='AGENDA']:checked").val()== '1') {
-           $('#turnos').show();
-           $('#tareas').hide();
-             //$('#new_turno').attr('action', '/turnos');
-             //$('#new_turno').attr('class', 'new_turno');
-
-           //$("#fancybox-outer").width(550);
-           //$("#fancybox-outer").height(280);
-           //$("#fancybox-inner").width(460);
-           //$("#fancybox-inner").height(300);
-     
-         }else{
-           $('#tareas').show();
-           $('#turnos').hide();
-            //$('#new_turno').attr('action', '/tareas');
-             //$('#new_turno').attr('class', 'new_tarea');
-           //$("#fancybox-outer").width(490);
-           //$("#fancybox-outer").height(330);
-           //$("#fancybox-inner").width(460);
-           //$("#fancybox-inner").height(320);
-   
-       }
-
-       };
 
 
+      })
 
-   
-
-       
+})
 </script>
-

@@ -1,0 +1,58 @@
+<fieldset class="ui-widget ui-widget-content ui-corner-all">
+  <legend class="ui-widget  ui-corner-all ui-widget-header">Nuevo Evento</legend>
+
+     <%= label_tag 'AGENDA_TURNO', 'Turno'  %>
+    <%= radio_button_tag 'AGENDA', 'TURNO',true, :value => 1 %>
+    <%= label_tag 'AGENDA_TAREA', 'Tarea'   %>
+    <%= radio_button_tag 'AGENDA', 'TAREA',false, :value => 2  %>
+
+  <div id="turnos"><%= render :partial => 'new'  %> </div>
+
+  <div id="tareas"><%= render :partial => 'tareas/new'  %> </div>
+  
+</fieldset>
+   
+   
+
+    
+<script type="text/javascript">
+  mostrar_evento();
+  
+   $('#AGENDA_turno').click(function(){
+      mostrar_evento();
+    });
+
+      $('#AGENDA_tarea').click(function(){
+      mostrar_evento();
+      });
+
+      function mostrar_evento (){
+         if ($("input[name='AGENDA']:checked").val()== '1') {
+           $('#turnos').show();
+           $('#tareas').hide();
+             //$('#new_turno').attr('action', '/turnos');
+             //$('#new_turno').attr('class', 'new_turno');
+
+           //$("#fancybox-outer").width(550);
+           //$("#fancybox-outer").height(280);
+           //$("#fancybox-inner").width(460);
+           //$("#fancybox-inner").height(300);
+     
+         }else{
+           $('#tareas').show();
+           $('#turnos').hide();
+            //$('#new_turno').attr('action', '/tareas');
+             //$('#new_turno').attr('class', 'new_tarea');
+           //$("#fancybox-outer").width(490);
+           //$("#fancybox-outer").height(330);
+           //$("#fancybox-inner").width(460);
+           //$("#fancybox-inner").height(320);
+   
+       }
+
+       };
+  
+
+       
+</script>
+
