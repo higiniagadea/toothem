@@ -1,6 +1,6 @@
 class PagosPacientesController < ApplicationController
 layout 'default'
-
+ before_filter :login_required
   def orden
   
      @paciente = Paciente.find(params[:id])  

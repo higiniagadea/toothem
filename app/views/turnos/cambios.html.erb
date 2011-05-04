@@ -110,8 +110,9 @@
 
       })
   $('#profesional_profesional_id').attr('class', 'required'),
-   $('#profesional_profesional_id').attr('title', 'Seleccione un profesional'),
- $("#form").validate({
+  $('#profesional_profesional_id').attr('title', 'Seleccione un profesional'),
+
+  $("#form").validate({
         //errorLabelContainer: $("#new_paciente div.errores")
        errorContainer: $("#form div.errores"),
        errorLabelContainer: $("ol", $("#form div.errores")),
@@ -119,10 +120,10 @@
        meta: "validate"
        
 
- });
+  });
 
  $("#fecha_desde").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110',  minDate: '-1', maxDate : 1 - 1});
-$("#fecha_hasta").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110',minDate: '+0D', maxDate: +30});
+ $("#fecha_hasta").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110',minDate: '+0D', maxDate: +30,  numberOfMonths :2});
 
 });
 

@@ -1,0 +1,46 @@
+<% unless @pagos_obras_sociales.blank? %>
+
+
+
+<table style=" text-align: left "class="listados">
+  <h1>Pagos</h1>
+    <tr>
+      <th>Nro.de recibo</th>
+      <th>Fecha</th>
+      <th>Monto</th>
+      <th>Fue liquidado?</th>
+      <th>Fecha de liquidacion</th>
+      <th>Acciones</th>
+    </tr>
+    <% @pagos_pacientes.each do |pago_paciente| %>
+   <tr class="<%= cycle('par','impar') -%>">
+     <th><%=h pago_obra_social.nro_recibo %></th>
+     <th><%=h pago_obra_social.fecha.strftime('%d/%m/%Y')%></th>
+     <th><%=h number_to_currency(pago_obra_social.monto) %></th>
+     <th><%=h boolean_desc(pago_obra_social.fue_liquidado) %></th>
+     <th><%=h pago_obra_social.fecha_liquidacion.strftime('%d/%m/%Y')  %></th>
+
+     <td>
+      <%= link_to image_tag('pencil.png'), edit_pago_paciente_path(pago_paciente,  :paciente_id => @paciente), :title => 'Editar', :id => 'edit_pago' + pago_paciente.id.to_s %>
+      <%= link_to image_tag('cancel.png'), pago_paciente_path(pago_paciente, :paciente_id => @paciente.id), :title => 'Eliminar', :confirm => 'Esta seguro?', :method => :delete %>
+
+     </td>
+
+    <script type="text/javascript">
+    //    $('#edit_pago<%#= pago_paciente.id.to_s %>').fancybox(
+      //      {
+        // 'hideOnContentClick': false,
+        // 'titleShow': false
+
+       // });
+
+    </script>
+   </tr>
+   <%end %>
+
+
+  </table>
+
+   <%else%>
+   No posee pagos realizados
+<%end%>

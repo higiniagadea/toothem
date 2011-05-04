@@ -1,0 +1,23 @@
+ <h1>Resultado de la B&uacute;squeda</h1>
+ <% unless @obras_sociales.blank? %>
+
+
+    <table style=" text-align: left;" class="listado">
+      <tr>
+        <th>Nombre</th>       
+        <th>Acciones</th>
+
+      </tr>
+
+       <% @obras_sociales.each do |obra_social| %>
+
+      <tr class="<%= cycle('par','impar') -%>">
+        <td><%=h obra_social.nombre %></td>
+
+      </tr>
+
+      <%end%>
+
+    </table>
+ 
+ <%end%>

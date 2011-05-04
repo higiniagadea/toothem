@@ -1,7 +1,7 @@
 <table>
 
 <p> 
-<%= link_to 'Nuevo Evento', new_turno_path, :id => 'nuevo' %>  
+<%= link_to 'Nuevo Evento', turno_tarea_turnos_path, :id => 'nuevo' %>
 </p>
 
 <div id='calendar'>
@@ -56,9 +56,8 @@
                title  : 'Profesional: <%= turno.profesional.nombre %> Duracion: <%= turno.duracion %>minutos Paciente: <%= turno.paciente.nombre  %> ' ,
                start : 'Fecha: <%= turno.fecha_hora.iso8601 %>',
                end : 'Duracion: <%= (turno.fecha_hora + (60 * turno.duracion)) %>',
-               allDay : false,
-                
-            url: '<%= eliminar_turno_path(turno) %>'
+               allDay : false,                
+               url: '<%= eliminar_turno_path(turno) %>'
                
               },
 

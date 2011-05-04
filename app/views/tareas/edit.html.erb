@@ -29,12 +29,12 @@
 
     <tr>
       <th>Duracion</th>
-        <td><select name="tarea[duracion]" class ="ui-widget-content required"><%= options_for_select(["30", "45", "60", "90", "120"], @tarea.duracion)%>
+        <td><select name="tarea[duracion]" class ="ui-widget-content"><%= options_for_select(["30", "45", "60", "90", "120"], @tarea.duracion)%>
       </select> minutos</td>
     </tr>
     <tr>
       <th>Tarea</th>
-      <td><%= f.text_area :observaciones ,  :class =>"ui-widget-content required", :cols => 12, :rows => 4 %> </td>
+      <td><%= f.text_area :observaciones ,  :class =>"ui-widget-content required", :cols => 12, :rows => 4, :title => 'Ingrese la tarea' %> </td>
     </tr>
   </table>
 
@@ -84,7 +84,7 @@ function validate(e) { // 1
 
   });
 
-  $("#fecha").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate: 0});
+ 
   });
 
 

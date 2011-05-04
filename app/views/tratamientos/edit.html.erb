@@ -124,17 +124,13 @@ function deshabilitar_campo()
               $('.fecha_f').show();
               $('#fecha_finalizacion').attr('class', 'ui-widget-content required')
              }
-             else{
+           else{
                 $('.fecha_f').hide();
                 $('#fecha_finalizacion').attr('class', 'ui-widget-content')
-             }
+           }
        };
 
 $(document).ready(function(){
-
-  
-
-
     deshabilitar_campo();     
        $("#tratamiento_estado_tratamiento_id").change(habilitar_campo);
 
