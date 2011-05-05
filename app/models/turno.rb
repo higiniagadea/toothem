@@ -5,6 +5,8 @@ class Turno < ActiveRecord::Base
   belongs_to :paciente
 
    validates_presence_of :fecha_hora, :message => ' no puede estar en blanco'
+  # validates_uniqueness_of :fecha_hora,  :message => ' no puede estar duplicado'
+
 
   named_scope :by_fechas, lambda { |fecha_desde, fecha_hasta|
     {

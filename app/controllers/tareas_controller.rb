@@ -26,7 +26,7 @@ class TareasController < ApplicationController
   def edit
     @tarea = Tarea.find(params[:id])
     respond_to do |format|
-      format.html {render :layout => 'default'}
+      format.html {render :layout => false}
     end
   end
 
@@ -48,7 +48,8 @@ class TareasController < ApplicationController
     @tarea = Tarea.find(params[:id])
     respond_to do |format|
       if @tarea.update_attributes(params[:tarea])
-        format.html { redirect_to tareas_path  }
+          flash[:notice] = 'Tarea actualizada'
+        format.html { redirect_to cambios_turnos_path  }
       else
         format.html { render :action => "edit" }
       end
@@ -59,7 +60,7 @@ class TareasController < ApplicationController
     @tarea = Tarea.find(params[:id])
 
     respond_to do |format|
-      format.html { redirect_to tareas_path }
+      format.html { redirect_to turnos_path }
 
     end
   end
