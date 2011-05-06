@@ -1,7 +1,7 @@
 <div id="busq_turnos">
-<h1>Resultado de la b&uacute;squeda</h1>
+<h1>Turnos</h1>
 <% unless @turnos.blank? %>
-  <table style=" text-align: left;" class="listado">
+  <table style=" text-align: left;" class="listados">
     <tr>
       <th>Profesional</th>
       <th>Fecha y Hora </th>
@@ -31,12 +31,12 @@
       </script>
     <% end %>
       <%else%>
-      No se encontraron resultados seg&uacute;n los criterios de b&uacute;squeda
+      No se encontraron resultados en turnos
       <%end%>
   </table>
 <table>
   <tr><td>
-<%= will_paginate @turnos, :previous_label => 'Anterior', :next_label => 'Siguiente',
+<%#= will_paginate @turnos, :previous_label => 'Anterior', :next_label => 'Siguiente',
                                   :class => 'bturnos pagination',
                                   :params => {:controller => "turnos", :action => "resultado"
 
@@ -44,4 +44,6 @@
     </td>
   </tr>
 </table>
+
+
 </div>

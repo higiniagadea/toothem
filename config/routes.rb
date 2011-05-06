@@ -22,7 +22,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :tareas
 
-  map.resources :turnos, :collection => {:cambios => :get, :resultado => [:get, :post], :turno_tarea => :get, :get_turnos => :get},
+  map.resources :turnos, :collection => {:cambios => :get, :verificar => :get, :resultado => [:get, :post], :turno_tarea => :get, :get_turnos => :get},
                          :member => {:eliminar => :get, :prueba => :get}
   
    map.resources :imagenes, :collection => {:new_archivo => :get}

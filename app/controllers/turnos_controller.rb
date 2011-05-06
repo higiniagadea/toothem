@@ -77,7 +77,7 @@ class TurnosController < ApplicationController
    respond_to do |format|
        if @turno.update_attributes(params[:turno])
          flash[:notice] = 'Turno Actualizado'
-         format.html{redirect_to turnos_path}
+         format.html{redirect_to cambios_turnos_path}
        end
      end
   end
@@ -112,19 +112,36 @@ class TurnosController < ApplicationController
   def resultado
     @profesionales = Profesional.find(params[:profesional][:profesional_id]) if params[:profesional][:profesional_id]
     params[:turno][:profesional_id] = params[:profesional][:profesional_id] if params[:profesional][:profesional_id].blank?
+   
     respond_to do |format|
       params[:turno][:profesional_id] =  @profesionales.id
-      if params[:turno][:fecha_desde].blank? || params[:turno][:fecha_hasta].blank?
-     
-      format.html{render :text => "Todos los datos son requeridos para realizar la b&uacute;squeda", :layout => false }
-       elsif
-         format.html{render :partial=> 'resultado', :layout => false}
+      
+     #unless params[:turno][:fecha_desde].blank?
+     if params[:paciente_desc].blank?
+          @tareas = Tarea.buscar(params[:turno]).paginate(:page => params[:page], :per_page=> 2)
+        format.html{render :partial => 'tareas/tarea', :layout => false}
+       
+       else        
+         
         @turnos = Turno.basic_search(params[:turno]).paginate(:page => params[:page], :per_page=> 2)
-        
+        format.html{render :partial=> 'resultado', :layout => false}
+      
+     
+      end
+     end
+  
+  end
 
-       end
+
+  def verificar
+
+    @turno = Turno.find(:first,:conditions => {:profesional_id => params[:turno][:profesioal_id]})
+    respond_to do |format|
+    format.json { render :json => !@turno}
+
     end
   end
 
 
-end
+  end
+

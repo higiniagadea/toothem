@@ -105,7 +105,14 @@ function validate(e) { // 1
         errorContainer: $(".new_turno div.errores"),
         errorLabelContainer: $("ol", $(".new_turno div.errores")),
         wrapper: 'li',
-        meta: "validate"
+        meta: "validate",
+        rules :{
+          "turno[profesional_id]" :{required :true, remote:"/turnos/verificar?turno[profesional_id]=" + $('#turno[profesional_id]').val()}
+        },
+         messages:{
+           "turno[profesional_id]": {remote:"Nro. de Documento ya se encuentra cargado"}
+
+         }
 
 
       });
