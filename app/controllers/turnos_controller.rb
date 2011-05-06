@@ -115,17 +115,21 @@ class TurnosController < ApplicationController
    
     respond_to do |format|
       params[:turno][:profesional_id] =  @profesionales.id
-     
-      unless params[:paciente_id] && params[:turno][:profesional_id].blank?
+      
+     #unless params[:turno][:fecha_desde].blank?
+     if params[:paciente_desc].blank?
+          @tareas = Tarea.buscar(params[:turno]).paginate(:page => params[:page], :per_page=> 2)
+        format.html{render :partial => 'tareas/tarea', :layout => false}
+       
+       else        
          
         @turnos = Turno.basic_search(params[:turno]).paginate(:page => params[:page], :per_page=> 2)
         format.html{render :partial=> 'resultado', :layout => false}
-      end
-        @tareas = Tarea.buscar(params[:turno]).paginate(:page => params[:page], :per_page=> 2)
-        format.html{render :partial => 'turnos/resultado', :layout => false}
+      
      
-   
-    end
+      end
+     end
+  
   end
 
 

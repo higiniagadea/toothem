@@ -1,6 +1,6 @@
 class TareasController < ApplicationController
    layout 'default'
-  def index
+  def tarea
     @tareas = Tarea.all
     respond_to do |format|
       format.html {render :layout => 'default'}

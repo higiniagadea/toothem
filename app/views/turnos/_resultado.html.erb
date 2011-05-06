@@ -45,39 +45,5 @@
   </tr>
 </table>
 
-<h1>Tareas</h1>
-<% unless @tareas.blank? %>
-<table style=" text-align: left;" class="listados">
-  <tr>
-    <th>Profesional</th>
-    <th>Fecha y Hora</th>
-    <th>Tareas</th>
-      <th>Acciones</th>
-  </tr>
 
-
- <%  @tareas.each do |tarea| %>
-  <tr>
-    <td><%= tarea.profesional.nombre %></td>
-    <td><%= tarea.fecha_hora.strftime('%d/%m/%Y') %> </td>
-    <td><%= tarea.observaciones %> </td>
-  
-   <td><%= link_to image_tag('pencil.png'), edit_tarea_path(tarea), :id => 'editar_' + tarea.id.to_s, :title => 'Editar' %>
-        <%= link_to image_tag('cancel.png'), tarea, :confirm => 'Esta seguro?', :method => :delete, :title=> 'Eliminar'%>
-        </td>
-              <script type="text/javascript">
-    $('#editar_<%= tarea.id.to_s %> ').fancybox(
-        {
-      'hideOnContentClick': false,
-      'titleShow': false
-
-    });
-
-      </script>
-</tr>
-  <%end%>
-<%else%>
- No se encontraron resultados en tareas
-  </table>
-<%end%>
 </div>
