@@ -1,6 +1,23 @@
 class TurnosController < ApplicationController
   before_filter :login_required
   layout 'default'
+  def index
+   if params[:profesional_id]
+     @turnos = Turno.find(:all, :conditions => ['profesional_id = ?', params[:profesional_id]])
+   else
+    @turnos = Turno.find(:all)
+   end
+      respond_to do |format|
+       format.html
+      end
+  end
+
+  def agenda
+    @turnos = Turno.find(:all, :conditions => ['profesional_id = ?', params[:id]])
+     respond_to do |format|
+       format.html{render :layout => false }
+      end
+  end
 
     def show
     @turno = Turno.find(params[:id])
@@ -116,20 +133,19 @@ class TurnosController < ApplicationController
     respond_to do |format|
       params[:turno][:profesional_id] =  @profesionales.id
       
-     #unless params[:turno][:fecha_desde].blank?
-     if params[:paciente_desc].blank?
-          @tareas = Tarea.buscar(params[:turno]).paginate(:page => params[:page], :per_page=> 2)
+     unless params[:turno][:fecha_desde].blank?
+      if params[:paciente_desc].blank?
+        @tareas = Tarea.buscar(params[:turno]).paginate(:page => params[:page], :per_page=> 10)
         format.html{render :partial => 'tareas/tarea', :layout => false}
        
-       else        
+       else      
          
-        @turnos = Turno.basic_search(params[:turno]).paginate(:page => params[:page], :per_page=> 2)
+        @turnos = Turno.basic_search(params[:turno]).paginate(:page => params[:page], :per_page=> 10)
         format.html{render :partial=> 'resultado', :layout => false}
-      
-     
+           
       end
      end
-  
+    end
   end
 
 

@@ -6,7 +6,7 @@
        $('#cerrar-qtip').click(function(){$('.qtip').remove();});
      </script>
 
-<% form_remote_tag  :url => resultado_turnos_path, :html => {:id => 'form'},
+  <% form_remote_tag  :url => resultado_turnos_path, :html => {:id => 'form'},
                      :method => :post,
                      :update => :search_hit do -%>
   <div class="errores">
