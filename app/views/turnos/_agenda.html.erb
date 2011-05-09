@@ -1,6 +1,6 @@
 <table>
 
-<p> 
+<p>
 <%= link_to 'Nuevo Evento', turno_tarea_turnos_path, :id => 'nuevo' %>
 </p>
 
@@ -38,36 +38,36 @@
 
           unselectAuto: false,
           weekMode : false,
- 
-          
+
+
           monthNamesShort : ['Enero' , 'Febrero' , 'Marzo' , 'Abril' , 'Mayo' , 'Junio' , 'Julio' ,
                         'Agosto' , 'Septiembre' , 'Octubre' , 'Noviembre' , 'Diciembre' ],
 
           dayNamesShort : ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
-       
-          
+
+
           events:[
-           
-            <% for turno in Turno.all -%>
-           
-           
+
+            <% for turno in Turno.all   -%>
+
+
               {
                id : 'turno: <%= turno.id.to_s %>',
                title  : 'Profesional: <%= turno.profesional.nombre %> Duracion: <%= turno.duracion %>minutos Paciente: <%= turno.paciente.nombre  %> ' ,
                start : 'Fecha: <%= turno.fecha_hora.iso8601 %>',
                end : 'Duracion: <%= (turno.fecha_hora + (60 * turno.duracion)) %>',
-               allDay : false,                
+               allDay : false,
                url: '<%= eliminar_turno_path(turno) %>'
-               
+
               },
 
             <% end %>
 
-              ],              
+              ],
 
 
           timeFormat: 'h:mm t{ - h:mm t} ',
-          
+
           dragOpacity: "0.5",
 
 
@@ -101,8 +101,8 @@
 
 
         }
-      
-                 
+
+
           }
 
 
@@ -120,7 +120,7 @@
   });
 </script>
 
-  
+
 
 
 
