@@ -1,7 +1,9 @@
 class TurnosController < ApplicationController
   before_filter :login_required
   layout 'default'
-  def index
+
+  
+  def busq
    if params[:profesional_id]
      @turnos = Turno.find(:all, :conditions => ['profesional_id = ?', params[:profesional_id]])
    else
@@ -12,11 +14,14 @@ class TurnosController < ApplicationController
       end
   end
 
+  
+
   def agenda
-    @turnos = Turno.find(:all, :conditions => ['profesional_id = ?', params[:id]])
-     respond_to do |format|
-       format.html{render :layout => false }
-      end
+       respond_to do |format|      
+      @turnos = Turno.find(:all, :conditions => ['profesional_id = ?', params[:profesional_id]])
+      format.html{render :layout => false, :partial => 'agenda'}
+    
+  end
   end
 
     def show
@@ -39,12 +44,9 @@ class TurnosController < ApplicationController
 
 
    def new    
-    @turno = Turno.new
-    
+    @turno = Turno.new    
     @profesional = Profesional.find(params[:profesional_id]) unless params[:profesional_id].blank?
-   
-
-     respond_to do |format|
+   respond_to do |format|
      format.html{render :layout => false}
     end
 
@@ -81,7 +83,7 @@ class TurnosController < ApplicationController
    respond_to do |format|
     if  @turno.save
       flash[:notice] = 'Turno guardado'
-      format.html{redirect_to turnos_path}
+      format.html{redirect_to busq_turnos_path}
  
     end
   end
@@ -105,7 +107,7 @@ class TurnosController < ApplicationController
     @turno.destroy
    respond_to do |format|
       flash[:notice] = 'Turno eliminado'
-     format.html{redirect_to turnos_path}
+     format.html{redirect_to busq_turnos_path}
    end
  
   end
@@ -116,7 +118,7 @@ class TurnosController < ApplicationController
     @turno.destroy
    respond_to do |format|
       flash[:notice] = 'Turno eliminado'
-     format.html{redirect_to turnos_path}
+     format.html{redirect_to busq_turnos_path}
    end
   end
 
@@ -135,6 +137,7 @@ class TurnosController < ApplicationController
       
      unless params[:turno][:fecha_desde].blank?
       if params[:paciente_desc].blank?
+
         @tareas = Tarea.buscar(params[:turno]).paginate(:page => params[:page], :per_page=> 10)
         format.html{render :partial => 'tareas/tarea', :layout => false}
        
@@ -145,16 +148,6 @@ class TurnosController < ApplicationController
            
       end
      end
-    end
-  end
-
-
-  def verificar
-
-    @turno = Turno.find(:first,:conditions => {:profesional_id => params[:turno][:profesioal_id]})
-    respond_to do |format|
-    format.json { render :json => !@turno}
-
     end
   end
 

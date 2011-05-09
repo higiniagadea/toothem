@@ -1,0 +1,38 @@
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Agenda</legend>
+
+<% form_remote_tag  :url => agenda_turnos_path,
+                     :method => :post,
+                     :update => :search_hits do -%>
+
+<tr>
+
+         <th> <label>Elija un Profesional</label></th>
+        <th>
+          <%= select("profesional", "profesional_id", Profesional.all.collect {|p| [ p.nombre, p.id]}, :include_blank => 'Seleccione') %>
+
+        </th>
+
+    </tr>
+    <table>
+    <tr>
+        <th style=" float: left; margin-left:  500px">
+
+          <%= submit_tag 'Buscar',  :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+
+        </th>
+      </tr>
+
+    </table>
+
+  <div id="search_hits"></div>
+
+  <%end%>
+</fieldset>
+
+<script type="text/javascript">
+  
+$('#profesional_id').attr('class', 'required'),
+  $('#profesional_id').attr('title', 'Seleccione un profesional')
+
+  </script>

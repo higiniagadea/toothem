@@ -37,7 +37,7 @@ class TareasController < ApplicationController
     respond_to do |format|
       if @tarea.save
         flash[:notice] = 'Tarea guardado'
-        format.html { redirect_to turnos_path  }
+        format.html { redirect_to cambios_turnos_path  }
       else
         format.html { render :action => "new" }
       end
@@ -60,7 +60,7 @@ class TareasController < ApplicationController
     @tarea = Tarea.find(params[:id])
 
     respond_to do |format|
-      format.html { redirect_to turnos_path }
+      format.html { redirect_to cambios_turnos_path }
 
     end
   end
