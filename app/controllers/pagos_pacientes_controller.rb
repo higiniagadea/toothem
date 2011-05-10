@@ -1,31 +1,27 @@
 class PagosPacientesController < ApplicationController
 layout 'default'
  before_filter :login_required
-  def orden
-  
-     @paciente = Paciente.find(params[:id])  
-    
-    respond_to do |format|   
-      
+  def orden  
+     @paciente = Paciente.find(params[:id])
+
+    respond_to do |format|         
        @pagos_pacientes = PagoPaciente.paginate :page=> params[:page], :per_page=> 10, :conditions => ['paciente_id = ?', @paciente.id]
        format.html{render :partial => 'orden', :layout => false }
     end
   end
 
-
-
-
- def show
-    @pago_paciente = PagoPaciente.find(params[:id])
-    respond_to do |format|
+ #def show
+  #  @pago_paciente = PagoPaciente.find(params[:id])
+   # respond_to do |format|
    
-      format.html { render :layout => 'default' }
-    end
-  end
+    #  format.html { render :layout => 'default' }
+    #end
+  #end
 
   def new
+     @pago_paciente = PagoPaciente.new
    @paciente = Paciente.find(params[:paciente_id])
-   @pago_paciente = PagoPaciente.new
+  
 
     respond_to do |format|
       format.html { render :layout => false, :partial => 'new'}

@@ -51,10 +51,13 @@
 
 <script type="text/javascript">  
  $(document).ready(function(){
+    $('#periodo_mes_2i').attr('class', 'required'),
+       $('#periodo_mes_1i').attr('class', 'required'),
+  $('#periodo_mes_2i').attr('title', 'Seleccione un mes'),
+  $('#periodo_mes_1i').attr('title', 'Seleccione un año'),
+
     $(".new_periodo").validate({
-      rules:{
-        "periodo[mes_2i]":{reqired :true}
-      },
+      
         //errorLabelContainer: $("#new_paciente div.errores")
        errorContainer: $(".new_periodo div.errores"),
        errorLabelContainer: $("ol", $(".new_periodo div.errores")),

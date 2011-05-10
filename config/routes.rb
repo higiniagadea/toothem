@@ -16,6 +16,7 @@ ActionController::Routing::Routes.draw do |map|
                               :verificar_longitud => [:post, :get],
                               :listados => [ :get],
                               :listado => [:get]
+                             
                               }
 
   map.resources :periodos, :collection => {:buscar => :get, :resultado => [:get, :post]}, :member => {:liquidar => [:get, :post]}
@@ -61,7 +62,8 @@ map.resources :pagos_pacientes #:member => {:new => [:get, :post]}
 
   map.resources :tipos_documento
 
-map.resources :pagos_obras_sociales, :collection => {:buscar_cta_cte => [:get, :post], :result_cta_cte => [:get, :post]}
+map.resources :pagos_obras_sociales, :collection => {:buscar_cta_cte => [:get, :post], :result_cta_cte => [:get, :post]},
+                                     :member => {:lista => :post,  :mostar_lista => [:get]}
                
 
   
