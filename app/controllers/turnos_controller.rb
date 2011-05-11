@@ -4,13 +4,13 @@ class TurnosController < ApplicationController
 
   
   def busq
-   if params[:profesional_id]
-      @turnos = Turno.find(:all, :conditions => ['profesional_id = ?', params[:profesional_id]])
-   else
-      @turnos = Turno.find(:all)
+   #if params[:profesional_id]
+    #  @turnos = Turno.find(:all, :conditions => ['profesional_id = ?', params[:profesional_id]])
+   #else
+    #  @turnos = Turno.find(:all)
   
-   end
-      respond_to do |format|
+   #end
+     respond_to do |format|
        format.html
       end
   end
@@ -18,10 +18,13 @@ class TurnosController < ApplicationController
   
 
   def agenda
-       respond_to do |format|      
-      @turnos = Turno.find(:all, :conditions => ['profesional_id = ?', params[:id]])
+       respond_to do |format|   
+       if params[:profesional][:profesional_id].blank?
+         format.html{render :text => 'Seleccione un profesional' }
+       else
+      @turnos = Turno.find(:all, :conditions => ['profesional_id = ?', params[:profesional][:profesional_id]])
       format.html{render :layout => false, :partial => 'agenda'}
-    
+        end
   end
   end
 
