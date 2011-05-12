@@ -3,7 +3,7 @@
 
 <% form_remote_tag  :url => agenda_turnos_path,
                      :method => :post,
-                     :update => :search_hits do -%>
+                     :update => :search_hit do -%>
 
 <tr>
 
@@ -25,14 +25,7 @@
 
     </table>
 
-  <div id="search_hits"></div>
+  <div id="search_hit"></div>
 
   <%end%>
 </fieldset>
-
-<script type="text/javascript">
-  
-$('#profesional_id').attr('class', 'required'),
-  $('#profesional_id').attr('title', 'Seleccione un profesional')
-
-  </script>

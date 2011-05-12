@@ -8,6 +8,7 @@
   belongs_to :ficha
  
   belongs_to :estado_tratamiento
+  
 
   validates_numericality_of :diente, :message => 'Debe ser numerico'
   validates_presence_of :diente, :message => 'Ingrese el Diente'

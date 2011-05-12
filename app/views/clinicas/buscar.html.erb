@@ -28,15 +28,15 @@
       <table  style=" text-align: left; ">
         <tr>
           <th>Nombre</th>
-        <td><%= text_field_tag :nombre,{}, :class =>"ui-widget-content required", :onkeypress => 'return valida(event)' %> </td>
+        <td><%= text_field_tag :nombre,{}, :class =>"ui-widget-content required", :onkeypress => 'return valida(event)', :size => 15 %> </td>
 
         <th>Direccion</th>
-          <td> <%= text_field_tag :direccion,{}, :class => 'ui-widget-content ', :onkeypress => 'return valida(event)'%></td>
+          <td> <%= text_field_tag :direccion,{}, :class => 'ui-widget-content ', :onkeypress => 'return valida(event)', :size => 15%></td>
         </tr>
 
         <tr>
           <th>CUIT</th>
-        <td><%= text_field_tag :cuit,{}, :class => 'ui-widget-content ', :onkeypress => 'return validate(event)'%></td>
+        <td><%= text_field_tag :cuit,{}, :class => 'ui-widget-content ', :onkeypress => 'return validate(event)', :size => 15%></td>
 
         </tr>
       </table>

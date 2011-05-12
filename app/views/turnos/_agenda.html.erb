@@ -48,7 +48,7 @@
 
           events:[
 
-            <% for turno in Turno.all   -%>
+            <% for turno in @turnos = Turno.find(:all, :conditions => ['profesional_id = ?', params[:profesional][:profesional_id]])   -%>
 
 
               {

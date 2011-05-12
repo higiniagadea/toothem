@@ -12,8 +12,8 @@
   <table  style=" text-align: left;">
     <tr>
       <th>Periodo</th>
-      <td><%= f.date_select :mes, :order => [:month], :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
-                                                     'Octubre', 'Noviembre', 'Diciembre'], :size=> 15 , :class=> 'ui-widget-content required',  :prompt => {:month => 'Seleccione'} %> </td>
+      <td><%= f.date_select(:mes, :order => [:month, :year], :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
+                                                     'Octubre', 'Noviembre', 'Diciembre'], :size=> 15 , :class => 'required',  :prompt => {:month => 'Seleccione', :year => 'Seleccione'} )%> </td>
 
     </tr>
     
@@ -48,6 +48,12 @@
 <script type="text/javascript">
 
    $(document).ready(function(){
+
+  $('#periodo_mes_2i').attr('class', 'required'),
+  $('#periodo_mes_1i').attr('class', 'required'),
+  $('#periodo_mes_2i').attr('title', 'Seleccione un mes'),
+  $('#periodo_mes_1i').attr('title', 'Seleccione un año'),
+
     $(".edit_periodo").validate({
         //errorLabelContainer: $("#new_paciente div.errores")
        errorContainer: $(".edit_periodo div.errores"),
