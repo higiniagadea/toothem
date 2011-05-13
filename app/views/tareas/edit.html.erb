@@ -74,10 +74,10 @@ function validate(e) { // 1
         }
       });
      });
-      $("#edit_tarea").validate({
+      $(".edit_tarea").validate({
         //errorLabelContainer: $("#new_paciente div.errores")
-       errorContainer: $("#edit_tarea div.errores"),
-       errorLabelContainer: $("ol", $("#edit_tarea div.errores")),
+       errorContainer: $(".edit_tarea div.errores"),
+       errorLabelContainer: $("ol", $(".edit_tarea div.errores")),
        wrapper: 'li',
        meta: "validate"
 
