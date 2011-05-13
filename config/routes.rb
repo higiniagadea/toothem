@@ -23,7 +23,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :tareas
 
-  map.resources :turnos, :collection => {:cambios => :get, :verificar => :get, :resultado => [:get, :post], :turno_tarea => :get, :get_turnos => :get, :busq => :get, :agenda => [:get, :post]},
+  map.resources :turnos, :collection => {:cambios => :get, :verificar => :get, :resultado => [:get, :post], :turno_tarea => :get, :get_turnos => :get, :busq => :get, :agenda => [:get, :post], :actualizar_profesional => [:get]},
                          :member => {:eliminar => :get}
   
    map.resources :imagenes, :collection => {:new_archivo => :get}
@@ -158,7 +158,7 @@ map.resources :pagos_obras_sociales, :collection => {:buscar_cta_cte => [:get, :
 
 
 
-   map.resources :obras_sociales, :collection => {:buscar => :get, :resultado => [:post, :get]} do |obra_social|
+   map.resources :obras_sociales, :collection => {:buscar => :get, :resultado => [:post, :get], :busq_cta_cte => [:post, :get], :result_cta_cte => [:get, :post]} do |obra_social|
      obra_social.resources :aranceles, :collection => {:busqueda => [:get, :post], :resultados => [:post, :get]}
                                      
   end

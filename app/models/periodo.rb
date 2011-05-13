@@ -2,6 +2,9 @@ class Periodo < ActiveRecord::Base
   acts_as_paranoid
   
 belongs_to :saldo_paciente
+belongs_to :paciente
+belongs_to :pago_paciente
+
 
  validates_presence_of :mes, :message=> 'No puede estar en blanco'
  #validates_presence_of :anio, :message=> 'No puede estar en blanco'

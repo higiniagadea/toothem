@@ -111,7 +111,19 @@ class ObrasSocialesController < ApplicationController
         format.html {render :partial => 'resultado', :layout => false }
       end
           
-    end 
+    end
 
+  def buscar_cte_cte
+   respond_to do |format|
+    format.html
+  end
+  end
+
+  def result_cta_cte
+    respond_to do |format|
+      @obras_sociales = ObraSocial.basic_search(params).paginate :page => params[:page], :per_page => 10, :order => 'nombre ASC'
+      format.html{render :partial => 'result_cta_cte', :layout => false}
+    end
+  end
 
 end

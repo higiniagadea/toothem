@@ -28,11 +28,11 @@
     <tr>
       <th>Profesional</th>
           <td>
-              <%= f.collection_select(:profesional_id, Profesional.all, :id, :nombre, {:include_blank => 'Seleccione'},
-                                                                                       :class=> 'ui-widget-content required',
-                                                                                       :title=> 'Seleccione un profesional') %>
-      
+                <%= @profesional.nombre unless @profesional.blank? %>
+         <%= f.hidden_field :profesional_id, :value=> @profesional.id.to_s %>
           </td>
+   
+
     </tr>
 
 
@@ -111,6 +111,11 @@ function validate(e) { // 1
 
 
       });
+
+
+  
+ 
+
 
 $('#buscar').click(function()
       {

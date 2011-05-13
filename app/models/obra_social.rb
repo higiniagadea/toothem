@@ -7,7 +7,7 @@ class ObraSocial < ActiveRecord::Base
   has_many :fichas
   has_many :prestaciones, :through => :aranceles
   has_many :saldos_obras_sociales
-  #has_many :pagos_obras_sociales
+  has_many :pagos_obras_sociales
  
   
   validates_presence_of :nombre, :message => ', debe ingresar un nombre y apellido'
