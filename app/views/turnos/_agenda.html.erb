@@ -9,6 +9,10 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
+
+$('#nuevo').mouseover(function(){
+   $(this).attr('href', '<%= turno_tarea_turnos_path %>?profesional_id='+$('#profesional_profesional_id').val())
+})
       // page is now ready, initialize the calendar...
       $('#calendar').fullCalendar({
           //editable: true,

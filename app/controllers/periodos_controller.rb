@@ -109,7 +109,7 @@
     end
    respond_to do |format|
       
-     format.html{redirect_to new_periodo_path}
+     format.html{redirect_to buscar_periodos_path}
    end
 
   end

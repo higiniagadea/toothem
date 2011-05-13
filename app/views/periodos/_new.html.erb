@@ -12,7 +12,7 @@
   <table  style=" text-align: left;">
     <tr>
       <th>Per&iacute;odo</th>
-      <td><%= f.date_select(:mes,  :order => [:month, :year], :use_month_names => ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], :start_year => 2011, :class => "required", :title => 'Ingrese un periodo', :size=> 15 , :prompt => {:month => 'Seleccione', :year => 'Seleccione'}) %> </td>
+      <td><%= f.date_select(:mes,  :order => [:month, :year], :use_month_names => ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], :start_year => 2011, :title => 'Ingrese un periodo', :size=> 15 , :prompt => {:month => 'Seleccione', :year => 'Seleccione'}) %> </td>
     </tr>
 
     <tr>
@@ -52,9 +52,9 @@
 <script type="text/javascript">  
  $(document).ready(function(){
     $('#periodo_mes_2i').attr('class', 'required'),
-       $('#periodo_mes_1i').attr('class', 'required'),
-  $('#periodo_mes_2i').attr('title', 'Seleccione un mes'),
-  $('#periodo_mes_1i').attr('title', 'Seleccione un año'),
+    $('#periodo_mes_1i').attr('class', 'required'),
+    $('#periodo_mes_2i').attr('title', 'Seleccione un mes'),
+    $('#periodo_mes_1i').attr('title', 'Seleccione un año'),
 
     $(".new_periodo").validate({
       

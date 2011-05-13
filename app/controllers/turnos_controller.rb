@@ -2,7 +2,24 @@ class TurnosController < ApplicationController
   before_filter :login_required
   layout 'default'
 
-  
+  def actualizar_profesional
+   @profesionales = Profesional.find(params[:profesional][:profesional_id]) if params[:profesional][:profesional_id]
+    respond_to do |format|
+      format.hmtl{
+          render :update do |page|
+    if @profesional.blank?
+       page['actualizar_profesional'].replace_html '-'
+     else
+      page['actualizar_profesional'].replace_html @turno.profesional_id
+      
+     end
+          
+   end
+      }
+    end
+  end
+
+
   def busq
    #if params[:profesional_id]
     #  @turnos = Turno.find(:all, :conditions => ['profesional_id = ?', params[:profesional_id]])
