@@ -37,22 +37,17 @@
     });
     </script>
 
-
-
-
-
 <% end %>
 </table>
 
   <%else%>
 
   No se encontraron resultados
-  
-  <%end%>
+   <%end%>
+ 
 
 <%= will_paginate @prestaciones, :previous_label =>'Anterior', :next_label => 'Siguiente',
                                  :class => 'pres pagination',
-                                 :params=> {:controller => "prestaciones", :action => 'resultado' }
-                                                                                                %>
+                                 :params=> {:controller => "prestaciones", :action => 'resultado'} %>
 
 </div>

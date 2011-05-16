@@ -9,10 +9,12 @@ h1{
     font-size: 16px;
 }
 a{
-    color:#3333CC;
+    color:orangered;
     text-decoration: none;
-    font-weight: normal;
+    font-weight: ninguno;
 }
+
+
 fieldset{
     width:auto;
 }

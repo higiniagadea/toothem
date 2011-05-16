@@ -105,9 +105,9 @@ class PrestacionesController < ApplicationController
 
   def resultado  
     respond_to do |format|     
-        @prestaciones = Prestacion.basic_search(params).paginate :page => params[:page], :per_page => 10
+        @prestaciones = Prestacion.basic_search(params).paginate(:page => params[:page], :per_page => 10)
         
-        format.html {render :partial => 'resultado', :layout => false }
+        format.html{render :partial => 'resultado', :layout => false }
        
       end
   end

@@ -1,9 +1,13 @@
 <table>
-
-<p>
+  <br/>
+  <tr>
+  <a>
 <%= link_to 'Nuevo Evento', turno_tarea_turnos_path, :id => 'nuevo' %>
-</p>
-
+  </a></tr>
+</table>
+<table>
+  <br/>
+  
 <div id='calendar'>
 </div>
 
@@ -67,6 +71,22 @@ $('#nuevo').mouseover(function(){
 
             <% end %>
 
+
+            <% for tarea in @tareas = Tarea.find(:all, :conditions => ['profesional_id = ?', params[:profesional][:profesional_id]])   -%>
+
+
+              {
+               id : 'tarea: <%= tarea.id.to_s %>',
+               title  : 'Profesional: <%= tarea.profesional.nombre %> Duracion: <%= tarea.duracion %>minutos  Tarea <%= tarea.observaciones  %>' ,
+               start : 'Fecha: <%= tarea.fecha_hora.iso8601 %>',
+               end : 'Duracion: <%= (tarea.fecha_hora + (60 * tarea.duracion)) %>',
+               allDay : false,
+               url: '<%= eliminar_tarea_path(tarea) %>'
+
+              },
+
+            <% end %>
+           
               ],
 
 
@@ -96,7 +116,7 @@ $('#nuevo').mouseover(function(){
 
           eventClick: function(event, jsEvent){
              if (event.url) {
-              if (confirm('Esta seguro de eliminar el turno?Esta accion no se puede deshacer.')){
+              if (confirm('Esta seguro de eliminar? Esta accion no se podra deshacer')){
                 event.url;
               //return false;
               }else{

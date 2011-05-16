@@ -2,22 +2,7 @@ class TurnosController < ApplicationController
   before_filter :login_required
   layout 'default'
 
-  def actualizar_profesional
-   @profesionales = Profesional.find(params[:profesional][:profesional_id]) if params[:profesional][:profesional_id]
-    respond_to do |format|
-      format.hmtl{
-          render :update do |page|
-    if @profesional.blank?
-       page['actualizar_profesional'].replace_html '-'
-     else
-      page['actualizar_profesional'].replace_html @turno.profesional_id
-      
-     end
-          
-   end
-      }
-    end
-  end
+  
 
 
   def busq
@@ -37,7 +22,7 @@ class TurnosController < ApplicationController
   def agenda
        respond_to do |format|   
        if params[:profesional][:profesional_id].blank?
-         format.html{render :text => 'Seleccione un profesional' }
+         format.html{render :text => '<span style="color:red">Seleccione un profesional</span>' }
        else
       @turnos = Turno.find(:all, :conditions => ['profesional_id = ?', params[:profesional][:profesional_id]])
       format.html{render :layout => false, :partial => 'agenda'}
@@ -83,7 +68,8 @@ class TurnosController < ApplicationController
 
   #muestra los turnos en el calendario
    def get_turnos
-    @turnos = Turno.find(:all, :include => 'profesional')    
+    @turnos = Turno.find(:all, :include => 'profesional')
+   
     events = []
     @turnos.each do |turno|   
     events << {:id => turno.id.to_s, :title => turno.profesional_id.to_s, :start => "#{turno.fecha_hora.iso8601}", :end => "#{(turno.fecha_hora + (60 * turno.duracion))}", :allDay => true, :oservaciones => "#{(turno.observaciones)}"}

@@ -65,4 +65,23 @@ class TareasController < ApplicationController
     end
   end
 
+   def get_tareas
+    @tareas = Tarea.find(:all, :include => 'profesional')
+
+    events = []
+    @tareas.each do |tarea|
+    events << {:id => tarea.id.to_s, :title => tarea.profesional_id.to_s, :start => "#{tarea.fecha_hora.iso8601}", :end => "#{(tarea.fecha_hora + (60 * tarea.duracion))}", :allDay => true, :oservaciones => "#{(tarea.observaciones)}"}
+    end
+    render :text => events.to_json
+  end
+
+   def eliminar
+    @tarea = Tarea.find_by_id(params[:id])
+    @tarea.destroy
+   respond_to do |format|
+      flash[:notice] = 'Tarea eliminada'
+     format.html{redirect_to busq_turnos_path}
+   end
+  end
+
 end
