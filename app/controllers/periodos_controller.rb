@@ -15,7 +15,7 @@
 
   def index
    
-      @periodos = Periodo.paginate :page=> params[:page], :per_page=> 12, :order => 'mes DESC'
+      @periodos = Periodo.paginate(:page=> params[:page], :per_page=> 12, :order => 'mes DESC', :conditions => ['fue_liquidado = ?', false])
 
     respond_to do |format|
      format.html

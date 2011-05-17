@@ -65,7 +65,7 @@ map.resources :pagos_pacientes #:member => {:new => [:get, :post]}
 map.resources :pagos_obras_sociales, :collection => {:buscar_cta_cte => [:get, :post], :result_cta_cte => [:get, :post]},
                                      :member => {:lista => :post,  :mostar_lista => [:get]}
                
-
+map.resources :periodos_obras_sociales,  :collection => {:buscar => :get, :resultado => [:get, :post]}
   
   map.resources :pacientes,
                 :collection => {:search => [:get, :post],
