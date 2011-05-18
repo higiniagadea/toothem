@@ -25,6 +25,7 @@
     <th>Prestaci&oacute;n</th>
     <th>Diente</th>
     <th>Cara</th>
+    <th>Coseguro</th>
     <th>Estado</th>
     <th>Acciones</th>
 
@@ -36,6 +37,8 @@
     <td><%=h tratamiento.prestacion.descripcion %></td>
     <td><%=h tratamiento.diente %></td>
     <td><%=h tratamiento.cara %></td>
+   
+    <td><%=h tratamiento.coseguro %></td>
     <td><%=h tratamiento.estado_tratamiento.nombre %></td>
       
     <td><%= link_to image_tag('magnifier_zoom_in.png'), tratamiento, :title => "Ver", :id=> 'ver_' + tratamiento.id.to_s %>

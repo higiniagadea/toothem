@@ -194,6 +194,16 @@ $(document).ready(function(){
   });
 
 
+$('div.ajax-pagination a').live('click', function() {
+    $('#periodoobrasocial').load(this.href)
+    return false
+  });
+
+  $('div.periodo a').live('click', function() {
+    $('#periodoobrasocial').load(this.href)
+    return false
+  });
+
  /*$('div.ajax-pagination a').live('click', function() {
     $('#cuenta_p').load(this.href)
     return false

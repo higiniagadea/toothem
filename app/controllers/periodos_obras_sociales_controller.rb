@@ -2,7 +2,7 @@ class PeriodosObrasSocialesController < ApplicationController
   layout 'default'
 
   def index
-     @periodos_obras_sociales = PeriodoObraSocial.find(:all)
+     @periodos_obras_sociales = PeriodoObraSocial.paginate(:page=> params[:page], :per_page=> 12, :order => 'mes DESC', :conditions => ['fue_liquidado = ?', false])
    respond_to do |format|
      format.html
 

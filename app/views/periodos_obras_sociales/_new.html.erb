@@ -12,7 +12,7 @@
   <table  style=" text-align: left;">
     <tr>
       <th>Per&iacute;odo</th>
-      <td><%= f.date_select(:mes,  :order => [:month, :year], :use_month_names => ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], :start_year => 2011, :title => 'Ingrese un periodo', :size=> 15 , :prompt => {:month => 'Seleccione', :year => 'Seleccione'}) %> </td>
+      <td><%= f.date_select(:mes,  :order => [:month, :year], :use_month_names => ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], :start_year => 2011, :title => 'Ingrese un periodo', :size=> 15 , :prompt => {:month => 'Seleccione Mes', :year => 'Seleccione Año'}) %> </td>
     </tr>
 
     <tr>
@@ -51,10 +51,10 @@
 
 <script type="text/javascript">
  $(document).ready(function(){
-    $('#periodo_mes_2i').attr('class', 'required'),
-    $('#periodo_mes_1i').attr('class', 'required'),
-    $('#periodo_mes_2i').attr('title', 'Seleccione un mes'),
-    $('#periodo_mes_1i').attr('title', 'Seleccione un año'),
+    $('#periodo_obra_social_mes_2i').attr('class', 'required'),
+    $('#periodo_obra_social_mes_1i').attr('class', 'required'),
+    $('#periodo_obra_social_mes_2i').attr('title', 'Seleccione un Mes'),
+    $('#periodo_obra_social_mes_1i').attr('title', 'Seleccione un Año'),
 
     $(".new_periodo_obra_social").validate({
 
