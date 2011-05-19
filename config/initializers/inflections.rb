@@ -34,7 +34,7 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'pago_paciente', 'pagos_pacientes'
   inflect.irregular 'periodo', 'periodos'
   inflect.irregular 'turno', 'turnos'
-   inflect.irregular 'pago_obra_social', 'pagos_obras_sociales'
-
+  inflect.irregular 'pago_obra_social', 'pagos_obras_sociales'
+  inflect.irregular 'periodo_obra_social', 'periodos_obras_sociales'
 #   inflect.uncountable %w( fish sheep )
 end

@@ -1,6 +1,6 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-corner-all ui-widget-header">Nuevo Per&iacute;odo</legend>
-<% form_for(@periodo) do |f|  %>
+<% form_for(@periodo_obra_social) do |f|  %>
  <%= f.error_messages(:id => 'error', :header_message => '', :message => 'Ocurrió un error al intentar guardar el registro')  %>
 
 
@@ -16,7 +16,7 @@
     </tr>
 
     <tr>
-      
+
       <td><%#= f.date_select :anio, :order => [:year], :prompt => false, :size=> 15, :class => 'required', :prompt => {:year => 'Seleccione'} %> </td>
     </tr>
    <!--<tr>
@@ -32,7 +32,7 @@
     </tr> -->
 
 
-    
+
 
   </table>
 
@@ -49,22 +49,22 @@
 </fieldset>
 
 
-<script type="text/javascript">  
+<script type="text/javascript">
  $(document).ready(function(){
-    $('#periodo_mes_2i').attr('class', 'required'),
-    $('#periodo_mes_1i').attr('class', 'required'),
-    $('#periodo_mes_2i').attr('title', 'Seleccione un Mes'),
-    $('#periodo_mes_1i').attr('title', 'Seleccione un Año'),
+    $('#periodo_obra_social_mes_2i').attr('class', 'required'),
+    $('#periodo_obra_social_mes_1i').attr('class', 'required'),
+    $('#periodo_obra_social_mes_2i').attr('title', 'Seleccione un Mes'),
+    $('#periodo_obra_social_mes_1i').attr('title', 'Seleccione un Año'),
 
-    $(".new_periodo").validate({
-      
+    $(".new_periodo_obra_social").validate({
+
         //errorLabelContainer: $("#new_paciente div.errores")
-       errorContainer: $(".new_periodo div.errores"),
-       errorLabelContainer: $("ol", $(".new_periodo div.errores")),
+       errorContainer: $(".new_periodo_obra_social div.errores"),
+       errorLabelContainer: $("ol", $(".new_periodo_obra_social div.errores")),
        wrapper: 'li',
        meta: "validate"
-      
-     
+
+
     });
 
  });

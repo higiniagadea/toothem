@@ -15,7 +15,7 @@ acts_as_paranoid
 
   named_scope :by_codigo, lambda { |codigo|
     {:conditions=> ['lower(codigo) LIKE :codigo',
-      {:codigo => "%"+codigo.downcase}]
+      {:codigo => "%"+codigo.downcase+"%"}]
     }
   }
 
@@ -29,8 +29,8 @@ acts_as_paranoid
 
   def self.basic_search(options)
     scope_builder do |builder|
-      builder.by_codigo(options[:codigo]) if options[:codigo]
-      builder.by_descripcion(options[:descripcion]) if options[:descripcion]
+      builder.by_codigo(options[:codigo]) unless options[:codigo].blank?
+      builder.by_descripcion(options[:descripcion]) unless options[:descripcion].blank?
     end
   end
 

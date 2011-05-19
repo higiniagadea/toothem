@@ -1,0 +1,59 @@
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Buscar Per&iacute;odos</legend>
+
+  <table>
+    <tr><td style=" float: left; margin-left: 990px">
+      <%= link_to  image_tag('add.png') + 'Nuevo Periodo', new_periodo_obra_social_path %>
+        </td>
+    </tr>
+  </table>
+
+
+<%  form_remote_tag :url=> {:controller => 'periodos_obras_sociales', :action => 'resultado'}, :html => {:id => 'periodo_os'},
+                      :method => :post,
+                      :update => :search_hits do -%>
+
+      <table  style=" text-align: left; "class="table-search">
+       <tr>
+      <th>Per&iacute;odo</th>
+      <td><%= date_select('periodo', 'mes', :start_year => 2011,  :order => [:year], :prompt => {:year => 'Seleccione'}  )%> </td>
+    </tr>
+
+      </table>
+
+     <table>
+        <tr>
+          <td style=" float: left; margin-left:  400px"> <%= submit_tag 'Buscar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
+
+
+          </tr>
+
+      </table>
+
+  <%end -%>
+
+
+   <div id="search_hits"></div>
+
+
+
+
+</fieldset>
+
+<script type="text/javascript">
+
+   $(document).ready(function(){
+    $("#periodo_os").validate({
+        //errorLabelContainer: $("#new_paciente div.errores")
+       errorContainer: $("#periodo_os div.errores"),
+       errorLabelContainer: $("ol", $("#periodo_os div.errores")),
+       wrapper: 'li',
+       meta: "validate"
+
+
+
+    });
+
+   });
+</script>
+

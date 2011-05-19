@@ -21,9 +21,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :periodos, :collection => {:buscar => :get, :resultado => [:get, :post]}, :member => {:liquidar => [:get, :post]}
 
-  map.resources :tareas
+  map.resources :tareas, :member => {:eliminar => :get}
 
-  map.resources :turnos, :collection => {:cambios => :get, :verificar => :get, :resultado => [:get, :post], :turno_tarea => :get, :get_turnos => :get, :busq => :get, :agenda => [:get, :post], :actualizar_profesional => [:get]},
+  map.resources :turnos, :collection => {:cambios => :get, :verificar => :get, :resultado => [:get, :post], :turno_tarea => :get, :get_turnos => :get, :busq => :get, :agenda => [:get, :post],},
                          :member => {:eliminar => :get}
   
    map.resources :imagenes, :collection => {:new_archivo => :get}
@@ -65,7 +65,7 @@ map.resources :pagos_pacientes #:member => {:new => [:get, :post]}
 map.resources :pagos_obras_sociales, :collection => {:buscar_cta_cte => [:get, :post], :result_cta_cte => [:get, :post]},
                                      :member => {:lista => :post,  :mostar_lista => [:get]}
                
-
+map.resources :periodos_obras_sociales,  :collection => {:buscar => :get, :resultado => [:get, :post]}
   
   map.resources :pacientes,
                 :collection => {:search => [:get, :post],

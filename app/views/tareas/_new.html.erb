@@ -11,10 +11,9 @@
   <table style=" text-align: left;" >
     <tr>
       <th>Profesional</th>
-          <td>
-              <%= f.collection_select(:profesional_id, Profesional.all, :id, :nombre, {:include_blank => 'Seleccione'},
-                                                                                                  :class=> 'ui-widget-content required',
-                                                                                                  :title=> 'Seleccione un profesional') %>
+         <td>
+                <%= @profesional.nombre unless @profesional.blank? %>
+         <%= f.hidden_field :profesional_id, :value=> @profesional.id.to_s %>
           </td>
     </tr>
  
@@ -39,7 +38,7 @@
 
    <table>
     <tr>
-  <td style=" float: left; margin-left: 200px">
+  <td   style=" float: left; margin-left:  400px">
 
     <%= f.submit 'Guardar',  :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
   </td>

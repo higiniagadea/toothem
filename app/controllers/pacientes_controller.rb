@@ -56,7 +56,7 @@ class PacientesController < ApplicationController
     
     respond_to do |format|
       if params[:nombre].blank? && params[:matricula].blank? 
-      format.html{render :text => "Ingrese al menos un dato para realizar la b&uacute;squeda " }
+      format.html{render :text => '<span style="color:red">Ingrese al menos un dato para realizar la b&uacute;squeda </span>' }
    
       elsif
           params[:nombre].size > 2 || params[:matricula].size > 2
@@ -67,7 +67,7 @@ class PacientesController < ApplicationController
        
       else
         params[:nombre].size  < 2 || params[:matricula].size < 2
-        format.html {render :text=> 'Ingrese al menos tres caracteres para realizar la b&uacute;squeda'}
+        format.html {render :text=> '<span style="color:red">Ingrese al menos tres caracteres para realizar la b&uacute;squeda</span>'}
     
       end
 
@@ -127,8 +127,8 @@ class PacientesController < ApplicationController
   def edit
     params[:paciente_id]
     @paciente = Paciente.find_by_id(params[:id])
-   
-    @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 10, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha ASC')
+
+    @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 10, :conditions => ['paciente_id = ?', @paciente.id.to_s], :conditions => ['estado_tratamiento_id = 5'], :order => 'fecha ASC')
     @pagos_pacientes = PagoPaciente.paginate(:page=> params[:page], :per_page=> 10, :conditions => ['paciente_id = ?', @paciente.id.to_s] , :order => 'fecha ASC')
     @fichas = Ficha.find_all_by_paciente_id(@paciente.id)
     @profesionales = Profesional.paginate(:page => params[:page], :per_page => 2)
@@ -431,7 +431,7 @@ end
 def result_dni
    respond_to do |format|
       if  params[:paciente][:matricula].blank?
-      format.html{render :text => "Ingrese un numero de documento para realizar la busqueda " }
+      format.html{render :text => '<span style="color:red"> "Ingrese un numero de documento para realizar la busqueda</span> ' }
       elsif
         format.html{render :partial=> 'result_dni', :layout => false }
         @pacientes = Paciente.buscar(params[:paciente])

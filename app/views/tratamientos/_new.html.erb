@@ -52,20 +52,23 @@
           </td>
 
           <th>Importe Cubierto</th>
-          <td><span id="actualizar_importe" name="tratamiento[importe_cubierto]"><%= observe_field("tratamiento_prestacion_id", :frequency => 0.1,
+          <td>
+             <%= f.hidden_field :importe_cubierto  %>
+            <span id="actualizar_importe" name="tratamiento[importe_cubierto]"><%= observe_field("tratamiento_prestacion_id", :frequency => 0.1,
                                                                                            :url => {:action => 'actualizar_importe',
                                                                                            :controller => 'tratamientos'},
                                                                                            :with => "'arancel=' + $('#tratamiento_prestacion_id').val()") %></span></td>
-       
+     
 
 
 
              <th>Coseguro</th>
-          <td><span id="actualizar_coseguro" name="tratamiento[coseguro]"><%= observe_field("tratamiento_prestacion_id", :frequency => 0.1,
+          <td>     <%= f.hidden_field :coseguro  %>
+            <span id="actualizar_coseguro" name="tratamiento[coseguro]"><%= observe_field("tratamiento_prestacion_id", :frequency => 0.1,
                                                                                            :url => {:action => 'actualizar_coseguro',
                                                                                            :controller => 'tratamientos'},
                                                                                            :with => "'arancel=' + $('#tratamiento_prestacion_id').val()") %></span></td>
-              
+             
        
           </tr>
 

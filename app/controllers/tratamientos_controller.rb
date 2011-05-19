@@ -16,6 +16,7 @@ class TratamientosController < ApplicationController
   #muestra el importe dependiendo del arancel
   def actualizar_importe
     @arancel = Arancel.find_by_prestacion_id(params[:arancel].to_i)
+   
  respond_to do |format| 
  format.html {
    render :update do |page|
@@ -23,7 +24,7 @@ class TratamientosController < ApplicationController
        page['actualizar_importe'].replace_html '-'
      else
        page['actualizar_importe'].replace_html @arancel.importe_cubierto
-      
+        page << '$("#tratamiento_importe_cubierto").val("' + @arancel.importe_cubierto.to_s + '")'
      end
           
    end
@@ -34,6 +35,7 @@ class TratamientosController < ApplicationController
   #muestra el coseguro dependiendo del arancel
   def actualizar_coseguro
     @arancel = Arancel.find_by_prestacion_id(params[:arancel].to_i)
+
  respond_to do |format|
  format.html {
    render :update do |page|
@@ -41,6 +43,7 @@ class TratamientosController < ApplicationController
        page['actualizar_coseguro'].replace_html '-'
      else
        page['actualizar_coseguro'].replace_html @arancel.coseguro
+       page << '$("#tratamiento_coseguro").val("' + @arancel.coseguro.to_s + '")'
        
      end
 
@@ -95,14 +98,10 @@ class TratamientosController < ApplicationController
   
   def create
     @paciente = Paciente.find(params[:tratamiento][:paciente_id])  
-    @arancel = Arancel.find_by_prestacion_id(params[:arancel].to_i)
-     
     @tratamiento = Tratamiento.new(params[:tratamiento])
-    #arancel = Arancel.find_by_prestacion_id(params[:arancel].to_i)
-    #params[:tratamiento][:importe_cubierto] = arancel.importe_cubierto.to_i
-    #params[:tratamiento][:coseguro] = arancel.coseguro.to_i
+    
    
-    @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id.to_s])
+    #@tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id.to_s])
   
     respond_to do |format|
       if  @tratamiento.save
@@ -196,7 +195,7 @@ end
 
 def listados
   @paciente = Paciente.find(params[:id])
-
+#@tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 10, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha ASC'
 respond_to do |format|
   
   @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 10, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha ASC'
@@ -207,10 +206,10 @@ end
 
 def listado
   @paciente = Paciente.find(params[:id])
-  
+   #@tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 10, :conditions => ['paciente_id = ?', @paciente.id.to_s],  :order => 'fecha ASC'
   respond_to do |format|   
 
-    @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 10, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha ASC'
+    @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 10, :conditions => ['paciente_id = ?', @paciente.id.to_s],  :order => 'fecha ASC'
     format.html {render :partial => 'listado', :layout=> false }
   end
 end

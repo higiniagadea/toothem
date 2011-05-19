@@ -1,0 +1,57 @@
+<% unless @periodos_obras_sociales.blank? %>
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Per&iacute;odos</legend>
+  <table style=" text-align: left;" class="listados">
+    <tr>
+      <th>Per&iacute;odo</th>
+
+      <th>Fue liquidado</th>
+      <th>Fecha de liquidaci&oacute;n</th>
+      <th>Acciones</th>
+    </tr>
+    <% @periodos_obras_sociales.each do |periodo_obra_social| %>
+    <tr class="<%= cycle('par','impar')-%>">
+      <td><%=h periodo_obra_social.mes.strftime('%Y') %></td>
+
+      <td><%=h boolean_desc(periodo_obra_social.fue_liquidado) %></td>
+      <td><%=h periodo_obra_social.fecha_liquidacion.blank? ? '-' : periodo_obra_social.fecha_liquidacion %></td>
+
+       <td>
+        <% if  periodo_obra_social.fue_liquidado != true %>
+        <%= link_to image_tag('pencil.png'), edit_periodo_obra_social_path(periodo_obra_social), :title => 'Editar', :id => 'edit' + periodo_obra_social.id.to_s %>
+        <%= link_to image_tag('cancel.png'), periodo_obra_social, :confirm => 'Esta seguro?', :method => :delete, :title => 'Eliminar'%>
+       </td>
+
+                <script type="text/javascript">
+        $('#edit<%= periodo_obra_social.id.to_s %>').fancybox(
+            {
+         'hideOnContentClick': false,
+         'titleShow': false
+
+        });
+
+    </script>
+
+       <%end%>
+         </tr>
+   <%end%>
+
+
+
+
+  </table>
+<%else%>
+  No existen per&iacute;odos liquidados
+<%end%>
+  <table>
+    <tr>
+        <th style=" float: left; margin-left:  900px">
+
+          <%= submit_tag 'Liquidar',  :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+
+        </th>
+      </tr>
+
+    </table>
+  <%= will_paginate @periodos_obras_sociales, :previous_label =>'Anterior', :next_label => 'Siguiente' %>
+</fieldset>

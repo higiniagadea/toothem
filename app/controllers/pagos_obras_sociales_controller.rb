@@ -5,9 +5,9 @@ class PagosObrasSocialesController < ApplicationController
  before_filter :login_required
  
   def index
-   
+ 
     @pagos_obras_sociales = PagoObraSocial.find(:all)
-
+ 
     respond_to do |format|
        format.html
   end

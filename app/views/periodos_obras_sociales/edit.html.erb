@@ -1,6 +1,6 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-corner-all ui-widget-header">Per&iacute;odo</legend>
-<% form_for(@periodo) do |f|  %>
+<% form_for(@periodo_obra_social) do |f|  %>
  <%= f.error_messages(:id => 'error', :header_message => '', :message => 'Ocurrió un error al intentar guardar el registro')  %>
 
 
@@ -11,12 +11,9 @@
 
   <table  style=" text-align: left;">
     <tr>
-      <th>Periodo</th>
-      <td><%= f.date_select(:mes, :order => [:month, :year], :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
-                                                     'Octubre', 'Noviembre', 'Diciembre'], :size=> 15 ,   :prompt => {:month => 'Seleccione', :year => 'Seleccione'} )%> </td>
-
+      <th>Per&iacute;odo</th>
+      <td><%= f.date_select(:mes,  :order => [:month, :year], :use_month_names => ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], :start_year => 2011, :title => 'Ingrese un periodo', :size=> 15 , :prompt => {:month => 'Seleccione', :year => 'Seleccione'}) %> </td>
     </tr>
-    
 
     <tr>
       <th>Fue liquidado</th>
@@ -26,17 +23,20 @@
     <tr>
       <th>Fecha de liquidacion</th>
     <td><span class="fecha_liquidacion" class ="ui-widget-content">
-              <input class="ui-widget-content" size="15" type="text" id="fecha_liquid" name="periodo[fecha_liquidacion]" readonly="readonly" />
+              <input class="ui-widget-content" size="15" type="text" id="fecha_liquid" name="periodo_obra_social[fecha_liquidacion]" readonly="readonly" />
       </span></td>
     </tr>
+
+
+
 
   </table>
 
  <table>
         <tr>
           <td style=" float: left; margin-left: 400px">
-
-            <%= f.submit 'Actualizar' , :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+             <%#= link_to 'Volver', buscar_periodos_path %>
+            <%= f.submit 'Guardar' , :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
 
           </td></tr>
   </table>
@@ -46,23 +46,25 @@
 
 
 <script type="text/javascript">
+ $(document).ready(function(){
+    $('#periodo_mes_2i').attr('class', 'required'),
+    $('#periodo_mes_1i').attr('class', 'required'),
+    $('#periodo_mes_2i').attr('title', 'Seleccione un mes'),
+    $('#periodo_mes_1i').attr('title', 'Seleccione un año'),
 
-   $(document).ready(function(){
+    $(".edit_periodo_obra_social").validate({
 
-  $('#periodo_mes_2i').attr('class', 'required'),
-  $('#periodo_mes_1i').attr('class', 'required'),
-  $('#periodo_mes_2i').attr('title', 'Seleccione un mes'),
-  $('#periodo_mes_1i').attr('title', 'Seleccione un año'),
-
-    $(".edit_periodo").validate({
         //errorLabelContainer: $("#new_paciente div.errores")
-       errorContainer: $(".edit_periodo div.errores"),
-       errorLabelContainer: $("ol", $(".edit_periodo div.errores")),
+       errorContainer: $(".edit_periodo_obra_social div.errores"),
+       errorLabelContainer: $("ol", $(".edit_periodo_obra_social div.errores")),
        wrapper: 'li',
        meta: "validate"
 
 
     });
+
 $("#fecha_liquid").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Jutdo','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110',  maxDate: 0});
-   });
+
+ });
 </script>
+
