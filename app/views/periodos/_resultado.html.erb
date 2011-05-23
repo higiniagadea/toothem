@@ -36,7 +36,7 @@
 <% end %>
 
 <%else%>
-  No existen per&iacute;odos segun el criterio de b&uacute;squeda
+ <span style="color:red"> No existen per&iacute;odos segun el criterio de b&uacute;squeda</span>
 <%end%>
   </table>
   <%= will_paginate @periodos, :previous_label =>'Anterior', :next_label => 'Siguiente',

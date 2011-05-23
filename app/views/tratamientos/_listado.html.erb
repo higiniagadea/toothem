@@ -1,7 +1,6 @@
-<div id="cuenta_p">
-
- <% unless @tratamientos.blank? %>
-<table style=" text-align: left "class="listados">
+<div id="cuenta_p"> 
+<% unless @trat.blank? %>
+<table style=" text-align: left "class="listado">
 <h1>Tratamientos</h1>
   <tr>
     <th>Prestacion</th>
@@ -11,45 +10,27 @@
     <th>Estado</th>
   </tr>
 
- <% @tratamientos.each do |tratamiento| %>
+ <% @trat.each do |tratamiento| %>
 
   <tr class="<%= cycle('par','impar') -%>">
     <th><%=h tratamiento.prestacion.descripcion %> </th>
     <th><%=h tratamiento.fecha_finalizacion.blank? ? '-': tratamiento.fecha_finalizacion.strftime('%d/%m/%Y') %></th>
-    <th><%=h tratamiento.coseguro %></th>
+    <th><%=h number_to_currency(tratamiento.coseguro) %></th>
     <th><%=h boolean_desc(tratamiento.fue_liquidado) %></th>
     <th><%=h tratamiento.estado_tratamiento.nombre %></th>
-
-    <td><% if tratamiento.estado_tratamiento_id != 5  %>
-      <%#= link_to image_tag('pencil.png'), edit_tratamiento_path(tratamiento, :paciente_id => @paciente), :title => 'Editar', :id=> 'edit'+ tratamiento.id.to_s%>
-     <%end%></td>
   </tr>
- <script type="text/javascript">
 
-      $('#edit<%= tratamiento.id.to_s %>').fancybox(
-        {
-      'hideOnContentClick': false,
-      'titleShow': false
-
-      });
-
-
-
-      </script>
+   
  <% end %>
+<table>
+       <%= will_paginate @trat, :previous_label =>'Anterior', :next_label => 'Siguiente' ,
+                                  :class => 'cuent_trat pagination'  %>
+    </table>
   <%else%>
-  No posee tratamientos finalizados
+  No posee tratamientos finalizadosssssssssss
 <% end %>
    </table>
     <br/>
     <br/>
-    <table>
-       <%= will_paginate @tratamientos, :previous_label =>'Anterior', :next_label => 'Siguiente' ,
-                                  :class => 'cuent_trat pagination',
-                                  :params => {:controller => "tratamientos", :action=> "listado"} %>
-    </table>
-
-
-
-
-    </div>
+   
+ </div>

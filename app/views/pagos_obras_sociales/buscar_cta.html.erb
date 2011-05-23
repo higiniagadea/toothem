@@ -1,0 +1,33 @@
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Buscar Cuenta Corriente Obras Sociales</legend>
+
+
+ <% form_remote_tag :url => result_cta_pagos_obras_sociales_path,
+                    :method => :post,
+                    :update => :search_hits do -%>
+
+    <table style=" text-align: left">
+      <tr>
+      <th>Nombre</th>
+      <th>
+          <%= select("obra_social", "obra_social_id", ObraSocial.all.collect {|p| [ p.nombre, p.id]}, :include_blank => 'Seleccione') %>
+
+        </th>
+      </tr>
+
+
+    </table>
+  <table>
+    <tr>
+        <td  style=" float: left; margin-left:  400px"><%= submit_tag 'Buscar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all'  %>
+        </td>
+        
+    </tr>
+      </table>
+<%end -%>
+<div id ="search_hits">
+
+</div>
+</fieldset>
+
+

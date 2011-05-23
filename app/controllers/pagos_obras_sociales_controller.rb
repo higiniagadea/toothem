@@ -4,10 +4,8 @@ class PagosObrasSocialesController < ApplicationController
 
  before_filter :login_required
  
-  def index
- 
-    @pagos_obras_sociales = PagoObraSocial.find(:all)
- 
+  def index 
+    @pagos_obras_sociales = PagoObraSocial.find(:all) 
     respond_to do |format|
        format.html
   end
@@ -15,20 +13,14 @@ class PagosObrasSocialesController < ApplicationController
   end
 
 
- #def show
-  #  @pago_obra_social = PagoObraSocial.find(params[:id])
-   # respond_to do |format|
-
-    #  format.html { render :layout => 'default' }
-    #end
-  #end
 
   def new
+    @obra_social = ObraSocial.find(params[:obra_social_id])
      @pago_obra_social = PagoObraSocial.new
-   
+     #
 
     respond_to do |format|
-      format.html { render :layout => false}
+    format.html { render :layout => false, :partial => 'new'}
     end
 end
 
@@ -44,12 +36,12 @@ end
 
 def update
    @pago_obra_social = PagoObraSocial.find(params[:id])
-  
+ 
     respond_to do |format|
       if @pago_obra_social.update_attributes(params[:pago_obra_social])
 
         flash[:notice] = 'Pago Actualizado'
-        format.html { redirect_to pagos_obras_sociales_path}
+        format.html { redirect_to buscar_cta_pagos_obras_sociales_path}
 
      else
         format.html { render :action => "edit" }
@@ -61,10 +53,10 @@ end
 def create
     
     @pago_obra_social = PagoObraSocial.new(params[:pago_obra_social])
-  
+    @obra_social = ObraSocial.find(params[:pago_obra_social][:obra_social_id])
      respond_to do |format|
       if @pago_obra_social.save
-       format.html {redirect_to pagos_obras_sociales_path}
+       format.html {redirect_to buscar_cta_pagos_obras_sociales_path}
        flash[:notice] = 'Pago realizado'
       else
          format.html { render :action => "new" }
@@ -74,26 +66,38 @@ def create
 end
 
 def destroy
-
     @pago_obra_social = PagoObraSocial.find(params[:id])
-   
+    @obra_social = ObraSocial.find(params[:obra_social_id])
     @pago_obra_social.destroy
     respond_to do |format|
       flash[:notice] = 'Pago eliminado'
-      format.html { redirect_to pagos_obras_sociales_path}
+      format.html { redirect_to buscar_cta_pagos_obras_sociales_path}
 
     end
   end
 
-
-def mostrar_lista
-
+def buscar_cta
   respond_to do |format|
-
-    @tratamientos = Tratamiento.find(:all)
-   format.html {render :partial => 'mostar_lista', :layout => false}
-  end
+       format.html
+      end
 end
+
+def result_cta
+    respond_to do |format|
+       if params[:obra_social][:obra_social_id].blank?
+         format.html{render :text => '<span style="color:red">Seleccione una obra social</span>' }
+       else
+         @tratamientos = Tratamiento.find(:all, :conditions => ['obra_social_id = ?', params[:obra_social][:obra_social_id]], :conditions => ['estado_tratamiento_id = 5'])
+         @pagos_obras_sociales = PagoObraSocial.find(:all, :conditions => ['obra_social_id = ?', params[:obra_social][:obra_social_id]])
+         format.html{render :layout => false, :partial => 'result_cta'}
+       
+       end
+
+
+    end
+end
+
+
 
 end
 

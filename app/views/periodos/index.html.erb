@@ -1,6 +1,7 @@
-<% unless @periodos.blank? %>
+
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Per&iacute;odos</legend>
+ <% unless @periodos.blank? %>
   <table style=" text-align: left;" class="listados">
     <tr>
       <th>Per&iacute;odo</th>
@@ -20,9 +21,10 @@
         <% if  periodo.fue_liquidado != true %>
         <%= link_to image_tag('pencil.png'), edit_periodo_path(periodo), :title => 'Editar', :id => 'edit' + periodo.id.to_s %>
         <%= link_to image_tag('cancel.png'), periodo, :confirm => 'Esta seguro?', :method => :delete, :title => 'Eliminar'%>
+      <%end%>
        </td>
 
-                <script type="text/javascript">
+    <script type="text/javascript">
         $('#edit<%= periodo.id.to_s %>').fancybox(
             {
          'hideOnContentClick': false,
@@ -32,13 +34,14 @@
 
     </script>
 
-       <%end%>
+      
          </tr>
    <%end%>        
 
 <%else%>
-  No existen per&iacute;odos liquidados
+  <span style="color:red">No existen per&iacute;odos liquidados</span>
 <%end%>
+  
     </table>
   <table>
     <tr>

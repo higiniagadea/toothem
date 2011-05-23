@@ -6,7 +6,7 @@
       <th>Nro.de recibo</th>      
       <th>Fecha</th>
       <th>Monto</th>
-      <th>Fue liquidado?</th>
+      <th>Fue liquidado</th>
       <th>Acciones</th>
     </tr>
     <% @pagos_pacientes.each do |pago_paciente| %>
@@ -39,7 +39,7 @@
 <table>
  <%= will_paginate @pagos_pacientes, :previous_label =>'Anterior', :next_label => 'Siguiente' ,
                                   :class => 'cuenta pagination',
-                                  :params =>{:controller => "pagos_pacientes", :action => 'orden'}
+                                  :params => {:controller => "pagos_pacientes", :action => "orden"}
                                       %>
 
 </table>

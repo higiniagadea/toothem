@@ -56,6 +56,12 @@ class ObraSocial < ActiveRecord::Base
     end
       
       end
-    
+
+  def self.busqueda(options)
+
+    scope_builder do |builder|
+      builder.by_nombre(options[:nombre]) if options[:nombre]
+    end
+  end
 
 end

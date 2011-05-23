@@ -194,7 +194,7 @@ $(document).ready(function(){
   });
 
 
-$('div.ajax-pagination a').live('click', function() {
+  $('div.ajax-pagination a').live('click', function() {
     $('#periodoobrasocial').load(this.href)
     return false
   });

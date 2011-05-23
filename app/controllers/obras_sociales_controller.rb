@@ -15,13 +15,13 @@ class ObrasSocialesController < ApplicationController
   end
   # GET /obras_sociales/1
   # GET /obras_sociales/1.xml
-  def show
-    @obra_social = ObraSocial.find(params[:id])
-    respond_to do |format|
+  #def show
+   # @obra_social = ObraSocial.find(params[:id])
+    #respond_to do |format|
     
-      format.html  { render :layout => false}
-    end
-  end
+     # format.html  { render :layout => false}
+    #end
+  #end
 
   # GET /obras_sociales/new
   # GET /obras_sociales/new.xml
@@ -113,16 +113,17 @@ class ObrasSocialesController < ApplicationController
           
     end
 
-  def buscar_cte_cte
+  def buscar_cta_cte
    respond_to do |format|
     format.html
   end
   end
 
   def result_cta_cte
+    @obras_sociales = ObraSocial.find(params[:obra_social_id])
     respond_to do |format|
-      @obras_sociales = ObraSocial.basic_search(params).paginate :page => params[:page], :per_page => 10, :order => 'nombre ASC'
-      format.html{render :partial => 'result_cta_cte', :layout => false}
+      @obras_sociales = ObraSocial.busqueda(params).paginate :page => params[:page], :per_page => 10, :order => 'nombre ASC'
+      format.html{render :partial => 'result_cta_cte', :layout => 'default'}
     end
   end
 
