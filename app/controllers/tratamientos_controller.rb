@@ -195,22 +195,18 @@ end
 
 def listados
   @paciente = Paciente.find(params[:id])
-#@tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 10, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha ASC'
-respond_to do |format|
-  
-  @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 10, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha ASC'
-  format.html {render :partial => 'listados', :layout=> false }
+respond_to do |format| 
+   @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 1, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha ASC'
+ format.html {render :partial => 'listados'}
   end
   
 end
 
 def listado
-  @paciente = Paciente.find(params[:id])
-   #@tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 10, :conditions => ['paciente_id = ?', @paciente.id.to_s],  :order => 'fecha ASC'
-  respond_to do |format|   
-
-    @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 10, :conditions => ['paciente_id = ?', @paciente.id.to_s],  :order => 'fecha ASC'
-    format.html {render :partial => 'listado', :layout=> false }
+  @paciente = Paciente.find(params[:id])  
+  respond_to do |format|    
+    @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 1 #:conditions => ['paciente_id = ?', @paciente.id.to_s],  :order => 'fecha ASC'
+     format.html {render :partial => 'listado'}
   end
 end
 

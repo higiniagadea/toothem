@@ -14,7 +14,7 @@ ActionController::Routing::Routes.draw do |map|
                               :ver => [:post, :get],
                               :imprimir => [:post, :get],
                               :verificar_longitud => [:post, :get],
-                              :listados => [ :get],
+                              :listados => [:get],
                               :listado => [:get]
                              
                               }
@@ -62,7 +62,7 @@ map.resources :pagos_pacientes #:member => {:new => [:get, :post]}
 
   map.resources :tipos_documento
 
-map.resources :pagos_obras_sociales, :collection => {:buscar_cta_cte => [:get, :post], :result_cta_cte => [:get, :post]},
+map.resources :pagos_obras_sociales, :collection => {:buscar_cta => [:get, :post], :result_cta => [:get, :post]},
                                      :member => {:lista => :post,  :mostar_lista => [:get]}
                
 map.resources :periodos_obras_sociales,  :collection => {:buscar => :get, :resultado => [:get, :post]}
@@ -158,7 +158,7 @@ map.resources :periodos_obras_sociales,  :collection => {:buscar => :get, :resul
 
 
 
-   map.resources :obras_sociales, :collection => {:buscar => :get, :resultado => [:post, :get], :busq_cta_cte => [:post, :get], :result_cta_cte => [:get, :post]} do |obra_social|
+   map.resources :obras_sociales, :collection => {:buscar => :get, :resultado => [:post, :get]} do |obra_social|
      obra_social.resources :aranceles, :collection => {:busqueda => [:get, :post], :resultados => [:post, :get]}
                                      
   end

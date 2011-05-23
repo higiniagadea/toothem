@@ -1,11 +1,7 @@
 <div id="trata">
-
   <table>
   <tr>
-
-      <td style=" float: left; margin-left: 870px"><%= link_to image_tag('add.png') + "Nuevo Tratamiento", new_tratamiento_paciente_path + "?paciente_id="+@paciente.id.to_s, :id=> 'nuevo'  %>
-    
-      </td>
+    <td style=" float: left; margin-left: 870px"><%= link_to image_tag('add.png') + "Nuevo Tratamiento", new_tratamiento_paciente_path + "?paciente_id="+@paciente.id.to_s, :id=> 'nuevo'  %></td>
       <script type="text/javascript">
             $('#nuevo').fancybox(
         {
@@ -32,14 +28,14 @@
     </tr>
       <% @tratamientos.each do |tratamiento| %>
    <tr  class="<%= cycle('par','impar') -%>">
-    <td><%=h tratamiento.fecha.blank? ? '-' :tratamiento.fecha.strftime('%d/%m/%Y') %></td>
+    <th><%=h tratamiento.fecha.blank? ? '-' :tratamiento.fecha.strftime('%d/%m/%Y') %></th>
   
-    <td><%=h tratamiento.prestacion.descripcion %></td>
-    <td><%=h tratamiento.diente %></td>
-    <td><%=h tratamiento.cara %></td>
+    <th><%=h tratamiento.prestacion.descripcion %></th>
+    <th><%=h tratamiento.diente %></th>
+    <th><%=h tratamiento.cara %></th>
    
-    <td><%=h tratamiento.coseguro %></td>
-    <td><%=h tratamiento.estado_tratamiento.nombre %></td>
+    <th><%=h number_to_currency(tratamiento.coseguro) %></th>
+    <th><%=h tratamiento.estado_tratamiento.nombre %></th>
       
     <td><%= link_to image_tag('magnifier_zoom_in.png'), tratamiento, :title => "Ver", :id=> 'ver_' + tratamiento.id.to_s %>
 
@@ -53,9 +49,6 @@
     <%end%>
      <%end%>
       <%end%>
- 
-
-
     <% if tratamiento.estado_tratamiento_id != 5   %>
     <%= link_to image_tag('cancel.png'), eliminar_tratamiento_path(tratamiento, :paciente_id => @paciente.id), :confirm => 'Esta seguro de eliminar el tratamiento?', :title=> 'Eliminar' %>
    <%else %>
@@ -84,18 +77,17 @@
       })
  
       </script>
-     <%end%>
+     <%end%>     
   
-   
-   </table>
-
-
-<%= will_paginate @tratamientos, :previous_label =>'Anterior', :next_label => 'Siguiente' ,
-                                  :class => 'tratam pagination',
-                                  :params => {:controller => "tratamientos", :action=> "listados"} %>
-
-
  <%else%>
   No posee tratamientos
  <% end%>
+   </table>
+  <br/>
+    <br/>
+    <table>
+    <%= will_paginate @tratamientos, :previous_label =>'Anterior', :next_label => 'Siguiente' ,
+                                  :class => 'tratam pagination'
+                                   %>
+    </table>
 </div>

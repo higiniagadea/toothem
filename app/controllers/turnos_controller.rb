@@ -67,15 +67,15 @@ class TurnosController < ApplicationController
   end
 
   #muestra los turnos en el calendario
-   def get_turnos
-    @turnos = Turno.find(:all, :include => 'profesional')
+   #def get_turnos
+    #@turnos = Turno.find(:all, :include => 'profesional')
    
-    events = []
-    @turnos.each do |turno|   
-    events << {:id => turno.id.to_s, :title => turno.profesional_id.to_s, :start => "#{turno.fecha_hora.iso8601}", :end => "#{(turno.fecha_hora + (60 * turno.duracion))}", :allDay => true, :oservaciones => "#{(turno.observaciones)}"}
-    end
-    render :text => events.to_json
-  end
+    #events = []
+    #@turnos.each do |turno|
+    #events << {:id => turno.id.to_s, :title => turno.profesional_id.to_s, :start => "#{turno.fecha_hora.iso8601}", :end => "#{(turno.fecha_hora + (60 * turno.duracion))}", :allDay => true, :oservaciones => "#{(turno.observaciones)}"}
+    #end
+    #render :text => events.to_json
+  #end
   
  
   def create
