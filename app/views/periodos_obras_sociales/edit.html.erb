@@ -23,7 +23,7 @@
     <tr>
       <th>Fecha de liquidacion</th>
     <td><span class="fecha_liquidacion" class ="ui-widget-content">
-              <input class="ui-widget-content" size="15" type="text" id="fecha_liquid" name="periodo_obra_social[fecha_liquidacion]" readonly="readonly" />
+              <input class="ui-widget-content required" size="15" type="text" id="fecha_liquid" name="periodo_obra_social[fecha_liquidacion]" readonly="readonly" title="Ingrese la fecha de liquidacion" />
       </span></td>
     </tr>
 
@@ -63,7 +63,7 @@
 
     });
 
-$("#fecha_liquid").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Jutdo','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110',  maxDate: 0});
+$("#fecha_liquid").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Jutdo','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', minDate: '+0D', maxDate: +30});
 
  });
 </script>
