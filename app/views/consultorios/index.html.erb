@@ -1,24 +1,41 @@
-<fieldset class=" ui-widget ui-widget-content ui-corner-top"
-          <legend class="ui-widget ui-corner-top ui-widget-header">Consultorios</legend>
-    <table class="table-list">
+<fieldset class=" ui-widget ui-widget-content ui-corner-top">
+<legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Consultorios</legend>
+    <table  style=" text-align: left;" class="listados">
       <tr>
         <th>Clínica</th>
         <th>Nombre</th>
+        <th>Acciones</th>
       </tr>
 
     <% @consultorios.each do |consultorio| %>
-      <tr class="<%= cycle('','odd') %>">
+      <tr class="<%= cycle('par','impar') -%>">
         <td><%=h consultorio.clinica.nombre %></td>
         <td><%=h consultorio.nombre %></td>
-        <td><%= link_to image_tag('magnifier_zoom_in.png'), consultorio, :title => 'Ver' %></td>
-        <td><%= link_to image_tag('pencil.png'), edit_consultorio_path(consultorio), :title => 'Editar' %></td>
-        <td><%= link_to image_tag('cancel.png'), consultorio, :title => 'Eliminar', :confirm => 'Esta seguro? No podrá deshacer esta acción', :method => :delete %></td>
+        <td><%= link_to image_tag('magnifier_zoom_in.png'), consultorio, :title => 'Ver' %>
+        <%= link_to image_tag('pencil.png'), edit_consultorio_path(consultorio), :title => 'Editar', :id => 'edit_' + consultorio.id.to_s %>
+        <%= link_to image_tag('cancel.png'), consultorio, :title => 'Eliminar', :confirm => 'Esta seguro? No podrá deshacer esta acción', :method => :delete %></td>
       </tr>
-    <% end %>
-    </table>
+       <script type="text/javascript">
+  $(document).ready(function(){
+ $('#ver_<%= consultorio.id.to_s %>').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
 
-    <br />
-   
+    });
+
+    $('#edit_<%= consultorio.id.to_s %>').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+    });
+    </script>
+
+    <% end %>
+    </table>   
 </fieldset>
+<br/>
  <%= will_paginate @consultorios, :previous_label=>'Anterior', :next_label => 'Siguiente' %>
-    <%= link_to 'Nuevo consultorio', new_consultorio_path %>
+   

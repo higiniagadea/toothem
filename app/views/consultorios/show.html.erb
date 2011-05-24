@@ -11,7 +11,7 @@
 
 <h1>Profesionales</h1>
    
-<table class="table-list" >
+<table   style=" text-align: left;" class="listado" >
   <% @consultorio.profesionales.each do |profesional|  %>
   <tr>
     <td><label>Nombre: <%=h profesional.nombre %></label></td>
@@ -26,8 +26,7 @@
 <br/>
 
 <h1>Usuarios</h1>
-<table class="table-list">
-  
+<table  style=" text-align: left;" class="listado" >
   <tr>
     <td><label>nombre:</label></td>
     <td><label>email: </label></td>
@@ -48,8 +47,6 @@
 </table>
 </fieldset>
 
-<%= link_to 'Editar', edit_consultorio_path(@consultorio) %>
-<%= link_to 'Volver', consultorios_path %>
 
 
 

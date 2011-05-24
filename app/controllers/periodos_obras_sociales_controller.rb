@@ -92,10 +92,9 @@ class PeriodosObrasSocialesController < ApplicationController
   def resultado
     respond_to do |format|
     params[:mes] = params[:periodo]['mes(1i)'.to_sym]
-
         @periodos_obras_sociales = PeriodoObraSocial.buscar(params[:mes]).paginate :page=> params[:page], :per_page=> 12 , :order => 'mes DESC'
         format.html {render :partial => 'resultado'}
-
+  
   end
   end
 end

@@ -9,7 +9,7 @@ class ConsultoriosController < ApplicationController
   
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @consultorios }
+     
     end
   end
 
@@ -20,9 +20,8 @@ class ConsultoriosController < ApplicationController
    
     @consultorios = Consultorio.paginate :page=> params[:page], :per_page=>5, :order=> 'nombre ASC'
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @consultorio }
+   respond_to do |format|
+      format.html {render :layout => 'default'}
     end
   end
 
@@ -32,9 +31,8 @@ class ConsultoriosController < ApplicationController
     @pagetitle = "Nuevo consultorio"
     @consultorio = Consultorio.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @consultorio }
+   respond_to do |format|
+      format.html {render :layout => 'default'}
     end
   end
 
@@ -42,6 +40,9 @@ class ConsultoriosController < ApplicationController
   def edit
     @pagetitle = "Editar consultorio"
     @consultorio = Consultorio.find(params[:id])
+    respond_to do |format|
+      format.html {render :layout => false}
+    end
   end
 
   # POST /consultorios
