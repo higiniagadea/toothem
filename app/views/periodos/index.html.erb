@@ -1,11 +1,11 @@
-
-<fieldset class="ui-widget ui-widget-content ui-corner-top">
+<% unless @periodos.blank? %>
+ <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Per&iacute;odos</legend>
- <% unless @periodos.blank? %>
-  <table style=" text-align: left;" class="listados">
+
+<table style=" text-align: left;" class="listados">
     <tr>
       <th>Per&iacute;odo</th>
-      
+
       <th>Fue liquidado</th>
       <th>Fecha de liquidaci&oacute;n</th>
       <th>Acciones</th>
@@ -13,35 +13,25 @@
     <% @periodos.each do |periodo| %>
     <tr class="<%= cycle('par','impar')-%>">
       <td><%=h periodo.mes.strftime('%Y') %></td>
-    
+
       <td><%=h boolean_desc(periodo.fue_liquidado) %></td>
       <td><%=h periodo.fecha_liquidacion.blank? ? '-' : periodo.fecha_liquidacion %></td>
 
        <td>
-        <% if  periodo.fue_liquidado != true %>
-        <%= link_to image_tag('pencil.png'), edit_periodo_path(periodo), :title => 'Editar', :id => 'edit' + periodo.id.to_s %>
+
+        <%#= link_to image_tag('pencil.png'), edit_periodo_path(periodo), :title => 'Editar', :id => 'edit' + periodo.id.to_s %>
         <%= link_to image_tag('cancel.png'), periodo, :confirm => 'Esta seguro?', :method => :delete, :title => 'Eliminar'%>
-      <%end%>
+
        </td>
 
-    <script type="text/javascript">
-        $('#edit<%= periodo.id.to_s %>').fancybox(
-            {
-         'hideOnContentClick': false,
-         'titleShow': false
 
-        });
-
-    </script>
-
-      
          </tr>
-   <%end%>        
+   <%end%>
 
 <%else%>
   <span style="color:red">No existen per&iacute;odos liquidados</span>
 <%end%>
-  
+
     </table>
   <table>
     <tr>

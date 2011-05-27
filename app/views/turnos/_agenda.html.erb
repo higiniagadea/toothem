@@ -61,7 +61,7 @@ $('#nuevo').mouseover(function(){
 
               {
                id : 'turno: <%= turno.id.to_s %>',
-               title  : 'Profesional: <%= turno.profesional.nombre %> Duracion: <%= turno.duracion %>minutos Paciente: <%= turno.paciente.nombre  %> ' ,
+               title  : 'Paciente: <%= turno.paciente.nombre  %> Profesional: <%= turno.profesional.nombre %> Duracion: <%= turno.duracion %>minutos  ' ,
                start : 'Fecha: <%= turno.fecha_hora.iso8601 %>',
                end : 'Duracion: <%= (turno.fecha_hora + (60 * turno.duracion)) %>',
                allDay : false,

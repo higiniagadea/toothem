@@ -3,14 +3,23 @@
   layout 'default'
 
 
- #def show
-   
-  #  @periodo = Periodo.find(params[:id])
-   # respond_to do |format|
+def liquidar
+  #@periodos = Periodo.find(:all, :order => 'mes DESC', :conditions => ['fue_liquidado = ?', false])
+ 
+  respond_to do |format|
+      format.html
+    end
+end
 
-    #  format.html{render :layout => 'default'}
-    #end
-  #end
+def resultado_liq
+  
+  respond_to do |format|     
+  @resultado =  Periodo.find_by_sql('select actualizar_cta_paciente(' + params[:periodo][:periodo_id].to_s + ') as liquidado '  )
+        format.html {render :partial => 'resultado_liq'}
+  
+  end
+  #Periodo.find_by_sql('select actualizar_cta_paciente(7)')
+end
 
 
   def index

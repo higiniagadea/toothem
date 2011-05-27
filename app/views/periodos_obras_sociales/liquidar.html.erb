@@ -1,0 +1,32 @@
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Periodos a Liquidar</legend>
+
+<%  form_remote_tag :url => {:controller => 'periodos_obras_sociales', :action => 'resultado_liq_os'}, :method => :post,
+                      :update => :search_hits do -%>
+
+      <table  style=" text-align: left; "class="table-search">
+       <tr>
+      <th>Per&iacute;odo</th>
+      <td><%= select("periodo_obra_social", "periodo_id", PeriodoObraSocial.find(:all, :conditions => ['fue_liquidado = false']).collect {|p| [p.mes, p.id]}) %> </td>
+    </tr>
+
+      </table>
+
+     <table>
+        <tr>
+          <td style=" float: left; margin-left:  400px"> <%= submit_tag 'Liquidar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
+
+
+          </tr>
+
+      </table>
+
+  <%end -%>
+
+
+   <div id="search_hits"></div>
+
+
+
+
+</fieldset>
