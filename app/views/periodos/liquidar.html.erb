@@ -7,7 +7,7 @@
       <table  style=" text-align: left; "class="table-search">
        <tr>
       <th>Per&iacute;odo</th>
-      <td><%= select("periodo", "periodo_id", Periodo.find(:all, :conditions => ['fue_liquidado = false']).collect {|p| [p.mes, p.id]}) %> </td>
+      <td><%= select("periodo", "periodo_id", Periodo.find(:all, :conditions => ['fue_liquidado = false']).collect {|p| [p.mes, p.id]}, :include_blank => 'Seleccione') %> </td>
     </tr>
 
       </table>
