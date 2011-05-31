@@ -126,10 +126,9 @@ class PacientesController < ApplicationController
   
   def edit
     params[:paciente_id]
-    @paciente = Paciente.find_by_id(params[:id])  
-
-    @trat = Tratamiento.paginate(:page=> params[:page], :per_page=> 2, :conditions => ['paciente_id = ?', @paciente.id.to_s], :conditions => ['estado_tratamiento_id = 5'], :order => 'fecha ASC')
+    @paciente = Paciente.find_by_id(params[:id])      
     @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 10, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha ASC')
+    @trat = Tratamiento.paginate(:page=> params[:page], :per_page=> 10, :conditions => ['paciente_id = ? and fue_liquidado = ?',  @paciente.id.to_s  , false], :order => 'fecha ASC')
     @pagos_pacientes = PagoPaciente.paginate(:page=> params[:page], :per_page=> 1, :conditions => ['paciente_id = ?', @paciente.id.to_s] , :order => 'fecha ASC')
     @fichas = Ficha.find_all_by_paciente_id(@paciente.id)
     @profesionales = Profesional.paginate(:page => params[:page], :per_page => 2)
