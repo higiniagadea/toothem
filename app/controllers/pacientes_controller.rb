@@ -128,12 +128,12 @@ class PacientesController < ApplicationController
     params[:paciente_id]
     @paciente = Paciente.find_by_id(params[:id])      
     @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 10, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha ASC')
-    @trat = Tratamiento.paginate(:page=> params[:page], :per_page=> 10, :conditions => ['paciente_id = ? and fue_liquidado = ?',  @paciente.id.to_s  , false], :order => 'fecha ASC')
-    @pagos_pacientes = PagoPaciente.paginate(:page=> params[:page], :per_page=> 1, :conditions => ['paciente_id = ?', @paciente.id.to_s] , :order => 'fecha ASC')
+    @trat = Tratamiento.paginate(:page=> params[:page], :per_page=> 10, :conditions => ['paciente_id = ? and estado_tratamiento_id = ?',  @paciente.id.to_s  , 5 ], :order => 'fecha ASC')
+    @pagos_pacientes = PagoPaciente.paginate(:page=> params[:page], :per_page=> 10, :conditions => ['paciente_id = ?', @paciente.id.to_s] , :order => 'fecha ASC')
     @fichas = Ficha.find_all_by_paciente_id(@paciente.id)
-    @profesionales = Profesional.paginate(:page => params[:page], :per_page => 2)
+    @profesionales = Profesional.paginate(:page => params[:page], :per_page => 10)
     @prestaciones = Prestacion.find(:all)
-    @fichas = Ficha.paginate(:page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha DESC')
+    #@fichas = Ficha.paginate(:page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha DESC')
     @turnos = Turno.find(:all)
     
     
@@ -431,7 +431,7 @@ end
 def result_dni
    respond_to do |format|
       if  params[:paciente][:matricula].blank?
-      format.html{render :text => '<span style="color:red"> "Ingrese un numero de documento para realizar la busqueda</span> ' }
+      format.html{render :text => '<span style="color:red"> Ingrese un numero de documento para realizar la busqueda</span> ' }
       elsif
         format.html{render :partial=> 'result_dni', :layout => false }
         @pacientes = Paciente.buscar(params[:paciente])

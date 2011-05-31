@@ -12,34 +12,16 @@
   <table  style=" text-align: left;">
     <tr>
       <th>Per&iacute;odo</th>
-      <td><%= f.date_select(:mes,  :order => [:month, :year], :use_month_names => ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], :start_year => 2011, :title => 'Ingrese un periodo', :size=> 15 , :prompt => {:month => 'Seleccione Mes', :year => 'Seleccione Año'}) %> </td>
+      <td><%= f.date_select(:mes,  :order => [:month, :year], :use_month_names => ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], :start_year => 2009, :title => 'Ingrese un periodo', :size=> 15 , :prompt => {:month => 'Seleccione Mes', :year => 'Seleccione Año'}) %> </td>
     </tr>
-
-    <tr>
-      
-      <td><%#= f.date_select :anio, :order => [:year], :prompt => false, :size=> 15, :class => 'required', :prompt => {:year => 'Seleccione'} %> </td>
-    </tr>
-   <!--<tr>
-    <tr>
-      <th>Fue liquidado?</th>
-      <td><%#= f.check_box :fue_liquidado, :class=> 'ui-widget-content required'  %> </td>
-    </tr>
-
-    <tr>
-      <th>Fecha de liquidacion</th>
-      <td><%#= f.date_select :fecha_liquidacion, :order => [:day,:month,:year],  :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
-                                                       'Octubre', 'Noviembre', 'Diciembre'], :class=> 'ui-widget-content required', :prompt => {:year => 'Seleccione Año', :month => 'Seleccione Mes', :day => 'Seleccione Dia'}  %> </td>
-    </tr> -->
-
-
-    
+  
 
   </table>
 
  <table>
         <tr>
           <td style=" float: left; margin-left: 900px">
-             <%#= link_to 'Volver', buscar_periodos_path %>
+             <%= link_to 'Volver', buscar_periodos_path %>
             <%= f.submit 'Guardar' , :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
 
           </td></tr>

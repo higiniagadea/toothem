@@ -11,14 +11,17 @@ end
 
 def resultado_liq_os
   
-  respond_to do |format|     
-  @result =  PeriodoObraSocial.find_by_sql('select actualizar_cta_os(' + params[:periodo_obra_social][:periodo_id].to_s + ') as liquidacion'  )
-        format.html {render :partial => 'resultado_liq_os'}
-  
+  respond_to do |format|
+
+  unless params[:periodo_obra_social][:periodo_id].blank?
+    @result =  PeriodoObraSocial.find_by_sql('select actualizar_cta_os(' + params[:periodo_obra_social][:periodo_id].to_s + ') as liquidacion'  )
+    format.html {render :partial => 'resultado_liq_os'}
+  else
+    format.html{render :text => '<span style="color:red"> Seleccione el periodo para liquidar</span>'}
   end
   #Periodo.find_by_sql('select actualizar_cta_paciente(7)')
 end
-
+end
   def index
      @periodos_obras_sociales = PeriodoObraSocial.paginate(:page=> params[:page], :per_page=> 12, :order => 'mes DESC', :conditions => ['fue_liquidado = ?', false])
    respond_to do |format|

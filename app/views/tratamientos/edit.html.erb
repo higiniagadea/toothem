@@ -72,6 +72,12 @@
       
     </td>
   </tr>
+  <br/> 
+  <tr>
+    <th>Fue liquidado</th>
+    <th><%= boolean_desc(@tratamiento.fue_liquidado) %> </th>
+  </tr>
+  <br/>
     <tr>
         <th>Observaciones</th>
         <td><%= f.text_area :observaciones,  :class=> 'ui-widget-content' ,  :cols => 12, :rows => 4 %> </td>

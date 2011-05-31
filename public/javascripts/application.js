@@ -204,15 +204,15 @@ $(document).ready(function(){
     return false
   });
 
- /*$('div.ajax-pagination a').live('click', function() {
-    $('#cuenta_p').load(this.href)
+ $('div.ajax-pagination a').live('click', function() {
+    $('#cuenta_pac').load(this.href)
     return false
   });
 
-  $('div.cuent_trat a').live('click', function() {
-    $('#cuenta_p').load(this.href)
+  $('div.cuenta_tratam a').live('click', function() {
+    $('#cuenta_pac').load(this.href)
     return false
-  });*/
+  });
  
 });
      
