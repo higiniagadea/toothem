@@ -204,7 +204,7 @@ $(document).ready(function(){
     return false
   });
 
- $('div.ajax-pagination a').live('click', function() {
+  $('div.ajax-pagination a').live('click', function() {
     $('#cuenta_pac').load(this.href)
     return false
   });
@@ -213,7 +213,27 @@ $(document).ready(function(){
     $('#cuenta_pac').load(this.href)
     return false
   });
- 
+
+
+   $('div.ajax-pagination a').live('click', function() {
+    $('#cuentass').load(this.href)
+    return false
+  });
+
+  $('div.c_tratamientos a').live('click', function() {
+    $('#cuentass').load(this.href)
+    return false
+  });
+
+   $('div.ajax-pagination a').live('click', function() {
+    $('#pagos_os').load(this.href)
+    return false
+  });
+
+  $('div.pago_os a').live('click', function() {
+    $('#pagos_os').load(this.href)
+    return false
+  });
 });
      
     

@@ -48,11 +48,17 @@ $('#pago').mouseover(function(){
  <span style="color:red">No posee tratamientos finalizados</span>
  <%end%>
 
-
+  <table>
+    <%#= will_paginate @tratamientos, :previous_label =>'Anterior', :next_label => 'Siguiente' ,
+                                  :class => 'c_tratamientos pagination', 
+                                  :params => {:controller => 'pagos_obras_sociales'}, :obra_social_id => params[:obra_social][:obra_social_id]  %>
+    </table>
 </div>
 <br/>
 
- <h1>Pagos</h1>
+
+<div id="pagos_os">
+<h1>Pagos</h1>
  <% unless @pagos_obras_sociales.blank? %>
 <table style=" text-align: left "class="listados">
     <tr>
@@ -92,3 +98,11 @@ $('#pago').mouseover(function(){
    <%else%>
  <span style="color:red">No posee pagos realizados</span>
 <%end%>
+  <table>
+    <%#= will_paginate @pagos_obras_sociales, :previous_label =>'Anterior', :next_label => 'Siguiente',
+                                             :class => 'pago_os pagination',
+                                             :params => {:controller => 'pagos_obras_sociales'}
+                                                  %>
+    </table>
+
+</div>
