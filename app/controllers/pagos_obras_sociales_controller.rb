@@ -5,9 +5,9 @@ class PagosObrasSocialesController < ApplicationController
  before_filter :login_required
  
   def index 
-    @pagos_obras_sociales = PagoObraSocial.find(:all) 
+   #@pagos_obras_sociales = PagoObraSocial.paginate(:page=> params[:page], :per_page=> 1, :conditions => ['obra_social_id = ?', params[:obra_social][:obra_social_id]])
     respond_to do |format|
-       format.html
+       format.html{render :layout => false}
   end
 
   end
@@ -87,8 +87,9 @@ def result_cta
        if params[:obra_social][:obra_social_id].blank?
          format.html{render :text => '<span style="color:red">Seleccione una obra social</span>' }
        else
-         @tratamientos = Tratamiento.find(:all, :conditions => ['obra_social_id = ?', params[:obra_social][:obra_social_id]], :conditions => ['estado_tratamiento_id = 5'])
-         @pagos_obras_sociales = PagoObraSocial.find(:all, :conditions => ['obra_social_id = ?', params[:obra_social][:obra_social_id]])
+         #@tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 1, :conditions => ['obra_social_id = ? and estado_tratamiento_id = ?',  params[:obra_social][:obra_social_id] , 5 ])
+         @tratamientos = Tratamiento.find(:all, :conditions => ['obra_social_id = ? and estado_tratamiento_id = ?',  params[:obra_social][:obra_social_id] , 5 ])
+         @pagos_obras_sociales = PagoObraSocial.paginate(:page=> params[:page], :per_page=> 1, :conditions => ['obra_social_id = ?', params[:obra_social][:obra_social_id]])
          format.html{render :layout => false, :partial => 'result_cta'}
        
        end
