@@ -41,5 +41,5 @@
   </table>
   <%= will_paginate @periodos, :previous_label =>'Anterior', :next_label => 'Siguiente',
                                   :class => 'periodos pagination',
-                                  :params => {:controller => "periodos", :action => "resultado"} %>
+                                  :params => {:controller => "periodos", :action => "resultado", :periodo=> params[:periodo]} %>
 </div>

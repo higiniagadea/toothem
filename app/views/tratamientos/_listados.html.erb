@@ -87,7 +87,9 @@
     <br/>
     <table>
     <%= will_paginate @tratamientos, :previous_label =>'Anterior', :next_label => 'Siguiente' ,
-                                  :class => 'tratam pagination'
+                                  :class => 'tratam pagination', 
+                                  :params=> {:controller => "tratamientos", :action => 'listados' },
+                                  :id => params[:id]
                                    %>
     </table>
 </div>

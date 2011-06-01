@@ -13,12 +13,17 @@ end
 
 def resultado_liq
   
-  respond_to do |format|     
+  respond_to do |format|    
+    unless params[:periodo][:periodo_id].blank?
+ flash[:notice] = 'Per&iacute;odo Liquidado, el resultado es: '
   @resultado =  Periodo.find_by_sql('select actualizar_cta_paciente(' + params[:periodo][:periodo_id].to_s + ') as liquidado '  )
-        format.html {render :partial => 'resultado_liq'}
-  
+         
+      format.html {render :partial => 'resultado_liq'}
+    else
+      format.html{render :text => '<span style="color:red"> Seleccione el periodo para liquidar </span>'}
   end
   #Periodo.find_by_sql('select actualizar_cta_paciente(7)')
+end
 end
 
 

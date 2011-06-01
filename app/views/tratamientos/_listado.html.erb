@@ -1,4 +1,4 @@
-<div id="cuenta_p"> 
+<div id="cuenta_pac"> 
 <% unless @trat.blank? %>
 <table style=" text-align: left "class="listado">
 <h1>Tratamientos</h1>
@@ -22,14 +22,16 @@
 
    
  <% end %>
-<table>
-       <%#= will_paginate @trat, :previous_label =>'Anterior', :next_label => 'Siguiente' ,
-                                  :class => 'cuent_trat pagination'  %>
-    </table>
+
   <%else%>
   No posee tratamientos finalizados
 <% end %>
    </table>
+ 
+       <%= will_paginate @trat, :previous_label =>'Anterior', :next_label => 'Siguiente' ,
+                                  :class => 'cuenta_tratam pagination', :params=> {:controller => "tratamientos", :action => 'listado' }
+                                   %>
+  
     <br/>
     <br/>
    

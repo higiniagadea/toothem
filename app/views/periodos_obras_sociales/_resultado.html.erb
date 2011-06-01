@@ -41,6 +41,6 @@
   </table>
   <%= will_paginate @periodos_obras_sociales, :previous_label =>'Anterior', :next_label => 'Siguiente',
                                   :class => 'periodo pagination',
-                                  :params => {:controller => "periodos_obras_sociales", :action => "resultado"} %>
+                                  :params => {:controller => "periodos_obras_sociales", :action => "resultado", :periodo => params[:periodo]} %>
 
 </div>
