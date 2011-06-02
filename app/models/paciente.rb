@@ -8,7 +8,7 @@ class Paciente < ActiveRecord::Base
   has_many :turnos, :dependent => :destroy
 
   has_many :pagos_pacientes, :dependent => :destroy
-  has_many :saldos_pacientes
+  belongs_to :saldo_paciente
   
   
   belongs_to :tipo_documento

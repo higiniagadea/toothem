@@ -4,8 +4,7 @@
 
 
 def liquidar
-  #@periodos = Periodo.find(:all, :order => 'mes DESC', :conditions => ['fue_liquidado = ?', false])
- 
+   
   respond_to do |format|
       format.html
     end
@@ -14,13 +13,12 @@ end
 def resultado_liq
   
   respond_to do |format|    
-    unless params[:periodo][:periodo_id].blank?
- flash[:notice] = 'Per&iacute;odo Liquidado, el resultado es: '
-  @resultado =  Periodo.find_by_sql('select actualizar_cta_paciente(' + params[:periodo][:periodo_id].to_s + ') as liquidado '  )
-         
-      format.html {render :partial => 'resultado_liq'}
+  unless params[:periodo][:periodo_id].blank?
+  
+   @resultado =  Periodo.find_by_sql('select actualizar_cta_paciente(' + params[:periodo][:periodo_id].to_s + ') as liquidado '  )
+   format.html {render :partial => 'resultado_liq'}
     else
-      format.html{render :text => '<span style="color:red"> Seleccione el periodo para liquidar </span>'}
+    format.html{render :text => '<span style="color:red"> Seleccione el periodo para liquidar </span>'}
   end
   #Periodo.find_by_sql('select actualizar_cta_paciente(7)')
 end
@@ -116,7 +114,7 @@ end
    @periodo = Periodo.find_by_id(params[:id])
 
     if @periodo.fue_liquidado == true
-      flash[:notice] = 'El per&iacute;odo no puede ser borrado ya que no fue liquidado'
+      flash[:notice] = 'El per&iacute;odo no puede ser borrado ya que fue liquidado'
     else
       @periodo.destroy
       flash[:notice] = 'Per&iacute;odo eliminado'

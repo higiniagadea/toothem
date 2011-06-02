@@ -15,13 +15,13 @@ class ObrasSocialesController < ApplicationController
   end
   # GET /obras_sociales/1
   # GET /obras_sociales/1.xml
-  #def show
-   # @obra_social = ObraSocial.find(params[:id])
-    #respond_to do |format|
+  def show
+   @obra_social = ObraSocial.find(params[:id])
+    respond_to do |format|
     
-     # format.html  { render :layout => false}
-    #end
-  #end
+      format.html  { render :layout => false}
+    end
+  end
 
   # GET /obras_sociales/new
   # GET /obras_sociales/new.xml
