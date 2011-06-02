@@ -20,7 +20,7 @@
        <th>Fecha</th>
          <td>
              <span class="fecha" class="ui-widget-content">
-                    <input class="ui-widget-content required "type="text" id="fecha_p" size="10" name="pago_obra_social[fecha]" readonly="readonly" title="Ingrese una fecha" />
+                    <input class="ui-widget-content required "type="text" id="fecha_p" size="10" name="pago_obra_social[fecha]" readonly="readonly" title="Ingrese una fecha"  value="<%=  @pago_obra_social.fecha.strftime('%d/%m/%Y')%>"/>
              </span>
          </td>
     </tr>
