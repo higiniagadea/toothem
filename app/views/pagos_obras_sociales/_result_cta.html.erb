@@ -79,13 +79,13 @@ $('#pago').mouseover(function(){
      
      
      <td><% if pago_obra_social.fue_liquidado == false %>
-      <%= link_to image_tag('pencil.png'), edit_pago_obra_social_path(pago_obra_social), :title => 'Editar', :id => 'edit_pago' + pago_obra_social.id.to_s %>
+      <%= link_to image_tag('pencil.png'), edit_pago_obra_social_path(pago_obra_social), :title => 'Editar', :id => 'edit_pago_' + pago_obra_social.id.to_s %>
       <%= link_to image_tag('cancel.png'), pago_obra_social_path(pago_obra_social), :title => 'Eliminar', :confirm => 'Esta seguro?', :method => :delete %>
      <%end%>
      </td>
 
     <script type="text/javascript">
-     $('#edit_pago<%= pago_obra_social.id.to_s %>').fancybox(
+     $('#edit_pago_<%= pago_obra_social.id.to_s %>').fancybox(
           {
          'hideOnContentClick': false,
          'titleShow': false
