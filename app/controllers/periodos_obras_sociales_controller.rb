@@ -90,7 +90,7 @@ end
     @periodo_obra_social = PeriodoObraSocial.find_by_id(params[:id])
 
     if @periodo_obra_social.fue_liquidado == true
-      flash[:notice] = 'El per&iacute;odo no puede ser borrado ya que no fue liquidado'
+      flash[:notice] = 'El per&iacute;odo no puede ser borrado ya que fue liquidado'
     else
       @periodo_obra_social.destroy
       flash[:notice] = 'Per&iacute;odo eliminado'

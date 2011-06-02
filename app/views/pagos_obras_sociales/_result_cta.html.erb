@@ -22,14 +22,14 @@ $('#pago').mouseover(function(){
 <h1>Tratamientos</h1>
 <div id="cuentass">
 <%unless @tratamientos.blank? %>
-  <table style=" text-align: left "class="listados">
+  <table style=" text-align: left "class="listado">
   <tr>
     <th>Paciente</th>
     <th>Prestacion</th>
     <th>Fecha de finalizacion</th>
     <th>Coseguro</th>
     <th>Fue liquidado</th>  
-
+    <th>Estado del Tratamiento</th>
   </tr>
 
 <% @tratamientos.each do |tratamiento| %>
@@ -39,6 +39,8 @@ $('#pago').mouseover(function(){
     <th><%=h tratamiento.fecha_liquidacion.blank? ? '-' :tratamiento.fecha_liquidacion.strftime('%d/%m/%Y') %></th>
     <th><%=h number_to_currency(tratamiento.coseguro) %></th>
     <th><%=h boolean_desc(tratamiento.fue_liquidado) %></th>
+    <th><%=h tratamiento.estado_tratamiento.nombre %></th>
+
   </tr>
   <%end%>
 

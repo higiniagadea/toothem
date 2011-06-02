@@ -89,7 +89,7 @@ def result_cta
        else
          #@tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 1, :conditions => ['obra_social_id = ? and estado_tratamiento_id = ?',  params[:obra_social][:obra_social_id] , 5 ])
          @tratamientos = Tratamiento.find(:all, :conditions => ['obra_social_id = ? and estado_tratamiento_id = ?',  params[:obra_social][:obra_social_id] , 5 ])
-         @pagos_obras_sociales = PagoObraSocial.paginate(:page=> params[:page], :per_page=> 1, :conditions => ['obra_social_id = ?', params[:obra_social][:obra_social_id]])
+         @pagos_obras_sociales = PagoObraSocial.paginate(:page=> params[:page], :per_page=> 10, :conditions => ['obra_social_id = ?', params[:obra_social][:obra_social_id]])
          format.html{render :layout => false, :partial => 'result_cta'}
        
        end
