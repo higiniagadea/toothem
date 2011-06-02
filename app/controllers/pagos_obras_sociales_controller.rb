@@ -67,7 +67,7 @@ end
 
 def destroy
     @pago_obra_social = PagoObraSocial.find(params[:id])
-    @obra_social = ObraSocial.find(params[:obra_social_id])
+    #@obra_social = ObraSocial.find(params[:obra_social_id])
     @pago_obra_social.destroy
     respond_to do |format|
       flash[:notice] = 'Pago eliminado'
