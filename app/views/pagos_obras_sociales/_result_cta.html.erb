@@ -28,7 +28,8 @@ $('#pago').mouseover(function(){
     <th>Prestacion</th>
     <th>Fecha de finalizacion</th>
     <th>Coseguro</th>
-    <th>Fue liquidado</th>  
+    <th>Fue liquidado</th>
+    <th>Fue liquidado Obra Social</th>
     <th>Estado del Tratamiento</th>
   </tr>
 
@@ -39,6 +40,7 @@ $('#pago').mouseover(function(){
     <th><%=h tratamiento.fecha_liquidacion.blank? ? '-' :tratamiento.fecha_liquidacion.strftime('%d/%m/%Y') %></th>
     <th><%=h number_to_currency(tratamiento.coseguro) %></th>
     <th><%=h boolean_desc(tratamiento.fue_liquidado) %></th>
+     <th><%=h boolean_desc(tratamiento.fue_liquidado_os) %></th>
     <th><%=h tratamiento.estado_tratamiento.nombre %></th>
 
   </tr>
@@ -80,8 +82,9 @@ $('#pago').mouseover(function(){
      
      <td><% if pago_obra_social.fue_liquidado == false %>
       <%= link_to image_tag('pencil.png'), edit_pago_obra_social_path(pago_obra_social), :title => 'Editar', :id => 'edit_pago_' + pago_obra_social.id.to_s %>
+      <%end%>
       <%= link_to image_tag('cancel.png'), pago_obra_social_path(pago_obra_social), :title => 'Eliminar', :confirm => 'Esta seguro?', :method => :delete %>
-     <%end%>
+    
      </td>
 
     <script type="text/javascript">
