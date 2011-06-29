@@ -6,7 +6,7 @@
      </script>
 
 <% form_for @turno do |f| %>
-
+<%= f.error_messages(:id => 'Error', :header_message=>'', :message=>'Se encontraron los siguientes errores') %>
   <div class="errores">
           <ol style="list-style:none"></ol>
   </div>
@@ -47,8 +47,11 @@
    </tr>
            <tr>
       <th>Duracion</th>
-      <td><select name="turno[duracion]" class ="ui-widget-content required"><%= options_for_select(["30", "45", "60", "90", "120"], @turno.duracion)%>
+      <td><select name="turno[duracion]" class="ui-widget-content" id="dur"><%= options_for_select(["Seleccione","30", "45", "60", "90", "120"])%>
       </select> minutos</td>
+     
+
+
     </tr>
     <tr>
       <th>Observaciones</th>
@@ -56,15 +59,6 @@
     </tr>
    </table>
 
-
-   <!--<table style=" text-align: left;">
-   <th>
-     <div id="tareas">
-       Tareas:  <%#= f.text_area :observaciones, :title => 'Ingrese la tarea', :class =>"ui-widget-content", :cols => 12, :rows => 4  %>
-     </div>
-   </th>
-   </table>
--->
 
    <table>
     <tr><td  style=" float: left; margin-left:  400px"><%= f.submit 'Guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
@@ -74,10 +68,7 @@
 <%end%>
 
 
-<!--<td><span class="time" class="ui-widget-content">
-              <input class="ui-widget-content required" id="time" name="turno[observaciones]" readonly="readonly" />
-      </span>
-    </td>-->
+
 
 </fieldset>
 
@@ -101,10 +92,12 @@ function validate(e) { // 1
 
     $(document).ready(function(){
       //validacion
-      $(".new_turno").validate({
+
+
+      $("#new_turno").validate({
         //errorLabelContainer: $(".new_paciente div.errores")
-        errorContainer: $(".new_turno div.errores"),
-        errorLabelContainer: $("ol", $(".new_turno div.errores")),
+        errorContainer: $("#new_turno div.errores"),
+        errorLabelContainer: $("ol", $("#new_turno div.errores")),
         wrapper: 'li',
         meta: "validate"
        

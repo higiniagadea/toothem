@@ -1,2 +1,62 @@
-<%= render :partial => 'lista' %>
-<%#= render :partial => 'mostar_lista' %>
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-corner-all ui-widget-header">Pagos</legend>
+
+   <table>
+     <tr>
+       <td style=" float: left; margin-left: 900px"><%= link_to image_tag('add.png') + 'Nuevo Pago', new_pago_obra_social_url, :id => 'pago' %>
+       </td>
+     </tr>
+      <script type="text/javascript">
+
+      $('#pago').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+      });
+
+      </script>
+   </table>
+  <% unless @pagos_obras_sociales.blank? %>
+<table style=" text-align: left "class="listados">
+    <tr>
+      <th>Nro.de recibo</th>
+      <th>Fecha</th>
+      <th>Monto</th>
+      <th>Fue liquidado?</th>
+      <th>Fecha de liquidacion</th>
+      <th>Acciones</th>
+    </tr>
+    <% @pagos_obras_sociales.each do |pago_obra_social| %>
+   <tr class="<%= cycle('par','impar') -%>">
+     <th><%=h pago_obra_social.nro_recibo %></th>
+     <th><%=h pago_obra_social.fecha.strftime('%d/%m/%Y') %></th>
+     <th><%=h number_to_currency(pago_obra_social.monto) %></th>
+     <th><%=h boolean_desc(pago_obra_social.fue_liquidado) %></th>
+     <th><%=h pago_obra_social.fecha_liquidacion.blank? ? '-' :pago_obra_social.fecha_liquidacion.strftime('%d/%m/%Y')   %></th>
+
+     <td>
+      <%= link_to image_tag('pencil.png'), edit_pago_obra_social_path(pago_obra_social), :title => 'Editar', :id => 'edit_pago' + pago_obra_social.id.to_s %>
+      <%= link_to image_tag('cancel.png'), pago_obra_social_path(pago_obra_social), :title => 'Eliminar', :confirm => 'Esta seguro?', :method => :delete %>
+
+     </td>
+
+    <script type="text/javascript">
+     $('#edit_pago<%= pago_obra_social.id.to_s %>').fancybox(
+          {
+         'hideOnContentClick': false,
+         'titleShow': false
+
+        });
+
+    </script>
+   </tr>
+   <%end %>
+
+
+  </table>
+
+   <%else%>
+   <span style="color:red">No posee pagos realizados</span>
+<%end%>
+</fieldset>

@@ -17,18 +17,6 @@ class PacientesController < ApplicationController
     end
   end
 
-  #def new_pago
- 
-   # @paciente = Paciente.find(params[:paciente_id])
-    #@pagopaciente = PagoPaciente.new(params[:id])
-    
-    #respond_to do |format|
-
-     #format.html {render :partial => 'pagos_pacientes/new', :layout => 'default'}
-     #format.html {redirect_to edit_paciente_path(@paciente) + '#cuenta_cte'}
-    #end
-
-#  end
 
 
   def index
@@ -126,16 +114,13 @@ class PacientesController < ApplicationController
   
   def edit
     params[:paciente_id]
-    @paciente = Paciente.find_by_id(params[:id])
-    #@saldos_pacientes = SaldoPaciente.find(:all)
+    @paciente = Paciente.find_by_id(params[:id])   
     @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha ASC')
     @trat = Tratamiento.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['paciente_id = ? and estado_tratamiento_id = ?',  @paciente.id.to_s  , 5 ], :order => 'fecha ASC')
-    @pagos_pacientes = PagoPaciente.paginate(:page=> params[:page], :per_page=> 10, :conditions => ['paciente_id = ?', @paciente.id.to_s] , :order => 'fecha ASC')
-    
+    @pagos_pacientes = PagoPaciente.paginate(:page=> params[:page], :per_page=> 10, :conditions => ['paciente_id = ?', @paciente.id.to_s] , :order => 'fecha ASC')    
     @fichas = Ficha.find_all_by_paciente_id(@paciente.id)
     @profesionales = Profesional.paginate(:page => params[:page], :per_page => 10)
-    @prestaciones = Prestacion.find(:all)
-    #@fichas = Ficha.paginate(:page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha DESC')
+    @prestaciones = Prestacion.find(:all)  
     @turnos = Turno.find(:all)
     
     
@@ -427,6 +412,7 @@ def buscar_dni
   respond_to do |format|
       format.html {render :layout => false}
   end
+
 
 end
 

@@ -2,7 +2,7 @@
   <legend class="ui-widget ui-corner-all ui-widget-header">Editar Pago</legend>
 <% form_for (@pago_obra_social) do |f| %>
   <%= f.error_messages(:id => 'Error', :header_message=>'', :message=>'Se encontraron los siguientes errores') %>
-    <%#= f.hidden_field :obra_social_id, 'value' => @obra_social.id.to_s  %>
+  
 
 
    <div class="errores">
@@ -19,8 +19,8 @@
     <tr>
        <th>Fecha</th>
          <td>
-             <span class="fecha" class="ui-widget-content">
-                    <input class="ui-widget-content required "type="text" id="fecha_p" size="10" name="pago_obra_social[fecha]" readonly="readonly" title="Ingrese una fecha"  value="<%=  @pago_obra_social.fecha.strftime('%d/%m/%Y')%>"/>
+             <span class="fecha_p" class="ui-widget-content">
+                    <input class="ui-widget-content required" type="text" id="fecha_p" size="10" name="pago_obra_social[fecha]" readonly="readonly" title="Ingrese una fecha"  value="<%= @pago_obra_social.fecha.strftime('%d/%m/%y')%>" />
              </span>
          </td>
     </tr>
