@@ -39,7 +39,8 @@ class TareasController < ApplicationController
         flash[:notice] = 'Tarea guardado'
         format.html { redirect_to busq_turnos_path  }
       else
-        format.html { render :action => "new" }
+        format.html { redirect_to busq_turnos_path  }
+        flash[:error] = 'El horario ya fue asignado con anterioridad'
       end
     end
 

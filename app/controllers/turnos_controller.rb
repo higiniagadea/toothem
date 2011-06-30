@@ -2,16 +2,8 @@ class TurnosController < ApplicationController
   before_filter :login_required
   layout 'default'
 
-  
-
-
   def busq
-   #if params[:profesional_id]
-    #  @turnos = Turno.find(:all, :conditions => ['profesional_id = ?', params[:profesional_id]])
-   #else
-    #  @turnos = Turno.find(:all)
-  
-   #end
+   
      respond_to do |format|
        format.html
       end
@@ -54,6 +46,7 @@ class TurnosController < ApplicationController
     @profesional = Profesional.find(params[:profesional_id]) unless params[:profesional_id].blank?
    respond_to do |format|
      format.html{render :layout => false}
+      format.xml  { render :xml => @turno }
     end
 
    end
@@ -65,33 +58,23 @@ class TurnosController < ApplicationController
     end
     
   end
-
-  #muestra los turnos en el calendario
-   #def get_turnos
-    #@turnos = Turno.find(:all, :include => 'profesional')
-   
-    #events = []
-    #@turnos.each do |turno|
-    #events << {:id => turno.id.to_s, :title => turno.profesional_id.to_s, :start => "#{turno.fecha_hora.iso8601}", :end => "#{(turno.fecha_hora + (60 * turno.duracion))}", :allDay => true, :oservaciones => "#{(turno.observaciones)}"}
-    #end
-    #render :text => events.to_json
-  #end
-  
+ 
  
   def create
  
    @turno = Turno.new(params[:turno])   
    @profesional = Profesional.find(params[:profesional_id]) unless params[:profesional_id].blank?
- #unless @turno.valid?
-  # errores = ''
-#@turno.errors.each { |a, msgg| errores += a + '- '+msgg+'<br/>'  }
- #  raise errores
- #end
+
    respond_to do |format|
     if  @turno.save
       flash[:notice] = 'Turno guardado'
       format.html{redirect_to busq_turnos_path}
- 
+       format.xml  { render :xml => @turno, :status => :created, :location => @turno }
+    else
+      format.html{redirect_to busq_turnos_path}
+      flash[:error] = 'El horario ya fue asignado con anterioridad'
+       #format.html { render :action => "new"  }
+        #format.xml  { render :xml => @turno.errors, :status => :unprocessable_entity }
     end
   end
   end

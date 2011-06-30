@@ -4,7 +4,8 @@ class ClinicasController < ApplicationController
   
   layout 'default'
   before_filter  :generar_submenus
-before_filter :login_required
+  before_filter :login_required
+  
   def index
     
     @clinicas = Clinica.paginate :page=> params[:page], :per_page=> 10, :order=> 'nombre ASC'

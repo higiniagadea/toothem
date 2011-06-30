@@ -30,7 +30,7 @@
     <tr>
         <td  style=" float: left; margin-left:  200px"><%= submit_tag 'Buscar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all'  %>
         </td>
-        <td id="texti"><%= image_tag('help.png') %></td>
+        <td id="texto"><%= image_tag('help.png') %></td>
     </tr>
     </table>
  <%end -%>
@@ -64,7 +64,7 @@ $('#texti img').each(function(){
 
           $(this).qtip(
           {
-            content: '<%= render :partial => 'textito'  %>', // Give it some content
+            content: '<%= render :partial => 'texto'  %>', // Give it some content
             position: 'topRight', // Set its position
             hide: {
               fixed: true // Make it fixed so it can be hovered over

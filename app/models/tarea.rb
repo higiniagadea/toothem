@@ -3,6 +3,9 @@ class Tarea < ActiveRecord::Base
 
   belongs_to :profesional
 
+  validates_presence_of :fecha_hora, :message => ' no puede estar en blanco'
+  validates_uniqueness_of :fecha_hora, :scope => [:profesional_id], :message => "El horario ya fue asignado con anterioridad"
+
   named_scope :by_fechas, lambda { |fecha_desde, fecha_hasta|
     {
      :conditions => ['fecha_hora between :fecha_desde and :fecha_hasta',

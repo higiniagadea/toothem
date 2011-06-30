@@ -9,7 +9,7 @@ class Paciente < ActiveRecord::Base
 
   has_many :pagos_pacientes, :dependent => :destroy
   belongs_to :saldo_paciente
-  
+  belongs_to :odontograma
   
   belongs_to :tipo_documento
   has_one :historia_clinica_general, :dependent => :destroy

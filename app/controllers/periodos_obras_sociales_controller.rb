@@ -9,6 +9,15 @@ class PeriodosObrasSocialesController < ApplicationController
     end
 end
 
+
+   def show
+
+    respond_to do |format|
+
+     format.html{ render :layout => 'default' }
+    end
+  end
+
 def resultado_liq_os
   
   respond_to do |format|
@@ -42,10 +51,6 @@ end
   def show
   end
 
-  
-
-  def edit
-  end
 
   def create
      @periodo_obra_social = PeriodoObraSocial.new(params[:periodo_obra_social])

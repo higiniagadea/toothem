@@ -27,7 +27,7 @@
 
     <tr>
       <th>Duracion</th>
-        <td><select name="tarea[duracion]" class ="ui-widget-content"><%= options_for_select(["30", "45", "60", "90", "120"], @tarea.duracion)%>
+        <td><select name="tarea[duracion]" class ="ui-widget-content"><%= options_for_select(["Seleccione","30", "45", "60", "90", "120"], @tarea.duracion)%>
       </select> minutos</td>
     </tr>
     <tr>
@@ -77,8 +77,10 @@ function validate(e) { // 1
        errorContainer: $("#new_tarea div.errores"),
        errorLabelContainer: $("ol", $("#new_tarea div.errores")),
        wrapper: 'li',
-       meta: "validate"
-
+       meta: "validate",
+        rules: {
+         "tarea[duracion]": {required: true}
+        }
 
   });
 

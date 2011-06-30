@@ -226,12 +226,12 @@ $(document).ready(function(){
   });
 
    $('div.ajax-pagination a').live('click', function() {
-    $('#pagos_os').load(this.href)
+    $('#pagosos').load(this.href)
     return false
   });
 
-  $('div.pago_os a').live('click', function() {
-    $('#pagos_os').load(this.href)
+  $('div.ospago a').live('click', function() {
+    $('#pagosos').load(this.href)
     return false
   });
 });

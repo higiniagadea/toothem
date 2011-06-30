@@ -19,6 +19,8 @@ ActionController::Routing::Routes.draw do |map|
                              
                               }
 
+  map.resources :odontogramas
+
   map.resources :periodos, :collection => {:buscar => :get, :resultado => [:get, :post], :liquidar => :get, :resultado_liq =>  [:get, :post]}, :member => {:liquidar => [:get, :post]}
 
   map.resources :tareas, :member => {:eliminar => :get}
@@ -56,13 +58,13 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :titulares, :collection => {:buscar => :get, :resultado => :post}
              
-map.resources :pagos_pacientes #:member => {:new => [:get, :post]}
+map.resources :pagos_pacientes
 
   map.resources :estados_laborales
 
   map.resources :tipos_documento
 
-map.resources :pagos_obras_sociales, :collection => {:buscar_cta => [:get, :post], :result_cta => [:get, :post]},
+map.resources :pagos_obras_sociales, :collection => {:buscar_cta => [:get, :post], :result_cta => [:get]},
                                      :member => {:lista => :post,  :mostar_lista => [:get]}
                
 map.resources :periodos_obras_sociales,  :collection => {:buscar => :get, :resultado => [:get, :post], :liquidar => :get, :result_liq_os => [:get, :post]}

@@ -19,9 +19,9 @@
      
      <td><% if pago_paciente.fue_liquidado != true %>
       <%= link_to image_tag('pencil.png'), edit_pago_paciente_path(pago_paciente,  :paciente_id => @paciente), :title => 'Editar', :id => 'edit_pago' + pago_paciente.id.to_s %>
+      <%end%>
       <%= link_to image_tag('cancel.png'), pago_paciente_path(pago_paciente, :paciente_id => @paciente.id), :title => 'Eliminar', :confirm => 'Esta seguro?', :method => :delete %>
-     <%end%>
-     </td>
+      </td>
 
     <script type="text/javascript">
         $('#edit_pago<%= pago_paciente.id.to_s %>').fancybox(

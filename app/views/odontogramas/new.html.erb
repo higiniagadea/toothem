@@ -1,0 +1,106 @@
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+<legend class="ui-widget ui-corner-all ui-widget-header">Odontograma</legend>
+  <br/>
+  <br/>
+  <table>
+
+
+
+ <tr>    
+   <% dientes = [18,17,16,15,14,13,12,11,21,22,23,24,25,26,27,28] %>
+   <%  dientes.each do |diente| %>
+         <th>
+          
+          <div id="">t</div>
+          <div id="contenedor">
+            <div class="borde superior" id="<%= diente %>_superior"></div>
+            <div class="borde inferior" id="<%= diente %>_inferior"></div>
+            <div class="borde der" id="<%= diente %>_derecho"></div>
+            <div class="borde izq" id="<%= diente %>_izquierdo"></div>
+            <div class="contenido" id="<%= diente %>_centro"></div>
+          </div>
+          </th>
+          <script type="text/javascript">
+               seleccionar_cara();
+
+         $('#<%= diente %>_superior').attr('style', 'activo').click(function(){
+            seleccionar_cara();
+          });
+
+          $('#<%= diente %>_inferior').attr('style', 'activo').click(function(){
+            alert('ooooooooo')
+          });
+
+            $('#<%= diente %>_derecho').attr('style', 'activo').click(function(){
+            alert('yyyyyyyyy')
+          });
+
+
+         $('#<%= diente %>_izquierdo').attr('style', 'activo').click(function(){
+            alert('uuuu')
+          });
+
+         $('#<%= diente %>_centro').attr('style', 'activo').click(function(){
+            alert('iiiii')
+          });
+
+         function seleccionar_cara (){
+            
+   
+        }
+
+
+
+          </script>
+ <% end %>
+  </tr>
+
+
+ <tr>
+ 
+   <% dientes = [48,47,46,45,44,43,42,41,31,32,33,34,35,36,37,38] %>
+   <%  dientes.each do |diente| %>
+          <th>
+          <div id="a">r</div>
+          <div id="contenedor">
+            <div class="borde superior" id="<%= diente %>_superior"></div>
+            <div class="borde inferior" id="<%= diente %>_inferior"></div>
+            <div class="borde der" id="<%= diente %>_derecho"></div>
+            <div class="borde izq" id="<%= diente %>_izquierdo"></div>
+            <div class="contenido" id="<%= diente %>_centro"></div>
+          </div>
+          </th>
+            <script type="text/javascript">
+
+         $('#<%= diente %>_superior').attr('style', 'activo').click(function(){
+            alert('holaaa')
+          });
+
+          $('#<%= diente %>_inferior').attr('style', 'activo').click(function(){
+            alert('ooooooooo')
+          });
+
+            $('#<%= diente %>_derecho').attr('style', 'activo').click(function(){
+            alert('yyyyyyyyy')
+          });
+
+
+         $('#<%= diente %>_izquierdo').attr('style', 'activo').click(function(){
+            alert('uuuu')
+          });
+
+         $('#<%= diente %>_centro').attr('style', 'activo').click(function(){
+            alert('iiiii')
+          });
+
+
+          </script>
+ <%end%>
+  </tr>
+
+
+  </table>
+
+</fieldset>
+
+<%= link_to 'Volver', odontogramas_path %>

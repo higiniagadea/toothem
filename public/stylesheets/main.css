@@ -15,6 +15,7 @@ a{
 }
 
 
+
 fieldset{
     width:auto;
 }
@@ -31,6 +32,102 @@ a:hover{
 a.no-hover:hover{
     text-decoration: none;
 }
+
+
+/*odontograma-------------------------------------*/
+
+
+#contenedor {
+    width: 50px;
+    height: 41px;
+    position: relative;
+    border-color: black;
+        
+}
+
+.borde,
+.contenido {
+    position:  absolute;
+   
+}
+    .borde.superior,
+    .borde.inferior {
+        width: 46px;
+        height: 10px;
+        border-width: 1px;
+        border-style : solid;
+        border-color : black;
+        padding : 1;
+    
+    }
+
+    .borde.izq,
+    .borde.der {
+        width: 10px;
+        height: 39px;
+        border-width: 1px;
+        border-style : solid;
+        border-color : black;
+        padding : 2;
+    }
+
+    .borde.superior {
+        background-color: #ffffff;
+        top: 0;
+ 
+      
+    }
+
+    .borde.inferior {
+        background-color: #ffffff;
+        bottom: 0;
+       
+
+       
+    }
+
+    .borde.izq {
+        background-color: #ffffff;
+        left: 0;
+     
+      
+    }
+
+    .borde.der {
+        background-color: #ffffff;
+        right: 0;
+      
+        
+    }
+
+    .activo {
+    background-color: #ffffff;
+  
+}
+
+.linea {
+        width: 200px;
+        height: 2px;
+        background-color: #000000;
+    }
+
+
+.contenido {        
+        width: 26px;
+        height: 19px;
+        top: 10px;
+        left:11px;
+        background-color: #ffffff;
+        border-width: 1px;
+        border-style : solid;
+        border-color : black;
+        padding : 2;
+      
+    }
+    
+
+
+/*-------------------------------------------------------------*/
 
 div#main{
     height: 100%;
@@ -109,13 +206,20 @@ div#boton:hover{
 .error{
     color:red;
 }
-
+/* --------------------------- */
 .green{
     color:green;
 }
+
 .red{
     color:red;
 }
+
+.blue{
+    color:blue;
+}
+
+/*------------------------------*/
 .highlight{
     background-color:#feea77;
     font-weight: normal;
@@ -134,58 +238,7 @@ div#boton:hover{
     padding:2px;
 }
 
-/*--------------- TABLAS ---------------------*/
-table#datos-propiedad{
-    width:auto;
-    border-collapse: collapse;
-}
-table#datos-propiedad td{
-    text-align: left;
-    padding:10px;
-}
-table#datos-propiedad td.valuacion{
-    text-align: right;
-}
-table#datos-propiedad td.normal{
-    text-align: left;
-}
-table#datos-propiedad th.valuacion{
-    text-align: left;
-}
-table#datos-propiedad th.normal{
-    text-align: center;
-}
-table#datos-propiedad td.withbordertop{
-    border-top: #000 1px solid;
-}
-table#datos-propiedad td.withbordertopdouble{
-    border-top: #000 1px double;
-}
-table#datos-propiedad th{
-    text-align: right;
-}
-table#datos-propiedad tr.even{
-    background-color: #FFF;
-}
 
-table#datos-rpi-titulares{
-    width:auto;
-    border-collapse: collapse;
-}
-table#datos-rpi-titulares td{
-    padding:10px;
-}
-table#datos-rpi-titulares td.ex{
-    color:gray;
-}
-
-table#datos-rpi-titulares th{
-    padding-left:10px;
-
-}
-table#datos-rpi-titulares tr.even{
-    background-color: #FFF;
-}
 
 .listados{
     border-collapse: collapse;
@@ -219,7 +272,7 @@ table#datos-rpi-titulares tr.even{
 .listado{
     border-collapse: collapse;
    border: 1px solid #F8ECE0;
-   width : 65%;
+   width : 80%;
 }
 
 .listado th par{
@@ -230,68 +283,13 @@ table#datos-rpi-titulares tr.even{
     
 }
 .listado th impar{
-    padding:4px;
-    text-align: center;
-    
-}
-
-.listado-titulares{
-    border-collapse: collapse;
-    border: 1px solid #FFCC76;
-}
-.listado-titulares td{
-    padding-left: 7px;
+    padding-left:7px;
+    text-align: left;
     padding-right: 7px;
-    text-align: left;
-    padding-top: 4px;
-    padding-bottom: 4px;
-}
-.listado-titulares th{
-    padding:4px;
-    text-align: center;
-    border-bottom: 1px solid #aed0ea;
-}
-.listado-titulares tr.par {
-     background-color: #FFF;
-}
-.listado-titulares tr.impar {
-    background-color: #DDD;
+    border: 1px solid #F2F2F2;
 }
 
 
-.listado-h-titulares{
-    border-collapse: collapse;
-    border: 1px solid #aed0ea;
-}
-.listado-h-titulares td{
-    padding-left: 7px;
-    padding-right: 7px;
-    text-align: left;
-    padding-top: 4px;
-    padding-bottom: 4px;
-
-}
-.listado-h-titulares th{
-    padding:4px;
-    text-align: left;
-  
-}
-.listado-h-titulares tr.par {
-     background-color: #FFF;
-}
-.listado-h-titulares tr.impar {
-    background-color: #DDD;
-}
-
-
-.listadoTitulo th{
-    text-align: left;
-    padding-left: 7px;
-    padding-right: 7px;
-    padding-bottom: 3px;
-    padding-top: 3px;
-
-}
 .listado th.a-right{
     text-align: right;
 }
@@ -302,24 +300,6 @@ table#datos-rpi-titulares tr.even{
     background-color: #DDD;
 }
 
-table#form-horizontal th{
-    font-weight:bold;
-    text-align: left;
-}
-table#form-horizontal td{
-    /*text-align: left;*/
-}
-
-table#tablero{
-    width:100%;
-
-}
-table#tablero tr{
-    width:100%;
-}
-table.contenedor-tablero{
-    width: 23%;
-}
 
 
 /*-----------------FORMS STYLES ---------------------------*/
