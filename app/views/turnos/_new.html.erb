@@ -47,8 +47,9 @@
    </tr>
            <tr>
       <th>Duracion</th>
-      <td><select name="turno[duracion]" class="ui-widget-content" id="dur"><%= options_for_select(["Seleccione","30", "45", "60", "90", "120"])%>
-      </select> minutos</td>
+      <td><span class="ui-widget-content required"><select name="turno[duracion]"><%= options_for_select(["30", "60", "90", "120"], @turno.duracion)%>
+      </select></span> minutos</td>
+
      
 
 
@@ -92,8 +93,8 @@ function validate(e) { // 1
 
     $(document).ready(function(){
       //validacion
-
-
+ $('#duracion').attr('class', 'required'),
+ 
       $("#new_turno").validate({
         //errorLabelContainer: $(".new_paciente div.errores")
         errorContainer: $("#new_turno div.errores"),

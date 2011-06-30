@@ -30,7 +30,7 @@ $('#pago').mouseover(function(){
     <th>Prestacion</th>
     
     <th>Coseguro</th>
-    <th>Fecha de liquidaci&oacute;n</th>
+    <th>Fecha de finalizaci&oacute;n</th>
     <th>Estado del Tratamiento</th>
     <th>Fue liquidado</th>
     <th>Fue liquidado Obra Social</th>
@@ -42,7 +42,7 @@ $('#pago').mouseover(function(){
     <th><%=h tratamiento.prestacion.descripcion %></th>
   
     <th><%=h number_to_currency(tratamiento.coseguro) %></th>
-      <th><%=h tratamiento.fecha_liquidacion.blank? ? '-' :tratamiento.fecha_liquidacion.strftime('%d/%m/%Y') %></th>
+      <th><%=h tratamiento.fecha_finalizacion.blank? ? '-' :tratamiento.fecha_finalizacion.strftime('%d/%m/%Y') %></th>
     <th><%=h tratamiento.estado_tratamiento.nombre %></th>
     <th><%=h boolean_desc(tratamiento.fue_liquidado) %></th>
      <th><%=h boolean_desc(tratamiento.fue_liquidado_os) %></th>
