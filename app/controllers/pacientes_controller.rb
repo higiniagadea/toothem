@@ -6,6 +6,15 @@ class PacientesController < ApplicationController
   layout 'default'
 
 
+  def ver_saldo_pac
+    
+      respond_to do |format|
+      @ver_saldo =  SaldoPaciente.find_by_sql('select ver_saldo_pac(' + params[:periodo][:periodo_id].to_s + params[:paciente_id].to_s + ') as saldo '  )
+      format.html {render :partial => 'ver_saldo', :layout => false}
+    end
+  end
+
+
   def new_tratamiento
     #params[:paciente][:consultorio_id] = session[:consultorio][:id]
     @paciente = Paciente.find(params[:paciente_id])    
@@ -117,11 +126,13 @@ class PacientesController < ApplicationController
     @paciente = Paciente.find_by_id(params[:id])   
     @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha ASC')
     @trat = Tratamiento.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['paciente_id = ? and estado_tratamiento_id = ?',  @paciente.id.to_s  , 5 ], :order => 'fecha ASC')
-    @pagos_pacientes = PagoPaciente.paginate(:page=> params[:page], :per_page=> 10, :conditions => ['paciente_id = ?', @paciente.id.to_s] , :order => 'fecha ASC')    
+    @pagos_pacientes = PagoPaciente.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['paciente_id = ?', @paciente.id.to_s] , :order => 'fecha ASC')
     @fichas = Ficha.find_all_by_paciente_id(@paciente.id)
     @profesionales = Profesional.paginate(:page => params[:page], :per_page => 10)
     @prestaciones = Prestacion.find(:all)  
     @turnos = Turno.find(:all)
+    @sald_pac = SaldoPaciente.find_by_sql('select ver_saldo_paciente(' + @paciente.id.to_s + ') as saldo ' )
+
     
     
     respond_to do |format|
@@ -140,6 +151,8 @@ class PacientesController < ApplicationController
       end
   end
   end
+
+  
   def editfield
     @paciente = Paciente.find(params[:id])
     @value = @paciente[params[:fieldname]]

@@ -1,7 +1,7 @@
 class TratamientosController < ApplicationController
   # GET /tratamientos
   # GET /tratamientos.xml
-  layout 'default'
+  layout 'tratamientos'
 
   before_filter :login_required
 
@@ -55,8 +55,8 @@ class TratamientosController < ApplicationController
 
 
   
-  def show  
-  @tratamiento = Tratamiento.find(params[:id]) 
+  def show
+  @tratamiento = Tratamiento.find(params[:id])
     
     respond_to do |format|
        format.html{render :layout => false}
@@ -209,7 +209,6 @@ def listado
      format.html {render :partial => 'listado'}
   end
 end
-
 
 
 

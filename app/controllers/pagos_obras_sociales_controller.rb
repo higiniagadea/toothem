@@ -67,7 +67,7 @@ end
 
 def destroy
     @pago_obra_social = PagoObraSocial.find(params[:id])
-    #@obra_social = ObraSocial.find(params[:obra_social_id])
+  
     @pago_obra_social.destroy
     respond_to do |format|
       flash[:notice] = 'Pago eliminado'
@@ -83,15 +83,19 @@ def buscar_cta
 end
 
 def result_cta
+
     respond_to do |format|
        if params[:obra_social][:obra_social_id].blank?
          format.html{render :text => '<span style="color:red">Seleccione una obra social</span>' }
        else
          #@tratamientos = Tratamiento.find(:all, :conditions => ['obra_social_id = ? and estado_tratamiento_id = ?',  params[:obra_social][:obra_social_id] , 5 ])
-         @t = Tratamiento.paginate(:page=> params[:page], :per_page=> 10, :conditions => ['obra_social_id = ? and estado_tratamiento_id = ?',  params[:obra_social][:obra_social_id] , 5 ])
-         @pagos_obras_sociales = PagoObraSocial.paginate(:page=> params[:page], :per_page=> 10, :conditions => ['obra_social_id = ?', params[:obra_social][:obra_social_id]])
+         #@t = Tratamiento.paginate(:page=> params[:page], :per_page=> 1, :conditions => ['obra_social_id = ? and estado_tratamiento_id = ?',  params[:obra_social][:obra_social_id] , 5 ])
+         #@sald_os = SaldoObraSocial.find_by_sql('select ver_saldo_os(' + params[:obra_social][:obra_social_id].to_s + ') as sald' )
+      @sald_os = ActiveRecord::Base.connection.execute('select ver_saldo_os(' + params[:obra_social][:obra_social_id] + ')')
+      @pag = PagoObraSocial.paginate(:page=> params[:page], :per_page=> 1, :conditions => ['obra_social_id = ?', params[:obra_social][:obra_social_id]])
+         
          format.html{render :layout => false, :partial => 'result_cta'}
-       
+        
        end
 
  

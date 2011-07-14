@@ -15,11 +15,13 @@
 
   <th>
      <div id="turnos">
-     Documento <%= text_field_tag :paciente_desc,{}, :class =>"ui-widget-content required", :title => 'Ingrese un documento para realizar la busqueda', :size => 15, :onkeypress=> 'return validar(event)', :readonly => 'readonly', :id => 'dni' %>
+     Documento
+        <%= text_field_tag :paciente_desc,{}, :class =>"ui-widget-content required", :title => 'Ingrese un documento para realizar la busqueda', :size => 15, :onkeypress=> 'return validar(event)', :readonly => 'readonly', :id => 'dni' %>
         <%= link_to image_tag('magnifier_zoom_in.png'), "javascript:", :rel => buscar_dni_pacientes_path, :id => 'buscar' %>
         <%= f.hidden_field :paciente_id %>
 
      </div>
+
   </th>
 
   </table>
@@ -46,9 +48,9 @@
 
    </tr>
            <tr>
-      <th>Duracion</th>
-      <td><span class="ui-widget-content required"><select name="turno[duracion]"><%= options_for_select(["30", "60", "90", "120"], @turno.duracion)%>
-      </select></span> minutos</td>
+      <th>Duraci&oacute;n</th>
+      <td><select name="turno[duracion]" title="Seleccione la duracion"><%= options_for_select(["30", "60", "90", "120"], @turno.duracion)%>
+      </select> minutos</td>
 
      
 
@@ -62,7 +64,8 @@
 
 
    <table>
-    <tr><td  style=" float: left; margin-left:  400px"><%= f.submit 'Guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
+    <tr>
+      <td  style=" float: left; margin-left:  400px"><%= f.submit 'Guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
     </tr>
    </table>
 
@@ -93,10 +96,12 @@ function validate(e) { // 1
 
     $(document).ready(function(){
       //validacion
- $('#duracion').attr('class', 'required'),
+ //$('#duracion').attr('class', 'required'),
  
       $("#new_turno").validate({
         //errorLabelContainer: $(".new_paciente div.errores")
+        //rules :{"turno[duracion]": {required :true}},
+        
         errorContainer: $("#new_turno div.errores"),
         errorLabelContainer: $("ol", $("#new_turno div.errores")),
         wrapper: 'li',
