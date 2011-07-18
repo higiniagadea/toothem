@@ -20,7 +20,7 @@ def resultado_liq
     else
     format.html{render :text => '<span style="color:red"> Seleccione el periodo para liquidar </span>'}
   end
-  #Periodo.find_by_sql('select actualizar_cta_paciente(7)')
+ 
 end
 end
 

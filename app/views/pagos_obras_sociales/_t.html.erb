@@ -1,0 +1,44 @@
+<div id="cuentass">
+<h1>Tratamientos</h1>
+
+<%unless @t.blank? %>
+  <table style=" text-align: left "class="listado">
+  <tr>
+    <th>Paciente</th>
+    <th>Prestaci&oacute;n</th>
+    <th>Coseguro</th>
+    <th>Estado del Tratamiento</th>
+    <th>Fecha de finalizaci&oacute;n</th>
+    <th>Fue liquidado</th>
+    <th>Fue liquidado Obra Social</th>
+  </tr>
+
+<% @t.each do |tratamiento| %>
+  <tr class="<%= cycle('par','impar') -%>">
+    <th><%=h tratamiento.paciente.nombre %></th>
+    <th><%=h tratamiento.prestacion.descripcion %></th>
+
+    <th><%=h number_to_currency(tratamiento.coseguro) %></th>
+    <th><%=h tratamiento.estado_tratamiento.nombre %></th>
+    <th><%=h tratamiento.fecha_finalizacion.blank? ? '-' :tratamiento.fecha_finalizacion.strftime('%d/%m/%Y') %></th>
+
+    <th><%=h boolean_desc(tratamiento.fue_liquidado) %></th>
+    <th><%=h boolean_desc(tratamiento.fue_liquidado_os) %></th>
+
+  </tr>
+  <%end%>
+
+  </table>
+
+ <%else%>
+ <span style="color:red">No posee tratamientos finalizados</span>
+  <%end%>
+
+  <table>
+    <%= will_paginate @t, :previous_label =>'Anterior', :next_label => 'Siguiente' ,
+                                  :class => 'c_tratamientos pagination',
+                                  :params => {:controller => 'pagos_obras_sociales', :action => 'result_cta', 'obra_social[obra_social_id]' => params[:obra_social][:obra_social_id], :flag => 't'}
+                                   %>
+    </table>
+
+</div>

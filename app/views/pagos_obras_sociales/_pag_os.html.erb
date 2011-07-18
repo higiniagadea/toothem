@@ -1,0 +1,53 @@
+<div id="pagosos">
+<h1>Pagos</h1>
+ <% unless @pag_os.blank? %>
+<table style=" text-align: left "class="listados">
+    <tr>
+      <th>Nro.de recibo</th>
+      <th>Fecha</th>
+      <th>Fue liquidado</th>
+      <th>Monto</th>
+      <th>Acciones</th>
+    </tr>
+    <% @pag_os.each do |pago_obra_social| %>
+   <tr class="<%= cycle('par','impar') -%>">
+     <th><%=h pago_obra_social.nro_recibo %></th>
+
+     <th><%=h pago_obra_social.fecha.blank? ? '-' :pago_obra_social.fecha.strftime('%d/%m/%Y') %></th>
+     <th><%=h boolean_desc(pago_obra_social.fue_liquidado) %></th>
+     <th><%=h number_to_currency(pago_obra_social.monto) %></th>
+
+     <td><% if pago_obra_social.fue_liquidado == false %>
+      <%= link_to image_tag('pencil.png'), edit_pago_obra_social_path(pago_obra_social), :title => 'Editar', :id => 'edit_pago_' + pago_obra_social.id.to_s %>
+      <%end%>
+      <%= link_to image_tag('cancel.png'), pago_obra_social_path(pago_obra_social), :title => 'Eliminar', :confirm => 'Esta seguro?', :method => :delete %>
+
+     </td>
+
+    <script type="text/javascript">
+     $('#edit_pago_<%= pago_obra_social.id.to_s %>').fancybox(
+          {
+         'hideOnContentClick': false,
+         'titleShow': false
+
+        });
+
+    </script>
+   </tr>
+   <%end %>
+  </table>
+
+   <%else%>
+ <span style="color:red">No posee pagos realizados</span>
+
+<%end%>
+  <table>
+    <%= will_paginate @pag_os, :previous_label =>'Anterior', :next_label => 'Siguiente',
+                                             :class => 'ospago pagination',
+                                             :params => {:controller => 'pagos_obras_sociales', :action => 'result_cta', 'obra_social[obra_social_id]' => params[:obra_social][:obra_social_id], :flag => 'p'}
+      #:obra_social_id => params[:obra_social][:obra_social_id]
+
+                                               %>
+    </table>
+
+</div>

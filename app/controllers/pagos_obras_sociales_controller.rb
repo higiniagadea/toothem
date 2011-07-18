@@ -5,7 +5,7 @@ class PagosObrasSocialesController < ApplicationController
  before_filter :login_required
  
   def index
-   @pagos_obras_sociales = PagoObraSocial.paginate(:page=> params[:page], :per_page=> 2)
+   @pagos_obras_sociales = PagoObraSocial.paginate(:page=> params[:page], :per_page=> 2, :conditions => ['obra_social_id = ?', params[:obra_social][:obra_social_id]])
     respond_to do |format|
        format.html{render :layout => false}
   end
@@ -76,29 +76,35 @@ def destroy
     end
   end
 
+
 def buscar_cta
   respond_to do |format|
        format.html
       end
 end
 
+
 def result_cta
 
     respond_to do |format|
-       if params[:obra_social][:obra_social_id].blank?
-         format.html{render :text => '<span style="color:red">Seleccione una obra social</span>' }
-       else
-         #@tratamientos = Tratamiento.find(:all, :conditions => ['obra_social_id = ? and estado_tratamiento_id = ?',  params[:obra_social][:obra_social_id] , 5 ])
-         #@t = Tratamiento.paginate(:page=> params[:page], :per_page=> 1, :conditions => ['obra_social_id = ? and estado_tratamiento_id = ?',  params[:obra_social][:obra_social_id] , 5 ])
-         #@sald_os = SaldoObraSocial.find_by_sql('select ver_saldo_os(' + params[:obra_social][:obra_social_id].to_s + ') as sald' )
-      @sald_os = ActiveRecord::Base.connection.execute('select ver_saldo_os(' + params[:obra_social][:obra_social_id] + ')')
-      @pag = PagoObraSocial.paginate(:page=> params[:page], :per_page=> 1, :conditions => ['obra_social_id = ?', params[:obra_social][:obra_social_id]])
-         
-         format.html{render :layout => false, :partial => 'result_cta'}
-        
-       end
 
- 
+      if params[:flag] == "t"
+        
+         @t = Tratamiento.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['obra_social_id = ? and estado_tratamiento_id = ?',  params[:obra_social][:obra_social_id] , 5 ])
+       format.html{render :partial => 't'}
+    elsif params[:flag] == "p"
+
+        @pag_os = PagoObraSocial.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['obra_social_id = ?', params[:obra_social][:obra_social_id]])
+       format.html{render :partial => 'pag_os'}
+    else
+
+       @t = Tratamiento.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['obra_social_id = ? and estado_tratamiento_id = ?',  params[:obra_social][:obra_social_id] , 5 ])
+       @pag_os = PagoObraSocial.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['obra_social_id = ?', params[:obra_social][:obra_social_id]])
+       format.html{render :layout => false}
+
+    end
+        @sald_os = ActiveRecord::Base.connection.execute('select ver_saldo_os(' + params[:obra_social][:obra_social_id] + ')')
+     
     end
 end
 
