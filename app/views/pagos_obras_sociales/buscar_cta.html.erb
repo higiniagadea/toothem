@@ -11,7 +11,7 @@
       <th>Nombre</th>
       <th>
           <%= select("obra_social", "obra_social_id", ObraSocial.all.collect {|p| [ p.nombre, p.id]}, :include_blank => 'Seleccione') %>
-
+          <%= hidden_field_tag :flag %>
         </th>
       </tr>
 

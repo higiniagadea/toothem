@@ -2,6 +2,12 @@
 <legend class="ui-widget ui-corner-all ui-widget-header">Odontograma</legend>
   <br/>
   <br/>
+     <%= label_tag 'COLOR_AZUL', 'azul'  %>
+     <%= radio_button_tag 'COLOR', 'AZUL',true, :value => 1 %>
+    <%= label_tag 'COLOR_ROJO', 'rojo'   %>
+    <%= radio_button_tag 'COLOR', 'ROJO',false, :value => 2  %>
+
+
   <table>
 
 
@@ -11,7 +17,7 @@
    <%  dientes.each do |diente| %>
          <th>
           
-          <div id="">t</div>
+          <div id=""><%  diente %></div>
           <div id="contenedor">
             <div class="borde superior" id="<%= diente %>_superior"></div>
             <div class="borde inferior" id="<%= diente %>_inferior"></div>
@@ -21,10 +27,9 @@
           </div>
           </th>
           <script type="text/javascript">
-               seleccionar_cara();
-
+             
          $('#<%= diente %>_superior').attr('style', 'activo').click(function(){
-            seleccionar_cara();
+             alert('ewrwrwr')
           });
 
           $('#<%= diente %>_inferior').attr('style', 'activo').click(function(){
@@ -44,14 +49,9 @@
             alert('iiiii')
           });
 
-         function seleccionar_cara (){
-            
-   
-        }
+      
 
-
-
-          </script>
+               </script>
  <% end %>
   </tr>
 
@@ -93,6 +93,8 @@
             alert('iiiii')
           });
 
+
+       
 
           </script>
  <%end%>

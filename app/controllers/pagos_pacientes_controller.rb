@@ -5,7 +5,7 @@ layout 'default'
      @paciente = Paciente.find(params[:id])
 
     respond_to do |format|         
-       @pagos_pacientes = PagoPaciente.paginate :page=> params[:page], :per_page=> 10, :conditions => ['paciente_id = ?', @paciente.id]
+       @pagos_pacientes = PagoPaciente.paginate :page=> params[:page], :per_page=> 12, :conditions => ['paciente_id = ?', @paciente.id]
        format.html{render :partial => 'orden'}
     end
   end
