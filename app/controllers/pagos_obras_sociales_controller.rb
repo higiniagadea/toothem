@@ -103,7 +103,7 @@ def result_cta
        format.html{render :layout => false}
 
     end
-        @sald_os = ActiveRecord::Base.connection.execute('select ver_saldo_os(' + params[:obra_social][:obra_social_id] + ')')
+        @sald_os = ActiveRecord::Base.connection.execute('select ver_saldo_os(' + params[:obra_social][:obra_social_id] + ') ')
      
     end
 end
