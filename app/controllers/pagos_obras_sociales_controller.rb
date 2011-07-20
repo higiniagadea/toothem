@@ -5,7 +5,7 @@ class PagosObrasSocialesController < ApplicationController
  before_filter :login_required
  
   def index
-   @pagos_obras_sociales = PagoObraSocial.paginate(:page=> params[:page], :per_page=> 2, :conditions => ['obra_social_id = ?', params[:obra_social][:obra_social_id]])
+   @pagos_obras_sociales = PagoObraSocial.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['obra_social_id = ?', params[:obra_social][:obra_social_id]])
     respond_to do |format|
        format.html{render :layout => false}
   end
@@ -90,16 +90,16 @@ def result_cta
 
       if params[:flag] == "t"
         
-         @t = Tratamiento.paginate(:page=> params[:page], :per_page=> 2, :conditions => ['obra_social_id = ? and estado_tratamiento_id = ?',  params[:obra_social][:obra_social_id] , 5 ])
+         @t = Tratamiento.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['obra_social_id = ? and estado_tratamiento_id = ?',  params[:obra_social][:obra_social_id] , 5 ])
        format.html{render :partial => 't'}
     elsif params[:flag] == "p"
 
-        @pag_os = PagoObraSocial.paginate(:page=> params[:page], :per_page=> 2, :conditions => ['obra_social_id = ?', params[:obra_social][:obra_social_id]])
+        @pag_os = PagoObraSocial.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['obra_social_id = ?', params[:obra_social][:obra_social_id]])
        format.html{render :partial => 'pag_os'}
     else
 
-       @t = Tratamiento.paginate(:page=> params[:page], :per_page=> 2, :conditions => ['obra_social_id = ? and estado_tratamiento_id = ?',  params[:obra_social][:obra_social_id] , 5 ])
-       @pag_os = PagoObraSocial.paginate(:page=> params[:page], :per_page=> 2, :conditions => ['obra_social_id = ?', params[:obra_social][:obra_social_id]])
+       @t = Tratamiento.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['obra_social_id = ? and estado_tratamiento_id = ?',  params[:obra_social][:obra_social_id] , 5 ])
+       @pag_os = PagoObraSocial.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['obra_social_id = ?', params[:obra_social][:obra_social_id]])
        format.html{render :layout => false}
 
     end
