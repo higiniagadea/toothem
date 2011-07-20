@@ -9,9 +9,6 @@ class CreateSaldosPacientes <  ActiveRecord::Migration
     end
 
 
-
-
-
   end
 
   def self.down
