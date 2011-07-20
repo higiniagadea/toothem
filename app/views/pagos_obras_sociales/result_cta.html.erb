@@ -1,13 +1,13 @@
 <table>
      <tr>
-       <td style=" float: left; margin-left: 900px">El saldo actual es :$ <%= @sald_os[0] %> <br/><br/> </td>
+       <td style=" float: left; margin-left: 900px">El saldo actual es :$ <%= @sald_os[0]["ver_saldo_os"] %> <br/><br/> </td>
      
        <td style=" float: left; margin-left: 900px"><%= link_to image_tag('add.png') + 'Nuevo Pago', new_pago_obra_social_url, :id => 'pago' %>
        </td>
      </tr>
       <script type="text/javascript">
-$('#pago').mouseover(function(){
-   $(this).attr('href', '<%= new_pago_obra_social_path %>?obra_social_id='+$('#obra_social_obra_social_id').val())
+    $('#pago').mouseover(function(){
+       $(this).attr('href', '<%= new_pago_obra_social_path %>?obra_social_id='+$('#obra_social_obra_social_id').val())
 })
 
 
@@ -24,7 +24,6 @@ $('#pago').mouseover(function(){
 
 <h1>Resultado de la B&uacute;squeda</h1><br/>
 <%= render :partial => 't' %>
-
 
 <br/>
 <%= render :partial => 'pag_os' %>
