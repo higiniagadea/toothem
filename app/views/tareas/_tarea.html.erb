@@ -1,5 +1,6 @@
+<div id="tareas">
 <h1>Tareas</h1>
-<% unless @tareas.blank? %>
+<% unless @tar.blank? %>
 <table style=" text-align: left;" class="listados">
   <tr>
     <th>Profesional</th>
@@ -9,7 +10,7 @@
   </tr>
 
 
- <%  @tareas.each do |tarea| %>
+ <%  @tar.each do |tarea| %>
   <tr>
     <td><%= tarea.profesional.nombre %></td>
     <td><%= tarea.fecha_hora.strftime('%d/%m/%Y') %> </td>
@@ -33,3 +34,13 @@
  No se encontraron resultados en tareas
   </table>
 <%end%>
+<table>
+
+  <tr><td>
+<%= will_paginate @tar, :previous_label => 'Anterior', :next_label => 'Siguiente',
+                                  :class => 'btareas pagination',
+                                  :params => {:controller => 'turnos', :action => 'resultado', 'profesional[profesional_id]' => params[:profesional][:profesional_id] }  %>
+    </td>
+  </tr>
+</table>
+</div>

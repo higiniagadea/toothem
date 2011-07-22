@@ -25,7 +25,6 @@ class Tarea < ActiveRecord::Base
 def self.buscar(options)
   scope_builder do |builder|
     builder.by_fechas(options[:fecha_desde], options[:fecha_hasta]) unless options[:fecha_desde].blank? && options[:fecha_hasta].blank?
-     
     builder.by_profesional_id(options[:profesional_id]) unless options[:profesional_id].blank?
   end
 end

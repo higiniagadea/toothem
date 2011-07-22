@@ -120,27 +120,32 @@ class TurnosController < ApplicationController
 
   def resultado
     @profesionales = Profesional.find(params[:profesional][:profesional_id]) if params[:profesional][:profesional_id]
-    params[:turno][:profesional_id] = params[:profesional][:profesional_id] if params[:profesional][:profesional_id].blank?
-   
+    #params[:turno][:profesional_id] = params[:profesional][:profesional_id] if params[:profesional][:profesional_id].blank?
     respond_to do |format|
-      params[:turno][:profesional_id] =  @profesionales.id
-      
-     unless params[:turno][:fecha_desde].blank?
-      if params[:paciente_desc].blank?
 
-        @tareas = Tarea.buscar(params[:turno]).paginate(:page => params[:page], :per_page=> 10)
+      #params[:turno][:profesional_id] == @profesionales.id
+      
+     #unless params[:turno][:fecha_desde].blank?
+      params[:turno][:profesional_id] = params[:profesional][:profesional_id] if params[:profesional][:profesional_id].blank?
+       
+      if params[:paciente_desc].blank?
+        
+        @tar = Tarea.buscar(params).paginate(:page => params[:page], :per_page=> 12, :conditions => ['profesional_id= ?', params[:profesional][:profesional_id]])
         format.html{render :partial => 'tareas/tarea', :layout => false}
        
-       else      
-         
-        @turnos = Turno.basic_search(params[:turno]).paginate(:page => params[:page], :per_page=> 10)
-        format.html{render :partial=> 'resultado', :layout => false}
-           
-      end
-     end
-    end
-  end
+      elsif
+       
+        @tur = Turno.basic_search(params[:paciente_desc]).paginate(:page => params[:page], :per_page=> 12, :conditions => ['profesional_id= ?', params[:profesional][:profesional_id]])
+        format.html{render :partial=> 'turnos/resultado', :layout => false}
+      else
 
+
+      end
+       # end
+     end
+    
+
+  end
 
   end
 
