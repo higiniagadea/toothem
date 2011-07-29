@@ -62,7 +62,7 @@ $('#nuevo').mouseover(function(){
               {
                id : 'turno: <%= turno.id.to_s %>',
                  title  : 'Paciente: <%= turno.paciente.nombre  %> \n\
-               Duracion: <%= turno.duracion.to_i %>minutos' ,
+                           Duracion: <%= turno.duracion.to_i %> minutos' ,
                start : 'Fecha: <%= turno.fecha_hora.iso8601 %>',
                end : 'Duracion: <%= (turno.fecha_hora + (60 * turno.duracion)) %>',
                allDay : false,
@@ -79,9 +79,9 @@ $('#nuevo').mouseover(function(){
               {
                id : 'tarea: <%= tarea.id.to_s %>',
                title  : 'Tarea: <%= tarea.observaciones  %> \n\
-                         Duracion : <%= tarea.duracion %>minutos ',
+                         Duracion : <%= tarea.duracion %> minutos ',
                start : 'Fecha: <%= tarea.fecha_hora.iso8601 %>',
-               end : 'Duracion: <%= (tarea.fecha_hora + (60 * tarea.duracion)) %>',
+               end : 'Duracion: <%=  (tarea.fecha_hora + (60 * tarea.duracion)) %>',
                allDay : false,
                url: '<%= eliminar_tarea_path(tarea) %>'
 

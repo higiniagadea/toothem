@@ -12,7 +12,7 @@ class ClinicasController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @clinicas }
+      
     end
   end
 
@@ -35,7 +35,7 @@ class ClinicasController < ApplicationController
 
     respond_to do |format|
      
-      format.html  { render :layout=> false }
+      format.html  
     end
   end
 

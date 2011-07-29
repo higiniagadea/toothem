@@ -153,7 +153,7 @@ $(document).ready(function(){
     return false
   });
 
-  $('div.ajax-pagination a').live('click', function() {
+  /*$('div.ajax-pagination a').live('click', function() {
     $('#turnos').load(this.href)
     return false
   });
@@ -161,14 +161,14 @@ $(document).ready(function(){
   $('div.turno a').live('click', function() {
     $('#turnos').load(this.href)
     return false
-  });
+  });*/
 
  $('div.ajax-pagination a').live('click', function() {
     $('#busq_turnos').load(this.href)
     return false
   });
 
-  $('div.bturnos a').live('click', function() {
+  $('div.bturno a').live('click', function() {
     $('#busq_turnos').load(this.href)
     return false
   });
@@ -232,6 +232,16 @@ $(document).ready(function(){
 
   $('div.ospago a').live('click', function() {
     $('#pagosos').load(this.href)
+    return false
+  });
+
+  $('div.ajax-pagination a').live('click', function() {
+    $('#tareas').load(this.href)
+    return false
+  });
+
+  $('div.btareas a').live('click', function() {
+    $('#tareas').load(this.href)
     return false
   });
 });

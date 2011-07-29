@@ -1,6 +1,6 @@
 <div id="busq_turnos">
 <h1>Turnos</h1>
-<% unless @turnos.blank? %>
+<% unless @tur.blank? %>
   <table style=" text-align: left;" class="listados">
     <tr>
       <th>Profesional</th>
@@ -9,7 +9,7 @@
       <th>Paciente</th>
       <th>Acciones</th>
     </tr>
-    <%  @turnos.each do |turno| %>
+    <%  @tur.each do |turno| %>
       <tr>
         <td><%=h turno.profesional.nombre %></td>
         <td><%=h turno.fecha_hora.strftime('%d/%m/%Y') %></td>
@@ -31,19 +31,17 @@
       </script>
     <% end %>
       <%else%>
-      No se encontraron resultados en turnos
+      <td style="color:red">No se encontraron resultados en turnos</td>
       <%end%>
   </table>
+
 <table>
   <tr><td>
-<%= will_paginate @turnos, :previous_label => 'Anterior', :next_label => 'Siguiente',
-                                  :class => 'bturnos pagination',
-                                  :params => {:controller => "turnos", :action => "resultado"
-
+<%= will_paginate @tur, :previous_label => 'Anterior', :next_label => 'Siguiente',
+                                  :class => 'bturno pagination',
+                                  :params => {:controller => 'turnos', :action => 'resultado', 'profesional[profesional_id]' => params[:profesional][:profesional_id], 'paciente_desc' => params[:paciente_desc]
                                   }  %>
     </td>
   </tr>
 </table>
-
-
 </div>
