@@ -69,10 +69,13 @@ class TurnosController < ApplicationController
     if  @turno.save
       flash[:notice] = 'Turno guardado'
       format.html{redirect_to busq_turnos_path}
-       format.xml  { render :xml => @turno, :status => :created, :location => @turno }
-    else
-      format.html{redirect_to busq_turnos_path}
-      flash[:error] = 'El horario ya fue asignado con anterioridad'
+      format.xml  { render :xml => @turno, :status => :created, :location => @turno }
+
+      else
+
+        format.html{redirect_to busq_turnos_path}
+      error = ''
+      flash[:error] = @turno.errors.each{|a,e| error += e + '</br>'}
        #format.html { render :action => "new"  }
         #format.xml  { render :xml => @turno.errors, :status => :unprocessable_entity }
     end

@@ -36,11 +36,12 @@ class TareasController < ApplicationController
    @tarea = Tarea.new(params[:tarea])
     respond_to do |format|
       if @tarea.save
-        flash[:notice] = 'Tarea guardado'
+        flash[:notice] = 'Tarea guardada'
         format.html { redirect_to busq_turnos_path  }
       else
-        format.html { redirect_to busq_turnos_path  }
-        flash[:error] = 'El horario ya fue asignado con anterioridad'
+        format.html{redirect_to busq_turnos_path}
+      error = ''
+      flash[:error] = @tarea.errors.each{|a,e| error += e + '</br>'}
       end
     end
 
