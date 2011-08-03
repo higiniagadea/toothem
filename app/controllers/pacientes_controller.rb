@@ -74,40 +74,39 @@ class PacientesController < ApplicationController
   end
   
  
- #def show
-  #@paciente = Paciente.find(params[:id])
-   # @imagenes = Imagen.find_all_by_paciente_id(@paciente)
-   # unless @paciente.archivo_id.blank?
-    # @archivo = Archivo.find(@paciente.archivo_id)
-    #end
+ def show
+  @paciente = Paciente.find(params[:id])
+    @imagenes = Imagen.find_all_by_paciente_id(@paciente)
+    unless @paciente.archivo_id.blank?
+     @archivo = Archivo.find(@paciente.archivo_id)
+    end
      
-    #respond_to do |format|
+    respond_to do |format|
 
-     # format.html
+      format.html {redirect_to edit_paciente_path(@paciente)}
       
-    #end
- #end
+    end
+ end
 
-  #def show_imagen
-   #@imagen = Imagen.find(params [:id])
-   #respond_to do |format|
-    #  format.html {redirect_to show_imagen_path(@imagen)}
-    #end
-  #end
+  def show_imagen
+   @imagen = Imagen.find(params [:id])
+   respond_to do |format|
+      format.html {redirect_to show_imagen_path(@imagen)}
+    end
+  end
 
-  #def changephoto
-   # @paciente = Paciente.find(params[:id])
-    #@value = params[:value]
-    #unless @paciente.archivo_id.blank?
-     # @archivo_ant = Archivo.find(@paciente.archivo_id)
-    #end
-    #@archivo = Archivo.new
-
-    #respond_to do |format|
-     # format.html {render :layout => false}# changephoto.html.erb
-    
-    #end
-  #end
+  def changephoto
+    @paciente = Paciente.find(params[:id])
+    @value = params[:value]
+    unless @paciente.archivo_id.blank?
+      @archivo_ant = Archivo.find(@paciente.archivo_id)
+    end
+    @archivo = Archivo.new
+    respond_to do |format|
+      format.html {render :layout => false}# changephoto.html.erb
+  
+    end
+  end
 
 
   
@@ -132,8 +131,7 @@ class PacientesController < ApplicationController
     @prestaciones = Prestacion.find(:all)  
     @turnos = Turno.find(:all)
     @sald_pac = SaldoPaciente.find_by_sql('select ver_saldo_paciente(' + @paciente.id.to_s + ') as saldo ' )
-
-    
+      
     
     respond_to do |format|
       unless @paciente.blank?

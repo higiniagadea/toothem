@@ -35,7 +35,7 @@
 
 <tr>
   <th>Fecha de Nacimiento</th>
-  <th><%=@paciente.fecha_nacimiento.blank? ? '-' : @paciente.fecha_nacimiento.strftime('%d/%m/%Y') %></th>
+  <th><%=@paciente.fecha_nacimiento.blank? ? '-' : @paciente.fecha_nacimiento.strftime('%d/%m/%y') %></th>
   <th>Grupo Sanguineo</th>
   <th><%=h @paciente.grupo_sanguineo.blank? ? '-' : @paciente.grupo_sanguineo %> </th>
 </tr>

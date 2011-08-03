@@ -1,17 +1,18 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header"><%=h @paciente.nombre %></legend>
   <table>
-    <tr>
-     <td >
-        <% if @paciente.archivo_id.blank? %>
-          <%= image_tag('nouser.jpg') %>
-        <%else%>
-     <td><%= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id = ' + @archivo.id.to_s)), :alt => 'imagen del paciente' %></td>
-        <%end%>
+   <div id="pacientes-screen">
+     <div id= "pacientes-photo">
+    <% if @paciente.archivo_id.blank? %>
+      <%= image_tag('nouser.jpg') %>
+    <%else%>
+      <%= image_tag archivos_path(Archivo.find(:first, :conditions => 'parent_id = ' + @archivo.id.to_s)), :alt => 'imagen del paciente'%>
+    <%end%>
 
-    </td>
-  </tr>
+     </div>
+   </div>
   </table>
+  
 <% form_for(@paciente) do |f| %>
       <%= f.error_messages(:id=>'Error', :header_message => '', :message=>'Se encontraron los siguientes errores') %>
   <div class="errores">
@@ -50,15 +51,15 @@
 
           <tr>
           <th>Sexo</th>
-          <td><select name="paciente[sexo]" class="ui-widget-content">
-              <%=  options_for_select([ "Masculino", "Femenino" ], @paciente.sexo)%>
+          <td><select name="paciente[sexo]" class="ui-widget-content required">
+              <%=  options_for_select(["Masculino", "Femenino"], @paciente.sexo)%>
             </select>
           </td>
           
 
           
           <th>Estado civil</th>
-          <td><select name="paciente[estado_civil]" class="ui-widget-content">
+          <td><select name="paciente[estado_civil]" class="ui-widget-content" >
               <%=  options_for_select([ "Soltero/a", "Casado/a","Divorciado/a","Viudo/a","Otro" ], @paciente.estado_civil)%>
             </select>
           </td>
@@ -68,7 +69,7 @@
           <tr>
           <th>Fecha de Nacimiento </th>
           <td><span class="fecha_nacimiento" class ="ui-widget-content">
-              <input class="ui-widget-content required " title="Fecha de Nacimiento no puede estar en blanco" type="text" id="fecha_nacimiento" name="paciente[fecha_nacimiento]" readonly="readonly" value="<%=@paciente.fecha_nacimiento.strftime('%d/%m/%y')%>" />
+              <input class="ui-widget-content required " title="Fecha de Nacimiento no puede estar en blanco" type="text" id="fecha_nacimiento" name="paciente[fecha_nacimiento]" readonly="readonly" value="<%=  @paciente.fecha_nacimiento.strftime('%d/%m/%Y')%>" />
               </span>
           </td>
 
@@ -122,6 +123,8 @@
            </table>
 
         </table>
+  <div style="clear:both;"></div>
+
 </fieldset>
 
  <% end %>
@@ -151,6 +154,10 @@ function validate(e) { // 1
         }
       });
      });
+
+
+
+
     $("#edit_paciente_" + <%= @paciente.id.to_s %>).validate({
         //errorLabelContainer: $("#edit_datos div.errores")
        errorContainer: $("#edit_paciente div.errores"),

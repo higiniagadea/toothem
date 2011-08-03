@@ -10,7 +10,7 @@
       <table>
         <tr>
           <th>
-            <label for="archivo" id="archivos">Seleccione archivo:</label>
+            <label>Seleccione archivo:</label>
           </th>
           <td>
             <%= f.file_field :uploaded_data, :class=> 'ui-widget-content required'%>
@@ -27,10 +27,10 @@
 </fieldset>
 <script type="text/javascript">
   $(document).ready(function(){
-    $("#archivo").validate({
+    $("#archivo_uploaded_data").validate({
         //errorLabelContainer: $("#new_paciente div.errores")
-       errorContainer: $("#archivo div.errores"),
-       errorLabelContainer: $("ol", $("#archivo div.errores")),
+       errorContainer: $("#archivo_uploaded_data div.errores"),
+       errorLabelContainer: $("ol", $("#archivo_uploaded_data div.errores")),
        wrapper: 'li',
        meta: "validate"
      });
