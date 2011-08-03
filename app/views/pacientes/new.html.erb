@@ -34,21 +34,22 @@
     <td colspan="3"><%= f.text_field :domicilio_laboral, :size=>88, :class =>"ui-widget-content"%>  </td>
     </tr>
     <tr>
-    <th>
-      Sexo</th>
-    <td><select name="paciente[sexo]" class ="ui-widget-content">
-        <%=  options_for_select(["Seleccione", "Masculino", "Femenino"], @paciente.sexo) %>
+
+     <th>Sexo</th>
+    <td><select name="paciente[sexo]" class ="ui-widget-content required" title="Seleccione el sexo">
+    <%=  options_for_select([["Seleccione",""], "Femenino", "Masculino"])%>
       </select>
-    </td>
+      </td>
+      
     <th>
       Estado Civil</th>
     <td><select name="paciente[estado_civil]" class ="ui-widget-content">
-        <%=  options_for_select(["Seleccione", "Soltero/a", "Casado/a","Divorciado/a","Viudo/a","Otro" ], @paciente.estado_civil)%>
+        <%=  options_for_select(["Soltero/a", "Casado/a","Divorciado/a","Viudo/a","Otro" ], @paciente.estado_civil)%>
       </select>
     </td>
     </tr>
 
-  
+     
 
     <tr>
     <th>
@@ -133,6 +134,7 @@ function validate(e) { // 1
 }
 
   $(document).ready(function(){
+   
      $(function() {
         $('input:text').keydown(function(e){
         if (e.keyCode == 13) {
@@ -140,6 +142,8 @@ function validate(e) { // 1
         }
       });
      });
+
+
      
     $("#new_paciente").validate({
         //errorLabelContainer: $("#new_paciente div.errores")
@@ -150,13 +154,14 @@ function validate(e) { // 1
        
        rules: {          
          "paciente[matricula]": {required: true, remote:"/pacientes/verificar_matricula?paciente[matricula]=" + $('#paciente[matricula]').val(), rangelength: [6, 10]},
-         "paciente[nro_afiliado]": {required: true, remote:"/pacientes/verificar_nroafiliado?paciente[nro_afiliado]=" + $('#paciente[nro_afiliado]').val()}       
-
+         "paciente[nro_afiliado]": {required: true, remote:"/pacientes/verificar_nroafiliado?paciente[nro_afiliado]=" + $('#paciente[nro_afiliado]').val()},
+        "paciente[sexo]" :{required:true}
      },
       messages:{
            "paciente[matricula]": {remote:"Nro. de Documento ya se encuentra cargado"},
-           "paciente[nro_afiliado]": {remote:"Nro. de Afiliado ya se encuentra cargado"}            
-         }
+           "paciente[nro_afiliado]": {remote:"Nro. de Afiliado ya se encuentra cargado"}
+         
+       }
 
       }); 
  

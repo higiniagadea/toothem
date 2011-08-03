@@ -1,13 +1,7 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
 <legend class="ui-widget ui-corner-all ui-widget-header">Odontograma</legend>
   <br/>
-  <br/>
-     <%= label_tag 'COLOR_AZUL', 'azul'  %>
-     <%= radio_button_tag 'COLOR', 'AZUL',true, :value => 1 %>
-    <%= label_tag 'COLOR_ROJO', 'rojo'   %>
-    <%= radio_button_tag 'COLOR', 'ROJO',false, :value => 2  %>
-
-
+  
   <table>
 
 
@@ -19,90 +13,58 @@
           
           <div id=""><%  diente %></div>
           <div id="contenedor">
-            <div class="borde superior" id="<%= diente %>_superior"></div>
-            <div class="borde inferior" id="<%= diente %>_inferior"></div>
-            <div class="borde der" id="<%= diente %>_derecho"></div>
-            <div class="borde izq" id="<%= diente %>_izquierdo"></div>
-            <div class="contenido" id="<%= diente %>_centro"></div>
+            <div class="borde superior" id="<%= diente %>_superior" onclick="ilumina(this)"></div>
+            <div class="borde inferior" id="<%= diente %>_inferior" onclick="ilumina(this)"></div>
+            <div class="borde der" id="<%= diente %>_derecho" onclick="ilumina(this)"></div>
+            <div class="borde izq" id="<%= diente %>_izquierdo" onclick="ilumina(this)"></div>
+            <div class="contenido" id="<%= diente %>_centro" onclick="ilumina(this)"></div>
           </div>
           </th>
+
           <script type="text/javascript">
+
+            var color = 0;
+            function ilumina(obj) {
+
+            if(color == 0){
+            obj.style.backgroundColor = "#FF0000";
+            color = 1;
+            } else {
+            obj.style.backgroundColor = "#9900FF"
+            color = 0;
+            }
+            }
+
              
-         $('#<%= diente %>_superior').attr('style', 'activo').click(function(){
-             alert('ewrwrwr')
+        /* $('#<%= diente %>_superior').attr('activo').click(function(){
+              
           });
 
-          $('#<%= diente %>_inferior').attr('style', 'activo').click(function(){
-            alert('ooooooooo')
+          $('#<%= diente %>_inferior').attr('activo').click(function(){
+          
           });
 
-            $('#<%= diente %>_derecho').attr('style', 'activo').click(function(){
-            alert('yyyyyyyyy')
+            $('#<%= diente %>_derecho').attr('activo').click(function(){
+             
           });
 
 
-         $('#<%= diente %>_izquierdo').attr('style', 'activo').click(function(){
-            alert('uuuu')
+         $('#<%= diente %>_izquierdo').attr('activo').click(function(){
+           
           });
 
-         $('#<%= diente %>_centro').attr('style', 'activo').click(function(){
-            alert('iiiii')
-          });
+         $('#<%= diente %>_centro').attr('activo').click(function(){
+             
+          });*/
 
       
 
                </script>
  <% end %>
   </tr>
-
-
- <tr>
- 
-   <% dientes = [48,47,46,45,44,43,42,41,31,32,33,34,35,36,37,38] %>
-   <%  dientes.each do |diente| %>
-          <th>
-          <div id="a">r</div>
-          <div id="contenedor">
-            <div class="borde superior" id="<%= diente %>_superior"></div>
-            <div class="borde inferior" id="<%= diente %>_inferior"></div>
-            <div class="borde der" id="<%= diente %>_derecho"></div>
-            <div class="borde izq" id="<%= diente %>_izquierdo"></div>
-            <div class="contenido" id="<%= diente %>_centro"></div>
-          </div>
-          </th>
-            <script type="text/javascript">
-
-         $('#<%= diente %>_superior').attr('style', 'activo').click(function(){
-            alert('holaaa')
-          });
-
-          $('#<%= diente %>_inferior').attr('style', 'activo').click(function(){
-            alert('ooooooooo')
-          });
-
-            $('#<%= diente %>_derecho').attr('style', 'activo').click(function(){
-            alert('yyyyyyyyy')
-          });
-
-
-         $('#<%= diente %>_izquierdo').attr('style', 'activo').click(function(){
-            alert('uuuu')
-          });
-
-         $('#<%= diente %>_centro').attr('style', 'activo').click(function(){
-            alert('iiiii')
-          });
-
-
-       
-
-          </script>
- <%end%>
-  </tr>
-
-
   </table>
 
+ 
 </fieldset>
 
 <%= link_to 'Volver', odontogramas_path %>

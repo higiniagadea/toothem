@@ -1,7 +1,7 @@
 class UsuariosController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
-  
+  layout 'default'
   # render new.rhtml
   def new
     @usuario = Usuario.new
