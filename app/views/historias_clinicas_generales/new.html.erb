@@ -1,7 +1,7 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Historia Cl&iacute;nica</legend>
 
-<% form_for(:historia_clinica_general, @historia_clinica_general, :url => {:method => :post, :action => "show"}) do |f| %>
+<% form_for(:historia_clinica_general, @historia_clinica_general, :url => {:method => :post, :action => "show"}, :html => {:id => 'new_historia_clinica_general'}) do |f| %>
         <%= f.error_messages %>
 
   <div id="pacientes-options"> 
@@ -12,7 +12,7 @@
     <div id="pacientes-actions">
        <table>        
         <tr>
-           <td style=" float: left; margin-left:  1020px"><%= link_to image_tag('printer.png'), imprimir_paciente_historia_clinica_general_path(@paciente), :title => 'Imprimir', :popup => ['Imprimir', 'height=300,width=600'] %>
+           <td style=" float: left; margin-left:  1020px"><%#= link_to image_tag('printer.png'), imprimir_paciente_historia_clinica_general_path(@paciente), :title => 'Imprimir', :popup => ['Imprimir', 'height=300,width=600'] %>
            <%= f.submit 'Guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
           </td>
         </tr>
@@ -363,14 +363,14 @@
   <tr>
     <td class="labels">Observaciones: </td>
     <td>
-    <%= f.text_field :observaciones, :size => 17, :class=> 'ui-widget-content', :onkeypress=> 'return validar(event)'%>
+    <%= f.text_field :observaciones, :size => 17, :class=> 'required ui-widget-content', :onkeypress=> 'return validar(event)'%>
     </td>
   </tr>
 
   <tr class="odd">
    <td class="labels">Declaraci&oacute;n Jurada: </td>
     <td>
-    <%= f.check_box :leyenda_declaracion_jurada, :class=> 'required ui-widget-content', :onkeypress=> 'return validar(event)'%>
+    <%= f.check_box :leyenda_declaracion_jurada, :class=> 'ui-widget-content requiredCheck'%>
     </td>
  </tr>
  </table>
@@ -405,13 +405,29 @@ function validate(e) { // 1
     return patron.test(te); // 6
 }
 
+
+
+
 $(document).ready(function(){
-    $("#new_historia_clinica_general").validate({
+    $.validator.addMethod("check", function() {
+        return false;
+    }, "hjhgjh");
+
+    $.validator.addClassRules({
+	requiredCheck: {check:true}
+    });
+
+  
+    $("#new_historia_clinica_general").validate();/*{
         //errorLabelContainer: $("#new_paciente div.errores")
        errorContainer: $("#new_historia_clinica_general div.errores"),
        errorLabelContainer: $("ol", $("#new_historia_clinica_general div.errores")),
        wrapper: 'li',
        meta: "validate"
-    });
+       
+    });*/
+
+
 });
+
 </script>
