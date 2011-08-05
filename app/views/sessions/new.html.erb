@@ -3,10 +3,10 @@
   <legend class="ui-widget ui-corner-all ui-widget-header">Ingresar</legend>
       <% form_tag session_path do -%>
       <p><%= label_tag 'Usuario' %><br />
-      <%= text_field_tag 'login', @login, :class => 'ui-widget-content'  %></p>
+      <%= text_field_tag 'login', @login, :class => 'ui-widget-content required'  %></p>
 
       <p><%= label_tag 'Contraseña' %><br/>
-      <%= password_field_tag 'password', nil, :class => 'ui-widget-content' %></p>
+      <%= password_field_tag 'password', nil, :class => 'ui-widget-content required' %></p>
 
       <!-- Uncomment this if you want this functionality
       <p><%= label_tag 'remember_me', 'Remember me' %>
@@ -32,5 +32,15 @@
         }
       });
      });
+
+     $("#sesion").validate({
+        //errorLabelContainer: $("#new_paciente div.errores")
+       errorContainer: $("#sesion div.errores"),
+       errorLabelContainer: $("ol", $("#sesion div.errores")),
+       wrapper: 'li',
+       meta: "validate"
+
+
+  });
   })
 </script>

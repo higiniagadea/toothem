@@ -4,7 +4,7 @@ class Tarea < ActiveRecord::Base
   belongs_to :profesional, :dependent => :destroy
 
   validates_presence_of :fecha_hora, :message => ' no puede estar en blanco'
-  #validates_uniqueness_of :fecha_hora, :scope => [:profesional_id], :message => "El horario ya fue asignado con anterioridad"
+  
 
 validate :valida_fecha_hora
    def valida_fecha_hora

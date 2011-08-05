@@ -370,7 +370,7 @@
   <tr class="odd">
    <td class="labels">Declaraci&oacute;n Jurada: </td>
     <td>
-    <%= f.check_box :leyenda_declaracion_jurada, :class=> 'ui-widget-content requiredCheck'%>
+    <%= f.check_box :leyenda_declaracion_jurada, :class=> 'ui-widget-content required'%>
     </td>
  </tr>
  </table>
@@ -409,13 +409,15 @@ function validate(e) { // 1
 
 
 $(document).ready(function(){
-    $.validator.addMethod("check", function() {
+    /*$.validator.addMethod("check", function() {
         return false;
     }, "hjhgjh");
 
     $.validator.addClassRules({
 	requiredCheck: {check:true}
-    });
+    });*/
+
+
 
   
     $("#new_historia_clinica_general").validate();/*{

@@ -37,7 +37,7 @@
   </td>
   <th>
    E-mail </th>
-  <td><%= f.text_field :email, :class =>"ui-widget-content required ", :title => 'Ingrese un mail valido', :onkeypress=> 'return valida(event)'  %>
+  <td><%= f.text_field :email, :class =>"ui-widget-content required", :title => 'Ingrese un mail valido' %>
   </td>
   </tr>
 
@@ -60,7 +60,7 @@
 
   <th>Fecha Nacimiento</th>
     <td><span class="fecha_nacimiento" class ="ui-widget-content">
-              <input class="ui-widget-content  "type="text" id="fecha_nacimiento" name="profesional[fecha_nacimiento]" readonly="readonly"  value="<%=@profesional.fecha_nacimiento.strftime('%d/%m/%y')%>" />
+              <input class="ui-widget-content required "type="text" id="fecha_nacimiento" name="profesional[fecha_nacimiento]" readonly="readonly"  value="<%=@profesional.fecha_nacimiento.strftime('%d/%m/%y')%>" />
       </span></td>
   </tr>
 
@@ -68,7 +68,7 @@
 
   <th>Fecha  de Ingreso</th>
     <td><span class="fecha_ingreso" class ="ui-widget-content">
-              <input class="ui-widget-content  "type="text" id="fecha_ingreso" name="profesional[fecha_ingreso]" readonly="readonly" />
+              <input class="ui-widget-content required "type="text" id="fecha_ingreso" name="profesional[fecha_ingreso]" readonly="readonly" value="<%=@profesional.fecha_ingreso.strftime('%d/%m/%y')%>" />
       </span></td>
 
   <tr>
@@ -120,10 +120,13 @@ function validate(e) { // 1
         }
       });
      });
-    $("#new_profesional").validate({
-        //errorLabelContainer: $("#new_paciente div.errores")
-       errorContainer: $("#new_profesional div.errores"),
-       errorLabelContainer: $("ol", $("#new_profesional div.errores")),
+
+
+
+    $("#edit_profesional_<%= @profesional.id.to_s%>").validate({
+
+       errorContainer: $("#edit_profesional div.errores"),
+       errorLabelContainer: $("ol", $("#edit_profesional div.errores")),
        wrapper: 'li',
        meta: "validate",
        rules: {

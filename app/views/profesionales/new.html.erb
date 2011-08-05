@@ -37,14 +37,14 @@
   </td>
   <th>
    E-mail </th>
-  <td><%= f.text_field :email, :class =>"ui-widget-content required ", :title => 'Ingrese un mail valido', :onkeypress=> 'return valida(event)'  %>
+  <td><%= f.text_field :email, :class =>"ui-widget-content required ", :title => 'Ingrese un mail valido'  %>
   </td>
   </tr>
 
   <tr>
   <th>
     Direccion </th>
-  <td><%= f.text_field :direccion, :class =>"ui-widget-content required " , :onkeypress=> 'return validate(event)', :title => 'Direccion no puede estar en blanco'%>
+  <td><%= f.text_field :direccion, :class =>"ui-widget-content required " , :title => 'Direccion no puede estar en blanco'%>
   </td>
   <th>
     Telefono </th>
@@ -60,7 +60,7 @@
 
   <th>Fecha Nacimiento</th>
     <td><span class="fecha_nacimiento" class ="ui-widget-content">
-              <input class="ui-widget-content required " title="Ingrese la fecha de nacimiento" type="text" id="fecha_nacimiento" name="profesional[fecha_nacimiento]" readonly="readonly" />
+              <input class="ui-widget-content  required" title="Ingrese la fecha de nacimiento" type="text" id="fecha_nacimiento" name="profesional[fecha_nacimiento]" readonly="readonly" />
       </span></td>  
   </tr>
 
@@ -68,7 +68,7 @@
 
   <th>Fecha Ingreso</th>
     <td><span class="fecha_ingreso" class ="ui-widget-content">
-              <input class="ui-widget-content required  " title="Ingrese la fecha de ingreso" type="text" id="fecha_ingreso" name="profesional[fecha_ingreso]" readonly="readonly" />
+              <input class="ui-widget-content required" title="Ingrese la fecha de ingreso" type="text" id="fecha_ingreso" name="profesional[fecha_ingreso]" readonly="readonly" />
       </span></td>
 
   <tr>
