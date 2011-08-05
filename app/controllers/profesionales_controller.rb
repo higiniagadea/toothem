@@ -24,7 +24,7 @@ class ProfesionalesController < ApplicationController
     @profesional = Profesional.find(params[:id])   
     respond_to do |format|
     
-      format.html { render :layout => 'default'}
+      format.html { render :layout => false}
     end
   end
 
@@ -91,12 +91,14 @@ class ProfesionalesController < ApplicationController
   def destroy
     @profesional = Profesional.find(params[:id])
 
-    if @profesional.fichas.blank? 
-      @profesional.destroy
-      flash[:notice] = 'Profesional eliminado'
+    unless @profesional.tareas.blank? || unless @profesional.turnos.blank?
+     flash[:error] = "Imposible eliminar el profesional ya que posee registros asociados"
+         
     else
-      flash[:error] = "Imposible eliminar el profesional ya que posee registros asociados"
-    end   
+      flash[:notice] = 'Profesional eliminado'
+      @profesional.destroy
+    end
+    end
 
     respond_to do |format|
       format.html { redirect_to buscar_profesionales_path }

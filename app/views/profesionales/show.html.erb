@@ -24,7 +24,7 @@
     
     <tr>
       <th>Matricula Profesional</th>
-      <td><%= @profesional.matricula_profesional  %> </td>
+      <td><%= @profesional.matricula_profesional.blank? ? '-' : @profesional.matricula_profesional  %> </td>
    
       <th>E-mail</th>
       <td><%=@profesional.email %> </td>
@@ -39,10 +39,10 @@
 
     <tr>
       <th>Fecha de Nacimiento</th>
-      <td><%= @profesional.fecha_nacimiento.strftime('%d/%m/%y')%> </td>
+      <td><%= @profesional.fecha_nacimiento.blank? ? '-' :@profesional.fecha_nacimiento.strftime('%d/%m/%y') %> </td>
     
       <th>Fecha de Ingreso</th>
-      <td><%=@profesional.fecha_ingreso.blank? ? '-' :@profesional.fecha_ingreso %> </td>
+      <td><%=@profesional.fecha_ingreso.blank? ? '-' :@profesional.fecha_ingreso.strftime('%d/%m/%y') %> </td>
     </tr>
 
     <tr>
@@ -54,9 +54,8 @@
   </table>
   <table>
     <tr>
-  <td style=" float: left; margin-left: 1060px">
-    <%= link_to 'Volver', buscar_profesionales_path %>
-  
+  <td style=" float: left; margin-left: 500px">
+     
   </td>
     </tr>
 </table>
