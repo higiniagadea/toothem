@@ -128,7 +128,7 @@ class TurnosController < ApplicationController
 
       #params[:turno][:profesional_id] == @profesionales.id
       
-     #unless params[:turno][:fecha_desde].blank?
+     unless params[:turno][:fecha_desde].blank?
       params[:turno][:profesional_id] = params[:profesional][:profesional_id] if params[:profesional][:profesional_id].blank?
        
       if params[:paciente_desc].blank?
@@ -144,7 +144,7 @@ class TurnosController < ApplicationController
 
 
       end
-       # end
+        end
      end
     
 
