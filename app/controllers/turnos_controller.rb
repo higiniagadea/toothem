@@ -90,6 +90,7 @@ class TurnosController < ApplicationController
        if @turno.update_attributes(params[:turno])
          flash[:notice] = 'Turno Actualizado'
          format.html{redirect_to cambios_turnos_path}
+        
        end
      end
   end
@@ -138,7 +139,7 @@ class TurnosController < ApplicationController
        
       elsif
        
-        @tur = Turno.basic_search(params[:paciente_desc]).paginate(:page => params[:page], :per_page=> 12, :conditions => ['profesional_id= ?', params[:profesional][:profesional_id]])
+        @tur = Turno.basic_search(params[:paciente_desc]).paginate(:page => params[:page], :per_page=> 12, :conditions => ['profesional_id= ? ', params[:profesional][:profesional_id]])
         format.html{render :partial=> 'turnos/resultado', :layout => false}
       else
 

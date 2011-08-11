@@ -31,7 +31,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :turnos, :collection => {:cambios => :get, :verificar => :get, :resultado => [:get, :post], :turno_tarea => :get, :get_turnos => :get, :busq => :get, :agenda => [:get, :post],},
                          :member => {:eliminar => :get}
   
-   map.resources :imagenes, :collection => {:new_archivo => :get}
+   map.resources :imagenes, :collection => {:new_archivo => [:get, :post]}
               
   #map.resources :historias_clinicas_ortodoncias
 
@@ -92,7 +92,7 @@ map.resources :periodos_obras_sociales,  :collection => {:buscar => :get, :resul
                            :liquidar => [:get, :post],
                            :ver_saldo_pac => [:get, :post],
                             :update_tratamiento => [:get, :post],
-                            :changephoto => :get,
+                            :changephoto => [:get,:post],
                             :uploadphoto => :post,
                             :editfield => :get,
                             :updatefield => :put,
@@ -102,7 +102,7 @@ map.resources :periodos_obras_sociales,  :collection => {:buscar => :get, :resul
                             :update_titular => :put,
                             :new_titular => :get,
                             :create_titular => :post,
-                            :show_imagen => :get,
+                            :show_imagen => [:get, :post], 
                             :listado_historias_clinicas => :get,
                             :ver => [:post, :get],
                             :imprimir=> [:post, :get],

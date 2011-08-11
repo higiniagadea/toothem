@@ -10,9 +10,9 @@ validate :valida_fecha_hora
    def valida_fecha_hora
      fecha_desde = self.fecha_hora - self.duracion.minutes
      fecha_hasta = self.fecha_hora + self.duracion.minutes
- turno = Turno.find(:first, :conditions => ['(fecha_hora between ? and?) and profesional_id = ?',  fecha_desde, fecha_hasta, self.profesional_id])
+ 
      tarea = Tarea.find(:first, :conditions => ['(fecha_hora between ? and?) and profesional_id = ?',  fecha_desde, fecha_hasta, self.profesional_id])
-    
+    turno = Turno.find(:first, :conditions => ['(fecha_hora between ? and?) and profesional_id = ?',  fecha_desde, fecha_hasta, self.profesional_id])
      errors.add('Verifique la fecha y hora asignada') unless tarea.blank? && turno.blank?
    end
 

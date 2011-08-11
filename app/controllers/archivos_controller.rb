@@ -18,8 +18,8 @@ class ArchivosController < ApplicationController
   end
   
 
-  def show
-    @paciente = Paciente.find(params[:paciente_id])
+  def show    
+    @paciente = Paciente.find(params[:archivo][:paciente_id])
     @image_data = Archivo.find(params[:id])
     @image = @image_data.db_file.data
     send_data(@image, :type => @image_data.content_type,
