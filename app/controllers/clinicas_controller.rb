@@ -35,7 +35,7 @@ class ClinicasController < ApplicationController
 
     respond_to do |format|
      
-      format.html  
+      format.html{render :layout => false}
     end
   end
 

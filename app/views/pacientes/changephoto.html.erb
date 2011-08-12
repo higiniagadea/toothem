@@ -4,27 +4,30 @@
   <b>Cambiar imagen del paciente <%=  @paciente.nombre %></b><br/><br/>
    <% form_for(:archivo, :url => archivos_path,
                          :html => { :multipart => true }) do |f| -%>
+
  <div class="errores">
     <ol style="list-style:none"></ol>
   </div>
+
       <table>
         <tr>
-          <th>
-            <label>Seleccione archivo:</label>
-          </th>
+          <th>Seleccione archivo: </th>
           <td>
             <%= f.file_field :uploaded_data, :class=> 'ui-widget-content required'%>
             <%= hidden_field :paciente,:id,"value"=>@paciente.id %>
           </td>
-        </tr>
-        <tr>
+         </tr>
+         <tr>
           <td><a  style="font-size: 13px;color:red" class="close">Cancelar</a></td>
           <td><%= submit_tag 'Aceptar' %></td>
         </tr>
       </table>
+  
    <% end -%>
 </div>
+
 </fieldset>
+
 <script type="text/javascript">
   $(document).ready(function(){
     $("#archivo_uploaded_data").validate({

@@ -34,7 +34,7 @@ class Turno < ActiveRecord::Base
 
   named_scope :by_paciente_desc, lambda { |paciente_desc|
     {
-      :conditions => ['paciente_desc= :paciente_id',
+      :conditions => ['paciente_desc= :paciente_desd',
                  {:paciente_desc=> paciente_desc }]
     }
   }

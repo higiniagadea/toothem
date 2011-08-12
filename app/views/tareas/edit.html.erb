@@ -19,7 +19,8 @@
     </tr>
     <tr>
       <th>Fecha</th>
-       <td><%= f.datetime_select :fecha_hora, :order => [:day, :month, :year], :start_year => 2011,  :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
+      <td><%=h @tarea.fecha_hora.strftime('%d/%m/%Y') %>
+<%#= f.datetime_select :fecha_hora, :order => [:day, :month, :year], :start_year => 2011,  :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
                                                                                               'Octubre', 'Noviembre', 'Diciembre'], :prompt => false %>
 
        </td>

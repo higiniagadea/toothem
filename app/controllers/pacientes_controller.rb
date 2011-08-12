@@ -52,30 +52,23 @@ class PacientesController < ApplicationController
   def result
     
     respond_to do |format|
-      if params[:nombre].blank? && params[:matricula].blank? 
+      if params[:nombre].blank? && params[:matricula].blank?
       format.html{render :text => '<span style="color:red">Ingrese al menos un dato para realizar la b&uacute;squeda </span>' }
    
       elsif
-          params[:nombre].size > 2 || params[:matricula].size > 2
+       #params[:nombre].size > 2 && params[:matricula].size > 2
+       format.html{render :partial=> 'result', :layout => false }
+       @pacientes = Paciente.basic_search(params).paginate  :page=> params[:page], :per_page=> 10, :order => 'nombre ASC'
         
-        format.html{render :partial=> 'result', :layout => false }
-         
-        @pacientes = Paciente.basic_search(params).paginate  :page=> params[:page], :per_page=> 10, :order => 'nombre ASC'
-       
-      else
-        params[:nombre].size  < 2 || params[:matricula].size < 2
-        format.html {render :text=> '<span style="color:red">Ingrese al menos tres caracteres para realizar la b&uacute;squeda</span>'}
-    
       end
-
-      
+      end
     end
-   
-  end
-  
+ 
  
  def show
-  @paciente = Paciente.find(params[:id])
+  
+    @paciente = Paciente.find(params[:id])
+    
     @imagenes = Imagen.find_all_by_paciente_id(@paciente)
     unless @paciente.archivo_id.blank?
      @archivo = Archivo.find(@paciente.archivo_id)
@@ -83,13 +76,13 @@ class PacientesController < ApplicationController
      
     respond_to do |format|
 
-      format.html {redirect_to edit_paciente_path(@paciente)}
+      format.html# {redirect_to edit_paciente_path(@paciente)}
       
     end
  end
 
   def show_imagen
-   @imagen = Imagen.find(params [:id])
+   @imagen = Imagen.find(params[:id])
    respond_to do |format|
       format.html {redirect_to show_imagen_path(@imagen)}
     end
@@ -122,6 +115,11 @@ class PacientesController < ApplicationController
   
   def edit
     params[:paciente_id]
+
+
+    @value = params[:value]
+
+    @archivo = Archivo.new
     @paciente = Paciente.find_by_id(params[:id])   
     @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha ASC')
     @trat = Tratamiento.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['paciente_id = ? and estado_tratamiento_id = ?',  @paciente.id.to_s  , 5 ], :order => 'fecha ASC')
@@ -131,8 +129,14 @@ class PacientesController < ApplicationController
     @prestaciones = Prestacion.find(:all)  
     @turnos = Turno.find(:all)
     @sald_pac = SaldoPaciente.find_by_sql('select ver_saldo_paciente(' + @paciente.id.to_s + ') as saldo ' )
-      
-    
+   # @imagenes = Imagen.find_all_by_paciente_id(@paciente.id)
+   
+    @archivos = Archivo.find_by_id(params[:paciente_id])
+
+     unless @paciente.archivo_id.blank?
+      @archivo_ant = Archivo.find(@paciente.archivo_id)
+    end
+
     respond_to do |format|
       unless @paciente.blank?
       unless @paciente.archivo_id.blank?

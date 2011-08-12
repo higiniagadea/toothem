@@ -28,7 +28,7 @@ class ImagenesController < ApplicationController
   # GET /imagenes/new.xml
   def new
     
-    @paciente = Paciente.find(params[:id])
+    @paciente = Paciente.find(params[:paciente_id])
     @imagen = Imagen.new(params[:imagen])
     @valor = "imagen"
     @pagetitle = "Nueva imagen"
