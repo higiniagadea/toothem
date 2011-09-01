@@ -67,8 +67,7 @@ class PacientesController < ApplicationController
  
  def show
   
-    @paciente = Paciente.find(params[:id])
-    
+    @paciente = Paciente.find(params[:id])    
     @imagenes = Imagen.find_all_by_paciente_id(@paciente)
     unless @paciente.archivo_id.blank?
      @archivo = Archivo.find(@paciente.archivo_id)
@@ -90,6 +89,8 @@ class PacientesController < ApplicationController
 
   def changephoto
     @paciente = Paciente.find(params[:id])
+   
+    
     @value = params[:value]
     unless @paciente.archivo_id.blank?
       @archivo_ant = Archivo.find(@paciente.archivo_id)
@@ -115,9 +116,6 @@ class PacientesController < ApplicationController
   
   def edit
     params[:paciente_id]
-
-
-    @value = params[:value]
 
     @archivo = Archivo.new
     @paciente = Paciente.find_by_id(params[:id])   

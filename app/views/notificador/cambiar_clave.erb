@@ -1,0 +1,13 @@
+Estimado <%=  @usuario.id.to_s %>, <br/><br/>
+
+Usted ha solicitado el cambio de su clave de acceso a i-sicat. Si esto es correcto debe hacer click
+en el enlace que se muestra debajo, el cual le asignará una nueva clave de ingreso y se la enviará
+a esta dirección de correo electrónico. <b>Si usted no ha solicitado ningún cambio en su clave,
+simplemente ignore y elimine este mensaje</b>
+<br/><br/>
+<a href="<%= @usuario.cliente.dominio %>/usuarios/cambiar_clave/<%=  @usuario.id.to_i %>/?hash=<%=  @usuario.linkhash %>">
+  <%= @usuario.cliente.dominio %>/usuarios/cambiar_clave/<%=  @usuario.id.to_i %>/?hash=<%=  @usuario.linkhash %>
+</a>
+<br/><br/>
+
+Ante cualquier inquietud comuníquese con el administrador del sistema.

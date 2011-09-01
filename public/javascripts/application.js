@@ -244,6 +244,16 @@ $(document).ready(function(){
     $('#tareas').load(this.href)
     return false
   });
+
+  $('div.ajax-pagination a').live('click', function() {
+    $('#usuario_pag').load(this.href)
+    return false
+  });
+
+  $('div.usuario a').live('click', function() {
+    $('#usuario_pag').load(this.href)
+    return false
+  });
 });
      
     

@@ -30,7 +30,7 @@
    <tr  class="<%= cycle('par','impar') -%>">
     <th><%=h tratamiento.fecha.blank? ? '-' :tratamiento.fecha.strftime('%d/%m/%Y') %></th>
   
-    <th><%=h tratamiento.prestacion.descripcion %></th>
+    <th><%=h tratamiento.prestacion_id %></th>
     <th><%=h tratamiento.diente %></th>
     <th><%=h tratamiento.cara %></th>
    

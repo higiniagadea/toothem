@@ -6,8 +6,9 @@
     <% if @paciente.archivo_id.blank? %>
       <%= image_tag('nouser.jpg') %>
     <%else%>
-      <%= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id = ' + @archivo.id.to_s)), :alt => 'imagen del paciente' %>
-    <%end%>
+      <%= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id = ' + @paciente.archivo.id.to_s)), :alt => 'imagen del paciente' %>
+  
+<%end%>
   </div>
   <div id="pacientes-options">
 
@@ -22,6 +23,8 @@
     </div>
 
   </div>
+
+
   <fieldset class="ui-widget-content ui-corner-all">
     <legend class="ui-widget ui-widget-header ui-corner-all" >Datos del paciente</legend>
     <table class="show-data">
@@ -185,7 +188,7 @@
                     </a>
               </div>
            </h2>
-           <%  thumbnail = Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)%>
+           <%  @archivo_thumbnail = Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)%>
         <p>
            <div style=" height: 200px; float:  right">
               <%= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id ='+imagen.archivo_id.to_s)) , :alt => imagen.descripcion, :id => imagen.id %>
@@ -262,8 +265,8 @@ $(document).ready(function()
    {
       $(this).qtip(
       {
-         content: '<a onclick="Boxy.load(\'<%= changephoto_paciente_url(@paciente) %>\',{modal: true})">Editar</a>',
-         //content: '<a href="<%#= changephoto_paciente_url(@paciente) %>" id="imagen">Editar</a>',
+         //content: '<a onclick="Boxy.load(\'<%= changephoto_paciente_url(@paciente) %>\',{modal: true})">Editar</a>',
+         content: '<a href="<%= changephoto_paciente_url(@paciente) %>" id="imagen">Editar</a>',
          position: 'topLeft', // Set its position
          hide: {
             fixed: true // Make it fixed so it can be hovered over

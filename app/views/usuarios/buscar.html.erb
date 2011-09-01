@@ -1,0 +1,74 @@
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Buscar Usuarios</legend>
+
+   <table>
+    <tr><td style=" float: left; margin-left: 990px">
+      <%= link_to  image_tag('add.png') + 'Agregar Usuario', new_usuario_path %>
+        </td>
+    </tr>
+  </table>
+
+<% form_remote_tag :url =>  url_for(:controller => 'usuarios', :action => 'resultado') ,
+                    :method => :post,
+                    :update => :search_hits do -%>
+
+    <table style=" text-align: left">
+      <tr>
+        <th>
+          Nombre</th>
+        <td><%= text_field_tag :login,{}, :class=> 'ui-widget-content ', :onkeypress=> 'return validar(event)' %>
+        </td>
+      </tr>
+
+    </table>
+
+  <table>
+      <tr>
+        <td style=" float: left; margin-left:  400px">
+          <%= submit_tag 'Buscar',  :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
+         <td id="texto_ayuda"><%= image_tag('help.png') %></td>
+      </tr>
+      </table>
+
+  <div id ="search_hits"></div>
+
+
+<%end -%>
+
+
+
+
+</fieldset>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+    $(function() {
+   $('input:text').keydown(function(e){
+        if (e.keyCode == 13) {
+            jQuery.ajax({data:jQuery.param(jQuery(this).serializeArray()) + '&amp;authenticity_token=' + encodeURIComponent('ucA0H+h+SkRtPNXrbmVPgxYiV7ofXaTpnrnUO+PUm7k='), success:function(request){jQuery('#search_hits').html(request);}, type:'post', url:'/usuarios/resultado'}); return false;
+            return false;
+        }
+      });
+
+});
+
+
+$('#texto_ayuda img').each(function(){
+
+          $(this).qtip(
+          {
+            content: '<%= render :partial => 'texto_ayuda'  %>', // Give it some content
+            position: 'topRight', // Set its position
+            hide: {
+              fixed: true // Make it fixed so it can be hovered over
+            },
+            style: {
+              padding: '5px 15px', // Give it some extra padding
+              name: 'blue' // And style it with the preset dark theme
+            }
+          });
+        });
+})
+</script>

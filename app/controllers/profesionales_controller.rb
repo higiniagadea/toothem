@@ -24,7 +24,7 @@ class ProfesionalesController < ApplicationController
     @profesional = Profesional.find(params[:id])   
     respond_to do |format|
     
-      format.html { render :layout => false}
+      format.html{ render :layout => false}
     end
   end
 

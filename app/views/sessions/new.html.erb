@@ -1,7 +1,7 @@
 
 <fieldset class=" ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-corner-all ui-widget-header">Ingresar</legend>
-      <% form_tag session_path do -%>
+      <% form_tag session_path, :id => 'loginf' do -%>
       <p><%= label_tag 'Usuario' %><br />
       <%= text_field_tag 'login', @login, :class => 'ui-widget-content required'  %></p>
 
@@ -13,8 +13,11 @@
       <%= check_box_tag 'remember_me', '1', @remember_me %></p>
       -->
 
-      <%= submit_tag 'Ingresar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %> u <a href="#">olvido su contraseña?</a>
-      <% end -%>
+
+<p><input type="submit" class="submit" value="Ingresar"/> <input type="button" class="button" value="Cancelar" onclick="this.form.reset()" /></p>
+      <%#= submit_tag 'Ingresar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+   <p style="text-align: left;"><%= link_to "Olvide mi clave", olvide_mi_clave_usuarios_url %></p>
+<% end -%>
   </fieldset>
 <script type="text/javascript">
   $(document).ready(function(){
@@ -33,14 +36,6 @@
       });
      });
 
-     $("#sesion").validate({
-        //errorLabelContainer: $("#new_paciente div.errores")
-       errorContainer: $("#sesion div.errores"),
-       errorLabelContainer: $("ol", $("#sesion div.errores")),
-       wrapper: 'li',
-       meta: "validate"
-
-
-  });
+  
   })
 </script>

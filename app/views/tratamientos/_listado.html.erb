@@ -14,7 +14,7 @@
  <% @trat.each do |tratamiento| %>
 
   <tr class="<%= cycle('par','impar') -%>">
-    <th><%=h tratamiento.prestacion.descripcion %> </th>
+    <th><%=h tratamiento.prestacion_id %> </th>
     <th><%=h tratamiento.fecha_finalizacion.blank? ? '-': tratamiento.fecha_finalizacion.strftime('%d/%m/%Y') %></th>
     <th><%=h number_to_currency(tratamiento.coseguro) %></th>
     <th><%=h boolean_desc(tratamiento.fue_liquidado) %></th>

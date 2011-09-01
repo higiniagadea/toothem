@@ -395,7 +395,7 @@ ul#form label{
 
 
 
- /* BOXY   */
+/* BOXY   */
 
 .boxy-wrapper { position: absolute; }
 .boxy-wrapper.fixed { position: fixed; }
@@ -465,5 +465,4 @@ ul#form label{
 .demo-show div {
     padding: .5em .25em;
 }
-
 

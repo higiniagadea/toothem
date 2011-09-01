@@ -409,17 +409,13 @@ function validate(e) { // 1
 
 
 $(document).ready(function(){
-    $.validator.addMethod("check", function() {
-        return false;
-    }, "hjhgjh");
 
-    $.validator.addClassRules({
-	requiredCheck: {check:true}
-    });
+  elemento = document.getElementById("#historia_clinica_general_leyenda_declaracion_jurada");
+if( !elemento.checked ) {
+  return false;
 
+}
 
-
-  
     $("#new_historia_clinica_general").validate();/*{
         //errorLabelContainer: $("#new_paciente div.errores")
        errorContainer: $("#new_historia_clinica_general div.errores"),
