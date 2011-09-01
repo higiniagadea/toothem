@@ -1,20 +1,16 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Nuevo Usuario</legend>
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Usuario</legend>
+
 <% @usuario.password = @usuario.password_confirmation = nil %>
- 
 
-
-    <% form_for :usuario, :url => usuarios_path , :html => {:id => 'form'} do |f| -%>
+    <% form_for(@usuario) do |f| -%>
    <table style=" text-align: left;">
-
-     <tr>
+      <tr>
       <th>Nombre y Apellido</th>
       <td> <%= f.text_field :name , :size => 15 , :class=>'ui-widget-content required', :onkeypress=> 'return validar(event)' %>
       </td>
     </tr>
-
-
-     <tr>
+  <tr>
       <th>Nombre de Usuario o Login</th>
       <td> <%= f.text_field :login , :size => 15 , :class=>'ui-widget-content required', :onkeypress=> 'return validar(event)' %>
       </td>
@@ -22,7 +18,7 @@
 
     <tr>
       <th>E-mail</th>
-      <td><%= f.text_field :email,  :size => 15 , :class=>'ui-widget-content required'  %></td>
+      <td><%= f.text_field :email,  :size => 15 , :class=>'ui-widget-content'  %></td>
     </tr>
 
     <tr>
@@ -39,44 +35,44 @@
       <th>Administrador</th>
       <td><%= f.check_box :administrador,  :class=>'ui-widget-content'  %></td>
     </tr>
-   </table>
-  <table>
-    
-    <tr>
-      <td  style=" float: left; margin-left:  950px">
-      <%= link_to 'Volver', buscar_usuarios_path %>
-      <%= submit_tag 'Guardar' , :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
 
-</tr>
-  </table>
+   </table>
+
+  <table>
+    <tr style=" float: left; margin-left: 300px">
+      <td><%= f.submit 'Actualizar' , :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
+
+</tr></table>
 <% end -%>
   <br/>
+<br/>
+<br/>
 <br/>
 <br/>
 </fieldset>
 
 <script type="text/javascript">
-   function validar(e) { // 1
+     function validar(e) { // 1
     tecla = (document.all) ? e.keyCode : e.which; // 2
     if (tecla==8) return true; // 3
-    patron =/[w,s]; //4
+    patron =/\w/; //4
     te = String.fromCharCode(tecla); // 5
     return patron.test(te); // 6
 }
-
    $(document).ready(function(){
- $("#form").validate({
-      
+ $(".edit_usuario").validate({
+
        wrapper: 'li',
        meta: "validate",
-       rules :{
+        rules :{
          "usuario[name]": {required: true, rangelength: [5, 100]},
-         "usuario[login]": {required: true, rangelength: [6, 10]}
+          "usuario[login]": {required: true, rangelength: [6, 10]}
      },
       messages:{
            "usuario[name]": 'Ingrese entre cinco y cien caracteres',
-          "usuario[login]": 'Ingrese entre seis y diez caracteres'
+           "usuario[login]": 'Ingrese entre seis y diez caracteres'
       }
+
      });
    });
      </script>

@@ -40,11 +40,22 @@ Rails::Initializer.run do |config|
   # Run "rake -D time" for a list of tasks for finding time zone names.
   config.time_zone = 'Buenos Aires'
   Date::MONTHNAMES = %w(nil Enero Febrero Marzo Abril Mayo Junio Julio Agosto Septiembre Octubre Noviembre Diciembre)
+    config.action_mailer.smtp_settings = {
+    :enable_starttls_auto => true,
+    :authentication => :plain,
+    :address        => 'smtp.gmail.com',
+    :port           => 587,
+    :domain         => 'ipcorp.com.ar',
+    :user_name      => 'higinia@ipcorp.com.ar',
+    :password       => 'hp5500'
+  }
+
   #config.gem 'ryanb-scope-builder', :lib => 'scope_builder', :source => 'http://gems.github.com'
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
 end
+
 require 'will_paginate'
 require RAILS_ROOT + '/vendor/plugins/ryanb-scope-builder-0.1.2/lib/scope_builder.rb'
 #require 'acts_as_tree' 

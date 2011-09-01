@@ -3,11 +3,13 @@ class SessionsController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
   
-  layout 'login'
+ 
+    layout 'login'
   # render new.rhtml
   def new
     respond_to do |format|
-      current_usuario.blank? ? format.html : format.html {redirect_to search_pacientes_path}
+     unless current_usuario.blank? ? format.html : format.html {redirect_to search_pacientes_path}
+    end
     end
   end
 
@@ -15,16 +17,13 @@ class SessionsController < ApplicationController
     logout_keeping_session!
     usuario = Usuario.authenticate(params[:login], params[:password])
     if usuario
-      # Protects against session fixation attacks, causes request forgery
-      # protection if user resubmits an earlier form using back
-      # button. Uncomment if you understand the tradeoffs.
-      # reset_session
+   
       self.current_usuario = usuario
       new_cookie_flag = (params[:remember_me] == "1")
-      
+
       session[:consultorio] = Consultorio.find(:first, :conditions => ['id in (?)', current_usuario.consultorios])
       session[:user_menu] = Item.find(:all, :conditions => 'parent_id = 1', :order => 'orden')
-      
+
       #paciente = Item.find(:first,:conditions => ["url = ?", '/pacientes'])
       #params[:item_selected] = paciente
       generar_submenus
@@ -34,11 +33,15 @@ class SessionsController < ApplicationController
       handle_remember_cookie! new_cookie_flag
       redirect_back_or_default('/pacientes/search')
       flash[:notice] = "Ingreso correcto"
+
     else
+     
       note_failed_signin
       @login = params[:login]
       @remember_me = params[:remember_me]
+    
       render :action => 'new'
+      
     end
   end
 
@@ -51,7 +54,9 @@ class SessionsController < ApplicationController
 protected
   # Track failed login attempts
   def note_failed_signin
-    flash[:error] = "Couldn't log you in as '#{params[:login]}'"
+    
+    flash[:error] = "Los datos ingresados son incorrectos"
     logger.warn "Failed login for '#{params[:login]}' from #{request.remote_ip} at #{Time.now.utc}"
+
   end
 end

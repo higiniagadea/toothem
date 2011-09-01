@@ -6,10 +6,11 @@
     <% if @paciente.archivo_id.blank? %>
       <%= image_tag('nouser.jpg') %>
     <%else%>
-      <%= image_tag archivos_path(Archivo.find(:first, :conditions => 'parent_id = ' + @archivo.id.to_s)), :alt => 'imagen del paciente'%>
+      <%= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id = ' + @archivo.id.to_s)), :alt => 'imagen del paciente'%>
     <%end%>
 
      </div>
+     
    </div>
   </table>
   

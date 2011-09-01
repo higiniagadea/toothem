@@ -10,7 +10,7 @@ class CreateUsuarios < ActiveRecord::Migration
       t.column :updated_at,                :datetime
       t.column :remember_token,            :string, :limit => 40
       t.column :remember_token_expires_at, :datetime
-
+      t.column :nombre_apellido,           :string, limit => 100
       t.column :perfil_id, :integer
       t.column :consultorio_id, :integer
 

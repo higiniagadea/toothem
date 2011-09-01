@@ -1,0 +1,47 @@
+<fieldset class="ui-widget ui-widget-content ui-corner-all">
+    <legend class="ui-widget ui-widget-header ui-corner-all">Cambiar Clave</legend>
+    <% form_tag establecer_nueva_clave_usuarios_url, :id => 'form_cambiar_clave' do -%>
+    <ul id="form">
+      <li>
+        <label>Clave anterior</label>
+        <%= password_field_tag  :clave_anterior, nil ,:class => 'ui-widget-content', :id => 'clave_anterior'  %>
+      </li>
+      <li>
+        <label>Clave nueva</label>
+        <%= password_field_tag :clave_nueva,nil ,:class => 'required ui-widget-content'  %>
+      </li>
+      <li>
+        <label>Reescriba Clave nueva</label>
+        <%= password_field_tag :confirma_clave_nueva, nil ,:class => 'required ui-widget-content'  %>
+      </li>
+      <li>
+        <label></label>
+        <%= submit_tag "Cambiar" %>
+        <input type="button" class="button" value="Cancelar" onclick="javascript: location.href='<%= consultas_url %>'" />
+      </li>
+
+    </ul>
+    <% end -%>
+</fieldset>
+<script type="text/javascript">
+
+$(document).ready(function(){
+  $("#form_cambiar_clave").validate();
+    $('#clave_anterior').rules('add',{
+      required: true,
+      /*remote: {
+        url: "/usuarios/verificar_clave",
+        type: "post",
+        data: {
+          clave_anterior: function() {
+            return $("#clave_anterior").val();
+          }
+        }
+      },*/
+      messages: {
+      //required: "Este campo es obligatorio",
+        remote: jQuery.format("La clave anterior no coincide")
+      }
+    });
+  });
+</script>

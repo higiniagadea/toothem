@@ -136,10 +136,15 @@ map.resources :periodos_obras_sociales,  :collection => {:buscar => :get, :resul
 
 
 
-  map.resources :usuarios
+  map.resources :usuarios, 
+                           :collection =>{:renovar_clave => :get, :establecer_nueva_clave => :post,
+                           :verificar_clave => :post,
+                           :olvide_mi_clave => [:get, :post], :resetear_clave => [:get,:post],
+                           :buscar => :get, :resultado => [:get, :post], :cambiar_clave => [:get, :post], :enviar_mail => [:get, :post]}
 
   map.resource :session
 
+  
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

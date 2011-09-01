@@ -1,0 +1,54 @@
+<div id="usuario_pag">
+
+<% unless @usuarios.blank? %>
+
+  <h1>Resultado de la b&uacute;squeda </h1>
+<table style=" text-align: left" class="listados">
+  <tr>
+    <th>Nombre y Apellido</th>
+    <th>Nombre de Usuario</th>
+  </tr>
+
+<% @usuarios.each do |usuario| %>
+  <tr class="<%= cycle('par','impar') -%>">
+    <td><%=h usuario.name  %> </td>
+    <td><%=h usuario.login %></td>
+
+    <td><%= link_to image_tag('magnifier_zoom_in.png'), usuario, :title => 'Ver',  :id => 'ver_' + usuario.id.to_s %>
+    <%= link_to image_tag('pencil.png'), edit_usuario_path(usuario), :title => 'Editar', :id => 'edit_' + usuario.id.to_s %>
+    <%= link_to image_tag('cancel.png'), usuario, :title => 'Eliminar', :confirm => 'Esta seguro?', :method => :delete %></td>
+  </tr>
+    <script type="text/javascript">
+  $(document).ready(function()
+      {
+    $('#ver_<%= usuario.id.to_s%>').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+
+     $('#edit_<%= usuario.id.to_s%>').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+     $.fancybox.resize();
+      });
+
+ </script>
+<% end %>
+  <%else%>
+ <span style="color:red">No se encontraron resultados</span>
+  <%end%>
+</table>
+
+
+<%= will_paginate @usuarios, :previous_label =>'Anterior', :next_label => 'Siguiente',
+                                  :class => 'usuario pagination',
+                                  :params => {:controller => "usuarios", :action => "resultado"
+
+                                  }  %>
+</div>
+
