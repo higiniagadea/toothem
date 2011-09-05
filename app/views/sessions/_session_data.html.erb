@@ -1,8 +1,6 @@
 
     <%unless current_usuario.nil?%>
-  <b>Usuario: </b> <%= current_usuario.login %><br/>
-  <b>Consultorio: </b>  <%#= collection_select(:get, :consultorio_id, Consultorio.all, :id, :nombre) %> |
-
-  <%= link_to 'Cerrar Sesion', :controller => 'sessions', :action => 'destroy' %>
- 
+  <b>Usuario: </b> <%= current_usuario.login %> |   <b>Consultorio: </b> <br/>
+ <%#= collection_select(:get, :consultorio_id, Consultorio.all, :id, :nombre) %> 
+  <%= link_to 'Cerrar Sesion', :controller => 'sessions', :action => 'destroy' %> | <%= link_to "Olvide mi clave", olvide_mi_clave_usuarios_url %><br/>
 <%end%>
