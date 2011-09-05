@@ -33,10 +33,10 @@ class Usuario < ActiveRecord::Base
   attr_accessible :login, :email, :name, :password, :password_confirmation
 
 
-  named_scope :by_login, lambda { |login|
+  named_scope :by_name, lambda { |name|
     {
-      :conditions=> ['lower(login) LIKE :login ',
-          { :login => "%"+login.downcase+"%"} ]
+      :conditions=> ['lower(name) LIKE :name ',
+          { :name => "%"+name.downcase+"%"} ]
     }
   }
 
@@ -44,7 +44,7 @@ class Usuario < ActiveRecord::Base
 def self.buscar(options)
   scope_builder do |builder|
 
-    builder.by_login(options[:login]) if options[:login]
+    builder.by_name(options[:name]) if options[:name]
   end
 end
 
