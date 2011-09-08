@@ -47,7 +47,7 @@ $(document).ready(function(){
     $(function() {
    $('input:text').keydown(function(e){
         if (e.keyCode == 13) {
-            jQuery.ajax({data:jQuery.param(jQuery(this).serializeArray()) + '&amp;authenticity_token=' + encodeURIComponent('ucA0H+h+SkRtPNXrbmVPgxYiV7ofXaTpnrnUO+PUm7k='), success:function(request){jQuery('#search_hits').html(request);}, type:'post', url:'/usuarios/resultado'}); return false;
+            jQuery.ajax({data:jQuery.param(jQuery(this).serializeArray()) + '&amp;authenticity_token=' + encodeURIComponent('ucA0H+h+SkRtPNXrbmVPgxYiV7ofXaTpnrnUO+PUm7k='), success:function(request){jQuery('#search_hits').html(request);}, type:'post', url:'/usuarios/resultado'});
             return false;
         }
       });

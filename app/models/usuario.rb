@@ -30,7 +30,7 @@ class Usuario < ActiveRecord::Base
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :name, :password, :password_confirmation
+  attr_accessible :login, :email, :name, :password, :password_confirmation, :administrador
 
 
   named_scope :by_name, lambda { |name|
@@ -71,6 +71,9 @@ end
     write_attribute :email, (value ? value.downcase : nil)
   end
 
+  def administrador=(value)
+    write_attribute :administrador, (value ? (value == '1' ? true : false) : false)
+  end
   protected
     
 

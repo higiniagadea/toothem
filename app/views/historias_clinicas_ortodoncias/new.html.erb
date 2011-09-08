@@ -1,4 +1,4 @@
-<%= javascript_include_tag :defaults, 'jquery.validate.min.js', 'messages_es.js',
+<%#= javascript_include_tag :defaults, 'jquery.validate.min.js', 'messages_es.js',
       "jquery.ui.widget.js" ,"jquery.ui.button.js","jquery.livequery.js", 'app.js','qtip.js',
       'jquery.safeenter.js', 'jquery.easing.pack.js','jquery.mousewheel.pack.js','jquery.fancybox.pack.js',
       'jquery.autocomplete.js', 'jquery.clickmenu.js','jquery.maskedinput.min.js'%>
@@ -719,105 +719,105 @@
       <tr>
 
           <td>Limitaci&oacute;n</td>
-          <td><%= f.text_field :limitacion, :class=> 'ui-widget-content'%>
+          <td><%= f.text_field :limitacion, :size => 10,:class=> 'ui-widget-content'%>
         </td>
 
           <td>Desviaci&oacute;n</td>
-          <td><%= f.text_field :desviacion, :class=> 'ui-widget-content'%>
+          <td><%= f.text_field :desviacion, :size => 10, :class=> 'ui-widget-content'%>
         </td>
 
           <td>Hipermovilidad</td>
-          <td><%= f.text_field :hipermovilidad, :class=> 'ui-widget-content'%>
+          <td><%= f.text_field :hipermovilidad, :size => 10, :class=> 'ui-widget-content'%>
         </td>
       </tr>
 
       <tr>
 
           <td>Ruidos</td>
-          <td><%= f.text_field :ruidos, :class=> 'ui-widget-content'%>
+          <td><%= f.text_field :ruidos, :size => 10, :class=> 'ui-widget-content'%>
         </td>
 
           <td>Lateralidad</td>
-          <td><%= f.text_field :lateralidad, :class=> 'ui-widget-content'%>
+          <td><%= f.text_field :lateralidad, :size => 10,:class=> 'ui-widget-content'%>
         </td>
 
           <td>Hacia la izquierda</td>
-          <td><%= f.text_field :hacia_izquierda, :class=> 'ui-widget-content'%>
+          <td><%= f.text_field :hacia_izquierda,:size => 10, :class=> 'ui-widget-content'%>
         </td>
       </tr>
 
       <tr>
 
           <td>Hacia la derecha</td>
-          <td><%= f.text_field :hacia_derecha, :class=> 'ui-widget-content'%>
+          <td><%= f.text_field :hacia_derecha, :size => 10,:class=> 'ui-widget-content'%>
         </td>
 
           <td>Chasquido</td>
-          <td><%= f.text_field :chasquido, :class=> 'ui-widget-content'%>
+          <td><%= f.text_field :chasquido,:size => 10, :class=> 'ui-widget-content'%>
         </td>
 
           <td>Crepitaci&oacute;n</td>
-          <td><%= f.text_field :crepitacion, :class=> 'ui-widget-content'%>
+          <td><%= f.text_field :crepitacion,:size => 10, :class=> 'ui-widget-content'%>
         </td>
       </tr>
 
       <tr>
 
           <td>Dolor</td>
-          <td><%= f.text_field :dolor, :class=> 'ui-widget-content'%>
+          <td><%= f.text_field :dolor,:size => 10, :class=> 'ui-widget-content'%>
         </td>
 
           <td>Espont&aacute;neo</td>
-          <td><%= f.text_field :espontaneo, :class=> 'ui-widget-content'%>
+          <td><%= f.text_field :espontaneo,:size => 10, :class=> 'ui-widget-content'%>
         </td>
 
           <td>Localizado</td>
-          <td><%= f.text_field :localizado, :class=> 'ui-widget-content'%>
+          <td><%= f.text_field :localizado,:size => 10, :class=> 'ui-widget-content'%>
         </td>
       </tr>
 
       <tr>
 
           <td>Difuso</td>
-          <td><%= f.text_field :difuso, :class=> 'ui-widget-content'%>
+          <td><%= f.text_field :difuso, :size => 10,:class=> 'ui-widget-content'%>
         </td>
 
           <td>Durante funci&oacute;n</td>
-          <td><%= f.text_field :durante_funcion, :class=> 'ui-widget-content'%>
+          <td><%= f.text_field :durante_funcion,:size => 10, :class=> 'ui-widget-content'%>
         </td>
 
           <td>Palpaci&oacute;n Articular Lateral</td>
-          <td><%= f.text_field :palpacion_articular_lateral, :class=> 'ui-widget-content'%>
+          <td><%= f.text_field :palpacion_articular_lateral,:size => 10, :class=> 'ui-widget-content'%>
         </td>
       </tr>
 
       <tr>
 
           <td>Palpaci&oacute;n Articular Posterior</td>
-          <td><%= f.text_field :palpacion_articular_posterior, :class=> 'ui-widget-content'%>
+          <td><%= f.text_field :palpacion_articular_posterior, :size => 10,:class=> 'ui-widget-content'%>
         </td>
 
           <td>Radiograf&iacute;a Panor&aacute;mica</td>
-          <td><%= f.text_field :radiografia_panoramica, :class=> 'ui-widget-content'%>
+          <td><%= f.text_field :radiografia_panoramica, :size => 10,:class=> 'ui-widget-content'%>
         </td>
 
           <td>Historial Traba bloqueo Mandibular</td>
-          <td><%= f.text_field :historial_traba_bloqueo_mandibular, :class=> 'ui-widget-content' %>
+          <td><%= f.text_field :historial_traba_bloqueo_mandibular,:size => 10, :class=> 'ui-widget-content' %>
         </td>
       </tr>
 
       <tr>
 
           <td>Con dolor</td>
-          <td><%= f.text_field :con_dolor, :class=> 'ui-widget-content'%>
+          <td><%= f.text_field :con_dolor,:size => 10, :class=> 'ui-widget-content'%>
         </td>
 
           <td>Con Ruido</td>
-          <td><%= f.text_field :con_ruido, :class=> 'ui-widget-content'%>
+          <td><%= f.text_field :con_ruido,:size => 10, :class=> 'ui-widget-content'%>
         </td>
 
           <td>Con movimiento limitado</td>
-          <td><%= f.text_field :con_movimiento_limitado, :class=> 'ui-widget-content'%>
+          <td><%= f.text_field :con_movimiento_limitado,:size => 10, :class=> 'ui-widget-content'%>
         </td>
       </tr>
     </table>
@@ -885,11 +885,17 @@
  <td></td>
  <td></td>
 
- <tr>
-    <td class="labels">Declaracion Jurada: </td>
-    <td><%= f.text_field :leyenda_declaracion_jurada, :size=>10, :class=> 'ui-widget-content' %>
+ <table>
+  <tr class="odd">
+   <td class="labels">Declaraci&oacute;n Jurada:
+   Por la presente aclaro no haber omitido datos. Se me ha explicado en términos comprensibles y reconozco haber entendido acabadamente el tratamiento a realizar. Comprendo los riesgos y las consecuencias que pudieran surgir, y en ejercicio de mis derechos, considerándolo-la lo suficientemente informado/a al respecto, dado la capacidad que le reconozco, los aceptaré como inherentes al tratamiento.
+     Por lo tanto, acepto los compromisos propuestos. En mi decisión de no continuar los tratamientos iniciados queda implícito deslindar a ud./s todos los inconvenientes y responsabilidades que pudiera surgir de tal actitud.</td>
+  </tr>
+  <tr>
+   <td><%= f.check_box :leyenda_declaracion_jurada, :class=> 'ui-widget-content'%>
     </td>
  </tr>
+ </table>
 </table>
 </div>
     <table>

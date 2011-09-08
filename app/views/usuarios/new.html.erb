@@ -4,7 +4,7 @@
  
 
 
-    <% form_for :usuario, :url => usuarios_path , :html => {:id => 'form'} do |f| -%>
+   <% form_for(@usuario) do |f| -%>
    <table style=" text-align: left;">
 
      <tr>
@@ -37,7 +37,7 @@
 
     <tr>
       <th>Administrador</th>
-      <td><%= f.check_box :administrador,  :class=>'ui-widget-content'  %></td>
+      <td><%= f.check_box :administrador %></td>
     </tr>
    </table>
   <table>
@@ -65,7 +65,7 @@
 }
 
    $(document).ready(function(){
- $("#form").validate({
+ $(".new_usuario").validate({
       
        wrapper: 'li',
        meta: "validate",

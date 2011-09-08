@@ -360,17 +360,24 @@
     <%= f.text_field :otros, :size => 17, :class=> 'ui-widget-content', :onkeypress=> 'return validar(event)'%>
     </td>
   </tr>
+ </table>
+
+    
   <tr>
     <td class="labels">Observaciones: </td>
     <td>
     <%= f.text_field :observaciones, :size => 17, :class=> 'required ui-widget-content', :onkeypress=> 'return validar(event)'%>
     </td>
   </tr>
-
+  
+<table>
   <tr class="odd">
-   <td class="labels">Declaraci&oacute;n Jurada: </td>
-    <td>
-    <%= f.check_box :leyenda_declaracion_jurada, :class=> 'ui-widget-content requiredCheck'%>
+   <td class="labels">Declaraci&oacute;n Jurada: 
+   Por la presente aclaro no haber omitido datos. Se me ha explicado en términos comprensibles y reconozco haber entendido acabadamente el tratamiento a realizar. Comprendo los riesgos y las consecuencias que pudieran surgir, y en ejercicio de mis derechos, considerándolo-la lo suficientemente informado/a al respecto, dado la capacidad que le reconozco, los aceptaré como inherentes al tratamiento.
+     Por lo tanto, acepto los compromisos propuestos. En mi decisión de no continuar los tratamientos iniciados queda implícito deslindar a ud./s todos los inconvenientes y responsabilidades que pudiera surgir de tal actitud.</td>
+  </tr>
+  <tr>
+   <td><%= f.check_box :leyenda_declaracion_jurada, :class=> 'ui-widget-content'%>
     </td>
  </tr>
  </table>
@@ -405,16 +412,7 @@ function validate(e) { // 1
     return patron.test(te); // 6
 }
 
-
-
-
 $(document).ready(function(){
-
-  elemento = document.getElementById("#historia_clinica_general_leyenda_declaracion_jurada");
-if( !elemento.checked ) {
-  return false;
-
-}
 
     $("#new_historia_clinica_general").validate();/*{
         //errorLabelContainer: $("#new_paciente div.errores")

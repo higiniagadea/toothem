@@ -863,11 +863,17 @@
  </tr>
 
 
- <tr>
-    <td>Declaraci&oacute;n Jurada: </td>
-    <td><%= f.text_field :leyenda_declaracion_jurada, :size=>10, :class=> 'ui-widget-content' %>
+<table>
+  <tr class="odd">
+   <td class="labels">Declaraci&oacute;n Jurada:
+   Por la presente aclaro no haber omitido datos. Se me ha explicado en términos comprensibles y reconozco haber entendido acabadamente el tratamiento a realizar. Comprendo los riesgos y las consecuencias que pudieran surgir, y en ejercicio de mis derechos, considerándolo-la lo suficientemente informado/a al respecto, dado la capacidad que le reconozco, los aceptaré como inherentes al tratamiento.
+     Por lo tanto, acepto los compromisos propuestos. En mi decisión de no continuar los tratamientos iniciados queda implícito deslindar a ud./s todos los inconvenientes y responsabilidades que pudiera surgir de tal actitud.</td>
+  </tr>
+  <tr>
+   <td><%= f.check_box :leyenda_declaracion_jurada, :class=> 'ui-widget-content'%>
     </td>
  </tr>
+ </table>
 </table>
 </div>
     <table>
