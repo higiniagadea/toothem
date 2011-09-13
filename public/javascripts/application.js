@@ -1,4 +1,6 @@
-
+$(document).ready(function(){
+   jQuery.ajaxSetup({'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript,application/javascript,text/html")}})
+});
 
 
 function ttip_edit_field(objeto, campof, id){

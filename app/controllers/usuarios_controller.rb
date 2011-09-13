@@ -13,8 +13,10 @@ class UsuariosController < ApplicationController
  
   def create
     logout_keeping_session!
+
     @usuario = Usuario.new(params[:usuario])
     success = @usuario && @usuario.save
+
     if success && @usuario.errors.empty?          
       self.current_usuario = @usuario # !! now logged in
       redirect_back_or_default('/pacientes/search')
@@ -22,7 +24,7 @@ class UsuariosController < ApplicationController
     
       else
         #self.current_usuario = @usuario
-      flash[:error]  = "Verfique su contraseña"
+      flash[:error]  = "Verifique su contraseña"
       render :action => 'edit'
     end
   end
@@ -80,6 +82,7 @@ class UsuariosController < ApplicationController
     @usuario= Usuario.find(params[:id])
     @usuario.destroy
     respond_to do |format|
+      flash[:notice] = 'Usuario eliminado'
       format.html { redirect_to buscar_usuarios_path }
 
     end

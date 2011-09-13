@@ -17,6 +17,7 @@
 .fc .fc-header,
 .fc .fc-content {
 	font-size: 1em;
+       
 	}
 
 .fc {
@@ -45,6 +46,7 @@ table.fc-header {
 
 .fc-header-left {
 	width: 25%;
+        -moz-width : 100%;
 	}
 
 .fc-header-left table {
@@ -62,6 +64,7 @@ table.fc-header {
 
 .fc-header-right {
 	width: 25%;
+        -moz-width : 100%;
 	}
 
 .fc-header-right table {
