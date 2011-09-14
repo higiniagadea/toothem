@@ -89,15 +89,14 @@ class PacientesController < ApplicationController
 
   def changephoto
     @paciente = Paciente.find(params[:id])
-   
-    
+     
     @value = params[:value]
     unless @paciente.archivo_id.blank?
       @archivo_ant = Archivo.find(@paciente.archivo_id)
     end
     @archivo = Archivo.new
     respond_to do |format|
-      format.html {render :layout => false}# changephoto.html.erb
+      format.html {render :layout => 'default'}# changephoto.html.erb
   
     end
   end
@@ -127,14 +126,12 @@ class PacientesController < ApplicationController
     @prestaciones = Prestacion.find(:all)  
     @turnos = Turno.find(:all)
     @sald_pac = SaldoPaciente.find_by_sql('select ver_saldo_paciente(' + @paciente.id.to_s + ') as saldo ' )
-   # @imagenes = Imagen.find_all_by_paciente_id(@paciente.id)
+     
    
-    @archivos = Archivo.find_by_id(params[:paciente_id])
-
-     unless @paciente.archivo_id.blank?
-      @archivo_ant = Archivo.find(@paciente.archivo_id)
-    end
-
+     #unless @paciente.archivo_id.blank?
+      #@archivo_ant = Archivo.find(@paciente.archivo_id)
+    #end
+  
     respond_to do |format|
       unless @paciente.blank?
       unless @paciente.archivo_id.blank?
