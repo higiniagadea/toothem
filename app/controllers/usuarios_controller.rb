@@ -3,7 +3,7 @@ class UsuariosController < ApplicationController
   include AuthenticatedSystem
  
   #before_filter :login_required
-  layout 'default'
+  layout 'session'
   # render new.rhtml
   def new
     @usuario = Usuario.new
