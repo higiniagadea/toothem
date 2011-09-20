@@ -66,11 +66,15 @@
        meta: "validate",
         rules :{
          "usuario[name]": {required: true, rangelength: [5, 100]},
-          "usuario[login]": {required: true, rangelength: [6, 10]}
+          "usuario[login]": {required: true, rangelength: [6, 10]},
+            "usuario[password]":{required:true, rangelength: [6, 20]},
+         "usuario[password_confirmation]":{required:true, equalTo: "#usuario_password" }
      },
       messages:{
            "usuario[name]": 'Ingrese entre cinco y cien caracteres',
-           "usuario[login]": 'Ingrese entre seis y diez caracteres'
+           "usuario[login]": 'Ingrese entre seis y diez caracteres',
+            "usuario[password_confirmation]": 'Contraseña y Confirmacion no coinciden',
+           "usuario[password]": 'Ingrese entre seis y veinte caracteres'
       }
 
      });

@@ -1,6 +1,6 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Nuevo Usuario</legend>
- <%  @usuario.password = @usuario.password_confirmation = nil %>
+ <% @usuario.password = @usuario.password_confirmation = nil %>
  
 
 
@@ -64,6 +64,8 @@
     return patron.test(te); // 6
 }
 
+
+
    $(document).ready(function(){
  $(".new_usuario").validate({
       
@@ -71,12 +73,16 @@
        meta: "validate",
        rules :{
          "usuario[name]": {required: true, rangelength: [5, 100]},
-         "usuario[login]": {required: true, rangelength: [6, 10]}
+         "usuario[login]": {required: true, rangelength: [6, 10]},
+          "usuario[password]":{required:true, rangelength: [6, 20]},
+         "usuario[password_confirmation]":{required:true, equalTo: "#usuario_password" }
      },
       messages:{
            "usuario[name]": 'Ingrese entre cinco y cien caracteres',
-          "usuario[login]": 'Ingrese entre seis y diez caracteres'
-      }
+          "usuario[login]": 'Ingrese entre seis y diez caracteres',
+          "usuario[password_confirmation]": 'Contraseña y Confirmacion no coinciden',
+           "usuario[password]": 'Ingrese entre seis y veinte caracteres'
+   }
      });
    });
      </script>

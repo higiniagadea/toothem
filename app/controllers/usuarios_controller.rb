@@ -3,7 +3,7 @@ class UsuariosController < ApplicationController
   include AuthenticatedSystem
  
   #before_filter :login_required
-  layout 'session'
+  layout 'default'
   # render new.rhtml
   def new
     @usuario = Usuario.new
@@ -22,9 +22,9 @@ class UsuariosController < ApplicationController
       self.current_usuario = @usuario # !! now logged in
       redirect_back_or_default('/usuarios/buscar')
       # flash[:notice] = "Se le ha enviado un email con los pasos a seguir para su cambio de clave. Verifique su casilla de correo."
-    
+        flash[:notice] = 'Usuario creado'
       else
-        
+         #self.current_usuario = @usuario
        flash[:error] = 'Verifique su contraseña'
       render :action => 'new'
        
@@ -69,14 +69,14 @@ class UsuariosController < ApplicationController
 
   def buscar
     respond_to do |format|
-      format.html{render :layout => 'default'}
+      format.html
     end
   end
 
   def resultado
    respond_to do |format|
        @usuarios = Usuario.buscar(params).paginate(:page => params[:page], :per_page=> 10, :order => 'name ASC')
-        format.html {render :partial => 'resultado', :layout => 'default'}
+        format.html {render :partial => 'resultado', :layout => false}
       end
   end
 
