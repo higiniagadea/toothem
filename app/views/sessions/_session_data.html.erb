@@ -2,7 +2,7 @@
     <%unless current_usuario.nil?%>
   <b>Usuario: </b> <%= current_usuario.login %> | <b>Consultorio:   </b> <br/>
 
-  <%= link_to 'Cerrar Sesion', :controller => 'sessions', :action => 'destroy' %> | <%= link_to "Olvide mi clave", olvide_mi_clave_usuarios_url %>
+  <%= link_to 'Cerrar Sesion', :controller => 'sessions', :action => 'destroy' %> | <%= link_to "Cambiar Clave", resetear_clave_usuarios_url + "?usuario_id="+ current_usuario.id.to_s %>
   <b id="reloj"></b>
  
 

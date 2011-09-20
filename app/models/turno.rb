@@ -7,6 +7,7 @@ class Turno < ActiveRecord::Base
    #validates_presence_of :fecha_hora, :message => ' no puede estar en blanco'
    #validates_uniqueness_of :fecha_hora, :scope => [:profesional_id, :duracion], :message => "El horario ya fue asignado con anterioridad"
  validate :valida_fecha_hora
+ 
    def valida_fecha_hora
      fecha_desde = self.fecha_hora - self.duracion.minutes
      fecha_hasta = self.fecha_hora + self.duracion.minutes

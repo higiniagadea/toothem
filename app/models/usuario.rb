@@ -6,11 +6,15 @@ class Usuario < ActiveRecord::Base
   has_and_belongs_to_many :consultorios ,:join_table => 'usuarios_consultorios',
                           :class_name => 'Consultorio'
    
-  
+ 
   
   include Authentication
   include Authentication::ByPassword
   include Authentication::ByCookieToken
+
+
+
+
 
   validates_presence_of     :login
   validates_length_of       :login,    :within => 3..40
@@ -23,7 +27,7 @@ class Usuario < ActiveRecord::Base
   validates_presence_of     :email
   validates_length_of       :email,    :within => 6..100 #r@a.wk
   validates_uniqueness_of   :email
-  validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message
+  #validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :save
   
 

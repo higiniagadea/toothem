@@ -17,15 +17,18 @@ class UsuariosController < ApplicationController
     @usuario = Usuario.new(params[:usuario])
     success = @usuario && @usuario.save
 
-    if success && @usuario.errors.empty?          
+    if success && @usuario.errors.empty?
+      
       self.current_usuario = @usuario # !! now logged in
       redirect_back_or_default('/pacientes/search')
-      flash[:notice] = "Se le ha enviado un email con los pasos a seguir para su cambio de clave. Verifique su casilla de correo."
+      # flash[:notice] = "Se le ha enviado un email con los pasos a seguir para su cambio de clave. Verifique su casilla de correo."
     
       else
         #self.current_usuario = @usuario
-      flash[:error]  = "Verifique su contraseña"
-      render :action => 'edit'
+       flash[:error] = 'Verifique su contraseña'
+      render :action => 'new'
+       
+      #format.xml  { render :xml => @usuario.errors, :status => :unprocessable_entity }
     end
   end
 
@@ -94,7 +97,10 @@ class UsuariosController < ApplicationController
   end
 
   def resetear_clave   
-    @usuario = Usuario.find_by_email(params[:usuario][:email])
+    #@usuario = Usuario.find_by_email(params[:usuario][:email])
+
+    current_usuario.id =  params[:usuario_id]
+    @usuario = Usuario.find(params[:id])
 
     if @usuario
       if @usuario.login == params[:usuario][:login]
@@ -118,9 +124,11 @@ class UsuariosController < ApplicationController
   end
 
 
-  #envia el mail al usuario para cambiar su password
- def cambiar_clave
-    @usuario = Usuario.find_by_email(params[:usuario][:email])
+ 
+  def cambiar_clave
+    current_usuario.id =  params[:id]
+    @usuario = Usuario.find(params[:id])
+    
     if(!@usuario.blank?)
       hash_usuario = self.generar_linkhash(@usuario)
 
@@ -128,26 +136,26 @@ class UsuariosController < ApplicationController
         newpassword = self.newpass(6)
 
 
-        #if @usuario.update_attribute(:password, newpassword) && @usuario.update_attribute(:cambio_clave, "1")
+        if @usuario.update_attribute(:password, newpassword) && @usuario.update_attribute(:cambio_clave, "1")
 
-         # @usuario[:newpassword] = newpassword
-         # Notificador.create_envio_clave_nueva(@usuario)
-          #Notificador.deliver_envio_clave_nueva(@usuario) # sends the email
-          #flash[:notice] = "Se le ha enviado un email con sus nuevas credenciales de acceso. Verifique su casilla de correo."
-         # redirect_to('/session/new')
-        #else
-         # flash[:error] = "No se ha podido cambiar cu clave debido a un error interno. Pongase en contacto con el administrador del sistema"
-         # redirect_to('/session/new')
-        #end
+          @usuario[:newpassword] = newpassword
+          Notificador.create_envio_clave_nueva(@usuario)
+          Notificador.deliver_envio_clave_nueva(@usuario) # sends the email
+          flash[:notice] = "Se le ha enviado un email con sus nuevas credenciales de acceso. Verifique su casilla de correo."
+          redirect_to('/ingresar')
+        else
+          flash[:error] = "No se ha podido cambiar cu clave debido a un error interno. Pongase en contacto con el administrador del sistema"
+          
+        end
 
         #cambio de clave
 
       else
         flash[:error] = "Su email de cambio de clave ha caducado. Solicite un nuevo cambio de clave"
-        redirect_to('/session/new')
+        
       end
     else
-      redirect_to('/session/new')
+      redirect_to('/')
     end
 
 
