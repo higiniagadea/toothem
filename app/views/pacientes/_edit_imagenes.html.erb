@@ -1,71 +1,108 @@
- <fieldset class="ui-widget-content ui-corner-all">
+   <fieldset class="ui-widget-content ui-corner-all">
     <legend class="ui-widget ui-widget-header ui-corner-all" >Im&aacute;genes</legend>
     <div style=" float: right; margin-right:  60px"><%= link_to "Nueva imagen", new_imagen_path + '/'+@paciente.id.to_s %></div>
- 
- <% unless @imagenes.blank? %>   
-<table class="show-data">
+    <% unless @imagenes.blank? %>
+    <table class="show-data">
+
       <tr>
         <td class="fielddata">
-             <div id="pageContainer">
- 
-              <div id="slideshow">
-                 <div id="slidesContainer">
 
-                   <% @imagenes.each do |imagen| %>
-                  <div class="slide">
-                  <h2>
-                      <%= imagen.descripcion %>
-                       <div  style="float: right; font-size: 12px; font-weight: normal">
-                         <a id="imagen" href="<%= imagen_url(imagen.id)%>" style=" float: left">
+            <div id="pageContainer">
 
-                         <%= link_to image_tag('magnifier_zoom_in.png'), imagen, :title => 'Ver Imagen', :id=> 'ver_imagen' %>
-                        </a>
+  <!-- Slideshow HTML -->
+  <div id="slideshow">
+    <div id="slidesContainer">
 
-                        <a>
-                        <%= link_to image_tag('cancel.png'), imagen, :title => 'Eliminar Imagen', :confirm => "Esta seguro que desea eliminar la imagen?", :method => :delete %>
-                        </a>
-                        </div>
-                  </h2>
-                    <%  @archivo_thumbnail = Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)%>
-                     <p>
-                       <div style=" height: 200px; float:  right">
-                         <%= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id ='+imagen.archivo_id.to_s)) , :alt => imagen.descripcion, :id => imagen.id %>
-                       </div>
-                    </p>
-                    <p>
-                         <%= imagen.observaciones %>
-                    </p>
-                   </div>
+        <% @imagenes.each do |imagen| %>
+      <div class="slide">
+           <h2>
+              <%= imagen.descripcion %>
+              <div  style="float: right; font-size: 12px; font-weight: normal">
+                    <a id="imagen" href="<%= imagen_url(imagen.id)%>" style=" float: left">
 
-                 <%end%>
+                      <%= link_to image_tag('magnifier_zoom_in.png'), imagen, :title => 'Ver Imagen', :id=> 'ver_imagen' %>
+                    </a>
 
-                  </div>
-               </div>
+                    <a>
+                      <%= link_to image_tag('cancel.png'), imagen, :title => 'Eliminar Imagen', :confirm => "Esta seguro que desea eliminar la imagen?", :method => :delete %>
+                    </a>
+              </div>
+           </h2>
+       
+           <%  @thumbnail = Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)%>
+       
+        <p>
+           <div style=" height: 200px; float:  right">
+              <%= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id ='+imagen.archivo_id.to_s)) , :alt => imagen.descripcion, :id => imagen.id %>
+           </div>
+        </p>
+      <p>
+           <%= imagen.observaciones %>
 
-</div>       
+      </p>
+         </div>
 
-      </td>
+        <%end%>
 
+    </div>
+  </div>
+
+</div>
+          <br/>
+
+        </td>
       </tr>
-</table>
+
+      <tr>
+        <td class="fieldname"></td>
+        <td class="fielddata"></td>
+      </tr>
+    </table>
     <% end %>
-      <tr>
-        <td class="fieldname">
-
-        </td>
-        <td class="fielddata">
-
-        </td>
-      </tr>
-
-
 
   </fieldset>
+
+<script type="text/javascript">
+
+
+// Only create tooltips when document is ready
+$(document).ready(function()
+{
+
+   $('.slide img').each(function()
+   {
+      $(this).qtip(
+      {
+         //content: '<a onclick="Boxy.load(\'<%= changephoto_paciente_url(@paciente) %>\',{modal: true})">Editar</a>',
+         content: '<a href="<%= changephoto_paciente_url(@paciente) %>" id="imagen">Editar</a>',
+         position: 'topLeft', // Set its position
+         hide: {
+            fixed: true // Make it fixed so it can be hovered over
+         },
+         style: {
+            padding: '5px 15px', // Give it some extra padding
+            name: 'blue'// And style it with the preset dark theme
+
+       }
+       });
+
+     $('#ver_imagen').fancybox(
+    {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+
+      });
+});
+</script>
+
+
+
 
 
 <script type="text/javascript">
 $(document).ready(function(){
-
   var currentPosition = 0;
   var slideWidth = 560;
   var slides = $('.slide');

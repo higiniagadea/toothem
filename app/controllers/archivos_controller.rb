@@ -21,9 +21,13 @@ class ArchivosController < ApplicationController
   def show
     @image_data = Archivo.find(params[:id])
     @image = @image_data.db_file.data
+    
     send_data(@image, :type => @image_data.content_type,
-                      :filename => @image_data.filename,
-                      :disposition => 'inline')
+                      :filename => @image_data.original_filename,
+                    :disposition => 'inline')
+                     
+
+
   end
 
 

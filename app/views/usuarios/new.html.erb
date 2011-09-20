@@ -1,6 +1,6 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Nuevo Usuario</legend>
-<% @usuario.password = @usuario.password_confirmation = nil %>
+ <%  @usuario.password = @usuario.password_confirmation = nil %>
  
 
 
@@ -22,12 +22,12 @@
 
     <tr>
       <th>E-mail</th>
-      <td><%= f.text_field :email,  :size => 15 , :class=>'ui-widget-content required'  %></td>
+      <td><%= f.text_field :email,  :size => 15 , :class=> 'required email ui-widget-content'  %></td>
     </tr>
 
     <tr>
       <th>Contraseña</th>
-      <td><%= f.password_field :password,  :size => 15, :class=>'ui-widget-content required'  %></td>
+      <td><%= f.password_field :password,  :size => 15, :class=>'ui-widget-content required password'  %></td>
     </tr>
 
     <tr>

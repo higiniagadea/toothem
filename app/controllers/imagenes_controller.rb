@@ -17,7 +17,6 @@ class ImagenesController < ApplicationController
   # GET /imagenes/1.xml
   def show
     @imagen = Imagen.find(params[:id])
-
     respond_to do |format|
       format.html { render :layout => false}
       
@@ -58,7 +57,7 @@ class ImagenesController < ApplicationController
       if @archivo.save
         params[:imagen][:archivo_id] = @archivo.id
         @imagen = Imagen.new(params[:imagen])
-        
+        @imagen.save
          flash[:notice] = 'Imagen creadaaaaaa.'
           format.html { redirect_to(pacientes_url(@paciente))}
           format.xml  { render :xml => @imagen, :status => :created, :location => @imagen }
