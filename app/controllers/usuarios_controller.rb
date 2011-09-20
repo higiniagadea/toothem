@@ -3,7 +3,7 @@ class UsuariosController < ApplicationController
   include AuthenticatedSystem
  
   #before_filter :login_required
-  layout 'session'
+  layout 'default'
   # render new.rhtml
   def new
     @usuario = Usuario.new
@@ -20,15 +20,15 @@ class UsuariosController < ApplicationController
     if success && @usuario.errors.empty?
       
       self.current_usuario = @usuario # !! now logged in
-      redirect_back_or_default('/pacientes/search')
+      redirect_back_or_default('/usuarios/buscar')
       # flash[:notice] = "Se le ha enviado un email con los pasos a seguir para su cambio de clave. Verifique su casilla de correo."
-    
+        flash[:notice] = 'Usuario creado'
       else
-        #self.current_usuario = @usuario
+         #self.current_usuario = @usuario
        flash[:error] = 'Verifique su contraseña'
       render :action => 'new'
        
-      #format.xml  { render :xml => @usuario.errors, :status => :unprocessable_entity }
+     
     end
   end
 
