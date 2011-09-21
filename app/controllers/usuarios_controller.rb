@@ -190,6 +190,28 @@ class UsuariosController < ApplicationController
     end
   end
 
+
+  def verificar
+
+    @usuario = Usuario.find(:first, :conditions => {:login => params[:usuario][:login]})
+    respond_to do |format|
+
+    format.json { render :json => !@usuario}
+
+    end
+  end
+
+  def verificar_email
+
+    @usuario = Usuario.find(:first, :conditions => {:email => params[:usuario][:email]})
+    respond_to do |format|
+
+    format.json { render :json => !@usuario}
+
+    end
+  end
+
+
   def establecer_nueva_clave
     if Usuario.authenticate(current_usuario.login, params[:clave_anterior])
       if ((params[:clave_nueva] == params[:confirma_clave_nueva]) && !params[:confirma_clave_nueva].blank?)
