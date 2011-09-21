@@ -37,6 +37,9 @@ class Usuario < ActiveRecord::Base
   attr_accessible :login, :email, :name, :password, :password_confirmation, :administrador
 
 
+
+
+
   named_scope :by_name, lambda { |name|
     {
       :conditions=> ['lower(name) LIKE :name ',
