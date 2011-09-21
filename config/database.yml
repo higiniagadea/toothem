@@ -52,15 +52,13 @@ test:
   #min_messages: warning
 
 production:
-  adapter:  jdbcpostgresql
-  encoding: unicode
-  database: toothem_production
+  adapter: postgresql
+  database: toothem_development
   pool: 5
   username: toothem
   password: toothem
   host: localhost
   port: 5432
-
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
   # domain sockets, so uncomment these lines.
