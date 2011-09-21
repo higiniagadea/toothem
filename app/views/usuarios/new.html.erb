@@ -16,7 +16,7 @@
 
      <tr>
       <th>Nombre de Usuario o Login</th>
-      <td> <%= f.text_field :login , :size => 15 , :class=>'ui-widget-content required', :onkeypress=> 'return validar(event)' %>
+      <td> <%= f.text_field :login , :size => 15 , :class=>'ui-widget-content required', :onkeypress=> 'return valida(event)' %>
       </td>
     </tr>
 
@@ -56,15 +56,21 @@
 </fieldset>
 
 <script type="text/javascript">
-   function validar(e) { // 1
+  function validar(e) { // 1
     tecla = (document.all) ? e.keyCode : e.which; // 2
     if (tecla==8) return true; // 3
-    patron =/[w,s]; //4
+    patron =/[A-Za-zñÑ\s]/; //4
     te = String.fromCharCode(tecla); // 5
     return patron.test(te); // 6
 }
 
-
+ function valida(e) { // 1
+    tecla = (document.all) ? e.keyCode : e.which; // 2
+    if (tecla==8) return true; // 3
+    patron =/\w/; //4
+    te = String.fromCharCode(tecla); // 5
+    return patron.test(te); // 6
+}
 
    $(document).ready(function(){
  $(".new_usuario").validate({
@@ -80,10 +86,10 @@
    },
       messages:{
           "usuario[name]": 'Ingrese entre cinco y cien caracteres',
-          "usuario[login]": 'Ingrese entre seis y diez caracteres',
+          "usuario[login]": {remote:'Usuario ya existe'},
           "usuario[password_confirmation]":{equalTo:'Contraseña y Confirmacion no coinciden'},
           "usuario[password]": {remote: 'Ingrese entre seis y veinte caracteres'},
-            "usuario[email]":{remote: 'Correo electronico ya existe'}
+          "usuario[email]":{remote: 'Correo electronico ya existe'}
  }
      });
    });
