@@ -100,7 +100,7 @@ class UsuariosController < ApplicationController
     #@usuario = Usuario.find_by_email(params[:usuario][:email])
 
     current_usuario.id =  params[:usuario_id]
-    @usuario = Usuario.find(params[:id])
+    @usuario = Usuario.find(params[:usuario_id])
 
     if @usuario
       if @usuario.login == params[:usuario][:login]
