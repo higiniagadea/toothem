@@ -15,22 +15,22 @@ class UsuariosController < ApplicationController
     logout_keeping_session!
 
     @usuario = Usuario.new(params[:usuario])
+ 
     success = @usuario && @usuario.save
 
     if success && @usuario.errors.empty?
-      
-      self.current_usuario = @usuario # !! now logged in
+
       redirect_back_or_default('/usuarios/buscar')
-      # flash[:notice] = "Se le ha enviado un email con los pasos a seguir para su cambio de clave. Verifique su casilla de correo."
-        flash[:notice] = 'Usuario creado'
+      flash[:notice] = 'Usuario creado'
       else
-         #self.current_usuario = @usuario
-       flash[:error] = 'Verifique su contraseña'
-      render :action => 'new'
-       
+        # self.current_usuario = @usuario
      
+      render :action => 'new'     
     end
+   
   end
+
+
 
 
    def show
