@@ -4,12 +4,13 @@
 # Be sure to use new-style password hashing:
 #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
 development:
-  adapter: postgresql
+  adapter: jdbcpostgresql
+  encoding: unicode
   database: toothem_development
   pool: 5
   username: toothem
   password: toothem
-  host: 10.1.0.8
+  host: localhost
   port: 5432
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -58,6 +59,8 @@ production:
   password: toothem
   host: 10.1.0.8
   port: 5432
+  encoding: unicode
+
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
   # domain sockets, so uncomment these lines.
