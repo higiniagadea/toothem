@@ -1,6 +1,6 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-all">
   <legend class="ui-widget ui-widget-header ui-corner-all">Olvidé mi clave</legend>
-  <% form_tag enviar_mail_usuarios_url, :id => 'form_resetear_clave' do -%>
+  <% form_tag renovar_clave_usuarios_url, :id => 'form_resetear_clave' do -%>
   <p><%= label_tag 'Usuario' %><br />
   <%= text_field :usuario, :login, :class =>"required ui-widget-content" %></p>
 

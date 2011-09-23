@@ -96,38 +96,36 @@ class UsuariosController < ApplicationController
 
   end
 
-  def resetear_clave   
-    #@usuario = Usuario.find_by_email(params[:usuario][:email])
+  def resetear_clave  
 
-    current_usuario.id =  params[:usuario_id]
+    #current_usuario.id =  params[:usuario_id]
     @usuario = Usuario.find(params[:usuario_id])
 
-    if @usuario
-      if @usuario.login == params[:usuario][:login]
+    if @usuario     
         @usuario[:linkhash] = self.generar_linkhash(@usuario)
-        Notificador.create_cambio_de_clave(@usuario)
-        Notificador.deliver_cambio_de_clave(@usuario) # sends the email
-        flash[:notice] = "Se le ha enviado a silvio un email con los pasos a seguir para su cambio de clave. Verifique su casilla de correo."
+        #Notificador.create_cambio_de_clave(@usuario)
+        #Notificador.deliver_cambio_de_clave(@usuario) # sends the email
+        flash[:notice] = "Cambio de clave"
 
-        redirect_to('/session/new')
+        redirect_to('resetear_clave')
 
       else
+
         flash[:error] = "Nombre de usuario incorrecto"
         render :action => 'olvide_mi_clave'
-      end
+    end
+    
 
-    else
-      flash[:error] = "El email no corresponde al usuario ingresado"
-      render :action => 'olvide_mi_clave'
+    
     end
 
-  end
+ 
 
 
  
   def cambiar_clave
-    current_usuario.id =  params[:id]
-    @usuario = Usuario.find(params[:id])
+    
+    @usuario = Usuario.find(params[:usuario_id])
     
     if(!@usuario.blank?)
       hash_usuario = self.generar_linkhash(@usuario)
@@ -135,24 +133,19 @@ class UsuariosController < ApplicationController
       if hash_usuario == params[:hash]
         newpassword = self.newpass(6)
 
-
         if @usuario.update_attribute(:password, newpassword) && @usuario.update_attribute(:cambio_clave, "1")
 
           @usuario[:newpassword] = newpassword
           Notificador.create_envio_clave_nueva(@usuario)
           Notificador.deliver_envio_clave_nueva(@usuario) # sends the email
           flash[:notice] = "Se le ha enviado un email con sus nuevas credenciales de acceso. Verifique su casilla de correo."
-          redirect_to('/ingresar')
+          redirect_to('/pacientes')
         else
           flash[:error] = "No se ha podido cambiar cu clave debido a un error interno. Pongase en contacto con el administrador del sistema"
           
         end
 
-        #cambio de clave
-
-      else
-        flash[:error] = "Su email de cambio de clave ha caducado. Solicite un nuevo cambio de clave"
-        
+     
       end
     else
       redirect_to('/')
@@ -161,9 +154,11 @@ class UsuariosController < ApplicationController
 
   end
 
+  #envia el mail porq olvido la contraseña
  def enviar_mail
+   params[:usuario_id]
    
-    @usuario = Usuario.find_by_email(params[:usuario][:email])
+    @usuario = Usuario.find_by_usuario_id(@usuario.id)
 
    
         newpassword = self.newpass(6)
@@ -213,27 +208,28 @@ class UsuariosController < ApplicationController
 
 
   def establecer_nueva_clave
+ params[:usuario_id]
     if Usuario.authenticate(current_usuario.login, params[:clave_anterior])
       if ((params[:clave_nueva] == params[:confirma_clave_nueva]) && !params[:confirma_clave_nueva].blank?)
           current_usuario.password_confirmation = params[:confirma_clave_nueva]
           current_usuario.password = params[:clave_nueva]
 
           if current_usuario.save!
-              current_usuario.update_attribute(:cambio_clave, nil)
+              
               flash[:notice] = "Clave cambiada correctamente"
-              redirect_to renovar_clave_usuarios_path
+              redirect_to buscar_usuarios_path
           else
               flash[:error] = "La clave no ha podido modificarse debido a un error interno"
-              render :action => 'renovar_clave'
+              redirect_to buscar_usuarios_path
           end
 
       else
           flash[:error] = "Clave nueva y confirmaci&oacute;n no coinciden"
-          render :action => 'renovar_clave'
+           redirect_to buscar_usuarios_path
       end
     else
         flash[:error] = "Clave anterior incorrecta"
-        render :action => 'renovar_clave'
+        redirect_to buscar_usuarios_path
     end
   end
 
