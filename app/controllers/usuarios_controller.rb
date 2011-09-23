@@ -107,7 +107,7 @@ class UsuariosController < ApplicationController
         @usuario[:linkhash] = self.generar_linkhash(@usuario)
         Notificador.create_cambio_de_clave(@usuario)
         Notificador.deliver_cambio_de_clave(@usuario) # sends the email
-        flash[:notice] = "Se le ha enviado un email con los pasos a seguir para su cambio de clave. Verifique su casilla de correo."
+        flash[:notice] = "Se le ha enviado a silvio un email con los pasos a seguir para su cambio de clave. Verifique su casilla de correo."
 
         redirect_to('/session/new')
 
