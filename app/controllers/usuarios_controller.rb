@@ -96,15 +96,15 @@ class UsuariosController < ApplicationController
 
   end
 
-  def resetear_clave  
+  def resetear_clave  #olvide mi clave
 
-    #current_usuario.id =  params[:usuario_id]
+    #params[:usuario_id] = current_usuario.id
     @usuario = Usuario.find(params[:usuario_id])
-
+    
     if @usuario     
         @usuario[:linkhash] = self.generar_linkhash(@usuario)
-        #Notificador.create_cambio_de_clave(@usuario)
-        #Notificador.deliver_cambio_de_clave(@usuario) # sends the email
+        Notificador.create_cambio_de_clave(@usuario)
+        Notificador.deliver_cambio_de_clave(@usuario) # sends the email
         flash[:notice] = "Cambio de clave"
 
         redirect_to('resetear_clave')
@@ -124,7 +124,7 @@ class UsuariosController < ApplicationController
 
  
   def cambiar_clave
-    
+   
     @usuario = Usuario.find(params[:usuario_id])
     
     if(!@usuario.blank?)
@@ -207,8 +207,18 @@ class UsuariosController < ApplicationController
   end
 
 
-  def establecer_nueva_clave
- params[:usuario_id]
+ def  verificar_clave_email
+
+    @usuario = Usuario.find(:first, :conditions => {:password => params[:usuario][:password]})
+    respond_to do |format|
+
+    format.json { render :json => !@usuario}
+
+    end
+ end
+
+  def establecer_nueva_clave #dentro de la sesion
+    params[:usuario_id]
     if Usuario.authenticate(current_usuario.login, params[:clave_anterior])
       if ((params[:clave_nueva] == params[:confirma_clave_nueva]) && !params[:confirma_clave_nueva].blank?)
           current_usuario.password_confirmation = params[:confirma_clave_nueva]
@@ -217,19 +227,22 @@ class UsuariosController < ApplicationController
           if current_usuario.save!
               
               flash[:notice] = "Clave cambiada correctamente"
-              redirect_to buscar_usuarios_path
+              redirect_buscar_usuarios_path
           else
+             redirect_buscar_usuarios_path
               flash[:error] = "La clave no ha podido modificarse debido a un error interno"
-              redirect_to buscar_usuarios_path
+             
           end
 
       else
+        redirect_buscar_usuarios_path
           flash[:error] = "Clave nueva y confirmaci&oacute;n no coinciden"
-           redirect_to buscar_usuarios_path
+           
       end
     else
+        
+        redirect_buscar_usuarios_path
         flash[:error] = "Clave anterior incorrecta"
-        redirect_to buscar_usuarios_path
     end
   end
 

@@ -1,47 +1,48 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-all">
     <legend class="ui-widget ui-widget-header ui-corner-all">Cambiar Clave</legend>
     <% form_tag establecer_nueva_clave_usuarios_url, :id => 'form_cambiar_clave' do -%>
-    <ul id="form">
-      <li>
-        <label>Clave anterior</label>
-        <%= password_field_tag  :clave_anterior, nil ,:class => 'ui-widget-content', :id => 'clave_anterior'  %>
-      </li>
-      <li>
-        <label>Clave nueva</label>
-        <%= password_field_tag :clave_nueva,nil ,:class => 'required ui-widget-content'  %>
-      </li>
-      <li>
-        <label>Reescriba Clave nueva</label>
-        <%= password_field_tag :confirma_clave_nueva, nil ,:class => 'required ui-widget-content'  %>
-      </li>
-      <li>
-        <label></label>
+  <table style=" text-align: left;">
+    <tr>
+        <td>Clave anterior</td>
+        <td><%= password_field_tag  :clave_anterior, nil ,:class => 'required ui-widget-content', :id => 'clave_anterior'  %>
+        </td>
+    </tr>
+    <tr>
+     
+        <td>Clave nueva</td>
+        <td><%= password_field_tag :clave_nueva,nil ,:class => 'required ui-widget-content'  %>
+      </td>
+    </tr>
+    <tr>
+        <td>Reescriba Clave nueva</td>
+        <td><%= password_field_tag :confirma_clave_nueva, nil ,:class => 'required ui-widget-content'  %>
+      </td>
+    </tr>
+  </table>
+    <table>
+      <tr>
+        <td  style=" float: left; margin-left:  350px">
         <%= submit_tag "Cambiar" %>
-        <input type="button" class="button" value="Cancelar" onclick="javascript: location.href='<%#= consultas_url %>'" />
-      </li>
+        <input type="button" class="button" value="Cancelar"  onclick="location.href='/usuarios/buscar/'" />
+        </td>
+      </tr>
 
-    </ul>
+  </table>
     <% end -%>
 </fieldset>
 <script type="text/javascript">
+ $(document).ready(function(){
+ $("#form_cambiar_clave").validate({
 
-$(document).ready(function(){
-  $("#form_cambiar_clave").validate();
-    $('#clave_anterior').rules('add',{
-      required: true,
-      /*remote: {
-        url: "/usuarios/verificar_clave",
-        type: "post",
-        data: {
-          clave_anterior: function() {
-            return $("#clave_anterior").val();
-          }
+       wrapper: 'li',
+       meta: "validate",
+       rules :{
+          "[confirma_clave_nueva]":{required:true, equalTo: "[clave_nueva]" }
+          //"#password":{required:true, remote:"/usuarios/verificar_clave_email?usuario[password]=" + $('#password').val()  }
+       },
+        messages:{
+           "[confirma_clave_nueva]":{equalTo:'Contraseña y Confirmacion no coinciden'}
         }
-      },*/
-      messages: {
-      //required: "Este campo es obligatorio",
-        remote: jQuery.format("La clave anterior no coincide")
-      }
-    });
-  });
+ });
+ })
 </script>
