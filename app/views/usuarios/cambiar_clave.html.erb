@@ -1,21 +1,21 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-all">
-    <legend class="ui-widget ui-widget-header ui-corner-all">Cambiar Clave</legend>
+    <legend class="ui-widget ui-widget-header ui-corner-all">Cambiar Contraseña</legend>
     <% form_tag establecer_nueva_clave_usuarios_url, :id => 'form_cambiar_clave' do -%>
   <table style=" text-align: left;">
     <tr>
-        <td>Clave anterior</td>
+        <td>Contraseña Anterior</td>
         <td><%= password_field_tag  :clave_anterior, nil ,:class => 'required ui-widget-content', :id => 'clave_anterior'  %>
         </td>
     </tr>
     <tr>
      
-        <td>Clave nueva</td>
-        <td><%= password_field_tag :clave_nueva,nil ,:class => 'required ui-widget-content'  %>
+        <td>Contraseña Nueva</td>
+        <td><%= password_field_tag :clave_nueva,nil ,:class => 'required ui-widget-content', :id => 'passw'  %>
       </td>
     </tr>
     <tr>
-        <td>Reescriba Clave nueva</td>
-        <td><%= password_field_tag :confirma_clave_nueva, nil ,:class => 'required ui-widget-content'  %>
+        <td>Reescriba Contraseña Nueva</td>
+        <td><%= password_field_tag :confirma_clave_nueva, nil ,:class => 'required ui-widget-content', :id => 'new_passw'  %>
       </td>
     </tr>
   </table>
@@ -37,11 +37,11 @@
        wrapper: 'li',
        meta: "validate",
        rules :{
-          "[confirma_clave_nueva]":{required:true, equalTo: "[clave_nueva]" }
+          "#passw":{required:true, equalTo: "#new_pasw" }
           //"#password":{required:true, remote:"/usuarios/verificar_clave_email?usuario[password]=" + $('#password').val()  }
        },
         messages:{
-           "[confirma_clave_nueva]":{equalTo:'Contraseña y Confirmacion no coinciden'}
+           "#new_pasw":{equalTo:'Contraseña y Confirmacion no coinciden'}
         }
  });
  })

@@ -12,7 +12,7 @@ class UsuariosController < ApplicationController
   end
  
   def create
-    logout_keeping_session!
+    #logout_keeping_session!
 
     @usuario = Usuario.new(params[:usuario])
  
@@ -22,9 +22,9 @@ class UsuariosController < ApplicationController
 
       redirect_back_or_default('/usuarios/buscar')
       flash[:notice] = 'Usuario creado'
-      else
-        # self.current_usuario = @usuario
-     
+      #self.current_usuario = @usuario
+      
+    else
       render :action => 'new'     
     end
    
@@ -227,21 +227,21 @@ class UsuariosController < ApplicationController
           if current_usuario.save!
               
               flash[:notice] = "Clave cambiada correctamente"
-              redirect_buscar_usuarios_path
+              redirect_to buscar_usuarios_path
           else
-             redirect_buscar_usuarios_path
+             redirect_to buscar_usuarios_path
               flash[:error] = "La clave no ha podido modificarse debido a un error interno"
              
           end
 
       else
-        redirect_buscar_usuarios_path
+        redirect_to buscar_usuarios_path
           flash[:error] = "Clave nueva y confirmaci&oacute;n no coinciden"
            
       end
     else
         
-        redirect_buscar_usuarios_path
+        redirect_to buscar_usuarios_path
         flash[:error] = "Clave anterior incorrecta"
     end
   end
