@@ -140,7 +140,7 @@ map.resources :periodos_obras_sociales,  :collection => {:buscar => :get, :resul
                            :collection =>{:renovar_clave => :get, :establecer_nueva_clave => :post,
                            :verificar_clave => :post,
                            :olvide_mi_clave => [:get, :post], :resetear_clave => [:get,:post],
-                           :buscar => :get, :resultado => [:get, :post], :verificar => :get, :verificar_clave_email => :get,  :verificar_email => :get, :cambiar_clave => [:get, :post], :enviar_mail => [:get, :post]}
+                           :buscar => :get, :resultado => [:get, :post], :verificar => :get, :verificar_clave_email => :get,  :verificar_email => :get, :cambiar_clave => [:get, :post], :enviar_email => [:get, :post]}
 
   map.resource :session
 

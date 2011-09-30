@@ -87,6 +87,8 @@ class PacientesController < ApplicationController
     end
   end
 
+
+  #imagen del paciente en la pestaña datos personales
   def changephoto
     @paciente = Paciente.find(params[:id])
      
@@ -96,7 +98,7 @@ class PacientesController < ApplicationController
     end
     @archivo = Archivo.new
     respond_to do |format|
-      format.html {render :layout => 'default'}# changephoto.html.erb
+      format.html {render :layout => false}# changephoto.html.erb
   
     end
   end

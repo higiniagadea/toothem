@@ -47,7 +47,7 @@ class ImagenesController < ApplicationController
     end
   end
 
-  
+  #crea las imagenes en general para un paciente, luego mostrar en slide
   def create
     
     @archivo = Archivo.new(params[:archivo])
@@ -58,9 +58,9 @@ class ImagenesController < ApplicationController
         params[:imagen][:archivo_id] = @archivo.id
         @imagen = Imagen.new(params[:imagen])
         @imagen.save
-         flash[:notice] = 'Imagen creadaaaaaa.'
-          format.html { redirect_to(pacientes_url(@paciente))}
-          format.xml  { render :xml => @imagen, :status => :created, :location => @imagen }
+         flash[:notice] = 'Imagen cargada.'
+         format.html { redirect_to search_pacientes_path}
+          #format.xml  { render :xml => @imagen, :status => :created, :location => @imagen }
         else
           
           format.xml  { render :xml => @imagen.errors, :status => :unprocessable_entity}
@@ -78,7 +78,7 @@ class ImagenesController < ApplicationController
     respond_to do |format|
       if @imagen.update_attributes(params[:imagen])
         flash[:notice] = 'Imagen Actualizada.'
-        format.html { redirect_to(@imagen) }
+        format.html { redirect_to search_pacientes_path }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -97,8 +97,9 @@ class ImagenesController < ApplicationController
     @archivo.destroy
     @imagen.destroy
     respond_to do |format|
-      format.html { redirect_to(paciente_url(@imagen.paciente_id)) }
-      format.xml  { head :ok }
+       flash[:notice] = 'Imagen eliminada'
+      format.html { redirect_to search_pacientes_path }
+    
     end
   end
  

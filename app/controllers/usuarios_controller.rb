@@ -92,90 +92,44 @@ class UsuariosController < ApplicationController
   end
 
   def olvide_mi_clave
-
-
+    respond_to do |format|
+      format.html{render :layout => 'session'}
+    end
   end
 
-  def resetear_clave  #olvide mi clave
-
-    #params[:usuario_id] = current_usuario.id
-    @usuario = Usuario.find(params[:usuario_id])
-    
-    if @usuario     
+ 
+ def enviar_email #envia el mail porq olvido la contraseña
+    @usuario = Usuario.find_by_email(params[:usuario][:email])
+    if @usuario
+      if @usuario.login == params[:usuario][:login]
         @usuario[:linkhash] = self.generar_linkhash(@usuario)
-        Notificador.create_cambio_de_clave(@usuario)
-        Notificador.deliver_cambio_de_clave(@usuario) # sends the email
-        flash[:notice] = "Cambio de clave"
+      
+        newpassword = self.newpass(6)
 
-        redirect_to('resetear_clave')
+       if @usuario.update_attribute(:password, newpassword) 
+
+          @usuario[:newpassword] = newpassword
+        #Notificador.create_cambio_de_clave(@usuario)
+        Notificador.deliver_envio_clave_nueva(@usuario) # sends the email
+        flash[:notice] = "Se le ha enviado un email con los pasos a seguir para su cambio de clave. Verifique su casilla de correo."
+
+        redirect_to new_session_path
 
       else
-
         flash[:error] = "Nombre de usuario incorrecto"
         render :action => 'olvide_mi_clave'
-    end
-    
-
-    
-    end
-
- 
-
-
- 
-  def cambiar_clave
-   
-    @usuario = Usuario.find(params[:usuario_id])
-    
-    if(!@usuario.blank?)
-      hash_usuario = self.generar_linkhash(@usuario)
-
-      if hash_usuario == params[:hash]
-        newpassword = self.newpass(6)
-
-        if @usuario.update_attribute(:password, newpassword) && @usuario.update_attribute(:cambio_clave, "1")
-
-          @usuario[:newpassword] = newpassword
-          Notificador.create_envio_clave_nueva(@usuario)
-          Notificador.deliver_envio_clave_nueva(@usuario) # sends the email
-          flash[:notice] = "Se le ha enviado un email con sus nuevas credenciales de acceso. Verifique su casilla de correo."
-          redirect_to('/pacientes')
-        else
-          flash[:error] = "No se ha podido cambiar cu clave debido a un error interno. Pongase en contacto con el administrador del sistema"
-          
-        end
-
-     
       end
-    else
-      redirect_to('/')
-    end
 
+    else
+      flash[:error] = "El email no corresponde al usuario ingresado"
+      render :action => 'olvide_mi_clave'
+    end
 
   end
-
-  #envia el mail porq olvido la contraseña
- def enviar_mail
-   params[:usuario_id]
    
-    @usuario = Usuario.find_by_usuario_id(@usuario.id)
-
-   
-        newpassword = self.newpass(6)
-        
-       if @usuario.update_attribute(:password, newpassword)
-          @usuario[:newpassword] = newpassword
-          Notificador.create_envio_clave_nueva(@usuario)
-          Notificador.deliver_envio_clave_nueva(@usuario) # sends the email
-          flash[:notice] = "Se le ha enviado un email para reactivar su contraseña"
-          redirect_to('/session/new')
-        else
-          
-          flash[:notice] = "No se ha podido cambiar cu clave debido a un error interno. Pongase en contacto con el administrador del sistema"
-          redirect_to('/session/new')
-        end
-    
  end
+
+
 
 
   def renovar_clave

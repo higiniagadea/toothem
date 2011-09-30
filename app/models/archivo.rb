@@ -4,11 +4,11 @@ class Archivo < ActiveRecord::Base
   
   has_attachment :content_type => :image,
                  :storage => :db_file,
-                 :max_size => 500.kilobytes,
+                 :max_size => 2.megabyte,
                  :resize_to => [640,480],
-                 :thumbnails => { :thumb => [90,90] }
+                 :thumbnails => { :thumb => [90,90]}
   
-   
+  
  
   def image_file=(input_data)
     self.filename = input_data.original_filename

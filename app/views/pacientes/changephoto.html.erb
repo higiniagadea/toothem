@@ -1,9 +1,12 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Cambiar Imagen</legend>
-<div>
+
+<%#=  cambia la imagen del paciente de la solapa datos personales  %>
+
+  <div>
   <b>Cambiar imagen del paciente <%=  @paciente.nombre %></b><br/><br/>
    <% form_for(:archivo, :url => archivos_path,
-                         :html => { :multipart => true }) do |f| -%>
+                         :html => {:multipart => true}) do |f| -%>
 
  <div class="errores">
     <ol style="list-style:none"></ol>
@@ -11,9 +14,9 @@
 
       <table>
         <tr>
-          <th>Seleccione archivo: </th>
+          <th> <label for="archivos">Seleccione archivo:</label> </th>
           <td>
-            <%= f.file_field :uploaded_data, :class=> 'ui-widget-content required'%>
+            <%= f.file_field :uploaded_data, :class=> 'required', :title=> 'Seleccione un archivo'%>
             <%= hidden_field :paciente,:id,"value"=>@paciente.id %>
           </td>
          </tr>
@@ -32,8 +35,8 @@
   $(document).ready(function(){
     $("#archivo_uploaded_data").validate({
         //errorLabelContainer: $("#new_paciente div.errores")
-       errorContainer: $("#archivo_uploaded_data div.errores"),
-       errorLabelContainer: $("ol", $("#archivo_uploaded_data div.errores")),
+       errorContainer: $("#archivo_uploaded_data"),
+       errorLabelContainer: $("ol", $("#archivo_uploaded_data")),
        wrapper: 'li',
        meta: "validate"
      });

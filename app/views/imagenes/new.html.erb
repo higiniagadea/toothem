@@ -1,32 +1,33 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Imagen</legend>
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Nueva Imagen</legend>
   <% form_for(@imagen, :html => {:multipart => true }) do |f| -%>
   <%= f.error_messages %>
+
    <div class="errores">
     <ol style="list-style:none"></ol>
   </div>
-  <table id="form">
+  <table style=" text-align: left;">
     <tr>
     <td>
     <%= f.hidden_field :paciente_id, "value" => @paciente.id %>
     </td>
     </tr>
     <tr>
-        <td>
-        <label for="archivo">Seleccione archivo:</label></td>
+        <th>
+        Seleccione archivo:</th>
         <td><%= file_field :archivo, :uploaded_data, :class=> 'ui-widget-content required', :title=> 'Por favor Seleccione un Archivo' %>
         </td>
     </tr>
     <tr>
-        <td>
-        <label for="descripcion">Descripcion</label></td>
+        <th>
+        Descripci&oacute;n</th>
         <td><%= f.text_field :descripcion, :class=>'ui-widget-content required', :title=> 'Descripcion no puede estar en blanco' %>
         </td>
     </tr>
     <tr>
-        <td>
-        <label style=" float: left" for="observaciones">Observaciones</label></td>
-        <td><%= f.text_area :observaciones, :rows => 5 , :class=>'required ui-widget-content', :title=> 'Observaciones no puede estar en blanco'%>
+        <th>
+        Observaciones</th>
+        <td><%= f.text_area :observaciones, :rows => 5 , :class=>'ui-widget-content', :title=> 'Observaciones no puede estar en blanco'%>
         </td>
     </tr>
         <td>
@@ -50,7 +51,15 @@ $(document).ready(function()
        errorContainer: $("#new_imagen div.errores"),
        errorLabelContainer: $("ol", $("#new_imagen div.errores")),
        wrapper: 'li',
-       meta: "validate"
+       meta: "validate",
+       rules :{
+         "imagen[descripcion]": {required: true, rangelength: [3, 100]},
+         "imagen[observaciones]":{ rangelength: [3, 500]}
+       },
+          messages:{
+            "imagen[descripcion]":{rangelength :'Ingrese entre tres y cien caracteres'},
+          "imagen[observaciones]":{ rangelength:'Ingrese entre tres y quinientos caracteres'}
+        }
      });
 
    // Use the each() method to gain access to each of the elements attributes

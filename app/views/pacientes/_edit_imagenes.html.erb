@@ -12,38 +12,37 @@
   <!-- Slideshow HTML -->
   <div id="slideshow">
     <div id="slidesContainer">
-
+    
         <% @imagenes.each do |imagen| %>
-      <div class="slide">
+        <div class="slide">
            <h2>
-              <%= imagen.descripcion %>
+            
               <div  style="float: right; font-size: 12px; font-weight: normal">
-                    <a id="imagen" href="<%= imagen_url(imagen.id)%>" style=" float: left">
-
+                
+                    <p id="imagen" href="<%= imagen_url(imagen.id)%>">
+                   
                       <%= link_to image_tag('magnifier_zoom_in.png'), imagen, :title => 'Ver Imagen', :id=> 'ver_imagen' %>
-                    </a>
-
-                    <a>
+                   
                       <%= link_to image_tag('cancel.png'), imagen, :title => 'Eliminar Imagen', :confirm => "Esta seguro que desea eliminar la imagen?", :method => :delete %>
-                    </a>
+                    </p>
               </div>
            </h2>
-       
-           <%  @thumbnail = Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)%>
-       
+           <%  @archivo_thumbnail = Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)%>
+      
         <p>
            <div style=" height: 200px; float:  right">
               <%= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id ='+imagen.archivo_id.to_s)) , :alt => imagen.descripcion, :id => imagen.id %>
            </div>
         </p>
-      <p>
+        <p>
+            <%= imagen.descripcion %>
            <%= imagen.observaciones %>
 
-      </p>
-         </div>
+        </p>
+       </div>
 
         <%end%>
-
+     
     </div>
   </div>
 
@@ -69,11 +68,11 @@
 $(document).ready(function()
 {
 
-   $('.slide img').each(function()
+   $('#pacientes-photo img').each(function()
    {
       $(this).qtip(
       {
-         //content: '<a onclick="Boxy.load(\'<%= changephoto_paciente_url(@paciente) %>\',{modal: true})">Editar</a>',
+         content: '<a onclick="Boxy.load(\'<%= changephoto_paciente_url(@paciente) %>\',{modal: true})">Editar</a>',
          content: '<a href="<%= changephoto_paciente_url(@paciente) %>" id="imagen">Editar</a>',
          position: 'topLeft', // Set its position
          hide: {
