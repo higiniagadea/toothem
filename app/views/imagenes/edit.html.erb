@@ -1,32 +1,81 @@
-<h1>Editing imagen</h1>
-
-<% form_for(@imagen) do |f| %>
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Editar Imagen</legend>
+  <% form_for(@imagen, :html => {:multipart => true }) do |f| -%>
   <%= f.error_messages %>
 
-  <p>
-    <%= f.label :paciente_id %><br />
-    <%= f.text_field :paciente_id %>
-  </p>
-  <p>
-    <%= f.label :archivo_id %><br />
-    <%= f.text_field :archivo_id %>
-  </p>
-  <p>
-    <%= f.label :descripcion %><br />
-    <%= f.text_field :descripcion %>
-  </p>
-  <p>
-    <%= f.label :observaciones %><br />
-    <%= f.text_field :observaciones %>
-  </p>
-  <p>
-    <%= f.label :fecha %><br />
-    <%= f.date_select :fecha %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
-<% end %>
+   <div class="errores">
+    <ol style="list-style:none"></ol>
+  </div>
+  <table style=" text-align: left;">
+    <tr>
+    <td>
+    <%#= f.hidden_field :paciente_id, "value" => @paciente.id %>
+    </td>
+    </tr>
+    <tr>
+        <th>
+        Seleccione archivo:</th>
+        <td><%= file_field :archivo, :uploaded_data, :class=> 'ui-widget-content required', :title=> 'Por favor Seleccione un Archivo' %>
+        </td>
+    </tr>
+    <tr>
+        <th>
+        Descripci&oacute;n</th>
+        <td><%= f.text_field :descripcion, :class=>'ui-widget-content required',:size => 29,:title=> 'Descripcion no puede estar en blanco' %>
+        </td>
+    </tr>
+    <tr>
+        <th>
+        Observaciones</th>
+        <td><%= f.text_area :observaciones, :rows => 5 ,:cols => 28 ,:class=>'ui-widget-content', :title=> 'Observaciones no puede estar en blanco'%>
+        </td>
+    </tr>
+    <tr>
+      <th>Fecha</th>
+      <td><span class="fecha" class ="ui-widget-content">
+        <input class="ui-widget-content" title="Selecione la fecha" type="text" id="fecha_imge" name="imagen[fecha]" readonly="readonly"  size="10" value="<%= @imagen.fecha.strftime('%d/%m/%Y') %>" />
+        </span>
+      </td>
+    </tr>
+  </table>
+  <table>
+        <tr>
+          <td  style=" float: left; margin-left: 350px">
+        <%= f.submit 'Editar Imagen', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+        </td>
+        </tr>
+   </table>
+   <br/>
+   <br/>
+  <% end -%>
 
-<%= link_to 'Show', @imagen %> |
-<%= link_to 'Back', imagenes_path %>
+</fieldset>
+
+<script type="text/javascript">
+
+// Only create tooltips when document is ready
+$(document).ready(function()
+{
+     $(".edit_imagen").validate({
+        //errorLabelContainer: $("#new_titular div.errores")
+       errorContainer: $(".edit_imagen div.errores"),
+       errorLabelContainer: $("ol", $(".edit_imagen div.errores")),
+       wrapper: 'li',
+       meta: "validate",
+       rules :{
+         "imagen[descripcion]": {required: true, rangelength: [3, 100]},
+         "imagen[observaciones]":{ rangelength: [3, 500]}
+       },
+          messages:{
+            "imagen[descripcion]":{rangelength :'Ingrese entre tres y cien caracteres'},
+          "imagen[observaciones]":{ rangelength:'Ingrese entre tres y quinientos caracteres'}
+        }
+     });
+
+   // Use the each() method to gain access to each of the elements attributes
+
+  $("#fecha_imge").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', minDate: '+0D',
+                maxDate: '+0D'});
+});
+
+</script>

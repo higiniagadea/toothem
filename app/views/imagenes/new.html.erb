@@ -21,24 +21,36 @@
     <tr>
         <th>
         Descripci&oacute;n</th>
-        <td><%= f.text_field :descripcion, :class=>'ui-widget-content required', :title=> 'Descripcion no puede estar en blanco' %>
+        <td><%= f.text_field :descripcion, :class=>'ui-widget-content required',:size => 29,:title=> 'Descripcion no puede estar en blanco' %>
         </td>
     </tr>
     <tr>
         <th>
         Observaciones</th>
-        <td><%= f.text_area :observaciones, :rows => 5 , :class=>'ui-widget-content', :title=> 'Observaciones no puede estar en blanco'%>
+        <td><%= f.text_area :observaciones, :rows => 5 ,:cols => 28 ,:class=>'ui-widget-content', :title=> 'Observaciones no puede estar en blanco'%>
         </td>
     </tr>
-        <td>
-        <label></label>
+
+    <tr>
+      <th>Fecha</th>
+      <td><span class="fecha" class ="ui-widget-content">
+        <input class="ui-widget-content required" title="Selecione la fecha" type="text" id="fecha_img" name="imagen[fecha]" readonly="readonly"  size="10" />
+        </span>
+      </td>
+    </tr>
+
+  </table>
+  <table>
+        <tr>
+          <td  style=" float: left; margin-left: 350px">
         <%= f.submit 'Crear Imagen', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
         </td>
-        
+        </tr>
    </table>
-    
+   <br/>
+   <br/>
   <% end -%>
-
+ 
 </fieldset>
 
 <script type="text/javascript">
@@ -46,7 +58,7 @@
 // Only create tooltips when document is ready
 $(document).ready(function()
 {
-     $("#new_imagen").validate({
+      $("#new_imagen").validate({
         //errorLabelContainer: $("#new_titular div.errores")
        errorContainer: $("#new_imagen div.errores"),
        errorLabelContainer: $("ol", $("#new_imagen div.errores")),
@@ -79,6 +91,10 @@ $(document).ready(function()
          }
       });
    });
+
+ $("#fecha_img").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', minDate: '+0D',
+                maxDate: '+0D'});
+
 });
 
 </script>

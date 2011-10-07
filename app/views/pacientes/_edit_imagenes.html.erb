@@ -1,57 +1,67 @@
-   <fieldset class="ui-widget-content ui-corner-all">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+ <fieldset class="ui-widget ui-widget-content ui-corner-top">
     <legend class="ui-widget ui-widget-header ui-corner-all" >Im&aacute;genes</legend>
-    <div style=" float: right; margin-right:  60px"><%= link_to "Nueva imagen", new_imagen_path + '/'+@paciente.id.to_s %></div>
-    <% unless @imagenes.blank? %>
+       <div style=" float: right; margin-right:  60px"><%= link_to "Nueva imagen", new_imagen_path + '/'+@paciente.id.to_s, :id => 'cargar_imagen' %></div>
+
+<% unless @imagenes.blank? %>
     <table class="show-data">
 
       <tr>
         <td class="fielddata">
 
-            <div id="pageContainer">
+          <div id="pageContainer">
 
   <!-- Slideshow HTML -->
-  <div id="slideshow">
-    <div id="slidesContainer">
-    
+   <div id="slideshow">
+     <div id="slidesContainer">
+
         <% @imagenes.each do |imagen| %>
-        <div class="slide">
+    
+      <div class="slide">
            <h2>
-            
-              <div  style="float: right; font-size: 12px; font-weight: normal">
-                
-                    <p id="imagen" href="<%= imagen_url(imagen.id)%>">
-                   
-                      <%= link_to image_tag('magnifier_zoom_in.png'), imagen, :title => 'Ver Imagen', :id=> 'ver_imagen' %>
-                   
+
+              <div  style="float: right; font-size: 14px; font-weight: normal">
+
+                    <p id="imagen" href="<%= imagen_url(imagen.id)%>" style=" float: left">
+
+                      <%= link_to image_tag('pencil.png'), edit_imagen_path(imagen.id), :title => 'Ver Imagen', :id=> 'ver_imagen_' + @paciente.id.to_s %>
+                    
                       <%= link_to image_tag('cancel.png'), imagen, :title => 'Eliminar Imagen', :confirm => "Esta seguro que desea eliminar la imagen?", :method => :delete %>
+
+                   
                     </p>
               </div>
+
            </h2>
-           <%  @archivo_thumbnail = Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)%>
-      
+           <%  thumb = Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)%>
+
         <p>
-           <div style=" height: 200px; float:  right">
-              <%= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id ='+imagen.archivo_id.to_s)) , :alt => imagen.descripcion, :id => imagen.id %>
+           <div style=" height: 150px; float:  right">
+      
+            <%= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id =' +imagen.archivo_id.to_s)),  :alt => imagen.descripcion, :id => imagen.id %>
+          <%#=  image_tag(url_for(:action => :show, :controller => :archivos, :id => imagen.archivo.id), :alt => imagen.descripcion+' imagen', :size => '24x24')%>
            </div>
         </p>
-        <p>
-            <%= imagen.descripcion %>
-           <%= imagen.observaciones %>
+        <p>Descripcion:  <%= imagen.descripcion %>
+        </p>
+        <p>Observaciones: <%= imagen.observaciones %>
 
         </p>
+      
+        <p>Fecha
+          <%= imagen.fecha.strftime('%d/%m/%Y') %>
+        </p>
        </div>
+   
+  <%end%>
 
-        <%end%>
-     
     </div>
   </div>
 
 </div>
-          <br/>
-
         </td>
       </tr>
-
+     
       <tr>
         <td class="fieldname"></td>
         <td class="fielddata"></td>
@@ -67,6 +77,9 @@
 // Only create tooltips when document is ready
 $(document).ready(function()
 {
+
+
+
 
    $('#pacientes-photo img').each(function()
    {
@@ -85,12 +98,22 @@ $(document).ready(function()
        }
        });
 
-     $('#ver_imagen').fancybox(
+     $('#ver_imagen_<%= @paciente.id.to_s  %> ').fancybox(
     {
       'hideOnContentClick': false,
       'titleShow': false
 
     });
+
+     $('#cargar_imagen').fancybox(
+    {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+
+
+     $("#fecha").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate: 0});
 
       });
 });
@@ -103,7 +126,7 @@ $(document).ready(function()
 <script type="text/javascript">
 $(document).ready(function(){
   var currentPosition = 0;
-  var slideWidth = 560;
+  var slideWidth = 400;
   var slides = $('.slide');
   var numberOfSlides = slides.length;
 

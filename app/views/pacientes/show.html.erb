@@ -178,10 +178,10 @@
            <h2>
               <%= imagen.descripcion %>
               <div  style="float: right; font-size: 12px; font-weight: normal">
-                    <a id="imagen" href="<%= imagen_url(imagen.id)%>" style=" float: left">
+                    <p id="imagen" href="<%= imagen_url(imagen.id)%>" style=" float: left">
 
                       <%= link_to image_tag('magnifier_zoom_in.png'), imagen, :title => 'Ver Imagen', :id=> 'ver_imagen' %>
-                    </a>
+                    </p>
 
                     <a>
                       <%= link_to image_tag('cancel.png'), imagen, :title => 'Eliminar Imagen', :confirm => "Esta seguro que desea eliminar la imagen?", :method => :delete %>

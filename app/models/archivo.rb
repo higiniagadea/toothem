@@ -7,10 +7,10 @@ class Archivo < ActiveRecord::Base
                  :max_size => 2.megabyte,
                  :resize_to => [640,480],
                  :thumbnails => { :thumb => [90,90]}
-  
+                    
   
  
-  def image_file=(input_data)
+   def image_file=(input_data)
     self.filename = input_data.original_filename
     self.content_type = input_data.content_type.chomp
     self.binary_data = input_data.read

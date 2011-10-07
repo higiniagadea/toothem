@@ -31,17 +31,19 @@ class ImagenesController < ApplicationController
     @valor = "imagen"
     @pagetitle = "Nueva imagen"
     respond_to do |format|
-      format.html # new.html.erb
-      #format.xml  { render :xml => @imagen }
+      format.html {render :layout => false}
+     
       
     end
   end
 
   
   def edit
-    @imagen = Imagen.find(params[:id])
+
+   @imagen = Imagen.find(params[:id])
+    
     respond_to do |format|
-      format.html
+      format.html{render :layout => false}
 
 
     end
@@ -49,7 +51,7 @@ class ImagenesController < ApplicationController
 
   #crea las imagenes en general para un paciente, luego mostrar en slide
   def create
-    
+    @paciente = Paciente.find(params[:imagen][:paciente_id])
     @archivo = Archivo.new(params[:archivo])
    
         respond_to do |format|
@@ -59,8 +61,8 @@ class ImagenesController < ApplicationController
         @imagen = Imagen.new(params[:imagen])
         @imagen.save
          flash[:notice] = 'Imagen cargada.'
-         format.html { redirect_to search_pacientes_path}
-          #format.xml  { render :xml => @imagen, :status => :created, :location => @imagen }
+         format.html { redirect_to edit_paciente_path(@paciente.id) + '#imagenes'}
+       
         else
           
           format.xml  { render :xml => @imagen.errors, :status => :unprocessable_entity}
@@ -74,11 +76,13 @@ class ImagenesController < ApplicationController
 
  
   def update
-    @imagen = Imagen.find(params[:id])
+     
+    @imagen = Imagen.find(params[:id])    
     respond_to do |format|
       if @imagen.update_attributes(params[:imagen])
         flash[:notice] = 'Imagen Actualizada.'
-        format.html { redirect_to search_pacientes_path }
+        #format.html{ redirect_to search_pacientes_path}
+         format.html { redirect_to edit_paciente_url(@imagen.paciente_id) + '#imagenes'}
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -89,7 +93,7 @@ class ImagenesController < ApplicationController
 
   # DELETE /imagenes/1
   # DELETE /imagenes/1.xml
-  def destroy
+   def destroy
     @imagen = Imagen.find(params[:id])
     @archivo = Archivo.find(@imagen.archivo_id)
     @archivo_thumbnail = Archivo.find(:first, :conditions => 'parent_id =' + @archivo.id.to_s)
@@ -97,9 +101,8 @@ class ImagenesController < ApplicationController
     @archivo.destroy
     @imagen.destroy
     respond_to do |format|
-       flash[:notice] = 'Imagen eliminada'
-      format.html { redirect_to search_pacientes_path }
-    
+      format.html { redirect_to edit_paciente_url(@imagen.paciente_id) + '#imagenes' }
+      format.xml  { head :ok }
     end
   end
  

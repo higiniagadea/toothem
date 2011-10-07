@@ -60,15 +60,16 @@
   <%else%>
   La Obra Social no posee Aranceles
   <%end%>
-</table>
+</table> 
 
-  
-</fieldset>
-   <table><tr>
+<table>
+  <tr>
       <td style=" float: left; margin-left:  1100px"><%= link_to 'Cancelar', buscar_obras_sociales_path %></td>
 
-    </tr>  </table>
+  </tr>
+</table>
 
+</fieldset>
  <%= will_paginate @aranceles, :previous_label =>'Anterior', :next_label => 'Siguiente' %>
 
  
