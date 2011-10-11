@@ -53,8 +53,8 @@ $(document).ready(function()
         <p>
            <div style=" height: 150px; float:  right">
       
-                <%#= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)) , :alt => imagen.descripcion, :id => imagen.id %>
-           <%=  image_tag(url_for(:action => :show, :controller => :archivos, :id => imagen.archivo.id), :alt => imagen.descripcion+' imagen', :size => '24x24')%>
+                <%= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)) , :alt => imagen.descripcion, :id => imagen.id %>
+           <%#=  image_tag(url_for(:action => :show, :controller => :archivos, :id => imagen.archivo.id), :alt => imagen.descripcion+' imagen', :size => '24x24')%>
 
            </div>
         </p>
