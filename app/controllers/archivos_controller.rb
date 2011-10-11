@@ -26,7 +26,7 @@ class ArchivosController < ApplicationController
 
     send_data(@image, :type => @image_data.content_type,
                       :filename => @image_data.filename,
-                     :disposition => 'inline')
+                      :disposition => 'inline')
 
    
   end

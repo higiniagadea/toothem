@@ -29,7 +29,7 @@ class ImagenesController < ApplicationController
     @paciente = Paciente.find(params[:id])
     @imagen = Imagen.new(params[:imagen])
     @valor = "imagen"
-    @pagetitle = "Nueva imagen"
+   # @pagetitle = "Nueva imagen"
     respond_to do |format|
       format.html {render :layout => false}
      
@@ -101,6 +101,7 @@ class ImagenesController < ApplicationController
     @archivo.destroy
     @imagen.destroy
     respond_to do |format|
+       flash[:notice] = 'Imagen Eliminada'
       format.html { redirect_to edit_paciente_url(@imagen.paciente_id) + '#imagenes' }
       format.xml  { head :ok }
     end

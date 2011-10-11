@@ -31,9 +31,9 @@ class PacientesController < ApplicationController
   def index
     @pagetitle = "Pacientes"
     consultorios = []
-    current_usuario.consultorios.each {|x| consultorios << x.consultorio_id}
+    #current_usuario.consultorios.each {|x| consultorios << x.consultorio_id}
     #@pacientes = Paciente.paginate :page=> params[:page], :per_page=> 15, :conditions => ['consultorio_id in ?', @consultorio.id], :order=> 'nombre ASC'
-    @pacientes = Paciente.paginate :page=> params[:page], :per_page=> 5, :order=> 'nombre ASC'
+    #@pacientes = Paciente.paginate :page=> params[:page], :per_page=> 5, :order=> 'nombre ASC'
    
     respond_to do |format|
       format.html 
@@ -128,27 +128,27 @@ class PacientesController < ApplicationController
     @prestaciones = Prestacion.find(:all)  
     @turnos = Turno.find(:all)
     @sald_pac = SaldoPaciente.find_by_sql('select ver_saldo_paciente(' + @paciente.id.to_s + ') as saldo ' )
-    @imagenes = Imagen.find_all_by_paciente_id(@paciente.id)
-   
+    @imagenes = Imagen.find_all_by_archivo_id(@archivo.id)
+    
      #unless @paciente.archivo_id.blank?
       #@archivo_ant = Archivo.find(@paciente.archivo_id)
     #end
   
     respond_to do |format|
-      unless @paciente.blank?
-        unless @paciente.archivo_id.blank?
-           @archivo = Archivo.find(@paciente.archivo_id)
-        end
+      #unless @paciente.blank?
+        #unless @paciente.archivo_id.blank?
+         #  @archivo = Archivo.find(@paciente.archivo_id)
+        #end
 
         if params[:paginacion]
             format.html   {redirect_to edit_paciente_path(@paciente, :page => params[:page]) + '#tratamientos'}
         else
             format.html unless @paciente.id.blank?
         end
-      else
-        format.html {redirect_to search_pacientes_path}
+      #else
+        #format.html {redirect_to search_pacientes_path}
       end
-    end
+    #end
   end
 
   
