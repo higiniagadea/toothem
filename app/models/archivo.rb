@@ -2,11 +2,11 @@ class Archivo < ActiveRecord::Base
   has_one :db_file, :dependent => :destroy
   
   
-  has_attachment :content_type =>['jpg', 'png','gif', 'bmp'],
+  has_attachment :content_type => ['image/jpeg', 'image/png', 'image/gif'],
                  :storage => :db_file,
                  :max_size => 2.megabyte,
                  :resize_to => [640,480],
-                 :thumbnails => { :thumb => [90,90]}
+                 :thumbnails => {:thumb => [90,90]}
                     
   
  

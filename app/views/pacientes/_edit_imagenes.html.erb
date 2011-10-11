@@ -1,5 +1,5 @@
 
- <fieldset class="ui-widget ui-widget-content ui-corner-top" margin-right: 60px >
+ <fieldset class="ui-widget ui-widget-content ui-corner-top">
     <legend class="ui-widget ui-widget-header ui-corner-all" >Im&aacute;genes</legend>
        <div style=" float: right; margin-right:  60px"><%= link_to "Nueva imagen", new_imagen_path + '/'+@paciente.id.to_s ,  :id=> 'carga_imagen' %></div>
 <script type="text/javascript">
@@ -48,7 +48,7 @@ $(document).ready(function()
 
            </h2>
          <% # @archivo_thumbnail = Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)%>
-           <% thumb = Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)%>
+           <% thumbnail = Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)%>
 
         <p>
            <div style=" height: 150px; float:  right">
