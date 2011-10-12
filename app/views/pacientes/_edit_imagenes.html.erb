@@ -1,21 +1,8 @@
-
- <fieldset class="ui-widget ui-widget-content ui-corner-top">
+<fieldset class="ui-widget ui-widget-content ui-corner-all">
     <legend class="ui-widget ui-widget-header ui-corner-all" >Im&aacute;genes</legend>
-       <div style=" float: right; margin-right:  60px"><%= link_to "Nueva imagen", new_imagen_path + '/'+@paciente.id.to_s ,  :id=> 'carga_imagen' %></div>
-<script type="text/javascript">
 
+     <div style=" float: right; margin-right:  60px"><%= link_to "Nueva imagen", new_imagen_path + '/'+@paciente.id.to_s ,  :id=> 'carga_imagen' %> </div>
 
-// Only create tooltips when document is ready
-$(document).ready(function()
-{
-     $('#carga_imagen').fancybox(
-    {
-      'hideOnContentClick': false,
-      'titleShow': false
-
-    }); 
-});
-  </script>
 
 <% unless @imagenes.blank? %>
     <table class="show-data">
@@ -30,7 +17,7 @@ $(document).ready(function()
      <div id="slidesContainer">
 
         <% @imagenes.each do |imagen| %>
-    
+
       <div class="slide">
            <h2>
 
@@ -38,95 +25,63 @@ $(document).ready(function()
 
                     <p id="imagen" href="<%= imagen_url(imagen.id)%>" style=" float: left">
 
-                      <%= link_to image_tag('pencil.png'), edit_imagen_path(imagen.archivo.id), :title => 'Editar Imagen', :id=> 'ver_imagen_' + @paciente.id.to_s %>
-                    
+                      <%= link_to image_tag('pencil.png'), edit_imagen_path(imagen.id), :title => 'Editar Imagen', :id=> 'ver_imagen_' + @paciente.id.to_s %>
+
                       <%= link_to image_tag('cancel.png'), imagen, :title => 'Eliminar Imagen', :confirm => "Esta seguro que desea eliminar la imagen?", :method => :delete %>
 
-                   
+
                     </p>
               </div>
 
            </h2>
-         <% # @archivo_thumbnail = Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)%>
-           <% thumbnail = Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)%>
+         <%  #@archivo_thumbnail = Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)%>
+           <% @archivo_thumbnail = Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)%>
 
         <p>
            <div style=" height: 150px; float:  right">
-      
+
                 <%= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)) , :alt => imagen.descripcion, :id => imagen.id %>
-           <%#=  image_tag(url_for(:action => :show, :controller => :archivos, :id => imagen.archivo.id), :alt => imagen.descripcion+' imagen', :size => '24x24')%>
+               <%#=  image_tag(url_for(:action => :show, :controller => :archivos, :id => imagen.archivo.id), :alt => imagen.descripcion+' imagen', :size => '24x24')%>
 
            </div>
         </p>
-        <p>Descripcion:  <%= imagen.descripcion %>
-        </p>
-        <p>Observaciones: <%= imagen.observaciones %>
 
-        </p>
-      
-        <p>Fecha
-          <%= imagen.fecha.strftime('%d/%m/%Y') %>
-        </p>
+        <p>Descripcion:  <%= imagen.descripcion %></p>
+
+        <p>Observaciones: <%= imagen.observaciones %></p>
+
+        <p>Fecha: <%= imagen.fecha.strftime('%d/%m/%Y') %></p>
        </div>
-   
+
   <%end%>
 
-    </div>
-  </div>
+      </div>
+   </div>
 
 </div>
         </td>
+
       </tr>
-     
-      <tr>
+
+       <tr>
         <td class="fieldname"></td>
         <td class="fielddata"></td>
       </tr>
-    </table>
-    <% end %>
+
+
+      </table>
+
+
+
 
   </fieldset>
-
+  <% end %>
 <script type="text/javascript">
-$(document).ready(function(){
-   $('#pacientes-photo img').each(function()
-   {
-      $(this).qtip(
-      {
-         content: '<a onclick="Boxy.load(\'<%= changephoto_paciente_url(@paciente) %>\',{modal: true})">Editar</a>',
-         content: '<a href="<%= changephoto_paciente_url(@paciente) %>" id="imagen">Editar</a>',
-         position: 'topLeft', // Set its position
-         hide: {
-            fixed: true // Make it fixed so it can be hovered over
-         },
-         style: {
-            padding: '5px 15px', // Give it some extra padding
-            name: 'blue'// And style it with the preset dark theme
+$(document).ready(function()
 
-       }
-       });
-   });
-
-     $('#ver_imagen_<%= @paciente.id.to_s  %> ').fancybox(
-      {
-      'hideOnContentClick': false,
-      'titleShow': false
-
-      });
-
-       $("#fecha").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate: 0});
-
-     });
-</script>
-
-
-
-
-
-<script type="text/javascript">
-$(document).ready(function(){
+{
   var currentPosition = 0;
-  var slideWidth = 400;
+  var slideWidth = 560;
   var slides = $('.slide');
   var numberOfSlides = slides.length;
 
@@ -177,4 +132,48 @@ $(document).ready(function(){
     if(position==numberOfSlides-1){ $('#rightControl').hide() } else{ $('#rightControl').show() }
   }
 });
+</script>
+
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+   $('#pacientes-photo img').each(function()
+   {
+      $(this).qtip(
+      {
+         content: '<a onclick="Boxy.load(\'<%= changephoto_paciente_url(@paciente) %>\',{modal: true})">Editar</a>',
+         content: '<a href="<%= changephoto_paciente_url(@paciente) %>" id="imagen">Editar</a>',
+         position: 'topLeft', // Set its position
+         hide: {
+            fixed: true // Make it fixed so it can be hovered over
+         },
+         style: {
+            padding: '5px 15px', // Give it some extra padding
+            name: 'blue'// And style it with the preset dark theme
+
+       }
+       });
+   });
+
+  $('#carga_imagen').fancybox(
+    {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+
+
+     $('#ver_imagen_<%= @paciente.id.to_s %> ').fancybox(
+      {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+      });
+
+       $("#fecha").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+       monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate: 0});
+
+});
+
 </script>

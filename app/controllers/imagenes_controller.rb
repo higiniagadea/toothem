@@ -29,7 +29,7 @@ class ImagenesController < ApplicationController
     @paciente = Paciente.find(params[:id])
     @imagen = Imagen.new(params[:imagen])
     @valor = "imagen"
-   # @pagetitle = "Nueva imagen"
+    @pagetitle = "Nueva imagen"
     respond_to do |format|
       format.html {render :layout => false}
      

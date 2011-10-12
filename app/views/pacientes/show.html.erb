@@ -1,164 +1,4 @@
-<fieldset class="ui-widget-content ui-corner-all">
-  <legend class="ui-widget ui-widget-header ui-corner-all" >Edici&oacute;n</legend>
-<div id="pacientes-screen">
-  <div id= "pacientes-photo">
-
-    <% if @paciente.archivo_id.blank? %>
-      <%= image_tag('nouser.jpg') %>
-    <%else%>
-      <%= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id =' + @paciente.archivo.id.to_s)), :alt => 'imagen del paciente' %>
- 
-    <%end%>
-  </div>
-  <div id="pacientes-options">
-
-    <div id="pacientes-nombre">
-      <%=h @paciente.nombre %>
-    </div>
-
-    <div id="pacientes-actions">
-      <%= link_to image_tag('pencil.png'), edit_paciente_path(@paciente), :title=> 'Editar'%> |
-      <%= link_to image_tag('cancel.png'), @paciente, :confirm => 'Esta seguro que desea eliminar el paciente?', :method => :delete, :title=> 'Eliminar' %> |
-      <%= link_to image_tag('paste_plain.png'), listado_historias_clinicas_paciente_path(@paciente), :title => "Historias Clinicas"  %>
-    </div>
-
-  </div>
-
-
-  <fieldset class="ui-widget-content ui-corner-all">
-    <legend class="ui-widget ui-widget-header ui-corner-all" >Datos del paciente</legend>
-    <table class="show-data">
-      <tr>
-        <th class="fieldname">Nombre y Apellido</th>
-        <td class="fielddata" id="fnombre" ondblclick="<%= remote_function(:update => "fnombre",
-                                                                           :url => "/pacientes/editfield/"+@paciente.id.to_s+"?fieldname=nombre") %>">
-            <%=h @paciente.nombre %>
-        </td>
-      </tr>
-      <tr class="odd">
-        <th class="fieldname">Documento</th>
-        <td id="fmatricula" class="fielddata" ondblclick="<%= remote_function(:update => "fmatricula",
-                                                                              :url => "/pacientes/editfield/"+@paciente.id.to_s+"?fieldname=matricula") %>">
-            <%=h @paciente.tipo_documento.descripcion %> <%=h @paciente.matricula %></td>
-      </tr>
-      <tr >
-        <td class="fieldname">Fecha Nacimiento</td>
-        <td class="fielddata" id="ffecha_nacimiento" ondblclick="<%= remote_function(:update => "ffecha_nacimiento",
-                                                                                     :url => "/pacientes/editfield/"+@paciente.id.to_s+"?fieldname=fecha_nacimiento") %>">
-            <%=@paciente.fecha_nacimiento.blank? ? '-' : @paciente.fecha_nacimiento.strftime('%d/%m/%Y') %></td>
-      </tr>
-      <tr class="odd">
-        <td class="fieldname">Sexo</td>
-        <td class="fielddata" id="fsexo" ondblclick="<%= remote_function(:update => "fsexo",
-                                                                         :url => "/pacientes/editfield/"+@paciente.id.to_s+"?fieldname=sexo") %>">
-        <%= @paciente.sexo.blank? ? '-' : @paciente.sexo %></td>
-      </tr>
-      <tr >
-        <td class="fieldname">Estado Civil</td>
-        <td class="fielddata" id="festado_civil" ondblclick="<%= remote_function(:update => "festado_civil",
-                                                                                 :url => "/pacientes/editfield/"+@paciente.id.to_s+"?fieldname=estado_civil") %>">
-       <%=@paciente.estado_civil.blank? ? '-' :  @paciente.estado_civil %></td>
-      </tr>
-      <tr class="odd">
-        <td class="fieldname">Domicilio particular</td>
-        <td class="fielddata"id="fdomicilio_particular" ondblclick="<%= remote_function(:update => "fdomicilio_particular",
-                                                                                        :url => "/pacientes/editfield/"+@paciente.id.to_s+"?fieldname=domicilio_particular") %>">
-       <%=h @paciente.domicilio_particular %></td>
-      </tr>
-      <tr>
-        <td class="fieldname">Domicilio laboral</td>
-        <td class="fielddata" id="fdomicilio_laboral" ondblclick="<%= remote_function(:update => "fdomicilio_laboral",
-                                                                                      :url => "/pacientes/editfield/"+@paciente.id.to_s+"?fieldname=domicilio_laboral") %>">
-        <%= @paciente.domicilio_laboral.blank? ? '-' : @paciente.domicilio_laboral%></td>
-      </tr>
-      <tr class="odd">
-        <td class="fieldname">Grupo sanguíneo</td>
-        <td class="fielddata"id="fgrupo_sanguineo" ondblclick="<%= remote_function(:update => "fgrupo_sanguineo",
-                                                                                   :url => "/pacientes/editfield/"+@paciente.id.to_s+"?fieldname=grupo_sanguineo") %>">
-        <%= @paciente.grupo_sanguineo.blank? ? '-' :  @paciente.grupo_sanguineo %></td>
-      </tr>
-      <tr>
-        <td class="fieldname">Teléfono particular</td>
-        <td class="fielddata" id="ftelefono_particular" ondblclick="<%= remote_function(:update => "ftelefono_particular",
-                                                                                        :url => "/pacientes/editfield/"+@paciente.id.to_s+"?fieldname=telefono_particular") %>">
-       <%= @paciente.telefono_particular.blank? ? '-' : @paciente.telefono_particular %></td>
-      </tr>
-      <tr class="odd">
-        <td class="fieldname">Teléfono laboral</td>
-        <td class="fielddata" id="ftelefono_laboral" ondblclick="<%= remote_function(:update => "ftelefono_laboral",
-                                                                                     :url => "/pacientes/editfield/"+@paciente.id.to_s+"?fieldname=telefono_laboral") %>">
-       <%= @paciente.telefono_laboral.blank? ? '-' : @paciente.telefono_laboral %></td>
-      </tr>
-      <tr >
-        <td class="fieldname">Móvil</td>
-        <td class="fielddata" id="fmovil" ondblclick="<%= remote_function(:update => "fmovil",
-                                                                          :url => "/pacientes/editfield/"+@paciente.id.to_s+"?fieldname=movil") %>">
-       <%= @paciente.movil.blank? ? '-'  :  @paciente.movil%></td>
-      </tr>
-      <tr class="odd">
-        <td class="fieldname">Nivel escolar</td>
-        <td class="fielddata" id="fnivel_escolar" ondblclick="<%= remote_function(:update => "fnivel_escolar",
-                                                                                  :url => "/pacientes/editfield/"+@paciente.id.to_s+"?fieldname=nivel_escolar") %>">
-        <%= @paciente.nivel_escolar.blank? ? '-'  : @paciente.nivel_escolar %></td>
-      </tr>
-      <tr >
-        <td class="fieldname">Profesión</td>
-        <td class="fielddata" id="fprofesion" ondblclick="<%= remote_function(:update => "fprofesion",
-                                                                              :url => "/pacientes/editfield/"+@paciente.id.to_s+"?fieldname=profesion") %>">
-       <%= @paciente.profesion.blank? ? '-' :  @paciente.profesion %></td>
-      </tr>
-      <tr class="odd">
-        <td class="fieldname">Ocupación</td>
-        <td class="fielddata" id="focupacion" ondblclick="<%= remote_function(:update => "focupacion",
-                                                                              :url => "/pacientes/editfield/"+@paciente.id.to_s+"?fieldname=ocupacion") %>">
-       <%= @paciente.ocupacion.blank? ? '-'  : @paciente.ocupacion%></td>
-      </tr>
-
-    </table>
-  </fieldset>
-
-  <fieldset class="ui-widget-content ui-corner-all">
-    <legend class="ui-widget ui-widget-header ui-corner-all" >Obra Social</legend>
-    <table class="show-data">
-      <%unless @paciente.titular.blank?%>
-        <tr>
-          <td class="fieldname">Obra Social</td>
-          <td class="fielddata"><%=h @paciente.titular.obra_social.nombre %></td>
-        </tr>
-        <tr class="odd">
-          <td class="fieldname">Numero afiliado</td>
-          <td class="fielddata"> <%=h @paciente.nro_afiliado %></td>
-        </tr>
-        <tr>
-          <td class="fieldname">Titular</td>
-          <td class="fielddata"> <%=h @paciente.titular.nombre %></td>
-        </tr>
-        <tr class="odd">
-          <td class="fieldname">Matrícula</td>
-          <td class="fielddata"> <%=h @paciente.titular.matricula %></td>
-        </tr>
-        <% else %>
-        <tr><div id="edit-obra-social" style=" cursor: pointer; color: blue" onclick="Boxy.load('<%= search_titular_paciente_url %>')">Agregar</div></tr>
-        <% end %>
-     </table>
-
-  </fieldset>
-
-  <fieldset class="ui-widget-content ui-corner-all">
-    <legend class="ui-widget ui-widget-header ui-corner-all" >Cuenta Corriente</legend>
-    <table class="show-data">
-      <tr>
-        <td class="fieldname">Saldo Actual:</td>
-        <td class="fielddata">$XXXXXXXX.XX</td>
-      </tr>
-      <tr class="odd">
-        <td class="fieldname">Saldo Actual:</td>
-        <td class="fielddata">$XXXXXXXX.XX</td>
-      </tr>
-    </table>
-  </fieldset>
-
-  <fieldset class="ui-widget-content ui-corner-all">
+ <fieldset class="ui-widget-content ui-corner-all">
     <legend class="ui-widget ui-widget-header ui-corner-all" >Im&aacute;genes</legend>
     <div style=" float: right; margin-right:  60px"><%= link_to "Nueva imagen", new_imagen_path + '/'+@paciente.id.to_s %></div>
     <% unless @imagenes.blank? %>
@@ -180,7 +20,7 @@
               <div  style="float: right; font-size: 12px; font-weight: normal">
                     <p id="imagen" href="<%= imagen_url(imagen.id)%>" style=" float: left">
 
-                      <%= link_to image_tag('magnifier_zoom_in.png'), imagen, :title => 'Ver Imagen', :id=> 'ver_imagen' %>
+                      <%#= link_to image_tag('pencil.png'), edit_imagen_path,(imagen.id), :title => 'Ver Imagen', :id=> 'ver_imagen' %>
                     </p>
 
                     <a>
@@ -206,7 +46,7 @@
   </div>
 
 </div>
-          <br/>
+
 
         </td>
       </tr>
@@ -220,38 +60,16 @@
 
   </fieldset>
 
-  <fieldset class="ui-widget-content ui-corner-all">
-    <legend class="ui-widget ui-widget-header ui-corner-all" >Tratamientos</legend>
 
-    <%#= link_to "Tratamiento", new_trat_path + "?paciente_id="+@paciente.id.to_s %>
-    <table class="show-data">
-      <tr>
-        <td class="fieldname">Información sobre:</td>
-        <td class="fielddata">últimos tratamientos realizados</td>
-      </tr>
-    </table>
-  </fieldset>
 
-   <fieldset class="ui-widget-content ui-corner-all">
-    <legend class="ui-widget ui-widget-header ui-corner-all" >Fichas</legend>
-
-    <%= link_to "Nueva Ficha", new_ficha_path + "?paciente_id="+@paciente.id.to_s %>
-    <table class="show-data">
-      <tr>
-        <td></td>
-        <td></td>
-      </tr>
-    </table>
-  </fieldset>
+   
 
 
 
 
 
   <div style="clear:both;"></div>
-</div>
 
-</fieldset>
 
 
 <script type="text/javascript">
