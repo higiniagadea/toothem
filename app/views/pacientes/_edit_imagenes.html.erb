@@ -17,9 +17,16 @@
      <div id="slidesContainer">
 
         <% @imagenes.each do |imagen| %>
-
+      
       <div class="slide">
-           <h2>
+          <div style=" height: 200px; width:200">
+
+           <% @archivo_thumbnail = Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)%>
+
+            <%= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)) , :alt => imagen.descripcion, :id => imagen.id %>
+
+
+           </div>
 
               <div  style="float: right; font-size: 14px; font-weight: normal">
 
@@ -31,31 +38,25 @@
 
 
                     </p>
-              </div>
+                   
+                     
+              </div>           
+   
+           
+          <p>Descripcion:  <%= imagen.descripcion %></p>
 
-           </h2>
-        
-           <% @archivo_thumbnail = Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)%>
-        
-        <p>
-           <div style=" height: 200px; width:200, float:right">
+           <p>Observaciones: <%= imagen.observaciones %></p>
 
-                <%= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)) , :alt => imagen.descripcion, :id => imagen.id %>
-              
+           <p>Fecha: <%= imagen.fecha.strftime('%d/%m/%Y') %></p>
+      
 
-           </div>
-        </p>
-
-        <p>Descripcion:  <%= imagen.descripcion %></p>
-
-        <p>Observaciones: <%= imagen.observaciones %></p>
-
-        <p>Fecha: <%= imagen.fecha.strftime('%d/%m/%Y') %></p>
+       
        </div>
 
   <%end%>
-
+      
       </div>
+     <br/>
    </div>
 
 </div>
