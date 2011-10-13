@@ -35,7 +35,7 @@
 
            </h2>
         
-           <% #@archivo_thumbnail = Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)%>
+           <% @archivo_thumbnail = Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)%>
         
         <p>
            <div style=" height: 200px; width:200, float:right">
