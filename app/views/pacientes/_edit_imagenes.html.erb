@@ -1,8 +1,6 @@
-<fieldset class="ui-widget ui-widget-content ui-corner-all">
+ <fieldset class="ui-widget ui-widget-content ui-corner-top">
     <legend class="ui-widget ui-widget-header ui-corner-all" >Im&aacute;genes</legend>
-
-     <div style=" float: right; margin-right:  60px"><%= link_to "Nueva imagen", new_imagen_path + '/'+@paciente.id.to_s ,  :id=> 'carga_imagen' %> </div>
-
+       <div style=" float: right; margin-right:  60px"><%= link_to "Nueva imagen", new_imagen_path + '/'+@paciente.id.to_s, :id => 'cargar_imagen_' + @paciente.id.to_s %></div>
 
 <% unless @imagenes.blank? %>
     <table class="show-data">
@@ -17,66 +15,60 @@
      <div id="slidesContainer">
 
         <% @imagenes.each do |imagen| %>
-      
+
       <div class="slide">
-          <div style=" height: 200px; width:200">
-
-           <% @archivo_thumbnail = Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)%>
-
-            <%= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)) , :alt => imagen.descripcion, :id => imagen.id %>
-
-
-           </div>
+           <h2>
 
               <div  style="float: right; font-size: 14px; font-weight: normal">
 
                     <p id="imagen" href="<%= imagen_url(imagen.id)%>" style=" float: left">
 
-                      <%= link_to image_tag('pencil.png'), edit_imagen_path(imagen.id), :title => 'Editar Imagen', :id=> 'ver_imagen_' + @paciente.id.to_s %>
+                      <%= link_to image_tag('pencil.png'), edit_imagen_path(imagen.id), :title => 'Ver Imagen', :id=> 'ver_imagen_' + @paciente.id.to_s %>
 
                       <%= link_to image_tag('cancel.png'), imagen, :title => 'Eliminar Imagen', :confirm => "Esta seguro que desea eliminar la imagen?", :method => :delete %>
 
 
                     </p>
-                   
-                     
-              </div>           
-   
-           
-          <p>Descripcion:  <%= imagen.descripcion %></p>
+              </div>
 
-           <p>Observaciones: <%= imagen.observaciones %></p>
+           </h2>
+           <%  thumbnail = Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)%>
 
-           <p>Fecha: <%= imagen.fecha.strftime('%d/%m/%Y') %></p>
-      
+        <p>
+           <div style=" height: 150px; float:  right">
 
-       
+            <%= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id ='+imagen.archivo_id.to_s)) , :alt => imagen.descripcion, :id => imagen.id %>
+
+           </div>
+        </p>
+        <p>Descripcion:  <%= imagen.descripcion %>
+        </p>
+        <p>Observaciones: <%= imagen.observaciones %>
+
+        </p>
+
+        <p>Fecha
+          <%= imagen.fecha.strftime('%d/%m/%Y') %>
+        </p>
        </div>
 
   <%end%>
-      
-      </div>
-     <br/>
-   </div>
+
+    </div>
+  </div>
 
 </div>
         </td>
-
       </tr>
 
-       <tr>
+      <tr>
         <td class="fieldname"></td>
         <td class="fielddata"></td>
       </tr>
-
-
-      </table>
-
-
-
+    </table>
+    <% end %>
 
   </fieldset>
-  <% end %>
 <script type="text/javascript">
 $(document).ready(function()
 
@@ -157,7 +149,7 @@ $(document).ready(function(){
        });
    });
 
-  $('#carga_imagen').fancybox(
+  $('#cargar_imagen_<%= @paciente.id.to_s %>').fancybox(
     {
       'hideOnContentClick': false,
       'titleShow': false
