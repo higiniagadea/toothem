@@ -38,10 +38,9 @@ class ImagenesController < ApplicationController
   end
 
   
-  def edit
-
+  def edit    
    @imagen = Imagen.find(params[:id])
-    
+
     respond_to do |format|
       format.html{render :layout => false}
 
@@ -54,7 +53,7 @@ class ImagenesController < ApplicationController
     @paciente = Paciente.find(params[:imagen][:paciente_id])
     @archivo = Archivo.new(params[:archivo])
    
-        respond_to do |format|
+    respond_to do |format|
 
       if @archivo.save
         params[:imagen][:archivo_id] = @archivo.id
@@ -73,17 +72,15 @@ class ImagenesController < ApplicationController
     end
   end
   
-
- 
   def update
-     #@imagen = Imagen.find_all_by_paciente_id(@paciente)
-   @imagen = Imagen.find(params[:id])
-   #@imagen = Imagen.find_all_by_paciente_id(@paciente)
+
+      @imagen = Imagen.find(params[:id])
+      @archivo = Archivo.find(@imagen.archivo_id)
+
     respond_to do |format|
-     
-      if @imagen.update_attributes(params[:imagen])
+
+      if @archivo.update_attributes(params[:archivo])
         flash[:notice] = 'Imagen Actualizada.'
-        #format.html{ redirect_to search_pacientes_path}
          format.html { redirect_to edit_paciente_url(@imagen.paciente_id) + '#imagenes'}
         format.xml  { head :ok }
       else

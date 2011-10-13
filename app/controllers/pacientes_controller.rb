@@ -93,7 +93,7 @@ class PacientesController < ApplicationController
   def changephoto
     @paciente = Paciente.find(params[:id])
      
-    @value = params[:value]
+   
     unless @paciente.archivo_id.blank?
       @archivo_ant = Archivo.find(@paciente.archivo_id)
     end

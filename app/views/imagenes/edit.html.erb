@@ -1,5 +1,5 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Editar Imagen</legend>
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Nueva Imagen</legend>
   <% form_for(@imagen, :html => {:multipart => true }) do |f| -%>
   <%= f.error_messages %>
 
@@ -30,13 +30,15 @@
         <td><%= f.text_area :observaciones, :rows => 5 ,:cols => 28 ,:class=>'ui-widget-content', :title=> 'Observaciones no puede estar en blanco'%>
         </td>
     </tr>
+
     <tr>
       <th>Fecha</th>
       <td><span class="fecha" class ="ui-widget-content">
-        <input class="ui-widget-content" title="Selecione la fecha" type="text" id="fecha_imge" name="imagen[fecha]" readonly="readonly"  size="10" value="<%= @imagen.fecha.strftime('%d/%m/%Y') %>" />
+        <input class="ui-widget-content required" title="Selecione la fecha" type="text" id="fecha_img" name="imagen[fecha]" readonly="readonly"  size="10" />
         </span>
       </td>
     </tr>
+
   </table>
   <table>
         <tr>
@@ -56,7 +58,7 @@
 // Only create tooltips when document is ready
 $(document).ready(function()
 {
-     $(".edit_imagen").validate({
+      $(".edit_imagen").validate({
         //errorLabelContainer: $("#new_titular div.errores")
        errorContainer: $(".edit_imagen div.errores"),
        errorLabelContainer: $("ol", $(".edit_imagen div.errores")),
@@ -74,8 +76,11 @@ $(document).ready(function()
 
    // Use the each() method to gain access to each of the elements attributes
 
-  $("#fecha_imge").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', minDate: '+0D',
+
+
+ $("#fecha_img").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', minDate: '+0D',
                 maxDate: '+0D'});
+
 });
 
 </script>

@@ -150,6 +150,26 @@ function validate(e) { // 1
 
 
   $(document).ready(function(){
+
+
+    $('#pacientes-photo img').each(function()
+   {
+      $(this).qtip(
+      {
+         content: '<a onclick="Boxy.load(\'<%= changephoto_paciente_url(@paciente) %>\',{modal: true})">Editar</a>',
+         content: '<a href="<%= changephoto_paciente_url(@paciente) %>" id="imagen">Editar</a>',
+         position: 'topLeft', // Set its position
+         hide: {
+            fixed: true // Make it fixed so it can be hovered over
+         },
+         style: {
+            padding: '5px 15px', // Give it some extra padding
+            name: 'blue'// And style it with the preset dark theme
+
+       }
+       });
+   });
+   
      $(function() {
         $('input:text').keydown(function(e){
         if (e.keyCode == 13) {
@@ -173,7 +193,7 @@ function validate(e) { // 1
      });
 });
   
-
+ 
 
 
   $("#fecha_nacimiento").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate: 0});

@@ -25,8 +25,7 @@
         </td>
     </tr>
     <tr>
-        <th>
-        Observaciones</th>
+        <th>Observaciones</th>
         <td><%= f.text_area :observaciones, :rows => 5 ,:cols => 28 ,:class=>'ui-widget-content', :title=> 'Observaciones no puede estar en blanco'%>
         </td>
     </tr>
@@ -76,21 +75,7 @@ $(document).ready(function()
 
    // Use the each() method to gain access to each of the elements attributes
 
-   $('#imagenes img').each(function()
-   {
-      $(this).qtip(
-      {
-         content: '<a onclick="Boxy.load(\'<%= new_archivo_imagenes_path+"/"+@paciente.id.to_s+"?new_archivo_imagenesvalor="+@valor %>\',{modal: true})">Nueva</a>',
-         position: 'topLeft', // Set its position
-         hide: {
-            fixed: true // Make it fixed so it can be hovered over
-         },
-         style: {
-            padding: '5px 15px', // Give it some extra padding
-            name: 'blue' // And style it with the preset dark theme
-         }
-      });
-   });
+  
 
  $("#fecha_img").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', minDate: '+0D',
                 maxDate: '+0D'});
