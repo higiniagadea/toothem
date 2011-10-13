@@ -55,7 +55,7 @@
     <th>
       Fecha de Nacimiento</th>
     <td><span class="fecha_nacimiento" class ="ui-widget-content">
-              <input class="ui-widget-content required" title="Fecha de nacimiento no puede estar vacio" type="text" id="fecha_nacimiento" name="paciente[fecha_nacimiento]" readonly="readonly" />
+              <input class="ui-widget-content required" title="Fecha de nacimiento no puede estar vacio" type="text" id="fecha_nacimiento" name="paciente[fecha_nacimiento]" />
       </span>
     </td>
     <th>
@@ -166,6 +166,7 @@ function validate(e) { // 1
       }); 
  
    $("#fecha_nacimiento").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate: 0});
- });
+      $("#fecha_nacimiento").mask("99/99/9999");
+});
 
 </script>

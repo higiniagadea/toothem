@@ -76,9 +76,11 @@ class ImagenesController < ApplicationController
 
  
   def update
-     
-    @imagen = Imagen.find(params[:id])    
+     #@imagen = Imagen.find_all_by_paciente_id(@paciente)
+   @imagen = Imagen.find(params[:id])
+   #@imagen = Imagen.find_all_by_paciente_id(@paciente)
     respond_to do |format|
+     
       if @imagen.update_attributes(params[:imagen])
         flash[:notice] = 'Imagen Actualizada.'
         #format.html{ redirect_to search_pacientes_path}

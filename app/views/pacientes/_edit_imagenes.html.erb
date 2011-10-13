@@ -34,14 +34,14 @@
               </div>
 
            </h2>
-         <%  #@archivo_thumbnail = Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)%>
+      
            <% @archivo_thumbnail = Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)%>
 
         <p>
            <div style=" height: 150px; float:  right">
 
                 <%= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)) , :alt => imagen.descripcion, :id => imagen.id %>
-               <%#=  image_tag(url_for(:action => :show, :controller => :archivos, :id => imagen.archivo.id), :alt => imagen.descripcion+' imagen', :size => '24x24')%>
+              
 
            </div>
         </p>
@@ -100,7 +100,7 @@ $(document).ready(function()
     });
 
   // Set #slideInner width equal to total width of all slides
-  $('#slideInner').css('width', slideWidth * numberOfSlides);
+  $('#slideInner').css('width', slideWidth  * numberOfSlides);
 
   // Insert controls in the DOM
   $('#slideshow')
