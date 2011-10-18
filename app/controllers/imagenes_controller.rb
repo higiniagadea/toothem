@@ -1,7 +1,7 @@
 class ImagenesController < ApplicationController
   # GET /imagenes
   # GET /imagenes.xml
-  
+  require 'RMagick'
   layout 'default'
   
   def index

@@ -137,9 +137,9 @@ class PacientesController < ApplicationController
   
     respond_to do |format|
       unless @paciente.blank?
-        unless @paciente.archivo_id.blank?
-           @archivo = Archivo.find(@paciente.archivo_id)
-        end
+        #unless @paciente.archivo_id.blank?
+         #  @archivo = Archivo.find(@paciente.archivo_id)
+        #end
 
         if params[:paginacion]
             format.html   {redirect_to edit_paciente_path(@paciente, :page => params[:page]) + '#tratamientos'}

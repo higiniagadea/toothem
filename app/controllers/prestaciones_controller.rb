@@ -51,7 +51,7 @@ class PrestacionesController < ApplicationController
     respond_to do |format|
       if @prestacion.save
         flash[:notice] = 'Prestacion creada.'
-        format.html { redirect_to prestaciones_path }
+        format.html { redirect_to buscar_prestaciones_path }
         #format.xml  { render :xml => @prestacion, :status => :created, :location => @prestacion }
       else
         format.html { render :action => "new" }
@@ -85,7 +85,7 @@ class PrestacionesController < ApplicationController
 
     respond_to do |format|
       flash[:notice] = 'Prestacion eliminada'
-      format.html { redirect_to(prestaciones_url) }
+      format.html { redirect_to buscar_prestaciones_url }
       format.xml  { head :ok }
     end
   end
@@ -105,7 +105,7 @@ class PrestacionesController < ApplicationController
 
   def resultado  
     respond_to do |format|     
-        @prestaciones = Prestacion.basic_search(params).paginate(:page => params[:page], :per_page => 10)
+        @prestaciones = Prestacion.basic_search(params).paginate(:page => params[:page], :per_page => 10, :order => 'descripcion')
         
         format.html{render :partial => 'resultado', :layout => false }
        

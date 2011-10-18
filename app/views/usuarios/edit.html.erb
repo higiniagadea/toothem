@@ -73,19 +73,19 @@
 
        wrapper: 'li',
        meta: "validate",
-         rules :{
+     rules :{
          "usuario[name]": {required: true, rangelength: [5, 100]},
-        //"usuario[login]": {required: true, rangelength: [6, 10], remote:"/usuarios/verificar?usuario[login]=" + $('#usuario[login]').val()},
-         "usuario[password]":{rangelength: [6, 20]},
-         "usuario[password_confirmation]":{equalTo: "#usuario_password" }
-         //"usuario[email]": {required: true, remote:"/usuarios/verificar_email?usuario[email]=" + $('#usuario[email]').val()}
+         "usuario[login]": {required: true, rangelength: [6, 10], remote:"/usuarios/verificar?usuario[login]=" + $('#usuario[login]').val()},
+         "usuario[password]":{required:true, rangelength: [6, 20]},
+         "usuario[password_confirmation]":{required:true, equalTo: "#usuario_password" },
+         "usuario[email]": {required: true, remote:"/usuarios/verificar_email?usuario[email]=" + $('#usuario[email]').val()}
    },
       messages:{
           "usuario[name]": 'Ingrese entre cinco y cien caracteres',
-         // "usuario[login]": {remote: 'El usuario ya existe'},
+          "usuario[login]": {remote:'Usuario ya existe'},
           "usuario[password_confirmation]":{equalTo:'Contraseña y Confirmacion no coinciden'},
-          "usuario[password]": {remote: 'Ingrese entre seis y veinte caracteres'}
-          //"usuario[email]":{remote: 'Correo electronico ya existe'}
+          "usuario[password]": {remote: 'Ingrese entre seis y veinte caracteres'},
+          "usuario[email]":{remote: 'Correo electronico ya existe'}
  }
 
      });

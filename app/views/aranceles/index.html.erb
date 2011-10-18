@@ -1,8 +1,8 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class ="ui-widget ui-widget-content ui-corner-all ui-widget-header">Aranceles</legend>
   <table>
-    <tr><td style=" float: left; margin-left: 990px">
-      <%= link_to  image_tag('add.png') + 'Nuevo Arancel', new_obra_social_arancel_path(@obra_social), :id => 'nuevo_a' %>
+    <tr><td style=" float: left; margin-left: 950px">
+      <%= link_to  image_tag('add.png') + 'Nuevo Arancel', new_obra_social_arancel_path(@obra_social), :id => 'nuevo_a' %>&nbsp|&nbsp<%= link_to 'Cancelar', buscar_obras_sociales_path %>
       <script type="text/javascript">
             $('#nuevo_a').fancybox(
         {
@@ -62,12 +62,7 @@
   <%end%>
 </table> 
 
-<table>
-  <tr>
-      <td style=" float: left; margin-left:  1100px"><%= link_to 'Cancelar', buscar_obras_sociales_path %></td>
 
-  </tr>
-</table>
 
 </fieldset>
  <%= will_paginate @aranceles, :previous_label =>'Anterior', :next_label => 'Siguiente' %>
