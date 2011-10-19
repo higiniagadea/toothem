@@ -1,117 +1,70 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
 <legend class="ui-widget ui-corner-all ui-widget-header">Odontograma</legend>
   <br/>
-   
+
   <table>
 
+
+
+ <tr>
   <script type="text/javascript">
- /* function imprime(){
+  function imprime(){
 
             var d= window.document.getElementById("odont").value;
 		/*var d= window.document.getElementById("d").value;*/
-               /* alert('fdfsdfdsfds');
-		open('acciones','busa',"toolbar=1,location=0,top=200,left=220,status=0,menubar=0,scrollbars=yes,resizable=yes,width=600,height=350");
-         */
-
-var rel = location.search.replace('?', '').split('=')[1]
-
-   function imprime(){
-
-		/*window.location.href="acciones";   abre en la misma ventana*/
-               window.location = '<%= acciones_path  %>';
-
-}
+                alert('fdfsdfdsfds');
+		open('odontogramas?v='+d,'busa',"toolbar=1,location=0,top=200,left=220,status=0,menubar=0,scrollbars=yes,resizable=yes,width=600,height=350");
+         }
 
 </script>
-
- <tr>    
    <% dientes = [18,17,16,15,14,13,12,11,21,22,23,24,25,26,27,28] %>
    <%  dientes.each do |diente| %>
-         <th>
-          
-          <div id=""><%  diente %></div>
-          <div id="contenedor">
-            <div class="borde superior" id="<%= diente %>_superior" onclick="imprime(this)"></div>
-            <div class="borde inferior" id="<%= diente %>_inferior" onclick="imprime(this)"></div>
-            <div class="borde der" id="<%= diente %>_derecho" onclick="imprime(this)"></div>
-            <div class="borde izq" id="<%= diente %>_izquierdo" onclick="imprime(this)"></div>
-            <div class="contenido" id="<%= diente %>_centro" onclick="imprime(this)"></div>
+
+   <th>
+
+          <div id=""><% diente %>
+           <%= hidden_field_tag :odont, 'value' => diente %>
           </div>
+
+          <div id="contenedor">
+            <div class="borde superior" id="<%= diente %>_superior" onclick="ilumina(this)" ></div>
+
+            <div class="borde inferior" id="<%= diente %>_inferior" onclick="ilumina(this)"></div>
+            <div class="borde der" id="<%= diente %>_derecho" onclick="ilumina(this)"></div>
+            <div class="borde izq" id="<%= diente %>_izquierdo" onclick="ilumina(this)"></div>
+            <div class="contenido" id="<%= diente %>_centro" onclick="ilumina(this)"></div>
+
+          </div>
+
           </th>
 
-
-
-
-
-
-
-
           <script type="text/javascript">
+
+
+
             var color = 0;
             function ilumina(obj) {
 
             if(color == 0){
-            obj.style.backgroundColor = "#FF0000";
+            obj.style.backgroundColor = color;
             color = 1;
             } else {
             obj.style.backgroundColor = "#9900FF"
             color = 0;
             }
-            }      
+            }
 
 
-$('#buscar').click(function()
-      {
-        // Destroy currrent tooltip if present
-        if($(this).data("qtip")) $(this).qtip("destroy");
-        $(this).qtip({
-
-               content: {
-                  url: $(this).attr('rel'), // Use the rel attribute of each element for the url to load
-                  title: {
-                     text: $(this).attr('title') // Give the tooltip a title using each elements text
-                     //button: '<%#= image_tag 'fancybox/fancy_close.png' %>' // Show a close link in the title
-                  }
-               },
-               position: {
-                  corner: {
-                     target: 'bottomMiddle', // Position the tooltip above the link
-                     tooltip: 'topMiddle'}
-                  },
-                  adjust: {
-                     screen: true // Keep the tooltip on-screen at all times
-                  },
-               show: {
-                  when: false, // Don't specify a show event
-                  ready: true // Show the tooltip when ready
-               },
-               hide: false, // Don't specify a hide event
-
-               style: {
-                  width: 500,
-                  border: {
-                     width: 1,
-                     radius: 10
-                  },
-                  padding: 5,
-                  textAlign: 'left',
-                  tip: true, // Give it a speech bubble tip with automatic corner detection
-                  name: 'light' // Style it according to the preset 'cream' style
-               }
-
-            });
 
 
-      })
 
-
-           </script>
+               </script>
 
  <% end %>
   </tr>
   </table>
 
- 
+
 </fieldset>
 
 <%= link_to 'Volver', odontogramas_path %>

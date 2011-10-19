@@ -31,10 +31,10 @@ class PacientesController < ApplicationController
 
   def index
     @pagetitle = "Pacientes"
-    consultorios = []
+    #consultorios = []
     #current_usuario.consultorios.each {|x| consultorios << x.consultorio_id}
-    #@pacientes = Paciente.paginate :page=> params[:page], :per_page=> 15, :conditions => ['consultorio_id in ?', @consultorio.id], :order=> 'nombre ASC'
-    #@pacientes = Paciente.paginate :page=> params[:page], :per_page=> 5, :order=> 'nombre ASC'
+    @pacientes = Paciente.paginate :page=> params[:page], :per_page=> 15, :order => 'nombre ASC'
+  
    
     respond_to do |format|
       format.html 
@@ -137,9 +137,9 @@ class PacientesController < ApplicationController
   
     respond_to do |format|
       unless @paciente.blank?
-        #unless @paciente.archivo_id.blank?
-         #  @archivo = Archivo.find(@paciente.archivo_id)
-        #end
+        unless @paciente.archivo_id.blank?
+          @archivo = Archivo.find(@paciente.archivo_id)
+        end
 
         if params[:paginacion]
             format.html   {redirect_to edit_paciente_path(@paciente, :page => params[:page]) + '#tratamientos'}

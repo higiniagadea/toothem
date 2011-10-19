@@ -4,14 +4,14 @@
 <table class="table-list">
     <tr>
       <th>Nombre</th>
-      <th>Tipo documento</th>
+    
       <th>Matr&iacute;cula</th>
       <th>Tel&eacute;fono particular</th>
     </tr>
   <% @pacientes.each do |paciente| %>
      <tr class="<%= cycle('','odd') %>">
       <td><%=h paciente.nombre %></td>
-      <td><%=h paciente.tipo_documento.descripcion %></td>
+
       <td><%=h paciente.matricula %></td>
       <td><%=h paciente.telefono_particular %></td>
       <td><%= link_to image_tag('magnifier_zoom_in.png'), paciente, :title => "Ver", :id => 'ver_paciente' %>

@@ -15,36 +15,43 @@
      <div id="slidesContainer">
 
         <% @imagenes.each do |imagen| %>
-     
-      <div class="slide">
-          <div style=" height: 100px; float:left">
 
-           <p><%  @archivo_thumbnail = Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)%>
-            <%= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)) , :alt => imagen.descripcion, :id => imagen.id %>
+        <div class="slide">
+           <h2>
 
-           </p>
-           <p>Descripcion  <%= imagen.descripcion %></p>
-           <p>Observaciones <%= imagen.observaciones %></p>
-           <p>Fecha <%= imagen.fecha.strftime('%d/%m/%Y') %></p>
-      </div>
-   
-      <div  style="float: right; font-size: 14px; font-weight: normal">
+              <div  style="float: right; font-size: 14px; font-weight: normal">
 
-                    <p id="imagen" href="<%= imagen_url(imagen.id)%>" style=" float: left">
+                   <p id="imagen" href="<%= imagen_url(imagen.id)%>" style=" float: left">
 
                       <%= link_to image_tag('pencil.png'), edit_imagen_path(imagen.id), :title => 'Ver Imagen', :id=> 'ver_imagen_' + @paciente.id.to_s %>
-                    
+
                       <%= link_to image_tag('cancel.png'), imagen, :title => 'Eliminar Imagen', :confirm => "Esta seguro que desea eliminar la imagen?", :method => :delete %>
 
-                    </p>
+                   </p>
+                
+              </div>
 
-      </div>
+           </h2>
+          
+           <%  @archivo_thumbnail = Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)%>
 
-       
+        <p>
+           <div style=" height: 150px; float:  right">
 
-       
+            <%= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id ='+imagen.archivo_id.to_s)) , :alt => imagen.descripcion, :id => imagen.id %>
 
-      </div>
+           </div>
+        </p>
+        <p>Descripcion:  <%= imagen.descripcion %>
+        </p>
+        <p>Observaciones: <%= imagen.observaciones %>
+
+        </p>
+
+        <p>Fecha
+          <%= imagen.fecha.strftime('%d/%m/%Y') %>
+        </p>
+       </div>
 
   <%end%>
 
@@ -68,7 +75,7 @@ $(document).ready(function()
 
 {
   var currentPosition = 0;
-  var slideWidth = 560;
+  var slideWidth =560;
   var slides = $('.slide');
   var numberOfSlides = slides.length;
 
