@@ -22,12 +22,12 @@ class OdontogramasController < ApplicationController
 
   
   def new
-
+ 
     @odontograma = Odontograma.new
 
     respond_to do |format|
 
-      format.html  { render :layout=> 'default' }
+      format.html{ render :layout=> 'default' }
     end
   end
 

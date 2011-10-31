@@ -118,7 +118,7 @@ class PacientesController < ApplicationController
   
   def edit
     params[:paciente_id]
-
+    @odontograma = Odontograma.new
     @archivo = Archivo.new
     @paciente = Paciente.find_by_id(params[:id])   
     @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha ASC')
@@ -129,7 +129,8 @@ class PacientesController < ApplicationController
     @prestaciones = Prestacion.find(:all)  
     @turnos = Turno.find(:all)
     @sald_pac = SaldoPaciente.find_by_sql('select ver_saldo_paciente(' + @paciente.id.to_s + ') as saldo ' )
-    @imagenes = Imagen.find_all_by_paciente_id(@paciente)
+    @imagenes = Imagen.find_all_by_paciente_id(@paciente.id)
+    @odontogramas = Odontograma.find_all_by_paciente_id(@paciente)
     
      unless @paciente.archivo_id.blank?
       @archivo_ant = Archivo.find(@paciente.archivo_id)

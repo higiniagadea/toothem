@@ -1,6 +1,6 @@
  
     <%unless current_usuario.nil?%>
-  <b>Usuario: </b> <%= current_usuario.login %> | <b>Consultorio:   </b> <br/>
+  <b>Consultorio General  </b>  | <b>Usuario: </b> <%= current_usuario.login %> <br/>
 
   <%= link_to 'Cerrar Sesion', :controller => 'sessions', :action => 'destroy' %> | <%= link_to "Cambiar Clave", cambiar_clave_usuarios_url + "?usuario_id="+ current_usuario.id.to_s %>
   <b id="reloj"></b>

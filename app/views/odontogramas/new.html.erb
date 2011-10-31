@@ -2,33 +2,63 @@
 <legend class="ui-widget ui-corner-all ui-widget-header">Odontograma</legend>
   <br/>
 
-  <table>
+ <% form_for(@odontograma) do |f| %>
 
-
+<table  style=" text-align: left; "class="table-list">
 
  <tr>
-  <script type="text/javascript">
-  function imprime(){
+   <th>Paciente</th> 
+   <td><%= f.text_field :paciente_id , :size => 20 , :class => 'required ui-widget-content'%> </td>
+ </tr>
 
-            var d= window.document.getElementById("odont").value;
-		/*var d= window.document.getElementById("d").value;*/
-                alert('fdfsdfdsfds');
-		open('odontogramas?v='+d,'busa',"toolbar=1,location=0,top=200,left=220,status=0,menubar=0,scrollbars=yes,resizable=yes,width=600,height=350");
-         }
+ <tr>
+     <th>Fecha de Creacion </th>
+       <td><span class="fecha_creacion" class ="ui-widget-content">
+              <input class="ui-widget-content required"  type="text" id="fecha_creacion" name="odontograma[fecha_creacion]" />
+      </span>
+    </td>
+ </tr>
 
-</script>
+  <tr>
+   <th>Fecha ultima Modificacion</th>
+     <td><span class="fecha_ultima_modificacion" class ="ui-widget-content">
+              <input class="ui-widget-content required"  type="text" id="fecha_ultima_modificacion" name="odontograma[fecha_ultima_modificacion]" />
+      </span>
+    </td>
+ </tr>
+</table>
+<br/>
+<br/>
+
+
+<%= label_tag 'ACCION_P_REQUERIDA', 'REQUERIDA'  %>
+    <%= radio_button_tag 'ACCION', 'REQUERIDA',true, :value =>  1 %>
+    <%= label_tag 'ACCION_P_EXISTENTE', 'EXISTENTE'   %>
+    <%= radio_button_tag 'ACCION', 'EXISTENTE',false, :value => 2  %>
+
+  
+  <br/>
+  <br/>
+
+
+
+
+
+<table>
+  <tr>Odontograma</tr>
+
+ <tr>
    <% dientes = [18,17,16,15,14,13,12,11,21,22,23,24,25,26,27,28] %>
    <%  dientes.each do |diente| %>
 
-   <th>
 
-          <div id=""><% diente %>
-           <%= hidden_field_tag :odont, 'value' => diente %>
+          <div id="">
+          <% diente %>
+          <%= hidden_field_tag :odont, 'value' => diente %>
           </div>
-
+    <th>
           <div id="contenedor">
             <div class="borde superior" id="<%= diente %>_superior" onclick="ilumina(this)" ></div>
-
             <div class="borde inferior" id="<%= diente %>_inferior" onclick="ilumina(this)"></div>
             <div class="borde der" id="<%= diente %>_derecho" onclick="ilumina(this)"></div>
             <div class="borde izq" id="<%= diente %>_izquierdo" onclick="ilumina(this)"></div>
@@ -36,35 +66,135 @@
 
           </div>
 
-          </th>
-
-          <script type="text/javascript">
+     </th>
 
 
-
-            var color = 0;
+<script type="text/javascript">
+   var color = 0;
             function ilumina(obj) {
 
             if(color == 0){
-            obj.style.backgroundColor = color;
+            obj.style.backgroundColor = '#ff0000';
             color = 1;
             } else {
-            obj.style.backgroundColor = "#9900FF"
-            color = 0;
+            obj.style.backgroundColor = "#0000FF"
+           color = 0
             }
-            }
+            };
+
+
+  mostrar_evento();
+
+       $('#ACCION_REQUERIDA').click(function(){
+        mostrar_evento();
+        });
+
+        $('#ACCION_EXISTENTE').click(function(){
+        mostrar_evento();
+        });
+
+      function mostrar_evento (){
+         if ($("input[name='REQUERIDA']:checked").val()== '1') {
+           $('#turnos').show();
+
+
+         }else{
+           $('#tareas').show();
+    
+       }
+
+       };
+
+    $(document).ready(function(){
+
+
+      $("#new_odontograma").validate({
+           
+        errorLabelContainer: $("ol", $("#new_odontograma div.errores")),
+        wrapper: 'li',
+        meta: "validate"
+      
+
+
+      });
+    });
+
+ $("#fecha_creacion").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate: 0});
+ $("#fecha_ultima_modificacion").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate: 0});
 
 
 
+ </script>
+ <% end %>  
+ </tr>
+ </table>
+------------------------------------------------------------------------------------------------------------                  --------------------------------------------------------------------------------------------------------------
+ 
+<table>
+ <tr>
+   <% dientes = [48,47,46,45,44,43,42,41,31,32,33,34,35,36,37,38] %>
+   <%  dientes.each do |diente| %>
 
 
-               </script>
+          <div id="">
+          <% diente %>
+          <%= hidden_field_tag :odont, 'value' => diente %>
+          </div>
+    <th>
+          <div id="contenedor">
+            <div class="borde superior" id="<%= diente %>_superior" onclick="ilumina(this)" ></div>
+            <div class="borde inferior" id="<%= diente %>_inferior" onclick="ilumina(this)"></div>
+            <div class="borde der" id="<%= diente %>_derecho" onclick="ilumina(this)"></div>
+            <div class="borde izq" id="<%= diente %>_izquierdo" onclick="ilumina(this)"></div>
+            <div class="contenido" id="<%= diente %>_centro" onclick="ilumina(this)"></div>
 
- <% end %>
+          </div>
+
+     </th>
+     <%end%>
+  </tr>
+  </table>
+------------------------------------------------------------------------------------------------------------                  --------------------------------------------------------------------------------------------------------------
+
+<br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ 
+ <table style=" text-align: center;">
+ 
+  <tr>
+   <% dientes = [55,54,53,52,51,61,62,63,64,65] %>
+   <%  dientes.each do |diente| %>
+
+
+          <div id="">
+          <% diente %>
+          <%= hidden_field_tag :odont, 'value' => diente %>
+          </div>
+    <th>
+          <div id="contenedor">
+            <div class="borde superior" id="<%= diente %>_superior" onclick="ilumina(this)" ></div>
+            <div class="borde inferior" id="<%= diente %>_inferior" onclick="ilumina(this)"></div>
+            <div class="borde der" id="<%= diente %>_derecho" onclick="ilumina(this)"></div>
+            <div class="borde izq" id="<%= diente %>_izquierdo" onclick="ilumina(this)"></div>
+            <div class="contenido" id="<%= diente %>_centro" onclick="ilumina(this)"></div>
+
+          </div>
+
+     </th>
+     <%end%>
   </tr>
   </table>
 
+ <table>
+      <tr>
+       <td style=" float: left; margin-left: 1000px"><%= link_to 'Volver', search_pacientes_path%> <%= f.submit 'Guardar' %> </td>
 
-</fieldset>
+    </tr>
+ </table>
+ <%end%>
+  </fieldset>
 
-<%= link_to 'Volver', odontogramas_path %>
+

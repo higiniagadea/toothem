@@ -64,7 +64,7 @@ class ImagenesController < ApplicationController
        
         else
           
-          format.xml  { render :xml => @imagen.errors, :status => :unprocessable_entity}
+          flash[:error] = 'errorrrr'
           
         end
      
@@ -80,8 +80,12 @@ class ImagenesController < ApplicationController
     respond_to do |format|
 
       if @archivo.update_attributes(params[:archivo])
+        params[:imagen][:archivo_id] = @archivo.id
+     
+        #@imagen = Imagen.new(params[:imagen])
+        @imagen.save
         flash[:notice] = 'Imagen Actualizada.'
-         format.html { redirect_to edit_paciente_url(@imagen.paciente_id) + '#imagenes'}
+         format.html { redirect_to search_pacientes_path}
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
