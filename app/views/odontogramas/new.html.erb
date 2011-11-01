@@ -72,16 +72,30 @@
 <script type="text/javascript">
    var color = 0;
             function ilumina(obj) {
-
+       if ($("input[name='ACCION']:checked").val()){
             if(color == 0){
+            obj.style.backgroundColor = '#0000ff';
+            color = 1;
+            } else {
+            obj.style.backgroundColor = "#FFFFFF"
+            color = 0
+            };
+              
+       }
+       else
+       
+         {
+           if(color == 0){
             obj.style.backgroundColor = '#ff0000';
             color = 1;
             } else {
-            obj.style.backgroundColor = "#0000FF"
-           color = 0
+            obj.style.backgroundColor = "#FFFFFF"
+            color = 0
             }
-            };
+         };
+            }
 
+            
 
   mostrar_evento();
 
@@ -128,8 +142,10 @@
  <% end %>  
  </tr>
  </table>
-------------------------------------------------------------------------------------------------------------                  --------------------------------------------------------------------------------------------------------------
- 
+
+
+    <th><div class="linea"></div></th>
+
 <table>
  <tr>
    <% dientes = [48,47,46,45,44,43,42,41,31,32,33,34,35,36,37,38] %>
@@ -154,39 +170,8 @@
      <%end%>
   </tr>
   </table>
-------------------------------------------------------------------------------------------------------------                  --------------------------------------------------------------------------------------------------------------
-
-<br/>
- <br/>
- <br/>
- <br/>
- <br/>
- 
- <table style=" text-align: center;">
- 
-  <tr>
-   <% dientes = [55,54,53,52,51,61,62,63,64,65] %>
-   <%  dientes.each do |diente| %>
 
 
-          <div id="">
-          <% diente %>
-          <%= hidden_field_tag :odont, 'value' => diente %>
-          </div>
-    <th>
-          <div id="contenedor">
-            <div class="borde superior" id="<%= diente %>_superior" onclick="ilumina(this)" ></div>
-            <div class="borde inferior" id="<%= diente %>_inferior" onclick="ilumina(this)"></div>
-            <div class="borde der" id="<%= diente %>_derecho" onclick="ilumina(this)"></div>
-            <div class="borde izq" id="<%= diente %>_izquierdo" onclick="ilumina(this)"></div>
-            <div class="contenido" id="<%= diente %>_centro" onclick="ilumina(this)"></div>
-
-          </div>
-
-     </th>
-     <%end%>
-  </tr>
-  </table>
 
  <table>
       <tr>
