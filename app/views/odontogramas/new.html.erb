@@ -14,7 +14,7 @@
  <tr>
      <th>Fecha de Creacion </th>
        <td><span class="fecha_creacion" class ="ui-widget-content">
-              <input class="ui-widget-content required"  type="text" id="fecha_creacion" name="odontograma[fecha_creacion]" />
+              <input class="ui-widget-content required"  type="text" id="fecha_creacion" name="odontograma[fecha_creacion]"  readonly="readonly"/>
       </span>
     </td>
  </tr>
@@ -22,7 +22,7 @@
   <tr>
    <th>Fecha ultima Modificacion</th>
      <td><span class="fecha_ultima_modificacion" class ="ui-widget-content">
-              <input class="ui-widget-content required"  type="text" id="fecha_ultima_modificacion" name="odontograma[fecha_ultima_modificacion]" />
+         <input class="ui-widget-content required"  type="text" id="fecha_ultima_modificacion" name="odontograma[fecha_ultima_modificacion]" readonly="readonly" />
       </span>
     </td>
  </tr>
@@ -70,11 +70,15 @@
 
 
 <script type="text/javascript">
+
+
+        
    var color = 0;
-            function ilumina(obj) {
-       if ($("input[name='ACCION']:checked").val()){
+
+   function ilumina(obj) {
+       if ($("input[name='ACCION']:checked").val() == '1'){
             if(color == 0){
-            obj.style.backgroundColor = '#0000ff';
+            obj.style.backgroundColor = '#ff0000';
             color = 1;
             } else {
             obj.style.backgroundColor = "#FFFFFF"
@@ -86,38 +90,20 @@
        
          {
            if(color == 0){
-            obj.style.backgroundColor = '#ff0000';
+            obj.style.backgroundColor = '#0000ff';
             color = 1;
             } else {
             obj.style.backgroundColor = "#FFFFFF"
             color = 0
             }
          };
-            }
+     }
 
             
 
-  mostrar_evento();
-
-       $('#ACCION_REQUERIDA').click(function(){
-        mostrar_evento();
-        });
-
-        $('#ACCION_EXISTENTE').click(function(){
-        mostrar_evento();
-        });
-
-      function mostrar_evento (){
-         if ($("input[name='REQUERIDA']:checked").val()== '1') {
-           $('#turnos').show();
 
 
-         }else{
-           $('#tareas').show();
-    
-       }
-
-       };
+     
 
     $(document).ready(function(){
 
