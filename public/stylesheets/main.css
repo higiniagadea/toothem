@@ -33,6 +33,25 @@ a.no-hover:hover{
     text-decoration: none;
 }
 
+/*cuadro de color */
+.cuadro1 { background-color: #ff0000;
+          border: #000000;
+          border-style :solid;
+          border-top-width: 1px;
+          border-right-width: 1px;
+          border-bottom-width: 1px;
+          border-left-width: 1px;
+          width :14px; height: 14px;}
+
+.cuadro2 { background-color: #0000ff;
+          border: #000000;
+          border-style :solid;
+          border-top-width: 1px;
+          border-right-width: 1px;
+          border-bottom-width: 1px;
+          border-left-width: 1px;
+          width :14px; height: 14px;}
+
 
 /*odontograma-------------------------------------*/
 
@@ -106,11 +125,22 @@ a.no-hover:hover{
 }
 
 .linea {
-        width: 880px;
+        width: 870px;
         height: 2px;
         background-color: #000000;
     }
 
+.linea2 {
+        width: 550px;
+        height: 2px;
+        background-color: #000000;
+    }
+
+ .linea3 {
+        width: 2px;
+        height: 30px;
+        background-color: #000000;
+    }/*linea horizontal*/
 
 .contenido {        
         width: 26px;

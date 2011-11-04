@@ -22,12 +22,12 @@ class OdontogramasController < ApplicationController
 
   
   def new
- 
+  @paciente = Paciente.find(params[:paciente_id])
     @odontograma = Odontograma.new
 
     respond_to do |format|
 
-      format.html{ render :layout=> 'default' }
+      format.html{ render :layout=> false }
     end
   end
 
@@ -42,18 +42,21 @@ class OdontogramasController < ApplicationController
 
   
   def create
-
-    @odontograma = Odontograma.new(params[:odontograma])
-
+    #@paciente = Paciente.find(params[:odontograma][:paciente_id])
+    #@odontograma = Odontograma.new(params[:odontograma])
+    params[:odonto].each do |numero_diente, caras|
+      #valores => [superior,izquierdo,derecho,inferior,centro]
+      valores = value.split(',')
+    end
     respond_to do |format|
-      if @odontograma.save
-        flash[:notice] = 'Odontograma creada.'
-        format.html { redirect_to(odontogramas_url) }
-
-      else
-        format.html { render :action => "new" }
-
-      end
+#      if @odontograma.save
+#        flash[:notice] = 'Odontograma creada.'
+#        format.html { redirect_to edit_paciente_path(@paciente) + '#odontogramas' }
+#
+#      else
+#        format.html { render :action => "new" }
+#
+#      end
     end
   end
 

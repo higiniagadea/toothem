@@ -1,18 +1,17 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
-<legend class="ui-widget ui-corner-all ui-widget-header">Odontograma</legend>
+<legend class="ui-widget ui-corner-all ui-widget-header">Odontograma </legend>
   <br/>
-
+ 
  <% form_for(@odontograma) do |f| %>
 
-<table  style=" text-align: left; "class="table-list">
-
- <tr>
-   <th>Paciente</th> 
-   <td><%= f.text_field :paciente_id , :size => 20 , :class => 'required ui-widget-content'%> </td>
- </tr>
-
- <tr>
-     <th>Fecha de Creacion </th>
+<table style=" text-align: left; "class="table-list">
+  <tr>
+    <th>Paciente</th>
+    <th><%= @paciente.nombre %></th>
+        <%= f.hidden_field :paciente_id, 'value' => @paciente.id.to_s  %>
+  </tr>
+  <tr>
+     <th>Fecha de Creaci&oacute;n </th>
        <td><span class="fecha_creacion" class ="ui-widget-content">
               <input class="ui-widget-content required"  type="text" id="fecha_creacion" name="odontograma[fecha_creacion]"  readonly="readonly"/>
       </span>
@@ -20,91 +19,109 @@
  </tr>
 
   <tr>
-   <th>Fecha ultima Modificacion</th>
+    <th>Fecha ultima Modificaci&oacute;n</th>
      <td><span class="fecha_ultima_modificacion" class ="ui-widget-content">
          <input class="ui-widget-content required"  type="text" id="fecha_ultima_modificacion" name="odontograma[fecha_ultima_modificacion]" readonly="readonly" />
       </span>
     </td>
  </tr>
+
+  <tr>
+     <th>Observaciones</th>
+     <td><%= f.text_area :observaciones,  :class=> 'ui-widget-content' ,  :cols => 40, :rows => 4  %> </td>
+   </tr>
+   
+</table>
+
+<table style=" text-align: left; "class="table-list">
+  <tr><th>Odontograma</th></tr>
+  <tr>
+    <td style="font-weight: bold"><%= label_tag 'ACCION_P_REQUERIDA', 'REQUERIDA'  %>
+    <%= radio_button_tag 'ACCION', 'REQUERIDA',true, :value =>  1 %><th><div class="cuadro1"></div></th></td>
+    <br/><br/>
+    <td style="font-weight: bold"><%= label_tag 'ACCION_P_EXISTENTE', 'EXISTENTE'   %>
+    <%= radio_button_tag 'ACCION', 'EXISTENTE',false, :value => 2  %><th><div class="cuadro2"></div></th></td>
+  </tr>
+  
 </table>
 <br/>
 <br/>
+  <div style=" float: left; margin-left: 0 ; font-weight: bold">IZQUIERDA </div>
+ <div style=" float: left; margin-left: 738px; font-weight: bold">DERECHA</div>
 
-
-<%= label_tag 'ACCION_P_REQUERIDA', 'REQUERIDA'  %>
-    <%= radio_button_tag 'ACCION', 'REQUERIDA',true, :value =>  1 %>
-    <%= label_tag 'ACCION_P_EXISTENTE', 'EXISTENTE'   %>
-    <%= radio_button_tag 'ACCION', 'EXISTENTE',false, :value => 2  %>
-
-  
-  <br/>
-  <br/>
-
-
-
-
-
-<table>
-  <h1><tr>Odontograma</tr></h1>
-
+<br/>
+<br/>
+ <table>
  <tr>
    <% dientes = [18,17,16,15,14,13,12,11,21,22,23,24,25,26,27,28] %>
    <%  dientes.each do |diente| %>
-
-
-          <div id="">
-          <% diente %>
-          <%= hidden_field_tag :odont, 'value' => diente %>
-          </div>
+ 
     <th>
+          <div id=""><%=  diente%></div>
           <div id="contenedor">
             <div class="borde superior" id="<%= diente %>_superior" onclick="ilumina(this)" ></div>
             <div class="borde inferior" id="<%= diente %>_inferior" onclick="ilumina(this)"></div>
             <div class="borde der" id="<%= diente %>_derecho" onclick="ilumina(this)"></div>
             <div class="borde izq" id="<%= diente %>_izquierdo" onclick="ilumina(this)"></div>
             <div class="contenido" id="<%= diente %>_centro" onclick="ilumina(this)"></div>
-
+            <%= hidden_field_tag "odonto[#{diente}]", ",,,,", :id => diente %>
           </div>
 
      </th>
-
+<% end %>
 
 <script type="text/javascript">
 
-
-        
    var color = 0;
-
+   function cargar_hidden(diente, cara, accion ){
+     var array = $('#' + diente).val().split(',')
+     //array => [superior,izquierdo,derecho,inferior,centro]
+     if(cara == 'superior'){
+       array[0] = accion
+     }else if (cara == 'izquierdo'){
+       array[1] = accion
+     }else if (cara == 'derecho'){
+       array[2] = accion
+     }else if (cara == 'inferior'){
+       array[3] = accion
+     }else if (cara == 'centro'){
+       array[4] = accion
+     }
+     $('#' + diente).val(array)
+   }
    function ilumina(obj) {
+       var diente = $(obj).attr('id').split('_')[0];
+       var cara = $(obj).attr('id').split('_')[1];
        if ($("input[name='ACCION']:checked").val() == '1'){
+            //requerido, numero de accion 1
             if(color == 0){
             obj.style.backgroundColor = '#ff0000';
+            cargar_hidden(diente, cara, '1')
             color = 1;
             } else {
-            obj.style.backgroundColor = "#FFFFFF"
+            cargar_hidden(diente, cara, '')
+            obj.style.backgroundColor = "#ffffff"
             color = 0
             };
               
        }
        else
-       
+
          {
+           //existente, numero de accion 2
            if(color == 0){
+            cargar_hidden(diente, cara, '2')
             obj.style.backgroundColor = '#0000ff';
             color = 1;
             } else {
-            obj.style.backgroundColor = "#FFFFFF"
+            cargar_hidden(diente, cara, '')
+            obj.style.backgroundColor = "#ffffff"
             color = 0
             }
          };
      }
 
-            
-
-
-
-     
-
+ 
     $(document).ready(function(){
 
 
@@ -119,13 +136,20 @@
       });
     });
 
- $("#fecha_creacion").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate: 0});
- $("#fecha_ultima_modificacion").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate: 0});
+ $("#fecha_creacion").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', minDate: '+0D', maxDate:0});
+ $("#fecha_ultima_modificacion").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', minDate: '+0D', maxDate:0});
 
 
 
  </script>
- <% end %>  
+
+
+
+
+
+
+
+ 
  </tr>
  </table>
 
@@ -136,36 +160,93 @@
  <tr>
    <% dientes = [48,47,46,45,44,43,42,41,31,32,33,34,35,36,37,38] %>
    <%  dientes.each do |diente| %>
-
-
-          <div id="">
-          <% diente %>
-          <%= hidden_field_tag :odont, 'value' => diente %>
-          </div>
+         
     <th>
+       
+      <div id="contenedor">
+            <div class="borde superior" id="<%= diente %>_superior" onclick="ilumina(this)" ></div>
+            <div class="borde inferior" id="<%= diente %>_inferior" onclick="ilumina(this)"></div>
+            <div class="borde der" id="<%= diente %>_derecho" onclick="ilumina(this)"></div>
+            <div class="borde izq" id="<%= diente %>_izquierdo" onclick="ilumina(this)"></div>
+            <div class="contenido" id="<%= diente %>_centro" onclick="ilumina(this)"></div>
+             <%= hidden_field_tag "odonto[#{diente}]", ",,,,", :id => diente %>
+          </div>
+      <div id=""><%=  diente%></div>
+     </th>
+   <%end%>
+  </tr>
+  </table>
+
+  <br/><br/><br/>
+
+
+<%#= tabla de niños%>
+  <table  style=" text-align: center;">
+
+    
+ <tr>
+   <% dientes = [55,54,53,52,51,61,62,63,64,65] %>
+   <%  dientes.each do |diente| %>
+
+    <th>
+          <div id=""><%=  diente%></div>
           <div id="contenedor">
             <div class="borde superior" id="<%= diente %>_superior" onclick="ilumina(this)" ></div>
             <div class="borde inferior" id="<%= diente %>_inferior" onclick="ilumina(this)"></div>
             <div class="borde der" id="<%= diente %>_derecho" onclick="ilumina(this)"></div>
             <div class="borde izq" id="<%= diente %>_izquierdo" onclick="ilumina(this)"></div>
             <div class="contenido" id="<%= diente %>_centro" onclick="ilumina(this)"></div>
-
+             <%= hidden_field_tag "odonto[#{diente}]", ",,,,", :id => diente %>
           </div>
 
      </th>
-     <%end%>
+   
+   <%end%>
+       
   </tr>
+
   </table>
 
+     <th><div class="linea2"></div></th>
+
+  <table style=" text-align: right;">
+ <tr>
+   <% dientes = [85,84,83,82,81,71,72,73,74,75] %>
+   <%  dientes.each do |diente| %>
+
+    <th>
+         
+          <div id="contenedor">
+            <div class="borde superior" id="<%= diente %>_superior" onclick="ilumina(this)" ></div>
+            <div class="borde inferior" id="<%= diente %>_inferior" onclick="ilumina(this)"></div>
+            <div class="borde der" id="<%= diente %>_derecho" onclick="ilumina(this)"></div>
+            <div class="borde izq" id="<%= diente %>_izquierdo" onclick="ilumina(this)"></div>
+            <div class="contenido" id="<%= diente %>_centro" onclick="ilumina(this)"></div>
+            <%= hidden_field_tag "odonto[#{diente}]", ",,,,", :id => diente %>
+          </div>
+       <div id=""><%=  diente%></div>
+
+     </th>
+   
+   <%end%>
+
+  </tr>
+  </table>
+ <div style=" float: left; margin-left: 0; font-weight: bold">IZQUIERDA </div>
+ <div style=" float: left; margin-left: 415px; font-weight: bold">DERECHA</div>
 
 
  <table>
       <tr>
-       <td style=" float: left; margin-left: 1000px"><%= link_to 'Volver', search_pacientes_path%> <%= f.submit 'Guardar' %> </td>
+       <td style=" float: left; margin-left: 1000px"> <%= f.submit 'Guardar',  :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %> </td>
 
     </tr>
  </table>
  <%end%>
+
+
+  <br/>
+  <br/><br/>
   </fieldset>
 
 

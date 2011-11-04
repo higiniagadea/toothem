@@ -8,7 +8,7 @@ class Paciente < ActiveRecord::Base
   has_many :turnos, :dependent => :destroy
   has_many :pagos_pacientes
   belongs_to :saldo_paciente
-  belongs_to :odontograma  
+  has_many :odontograma
   belongs_to :tipo_documento
   has_one :historia_clinica_general, :dependent => :destroy
   has_one :historia_clinica_ortodoncia, :dependent => :destroy  
