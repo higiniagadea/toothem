@@ -22,12 +22,10 @@
      
 </script>
 </table>
-<%  unless @paciente.odontogramas.blank?%>
+
 <%= render :partial => 'odontogramas/ver' %>
 
-<%else%>
-No posee Odontogramas
-<%end%>
+
 
 
   </fieldset>
