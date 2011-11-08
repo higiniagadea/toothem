@@ -1,6 +1,7 @@
 class Odontograma < ActiveRecord::Base
   
-  belongs_to :paciente
+  has_many :paciente
   belongs_to :color
   has_many :acciones
+
 end

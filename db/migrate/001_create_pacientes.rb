@@ -22,13 +22,14 @@ class CreatePacientes < ActiveRecord::Migration
       t.column :ocupacion, :string, :limit => 150, :null => true
       t.column :nivel_escolar, :string, :limit => 150, :null => true
       t.column :nro_afiliado, :string, :limit => 150, :null => true
-    
+      t.column :deleted_at, :date, :null => true
       
       
 
 
       
       # FKs
+    
       t.column :archivo_id, :integer, :null => true # Imagen o foto del paciente
       t.column :consultorio_id, :integer, :null => true
       t.column :titular_id, :integer, :null => true

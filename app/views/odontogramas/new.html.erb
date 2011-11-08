@@ -1,7 +1,7 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
 <legend class="ui-widget ui-corner-all ui-widget-header">Odontograma </legend>
   <br/>
- 
+
  <% form_for(@odontograma) do |f| %>
 
 <table style=" text-align: left; "class="table-list">
@@ -30,19 +30,21 @@
      <th>Observaciones</th>
      <td><%= f.text_area :observaciones,  :class=> 'ui-widget-content' ,  :cols => 40, :rows => 4  %> </td>
    </tr>
-   
+
 </table>
 
 <table style=" text-align: left; "class="table-list">
-  <tr><th>Odontograma</th></tr>
+  <tr><th><h1>Odontograma</h1></th></tr>
   <tr>
-    <td style="font-weight: bold"><%= label_tag 'ACCION_P_REQUERIDA', 'REQUERIDA'  %>
-    <%= radio_button_tag 'ACCION', 'REQUERIDA',true, :value =>  1 %><th><div class="cuadro1"></div></th></td>
-    <br/><br/>
-    <td style="font-weight: bold"><%= label_tag 'ACCION_P_EXISTENTE', 'EXISTENTE'   %>
-    <%= radio_button_tag 'ACCION', 'EXISTENTE',false, :value => 2  %><th><div class="cuadro2"></div></th></td>
-  </tr>
-  
+ 
+    <td style="font-weight: bold"><%= label_tag 'ACCION_P_EXISTENTE', 'EXISTENTE'  %>
+    <%= radio_button_tag 'ACCION', 'EXISTENTE',true, :value =>  1 %><th><div class="cuadro1"></div></th></td>
+     <td style="font-weight: bold"><%= label_tag 'ACCION_P_REQUERIDA', 'REQUERIDA'   %>
+    <%= radio_button_tag 'ACCION', 'REQUERIDA',false, :value => 2  %><th><div class="cuadro2"></div></th></td>
+
+  <br/><br/>
+</tr>
+
 </table>
 <br/>
 <br/>
@@ -55,7 +57,7 @@
  <tr>
    <% dientes = [18,17,16,15,14,13,12,11,21,22,23,24,25,26,27,28] %>
    <%  dientes.each do |diente| %>
- 
+
     <th>
           <div id=""><%=  diente%></div>
           <div id="contenedor">
@@ -103,7 +105,7 @@
             obj.style.backgroundColor = "#ffffff"
             color = 0
             };
-              
+
        }
        else
 
@@ -121,19 +123,9 @@
          };
      }
 
- 
+
     $(document).ready(function(){
 
-
-      $("#new_odontograma").validate({
-           
-        errorLabelContainer: $("ol", $("#new_odontograma div.errores")),
-        wrapper: 'li',
-        meta: "validate"
-      
-
-
-      });
     });
 
  $("#fecha_creacion").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', minDate: '+0D', maxDate:0});
@@ -149,7 +141,7 @@
 
 
 
- 
+
  </tr>
  </table>
 
@@ -160,9 +152,9 @@
  <tr>
    <% dientes = [48,47,46,45,44,43,42,41,31,32,33,34,35,36,37,38] %>
    <%  dientes.each do |diente| %>
-         
+
     <th>
-       
+
       <div id="contenedor">
             <div class="borde superior" id="<%= diente %>_superior" onclick="ilumina(this)" ></div>
             <div class="borde inferior" id="<%= diente %>_inferior" onclick="ilumina(this)"></div>
@@ -181,9 +173,9 @@
 
 
 <%#= tabla de niños%>
-  <table  style=" text-align: center;">
+  <table>
 
-    
+
  <tr>
    <% dientes = [55,54,53,52,51,61,62,63,64,65] %>
    <%  dientes.each do |diente| %>
@@ -200,22 +192,22 @@
           </div>
 
      </th>
-   
+
    <%end%>
-       
+
   </tr>
 
   </table>
 
      <th><div class="linea2"></div></th>
 
-  <table style=" text-align: right;">
+  <table>
  <tr>
    <% dientes = [85,84,83,82,81,71,72,73,74,75] %>
    <%  dientes.each do |diente| %>
 
     <th>
-         
+
           <div id="contenedor">
             <div class="borde superior" id="<%= diente %>_superior" onclick="ilumina(this)" ></div>
             <div class="borde inferior" id="<%= diente %>_inferior" onclick="ilumina(this)"></div>
@@ -227,7 +219,7 @@
        <div id=""><%=  diente%></div>
 
      </th>
-   
+
    <%end%>
 
   </tr>

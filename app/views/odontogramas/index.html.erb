@@ -1,5 +1,26 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Odontograma</legend>
-<%= link_to 'Nuevo Odontograma', new_odontograma_path %>
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Odontogramas</legend>
+ 
+  <table class="table-list">
+    <tr>
+       <th>Fecha de Creacion</th>
+      <th>Fecha ultima modificacion</th>
+    </tr>
+  <% @odontogramas.each do |odontograma| %>
+     <tr class="<%= cycle('','odd') %>">
+    
+
+      <td><%=h odontograma.fecha_creacion %></td>
+      <td><%=h odontograma.fecha_ultima_modificacion %></td>
+      <td><%= link_to image_tag('magnifier_zoom_in.png'), odontograma, :id => 'ver'  %>
+      </td>
+     </tr>
+
+    <tr>
+
+    </tr>
+  <% end %>
+
+</table>
 
 </fieldset>

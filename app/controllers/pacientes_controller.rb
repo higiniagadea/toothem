@@ -130,8 +130,9 @@ class PacientesController < ApplicationController
     @turnos = Turno.find(:all)
     @sald_pac = SaldoPaciente.find_by_sql('select ver_saldo_paciente(' + @paciente.id.to_s + ') as saldo ' )
     @imagenes = Imagen.find_all_by_paciente_id(@paciente.id)
-    @odontogramas = Odontograma.find_all_by_paciente_id(@paciente)
-    
+    @odontogramas = Odontograma.find(:all, :conditions => ['paciente_id = ?', @paciente.id.to_s])
+    @diente
+ 
      unless @paciente.archivo_id.blank?
       @archivo_ant = Archivo.find(@paciente.archivo_id)
     end
@@ -280,7 +281,7 @@ class PacientesController < ApplicationController
      
   def create
     params[:paciente][:consultorio_id]= current_usuario.consultorios
-    params[:paciente][:usuario_id]= current_usuario.id
+    #params[:paciente][:usuario_id]= current_usuario.id
     @paciente = Paciente.new(params[:paciente])
     @title = "Nuevo paciente"
     respond_to do |format|
@@ -362,15 +363,15 @@ end
 
 
 #valida una matricula duplicada
-def verificar_matricula
-   
-    @paciente = Paciente.find(:first, :conditions => {:matricula => params[:paciente][:matricula]})
-    respond_to do |format|
-    
-    format.json { render :json => !@paciente}
-   
-    end
-  end
+#def verificar_matricula
+#
+#    @paciente = Paciente.find(:first, :conditions => {:matricula => params[:paciente][:matricula]})
+#    respond_to do |format|
+#
+#    format.json { render :json => !@paciente}
+#
+#    end
+#  end
 
 #valida un nro de afiliado duplicado
 def verificar_nroafiliado

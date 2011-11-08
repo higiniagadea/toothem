@@ -4,16 +4,16 @@ class OdontogramasController < ApplicationController
   before_filter  :generar_submenus
   before_filter :login_required
 
-   def index
-
-    respond_to do |format|
-     format.html{ render :layout => 'default'}
+def index
+ 
+  @odontogramas = Odontograma.find(:all)
+  respond_to do |format|
+     format.html{ render :layout => false}
     end
   end
 
   def show
-    #@odontograma = Odontograma.find(params[:id])
-
+  @odontograma = Odontograma.find(params[:id])
     respond_to do |format|
 
       format.html{ render :layout => 'default'}
@@ -42,24 +42,31 @@ class OdontogramasController < ApplicationController
 
   
   def create
-    #@paciente = Paciente.find(params[:odontograma][:paciente_id])
-    #@odontograma = Odontograma.new(params[:odontograma])
-    params[:odonto].each do |numero_diente, caras|
-      #valores => [superior,izquierdo,derecho,inferior,centro]
-      valores = value.split(',')
-    end
+    
+    @odontograma = Odontograma.new(params[:odontograma])
+    if @odontograma.save
+    
+      params[:odonto].each do |numero_diente, cara|
+        @diente = Diente.new
+        @diente.odontograma_id = @odontograma.id
+        @diente.numero_diente = numero_diente
+
+        #caras => [superior,izquierdo,derecho,inferior,centro]
+        caras = cara.split(',')
+        @diente.superior = caras[0]
+        @diente.izquierda = caras[1]
+        @diente.derecho = caras[2]
+        @diente.inferior = caras[3]
+        @diente.centro = caras[0]
+        @diente.save
+      end
     respond_to do |format|
-#      if @odontograma.save
-#        flash[:notice] = 'Odontograma creada.'
-#        format.html { redirect_to edit_paciente_path(@paciente) + '#odontogramas' }
-#
-#      else
-#        format.html { render :action => "new" }
-#
-#      end
+          flash[:notice] = 'Odontograma Creado'
+          format.html { redirect_to(odontogramas_url)}
+
     end
   end
-
+  end
  
   def update
     @odontograma = Odontograma.find(params[:id])
@@ -88,5 +95,18 @@ class OdontogramasController < ApplicationController
     end
   end
 
+
+  def ver
+   @paciente = Paciente.find(params[:id])
+ 
+   respond_to do |format|
+      @diente = Diente.find(:all)
+      @odontograma = @diente.odontograma.find(:all, :conditions => ['paciente_id = ?', @paciente.id.to_s])
+
+      format.html {render :partial => 'ver'}
+
+  end
   end
 
+  
+end

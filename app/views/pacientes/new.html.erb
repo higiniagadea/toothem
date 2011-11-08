@@ -97,7 +97,7 @@
     </tr>
     <tr>
       <th>Nro. de Afiliado</th>
-      <td><%= f.text_field :nro_afiliado, :size=>20, :class=>'ui-widget-content required', :title=> 'Nro. de Afiliado no puede estar vacio', :onkeypress=> 'return validar(event)' %>
+      <td><%#= f.text_field :nro_afiliado, :size=>20, :class=>'ui-widget-content required', :title=> 'Nro. de Afiliado no puede estar vacio', :onkeypress=> 'return validar(event)' %>
       </td>
     </tr>
     <table>
@@ -153,12 +153,12 @@ function validate(e) { // 1
        meta: "validate",
        
        rules: {          
-         "paciente[matricula]": {required: true, remote:"/pacientes/verificar_matricula?paciente[matricula]=" + $('#paciente[matricula]').val(), rangelength: [6, 10]},
+         /*"paciente[matricula]": {required: true, remote:"/pacientes/verificar_matricula?paciente[matricula]=" + $('#paciente[matricula]').val(), rangelength: [6, 10]},*/
          "paciente[nro_afiliado]": {required: true, remote:"/pacientes/verificar_nroafiliado?paciente[nro_afiliado]=" + $('#paciente[nro_afiliado]').val()},
         "paciente[sexo]" :{required:true}
      },
       messages:{
-           "paciente[matricula]": {remote:"Nro. de Documento ya se encuentra cargado"},
+          /* "paciente[matricula]": {remote:"Nro. de Documento ya se encuentra cargado"},*/
            "paciente[nro_afiliado]": {remote:"Nro. de Afiliado ya se encuentra cargado"}
          
        }
