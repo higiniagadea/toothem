@@ -5,18 +5,21 @@ class OdontogramasController < ApplicationController
   before_filter :login_required
 
 def index
- 
-  @odontogramas = Odontograma.find(:all)
+  
+    @odontogramas = Odontograma.find(:all)
+
   respond_to do |format|
      format.html{ render :layout => false}
     end
   end
 
   def show
-  @odontograma = Odontograma.find(params[:id])
+     params[:paciente_id]
+    @odontograma = Odontograma.find(:all)
+    
     respond_to do |format|
 
-      format.html{ render :layout => 'default'}
+      format.html{ render :layout => false}
     end
   end
 
@@ -57,12 +60,12 @@ def index
         @diente.izquierda = caras[1]
         @diente.derecho = caras[2]
         @diente.inferior = caras[3]
-        @diente.centro = caras[0]
+        @diente.centro = caras[4]
         @diente.save
       end
     respond_to do |format|
           flash[:notice] = 'Odontograma Creado'
-          format.html { redirect_to(odontogramas_url)}
+          format.html { redirect_to search_pacientes_url}
 
     end
   end
@@ -100,8 +103,7 @@ def index
    @paciente = Paciente.find(params[:id])
  
    respond_to do |format|
-      @diente = Diente.find(:all)
-      @odontograma = @diente.odontograma.find(:all, :conditions => ['paciente_id = ?', @paciente.id.to_s])
+    
 
       format.html {render :partial => 'ver'}
 

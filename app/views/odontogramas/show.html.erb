@@ -1,51 +1,42 @@
-<fieldset class="ui-widget ui-widget-content ui-corner-top">
-<legend class="ui-widget ui-corner-all ui-widget-header">Odontograma </legend>
-  <br/>
-
- <% form_for(@odontograma) do |f| %>
-
-<table style=" text-align: left; "class="table-list">
+  <table style=" text-align: left;">
   <tr>
-    <th>Paciente</th>
-    <th><%= @paciente.nombre %></th>
-        <%= f.hidden_field :paciente_id, 'value' => @paciente.id.to_s  %>
+  <th>Paciente</th>
+  <td><%#=h @paciente.nombre %>
+  </td>
   </tr>
-  <tr>
-     <th>Fecha de Creaci&oacute;n </th>
-       <td><span class="fecha_creacion" class ="ui-widget-content">
-              <input class="ui-widget-content required"  type="text" id="fecha_creacion" name="odontograma[fecha_creacion]"  readonly="readonly"/>
-      </span>
-    </td>
- </tr>
 
   <tr>
-    <th>Fecha ultima Modificaci&oacute;n</th>
-     <td><span class="fecha_ultima_modificacion" class ="ui-widget-content">
-         <input class="ui-widget-content required"  type="text" id="fecha_ultima_modificacion" name="odontograma[fecha_ultima_modificacion]" readonly="readonly" />
-      </span>
-    </td>
- </tr>
+  <th>Fecha de Creacion</th>
+  <td><%=h @odontograma.fecha_creacion.strftime('%d/%m/%Y') %>
+  </td>
+  </tr>
 
   <tr>
-     <th>Observaciones</th>
-     <td><%= f.text_area :observaciones,  :class=> 'ui-widget-content' ,  :cols => 40, :rows => 4  %> </td>
-   </tr>
+  <th>Fecha Ultima Modificacion</th>
+  <td><%=h @odontograma.fecha_ultima_modificacion.strftime('%d/%m/%Y') %>
+  </td>
+  </tr>
+
+   <tr>
+  <th>Observaciones</th>
+  <td><%=h @odontograma.observaciones %>
+  </td>
+  </tr>
 
 </table>
 
-<table style=" text-align: left; "class="table-list">
+  <table style=" text-align: left; "class="table-list">
   <tr><th><h1>Odontograma</h1></th></tr>
   <tr>
- 
     <td style="font-weight: bold"><%= label_tag 'ACCION_P_EXISTENTE', 'EXISTENTE'  %>
-    <%= radio_button_tag 'ACCION', 'EXISTENTE',true, :value =>  1 %><th><div class="cuadro1"></div></th></td>
-     <td style="font-weight: bold"><%= label_tag 'ACCION_P_REQUERIDA', 'REQUERIDA'   %>
-    <%= radio_button_tag 'ACCION', 'REQUERIDA',false, :value => 2  %><th><div class="cuadro2"></div></th></td>
-
-  <br/><br/>
-</tr>
+   <th><div class="cuadro1"></div></th></td>
+    <br/>
+    <td style="font-weight: bold"><%= label_tag 'ACCION_P_REQUERIDA', 'REQUERIDA'   %>
+   <th><div class="cuadro2"></div></th></td>
+  </tr>
 
 </table>
+
 <br/>
 <br/>
   <div style=" float: left; margin-left: 0 ; font-weight: bold">IZQUIERDA </div>
@@ -91,6 +82,8 @@
      }
      $('#' + diente).val(array)
    }
+
+
    function ilumina(obj) {
        var diente = $(obj).attr('id').split('_')[0];
        var cara = $(obj).attr('id').split('_')[1];
@@ -98,7 +91,6 @@
             //requerido, numero de accion 1
             if(color == 0){
             obj.style.backgroundColor = '#ff0000';
-   
             cargar_hidden(diente, cara, '1')
             color = 1;
             } else {
@@ -121,27 +113,13 @@
             obj.style.backgroundColor = "#ffffff"
             color = 0
             }
-         };
-     }
+         }
+     };
 
-
-    $(document).ready(function(){
-
-    });
-
- $("#fecha_creacion").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', minDate: '+0D', maxDate:0});
- $("#fecha_ultima_modificacion").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', minDate: '+0D', maxDate:0});
 
 
 
  </script>
-
-
-
-
-
-
-
 
  </tr>
  </table>
@@ -172,11 +150,7 @@
 
   <br/><br/><br/>
 
-
-<%#= tabla de niños%>
   <table>
-
-
  <tr>
    <% dientes = [55,54,53,52,51,61,62,63,64,65] %>
    <%  dientes.each do |diente| %>
@@ -228,18 +202,7 @@
  <div style=" float: left; margin-left: 0; font-weight: bold">IZQUIERDA </div>
  <div style=" float: left; margin-left: 415px; font-weight: bold">DERECHA</div>
 
-
- <table>
-      <tr>
-       <td style=" float: left; margin-left: 1000px"> <%= f.submit 'Guardar',  :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %> </td>
-
-    </tr>
- </table>
- <%end%>
-
-
   <br/>
   <br/><br/>
-  </fieldset>
 
 

@@ -1,26 +1,37 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Odontogramas</legend>
  
-  <table class="table-list">
+  <table style=" text-align: left">
     <tr>
+      <th>Paciente</th>
        <th>Fecha de Creacion</th>
       <th>Fecha ultima modificacion</th>
     </tr>
   <% @odontogramas.each do |odontograma| %>
      <tr class="<%= cycle('','odd') %>">
     
-
-      <td><%=h odontograma.fecha_creacion %></td>
-      <td><%=h odontograma.fecha_ultima_modificacion %></td>
-      <td><%= link_to image_tag('magnifier_zoom_in.png'), odontograma, :id => 'ver'  %>
+       <td><%=h odontograma.paciente_id %> </td>
+      <td><%=h odontograma.fecha_creacion.strftime('%d/%m/%Y') %></td>
+      <td><%=h odontograma.fecha_ultima_modificacion.strftime('%d/%m/%Y') %></td>
+      <td><%= link_to image_tag('magnifier_zoom_in.png'), odontograma , :id => 'ver_' + odontograma.id.to_s %>
       </td>
      </tr>
 
-    <tr>
+      <script type="text/javascript">
+        $('#ver_<%= odontograma.id.to_s %>').fancybox(
+        {
+        'hideOnContentClick': false,
+        'titleShow': false
 
-    </tr>
-  <% end %>
+        });
+
+
+
+    </script>
+
+<% end %>
 
 </table>
-
+  <br/>
+  <br/>
 </fieldset>

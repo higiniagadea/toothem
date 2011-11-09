@@ -118,9 +118,9 @@ class PacientesController < ApplicationController
   
   def edit
     params[:paciente_id]
-    @odontograma = Odontograma.new
     @archivo = Archivo.new
-    @paciente = Paciente.find_by_id(params[:id])   
+    @paciente = Paciente.find_by_id(params[:id])
+    @odontograma = Odontograma.find(:first, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha_creacion', :include => 'dientes')
     @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha ASC')
     @trat = Tratamiento.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['paciente_id = ? and estado_tratamiento_id = ?',  @paciente.id.to_s  , 5 ], :order => 'fecha ASC')
     @pagos_pacientes = PagoPaciente.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['paciente_id = ?', @paciente.id.to_s] , :order => 'fecha ASC')
@@ -131,8 +131,7 @@ class PacientesController < ApplicationController
     @sald_pac = SaldoPaciente.find_by_sql('select ver_saldo_paciente(' + @paciente.id.to_s + ') as saldo ' )
     @imagenes = Imagen.find_all_by_paciente_id(@paciente.id)
     @odontogramas = Odontograma.find(:all, :conditions => ['paciente_id = ?', @paciente.id.to_s])
-    @diente
- 
+
      unless @paciente.archivo_id.blank?
       @archivo_ant = Archivo.find(@paciente.archivo_id)
     end
@@ -363,15 +362,15 @@ end
 
 
 #valida una matricula duplicada
-#def verificar_matricula
-#
-#    @paciente = Paciente.find(:first, :conditions => {:matricula => params[:paciente][:matricula]})
-#    respond_to do |format|
-#
-#    format.json { render :json => !@paciente}
-#
-#    end
-#  end
+def verificar_matricula
+
+    @paciente = Paciente.find(:first, :conditions => {:matricula => params[:paciente][:matricula]})
+    respond_to do |format|
+
+    format.json { render :json => !@paciente}
+
+    end
+  end
 
 #valida un nro de afiliado duplicado
 def verificar_nroafiliado

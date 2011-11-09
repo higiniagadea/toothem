@@ -1,9 +1,24 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
 <legend class="ui-widget ui-corner-all ui-widget-header">Odontograma</legend>
 
+  <%  unless @paciente.odontogramas.blank? %>
+
+   <div style="float:right; margin-right: 60px"><%= link_to 'Listado', odontogramas_url , :id => 'sw'%>
+     &nbsp;&nbsp;&nbsp;&nbsp;<%= link_to 'Nuevo Odontograma', new_odontograma_url(:paciente_id=> @paciente.id.to_s), :id => 'odontog'  %>
+   </div>
+
 <table>
-<div style="float:right; margin-right: 60px"><%= link_to 'Nuevo Odontograma', new_odontograma_url(:paciente_id=> @paciente.id.to_s), :id => 'odontog'  %></div>
-<div style="float:right; margin-right: 60px"><%= link_to 'Listado', odontogramas_url , :id => 'sw'%></div>
+
+<%= render :partial => 'odontogramas/ver' %>
+
+<%else%>
+
+   No posee Odontogramas  <div style="float:right; margin-right: 60px"><%= link_to 'Nuevo Odontograma', new_odontograma_url(:paciente_id=> @paciente.id.to_s), :id => 'odontog'  %></div>
+
+
+<%end%>
+</table>
+
 
 <script type="text/javascript">
  
@@ -21,13 +36,10 @@
 
      
 </script>
-</table>
-<%  unless @paciente.odontogramas.blank? %>
-<%= render :partial => 'odontogramas/ver' %>
 
-<%else%>
-No posee Odontogramas
-<%end%>
+
+
+
 
 
   </fieldset>
