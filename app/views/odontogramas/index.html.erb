@@ -13,18 +13,14 @@
        <td><%=h odontograma.paciente_id %> </td>
       <td><%=h odontograma.fecha_creacion.strftime('%d/%m/%Y') %></td>
       <td><%=h odontograma.fecha_ultima_modificacion.strftime('%d/%m/%Y') %></td>
-      <td><%= link_to image_tag('magnifier_zoom_in.png'), odontograma , :id => 'ver_' + odontograma.id.to_s %>
-      </td>
+      <td><%= link_to image_tag('magnifier_zoom_in.png'), odontograma,   %></td>
+      <td><%= link_to image_tag('cancel.png'), odontograma, :confirm => '¿Está seguro? No podrá deshacer esta acción', :method => :delete, :title => "Eliminar" %></td>
+
+
      </tr>
 
       <script type="text/javascript">
-        $('#ver_<%= odontograma.id.to_s %>').fancybox(
-        {
-        'hideOnContentClick': false,
-        'titleShow': false
-
-        });
-
+      
 
 
     </script>

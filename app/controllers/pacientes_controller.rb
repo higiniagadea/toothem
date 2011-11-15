@@ -120,7 +120,11 @@ class PacientesController < ApplicationController
     params[:paciente_id]
     @archivo = Archivo.new
     @paciente = Paciente.find_by_id(params[:id])
-    @odontograma = Odontograma.find(:first, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha_creacion', :include => 'dientes')
+
+    @odontograma = Odontograma.find(:first, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha_creacion desc', :include => 'dientes')
+    @odontogramas = Odontograma.find(:all, :conditions => ['paciente_id = ? and ultimo = ?', @paciente.id.to_s, false], :order => 'fecha_creacion desc')
+    #@odontograma = Odontograma.find(:all, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha_creacion desc', :include => 'dientes')
+
     @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha ASC')
     @trat = Tratamiento.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['paciente_id = ? and estado_tratamiento_id = ?',  @paciente.id.to_s  , 5 ], :order => 'fecha ASC')
     @pagos_pacientes = PagoPaciente.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['paciente_id = ?', @paciente.id.to_s] , :order => 'fecha ASC')
@@ -130,7 +134,7 @@ class PacientesController < ApplicationController
     @turnos = Turno.find(:all)
     @sald_pac = SaldoPaciente.find_by_sql('select ver_saldo_paciente(' + @paciente.id.to_s + ') as saldo ' )
     @imagenes = Imagen.find_all_by_paciente_id(@paciente.id)
-    @odontogramas = Odontograma.find(:all, :conditions => ['paciente_id = ?', @paciente.id.to_s])
+    #@odontogramas = Odontograma.find(:all, :conditions => ['paciente_id = ?', @paciente.id.to_s])
 
      unless @paciente.archivo_id.blank?
       @archivo_ant = Archivo.find(@paciente.archivo_id)

@@ -1,25 +1,19 @@
-  <table style=" text-align: left;">
+   <table style=" text-align: left;">
   <tr>
   <th>Paciente</th>
-  <td><%#=h @paciente.nombre %>
+  <td><%=h @paciente_id %>
   </td>
   </tr>
 
   <tr>
   <th>Fecha de Creacion</th>
-  <td><%=h @odontograma.fecha_creacion.strftime('%d/%m/%Y') %>
-  </td>
-  </tr>
-
-  <tr>
-  <th>Fecha Ultima Modificacion</th>
-  <td><%=h @odontograma.fecha_ultima_modificacion.strftime('%d/%m/%Y') %>
+  <td><%=h @odontograma.diente.fecha_creacion.strftime('%d/%m/%Y') %>
   </td>
   </tr>
 
    <tr>
   <th>Observaciones</th>
-  <td><%=h @odontograma.observaciones %>
+  <td><%=h @odontograma.diente.observaciones %>
   </td>
   </tr>
 
@@ -48,78 +42,23 @@
  <tr>
    <% dientes = [18,17,16,15,14,13,12,11,21,22,23,24,25,26,27,28] %>
    <%  dientes.each do |diente| %>
-
+    <% diente_valor= @odontograma.dientes.find(:first,:conditions=>["numero_diente = ?",diente])  %>
     <th>
           <div id=""><%=  diente%></div>
           <div id="contenedor">
-            <div class="borde superior" id="<%= diente %>_superior" onclick="ilumina(this)" ></div>
-            <div class="borde inferior" id="<%= diente %>_inferior" onclick="ilumina(this)"></div>
-            <div class="borde der" id="<%= diente %>_derecho" onclick="ilumina(this)"></div>
-            <div class="borde izq" id="<%= diente %>_izquierdo" onclick="ilumina(this)"></div>
-            <div class="contenido" id="<%= diente %>_centro" onclick="ilumina(this)"></div>
-            <%= hidden_field_tag "odonto[#{diente}]", ",,,,", :id => diente %>
+            <div class="borde superior" id="<%= diente %>_superior" style="background:<%= unless diente_valor.superior.blank? then diente_valor.superior == 1 ? "#ff0000" : "#0000ff" end %>" ></div>
+            <div class="borde inferior" id="<%= diente %>_inferior"  style="background:<%= unless diente_valor.inferior.blank? then diente_valor.inferior == 1 ? "#ff0000" : "#0000ff" end %>"></div>
+            <div class="borde der" id="<%= diente %>_derecho"  style="background:<%= unless diente_valor.derecho.blank? then diente_valor.derecho == 1 ? "#ff0000" : "#0000ff" end %>"></div>
+            <div class="borde izq" id="<%= diente %>_izquierda" style="background:<%= unless diente_valor.izquierda.blank? then diente_valor.izquierda == 1 ? "#ff0000" : "#0000ff" end %>"></div>
+            <div class="contenido" id="<%= diente %>_centro" style="background:<%= unless diente_valor.centro.blank? then diente_valor.centro == 1 ? "#ff0000" : "#0000ff" end %>"></div>
+
+            <%#= hidden_field_tag "odonto[#{diente}]", "#{diente_valor.superior},#{diente_valor.izquierda},#{diente_valor.derecho},#{diente_valor.inferior},#{diente_valor.centro}", :id => diente %>
           </div>
 
      </th>
+
 <% end %>
 
-<script type="text/javascript">
-
-   var color = 0;
-   function cargar_hidden(diente, cara, accion ){
-     var array = $('#' + diente).val().split(',')
-     //array => [superior,izquierdo,derecho,inferior,centro]
-     if(cara == 'superior'){
-       array[0] = accion
-     }else if (cara == 'izquierdo'){
-       array[1] = accion
-     }else if (cara == 'derecho'){
-       array[2] = accion
-     }else if (cara == 'inferior'){
-       array[3] = accion
-     }else if (cara == 'centro'){
-       array[4] = accion
-     }
-     $('#' + diente).val(array)
-   }
-
-
-   function ilumina(obj) {
-       var diente = $(obj).attr('id').split('_')[0];
-       var cara = $(obj).attr('id').split('_')[1];
-       if ($("input[name='ACCION']:checked").val() == '1'){
-            //requerido, numero de accion 1
-            if(color == 0){
-            obj.style.backgroundColor = '#ff0000';
-            cargar_hidden(diente, cara, '1')
-            color = 1;
-            } else {
-            cargar_hidden(diente, cara, '')
-            obj.style.backgroundColor = "#ffffff"
-            color = 0
-            };
-
-       }
-       else
-
-         {
-           //existente, numero de accion 2
-           if(color == 0){
-            cargar_hidden(diente, cara, '2')
-            obj.style.backgroundColor = '#0000ff';
-            color = 1;
-            } else {
-            cargar_hidden(diente, cara, '')
-            obj.style.backgroundColor = "#ffffff"
-            color = 0
-            }
-         }
-     };
-
-
-
-
- </script>
 
  </tr>
  </table>
@@ -131,16 +70,16 @@
  <tr>
    <% dientes = [48,47,46,45,44,43,42,41,31,32,33,34,35,36,37,38] %>
    <%  dientes.each do |diente| %>
-
+<% diente_valor= @odontograma.dientes.find(:first,:conditions=>["numero_diente = ?",diente])  %>
     <th>
 
       <div id="contenedor">
-            <div class="borde superior" id="<%= diente %>_superior" onclick="ilumina(this)" ></div>
-            <div class="borde inferior" id="<%= diente %>_inferior" onclick="ilumina(this)"></div>
-            <div class="borde der" id="<%= diente %>_derecho" onclick="ilumina(this)"></div>
-            <div class="borde izq" id="<%= diente %>_izquierdo" onclick="ilumina(this)"></div>
-            <div class="contenido" id="<%= diente %>_centro" onclick="ilumina(this)"></div>
-             <%= hidden_field_tag "odonto[#{diente}]", ",,,,", :id => diente %>
+            <div class="borde superior" id="<%= diente %>_superior"  style="background:<%= unless diente_valor.superior.blank? then diente_valor.superior == 1 ? "#ff0000" : "#0000ff" end %>"></div>
+            <div class="borde inferior" id="<%= diente %>_inferior"  style="background:<%= unless diente_valor.izquierda.blank? then diente_valor.izquierda == 1 ? "#ff0000" : "#0000ff" end %>"></div>
+            <div class="borde der" id="<%= diente %>_derecho"  style="background:<%= unless diente_valor.derecho.blank? then diente_valor.derecho == 1 ? "#ff0000" : "#0000ff" end %>"></div>
+            <div class="borde izq" id="<%= diente %>_izquierdo"  style="background:<%= unless diente_valor.inferior.blank? then diente_valor.inferior == 1 ? "#ff0000" : "#0000ff" end %>"></div>
+            <div class="contenido" id="<%= diente %>_centro"  style="background:<%= unless diente_valor.centro.blank? then diente_valor.centro == 1 ? "#ff0000" : "#0000ff" end %>"></div>
+
           </div>
       <div id=""><%=  diente%></div>
      </th>
@@ -154,55 +93,7 @@
  <tr>
    <% dientes = [55,54,53,52,51,61,62,63,64,65] %>
    <%  dientes.each do |diente| %>
-
+<% diente_valor= @odontograma.dientes.find(:first,:conditions=>["numero_diente = ?",diente])  %>
     <th>
           <div id=""><%=  diente%></div>
-          <div id="contenedor">
-            <div class="borde superior" id="<%= diente %>_superior" onclick="ilumina(this)" ></div>
-            <div class="borde inferior" id="<%= diente %>_inferior" onclick="ilumina(this)"></div>
-            <div class="borde der" id="<%= diente %>_derecho" onclick="ilumina(this)"></div>
-            <div class="borde izq" id="<%= diente %>_izquierdo" onclick="ilumina(this)"></div>
-            <div class="contenido" id="<%= diente %>_centro" onclick="ilumina(this)"></div>
-             <%= hidden_field_tag "odonto[#{diente}]", ",,,,", :id => diente %>
-          </div>
-
-     </th>
-
-   <%end%>
-
-  </tr>
-
-  </table>
-
-     <th><div class="linea2"></div></th>
-
-  <table>
- <tr>
-   <% dientes = [85,84,83,82,81,71,72,73,74,75] %>
-   <%  dientes.each do |diente| %>
-
-    <th>
-
-          <div id="contenedor">
-            <div class="borde superior" id="<%= diente %>_superior" onclick="ilumina(this)" ></div>
-            <div class="borde inferior" id="<%= diente %>_inferior" onclick="ilumina(this)"></div>
-            <div class="borde der" id="<%= diente %>_derecho" onclick="ilumina(this)"></div>
-            <div class="borde izq" id="<%= diente %>_izquierdo" onclick="ilumina(this)"></div>
-            <div class="contenido" id="<%= diente %>_centro" onclick="ilumina(this)"></div>
-            <%= hidden_field_tag "odonto[#{diente}]", ",,,,", :id => diente %>
-          </div>
-       <div id=""><%=  diente%></div>
-
-     </th>
-
-   <%end%>
-
-  </tr>
-  </table>
- <div style=" float: left; margin-left: 0; font-weight: bold">IZQUIERDA </div>
- <div style=" float: left; margin-left: 415px; font-weight: bold">DERECHA</div>
-
-  <br/>
-  <br/><br/>
-
-
+          <div id=

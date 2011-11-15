@@ -6,7 +6,8 @@ class OdontogramasController < ApplicationController
 
 def index
   
-    @odontogramas = Odontograma.find(:all)
+  @odontogramas = Odontograma.find(:all, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha_creacion ASC', :include => 'dientes')
+
 
   respond_to do |format|
      format.html{ render :layout => false}
@@ -14,12 +15,10 @@ def index
   end
 
   def show
-     params[:paciente_id]
-    @odontograma = Odontograma.find(:all)
-    
-    respond_to do |format|
+     @odontograma = Odontograma.find(:all, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha_creacion desc', :include => 'dientes')
+     respond_to do |format|
 
-      format.html{ render :layout => false}
+      format.html{ render  :layout => 'default'}
     end
   end
 
@@ -27,6 +26,7 @@ def index
   def new
   @paciente = Paciente.find(params[:paciente_id])
     @odontograma = Odontograma.new
+  
 
     respond_to do |format|
 
@@ -45,8 +45,10 @@ def index
 
   
   def create
-    
+    @ult_odontograma = Odontograma.find_by_ultimo(true)
+    params[:odontograma][:ultimo] = true
     @odontograma = Odontograma.new(params[:odontograma])
+      #@odontograma = Odontograma.find(:first).clone
     if @odontograma.save
     
       params[:odonto].each do |numero_diente, cara|
@@ -63,7 +65,10 @@ def index
         @diente.centro = caras[4]
         @diente.save
       end
-    respond_to do |format|
+     
+      @ult_odontograma.update_attribute(:ultimo, false)
+
+      respond_to do |format|
           flash[:notice] = 'Odontograma Creado'
           format.html { redirect_to search_pacientes_url}
 
@@ -93,7 +98,7 @@ def index
     respond_to do |format|       
         flash[:notice] = 'Odontograma eliminado.'
      
-      format.html { redirect_to(odontogramas_url) }
+      format.html { redirect_to search_pacientes_path }
 
     end
   end
