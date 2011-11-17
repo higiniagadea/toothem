@@ -1,3 +1,8 @@
+# MySQL.  Versions 4.1 and 5.0 are recommended.
+#
+#
+# Be sure to use new-style password hashing:
+#   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
 development:
   adapter: postgresql
   encoding: unicode
@@ -8,21 +13,23 @@ development:
   host: 10.1.0.8
   port: 5432
 
-test:
-  adapter: postgresql
-  database: toothem_test
-  pool: 5
-  username: toothem
-  password: toothem
-  host: 10.1.0.8
-  port: 5432
+#test:
+#  adapter: postgresql
+#  encoding: unicode
+#  database: toothem_test
+#  pool: 5
+#  username: toothem
+#  password: toothem
+#  host: 10.1.0.8
+#  port: 5432
+#
+#production:
+#  adapter: postgresql
+#  encoding: unicode
+#  database: toothem_production
+#  pool: 5
+#  username: toothem
+#  password: toothem
+#  host: 10.1.0.8
+#  port: 5432
 
-production:
-  adapter: jdbcpostgresql
-  encoding: unicode
-  database: toothem_development
-  pool: 5
-  username: toothem
-  password: toothem
-  host: localhost
-  port: 5432

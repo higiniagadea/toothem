@@ -1,19 +1,16 @@
-   <table style=" text-align: left;">
-  <tr>
-  <th>Paciente</th>
-  <td><%=h @paciente_id %>
-  </td>
-  </tr>
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class ="ui-widget ui-widget-content ui-corner-all ui-widget-header">Odontograma</legend>
+<table style=" text-align: left;">
 
   <tr>
   <th>Fecha de Creacion</th>
-  <td><%=h @odontograma.diente.fecha_creacion.strftime('%d/%m/%Y') %>
+  <td><%=h @odontograma.fecha_creacion.strftime('%d/%m/%Y') %>
   </td>
   </tr>
 
    <tr>
   <th>Observaciones</th>
-  <td><%=h @odontograma.diente.observaciones %>
+  <td><%=h @odontograma.observaciones %>
   </td>
   </tr>
 
@@ -96,8 +93,7 @@
 <% diente_valor= @odontograma.dientes.find(:first,:conditions=>["numero_diente = ?",diente])  %>
     <th>
           <div id=""><%=  diente%></div>
-<<<<<<< HEAD
-<<<<<<< HEAD
+
           <div id="contenedor">
             <div class="borde superior" id="<%= diente %>_superior"  style="background:<%= unless diente_valor.superior.blank? then diente_valor.superior == 1 ? "#ff0000" : "#0000ff" end %>" ></div>
             <div class="borde inferior" id="<%= diente %>_inferior"  style="background:<%= unless diente_valor.izquierda.blank? then diente_valor.izquierda == 1 ? "#ff0000" : "#0000ff" end %>"></div>
@@ -141,9 +137,4 @@
   </table>
  <div style=" float: left; margin-left: 0; font-weight: bold">IZQUIERDA </div>
  <div style=" float: left; margin-left: 415px; font-weight: bold">DERECHA</div>
-=======
-          <div id=
->>>>>>> d0cc7e5d08320ed41d1ac619b2d814ad9e9a7b56
-=======
-          <div id=
->>>>>>> d0cc7e5d08320ed41d1ac619b2d814ad9e9a7b56
+</fieldset>
