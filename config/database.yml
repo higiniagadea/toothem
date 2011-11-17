@@ -23,13 +23,13 @@ development:
 #  host: 10.1.0.8
 #  port: 5432
 #
-#production:
-#  adapter: postgresql
-#  encoding: unicode
-#  database: toothem_production
-#  pool: 5
-#  username: toothem
-#  password: toothem
-#  host: 10.1.0.8
-#  port: 5432
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: toothem_production
+  pool: 5
+  username: toothem
+  password: toothem
+  host: 10.1.0.8
+  port: 5432
 
