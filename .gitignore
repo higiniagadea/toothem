@@ -5,4 +5,4 @@ nbproject/**/*
 db/schema.rb
 **/*.rb.swp
 nbproject/*.xml
-
+config/database.yml
