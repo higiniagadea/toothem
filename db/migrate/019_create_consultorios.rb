@@ -3,6 +3,7 @@ class CreateConsultorios < ActiveRecord::Migration
     create_table "consultorios" do |t|
       t.column :nombre, :string
       t.column :clinica_id, :integer
+      t.column :deleted_at, :date
     end
 
     #Join table (Usuarios)

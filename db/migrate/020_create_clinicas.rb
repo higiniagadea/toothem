@@ -4,7 +4,7 @@ class CreateClinicas < ActiveRecord::Migration
       t.column :nombre, :string
       t.column :direccion, :string
       t.column :cuit, :string, :limit => "255"
-
+      t.column :deleted_at, :date
     end
 
   end

@@ -1,7 +1,7 @@
 
 class Titular < ActiveRecord::Base
 acts_as_paranoid
-  has_many :pacientes
+  has_many :pacientes      
   
   belongs_to :obra_social, :dependent => :destroy
 

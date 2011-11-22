@@ -7,6 +7,8 @@ class CreateOdontogramas <  ActiveRecord::Migration
         
         t.column :observaciones, :string
         t.column :ultimo, :boolean
+        t.column :deleted_at, :date
+
       t.timestamps
     end
 

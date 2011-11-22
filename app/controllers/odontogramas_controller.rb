@@ -6,11 +6,12 @@ class OdontogramasController < ApplicationController
 
 
 
-  def duplicar  
+  def duplicar
+     @paciente = Paciente.find(params[:paciente_id])
     @odontograma = Odontograma.find(:first).clone.save   
       respond_to do |format|
        format.html{redirect_to search_pacientes_path, :layout => 'default'}
-       flash[:notice] = 'duplicado'
+       flash[:notice] = 'Odontograma Duplicado'
  
     end
   end
@@ -96,7 +97,7 @@ def index
 
     respond_to do |format|
       if @odontograma.update_attributes(params[:odontograma])
-        flash[:notice] = 'Odontograma actualizada.'
+        flash[:notice] = 'Odontograma actualizado.'
         format.html { redirect_to(odontogramas_url) }
 
       else

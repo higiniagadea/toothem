@@ -7,7 +7,7 @@ class CreateObrasSociales < ActiveRecord::Migration
         t.column :incluye_ficha, :boolean, :default => false
         t.column :nro_max_codigos_por_mes, :integer, :limit => 3
         t.column :consultorio_id , :integer
-
+        t.column :deleted_at, :date
 
     end
   end
