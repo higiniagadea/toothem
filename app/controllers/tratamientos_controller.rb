@@ -138,6 +138,7 @@ class TratamientosController < ApplicationController
     if @tratamiento.fue_liquidado == true
       flash[:notice] = 'El tratamiento no puede ser borrado ya que no fue liquidado'
     else
+     
       @tratamiento.destroy
       flash[:notice] = 'tratamiento eliminado'
     end

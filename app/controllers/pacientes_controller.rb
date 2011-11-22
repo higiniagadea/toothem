@@ -127,7 +127,7 @@ class PacientesController < ApplicationController
     @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha ASC')
     @trat = Tratamiento.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['paciente_id = ? and estado_tratamiento_id = ?',  @paciente.id.to_s  , 5 ], :order => 'fecha ASC')
     @pagos_pacientes = PagoPaciente.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['paciente_id = ?', @paciente.id.to_s] , :order => 'fecha ASC')
-    @fichas = Ficha.find_all_by_paciente_id(@paciente.id)
+  
     @profesionales = Profesional.paginate(:page => params[:page], :per_page => 10)
     @prestaciones = Prestacion.find(:all)  
     @turnos = Turno.find(:all)
@@ -327,7 +327,8 @@ class PacientesController < ApplicationController
     @paciente = Paciente.find(params[:id])
     @paciente.destroy
     respond_to do |format|
-       flash[:notice] = 'Paciente Eliminado.'
+
+      flash[:notice] = 'Paciente Eliminado.'
       format.html { redirect_to(search_pacientes_url) }
       format.xml  { head :ok }
     end

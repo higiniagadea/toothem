@@ -12,7 +12,7 @@ class Paciente < ActiveRecord::Base
   belongs_to :tipo_documento
   has_one :historia_clinica_general, :dependent => :destroy
   has_one :historia_clinica_ortodoncia, :dependent => :destroy  
-  has_many :fichas, :dependent => :destroy
+ 
   has_many :imagenes, :dependent => :destroy
 
   validates_presence_of :nombre, :message => ' y apellido no pueden estar en blanco'
