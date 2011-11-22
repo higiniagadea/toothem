@@ -5,21 +5,29 @@
 <%  unless @paciente.odontogramas.blank? %>
 
    <div style="float:right; margin-right: 60px"><%= link_to 'Nuevo Odontograma', new_odontograma_url(:paciente_id=> @paciente.id.to_s), :id => 'odontog'  %>
+<script type="text/javascript">
 
+    $('#odontog').fancybox({
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+
+</script>
    </div>
 
 <table>
 
 
-<%= render :partial => 'odontogramas/ver' %>
+<%= render :partial => 'odontogramas/ver1' %>
+ <td><%#= link_to 'Duplicar Odontograma', duplicar_odontogramas_path(@odontograma.id)  %> </td>
 
 
 <%else%>
 
    No posee Odontogramas  <div style="float:right; margin-right: 60px"><%= link_to 'Nuevo Odontograma', new_odontograma_url(:paciente_id=> @paciente.id.to_s), :id => 'odontog'  %></div>
 
-    <td><%= link_to 'Duplicar Odontograma', duplicar_odontogramas_path(@odontograma.id) unless @odontograma.ultimo == false %> </td>
-
+   
 
 </table>
 

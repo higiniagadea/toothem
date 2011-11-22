@@ -24,12 +24,12 @@ def index
   end
 
   def show
-
-     @odontograma = Odontograma.find(:all, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha_creacion desc', :include => 'dientes')
+@odontograma = Odontograma.find(params[:id])
+     #@odontograma = Odontograma.find(:all, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha_creacion desc', :include => 'dientes')
      respond_to do |format|
 
 
-      format.html{ render  :layout => 'default'}
+      format.html{ render  :layout => false }
     end
   end
 
