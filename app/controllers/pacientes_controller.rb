@@ -123,6 +123,7 @@ class PacientesController < ApplicationController
     @odontograma = Odontograma.find(:first, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha_creacion desc', :include => 'dientes')
     @odontogramas = Odontograma.paginate(:page => params[:page], :per_page => 10, :conditions => ['paciente_id = ? and ultimo = ?', @paciente.id.to_s, false], :order => 'fecha_creacion desc', :include => 'dientes')
     @odontogramas = Odontograma.find(:all, :conditions => ['paciente_id = ? and ultimo = ?', @paciente.id.to_s, false], :order => 'fecha_creacion desc')
+ 
     #@odontograma = Odontograma.find(:all, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha_creacion desc', :include => 'dientes')
     @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha ASC')
     @trat = Tratamiento.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['paciente_id = ? and estado_tratamiento_id = ?',  @paciente.id.to_s  , 5 ], :order => 'fecha ASC')

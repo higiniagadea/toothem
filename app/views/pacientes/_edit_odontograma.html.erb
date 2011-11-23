@@ -4,7 +4,7 @@
 
 <%  unless @paciente.odontogramas.blank? %>
 
-   <div style="float:right; margin-right: 60px"><%= link_to 'Nuevo Odontograma', new_odontograma_url(:paciente_id=> @paciente.id.to_s), :id => 'odontog'  %>
+   <div style="float:right; margin-right: 60px"><%= link_to image_tag('add.png') + 'Nuevo Odontograma', new_odontograma_url(:paciente_id=> @paciente.id.to_s), :id => 'odontog'  %>
 <script type="text/javascript">
 
     $('#odontog').fancybox({
@@ -25,7 +25,7 @@
 
 <%else%>
 
-   No posee Odontogramas  <div style="float:right; margin-right: 60px"><%= link_to 'Nuevo Odontograma', new_odontograma_url(:paciente_id=> @paciente.id.to_s), :id => 'odontog'  %></div>
+   No posee Odontogramas  <div style="float:right; margin-right: 60px"><%= link_to image_tag('add.png') + 'Nuevo Odontograma', new_odontograma_url(:paciente_id=> @paciente.id.to_s), :id => 'odontog'  %></div>
 
    
 

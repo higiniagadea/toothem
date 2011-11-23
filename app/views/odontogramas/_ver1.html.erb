@@ -153,7 +153,7 @@
   
   <div id="od">
  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Odontogramas Anteriores</legend>
- <% unless @odontograma.blank? %>
+ <%  unless @odontograma.blank? %>
  <table style=" text-align: left">
     <tr>
       <th>Paciente</th>
@@ -168,31 +168,30 @@
       <td><%=h  odontograma.observaciones %></td>
       <td><%= link_to image_tag('magnifier_zoom_in.png'), odontograma, :id => 'ver_' + odontograma.id.to_s %></td>
       <td><%= link_to image_tag('cancel.png'), odontograma, :confirm => '¿Está seguro? No podrá deshacer esta acción', :method => :delete, :title => "Eliminar" %></td>
-     
 
      </tr>
- <script type="text/javascript">
+           <script type="text/javascript">
 
- $(document).ready(function()
-      {
-  $('#ver_<%= odontograma.id.to_s %>').fancybox(
-        {
-      'hideOnContentClick': false,
+           $(document).ready(function()
+                {
+            $('#ver_<%= odontograma.id.to_s %>').fancybox(
+                  {
+                'hideOnContentClick': false,
 
-      'titleShow': false
+                'titleShow': false
 
-    });
-});
-    </script>
+              });
+          });
+              </script>
 
+    <%end%>
 
+    <%else%>
 
- <% end %>
-
- <%else%>
      No posee odontogramas anteriores
- <%end%>
- </table>
+</table>
+    <%end%>
+ 
  <table>
    <%#= will_paginate @odontogramas, :previous_label=>'Anterior', :next_label => 'Siguiente',
                                  :class => 'odonto pagination', :params => {:controller => 'odontogramas', :action => 'ver1'}   %>

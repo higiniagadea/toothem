@@ -7,7 +7,7 @@ class OdontogramasController < ApplicationController
 
 
   def duplicar
-     @paciente = Paciente.find(params[:paciente_id])
+   
     @odontograma = Odontograma.find(:first).clone.save   
       respond_to do |format|
        format.html{redirect_to search_pacientes_path, :layout => 'default'}
@@ -25,9 +25,8 @@ def index
   end
 
   def show
-@odontograma = Odontograma.find(params[:id])
-     #@odontograma = Odontograma.find(:all, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha_creacion desc', :include => 'dientes')
-     respond_to do |format|
+   @odontograma = Odontograma.find(params[:id])
+   respond_to do |format|
 
 
       format.html{ render  :layout => false }
@@ -46,22 +45,15 @@ def index
     end
   end
 
- 
-  def edit
-    @odontograma = Odontograma.find(params[:id])
-
-    respond_to do |format|
-      format.html {render :layout => 'default'}
-    end
-  end
-
   
   def create
+ 
     @ult_odontograma = Odontograma.find_by_ultimo(false)
+   
     params[:odontograma][:ultimo] = false
 
     @odontograma = Odontograma.new(params[:odontograma])
-      #@odontograma = Odontograma.find(:first).clone
+
     if @odontograma.save
     
       params[:odonto].each do |numero_diente, cara|
@@ -78,36 +70,20 @@ def index
         @diente.centro = caras[4]
         @diente.save
       end
-
      
-      # @ult_odontograma.update_attribute(:ultimo, true)
-
-      respond_to do |format|
-          flash[:notice] = 'Odontograma Creado'
-          format.html { redirect_to search_pacientes_url}
-
     end
-  
-  end
-  end
-
-
-  def update
-    @odontograma = Odontograma.find(params[:id])
+    
+   @ult_odontograma.update_attribute(:ultimo, true)
 
     respond_to do |format|
-      if @odontograma.update_attributes(params[:odontograma])
-        flash[:notice] = 'Odontograma actualizado.'
-        format.html { redirect_to(odontogramas_url) }
-
-      else
-        format.html { render :action => "edit" }
-
-      end
+          flash[:notice] = 'Odontograma Creado'
+           format.html { redirect_to search_pacientes_url}
+         
     end
+  
+
   end
 
- 
   def destroy
     @odontograma = Odontograma.find(params[:id])
     @odontograma.destroy
@@ -119,17 +95,6 @@ def index
     end
   end
 
-
-  def ver
-   @paciente = Paciente.find(params[:id])
- 
-   respond_to do |format|
-    
-
-      format.html {render :partial => 'ver'}
-
-  end
-  end
 
   
 end

@@ -1,6 +1,6 @@
  <fieldset class="ui-widget ui-widget-content ui-corner-top"  margin-right: 60px>
     <legend class="ui-widget ui-widget-header ui-corner-all" >Im&aacute;genes</legend>
-       <div style=" float: right; margin-right:  60px"><%= link_to "Nueva imagen", new_imagen_path + '/'+@paciente.id.to_s, :id => 'cargar_imagen_' + @paciente.id.to_s %></div>
+       <div style=" float: right; margin-right:  60px"><%= link_to image_tag('add.png') + 'Nueva Imagen', new_imagen_path + '/'+@paciente.id.to_s, :id => 'cargar_imagen_' + @paciente.id.to_s %></div>
 
 <% unless @imagenes.blank? %>
     <table class="show-data">
