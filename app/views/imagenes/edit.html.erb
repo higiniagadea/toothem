@@ -34,7 +34,7 @@
     <tr>
       <th>Fecha</th>
       <td><span class="fecha" class ="ui-widget-content">
-        <input class="ui-widget-content required" title="Selecione la fecha" type="text" id="fecha_img" name="imagen[fecha]" readonly="readonly"  size="10" />
+        <input class="ui-widget-content required" title="Selecione la fecha" type="text" id="fecha_img" name="imagen[fecha]" readonly="readonly"  size="10" value="<%=  @imagen.fecha.strftime('%d/%m/%Y')%>" />
         </span>
       </td>
     </tr>
@@ -78,8 +78,8 @@ $(document).ready(function()
 
 
 
- $("#fecha_img").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', minDate: '+0D',
-                maxDate: '+0D'});
+ //$("#fecha_img").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', minDate: '+0D',
+   //             maxDate: '+0D'});
 
 });
 

@@ -8,7 +8,8 @@ class OdontogramasController < ApplicationController
 
   def duplicar
    
-    @odontograma = Odontograma.find(:first).clone.save   
+    @odontograma = Odontograma.find(:first).clone.save
+
       respond_to do |format|
        format.html{redirect_to search_pacientes_path, :layout => 'default'}
        flash[:notice] = 'Odontograma Duplicado'

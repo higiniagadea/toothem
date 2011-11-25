@@ -44,7 +44,6 @@ class ImagenesController < ApplicationController
     respond_to do |format|
       format.html{render :layout => false}
 
-
     end
   end
 
@@ -53,7 +52,7 @@ class ImagenesController < ApplicationController
     @paciente = Paciente.find(params[:imagen][:paciente_id])
     @archivo = Archivo.new(params[:archivo])
    
-respond_to do |format|
+     respond_to do |format|
      unless !@archivo.save
         params[:imagen][:archivo_id] = @archivo.id
         @imagen = Imagen.new(params[:imagen])
@@ -62,15 +61,14 @@ respond_to do |format|
          format.html{redirect_to edit_paciente_path(@paciente.id) + '#imagenes'}
        
         else
-         
-          flash[:error] = 'errorrrr'
-          
-      end
+         flash[:error] = 'errorrrr'
+    end
 
   end
   end
+
+
   def update
-
       @imagen = Imagen.find(params[:id])
       @archivo = Archivo.find(@imagen.archivo_id)
 
@@ -82,17 +80,16 @@ respond_to do |format|
         #@imagen = Imagen.new(params[:imagen])
         @imagen.save
         flash[:notice] = 'Imagen Actualizada.'
-         format.html { redirect_to search_pacientes_path}
+         format.html { redirect_to edit_paciente_url(@imagen.paciente_id) + '#imagenes'}
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @imagen.errors, :status => :unprocessable_entity }
       end
     end
+
   end
 
-  # DELETE /imagenes/1
-  # DELETE /imagenes/1.xml
    def destroy
     @imagen = Imagen.find(params[:id])
     @archivo = Archivo.find(@imagen.archivo_id)
