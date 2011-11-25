@@ -1,4 +1,4 @@
- <fieldset class="ui-widget ui-widget-content ui-corner-top">
+<fieldset class="ui-widget ui-widget-content ui-corner-top"  margin-right: 60px>
     <legend class="ui-widget ui-widget-header ui-corner-all" >Im&aacute;genes</legend>
        <div style=" float: right; margin-right:  60px"><%= link_to image_tag('add.png') + 'Nueva Imagen', new_imagen_path + '/'+@paciente.id.to_s, :id => 'cargar_imagen_' + @paciente.id.to_s %></div>
 
@@ -18,11 +18,11 @@
 
         <div class="slide">
            <h2>
-           
+
               <div  style="float: right; font-size: 14px; font-weight: normal">
-                <div>
-              <%  @thumb = Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)%>
-                </div>
+           <p>
+           <%  @archivo_thumbnail = Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)%>
+           </p>
                    <p id="imagen" href="<%= imagen_url(imagen.id)%>" style=" float: left">
 
                       <%= link_to image_tag('pencil.png'), edit_imagen_path(imagen.id), :title => 'Ver Imagen', :id=> 'ver_imagen_' + @paciente.id.to_s %>
@@ -30,14 +30,20 @@
                       <%= link_to image_tag('cancel.png'), imagen, :title => 'Eliminar Imagen', :confirm => "Esta seguro que desea eliminar la imagen?", :method => :delete %>
 
                    </p>
-                
+
               </div>
 
            </h2>
 
-        <%= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)) , :alt => imagen.descripcion, :id => imagen.id %>
- 
+        <p>
+           <div style=" height: 150px; float:  right">
+
+            <%= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s))  %>
+
+           </div>
+        </p>
         <p>Descripcion:  <%= imagen.descripcion %> </p>
+
         <p>Observaciones: <%= imagen.observaciones %>  </p>
 
         <p>Fecha <%= imagen.fecha.strftime('%d/%m/%Y') %> </p>
@@ -57,10 +63,10 @@
         <td class="fielddata"></td>
       </tr>
     </table>
+     
     <% end %>
 
   </fieldset>
-
 
 <script type="text/javascript">
 $(document).ready(function(){

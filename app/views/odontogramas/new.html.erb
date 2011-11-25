@@ -3,7 +3,9 @@
   <br/>
 
  <% form_for(@odontograma) do |f| %>
-
+<div class="errores">
+      <ol style="list-style:none"></ol>
+    </div>
 <table style=" text-align: left; "class="table-list">
   <tr>
     <th>Paciente</th>
@@ -13,7 +15,7 @@
   <tr>
      <th>Fecha de Creaci&oacute;n </th>
        <td><span class="fecha_creacion" class ="ui-widget-content">
-              <input class="ui-widget-content required"  type="text" id="fecha_creacion" name="odontograma[fecha_creacion]"  readonly="readonly"/>
+              <input class="ui-widget-content required" title="Seleccione la fecha" type="text" id="fecha_creacion" name="odontograma[fecha_creacion]"  readonly="readonly"/>
       </span>
     </td>
  </tr>
@@ -119,9 +121,15 @@
 
 
     $(document).ready(function(){
-
+        $("#new_odontograma").validate({
+        //errorLabelContainer: $("#new_paciente div.errores")
+       errorContainer: $("#new_odontograma div.errores"),
+       errorLabelContainer: $("ol", $("#new_odontograma div.errores")),
+       wrapper: 'li',
+       meta: "validate"
+    })
     });
-
+    
  $("#fecha_creacion").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', minDate: '+0D', maxDate:0});
  $("#fecha_ultima_modificacion").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', minDate: '+0D', maxDate:0});
 
