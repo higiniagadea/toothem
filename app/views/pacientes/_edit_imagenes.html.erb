@@ -1,4 +1,4 @@
- <fieldset class="ui-widget ui-widget-content ui-corner-top"  margin-right: 60px>
+ <fieldset class="ui-widget ui-widget-content ui-corner-top">
     <legend class="ui-widget ui-widget-header ui-corner-all" >Im&aacute;genes</legend>
        <div style=" float: right; margin-right:  60px"><%= link_to image_tag('add.png') + 'Nueva Imagen', new_imagen_path + '/'+@paciente.id.to_s, :id => 'cargar_imagen_' + @paciente.id.to_s %></div>
 
@@ -20,9 +20,9 @@
            <h2>
            
               <div  style="float: right; font-size: 14px; font-weight: normal">
-<p>
-           <%  @archivo_thumbnail = Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)%>
-           </p>
+                <div>
+              <%  @thumb = Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)%>
+                </div>
                    <p id="imagen" href="<%= imagen_url(imagen.id)%>" style=" float: left">
 
                       <%= link_to image_tag('pencil.png'), edit_imagen_path(imagen.id), :title => 'Ver Imagen', :id=> 'ver_imagen_' + @paciente.id.to_s %>
@@ -35,13 +35,8 @@
 
            </h2>
 
-        <p>
-           <div style=" height: 150px; float:  right">
-
-            <%= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id ='+imagen.archivo_id.to_s)) , :alt => imagen.descripcion, :id => imagen.id %>
-
-           </div>
-        </p>
+        <%= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)) , :alt => imagen.descripcion, :id => imagen.id %>
+ 
         <p>Descripcion:  <%= imagen.descripcion %> </p>
         <p>Observaciones: <%= imagen.observaciones %>  </p>
 
@@ -70,7 +65,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
   var currentPosition = 0;
-  var slideWidth = 560;
+  var slideWidth = 400;
   var slides = $('.slide');
   var numberOfSlides = slides.length;
 
@@ -83,7 +78,7 @@ $(document).ready(function(){
     .wrapAll('<div id="slideInner"></div>')
     // Float left to display horizontally, readjust .slides width
 	.css({
-      'float' : 'left',
+      'float' : 'right',
       'width' : slideWidth
 
     });
@@ -109,7 +104,7 @@ $(document).ready(function(){
     manageControls(currentPosition);
     // Move slideInner using margin-left
     $('#slideInner').animate({
-      'marginLeft' : slideWidth*(-currentPosition)
+      'marginLeft' : slideWidth * (-currentPosition)
     });
   });
 

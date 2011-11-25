@@ -2,7 +2,8 @@
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Historia Cl&iacute;nica</legend>
 
 <% form_for(:historia_clinica_general, @historia_clinica_general, :url => {:method => :post, :action => "show"}, :html => {:id => 'new_historia_clinica_general'}) do |f| %>
-        <%= f.error_messages %>
+        <%= f.error_messages(:id => 'Error', :header_message=>'', :message=>'Se encontraron los siguientes errores') %>
+    
 
   <div id="pacientes-options"> 
     <div id="pacientes-nombre">
@@ -366,7 +367,7 @@
   <tr>
     <td class="labels">Observaciones: </td>
     <td>
-    <%= f.text_field :observaciones, :size => 17, :class=> 'required ui-widget-content', :onkeypress=> 'return validar(event)'%>
+    <%= f.text_field :observaciones, :size => 17, :class=> 'ui-widget-content', :onkeypress=> 'return validar(event)'%>
     </td>
   </tr>
   
@@ -377,7 +378,7 @@
      Por lo tanto, acepto los compromisos propuestos. En mi decisión de no continuar los tratamientos iniciados queda implícito deslindar a ud./s todos los inconvenientes y responsabilidades que pudiera surgir de tal actitud.</td>
   </tr>
   <tr>
-   <td><%= f.check_box :leyenda_declaracion_jurada,  {}, '1', '0'%>
+   <td><%= f.check_box :leyenda_declaracion_jurada,  :class=> 'required ui-widget-content'%>
     </td>
  </tr>
  </table>
@@ -412,16 +413,14 @@ function validate(e) { // 1
     return patron.test(te); // 6
 }
 
-$(document).ready(function(){
 
-    $("#new_historia_clinica_general").validate();/*{
-        //errorLabelContainer: $("#new_paciente div.errores")
-       errorContainer: $("#new_historia_clinica_general div.errores"),
-       errorLabelContainer: $("ol", $("#new_historia_clinica_general div.errores")),
-       wrapper: 'li',
-       meta: "validate"
-       
-    });*/
+elemento = document.getElementById("#historia_clinica_general_leyenda_declaracion_jurada");
+if( !elemento.checked.value == 1 ){
+  alert('seleccione');
+}
+
+ $(document).ready(function(){
+
 
 
 });

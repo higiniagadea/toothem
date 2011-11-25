@@ -61,7 +61,7 @@ $('#nuevo').mouseover(function(){
 
               {
                id : 'turno: <%= turno.id.to_s %>',
-                 title  : 'Paciente: <%= turno.paciente.nombre  %> \n\
+                 title  : 'Paciente: <%= turno.paciente_id  %> \n\
                            Duracion: <%= turno.duracion.to_i %> minutos' ,
                start : 'Fecha: <%= turno.fecha_hora.iso8601 %>',
                end : 'Duracion: <%= (turno.fecha_hora + (60 * turno.duracion)) %>',

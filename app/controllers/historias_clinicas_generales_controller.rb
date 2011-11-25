@@ -64,10 +64,10 @@ class HistoriasClinicasGeneralesController < ApplicationController
         flash[:notice] = 'Historia Clinica General creada.'
         #format.html {render :partial=> 'pacientes/edit_datos_personales', :layout=> 'default'}
         format.html{redirect_to(edit_paciente_path(@paciente) + '#clinicas')}
-        #format.xml  { render :xml => @historia_clinica_general, :status => :created, :location => @historia_clinica_general }
+        format.xml  { render :xml => @historia_clinica_general, :status => :created, :location => @historia_clinica_general }
      else
        format.html { render :action => "new" }
-        #format.xml  { render :xml => @historia_clinica_general.errors, :status => :unprocessable_entity }
+        format.xml  { render :xml => @historia_clinica_general.errors, :status => :unprocessable_entity }
       end
     end
    end
