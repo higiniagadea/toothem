@@ -19,7 +19,6 @@ class OdontogramasController < ApplicationController
 
 def index  
   @odontogramas = Odontograma.find(:all, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha_creacion ASC', :include => 'dientes')
-
   respond_to do |format|
      format.html{ render :layout => false}
     end
@@ -47,19 +46,19 @@ def index
   end
 
   
-  def create
- 
-    @ult_odontograma = Odontograma.find_by_ultimo(false)
-   
-    params[:odontograma][:ultimo] = false
+  def create  
+    @ult_odontograma = Odontograma.find(:last)
+    
+    params[:odontograma][:ultimo] = true
 
     @odontograma = Odontograma.new(params[:odontograma])
 
-    if @odontograma.save
-    
+
+    #if @odontograma.save
+      aux=false
       params[:odonto].each do |numero_diente, cara|
         @diente = Diente.new
-        @diente.odontograma_id = @odontograma.id
+        
         @diente.numero_diente = numero_diente
 
         #caras => [superior,izquierdo,derecho,inferior,centro]
@@ -69,16 +68,25 @@ def index
         @diente.derecho = caras[2]
         @diente.inferior = caras[3]
         @diente.centro = caras[4]
+        @odontograma.dientes << @diente
         @diente.save
-      end
-     
-    end
-    
-   @ult_odontograma.update_attribute(:ultimo, true)
+        unless @diente.superior.blank? & @diente.izquierda.blank? && @diente.derecho.blank? && @diente.inferior.blank? && @diente.centro.blank?
+          aux = true
+        end
+        
+       end
 
+     @ult_odontograma.update_attribute(:ultimo, false)
+     @ult_odontograma.save
     respond_to do |format|
+      if aux == true
+          @odontograma.save
+
           flash[:notice] = 'Odontograma Creado'
-           format.html { redirect_to search_pacientes_url}
+      else
+        flash[:error] = 'Seleccione al menos un diente'
+      end
+          format.html { redirect_to search_pacientes_url}
          
     end
   
