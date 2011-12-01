@@ -11,10 +11,10 @@
     </tr>
     <%  @tur.each do |turno| %>
       <tr>
-        <td><%=h turno.profesional.nombre %></td>
+        <td><%=h turno.profesional_id %></td>
         <td><%=h turno.fecha_hora.strftime('%d/%m/%Y') %></td>
         <td><%=h turno.duracion %>minutos</td>
-        <td><%=h turno.paciente.nombre  %></td>
+        <td><%=h turno.paciente_id  %></td>
 
         <td><%= link_to image_tag('pencil.png'), edit_turno_path(turno), :id => 'editar_' + turno.id.to_s, :title => 'Editar' %>
         <%= link_to image_tag('cancel.png'), turno, :confirm => 'Esta seguro?', :method => :delete, :title=> 'Eliminar'%>

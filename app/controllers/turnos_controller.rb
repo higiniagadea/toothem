@@ -16,8 +16,9 @@ class TurnosController < ApplicationController
        if params[:profesional][:profesional_id].blank?
          format.html{render :text => '<span style="color:red">Seleccione un profesional</span>' }
        else
-      @turnos = Turno.find(:all, :conditions => ['profesional_id = ?', params[:profesional][:profesional_id]])
-      format.html{render :layout => false, :partial => 'agenda'}
+      
+         @turnos = Turno.find(:all, :conditions => ['profesional_id= ?', params[:profesional][:profesional_id]])
+         format.html{render :layout => false, :partial => 'agenda'}
         end
   end
   end
@@ -127,7 +128,7 @@ class TurnosController < ApplicationController
     #params[:turno][:profesional_id] = params[:profesional][:profesional_id] if params[:profesional][:profesional_id].blank?
     respond_to do |format|
 
-      #params[:turno][:profesional_id] == @profesionales.id
+      params[:turno][:profesional_id] == @profesionales.id
       
      unless params[:turno][:fecha_desde].blank?
       params[:turno][:profesional_id] = params[:profesional][:profesional_id] if params[:profesional][:profesional_id].blank?

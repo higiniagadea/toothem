@@ -16,13 +16,13 @@
     </tr>
   </table>
  
-       <%  form_remote_tag :url=> resultado_prestaciones_path,
+       <%  form_remote_tag :url=> {:controller => 'prestaciones', :action => 'resultado'},
                       :method => :post,
                       :update => :search_hits do -%>
       <table  style=" text-align: left">
         <tr>
           <th>C&oacute;digo de Prestaci&oacute;n</th>
-          <td><%= text_field_tag :codigo,{}, :class => 'required ui-widget-content', :onkeypress=> 'return validate(event)', :title => 'Ingrese' %></td>
+          <td><%= text_field_tag :codigo,{}, :class => 'ui-widget-content', :onkeypress=> 'return validate(event)', :title => 'Ingrese' %></td>
         </tr>
         <tr>
           <th>Descripci&oacute;n</th>

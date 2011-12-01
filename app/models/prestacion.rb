@@ -15,7 +15,7 @@ acts_as_paranoid
 
   named_scope :by_codigo, lambda { |codigo|
     {:conditions=> ['lower(codigo) LIKE :codigo',
-      {:codigo => "%"+codigo.downcase+"%"}]
+      {:codigo => codigo.downcase}]
     }
   }
 

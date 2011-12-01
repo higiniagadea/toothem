@@ -153,7 +153,7 @@ function validate(e) { // 1
        meta: "validate",
        
        rules: {          
-         /*"paciente[matricula]": {required: true, remote:"/pacientes/verificar_matricula?paciente[matricula]=" + $('#paciente[matricula]').val(), rangelength: [6, 10]},*/
+         "paciente[matricula]": {required: true, remote:"/pacientes/verificar_matricula?paciente[matricula]=" + $('#paciente[matricula]').val(), rangelength: [6, 10]},
          "paciente[nro_afiliado]": {required: true, remote:"/pacientes/verificar_nroafiliado?paciente[nro_afiliado]=" + $('#paciente[nro_afiliado]').val()},
         "paciente[sexo]" :{required:true}
      },

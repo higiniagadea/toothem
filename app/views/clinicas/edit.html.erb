@@ -46,7 +46,7 @@
   function validate(e) { // 1
     tecla = (document.all) ? e.keyCode : e.which; // 2
     if (tecla==8) return true; // 3
-    patron =/\d/; //4
+    patron =/\[d]/; //4
     te = String.fromCharCode(tecla); // 5
     return patron.test(te); // 6
 }
@@ -61,9 +61,9 @@ function validar(e) { // 1
 }
 
 function valida(e) { // 1
-    tecla = (document.all) ? e.keyCode : e.which; // 2
+   tecla = (document.all) ? e.keyCode : e.which; // 2
     if (tecla==8) return true; // 3
-    patron =/\w/; //4
+    patron =/[A-Za-zñÑ\s][d]; //4
     te = String.fromCharCode(tecla); // 5
     return patron.test(te); // 6
 }

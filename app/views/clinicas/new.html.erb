@@ -23,7 +23,7 @@
   <tr>
  
     <th>CUIT</th>
-  <td><%= f.text_field :cuit, :class=> 'ui-widget-content required', :size => 15, :title=> 'Ingrese el CUIT', :onkeypress=> 'return validate(event)' %>
+  <td><%= f.text_field :cuit, :class=> 'ui-widget-content required', :size => 15, :title => 'Ingrese el CUIT', :onkeypress=> 'return validate(event)' %>
   </td>
   </tr>
   </table>
@@ -37,9 +37,9 @@
 <script type="text/javascript">
 
 function valida(e) { // 1
-    tecla = (document.all) ? e.keyCode : e.which; // 2
+   tecla = (document.all) ? e.keyCode : e.which; // 2
     if (tecla==8) return true; // 3
-    patron =/\w/; //4
+    patron =/[A-Za-zñÑ\s][d]; //4
     te = String.fromCharCode(tecla); // 5
     return patron.test(te); // 6
 }
@@ -51,14 +51,6 @@ function valida(e) { // 1
     return patron.test(te); // 6
 }
 
-
-function validar(e) { // 1
-    tecla = (document.all) ? e.keyCode : e.which; // 2
-    if (tecla==8) return true; // 3
-    patron =/[A-Za-zñÑ\s]/; //4
-    te = String.fromCharCode(tecla); // 5
-    return patron.test(te); // 6
-}
   $(document).ready(function(){
      $(function() {
         $('input:text').keydown(function(e){
@@ -73,7 +65,12 @@ function validar(e) { // 1
        errorContainer: $("#new_clinica div.errores"),
        errorLabelContainer: $("ol", $("#new_clinica div.errores")),
        wrapper: 'li',
-       meta: "validate"
+       meta: "validate",
+       rules:{
+         "clinica[cuit]" :{required :true, rangelength: [0, 11]}
+       },
+       messages : {reuired:true,rangelenght : 'Verifique el CUIT' }
+
      });
 
   });

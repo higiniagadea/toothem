@@ -3,8 +3,8 @@ class Profesional < ActiveRecord::Base
   belongs_to :estado_laboral
   belongs_to :tipo_documento
   belongs_to :consultorio
-  has_many :tareas, :dependent => :destroy
-  has_many :turnos, :dependent => :destroy
+  has_many :tareas
+  has_many :turnos
   has_many :tratamientos,  :dependent => :destroy
 
   validates_presence_of :nombre, :message=>' requerido'

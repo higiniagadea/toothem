@@ -132,7 +132,7 @@ class PacientesController < ApplicationController
   
     @profesionales = Profesional.paginate(:page => params[:page], :per_page => 10)
     @prestaciones = Prestacion.find(:all)  
-    @turnos = Turno.find(:all)
+ 
     @sald_pac = SaldoPaciente.find_by_sql('select ver_saldo_paciente(' + @paciente.id.to_s + ') as saldo ' )
 
     unless @paciente.archivo_id.blank?
