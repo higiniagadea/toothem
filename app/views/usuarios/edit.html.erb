@@ -18,7 +18,7 @@
 
     <tr>
       <th>E-mail</th>
-      <td><%= f.text_field :email,  :size => 15 , :class=>'ui-widget-content'  %></td>
+      <td><%= f.text_field :email,  :size => 15 , :class=>'ui-widget-content required' , :title => 'Ingrese la direccion de email' %></td>
     </tr>
 
     <tr>
@@ -74,18 +74,18 @@
        wrapper: 'li',
        meta: "validate",
      rules :{
-         "usuario[name]": {required: true, rangelength: [5, 100]},
-         "usuario[login]": {required: true, rangelength: [6, 10], remote:"/usuarios/verificar?usuario[login]=" + $('#usuario[login]').val()},
-         "usuario[password]":{required:true, rangelength: [6, 20]},
-         "usuario[password_confirmation]":{required:true, equalTo: "#usuario_password" },
-         "usuario[email]": {required: true, remote:"/usuarios/verificar_email?usuario[email]=" + $('#usuario[email]').val()}
+         "usuario[name]": {required: true, rangelength: [5, 100]}
+         //"usuario[login]": {required: true, rangelength: [6, 10], remote:"/usuarios/verificar?usuario[login]=" + $('#usuario[login]').val()},
+         //"usuario[password]":{required:true, rangelength: [6, 20]},
+         //"usuario[password_confirmation]":{required:true, equalTo: "#usuario_password" }
+         //"usuario[email]": {remote:"/usuarios/verificar_email?usuario[email]=" + $('#usuario[email]').val()}
    },
       messages:{
-          "usuario[name]": 'Ingrese entre cinco y cien caracteres',
-          "usuario[login]": {remote:'Usuario ya existe'},
+          "usuario[name]": {rangelenght :'Ingrese entre cinco y cien caracteres'},
+         // "usuario[login]": {remote:'Usuario ya existe'},
           "usuario[password_confirmation]":{equalTo:'Contraseña y Confirmacion no coinciden'},
-          "usuario[password]": {remote: 'Ingrese entre seis y veinte caracteres'},
-          "usuario[email]":{remote: 'Correo electronico ya existe'}
+          "usuario[password]": {remote: 'Ingrese entre seis y veinte caracteres'}
+          //"usuario[email]":{remote: 'Correo electronico ya existe'}
  }
 
      });

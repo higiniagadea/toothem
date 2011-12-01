@@ -9,12 +9,30 @@ class Clinica < ActiveRecord::Base
     }
   }
 
+   named_scope :by_direccion, lambda { |direccion|
+    {:conditions=> ['lower(direccion) LIKE :direccion',
+      {:direccion => direccion.downcase}]
+    }
+  }
+
+
+   named_scope :by_cuit, lambda { |cuit|
+    {:conditions=> ['lower(cuit) LIKE :cuit',
+      {:cuit => cuit.downcase}]
+    }
+  }
+
+
+
+
+
 
 
   def self.basic_search(options)
     scope_builder do |builder|
-      builder.by_nombre(options[:nombre]) if options[:nombre]
-
+      builder.by_nombre(options[:nombre]) unless options[:nombre].blank?
+      builder.by_direccion(options[:direccion]) unless options[:direccion].blank?
+      builder.by_ciut(options[:cuit]) unless options[:cuit].blank?
     end
   end
   
