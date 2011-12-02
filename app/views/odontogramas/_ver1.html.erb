@@ -151,9 +151,9 @@
   <br/>
   <br/><br/>
   
-  <div id="od">
+  <div id="pac_odontog">
  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Odontogramas Anteriores</legend>
- <%  unless @odontograma.blank? %>
+ <% unless   @odontogramas.blank?  %>
  <table style=" text-align: left">
     <tr>
       <th>Paciente</th>
@@ -167,7 +167,7 @@
       <td><%=h odontograma.fecha_creacion.strftime('%d/%m/%Y') %></td>
       <td><%=h  odontograma.observaciones %></td>
       <td><%= link_to image_tag('magnifier_zoom_in.png'), odontograma, :id => 'ver_' + odontograma.id.to_s %></td>
-      <td><%= link_to image_tag('cancel.png'), odontograma, :confirm => '¿Está seguro? No podrá deshacer esta acción', :method => :delete, :title => "Eliminar" %></td>
+      <td><%= link_to image_tag('cancel.png'), eliminar_odontograma_path(odontograma, :paciente_id => @paciente.id), :confirm => '¿Está seguro? No podrá deshacer esta acción', :title => "Eliminar" %></td>
 
      </tr>
            <script type="text/javascript">
@@ -191,11 +191,14 @@
      No posee odontogramas anteriores
 </table>
     <%end%>
- 
  <table>
-   <%#= will_paginate @odontogramas, :previous_label=>'Anterior', :next_label => 'Siguiente',                               %>
 
-</table>
+   <%= will_paginate @odontogramas, :previous_label=>'Anterior', :next_label => 'Siguiente',
+                                      :class => 'odonto pagination'
+                                     
+                                 %>
+ </table>
+
 
  
 

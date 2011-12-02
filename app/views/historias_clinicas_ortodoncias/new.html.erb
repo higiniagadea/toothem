@@ -892,7 +892,7 @@
      Por lo tanto, acepto los compromisos propuestos. En mi decisión de no continuar los tratamientos iniciados queda implícito deslindar a ud./s todos los inconvenientes y responsabilidades que pudiera surgir de tal actitud.</td>
   </tr>
   <tr>
-   <td><%= f.check_box :leyenda_declaracion_jurada, :class=> 'ui-widget-content required'%>
+   <td><%= f.check_box :leyenda_declaracion_jurada, :class=> 'ui-widget-content valida_check'%>
     </td>
  </tr>
  </table>
@@ -918,25 +918,22 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
+ $.validator.addMethod("valida_check", function(value, element, params) {
+           return  $("input:checkbox:checked").length > 0;
 
-    $("#new_historia_clinica_ortodoncia").validate({
-        //errorLabelContainer: $("#new_paciente div.errores")
-     
+    },"Seleccione al menos una opcion ");
+
+      $("#new_historia_clinica_ortodoncia").validate({
+        //errorLabelContainer: $("#new_paciente div.errores"),
+       //errorContainer: $("#new_odontograma div.errores"),
+       //errorLabelContainer: $("ol", $("#new_odontograma div.errores")),
        wrapper: 'li',
        meta: "validate",
-
-       rules: {
-
-         "historia_clinica_ortodoncia[leyenda_declaracion_jurada]": {required: true}
-
-     },
-      messages:{
-
-           "historia_clinica_ortodoncia[leyenda_declaracion_jurada]": {remote:"Seleccione al menos item"}
-
+       rules:{
+         "historia_clinica_ortodoncia[leyenda_declaracion_jurada]" :{valida_check:true }
        }
+    })
 
-      });
 
 });
 

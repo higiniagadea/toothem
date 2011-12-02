@@ -7,18 +7,23 @@ class OdontogramasController < ApplicationController
 
 
   def duplicar
-   
-    @odontograma = Odontograma.find(:first).clone.save
+     
+    @odontograma = Odontograma.find(:first, :include => 'dientes').clone.save
 
       respond_to do |format|
-       format.html{redirect_to search_pacientes_path, :layout => 'default'}
-       flash[:notice] = 'Odontograma Duplicado'
+         flash[:notice] = 'Odontograma Duplicado'
+       format.html{redirect_to edit_paciente_path(@paciente) + '#odontogramas', :layout => 'default'}
+      
  
     end
   end
 
 def index  
-  @odontogramas = Odontograma.find(:all, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha_creacion ASC', :include => 'dientes')
+#@odontogramas = Odontograma.find(:all, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha_creacion ASC', :include => 'dientes')
+   # params[:paciente_id]
+     #@paciente = Paciente.find_by_id(params[:id])
+  #@odontogramas = Odontograma.paginate(:page => params[:page], :per_page => 5, :conditions => ['paciente_id = ? and ultimo = ?' , @paciente.id.to_s, false], :order => 'created_at desc')
+
   respond_to do |format|
      format.html{ render :layout => false}
     end
@@ -27,8 +32,6 @@ def index
   def show
    @odontograma = Odontograma.find(params[:id])
    respond_to do |format|
-
-
       format.html{ render  :layout => false }
     end
   end
@@ -37,8 +40,6 @@ def index
   def new
   @paciente = Paciente.find(params[:paciente_id])
     @odontograma = Odontograma.new
-  
-
     respond_to do |format|
 
       format.html{ render :layout=> false }
@@ -46,15 +47,13 @@ def index
   end
 
   
-  def create  
-    @ult_odontograma = Odontograma.find(:last)
+  def create
     
+    @ult_odontograma = Odontograma.find(:last)   
     params[:odontograma][:ultimo] = true
-
+    @paciente = Paciente.find(params[:odontograma][:paciente_id])
     @odontograma = Odontograma.new(params[:odontograma])
-
-
-    #if @odontograma.save
+    
       aux=false
       params[:odonto].each do |numero_diente, cara|
         @diente = Diente.new
@@ -86,20 +85,21 @@ def index
       else
         flash[:error] = 'Seleccione al menos un diente'
       end
-          format.html { redirect_to search_pacientes_url}
-         
+          format.html {redirect_to edit_paciente_path(@paciente) + '#odontogramas'}
+        
     end
-  
-
+ 
   end
 
-  def destroy
+  def eliminar
     @odontograma = Odontograma.find(params[:id])
+    @paciente = Paciente.find(params[:paciente_id])
     @odontograma.destroy
-    respond_to do |format|       
+
+    respond_to do |format|
         flash[:notice] = 'Odontograma eliminado.'
      
-      format.html { redirect_to search_pacientes_path }
+      format.html {redirect_to edit_paciente_path(@paciente) + '#odontogramas'}
 
     end
   end

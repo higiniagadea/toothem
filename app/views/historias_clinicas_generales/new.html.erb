@@ -378,7 +378,7 @@
      Por lo tanto, acepto los compromisos propuestos. En mi decisión de no continuar los tratamientos iniciados queda implícito deslindar a ud./s todos los inconvenientes y responsabilidades que pudiera surgir de tal actitud.</td>
   </tr>
   <tr>
-   <td><%= f.check_box :leyenda_declaracion_jurada,  :class=> 'required ui-widget-content'%>
+   <td><%= f.check_box :leyenda_declaracion_jurada,  :class=> 'valida_check ui-widget-content'%>
     </td>
  </tr>
  </table>
@@ -414,13 +414,23 @@ function validate(e) { // 1
 }
 
 
-elemento = document.getElementById("#historia_clinica_general_leyenda_declaracion_jurada");
-if( !elemento.checked.value == 1 ){
-  alert('seleccione');
-}
 
  $(document).ready(function(){
+ $.validator.addMethod("valida_check", function(value, element, params) {
+           return  $("input:checkbox:checked").length > 0;
 
+    },"Seleccione al menos una opcion ");
+
+      $("#new_historia_clinica_general").validate({
+        //errorLabelContainer: $("#new_paciente div.errores"),
+       //errorContainer: $("#new_odontograma div.errores"),
+       //errorLabelContainer: $("ol", $("#new_odontograma div.errores")),
+       wrapper: 'li',
+       meta: "validate",
+       rules:{
+         "historia_clinica_general[leyenda_declaracion_jurada]" :{valida_check:true }
+       }
+    })
 
 
 });

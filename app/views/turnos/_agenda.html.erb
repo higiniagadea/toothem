@@ -10,7 +10,7 @@
   <br/>  
 <div id='calendar'>
 
-
+</div>
 <script type="text/javascript">
   $(document).ready(function(){
 
@@ -51,12 +51,12 @@ $('#nuevo').mouseover(function(){
                         'Agosto' , 'Septiembre' , 'Octubre' , 'Noviembre' , 'Diciembre' ],
 
           dayNamesShort : ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
-          events:[
 
+          events:[
             <% for turno in @turnos = Turno.find(:all, :conditions => ['profesional_id = ?', params[:profesional][:profesional_id]])   -%>
               {
                id : 'turno: <%= turno.id.to_s %>',
-                 title  : 'Paciente: <%= turno.paciente_id  %> \n\
+               title  : 'Paciente: <%= turno.paciente_id  %> \n\
                            Duracion: <%= turno.duracion.to_i %> minutos' ,
                start : 'Fecha: <%= turno.fecha_hora.iso8601 %>',
                end : 'Duracion: <%= (turno.fecha_hora + (60 * turno.duracion)) %>',
@@ -64,28 +64,21 @@ $('#nuevo').mouseover(function(){
                url: '<%= eliminar_turno_path(turno) %>'
 
               },
-
             <% end %>
-            <% for tarea in @tareas = Tarea.find(:all, :conditions => ['profesional_id = ?', params[:profesional][:profesional_id]])   -%>
-
-
+            <% for tarea in @tareas = Tarea.find(:all, :conditions => ['profesional_id = ?', params[:profesional][:profesional_id]]) -%>
               {
                id : 'tarea: <%= tarea.id.to_s %>',
                title  : 'Tarea: <%= tarea.observaciones  %> \n\
-                         Duracion : <%= tarea.duracion %> minutos ',
+                         Duracion : <%= tarea.duracion %> minutos',
                start : 'Fecha: <%= tarea.fecha_hora.iso8601 %>',
                end : 'Duracion: <%=  (tarea.fecha_hora + (60 * tarea.duracion)) %>',
                allDay : false,
                url: '<%= eliminar_tarea_path(tarea) %>'
 
               },
-
-            <% end %>
-           
+            <% end %>           
               ],
-
           timeFormat: 'h:mm t{ - h:mm t} ',
-
           dragOpacity: "0.5",
           eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc){
               //if (confirm("Are you sure about this change?")) {
@@ -129,6 +122,7 @@ $('#nuevo').mouseover(function(){
 
 
   });
+
 </script>
-  </div>
+  
 </table>

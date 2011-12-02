@@ -155,15 +155,15 @@ $(document).ready(function(){
     return false
   });
 
-  /*$('div.ajax-pagination a').live('click', function() {
-    $('#turnos').load(this.href)
+  $('div.ajax-pagination a').live('click', function() {
+    $('#pac_odontog').load(this.href)
     return false
   });
 
-  $('div.turno a').live('click', function() {
-    $('#turnos').load(this.href)
+  $('div.odonto a').live('click', function() {
+    $('#pac_odontog').load(this.href)
     return false
-  });*/
+  });
 
  $('div.ajax-pagination a').live('click', function() {
     $('#busq_turnos').load(this.href)

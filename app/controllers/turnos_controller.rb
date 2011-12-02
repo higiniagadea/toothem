@@ -24,9 +24,10 @@ class TurnosController < ApplicationController
   end
 
     def show
+
     @turno = Turno.find(params[:id])
     respond_to do |format|
-      format.html{ render :partial => 'prueba', :layout => 'default'}
+      format.html{ render :partial => 'agenda', :layout => 'default'}
    end
   end
 
@@ -116,6 +117,19 @@ class TurnosController < ApplicationController
      format.html{redirect_to busq_turnos_path}
    end
   end
+
+
+
+ def get_turnos
+    @turnos = Turno.find(:all, :include => 'profesional')
+
+    events = []
+    @turnos.each do |turno|
+    events << {:id => turno.id.to_s, :title => turno.profesional_id.to_s, :start => "#{turno.fecha_hora.iso8601}", :end => "#{(turno.fecha_hora + (60 * turno.duracion))}", :allDay => true, :oservaciones => "#{(turno.observaciones)}"}
+    end
+    render :text => events.to_json
+  end
+
 
   def cambios
     respond_to do |format|

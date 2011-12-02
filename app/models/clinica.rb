@@ -32,7 +32,7 @@ class Clinica < ActiveRecord::Base
     scope_builder do |builder|
       builder.by_nombre(options[:nombre]) unless options[:nombre].blank?
       builder.by_direccion(options[:direccion]) unless options[:direccion].blank?
-      builder.by_ciut(options[:cuit]) unless options[:cuit].blank?
+      builder.by_cuit(options[:cuit]) unless options[:cuit].blank?
     end
   end
   
