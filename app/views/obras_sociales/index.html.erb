@@ -7,7 +7,7 @@
     <th>Auditoria previa</th>
     <th>Auditoria post</th>
     <th>Nro max codigos por mes</th>
-    <th>Incluye ficha</th>
+  
     <th>Acciones</th>
     
   </tr>
@@ -18,7 +18,7 @@
     <td><%=h boolean_desc(obra_social.auditoria_previa)%></td>
     <td><%=h boolean_desc(obra_social.auditoria_post) %></td>
     <td><%=h obra_social.nro_max_codigos_por_mes.blank? ? '-' : obra_social.nro_max_codigos_por_mes %></td>
-    <td><%=h boolean_desc(obra_social.incluye_ficha) %></td>
+  
     
     
     <td><%= link_to image_tag('magnifier_zoom_in.png'), obra_social, :title => "Ver", :id => 'siete_' + obra_social.id.to_s  %>

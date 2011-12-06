@@ -24,11 +24,18 @@
            </p>
          
                    <p id="imagen" href="<%= imagen_url(imagen.id)%>" style=" float: left">
+                     <br/>
+                     <br/>
+                     <br/>
+                     <br/>
+                     <br/>
+                     <br/>
+                     <br/>
 
-                      <%= link_to image_tag('pencil.png'), edit_imagen_path(imagen.id), :title => 'Ver Imagen', :id=> 'ver_imagen_' + @paciente.id.to_s %>
+                     <a style=" float: left; margin-left:  250px"><%= link_to image_tag('pencil.png'), edit_imagen_path(imagen.id), :title => 'Ver Imagen', :id=> 'ver_imagen_' + @paciente.id.to_s %>
 
                       <%= link_to image_tag('cancel.png'), imagen, :title => 'Eliminar Imagen', :confirm => "Esta seguro que desea eliminar la imagen?", :method => :delete %>
-
+                     </a>
                 </p>
          
            </div>

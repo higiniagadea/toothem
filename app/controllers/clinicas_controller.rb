@@ -74,7 +74,7 @@ class ClinicasController < ApplicationController
     respond_to do |format|
       if @clinica.update_attributes(params[:clinica])
         flash[:notice] = 'Clinica actualizada.'
-        format.html { redirect_to search_clinicas_url }
+        format.html { redirect_to buscar_clinicas_url }
        
       else
         format.html { render :action => "edit" }
@@ -95,7 +95,7 @@ class ClinicasController < ApplicationController
       else
         flash[:error] = 'Imposible eliminar la clínica ya que posee consultorios asociados'
       end
-      format.html { redirect_to search_clinicas_url }
+      format.html { redirect_to buscar_clinicas_url }
      
     end
   end

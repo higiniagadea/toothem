@@ -1,4 +1,4 @@
-<div style="float:right; margin-right: 60px"><%= link_to 'Duplicar Odontograma', duplicar_odontogramas_path(@odontograma.id) %>
+<div style="float:right; margin-right: 60px"><%= link_to 'Duplicar Odontograma', duplicar_odontogramas_path(@odontograma.id.to_s, :paciente_id => @paciente.id.to_s) %>
   </div>
 
 <table style=" text-align: left;">
@@ -30,11 +30,12 @@
   <tr><th><h1>Odontograma</h1></th></tr>
   
   <tr>
+       <td style="font-weight: bold"><%= label_tag 'ACCION_P_REQUERIDA', 'REQUERIDA'   %>
+   <th><div class="cuadro2"></div></th></td>
     <td style="font-weight: bold"><%= label_tag 'ACCION_P_EXISTENTE', 'EXISTENTE'  %>
    <th><div class="cuadro1"></div></th></td>
     <br/>
-    <td style="font-weight: bold"><%= label_tag 'ACCION_P_REQUERIDA', 'REQUERIDA'   %>
-   <th><div class="cuadro2"></div></th></td>
+ 
   </tr>
 
 </table>

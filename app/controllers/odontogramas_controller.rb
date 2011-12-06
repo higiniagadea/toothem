@@ -8,14 +8,17 @@ class OdontogramasController < ApplicationController
 
   def duplicar
      
-    @odontograma = Odontograma.find(:first, :include => 'dientes').clone.save
-
+    @paciente = Paciente.find(params[:paciente_id])
+    @odontograma = Odontograma.find(:first, :include => 'dientes').clone
+    #@odontograma.save
       respond_to do |format|
+      if  @odontograma.save
          flash[:notice] = 'Odontograma Duplicado'
-       format.html{redirect_to edit_paciente_path(@paciente) + '#odontogramas', :layout => 'default'}
+       format.html{redirect_to edit_paciente_path(@paciente) + '#odontogramas'}
       
  
     end
+  end
   end
 
 def index  

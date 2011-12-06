@@ -3,7 +3,7 @@ class ObraSocial < ActiveRecord::Base
 
   has_many :titulares, :dependent => :destroy
   has_many :aranceles, :dependent => :destroy
-  has_many :tratamientos
+  has_many :tratamientos,  :dependent => :destroy
   has_many :fichas
   has_many :prestaciones, :through => :aranceles
   has_many :saldos_obras_sociales

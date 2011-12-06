@@ -26,7 +26,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :periodos, :collection => {:buscar => :get, :resultado => [:get, :post], :liquidar => :get, :resultado_liq =>  [:get, :post]}, :member => {:liquidar => [:get, :post]}
 
-  map.resources :tareas, :member => {:eliminar => :get}
+  map.resources :tareas, :colletion => {:get_tareas => :get}, :member => {:eliminar => :get}
 
   map.resources :turnos, :collection => {:cambios => :get, :verificar => :get, :resultado => [:get, :post], :turno_tarea => :get, :get_turnos => :get, :busq => :get, :agenda => [:get, :post],},
                          :member => {:eliminar => :get}

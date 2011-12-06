@@ -46,8 +46,8 @@ Rails::Initializer.run do |config|
     :address        => 'smtp.gmail.com',
     :port           => 587,
     :domain         => 'ipcorp.com.ar',
-    :user_name      => 'higinia@ipcorp.com.ar',
-    :password       => 'higinia123'
+    :user_name      => 'contacto@ipcorp.com.ar',
+    :password       => 'paratinaicos'
   }
 
   #config.gem 'ryanb-scope-builder', :lib => 'scope_builder', :source => 'http://gems.github.com'

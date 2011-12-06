@@ -17,8 +17,9 @@ class TurnosController < ApplicationController
          format.html{render :text => '<span style="color:red">Seleccione un profesional</span>' }
        else
       
-         @turnos = Turno.find(:all, :conditions => ['profesional_id= ?', params[:profesional][:profesional_id]])
-         format.html{render :layout => false, :partial => 'agenda'}
+        format.html{render :layout => false, :partial => 'agenda'}
+        @turnos = Turno.find(:all, :conditions => ['profesional_id= ?', params[:profesional][:profesional_id]])
+         
         end
   end
   end
@@ -125,7 +126,7 @@ class TurnosController < ApplicationController
 
     events = []
     @turnos.each do |turno|
-    events << {:id => turno.id.to_s, :title => turno.profesional_id.to_s, :start => "#{turno.fecha_hora.iso8601}", :end => "#{(turno.fecha_hora + (60 * turno.duracion))}", :allDay => true, :oservaciones => "#{(turno.observaciones)}"}
+    events << {:id => turno.id.to_s, :title => turno.observaciones, :start => "#{turno.fecha_hora.iso8601}", :end => "#{(turno.fecha_hora.iso8601 + (60 * turno.duracion))}", :allDay => true, :oservaciones => "#{(turno.observaciones)}"}
     end
     render :text => events.to_json
   end
