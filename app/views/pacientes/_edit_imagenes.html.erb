@@ -17,12 +17,9 @@
         <% @imagenes.each do |imagen| %>
 
         <div class="slide">
-         
            <div  style="float: right; font-size: 14px; font-weight: normal">
            <p>
-           <%  @archivo_thumbnail = Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)%>
            </p>
-         
                    <p id="imagen" href="<%= imagen_url(imagen.id)%>" style=" float: left">
                      <br/>
                      <br/>
@@ -37,11 +34,10 @@
                       <%= link_to image_tag('cancel.png'), imagen, :title => 'Eliminar Imagen', :confirm => "Esta seguro que desea eliminar la imagen?", :method => :delete %>
                      </a>
                 </p>
-         
            </div>
 
         <p>
-        <%= image_tag archivo_path(Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s))  %>
+         <%= image_tag imagen.archivo.public_filename(:thumb) %>
         </p>
 
         <p>Descripcion:  <%= imagen.descripcion %> </p>
