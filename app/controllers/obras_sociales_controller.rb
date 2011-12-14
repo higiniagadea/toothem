@@ -81,10 +81,10 @@ class ObrasSocialesController < ApplicationController
   # DELETE /obras_sociales/1.xml
   def destroy
       @obra_social = ObraSocial.find(params[:id])
-      @titular = Titular.find_by_obra_social_id(@obra_social.id)
+      #@titular = Titular.find_by_obra_social_id(@obra_social.id)
     
     respond_to do |format|
-      if @titular.blank?
+      if !@titular.blank?
        @obra_social.destroy
        
        flash[:notice] = 'Obra Social eliminada'
@@ -92,7 +92,7 @@ class ObrasSocialesController < ApplicationController
        
        
       else
-         flash[:notice] = 'No se puede eliminar la Obra Social, ya que hay operaciones  asociadas a la misma'
+         flash[:error] = 'No se puede eliminar la Obra Social, ya que hay operaciones  asociadas a la misma'
          format.html { redirect_to buscar_obras_sociales_url }
       end
     end

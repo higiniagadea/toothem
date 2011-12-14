@@ -13,8 +13,8 @@
   </td>
    <th>
     Consultorio </th>
-    <td><%= f.collection_select(:consultorio_id, Consultorio.all, :id, :nombre, {:include_blank => 'Seleccione'}, :class=> 'ui-widget-content required', :title=> 'Seleccione un consultorio' ) %>
-
+    <td><%= f.collection_select(:consultorio_id, Consultorio.all, :id, :nombre, :class=> 'ui-widget-content', :title=> 'Seleccione un consultorio' ) %>
+     
   </td>
   </tr>
 

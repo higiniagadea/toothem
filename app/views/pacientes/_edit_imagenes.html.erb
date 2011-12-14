@@ -1,9 +1,12 @@
-<fieldset class="ui-widget ui-widget-content ui-corner-top"  margin-right: 60px>
-    <legend class="ui-widget ui-widget-header ui-corner-all" >Im&aacute;genes</legend>
-       <div style=" float: right; margin-right:  60px"><%= link_to image_tag('add.png') + 'Nueva Imagen', new_imagen_path + '/'+@paciente.id.to_s, :id => 'cargar_imagen_' + @paciente.id.to_s %></div>
+<fieldset class="ui-widget ui-widget-content ui-corner-top"  margin-right: 60px>        
+<legend class="ui-widget ui-widget-header ui-corner-all" >Im&aacute;genes</legend>
 
+  <div style=" float: center; margin-left: 930px"><%= link_to image_tag('add.png') + 'Nueva Imagen', new_imagen_path + '/'+@paciente.id.to_s, :id => 'cargar_imagen_' + @paciente.id.to_s %></div>
+<br/>
+<br/>
+  <table class="show-data">
 <% unless @imagenes.blank? %>
-    <table class="show-data">
+  
 
       <tr>
         <td class="fielddata">
@@ -29,7 +32,7 @@
                      <br/>
                      <br/>
 
-                     <a style=" float: left; margin-left:  250px"><%= link_to image_tag('pencil.png'), edit_imagen_path(imagen.id), :title => 'Ver Imagen', :id=> 'ver_imagen_' + @paciente.id.to_s %>
+                     <a style=" float: left; margin-left:  10px"><%= link_to image_tag('pencil.png'), edit_imagen_path(imagen.id), :title => 'Ver Imagen', :id=> 'ver_imagen_' + @paciente.id.to_s %>
 
                       <%= link_to image_tag('cancel.png'), imagen, :title => 'Eliminar Imagen', :confirm => "Esta seguro que desea eliminar la imagen?", :method => :delete %>
                      </a>
@@ -69,7 +72,7 @@
      
     <% end %>
 
-  </fieldset>
+</fieldset>
 
 <script type="text/javascript">
 $(document).ready(function(){

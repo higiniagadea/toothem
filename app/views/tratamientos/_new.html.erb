@@ -52,8 +52,7 @@
           </td>
 
           <th>Importe Cubierto</th>
-          <td>
-             <%= f.hidden_field :importe_cubierto  %>
+          <td><%= f.hidden_field :importe_cubierto  %>
             <span id="actualizar_importe" name="tratamiento[importe_cubierto]"><%= observe_field("tratamiento_prestacion_id", :frequency => 0.1,
                                                                                            :url => {:action => 'actualizar_importe',
                                                                                            :controller => 'tratamientos'},
@@ -63,7 +62,7 @@
 
 
              <th>Coseguro</th>
-          <td>     <%= f.hidden_field :coseguro  %>
+          <td><%= f.hidden_field :coseguro  %>
             <span id="actualizar_coseguro" name="tratamiento[coseguro]"><%= observe_field("tratamiento_prestacion_id", :frequency => 0.1,
                                                                                            :url => {:action => 'actualizar_coseguro',
                                                                                            :controller => 'tratamientos'},
@@ -77,15 +76,15 @@
           <th>Profesional</th>
           <td>
               <%= f.collection_select(:profesional_id, Profesional.all, :id, :nombre, {:include_blank => 'Seleccione'},
-                                                                                                  :class=> 'ui-widget-content required',
-                                                                                                  :title=> 'Seleccione un profesional') %>
+                                                                                       :class=> 'ui-widget-content required',
+                                                                                       :title=> 'Seleccione un profesional') %>
           </td>
               
 
          
     <th>Estado del Tratamiento</th>
     <td>
-<%= f.collection_select(:estado_tratamiento_id, EstadoTratamiento.find(:all, :conditions =>  'id <= 4'), :id, :nombre, :class=> 'ui-widget-content required',  :title=> 'Seleccione un Estado') %>
+        <%= f.collection_select(:estado_tratamiento_id, EstadoTratamiento.find(:all, :conditions =>  'id <= 4'), :id, :nombre, :class=> 'ui-widget-content required',  :title=> 'Seleccione un Estado') %>
    
 
    </td>

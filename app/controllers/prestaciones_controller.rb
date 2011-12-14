@@ -4,6 +4,7 @@ class PrestacionesController < ApplicationController
   
  before_filter :login_required
  layout 'default'
+ 
   def index
  @prestaciones = Prestacion.paginate :page=> params[:page], :per_page=> 10
    
@@ -81,13 +82,19 @@ class PrestacionesController < ApplicationController
   # DELETE /prestaciones/1.xml
   def destroy
     @prestacion = Prestacion.find(params[:id])
-    @prestacion.destroy
+    #@prestacion.destroy
 
     respond_to do |format|
+      if !@obra_social.blank?
+        @prestacion.destroy
+
       flash[:notice] = 'Prestacion eliminada'
       format.html { redirect_to buscar_prestaciones_url }
-      format.xml  { head :ok }
+      else
+       flash[:error] = 'Imposible eliminar la prestacion, ya que esta siendo referenciada por una Obra Social'
+      format.html { redirect_to buscar_prestaciones_url }
     end
+  end
   end
 
   

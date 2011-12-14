@@ -15,8 +15,11 @@
     <tr>
         <th>
         Seleccione archivo:</th>
-        <td><%= file_field :archivo, :uploaded_data, :class=> 'ui-widget-content required', :title=> 'Por favor Seleccione un Archivo' %>
+        <td>  <%=h @imagen.archivo.filename %>
+<%#= file_field :archivo, :uploaded_data, :class=> 'ui-widget-content required', :title=> 'Por favor Seleccione un Archivo' , :value => @imagen.archivo.filename %>
         </td>
+
+      
     </tr>
     <tr>
         <th>

@@ -13,10 +13,10 @@ class TratamientosController < ApplicationController
   end
 
 
-  #muestra el importe dependiendo del arancel
+  #muestra el importe dependiendo del arancel de la obra social
   def actualizar_importe
     @arancel = Arancel.find_by_prestacion_id(params[:arancel].to_i)
-   
+  
  respond_to do |format| 
  format.html {
    render :update do |page|
@@ -70,8 +70,7 @@ class TratamientosController < ApplicationController
     @tratamiento = Tratamiento.new
     @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5,  :conditions => ['paciente_id = ?', @paciente.id]
    
-    @arancel = Arancel.find_by_prestacion_id(params[:arancel].to_i)
-
+   @arancel = Arancel.find_by_prestacion_id(params[:arancel].to_i)
 
     respond_to do |format|
       format.html { render :layout => false , :partial => 'new'}

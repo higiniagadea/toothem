@@ -123,12 +123,11 @@ class PacientesController < ApplicationController
     @odontograma = Odontograma.find(:first, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'created_at desc', :include => 'dientes')
     #@odontogramas = Odontograma.paginate(:page => params[:page], :per_page => 5, :conditions => ['paciente_id = ?' , @paciente.id.to_s], :order => 'created_at desc', :include => 'dientes')
     @odontogramas = Odontograma.paginate(:page => params[:page], :per_page => 12, :conditions => ['paciente_id = ?', @paciente.id.to_s,], :order => 'created_at desc', :include => 'dientes')
-    #@odontogramas = Odontograma.find(:all, :conditions => ['paciente_id = ? and ultimo = ?', @paciente.id.to_s, false], :order => 'fecha_creacion desc')
-    @imagenes = Imagen.find_all_by_paciente_id(@paciente.id)
+   @imagenes = Imagen.find_all_by_paciente_id(@paciente.id)
     @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha ASC')
     @trat = Tratamiento.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['paciente_id = ? and estado_tratamiento_id = ?',  @paciente.id.to_s  , 5 ], :order => 'fecha ASC')
     @pagos_pacientes = PagoPaciente.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['paciente_id = ?', @paciente.id.to_s] , :order => 'fecha ASC')
-    @turnos = Turno.all
+   
     @profesionales = Profesional.paginate(:page => params[:page], :per_page => 10)
     @prestaciones = Prestacion.find(:all)  
  

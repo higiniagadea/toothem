@@ -7,7 +7,7 @@
     <th>Periodo</th>
     <th>Fue liquidado</th>
     <th>Fecha de liquidaci&oacute;n</th>
-    <th>Acciones</th>
+   
   </tr>
 
 <% @periodos_obras_sociales.each do |periodo_obra_social| %>
@@ -16,10 +16,10 @@
 
     <td><%=h boolean_desc(periodo_obra_social.fue_liquidado) %></td>
      <td><%=h periodo_obra_social.fecha_liquidacion.blank? ? '-' : periodo_obra_social.fecha_liquidacion.strftime('%d/%m/%Y') %></td>
-     <td>
+  
   
     <%#= link_to image_tag('pencil.png'), edit_periodo_obra_social_path(periodo_obra_social), :title => 'Editar', :id => 'edit_periodo' + periodo_obra_social.id.to_s %>
-       <%= link_to image_tag('cancel.png'), periodo_obra_social, :title => 'Eliminar', :confirm => 'Está seguro? No podrá deshacer esta acción', :method => :delete %></td>
+       <%#= link_to image_tag('cancel.png'), periodo_obra_social, :title => 'Eliminar', :confirm => 'Está seguro? No podrá deshacer esta acción', :method => :delete %>
   
 
          <script type="text/javascript">

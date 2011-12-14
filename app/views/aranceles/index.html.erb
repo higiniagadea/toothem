@@ -1,5 +1,5 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class ="ui-widget ui-widget-content ui-corner-all ui-widget-header">Aranceles</legend>
+  <legend class ="ui-widget ui-widget-content ui-corner-all ui-widget-header">Aranceles de <%= @obra_social.nombre  %> </legend>
   <table>
     <tr><td style=" float: left; margin-left: 950px">
       <%= link_to  image_tag('add.png') + 'Nuevo Arancel', new_obra_social_arancel_path(@obra_social), :id => 'nuevo_a' %>&nbsp|&nbsp<%= link_to 'Cancelar', buscar_obras_sociales_path %>
@@ -30,20 +30,20 @@
     <td><%= number_to_currency(arancel.importe_cubierto) %></td>
     <td><%= number_to_currency(arancel.coseguro)%></td>
 
-    <td><%= link_to image_tag('magnifier_zoom_in.png'), obra_social_arancel_path(@obra_social, arancel), :title=> 'Ver', :id => 'ver_a' + @obra_social.id.to_s %>
-        <%= link_to image_tag('pencil.png'), edit_obra_social_arancel_path(@obra_social, arancel), :title=> 'Editar', :id => 'editar_a' + @obra_social.id.to_s %>
+    <td><%= link_to image_tag('magnifier_zoom_in.png'), obra_social_arancel_path(@obra_social, arancel), :title=> 'Ver', :id => 'ver_' + arancel.id.to_s %>
+        <%= link_to image_tag('pencil.png'), edit_obra_social_arancel_path(@obra_social, arancel), :title=> 'Editar', :id => 'editar_' + arancel.id.to_s %>
         <%= link_to image_tag('cancel.png'), [@obra_social,arancel], :confirm => 'Esta seguro que desea eliminar el arancel?', :method => :delete, :title=> 'Eliminar' %></td>
 
   <script type="text/javascript">
      $(document).ready(function(){
- $('#editar_a<%= @obra_social.id.to_s %>').fancybox(
+ $('#editar_<%= arancel.id.to_s %>').fancybox(
         {
       'hideOnContentClick': false,
       'titleShow': false
 
     });
 
-    $('#ver_a<%= @obra_social.id.to_s %>').fancybox(
+    $('#ver_<%= arancel.id.to_s %>').fancybox(
         {
       'hideOnContentClick': false,
       'titleShow': false

@@ -103,14 +103,19 @@ class ProfesionalesController < ApplicationController
   
 
     respond_to do |format|
-     
+     if !@tratamiento.blank?
+       @profesional.destroy
+        flash[:notice] = 'Profesional eliminado'
+         format.html { redirect_to buscar_profesionales_path }
+     else
+       flash[:error] = "Imposible eliminar el profesional ya que posee registros asociados"
          format.html { redirect_to buscar_profesionales_path }
       end
 
  
     
     end
- 
+  end
 
 
   def buscar

@@ -75,16 +75,23 @@ class TitularesController < ApplicationController
   def destroy
     @titular = Titular.find(params[:id])
 
-    @titular.destroy
+    #@titular.destroy
 
     respond_to do |format|
-
+    if !@paciente.blank?
+      @titular.destroy
       flash[:notice] = 'Titular eliminado'
       
       format.html { redirect_to titulares_path }
-      format.xml  { head :ok }
+    else
+        flash[:error] = 'No se puede eliminar lel titular, ya que esta siendo utilizada por un Paciente'
+         format.html { redirect_to titulares_url }
+
     end
   end
+  end
+
+  
   def buscar
     @pagetitle = "Buscar titular"
     respond_to do |format|

@@ -1,7 +1,6 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
 <legend class="ui-widget ui-corner-all ui-widget-header">Odontograma Actual</legend>
 
-
 <%  unless @paciente.odontogramas.blank? %>
 
    <div style="float:right; margin-right: 60px"><%= link_to image_tag('add.png') + 'Nuevo Odontograma', new_odontograma_url(:paciente_id=> @paciente.id.to_s), :id => 'odontog'  %>
@@ -18,21 +17,12 @@
 
 <table>
 
-
 <%= render :partial => 'odontogramas/ver1' %>
- <td><%#= link_to 'Duplicar Odontograma', duplicar_odontogramas_path(@odontograma.id)  %> </td>
-
 
 <%else%>
-
    No posee Odontogramas  <div style="float:right; margin-right: 60px"><%= link_to image_tag('add.png') + 'Nuevo Odontograma', new_odontograma_url(:paciente_id=> @paciente.id.to_s), :id => 'odontog'  %></div>
 
-   
-
 </table>
-
-
-
 <script type="text/javascript">
  
     $('#odontog').fancybox({

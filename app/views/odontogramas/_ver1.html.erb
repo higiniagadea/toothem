@@ -1,5 +1,18 @@
-<div style="float:right; margin-right: 60px"><%= link_to 'Duplicar Odontograma', duplicar_odontogramas_path(@odontograma.id.to_s, :paciente_id => @paciente.id.to_s) %>
-  </div>
+<div style="float:right; margin-right: 60px"><%= link_to 'Duplicar Odontograma', edit_odontograma_path(@odontograma.id.to_s, :paciente_id => @paciente.id.to_s), :id => 'duplicar_' + @odontograma.id.to_s %>
+  <script type="text/javascript">
+
+           $(document).ready(function()
+                {
+            $('#duplicar_<%= @odontograma.id.to_s %>').fancybox(
+                  {
+                'hideOnContentClick': false,
+
+                'titleShow': false
+
+              });
+          });
+              </script>
+</div>
 
 <table style=" text-align: left;">
 
@@ -154,7 +167,7 @@
   
   <div id="pac_odontog">
  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Odontogramas Anteriores</legend>
- <% unless   @odontogramas.blank?  %>
+ <%  unless @odontogramas.blank?  %>
  <table style=" text-align: left">
     <tr>
       <th>Paciente</th>
@@ -194,10 +207,9 @@
     <%end%>
  <table>
 
-   <%= will_paginate @odontogramas, :previous_label=>'Anterior', :next_label => 'Siguiente',
-                                      :class => 'odonto pagination'
-                                     
-                                 %>
+   <%#= will_paginate @odontogramas, :previous_label=>'Anterior', :next_label => 'Siguiente',
+                                      :class => 'odonto pagination',
+                                      :params => {:controller => 'odontogramas', :action => 'index'} %>
  </table>
 
 
