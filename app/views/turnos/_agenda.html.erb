@@ -1,33 +1,36 @@
 <table>
   <br/>
   <tr>
-  <a><%= link_to 'Nuevo Evento', turno_tarea_turnos_path, :id => 'nuevo' %></a></tr>
+  <a>
+<%= link_to 'Nuevo Evento', turno_tarea_turnos_path, :id => 'nuevo' %>
+  </a></tr>
 </table>
-
 <table>
-  
-<div id='calendar'></div>
+  <br/>
+
+<div id='calendar'>
+</div>
 
 <script type="text/javascript">
-  $(document).ready(function(){
+  
 
 $('#nuevo').mouseover(function(){
    $(this).attr('href', '<%= turno_tarea_turnos_path %>?profesional_id='+$('#profesional_profesional_id').val())
-});
-
+})
+$(document).ready(function(){
       // page is now ready, initialize the calendar...
       $('#calendar').fullCalendar({
-          editable: true,
+          //editable: true,
           header: {
               left: 'prev,next',
               center: 'title'
-             // right: 'month,agendaWeek,agendaDay'
+              /*right: 'month,agendaWeek,agendaDay'*/
           },
           defaultView: 'agendaWeek',
           height: 600,
           slotMinutes: 30,
           minTime : 8,
-          maxTime : 22,
+          maxTime : 21,
           firstDay : 1,
           allDaySlot : false,
           columnFormat:'ddd d/M',
@@ -35,7 +38,7 @@ $('#nuevo').mouseover(function(){
            titleFormat : "MMM d[ yyyy]{ '&#8212;'[MMM] dd 'del' yyyy}",
           weekends: false,
           defaultEventMinutes : 30,
-        
+
           buttonText: {prev: '&nbsp;&#9668;&nbsp;',
 		next: '&nbsp;&#9658;&nbsp;',
 		prevYear: '&nbsp;&lt;&lt;&nbsp;',
@@ -45,41 +48,51 @@ $('#nuevo').mouseover(function(){
           unselectAuto: false,
           weekMode : false,
 
+
           monthNamesShort : ['Enero' , 'Febrero' , 'Marzo' , 'Abril' , 'Mayo' , 'Junio' , 'Julio' ,
                         'Agosto' , 'Septiembre' , 'Octubre' , 'Noviembre' , 'Diciembre' ],
 
           dayNamesShort : ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
 
+
           events:
             [
+
             <% for turno in @turnos = Turno.find(:all, :conditions => ['profesional_id = ?', params[:profesional][:profesional_id]])   -%>
+            
               {
                id : 'turno: <%= turno.id.to_s %>',
-               title  : 'Paciente: <%= turno.paciente.nombre  %> \n\
-                           Duracion: <%= turno.duracion.to_i %> minutos' ,
-               start : 'Fecha: <%= turno.fecha_hora.iso8601 %>',
-               end : 'Duracion: <%= (turno.fecha_hora + (60 * turno.duracion)) %>',
-               allDay : true,
+               title  : 'Paciente: <%= turno.paciente_id %> \n\
+                          Duracion: <%= turno.duracion.to_i %> minutos' ,
+               start : '<%= turno.fecha_hora.iso8601 %>',
+               end : '<%= (turno.fecha_hora + (60 * turno.duracion)) %>',
+               allDay : false,
                url: '<%= eliminar_turno_path(turno) %>'
 
               },
             <% end %>
-
-            <% for tarea in @tareas = Tarea.find(:all, :conditions => ['profesional_id = ?', params[:profesional][:profesional_id]]) -%>
+              <% for tarea in @tareas = Tarea.find(:all, :conditions => ['profesional_id = ?', params[:profesional][:profesional_id]])   -%>
+             
               {
                id : 'tarea: <%= tarea.id.to_s %>',
                title  : 'Tarea: <%= tarea.observaciones  %> \n\
                          Duracion : <%= tarea.duracion %> minutos',
-               start : 'Fecha: <%= tarea.fecha_hora.iso8601 %>',
-               end : 'Duracion: <%=  (tarea.fecha_hora + (60 * tarea.duracion)) %>',
-               allDay : true,
+               start : '<%= tarea.fecha_hora.iso8601 %>',
+               end : '<%=  (tarea.fecha_hora + (60 * tarea.duracion)) %>',
+               allDay : false,
                url: '<%= eliminar_tarea_path(tarea) %>'
 
-              },
-            <% end %>           
+              },                
+
+            <% end %>
+
               ],
+
+
           timeFormat: 'h:mm t{ - h:mm t} ',
+
           dragOpacity: "0.5",
+
           eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc){
               //if (confirm("Are you sure about this change?")) {
                   moveEvent(event, dayDelta, minuteDelta, allDay);
@@ -106,10 +119,10 @@ $('#nuevo').mouseover(function(){
               }else{
                 return false;
               }
-           }
+        }
           }
 
-      });
+     });
          $('#nuevo').fancybox(
         {
       'hideOnContentClick': false,
@@ -117,6 +130,7 @@ $('#nuevo').mouseover(function(){
 
         });
 
+
   });
-</script>  
+</script>
 </table>

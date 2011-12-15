@@ -55,13 +55,15 @@ class ImagenesController < ApplicationController
      respond_to do |format|
      unless !@archivo.save
         params[:imagen][:archivo_id] = @archivo.id
+        
         @imagen = Imagen.new(params[:imagen])
+        
         @imagen.save
         flash[:notice] = 'Imagen cargada.'
          format.html{redirect_to edit_paciente_path(@paciente.id) + '#imagenes'}
        
         else
-         flash[:error] = 'errorrrr'
+         flash[:error] = 'error'
     end
 
   end
@@ -73,12 +75,9 @@ class ImagenesController < ApplicationController
       @archivo = Archivo.find(@imagen.archivo_id)
 
     respond_to do |format|
-
-      unless !@archivo.update_attributes(params[:archivo])
-        params[:imagen][:archivo_id] = @archivo.id
-     
-        #@imagen = Imagen.new(params[:imagen])
-        @imagen.save
+  
+     if @imagen.update_attributes(params[:imagen])
+    
         flash[:notice] = 'Imagen Actualizada.'
          format.html { redirect_to edit_paciente_url(@imagen.paciente_id) + '#imagenes'}
         format.xml  { head :ok }
@@ -92,10 +91,11 @@ class ImagenesController < ApplicationController
 
    def destroy
     @imagen = Imagen.find(params[:id])
-    @archivo = Archivo.find(@imagen.archivo_id)
-    @archivo_thumbnail = Archivo.find(:first, :conditions => 'parent_id =' + @archivo.id.to_s)
-    @archivo_thumbnail.destroy
-    @archivo.destroy
+    #@archivo = Archivo.find(@imagen.archivo_id)
+    #@archivo_thumbnail = Archivo.find(:first, :conditions => 'parent_id =' + imagen.archivo.id.to_s)
+    
+    #@archivo_thumbnail.destroy
+    #@archivo.destroy
     @imagen.destroy
     respond_to do |format|
        flash[:notice] = 'Imagen Eliminada'

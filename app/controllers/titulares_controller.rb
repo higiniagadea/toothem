@@ -42,8 +42,7 @@ class TitularesController < ApplicationController
  
     respond_to do |format|
       if @titular.save
-        flash[:notice] = 'Titular creado.'
-        
+        flash[:notice] = 'Titular creado.'     
         
         format.html { redirect_to(@titular) }
         format.xml  { render :xml => @titular, :status => :created, :location => @titular }
@@ -74,8 +73,6 @@ class TitularesController < ApplicationController
   
   def destroy
     @titular = Titular.find(params[:id])
-
-    #@titular.destroy
 
     respond_to do |format|
     if !@paciente.blank?

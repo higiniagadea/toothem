@@ -1,9 +1,9 @@
 class ObraSocial < ActiveRecord::Base
   acts_as_paranoid
 
-  has_many :titulares, :dependent => :destroy
-  has_many :aranceles, :dependent => :destroy
-  has_many :tratamientos,  :dependent => :destroy
+  has_many :titulares
+  has_many :aranceles
+  has_many :tratamientos
   has_many :fichas
   has_many :prestaciones, :through => :aranceles
   has_many :saldos_obras_sociales

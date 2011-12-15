@@ -1,5 +1,5 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
-<legend class="ui-widget ui-corner-all ui-widget-header">Odontograma Actual</legend>
+<legend class="ui-widget ui-widget-header ui-corner-all">Odontograma Actual</legend>
 
 <%  unless @paciente.odontogramas.blank? %>
 
@@ -18,6 +18,8 @@
 <table>
 
 <%= render :partial => 'odontogramas/ver1' %>
+
+  
 
 <%else%>
    No posee Odontogramas  <div style="float:right; margin-right: 60px"><%= link_to image_tag('add.png') + 'Nuevo Odontograma', new_odontograma_url(:paciente_id=> @paciente.id.to_s), :id => 'odontog'  %></div>
@@ -40,4 +42,5 @@
      
 </script>
 
-<%end%>  </fieldset>
+<%end%>
+</fieldset>

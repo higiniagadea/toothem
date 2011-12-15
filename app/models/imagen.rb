@@ -1,6 +1,6 @@
 class Imagen < ActiveRecord::Base
-  belongs_to :paciente,  :dependent => :delete
-  belongs_to :archivo,  :dependent => :delete
+  belongs_to :paciente
+  belongs_to :archivo
   has_one :db_file
   #validates
 

@@ -3,7 +3,7 @@
 
   belongs_to :paciente
   belongs_to :prestacion
-  belongs_to :profesional, :dependent => :delete
+  belongs_to :profesional
   belongs_to :obra_social
 
   belongs_to :estado_tratamiento

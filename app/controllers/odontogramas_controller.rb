@@ -4,30 +4,12 @@ class OdontogramasController < ApplicationController
   before_filter  :generar_submenus
   before_filter :login_required
 
-
-
-  def duplicar
-     
-    @paciente = Paciente.find(params[:paciente_id])
-    @odontograma = Odontograma.find(:first, :include => 'dientes').clone
-    #@odontograma.save
-      respond_to do |format|
-      if  @odontograma.save
-         flash[:notice] = 'Odontograma Duplicado'
-       format.html{redirect_to edit_paciente_path(@paciente) + '#odontogramas'}
-      
+def lista
+   @paciente = Paciente.find(params[:id])
  
-    end
-  end
-  end
-
-def index  
-#@odontogramas = Odontograma.find(:all, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha_creacion ASC', :include => 'dientes')
-   # params[:paciente_id]
-     #@paciente = Paciente.find_by_id(params[:id])
-  #@odontogramas = Odontograma.paginate(:page => params[:page], :per_page => 5, :conditions => ['paciente_id = ? and ultimo = ?' , @paciente.id.to_s, false], :order => 'created_at desc')
 
   respond_to do |format|
+     @odonto = Odontograma.paginate(:page => params[:page], :per_page => 12,:conditions => ['paciente_id = ?', @paciente.id.to_s])
      format.html{ render :layout => false}
     end
   end
@@ -62,7 +44,6 @@ def index
         @diente = Diente.new
         
         @diente.numero_diente = numero_diente
-
         #caras => [superior,izquierdo,derecho,inferior,centro]
         caras = cara.split(',')
         @diente.superior = caras[0]
@@ -83,7 +64,6 @@ def index
     respond_to do |format|
       if aux == true
           @odontograma.save
-
           flash[:notice] = 'Odontograma Creado'
       else
         flash[:error] = 'Seleccione al menos un diente'
@@ -107,6 +87,63 @@ def index
     end
   end
 
+  def edit     
+    @odontograma = Odontograma.find(params[:id])
+    respond_to do |format|
+    format.html {render :layout => false}
+   end
+  end
+ 
+
+#   def duplicar
+#    @paciente = Paciente.find(params[:paciente_id])
+#    @odontograma = Odontograma.find(:first, :include => 'dientes').clone
+#      respond_to do |format|
+#      if  @odontograma.save
+#         flash[:notice] = 'Odontograma Duplicado'
+#       format.html{redirect_to edit_paciente_path(@paciente) + '#odontogramas'}
+#     end
+#  end
+#  end
+
+def update
+   @odontograma =Odontograma.find(params[:id])
+
+    params[:odontograma][:ultimo] = true
+ 
+   
+  
+      params[:odonto].each do |numero_diente, cara|
+        @diente = Diente.new
+        @diente.numero_diente = numero_diente
+        #caras => [superior,izquierdo,derecho,inferior,centro]
+        caras = cara.split(',')
+        @diente.superior = caras[0]
+        @diente.izquierda = caras[1]
+        @diente.derecho = caras[2]
+        @diente.inferior = caras[3]
+        @diente.centro = caras[4]
+        @odontograma.dientes << @diente
+        @diente.save
+        unless @diente.superior.blank? & @diente.izquierda.blank? && @diente.derecho.blank? && @diente.inferior.blank? && @diente.centro.blank?
+          aux = true
+        end
+
+       end
+
+       respond_to do |format|
+        
+       if  @odontograma.update_attributes(params[:odontograma])
+          flash[:notice] = 'Odontograma Actualizado'
+      else
+        flash[:error] = 'Seleccione al menos un diente'
+      end
+      format.html {redirect_to search_pacientes_path}
+          #format.html {redirect_to edit_paciente_path(@odontograma.paciente_id) + '#odontogramas'}
+
+    end
+
+end
 
   
 end

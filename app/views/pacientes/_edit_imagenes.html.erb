@@ -5,8 +5,7 @@
 <br/>
 <br/>
   <table class="show-data">
-<% unless @imagenes.blank? %>
-  
+<% unless @imagenes.blank? -%>
 
       <tr>
         <td class="fielddata">
@@ -21,8 +20,7 @@
 
         <div class="slide">
            <div  style="float: right; font-size: 14px; font-weight: normal">
-           <p>
-           </p>
+          
                    <p id="imagen" href="<%= imagen_url(imagen.id)%>" style=" float: left">
                      <br/>
                      <br/>
@@ -39,38 +37,30 @@
                 </p>
            </div>
 
-        <p>
-         <%= image_tag imagen.archivo.public_filename(:thumb) %>
-        </p>
+                <p>
+                 <%= image_tag imagen.archivo.public_filename(:thumb) %>
+                </p>
 
-        <p>Descripcion:  <%= imagen.descripcion %> </p>
+                <p>Descripcion:  <%= imagen.descripcion.blank? ? '-' :imagen.descripcion %> </p>
 
-        <p>Observaciones: <%= imagen.observaciones %>  </p>
+                <p>Observaciones: <%= imagen.observaciones.blank? ? '-' :imagen.observaciones%>  </p>
 
-        <p>Fecha <%= imagen.fecha.strftime('%d/%m/%Y') %> </p>
-
-
-
+                <p>Fecha <%= imagen.fecha.strftime('%d/%m/%Y').blank? ? '-' : imagen.fecha.strftime('%d/%m/%Y')%></p>
         </div>
-
-  <%end%>
-   
+        <%end%>
+       
+       
+  <%  else -%>
+   No posee Imagenes
+<% end %>
 
      </div>
-
    </div>
-
 </div>
         </td>
-      </tr>
-
-      <tr>
-        <td class="fieldname"></td>
-        <td class="fielddata"></td>
-      </tr>
+      </tr>     
     </table>
-     
-    <% end %>
+
 
 </fieldset>
 

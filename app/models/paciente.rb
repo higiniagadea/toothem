@@ -1,10 +1,10 @@
 class Paciente < ActiveRecord::Base
   acts_as_paranoid
 
-  belongs_to :titular
+  belongs_to :titular, :dependent => :destroy
   belongs_to :consultorio
   belongs_to :archivo
-  has_many :tratamientos
+  has_many :tratamientos, :dependent => :destroy
   has_many :turnos, :dependent => :destroy
   has_many :pagos_pacientes
   belongs_to :saldo_paciente
@@ -13,7 +13,7 @@ class Paciente < ActiveRecord::Base
   has_one :historia_clinica_general
   has_one :historia_clinica_ortodoncia  
  
-  has_many :imagenes, :dependent => :destroy
+  has_many :imagenes
 
   validates_presence_of :nombre, :message => ' y apellido no pueden estar en blanco'
   validates_uniqueness_of :matricula, :message => ' Ya existe'
