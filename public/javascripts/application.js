@@ -1,3 +1,4 @@
+
 $(document).ready(function(){
    jQuery.ajaxSetup({'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript,application/javascript,text/html")}})
 });
@@ -96,6 +97,18 @@ $(document).ready(function(){
     return false
   });
 
+
+    $('div.ajax-pagination a').live('click', function() {
+   $('#consult').load(this.href)
+   return false
+  });
+
+  $('div.consulto a').live('click', function() {
+    $('#consult').load(this.href)
+    return false
+  });
+
+
   $('div.ajax-pagination a').live('click', function() {
     $('#trata').load(this.href)
     return false
@@ -115,6 +128,7 @@ $(document).ready(function(){
     $('#fich').load(this.href)
     return false
   });
+  
 
   $('div.ajax-pagination a').live('click', function() {
     $('#presta ').load(this.href)
@@ -156,12 +170,12 @@ $(document).ready(function(){
   });
 
   $('div.ajax-pagination a').live('click', function() {
-    $('#pac_odontog').load(this.href)
+    $('#pagodontog').load(this.href)
     return false
   });
 
-  $('div.odonto a').live('click', function() {
-    $('#pac_odontog').load(this.href)
+  $('div.odontog a').live('click', function() {
+    $('#pagodontog').load(this.href)
     return false
   });
 

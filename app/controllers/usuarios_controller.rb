@@ -75,7 +75,7 @@ class UsuariosController < ApplicationController
 
   def resultado
    respond_to do |format|
-       @usuarios = Usuario.buscar(params).paginate(:page => params[:page], :per_page=> 10, :order => 'name ASC')
+       @usuarios = Usuario.buscar(params).paginate(:page => params[:page], :per_page=> 10, :order => 'login ASC')
         format.html {render :partial => 'resultado', :layout => false}
       end
   end

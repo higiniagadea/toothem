@@ -4,15 +4,14 @@ class OdontogramasController < ApplicationController
   before_filter  :generar_submenus
   before_filter :login_required
 
-def lista
-   @paciente = Paciente.find(params[:id])
- 
-
-  respond_to do |format|
-     @odonto = Odontograma.paginate(:page => params[:page], :per_page => 12,:conditions => ['paciente_id = ?', @paciente.id.to_s])
-     format.html{ render :layout => false}
-    end
-  end
+#def index
+#  @odonto = Odontograma.paginate(:page => params[:page], :per_page => 1, :conditions => ['paciente_id = ?', @paciente.id.to_s,], :order => 'created_at desc', :include => 'dientes')
+#
+#
+#  respond_to do |format|
+#    format.html{ render :layout => false}
+#    end
+#  end
 
   def show
    @odontograma = Odontograma.find(params[:id])
@@ -138,8 +137,8 @@ def update
       else
         flash[:error] = 'Seleccione al menos un diente'
       end
-      format.html {redirect_to search_pacientes_path}
-          #format.html {redirect_to edit_paciente_path(@odontograma.paciente_id) + '#odontogramas'}
+      #format.html {redirect_to search_pacientes_path}
+          format.html {redirect_to edit_paciente_path(@odontograma.paciente_id) + '#odontogramas'}
 
     end
 

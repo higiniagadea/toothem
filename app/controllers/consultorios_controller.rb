@@ -5,7 +5,7 @@ class ConsultoriosController < ApplicationController
   before_filter :login_required
   def index
     @pagetitle = "Consultorios"
-    @consultorios = Consultorio.paginate :page=> params[:page], :per_page=>5, :order=> 'nombre ASC'
+    @consultorios = Consultorio.paginate :page=> params[:page], :per_page=>12, :order=> 'nombre ASC'
   
     respond_to do |format|
       format.html # index.html.erb
@@ -21,7 +21,7 @@ class ConsultoriosController < ApplicationController
     @consultorios = Consultorio.paginate :page=> params[:page], :per_page=>5, :order=> 'nombre ASC'
 
    respond_to do |format|
-      format.html {render :layout => 'default'}
+      format.html {render :layout => false}
     end
   end
 
@@ -32,7 +32,7 @@ class ConsultoriosController < ApplicationController
     @consultorio = Consultorio.new
 
    respond_to do |format|
-      format.html {render :layout => 'default'}
+      format.html {render :layout => false}
     end
   end
 
@@ -53,7 +53,7 @@ class ConsultoriosController < ApplicationController
     respond_to do |format|
       if @consultorio.save
         flash[:notice] = 'Consultorio creado.'
-        format.html { redirect_to(consultorios_url) }
+        format.html { redirect_to buscar_consultorios_url }
         
       else
         @pagetitle = "Nuevo consultorio"
@@ -72,7 +72,7 @@ class ConsultoriosController < ApplicationController
     respond_to do |format|
       if @consultorio.update_attributes(params[:consultorio])
         flash[:notice] = 'Consultorio actualizado.'
-        format.html { redirect_to(consultorios_url) }
+        format.html { redirect_to buscar_consultorios_url }
         
       else
         @pagetitle = "Editar consultorio"
@@ -94,13 +94,35 @@ class ConsultoriosController < ApplicationController
       if @paciente.blank? && @profesional.blank? && @titular.blank?
         @consultorio.destroy
         flash[:notice] = "Consultorio Eliminado"
-        format.html { redirect_to(consultorios_url) }
+        format.html { redirect_to buscar_consultorios_url }
       else
         flash[:error] = "Imposible eliminar el consultorio ya que posee registros asociados"
-        format.html { redirect_to(consultorios_url) }
+        format.html { redirect_to buscar_consultorios_url }
 
       end
   end
  
   end
+
+
+  def buscar
+       respond_to do |format|
+      format.html
+  end
+  end
+
+
+   def resultado
+
+      respond_to do |format|
+        @consultorios = Consultorio.basic_search(params).paginate :page => params[:page], :per_page => 12
+
+        format.html {render :partial => 'resultado', :layout => false }
+
+      end
+  end
+
+
+
+
 end

@@ -107,8 +107,7 @@ class PacientesController < ApplicationController
 
   
   def new
-    @paciente = Paciente.new
-   
+    @paciente = Paciente.new   
     respond_to do |format|
       format.html
       format.xml  { render :xml => @paciente }
@@ -117,14 +116,14 @@ class PacientesController < ApplicationController
 
   
   def edit
+
     params[:paciente_id]
     @archivo = Archivo.new
     @paciente = Paciente.find_by_id(params[:id])
     @odontograma = Odontograma.find(:first, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'created_at desc', :include => 'dientes')
     #@odontogramas = Odontograma.paginate(:page => params[:page], :per_page => 5, :conditions => ['paciente_id = ?' , @paciente.id.to_s], :order => 'created_at desc', :include => 'dientes')
    # @odontogramas = Odontograma.paginate(:page => params[:page], :per_page => 1, :conditions => ['paciente_id = ?', @paciente.id.to_s,], :order => 'created_at desc', :include => 'dientes')
-    @odonto = Odontograma.paginate(:page => params[:page], :per_page => 12, :conditions => ['paciente_id = ?', @paciente.id.to_s,], :order => 'created_at desc', :include => 'dientes')
-
+    @odonto = Odontograma.paginate(:page => params[:page], :per_page => 1, :conditions => ['paciente_id = ?', @paciente.id.to_s,], :order => 'created_at desc', :include => 'dientes')
     @imagenes = Imagen.find_all_by_paciente_id(@paciente.id)
     @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha ASC')
     @trat = Tratamiento.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['paciente_id = ? and estado_tratamiento_id = ?',  @paciente.id.to_s  , 5 ], :order => 'fecha ASC')
@@ -325,13 +324,9 @@ class PacientesController < ApplicationController
 
   
   def destroy
-    @paciente = Paciente.find(params[:id])
-   
+    @paciente = Paciente.find(params[:id])   
     respond_to do |format|
-     if @paciente.destroy
-      @paciente.tratamientos.destroy
-      @paciente.imagenes.destroy
-      @paciente.odontogramas.destroy
+     if @paciente.destroy   
       
       flash[:notice] = 'Paciente Eliminado.'
       format.html { redirect_to(search_pacientes_url) }
@@ -395,9 +390,10 @@ def elimina_tit
   @paciente = Paciente.find(params[:id])
   @paciente.update_attribute(:titular_id, nil)
    respond_to do |format|
+  
       format.html {redirect_to(edit_paciente_path(@paciente) + '#obra_social') }
-      
-end
+   end
+
 end
 
 #valida la matricula del titular

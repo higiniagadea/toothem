@@ -67,21 +67,12 @@
 
 
    */
-   
-    
-
-
 
     </script>
-      <%#end%>
-
-
-
-  
+   <%#end%>
+ 
 <%= will_paginate @pacientes, :previous_label=>'Anterior', :next_label => 'Siguiente',
                               :class => 'result pagination',
-                              :params => {:controller => "pacientes", :action=> "result"
-                              
-                             } %>
+                              :params => {:controller => "pacientes", :action=> "result"} %>
 
 </div>

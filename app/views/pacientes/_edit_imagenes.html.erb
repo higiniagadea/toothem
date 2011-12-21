@@ -45,7 +45,7 @@
 
                 <p>Observaciones: <%= imagen.observaciones.blank? ? '-' :imagen.observaciones%>  </p>
 
-                <p>Fecha <%= imagen.fecha.strftime('%d/%m/%Y').blank? ? '-' : imagen.fecha.strftime('%d/%m/%Y')%></p>
+                <p>Fecha <%= imagen.fecha.blank? ? '-' : imagen.fecha.strftime('%d/%m/%Y')%></p>
         </div>
         <%end%>
        

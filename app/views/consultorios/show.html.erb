@@ -1,50 +1,17 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class ="ui-widget ui-widget-content ui-corner-all ui-widget-header">Consultorio: <%=h @consultorio.nombre %></legend>
+  <legend class ="ui-widget ui-widget-content ui-corner-all ui-widget-header">Consultorio</legend>
 
-
-<table id="table-list">
+<table  style=" text-align: left; ">
   <tr>
-     <td><h1>Clinica:<%=h @consultorio.clinica.nombre %></h1></td>
-     
+     <th>Clinica:<%=h @consultorio.clinica.nombre %></th>
   </tr>
-</table>
-
-<h1>Profesionales</h1>
-   
-<table   style=" text-align: left;" class="listado" >
-  <% @consultorio.profesionales.each do |profesional|  %>
   <tr>
-    <td><label>Nombre: <%=h profesional.nombre %></label></td>
-    <td><label>Matricula: <%=h profesional.matricula_profesional %></label></td>
-    <td><label>Email: <%=h profesional.email %></label></td>
-  </tr>
-  
-<%end%>
-</table>
-
-<br/>
-<br/>
-
-<h1>Usuarios</h1>
-<table  style=" text-align: left;" class="listado" >
-  <tr>
-    <td><label>nombre:</label></td>
-    <td><label>email: </label></td>
-    <td><label>usuario: </label></td>
+     <th>Consultorio: <%= @consultorio.nombre  %> </th>
   </tr>
 </table>
 
 
-<h1>Pacientes</h1><br/>
-<table class="table-list">
-<% @consultorio.pacientes.each do |paciente|  %>
-  <tr>
-    <td><label>Nombre: <%=h paciente.nombre %></label></td>
-    <td><label>Matricula: <%=h paciente.matricula %></label></td>
-  </tr>
 
-<%end%>
-</table>
 </fieldset>
 
 

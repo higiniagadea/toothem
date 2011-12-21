@@ -1,0 +1,60 @@
+<div id="consult">
+<% unless @consultorios.blank? %>
+<h1>Resultado de la b&uacute;squeda</h1>
+
+  <table style=" text-align: left;" class="listado">
+    
+      <th>Nombre</th>
+
+      <th>Acciones</th>
+   
+    <% @consultorios.each do |consultorio| %>
+     <tr class="<%= cycle('par','impar') -%>">
+        <td><%=h consultorio.nombre %></td>
+
+
+
+        <td><%= link_to image_tag('magnifier_zoom_in.png'), consultorio, :title => "Vista Rapida", :id => 'ver_c_' + consultorio.id.to_s %>
+          <%= link_to image_tag('pencil.png'), edit_consultorio_path(consultorio), :title => "Editar", :id => 'edit_c_' + consultorio.id.to_s %>
+          <%= link_to image_tag('cancel.png'),consultorio, :title => 'Eliminar', :confirm => 'Está seguro? No podrá deshacer esta acción', :method => :delete %></td>
+     </tr>
+    <script type="text/javascript">
+  $(document).ready(function(){
+ $('#ver_c_<%= consultorio.id.to_s %>').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+
+    $('#edit_c_<%= consultorio.id.to_s %>').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+    });
+    </script>
+
+
+    <%end%>
+
+
+ <%else%>
+      No se encontraron consultorios segun el criterio de busqueda
+ <%end%>
+
+</table>
+
+
+
+<table>
+
+<%= will_paginate @consultorios, :previous_label=>'Anterior', :next_label => 'Siguiente',
+                              :class => 'consulto pagination',
+                              :params => {:controller => "consultorios", :action=> "resultado"
+
+                             } %>
+</table>
+</div>
+

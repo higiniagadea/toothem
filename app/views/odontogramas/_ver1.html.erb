@@ -150,7 +150,7 @@
   <br/><br/>
 
 
-    <div id="pagodontog">
+ <div id="pagodontog">
  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Odontogramas Anteriores</legend>
  <%  unless @odonto.blank? %>
  <table style=" text-align: left">
@@ -196,14 +196,11 @@
     <%else%>
 
      No posee odontogramas anteriores
-</table>
-    <%end%>
- <table>
-
-   <%#= will_paginate @odonto, :previous_label=>'Anterior', :next_label => 'Siguiente'
-                                 
-
-                                    %>
  </table>
-    </div>
+    <%end%>
+ 
+ <table>
+   <%= will_paginate @odonto, :previous_label=>'Anterior', :next_label => 'Siguiente', :id =>  params[:id]%>
+ </table>
+ </div>
   

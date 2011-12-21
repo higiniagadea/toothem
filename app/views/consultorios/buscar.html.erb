@@ -1,0 +1,94 @@
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Buscar Consultorios</legend>
+
+  <div class="search-form">
+         <div class="errores">
+         <ol style="list-style:none"></ol>
+         </div>
+
+<table>
+    <tr><td style=" float: left; margin-left: 990px">
+      <%= link_to  image_tag('add.png') + 'Nuevo Consultorio', new_consultorio_path, :id => 'nuevo_consultorio' %>
+      <script type="text/javascript">
+            $('#nuevo_consultorio').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+    });
+    </script>
+
+      </td>
+    </tr>
+  </table>
+<%  form_remote_tag :url=> url_for(:controller => 'consultorios', :action => 'resultado'),
+                      :method => :post,
+                      :update => :search_hit do -%>
+
+      <table  style=" text-align: left; ">
+        <tr>
+          <th>Nombre</th>
+        <td><%= text_field_tag :nombre,{}, :class =>"ui-widget-content required", :onkeypress => 'return validar(event)', :size => 15 %> </td>
+        </tr>
+      </table>
+
+     <table>
+        <tr>
+          <td style=" float: left; margin-left:  400px"> <%= submit_tag 'Buscar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
+          <td id="ayuda_cons"><%= image_tag 'help.png' %></td>
+
+          </tr>
+
+      </table>
+
+  <%end -%>
+
+
+   <div id="search_hit"></div>
+</div>
+</fieldset>
+
+<script type="text/javascript">
+
+function validar(e) { // 1
+    tecla = (document.all) ? e.keyCode : e.which; // 2
+    if (tecla==8) return true; // 3
+    patron =/[A-Za-zñÑ-'\s]/; //4
+    te = String.fromCharCode(tecla); // 5
+    return patron.test(te); // 6
+}
+
+ $(document).ready(function(){
+
+$(function() {
+   $('input:text').keydown(function(e){
+        if (e.keyCode == 13) {
+       jQuery.ajax({data:jQuery.param(jQuery(this).serializeArray()) + '&amp;authenticity_token=' + encodeURIComponent('m8ZBBJYuVqedoImX6WhqtBqF8ZufnPSyqeuZiFuQfhc='), success:function(request){jQuery('#search_hits').html(request);}, type:'post', url:'/clinicas/resultado'});
+       return false;
+        }
+      });
+
+});
+$('#ayuda_cons img').each(function(){
+
+          $(this).qtip(
+          {
+            content: '<%= render :partial => 'ayuda_cons'  %>', // Give it some content
+            position: 'topRight', // Set its position
+            hide: {
+              fixed: true // Make it fixed so it can be hovered over
+            },
+            style: {
+              padding: '5px 15px', // Give it some extra padding
+              name: 'blue' // And style it with the preset dark theme
+            }
+          });
+        });
+
+
+
+
+
+});
+
+</script>

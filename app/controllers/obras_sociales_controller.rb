@@ -86,7 +86,7 @@ class ObrasSocialesController < ApplicationController
     respond_to do |format|
       if !@titular.blank?
        @obra_social.destroy
-       
+       #@tratamiento.obra_social_id.destroy
        flash[:notice] = 'Obra Social eliminada'
        format.html { redirect_to buscar_obras_sociales_path}
        
