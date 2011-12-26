@@ -1,0 +1,58 @@
+ <div id="varios">
+ <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Odontogramas Anteriores</legend>
+ <%  unless @odonto.blank? %>
+ <table style=" text-align: left">
+    <tr>
+      <th>Paciente</th>
+       <th>Fecha de Creacion</th>
+       <th>Observaciones</th>
+    </tr>
+  <% @odonto.each do |odontograma| %>
+     <tr class="<%= cycle('','odd') %>">
+
+       <td><%=h @paciente.nombre %> </td>
+      <td><%=h odontograma.fecha_creacion.strftime('%d/%m/%Y') %></td>
+      <td><%=h  odontograma.observaciones %></td>
+      <td><%= link_to image_tag('magnifier_zoom_in.png'), odontograma, :id => 'ver_' + odontograma.id.to_s %></td>
+      <td><%= link_to image_tag('cancel.png'), eliminar_odontograma_path(odontograma, :paciente_id => @paciente.id), :confirm => '¿Está seguro? No podrá deshacer esta acción', :title => "Eliminar" %></td>
+      <td><%= link_to 'Duplicar Odontograma', edit_odontograma_path(odontograma), :id => 'duplicar_' + odontograma.id.to_s unless odontograma.ultimo == false %></td>
+
+           <script type="text/javascript">
+
+           $(document).ready(function()
+                {
+            $('#ver_<%= odontograma.id.to_s %>').fancybox(
+                  {
+                'hideOnContentClick': false,
+
+                'titleShow': false
+
+              });
+
+               $('#duplicar_<%= odontograma.id.to_s %>').fancybox(
+                  {
+                'hideOnContentClick': false,
+
+                'titleShow': false
+
+              });
+          });
+              </script>
+          </tr>
+    <%end%>
+
+    <%else%>
+
+     No posee odontogramas anteriores
+ </table>
+    <%end%>
+
+  <table>
+    <tr>
+    <td>
+   <%= will_paginate @odonto, :previous_label=>'Anterior', :next_label => 'Siguiente',
+                      :class => 'diente pagination', :params => {:controller => 'odontogramas', :action => 'listado'},  :id => params[:id]   %>
+    </td>
+    </tr>
+  </table>
+   </div>

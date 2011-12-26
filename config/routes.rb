@@ -22,7 +22,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :acciones
 
-  map.resources :odontogramas, :member => {:eliminar => :get}, :collection => {:duplicar => [:get, :post], :ver1 => [:get, :post]}
+  map.resources :odontogramas, :member => {:eliminar => :get}, :collection => {:duplicar => [:get, :post], :ver1 => [:get, :post], :listado => [:get, :post]}
 
   map.resources :periodos, :collection => {:buscar => :get, :resultado => [:get, :post], :liquidar => :get, :resultado_liq =>  [:get, :post]}, :member => {:liquidar => [:get, :post]}
 

@@ -170,12 +170,12 @@ $(document).ready(function(){
   });
 
   $('div.ajax-pagination a').live('click', function() {
-    $('#pagodontog').load(this.href)
+    $('#varios').load(this.href)
     return false
   });
 
-  $('div.odontog a').live('click', function() {
-    $('#pagodontog').load(this.href)
+  $('div.diente a').live('click', function() {
+    $('#varios').load(this.href)
     return false
   });
 
