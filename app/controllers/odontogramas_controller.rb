@@ -8,7 +8,7 @@ class OdontogramasController < ApplicationController
 def listado
     @paciente = Paciente.find_by_id(params[:id])
  respond_to do |format|
-    @odonto = Odontograma.paginate(:page => params[:page], :per_page => 4, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'created_at desc')
+    @odonto = Odontograma.paginate(:page => params[:page], :per_page => 12, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'created_at desc')
 
      format.html{ render :partial => 'listado', :layout => false}
    end
