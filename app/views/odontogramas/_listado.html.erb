@@ -15,7 +15,7 @@
       <td><%=h  odontograma.observaciones %></td>
       <td><%= link_to image_tag('magnifier_zoom_in.png'), odontograma, :id => 'ver_' + odontograma.id.to_s %></td>
       <td><%= link_to image_tag('cancel.png'), eliminar_odontograma_path(odontograma, :paciente_id => @paciente.id), :confirm => '¿Está seguro? No podrá deshacer esta acción', :title => "Eliminar" %></td>
-      <td><%= link_to 'Duplicar Odontograma', edit_odontograma_path(odontograma), :id => 'duplicar_' + odontograma.id.to_s unless odontograma.ultimo == false %></td>
+      <td><%= link_to 'Duplicar Ultimo Odontograma', edit_odontograma_path(odontograma), :id => 'duplicar_' + odontograma.id.to_s unless odontograma.ultimo == false %></td>
 
            <script type="text/javascript">
 
