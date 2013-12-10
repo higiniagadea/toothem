@@ -4,7 +4,8 @@ class CreatePeriodos <  ActiveRecord::Migration
        t.column :mes, :date, :null => false
        t.column :anio, :date
        t.column :fecha_liquidacion, :date
-
+       t.column :fue_liquidado, :boolean
+       t.column :deleted_at, :date
       t.timestamps
     end
 

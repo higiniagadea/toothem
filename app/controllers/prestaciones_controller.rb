@@ -112,12 +112,13 @@ class PrestacionesController < ApplicationController
 
   def resultado  
     respond_to do |format|
-      #if params[:codigo].blank? || params[:descripcion].blank?
-       #format.html{render :text => '<span style="color:red">Ingrese al menos un dato para realizar la b&uacute;squeda </span>' }
-      #elsif
+      if params[:codigo].blank? && params[:descripcion].blank?
+       format.html{render :text => '<span style="color:red">Ingrese al menos un dato para realizar la b&uacute;squeda </span>' }
+      elsif
+        format.html{render :partial => 'resultado', :layout => false }
          @prestaciones = Prestacion.basic_search(params).paginate(:page => params[:page], :per_page => 10, :order => 'descripcion')
-         format.html{render :partial => 'resultado', :layout => false }
-      #end
+
+      end
     end
   end
 

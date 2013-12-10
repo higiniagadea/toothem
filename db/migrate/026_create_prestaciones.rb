@@ -5,6 +5,8 @@ class CreatePrestaciones < ActiveRecord::Migration
       t.string :descripcion
       t.integer :consultorio_id
       t.integer :valor
+      t.date   :deleted_at, :null => true
+
 
     end
   end

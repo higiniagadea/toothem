@@ -19,7 +19,7 @@
        <th>Fecha</th>
          <td>
              <span class="fecha" class="ui-widget-content">
-                    <input class="ui-widget-content required "type="text" id="fecha_pago" size="10" name="pago_paciente[fecha]" readonly="readonly" title="Ingrese una fecha" value="<%= Date.today.strftime('%d-%m-%Y') %>" />
+                    <input class="ui-widget-content required "type="text" id="fecha_pago" size="10" name="pago_paciente[fecha]" readonly="readonly" title="Ingrese una fecha" />
              </span>
          </td>
     </tr>
@@ -77,7 +77,7 @@
   });
 
 
- // $("#fecha_pago").val('<%#= Date.today.strftime('%d-%m-%Y') %>');
+  $("#fecha_pago").val('<%= Date.today.strftime('%d-%m-%Y') %>');
 // $("#fecha_pago").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate :0 });
 
 });

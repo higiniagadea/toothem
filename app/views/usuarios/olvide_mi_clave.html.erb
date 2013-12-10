@@ -1,6 +1,8 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-all">
   <legend class="ui-widget ui-widget-header ui-corner-all">Olvid&eacute; mi clave</legend>
-  <% form_tag enviar_email_usuarios_url, :id => 'form_resetear_clave' do -%>
+  
+  <% form_tag olvide_mi_clave_usuarios_path, :id => 'form_resetear_clave' do -%>
+  
   <p><%= label_tag 'Usuario' %><br />
   <%= text_field :usuario, :login, :class =>"required ui-widget-content" %></p>
 
@@ -10,7 +12,8 @@
 
 
   <p>
-  <%= submit_tag 'Cambiar Clave', 'class'=>'submit' %> <input type="button" class="button" value="Cancelar" onclick="location.href='/session/new'"/>
+  <%= submit_tag 'Cambiar Clave', 'class'=>'submit' %> <input type="button" class="button" value="Cancelar" onclick="location.href='/usuario/new'"/>
+
     <%=  image_tag('help.png', 'style'=>'vertical-align:middle', "id"=>"help", "alt"=>"Ayuda") %>
   </p>
 

@@ -6,9 +6,7 @@
     <table style=" text-align: left;" class="listado">
       <tr>
         <th>Nombre</th>
-        <th>Auditoria previa</th>
-        <th>Auditoria post</th>
-        <th>Nro max codigos por mes</th>
+       
     
         <th>Acciones</th>
 
@@ -17,9 +15,7 @@
     <% @obras_sociales.each do |obra_social| %>
       <tr class="<%= cycle('par','impar') -%>">
         <td><%=h obra_social.nombre %></td>
-        <td><%=h boolean_desc(obra_social.auditoria_previa)%></td>
-        <td><%=h boolean_desc(obra_social.auditoria_post) %></td>
-        <td><%=h obra_social.nro_max_codigos_por_mes %></td>
+       
      
 
 

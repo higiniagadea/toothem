@@ -90,7 +90,7 @@ class ArancelesController < ApplicationController
     @aranceles = @obra_social.aranceles.find(:all, :conditions => {:prestacion_id => params[:arancel][:prestacion_id]})
    
      respond_to do |format|
-        #@aranceles = Arancel.basic_search
+        @aranceles = Arancel.basic_search
         format.html {render :partial => 'resultados', :layout => false}
       end
   end

@@ -29,10 +29,10 @@
       <td><%= f.text_field :monto, :class => 'ui-widget-content required' , :title => 'Ingrese el monto', :onkeypress=> 'return validar(event)', :size => 15%> </td>
     </tr>
 
- 
-    
-     <%#= f.check_box :fue_liquidado, :class => 'ui-widget-content'  %> 
- 
+    <tr>
+      <th>Fue liquidado?</th>
+      <td><%= f.check_box :fue_liquidado, :class => 'ui-widget-content'  %> </td>
+    </tr>
 
 
 
@@ -81,7 +81,7 @@
 
 
 
- //$("#fecha_pago").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Jutdo','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate:'+1M +10D'});
+ $("#fecha_pago").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Jutdo','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110', maxDate:'+1M +10D'});
 
 });
 </script>

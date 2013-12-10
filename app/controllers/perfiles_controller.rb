@@ -2,7 +2,7 @@ class PerfilesController < ApplicationController
   # GET /perfiles
   # GET /perfiles.xml
   layout 'default'
-before_filter :login_required
+#before_filter :login_required
   def index
    @perfiles = Perfil.paginate :page=> params[:page], :per_page=>10, :order=> 'nombre ASC'
    

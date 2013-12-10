@@ -69,8 +69,8 @@ class TratamientosController < ApplicationController
     @obra_social = ObraSocial.find(params[:obra_social_id]) unless params[:obra_social_id].blank?
     @tratamiento = Tratamiento.new
     @tratamientos = Tratamiento.paginate :page=> params[:page], :per_page=> 5,  :conditions => ['paciente_id = ?', @paciente.id]
-   
-   @arancel = Arancel.find_by_prestacion_id(params[:arancel].to_i)
+    @arancel = Arancel.find_by_prestacion_id(params[:arancel].to_i)
+    @cara = Cara.find(params[:cara_id])
 
     respond_to do |format|
       format.html { render :layout => false , :partial => 'new'}

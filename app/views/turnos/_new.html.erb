@@ -31,7 +31,8 @@
       <th>Profesional</th>
           <td>
                 <%= @profesional.nombre unless @profesional.blank? %>
-         <%= f.hidden_field :profesional_id, :value=> @profesional.id.to_s %>
+         <%= f.hidden_field :profesional_id, :value => @profesional.id.to_s %>
+          
           </td>
    
 
@@ -41,8 +42,7 @@
     <tr>
 
       <th>Fecha</th>
-      <td><%= f.datetime_select :fecha_hora, :order => [:day, :month, :year], :start_year => 2011,  :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
-                                                                                              'Octubre', 'Noviembre', 'Diciembre'], :prompt => false %>
+      <td><%= f.datetime_select :fecha_hora, :order => [:day, :month, :year], :start_year => 2013,  :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'], :prompt => false %>
 
 </td>
 

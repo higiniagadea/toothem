@@ -5,6 +5,7 @@ class CreateAranceles < ActiveRecord::Migration
       t.column :prestacion_id, :integer
       t.column :importe_cubierto, :float
       t.column :coseguro, :float
+      t.column :deleted_at, :date, :null => true
     end
   end
 

@@ -34,11 +34,24 @@
          <td>
             <%= f.text_field :diente, :size=>10, :class=> 'ui-widget-content required', :title=> 'Diente no puede estar en blanco, maximo dos caracteres', :onkeypress=> 'return validar(event)' %>
          </td>
-         <th>Cara </th>
-         <td>
-            <%= f.text_field :cara, :size=>10, :class=> 'ui-widget-content required', :title=> 'Cara no puede estar en blanco, maximo dos caracteres', :onkeypress=> 'return validar(event)' %>
-         </td>
-         </tr>
+         
+         
+
+          <th>Caras</th>
+          <td>
+              <%= f.collection_select(:cara_id, Cara.all, :id, :descripcion, {:include_blank => 'Seleccione'},           
+                                                                                       :class=> 'ui-widget-content required',
+                                                                                       :title=> 'Seleccione una cara') %>
+          </td>
+
+</tr>
+
+
+
+
+
+
+
 
          <tr>
          <th>Prestaci&oacute;n </th>
@@ -178,8 +191,8 @@
        wrapper: 'li',
        meta: "validate",
        rules :{
-          "tratamiento[diente]": {required: true, rangelength: [1,3]},
-           "tratamiento[cara]": {required: true, rangelength: [1,3]}
+          "tratamiento[diente]": {required: true, rangelength: [1,3]}
+       
        }
 
 

@@ -16,23 +16,18 @@
 
    <tr>
      <th>
-      Códigos por mes</th>
-     <td><%= f.text_field :nro_max_codigos_por_mes, :size =>10, :class=> 'ui-widget-content', :title=> 'Ingrese maximo numero de codigos', :onkeypress=> 'return validar(event)' %>
+      Domicilio</th>
+     <td><%= f.text_field :domicilio, :size =>10, :class=> 'ui-widget-content', :onkeypress=> 'return validar(event)' %>
     </td>
    </tr>
    <tr>
-    <th>
-      Auditoria previa</th>
-    <td><%= f.check_box :auditoria_previa, :class=> 'ui-widget-content' %>
+     <th>
+    Telefono</th>
+    <td><%= f.text_field :telefono, :class=> 'ui-widget-content', :onkeypress=> 'return validar(event)'  %>
     </td>
    </tr>
 
-   <tr>
-    <th>
-      Auditoria post</th>
-    <td><%= f.check_box :auditoria_post, :class=> 'ui-widget-content' %>
-    </td>
-   </tr>
+ 
 
  </table>
   

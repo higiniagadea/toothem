@@ -5,7 +5,7 @@ class Imagen < ActiveRecord::Base
   #validates
 
   validates_presence_of :archivo, :message => 'Seleccione un Archivo'
-  #validates_presence_of :descripcion, :observaciones, :message => ' no debe estar vacío'
+  validates_presence_of :descripcion, :observaciones, :message => ' no debe estar vacío'
 
   
  

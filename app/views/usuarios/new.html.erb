@@ -35,10 +35,20 @@
       <td><%= f.password_field :password_confirmation ,  :size => 15, :class=>'ui-widget-content required' %></td>
     </tr>
 
+    
+    <tr>
+      <th>Perfil</th>
+      <td> <%= f.collection_select(:perfil_id, Perfil.all, :id, :nombre, :class=>'ui-widget-content required') %>  
+                                                                                      
+                                                                                       </td>
+    </tr>
+
     <tr>
       <th>Administrador</th>
-      <td><%= f.check_box :administrador %></td>
+      <td><%= f.check_box :administrador ,  :size => 15, :class=>'ui-widget-content' %></td>
     </tr>
+
+
    </table>
   <table>
     

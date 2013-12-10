@@ -16,9 +16,13 @@
 
 <p><input type="submit" class="submit" value="Ingresar"/> <input type="button" class="button" value="Cancelar" onclick="this.form.reset()" /></p>
       <%#= submit_tag 'Ingresar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
-   <p style="text-align: left;"><%= link_to "Olvide mi contraseña", olvide_mi_clave_usuarios_url %></p>
+   
 <% end -%>
+
   </fieldset>
+
+<p style="text-align: left;"><%= link_to "Olvide mi contraseña", olvide_mi_clave_usuarios_path %></p>
+  
 <script type="text/javascript">
   $(document).ready(function(){
      $(function() {

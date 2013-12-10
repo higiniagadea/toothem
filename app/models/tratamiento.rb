@@ -5,7 +5,7 @@
   belongs_to :prestacion
   belongs_to :profesional
   belongs_to :obra_social
-
+  belongs_to :cara
   belongs_to :estado_tratamiento
   
 

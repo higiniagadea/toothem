@@ -30,7 +30,7 @@
     
         <table>
           <tr>
-          <td style=" float: left; margin-left:  1010px"> <%= link_to image_tag('printer.png'), imprimir_paciente_path, :title => 'Imprimir'%>
+          <td style=" float: left; margin-left:  1010px"> <%#= link_to image_tag('printer.png'), imprimir_paciente_path, :title => 'Imprimir'%>
           <%= link_to image_tag('cancel.png'), @paciente, :title=> 'Eliminar Paciente', :confirm => 'Esta seguro? No podrá deshacer esta acción', :method => :delete %></td>
         
           </tr>
@@ -95,7 +95,7 @@
           <td><%= f.text_field :telefono_particular, :class=> 'ui-widget-content ', :size=> 20, :onkeypress=> 'return validar(event)'  %>
           </td>
             <th>
-            M&oacute;vil</th>
+            Tel&eacute;fono M&oacute;vil</th>
           <td><%= f.text_field :movil, :class=> 'ui-widget-content', :size=>20, :onkeypress=> 'return validar(event)'  %>
           </td>
           <th>

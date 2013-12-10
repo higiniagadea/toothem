@@ -1,6 +1,6 @@
 class AgregarItems < ActiveRecord::Migration
   def self.up
-    #Item.create :nombre => 'root', :parent_id => 0
+    Item.create :nombre => 'root', :parent_id => 0
       Item.create :nombre => 'Pacientes', :url => "/pacientes/search", :parent_id => 1, :orden => 2, :estatico => true
         paciente = Item.find(:first, :conditions => "nombre like 'Pacientes'")
           Item.create :nombre => 'Listado', :url => "/pacientes", :parent_id => paciente.id, :orden => 1, :estatico => true, :url_imagen => "report_user.png"

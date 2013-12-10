@@ -11,7 +11,7 @@
       <tr class="<%= cycle('par','impar') -%>">
         <td><%=h consultorio.clinica.nombre %></td>
         <td><%=h consultorio.nombre %></td>
-        <td><%= link_to image_tag('magnifier_zoom_in.png'), consultorio, :id => 'ver_' + consultorio.id.to_s %>
+        <td><%= link_to image_tag('magnifier_zoom_in.png'), consultorio, :title => 'Ver' %>
         <%= link_to image_tag('pencil.png'), edit_consultorio_path(consultorio), :title => 'Editar', :id => 'edit_' + consultorio.id.to_s %>
         <%= link_to image_tag('cancel.png'), consultorio, :title => 'Eliminar', :confirm => 'Esta seguro? No podrá deshacer esta acción', :method => :delete %></td>
       </tr>

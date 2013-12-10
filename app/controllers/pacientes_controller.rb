@@ -2,10 +2,10 @@
 class PacientesController < ApplicationController
  
   before_filter  :generar_submenus
-  before_filter :login_required
+  before_filter :login_required, :only => [:edit, :update]
   layout 'default'
 
-
+#only => [:edit, :update solo para autenticas algunas acciones]
 
   def ver_saldo_pac
     
@@ -31,8 +31,9 @@ class PacientesController < ApplicationController
 
   def index
     @pagetitle = "Pacientes"
-    #consultorios = []
-    #current_usuario.consultorios.each {|x| consultorios << x.consultorio_id}
+
+    consultorios = []
+    current_usuario.consultorios.each {|x| consultorios << x.consultorio_id}
     @pacientes = Paciente.paginate :page=> params[:page], :per_page=> 15, :order => 'nombre ASC'
   
    
@@ -107,7 +108,8 @@ class PacientesController < ApplicationController
 
   
   def new
-    @paciente = Paciente.new   
+    @paciente = Paciente.new
+   
     respond_to do |format|
       format.html
       format.xml  { render :xml => @paciente }
@@ -116,24 +118,24 @@ class PacientesController < ApplicationController
 
   
   def edit
-
     params[:paciente_id]
     @archivo = Archivo.new
     @paciente = Paciente.find_by_id(params[:id])
     @odontograma = Odontograma.find(:first, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'created_at desc', :include => 'dientes')
     #@odontogramas = Odontograma.paginate(:page => params[:page], :per_page => 5, :conditions => ['paciente_id = ?' , @paciente.id.to_s], :order => 'created_at desc', :include => 'dientes')
    # @odontogramas = Odontograma.paginate(:page => params[:page], :per_page => 1, :conditions => ['paciente_id = ?', @paciente.id.to_s,], :order => 'created_at desc', :include => 'dientes')
-    @odonto = Odontograma.paginate(:page => params[:page], :per_page => 12, :conditions => ['paciente_id = ?', @paciente.id.to_s,],  :order => 'created_at desc')
+    @odonto = Odontograma.paginate(:page => params[:page], :per_page => 12, :conditions => ['paciente_id = ?', @paciente.id.to_s,], :order => 'created_at desc', :include => 'dientes')
+
     @imagenes = Imagen.find_all_by_paciente_id(@paciente.id)
     @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha ASC')
     @trat = Tratamiento.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['paciente_id = ? and estado_tratamiento_id = ?',  @paciente.id.to_s  , 5 ], :order => 'fecha ASC')
-    @pagos_pacientes = PagoPaciente.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['paciente_id = ?', @paciente.id.to_s] , :order => 'fecha ASC')
+    #@pagos_pacientes = PagoPaciente.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['paciente_id = ?', @paciente.id.to_s] , :order => 'fecha ASC')
    
-    @profesionales = Profesional.paginate(:page => params[:page], :per_page => 10)
-    @prestaciones = Prestacion.find(:all)  
+    #@profesionales = Profesional.paginate(:page => params[:page], :per_page => 10)
+    #@prestaciones = Prestacion.find(:all)  
  
 
-    @sald_pac = SaldoPaciente.find_by_sql('select ver_saldo_paciente(' + @paciente.id.to_s + ') as saldo ' )
+    #@sald_pac = SaldoPaciente.find_by_sql('select ver_saldo_paciente(' + @paciente.id.to_s + ') as saldo ' )
 
     unless @paciente.archivo_id.blank?
       @archivo_ant = Archivo.find(@paciente.archivo_id)
@@ -282,8 +284,8 @@ class PacientesController < ApplicationController
 
      
   def create
-    params[:paciente][:consultorio_id]= current_usuario.consultorios
-    #params[:paciente][:usuario_id]= current_usuario.id
+    #params[:paciente][:consultorio_id]= current_usuario.consultorios
+    params[:paciente][:usuario_id]= current_usuario.id
     @paciente = Paciente.new(params[:paciente])
     @title = "Nuevo paciente"
     respond_to do |format|
@@ -324,9 +326,15 @@ class PacientesController < ApplicationController
 
   
   def destroy
-    @paciente = Paciente.find(params[:id])   
+    @paciente = Paciente.find(params[:id])
+   
     respond_to do |format|
-     if @paciente.destroy   
+     if @paciente.destroy
+      @paciente.tratamientos.destroy
+      @paciente.imagenes.destroy
+      @paciente.odontogramas.destroy
+      @paciente.historia_clinica_general.destroy
+      @paciente.historia_clinica_ortodoncia.destroy
       
       flash[:notice] = 'Paciente Eliminado.'
       format.html { redirect_to(search_pacientes_url) }
@@ -390,42 +398,41 @@ def elimina_tit
   @paciente = Paciente.find(params[:id])
   @paciente.update_attribute(:titular_id, nil)
    respond_to do |format|
-  
       format.html {redirect_to(edit_paciente_path(@paciente) + '#obra_social') }
-   end
-
+      
+end
 end
 
 #valida la matricula del titular
-def verificar_matricula_tit
+#def verificar_matricula_tit
 
-    @titular = Titular.find(:first, :conditions => {:matricula => params[:titular][:matricula]})
-    respond_to do |format|
-    format.json { render :json => !@titular}
-    end
-  end
+ #   @titular = Titular.find(:first, :conditions => {:matricula => params[:titular][:matricula]})
+  #  respond_to do |format|
+   # format.json { render :json => !@titular}
+    #end
+  #end
 
 #valida el nro de afiliado del titular
-def verificar_nroafiliado_tit
-  @titular = Titular.find(:first, :conditions => {:nro_afiliado => params[:titular][:nro_afiliado]})
-    respond_to do |format|
-    format.json { render :json => !@titular}
-    end
-  end
+#def verificar_nroafiliado_tit
+#  @titular = Titular.find(:first, :conditions => {:nro_afiliado => params[:titular][:nro_afiliado]})
+#    respond_to do |format|
+ #   format.json { render :json => !@titular}
+  #  end
+  #end
 
-def verificar_numeroafiliado
-  @paciente = Paciente.find(:first, :conditions => {:nro_afiliado => params[:paciente][:nro_afiliado]})
-    respond_to do |format|
-    format.json { render :json => !@paciente}
-    end
-  end
+#def verificar_numeroafiliado
+  #@paciente = Paciente.find(:first, :conditions => {:nro_afiliado => params[:paciente][:nro_afiliado]})
+    #respond_to do |format|
+   # format.json { render :json => !@paciente}
+  #  end
+ # end
 
-def verificar_numeromatricula
-  @titular = Titular.find(:first,:conditions => {:matricula => params[:titular][:matricula]})
-    respond_to do |format|
-    format.json { render :json => !@paciente}
-    end
-  end
+#def verificar_numeromatricula
+  #@titular = Titular.find(:first,:conditions => {:matricula => params[:titular][:matricula]})
+    #respond_to do |format|
+    #format.json { render :json => !@paciente}
+   # end
+  #end
 
 def buscar_dni
   @paciente = Paciente.new
@@ -467,7 +474,7 @@ end
 end
 
 end
- 
+
 
 
 

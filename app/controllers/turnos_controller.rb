@@ -17,8 +17,8 @@ class TurnosController < ApplicationController
        if params[:profesional][:profesional_id].blank?
          format.html{render :text => '<span style="color:red">Seleccione un profesional</span>' }
        else
-#         @turnos = Turno.find(:all, :conditions => ['profesional_id= ?', params[:profesional][:profesional_id]])
-#         @tareas = Tarea.find(:all, :conditions => ['profesional_id= ?', params[:profesional][:profesional_id]])
+        @turnos = Turno.find(:all, :conditions => ['profesional_id= ?', params[:profesional][:profesional_id]])
+        @tareas = Tarea.find(:all, :conditions => ['profesional_id= ?', params[:profesional][:profesional_id]])
         format.html{render :layout => false, :partial => 'agenda'}
        
         end
@@ -29,7 +29,7 @@ class TurnosController < ApplicationController
 
     @turno = Turno.find(params[:id])
     respond_to do |format|
-      format.html{ render :partial => 'agenda', :layout => 'default'}
+      format.html{ render :partial => 'agenda', :layout => 'false'}
    end
   end
 
@@ -46,8 +46,9 @@ class TurnosController < ApplicationController
 
 
    def new    
+
     @turno = Turno.new    
-    @profesional = Profesional.find(params[:profesional_id]) unless params[:profesional_id].blank?
+      @profesional = Profesional.find(params[:profesional_id]) unless params[:profesional_id].blank?
    respond_to do |format|
      format.html{render :layout => false}
       format.xml  { render :xml => @turno }
@@ -122,15 +123,15 @@ class TurnosController < ApplicationController
 
 
 
-# def get_turnos
-#    @turnos = Turno.find(:all, :include => 'profesional')
-#
-#    events = []
-#    @turnos.each do |turno|
-#    events << {:id => "#{turno.id.to_s}", :title => "#{turno.paciente_id}", :start => "#{turno.fecha_hora.iso8601}", :end => "#{(turno.fecha_hora.iso8601 + (60 * turno.duracion))}"}
-#    end
-#    render :text => events.to_json
-#  end
+ def get_turnos
+    @turnos = Turno.find(:all, :include => 'profesional')
+
+    events = []
+    #@turnos.each do |turno|
+    events << {:id => "#{turno.id.to_s}", :title => "#{turno.paciente_id}", :start => "#{turno.fecha_hora.iso8601}", :end => "#{(turno.fecha_hora.iso8601 + (60 * turno.duracion))}"}
+    
+    #render :text => events.to_json
+  end
 
 
   def cambios
@@ -141,7 +142,7 @@ class TurnosController < ApplicationController
 
   def resultado
     @profesionales = Profesional.find(params[:profesional][:profesional_id]) if params[:profesional][:profesional_id]
-    #params[:turno][:profesional_id] = params[:profesional][:profesional_id] if params[:profesional][:profesional_id].blank?
+    params[:turno][:profesional_id] = params[:profesional][:profesional_id] if params[:profesional][:profesional_id].blank?
     respond_to do |format|
 
       params[:turno][:profesional_id] == @profesionales.id

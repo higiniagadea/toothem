@@ -24,11 +24,11 @@ class SessionsController < ApplicationController
       session[:consultorio] = Consultorio.find(:first, :conditions => ['id in (?)', current_usuario.consultorios])
       session[:user_menu] = Item.find(:all, :conditions => 'parent_id = 1', :order => 'orden')
 
-      #paciente = Item.find(:first,:conditions => ["url = ?", '/pacientes'])
-      #params[:item_selected] = paciente
+      paciente = Item.find(:first,:conditions => ["url = ?", '/pacientes'])
+      params[:item_selected] = paciente
       generar_submenus
 
-      session[:subitems] = Item.find(:all, :conditions => "lower(url) LIKE '%/profesionales/%'")
+      #session[:subitems] = Item.find(:all, :conditions => "lower(url) LIKE '%/profesionales/%'")
 
       handle_remember_cookie! new_cookie_flag
       redirect_back_or_default('/pacientes/search')

@@ -5,7 +5,7 @@
   <table>
   
      <tr>
-       <td style=" float: left; margin-left: 800px">El saldo actual es : $<%= @sald_pac[0].saldo.to_s %><br/><br/></td>
+       <td style=" float: left; margin-left: 800px">El saldo actual es : <%#= @sald_pac[0].saldo %><br/><br/></td>
        <td style=" float: left; margin-left: 800px"><%= link_to image_tag('add.png') + 'Nuevo Pago', new_pago_paciente_url(:paciente_id=> @paciente.id.to_s), :id => 'pago' %>
        </td>
      </tr>

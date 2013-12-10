@@ -87,17 +87,18 @@ end
     end
   end
 
-  #def resultado
-  #  respond_to do |format|
-   #   if params[:periodo][:mes].blank?
-    #    format.html{render :text => "Seleccione un Año para realizar la busqueda " }
-     # elsif
-      #   format.html{render :partial=> 'resultado', :layout => false }
+#este
+  def resultado
+   respond_to do |format|
+      if params[:periodo][:mes].blank?
+        format.html{render :text => "Seleccione un Año para realizar la busqueda " }
+      elsif
+         format.html{render :partial=> 'resultado', :layout => false }
 
-       # @periodos = Periodo.buscar(params[:mes])
-      #end
-    #end
-  #end
+        @periodos = Periodo.buscar(params[:mes])
+      end
+    end
+  end
 
   def resultado
     respond_to do |format|     

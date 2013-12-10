@@ -6,11 +6,10 @@
     <%= label_tag 'AGENDA_TAREA', 'Tarea'   %>
     <%= radio_button_tag 'AGENDA', 'TAREA',false, :value => 2  %>
 
-  <div id="turnos"><%= render :partial => 'new'  %> </div>
+  <div id="turnos"><%= render :partial => 'new' %> </div>
 
   <div id="tareas"><%= render :partial => 'tareas/new'  %> </div>
-  <br/>
-  <br/>
+  
 </fieldset>
    
    
@@ -19,9 +18,9 @@
 <script type="text/javascript">
   mostrar_evento();
   
-   $('#AGENDA_turno').click(function(){
+      $('#AGENDA_turno').click(function(){
       mostrar_evento();
-    });
+      });
 
       $('#AGENDA_tarea').click(function(){
       mostrar_evento();
@@ -44,6 +43,7 @@
            $('#turnos').hide();
             //$('#new_turno').attr('action', '/tareas');
              //$('#new_turno').attr('class', 'new_tarea');
+           
            //$("#fancybox-outer").width(490);
            //$("#fancybox-outer").height(330);
            //$("#fancybox-inner").width(460);
@@ -52,8 +52,8 @@
        }
 
        };
-  
+
+
 
        
 </script>
-

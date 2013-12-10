@@ -5,12 +5,12 @@
 #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
 development:
   adapter: postgresql
-  encoding: unicode
+  #encoding: unicode
   database: toothem_development
   pool: 5
-  username: toothem
-  password: toothem
-  host: 10.1.0.8
+  username: postgres
+  password: postgres
+  host: localhost
   port: 5432
 
 #test:
@@ -23,13 +23,13 @@ development:
 #  host: 10.1.0.8
 #  port: 5432
 #
-production:
-  adapter: jdbcpostgresql
-  encoding: unicode
-  database: toothem_development
-  pool: 5
-  username: toothem
-  password: toothem
-  host: 10.1.0.8
-  port: 5432
+#production:
+ # adapter: jdbcpostgresql
+ # encoding: unicode
+  #database: toothem_development
+  #pool: 5
+  #username: toothem
+  #password: toothem
+  #host: 10.1.0.8
+  #port: 5432
 

@@ -13,8 +13,8 @@ class CreateProfesionales < ActiveRecord::Migration
       t.column :fecha_nacimiento, :date
       t.column :fecha_ingreso, :date
       t.column :estado_laboral_id, :integer
-      t.column :consultorio_id, :integer
-
+    
+ t.column :deleted_at, :date, :null => true
     end
      
   end

@@ -5,7 +5,8 @@ class CreateTitulares < ActiveRecord::Migration
         t.column :matricula, :string, :limit => 50
         t.column :obra_social_id, :integer
         t.column :consultorio_id , :integer
-
+        t.column :deleted_at, :date, :null => true
+        t.column :nro_afiliado, :integer
 
     end
   end

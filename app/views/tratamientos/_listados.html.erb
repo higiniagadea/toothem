@@ -32,19 +32,19 @@
   
     <th><%=h tratamiento.prestacion.descripcion %></th>
     <th><%=h tratamiento.diente %></th>
-    <th><%=h tratamiento.cara %></th>
+    <th><%=h tratamiento.cara.descripcion %></th>
    
     <th><%=h number_to_currency(tratamiento.coseguro) %></th>
     <th><%=h tratamiento.estado_tratamiento.nombre %></th>
       
-    <td><%= link_to image_tag('magnifier_zoom_in.png'), tratamiento, :title => "Ver", :id=> 'ver_' + tratamiento.id.to_s %>
+    <td><%#= link_to image_tag('magnifier_zoom_in.png'), tratamiento, :title => "Ver", :id=> 'ver_' + tratamiento.id.to_s %>
 
     <% if tratamiento.estado_tratamiento_id != 5 && unless @paciente.titular.blank?   %>
       <%= link_to image_tag('pencil.png'), edit_tratamiento_path(tratamiento, :paciente_id => @paciente), :title => 'Editar', :id=> 'editar_'+ tratamiento.id.to_s %>
    
       <%else%>
 
-       <% if tratamiento.fue_liquidado == false  %>
+       <% if tratamiento.fue_liquidado != false  %>
      <%= link_to image_tag('pencil.png'), edit_tratamiento_path(tratamiento, :paciente_id => @paciente), :title => 'Editar', :id=> 'editar_'+ tratamiento.id.to_s %>
     <%end%>
      <%end%>
@@ -74,7 +74,7 @@
       });
                
            
-      });
+      })
  
       </script>
      <%end%>     
@@ -83,7 +83,7 @@
   No posee tratamientos
  <% end%>
    </table>
-    <br/>
+  <br/>
     <br/>
     <table>
     <%= will_paginate @tratamientos, :previous_label =>'Anterior', :next_label => 'Siguiente' ,

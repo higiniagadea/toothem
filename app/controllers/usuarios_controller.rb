@@ -22,7 +22,7 @@ class UsuariosController < ApplicationController
 
       redirect_back_or_default('/usuarios/buscar')
       flash[:notice] = 'Usuario creado'
-      #self.current_usuario = @usuario
+      self.current_usuario = @usuario
       
     else
       render :action => 'new'     
@@ -75,7 +75,7 @@ class UsuariosController < ApplicationController
 
   def resultado
    respond_to do |format|
-       @usuarios = Usuario.buscar(params).paginate(:page => params[:page], :per_page=> 10, :order => 'login ASC')
+       @usuarios = Usuario.buscar(params).paginate(:page => params[:page], :per_page=> 10, :order => 'name ASC')
         format.html {render :partial => 'resultado', :layout => false}
       end
   end
@@ -93,12 +93,13 @@ class UsuariosController < ApplicationController
 
   def olvide_mi_clave
     respond_to do |format|
-      format.html{render :layout => 'session'}
+      format.html
     end
   end
 
  
  def enviar_email #envia el mail porq olvido la contraseña
+   
     @usuario = Usuario.find_by_email(params[:usuario][:email])
     if @usuario
       if @usuario.login == params[:usuario][:login]
@@ -109,7 +110,7 @@ class UsuariosController < ApplicationController
        if @usuario.update_attribute(:password, newpassword) 
 
           @usuario[:newpassword] = newpassword
-        #Notificador.create_cambio_de_clave(@usuario)
+        Notificador.create_cambio_de_clave(@usuario)
         Notificador.deliver_envio_clave_nueva(@usuario) # sends the email
         flash[:notice] = "Se le ha enviado un email con los pasos a seguir para su cambio de clave. Verifique su casilla de correo."
 

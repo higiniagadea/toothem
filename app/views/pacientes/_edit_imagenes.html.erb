@@ -37,15 +37,16 @@
                 </p>
            </div>
 
-                <p>
+                <p>aaaaaaaaa
                  <%= image_tag imagen.archivo.public_filename(:thumb) %>
+                >
                 </p>
 
                 <p>Descripcion:  <%= imagen.descripcion.blank? ? '-' :imagen.descripcion %> </p>
 
                 <p>Observaciones: <%= imagen.observaciones.blank? ? '-' :imagen.observaciones%>  </p>
 
-                <p>Fecha <%= imagen.fecha.blank? ? '-' : imagen.fecha.strftime('%d/%m/%Y')%></p>
+                <p>Fecha <%= imagen.fecha.strftime('%d/%m/%Y').blank? ? '-' : imagen.fecha.strftime('%d/%m/%Y')%></p>
         </div>
         <%end%>
        

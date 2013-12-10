@@ -3,6 +3,7 @@
   <tr>
   <a>
 <%= link_to 'Nuevo Evento', turno_tarea_turnos_path, :id => 'nuevo' %>
+
   </a></tr>
 </table>
 <table>
@@ -12,8 +13,6 @@
 </div>
 
 <script type="text/javascript">
-  
-
 $('#nuevo').mouseover(function(){
    $(this).attr('href', '<%= turno_tarea_turnos_path %>?profesional_id='+$('#profesional_profesional_id').val())
 })
@@ -24,7 +23,7 @@ $(document).ready(function(){
           header: {
               left: 'prev,next',
               center: 'title'
-              /*right: 'month,agendaWeek,agendaDay'*/
+              //right: 'month,agendaWeek,agendaDay'
           },
           defaultView: 'agendaWeek',
           height: 600,
@@ -36,19 +35,19 @@ $(document).ready(function(){
           columnFormat:'ddd d/M',
          // titleFormat : "MMM d[ yyyy]{ '&#8212;' d 'del' yyyy}",
            titleFormat : "MMM d[ yyyy]{ '&#8212;'[MMM] dd 'del' yyyy}",
-          weekends: false,
+          weekends: true, //muestra sab y domingo en el calendario
           defaultEventMinutes : 30,
 
           buttonText: {prev: '&nbsp;&#9668;&nbsp;',
-		next: '&nbsp;&#9658;&nbsp;',
-		prevYear: '&nbsp;&lt;&lt;&nbsp;',
-		nextYear: '&nbsp;&gt;&gt;&nbsp;',
+		      next: '&nbsp;&#9658;&nbsp;',
+		      prevYear: '&nbsp;&lt;&lt;&nbsp;',
+		      nextYear: '&nbsp;&gt;&gt;&nbsp;',
                 today : 'Hoy'},
 
           unselectAuto: false,
           weekMode : false,
-
-
+          slotEventOverlap : false,
+          renderEvent : false,
           monthNamesShort : ['Enero' , 'Febrero' , 'Marzo' , 'Abril' , 'Mayo' , 'Junio' , 'Julio' ,
                         'Agosto' , 'Septiembre' , 'Octubre' , 'Noviembre' , 'Diciembre' ],
 
@@ -57,34 +56,38 @@ $(document).ready(function(){
 
           events:
             [
-
+              
             <% for turno in @turnos = Turno.find(:all, :conditions => ['profesional_id = ?', params[:profesional][:profesional_id]])   -%>
-            
-              {
-               id : 'turno: <%= turno.id.to_s %>',
-               title  : 'Paciente: <%= turno.paciente.nombre %> \n\
-                          Duracion: <%= turno.duracion.to_i %> minutos' ,
-               start : '<%= turno.fecha_hora.iso8601 %>',
-               end : '<%= (turno.fecha_hora + (60 * turno.duracion)) %>',
+            {
+                  
+              id : 'turno: <%= turno.id.to_s %>',
+               title  : 'Paciente: <%= turno.paciente_id %> Profesional <%= turno.profesional.nombre.to_s %> \n\
+                          Duracion: <%= turno.duracion %> minutos',
+               start : '<%= turno.fecha_hora.to_time %>',
+               end : '<%= (turno.fecha_hora.to_time + (60 * turno.duracion)) %>',
                allDay : false,
                url: '<%= eliminar_turno_path(turno) %>'
-
+               
               },
+          
+            
             <% end %>
+
               <% for tarea in @tareas = Tarea.find(:all, :conditions => ['profesional_id = ?', params[:profesional][:profesional_id]])   -%>
-             
-              {
+             { 
+              
                id : 'tarea: <%= tarea.id.to_s %>',
                title  : 'Tarea: <%= tarea.observaciones  %> \n\
                          Duracion : <%= tarea.duracion %> minutos',
-               start : '<%= tarea.fecha_hora.iso8601 %>',
-               end : '<%=  (tarea.fecha_hora + (60 * tarea.duracion)) %>',
+               start : '<%= tarea.fecha_hora.to_time.iso8601 %>',
+               end : '<%=  (tarea.fecha_hora.to_time + (60 * tarea.duracion)) %>',
                allDay : false,
                url: '<%= eliminar_tarea_path(tarea) %>'
 
               },                
 
             <% end %>
+ 
 
               ],
 
@@ -95,10 +98,10 @@ $(document).ready(function(){
 
           eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc){
               //if (confirm("Are you sure about this change?")) {
-                  moveEvent(event, dayDelta, minuteDelta, allDay);
+                //  moveEvent(event, dayDelta, minuteDelta, allDay);
               //}
               //else {
-              //    revertFunc();
+                //  revertFunc();
               //}
           },
 
@@ -116,10 +119,12 @@ $(document).ready(function(){
               if (confirm('Esta seguro de eliminar? Esta accion no se podra deshacer')){
                 event.url;
               //return false;
-              }else{
-                return false;
               }
-        }
+              else
+               {
+                 return false;
+               }
+             }
           }
 
      });

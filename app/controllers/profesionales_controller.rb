@@ -53,7 +53,7 @@ class ProfesionalesController < ApplicationController
   # POST /profesionales.xml
   def create
    
-    params[:profesional][:consultorio_id]= current_usuario.consultorios
+    #params[:profesional][:consultorio_id]= current_usuario.consultorios
     @profesional = Profesional.new(params[:profesional])
 
     respond_to do |format|

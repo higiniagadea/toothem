@@ -2,7 +2,7 @@ class PeriodosObrasSocialesController < ApplicationController
   layout 'default'
 
   def liquidar
-  #@periodos = Periodo.find(:all, :order => 'mes DESC', :conditions => ['fue_liquidado = ?', false])
+  @periodos = Periodo.find(:all, :order => 'mes DESC', :conditions => ['fue_liquidado = ?', false])
  
   respond_to do |format|
       format.html
@@ -18,6 +18,7 @@ end
     end
   end
 
+
 def resultado_liq_os
   
   respond_to do |format|
@@ -28,8 +29,10 @@ def resultado_liq_os
   else
     format.html{render :text => '<span style="color:red"> Seleccione el periodo para liquidar</span>'}
   end
-  #Periodo.find_by_sql('select actualizar_cta_paciente(7)')
+  Periodo.find_by_sql('select actualizar_cta_paciente()')
 end
+
+
 end
   def index
      @periodos_obras_sociales = PeriodoObraSocial.paginate(:page=> params[:page], :per_page=> 12, :order => 'mes DESC', :conditions => ['fue_liquidado = ?', false])
