@@ -1,0 +1,8 @@
+# ignorar logs
+log/*.log
+tmp/**/*
+nbproject/**/*
+db/schema.rb
+**/*.rb.swp
+nbproject/*.xml
+config/database.yml
