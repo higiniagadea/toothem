@@ -1,0 +1,70 @@
+cambiar la parte de tratamientos
+cambiar la parte de liquidacion de obra social y pacientes.
+elimianar tareas del profesional.
+ver carpeta de imagenes
+ver xq no muestra e
+
+
+
+http://thewebfellas.com/blog/2008/11/2/goodbye-attachment_fu-hello-paperclip pagina de la galeria de imagenes
+
+
+
+hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhoooooooooooo
+
+
+
+
+archivo.rb
+  def image_file=(input_data)
+    self.filename = input_data.original_filename
+    self.content_type = input_data.content_type.chomp
+    self.binary_data = input_data.read
+  end
+
+
+edit-imagenes 
+ <%  thumbnail = Archivo.find(:first, :conditions => 'parent_id ='+ imagen.archivo_id.to_s)%>
+
+controller archivo
+
+  def create
+    @archivo = Archivo.new(params[:archivo])
+    @paciente = Paciente.find(params[:paciente][:id])
+  respond_to do |format|
+    if @archivo.save
+      @paciente.update_attribute(:archivo_id, @archivo.id)
+      flash[:notice] = 'Imagen cambiada'
+      redirect_to(@paciente)
+    else
+      format.html { redirect_to edit_paciente_path(@paciente)}
+      flash[:error] = 'Error. Seleccione una imagen'
+      #redirect_to(@paciente)
+    end
+  end
+  end
+  
+
+  def show
+    @image_data = Archivo.find(params[:id])
+    @image = @image_data.db_file.data
+    send_data(@image, :type => @image_data.content_type,
+                      :filename => @image_data.filename,
+                      :disposition => 'inline')
+  end
+
+
+
+controller imagen
+  def destroy
+    @imagen = Imagen.find(params[:id])
+    @archivo = Archivo.find(@imagen.archivo_id)
+    @archivo_thumbnail = Archivo.find(:first, :conditions => 'parent_id =' + @archivo.id.to_s)
+    @archivo_thumbnail.destroy
+    @archivo.destroy
+    @imagen.destroy
+    respond_to do |format|
+      format.html { redirect_to(paciente_url(@imagen.paciente_id)) }
+      format.xml  { head :ok }
+    end
+  end
