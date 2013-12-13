@@ -1,6 +1,6 @@
 class AccionesController < ApplicationController
 
-  layout 'default'
+  #layout 'default'
   before_filter  :generar_submenus
 
 
