@@ -98,7 +98,7 @@ class UsuariosController < ApplicationController
   end
 
  
- def enviar_email #envia el mail porq olvido la contraseña
+ def enviar_email #envia el mail porq olvido la contraseña boton olvide mi contraseña
    
     @usuario = Usuario.find_by_email(params[:usuario][:email])
     if @usuario

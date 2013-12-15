@@ -2,6 +2,7 @@
     <legend class="ui-widget ui-widget-header ui-corner-all">Cambiar Contraseña</legend>
     <% form_tag establecer_nueva_clave_usuarios_url, :id => 'form_cambiar_clave' do -%>
   <table style=" text-align: left;">
+    <%#cambia la contraseña dentro de la sesion=%>
     <tr>
         <td>Contraseña Anterior</td>
         <td><%= password_field_tag  :clave_anterior, nil ,:class => 'required ui-widget-content', :id => 'clave_anterior'  %>
@@ -38,7 +39,7 @@
        meta: "validate",
        rules :{
           "#passw":{required:true, equalTo: "#new_pasw" }
-          //"#password":{required:true, remote:"/usuarios/verificar_clave_email?usuario[password]=" + $('#password').val()  }
+          "#password":{required:true, remote:"/usuarios/verificar_clave_email?usuario[password]=" + $('#password').val()  }
        },
         messages:{
            "#new_pasw":{equalTo:'Contraseña y Confirmacion no coinciden'}

@@ -38,17 +38,25 @@ Rails::Initializer.run do |config|
 
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
   # Run "rake -D time" for a list of tasks for finding time zone names.
-  #config.time_zone = 'Buenos Aires'
+  config.time_zone = 'Buenos Aires'
   Date::MONTHNAMES = %w(nil Enero Febrero Marzo Abril Mayo Junio Julio Agosto Septiembre Octubre Noviembre Diciembre)
-    config.action_mailer.smtp_settings = {
+  config.action_mailer.smtp_settings = {
     :enable_starttls_auto => true,
     :authentication => :plain,
     :address        => 'smtp.gmail.com',
     :port           => 587,
-    :domain         => 'ipcorp.com.ar',
-    :user_name      => 'contacto@ipcorp.com.ar',
-    :password       => 'paratinaicos'
-  }#configurar para mandar mail para cambiar password
+    :domain         => 'github.com',
+    :user_name      => 'higiniagadea@github.com',
+    :password       => '236639hg'
+  }
+  #}#configurar para mandar mail para cambiar password
+ 
+ 
+
+
+
+
+
 
   #config.gem 'ryanb-scope-builder', :lib => 'scope_builder', :source => 'http://gems.github.com'
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
