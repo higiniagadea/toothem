@@ -1,6 +1,6 @@
-class CreateDientes <  ActiveRecord::Migration
+class CreateDientesFake <  ActiveRecord::Migration
   def self.up
-    create_table "dientes" do |t|
+    create_table "dientes_fakes" do |t|
 
         t.column :diente, :integer
         t.column :cara_superior, :string
@@ -18,4 +18,3 @@ class CreateDientes <  ActiveRecord::Migration
     drop_table "dientes"
   end
 end
-
