@@ -20,7 +20,7 @@ TipoDocumento.create :descripcion=>'L.E.'
 TipoDocumento.create :descripcion=>'C.I.'
 
 pacientes = Paciente.create([{ :nombre => 'Carlos Barbiero',
-                                                           :tipo_documento => 1,
+                                                           :tipo_documento_id => 1,
                                                            :matricula => "27711711",
                                                            :domicilio_particular => "Blas Parera",
                                                            :domicilio_laboral => "9 julio",
@@ -40,7 +40,7 @@ pacientes = Paciente.create([{ :nombre => 'Carlos Barbiero',
                                                            :localidad_id => 1
                                                         },
                                                         {:nombre => 'Cecilia',
-                                                           :tipo_documento => 1,
+                                                           :tipo_documento_id => 1,
                                                            :matricula => "2000000",
                                                            :domicilio_particular => "Dr nicolini",
                                                            :domicilio_laboral => "25 mayo",
