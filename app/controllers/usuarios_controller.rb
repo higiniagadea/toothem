@@ -13,7 +13,7 @@ class UsuariosController < ApplicationController
  
   def create
     #logout_keeping_session!
-
+    params
     @usuario = Usuario.new(params[:usuario])
  
     success = @usuario && @usuario.save
@@ -98,7 +98,7 @@ class UsuariosController < ApplicationController
   end
 
  
- def enviar_email #envia el mail porq olvido la contraseña boton olvide mi contraseña
+ def enviar_email #envia el mail porq olvido la contraseña boton olvide mi contraseña afuera de la sesion
    
     @usuario = Usuario.find_by_email(params[:usuario][:email])
     if @usuario
@@ -181,23 +181,23 @@ class UsuariosController < ApplicationController
 
           if current_usuario.save!
               
-              flash[:notice] = "Clave cambiada correctamente"
+              flash[:notice] = "Contraseña cambiada correctamente"
               redirect_to buscar_usuarios_path
           else
              redirect_to buscar_usuarios_path
-              flash[:error] = "La clave no ha podido modificarse debido a un error interno"
+              flash[:error] = "La contraseña no ha podido modificarse debido a un error interno"
              
           end
 
       else
         redirect_to buscar_usuarios_path
-          flash[:error] = "Clave nueva y confirmaci&oacute;n no coinciden"
+          flash[:error] = "Contraseña nueva y confirmaci&oacute;n no coinciden"
            
       end
     else
         
         redirect_to buscar_usuarios_path
-        flash[:error] = "Clave anterior incorrecta"
+        flash[:error] = "Contraseña anterior incorrecta"
     end
   end
 

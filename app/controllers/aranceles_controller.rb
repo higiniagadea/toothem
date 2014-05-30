@@ -22,7 +22,7 @@ class ArancelesController < ApplicationController
   def create
     @arancel = @obra_social.aranceles.new(params[:arancel])
     @aranceles = @obra_social.aranceles.paginate :page => params[:page], :per_page => 15, :order => 'prestacion_id ASC'
-   # @formulario = params[:arancel]
+   
     respond_to do |format|
       if @arancel.save
         flash[:notice] = 'Arancel creado exitosamente.'

@@ -64,7 +64,7 @@ def lista
     respond_to do |format|
       if aux == true
           @odontograma.save
-          flash[:notice] = 'Odontograma Creado'
+          flash[:notice] = 'Odontograma guardado'
       else
         flash[:error] = 'Seleccione al menos un diente'
       end

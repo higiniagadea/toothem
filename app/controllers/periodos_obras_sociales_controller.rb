@@ -2,8 +2,7 @@ class PeriodosObrasSocialesController < ApplicationController
   layout 'default'
 
   def liquidar
-  @periodos = Periodo.find(:all, :order => 'mes DESC', :conditions => ['fue_liquidado = ?', false])
- 
+  @periodos_obras_sociales = PeriodoObraSocial.find(:all, :order => 'mes DESC', :conditions => ['fue_liquidado = ?', false])
   respond_to do |format|
       format.html
     end
@@ -20,16 +19,14 @@ end
 
 
 def resultado_liq_os
-  
-  respond_to do |format|
-
-  unless params[:periodo_obra_social][:periodo_id].blank?
-    @result =  PeriodoObraSocial.find_by_sql('select actualizar_cta_os(' + params[:periodo_obra_social][:periodo_id].to_s + ') as liquidacion'  )
+    respond_to do |format|
+  unless params[:periodo_obra_social][:periodo_obra_social_id].blank?
+    @result =  PeriodoObraSocial.find_by_sql('select actualizar_cta_os(' + params[:periodo_obra_social][:periodo_obra_social_id].to_s + ') as liquidacion'  )
     format.html {render :partial => 'resultado_liq_os'}
   else
     format.html{render :text => '<span style="color:red"> Seleccione el periodo para liquidar</span>'}
   end
-  Periodo.find_by_sql('select actualizar_cta_paciente()')
+  Periodo.find_by_sql('select actualizar_cta_paciente(' + params[:periodo_obra_social][:periodo_obra_social_id].to_s + ') as liquidacion' )
 end
 
 
@@ -62,7 +59,7 @@ end
 
        if @periodo_obra_social.save
         flash[:notice] = 'Per&iacute;odo Guardado'
-        format.html { redirect_to buscar_periodos_obras_sociales_path}
+        format.html { redirect_to liquidar_periodos_obras_sociales_path}
        else
           format.html { render :partial => 'new', :layout => 'default' }
       end

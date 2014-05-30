@@ -58,7 +58,7 @@ class ProfesionalesController < ApplicationController
 
     respond_to do |format|
       if @profesional.save
-        flash[:notice] = 'Profesional creado.'
+        flash[:notice] = 'Profesional guardado.'
         format.html { redirect_to buscar_profesionales_path  }
        
       else

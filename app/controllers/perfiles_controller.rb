@@ -44,6 +44,7 @@ class PerfilesController < ApplicationController
   # POST /perfiles
   # POST /perfiles.xml
   def create
+    
     @perfil = Perfil.new(params[:perfil])
 
     respond_to do |format|
@@ -61,13 +62,13 @@ class PerfilesController < ApplicationController
   # PUT /perfiles/1
   # PUT /perfiles/1.xml
   def update
+
     @perfil = Perfil.find(params[:id])
     params[:perfil][:estatico]
-    
-
+  
     respond_to do |format|
 
-      if @perfil.update_attributes(params[:perfil])
+      if @perfil.update_attributes(params[:perfil_id])
         flash[:notice] = 'Perfil actualizado.'
         format.html { redirect_to(@perfil) }
         format.xml  { head :ok }

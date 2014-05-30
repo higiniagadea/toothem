@@ -99,12 +99,12 @@ class TratamientosController < ApplicationController
     @paciente = Paciente.find(params[:tratamiento][:paciente_id])  
     @tratamiento = Tratamiento.new(params[:tratamiento])
     
-   
     #@tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 5, :conditions => ['paciente_id = ?', @paciente.id.to_s])
   
     respond_to do |format|
+    
       if  @tratamiento.save
-        flash[:notice] = 'Tratamiento creado.'
+        flash[:notice] = 'Tratamiento guardado.'
         format.html { redirect_to edit_paciente_path(@paciente) + '#tratamientos' }    
       else
         format.html {render :partial => 'new', :layout => 'default'}
@@ -134,7 +134,7 @@ class TratamientosController < ApplicationController
     @tratamiento = Tratamiento.find(params[:id])    
     @paciente = Paciente.find(params[:paciente_id])
     
-    if @tratamiento.fue_liquidado == true
+    if @tratamiento.fue_liquidado = false
       flash[:notice] = 'El tratamiento no puede ser borrado ya que no fue liquidado'
     else
      
