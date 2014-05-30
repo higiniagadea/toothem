@@ -7,10 +7,6 @@ class CreateColores <  ActiveRecord::Migration
 
       t.timestamps
     end
-     Color.create :descripcion => 'Azul'
-     Color.create :descripcion => 'Rojo'
-     Color.create :descripcion => 'trat a realizar'
-     Color.create :descripcion => 'trat realizado'
   end
 
   def self.down

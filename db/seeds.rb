@@ -75,3 +75,9 @@ titulares = Titular.create([{
                                                            :obra_social_id=> 2,
                                                            :consultorio_id => 1}
                                                       ])
+
+Color.create :descripcion => 'Azul'
+Color.create :descripcion => 'Rojo'
+Color.create :descripcion => 'trat a realizar'
+Color.create :descripcion => 'trat realizado'
+
