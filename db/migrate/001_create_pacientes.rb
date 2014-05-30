@@ -6,7 +6,7 @@ class CreatePacientes < ActiveRecord::Migration
 
       t.column :tipo_documento_id, :integer
 
-      t.column :matricula, :string, :limit => 50, :null => false
+      t.column :nro_documento, :string, :limit => 50, :null => false
       t.column :sexo, :string, :limit => 255, :null => false
       t.column :estado_civil, :string, :limit => 100, :null => true
       t.column :domicilio_particular, :string, :limit => 255, :null => false
