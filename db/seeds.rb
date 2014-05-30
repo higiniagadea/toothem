@@ -13,6 +13,12 @@ usuario = Usuario.create([{
     :password_confirmation => "123456"
   }])
 
+TipoDocumento.create :descripcion=>'D.N.I.'
+TipoDocumento.create :descripcion=>'C.U.I.T.'
+TipoDocumento.create :descripcion=>'C.U.I.L.'
+TipoDocumento.create :descripcion=>'L.E.'
+TipoDocumento.create :descripcion=>'C.I.'
+
 pacientes = Paciente.create([{ :nombre => 'Carlos Barbiero',
                                                            :tipo_documento => 1,
                                                            :matricula => "27711711",
