@@ -18,7 +18,7 @@
     <th>
       Tipo Y Nro. de Documento</th>
     <td><%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion, {:include_blank => 'Seleccione'}, :class=> "ui-widget-content required", :title=> 'Seleccione tipo documento') %>
-        <%= f.text_field :matricula, :class =>"ui-widget-content required" , :size=> 22 , :title=> 'Ingrese un documento valido', :onkeypress=> 'return validar(event)' %>
+        <%= f.text_field :nro_documento, :class =>"ui-widget-content required" , :size=> 22 , :title=> 'Ingrese un documento valido', :onkeypress=> 'return validar(event)' %>
     </td>
     </tr>
     
@@ -49,13 +49,13 @@
     </td>
     </tr>
 
-     
+  
 
     <tr>
     <th>
       Fecha de Nacimiento</th>
     <td><span class="fecha_nacimiento" class ="ui-widget-content">
-              <input class="ui-widget-content required" title="Fecha de nacimiento no puede estar vacio" type="text" id="fecha_nacimiento" name="paciente[fecha_nacimiento]" />
+              <input class="ui-widget-content required" title="Fecha de nacimiento no puede estar vacio" type="text" id="fecha_nacimiento" name="paciente[fecha_nacimiento]"  />
       </span>
     </td>
     <th>
@@ -95,16 +95,15 @@
     <td><%= f.text_field :nivel_escolar, :class =>"ui-widget-content", :size=> 20, :onkeypress=> 'return validate(event)' %>
     </td>
     </tr>
-    <tr>
-      <th>Nro. de Afiliado</th>
-      <td><%= f.text_field :nro_afiliado, :size=>20, :class=>'ui-widget-content required', :title=> 'Nro. de Afiliado no puede estar vacio', :onkeypress=> 'return validar(event)' %>
-      </td>
-    </tr>
+
+    <th>Nro de Afiliado</th>
+   <td><%= f.text_field :nro_afiliado, :class =>"ui-widget-content required", :size=> 20, :onkeypress=> 'return validar(event)', :title=> 'Nro de afiliado no puede estar vacio' %>
+    </td>
+
     <table>
       <tr>
        <td style=" float: left; margin-left: 1000px"><%= link_to 'Cancelar', search_pacientes_path %> <%= f.submit 'Guardar' %>
     </td>
-
     </tr>
     </table>
  
@@ -153,13 +152,13 @@ function validate(e) { // 1
        meta: "validate",
        
        rules: {          
-         "paciente[matricula]": {required: true, remote:"/pacientes/verificar_matricula?paciente[matricula]=" + $('#paciente[matricula]').val(), rangelength: [6, 10]},
-         "paciente[nro_afiliado]": {required: true, remote:"/pacientes/verificar_nroafiliado?paciente[nro_afiliado]=" + $('#paciente[nro_afiliado]').val()},
-        "paciente[sexo]" :{required:true}
+         //"paciente[matricula]": {required: true, remote:"/pacientes/verificar_matricula?paciente[matricula]=" + $('#paciente[matricula]').val(), rangelength: [6, 10]}
+         //"paciente[nro_afiliado]": {required: true, remote:"/pacientes/verificar_nroafiliado?paciente[nro_afiliado]=" + $('#paciente[nro_afiliado]').val()},
+        //"paciente[sexo]" :{required:true}
      },
       messages:{
-          /* "paciente[matricula]": {remote:"Nro. de Documento ya se encuentra cargado"},*/
-           "paciente[nro_afiliado]": {remote:"Nro. de Afiliado ya se encuentra cargado"}
+          //"paciente[matricula]": {remote:"Nro. de Documento ya se encuentra cargado"}
+           //"paciente[nro_afiliado]": {remote:"Nro. de Afiliado ya se encuentra cargado"}
          
        }
 

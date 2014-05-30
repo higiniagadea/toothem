@@ -30,7 +30,7 @@
     
         <table>
           <tr>
-          <td style=" float: left; margin-left:  1010px"> <%#= link_to image_tag('printer.png'), imprimir_paciente_path, :title => 'Imprimir'%>
+          <td style=" float: left; margin-left:  1010px"> <%= link_to image_tag('printer.png'), imprimir_paciente_path, :title => 'Imprimir'%>
           <%= link_to image_tag('cancel.png'), @paciente, :title=> 'Eliminar Paciente', :confirm => 'Esta seguro? No podrá deshacer esta acción', :method => :delete %></td>
         
           </tr>
@@ -42,7 +42,7 @@
           <td><%= f.text_field :nombre, :class=>'ui-widget-content required', :title=> 'Nombre y Apellido no puede estar vacio', :size=> 20, :onkeypress=> 'return validate(event)' %>
           </td>
          <th>Tipo Y Nro.  Documento</th>
-          <td> <%= @paciente.tipo_documento.descripcion %> <%= @paciente.matricula %>
+          <td> <%= @paciente.tipo_documento.descripcion %> <%= @paciente.nro_documento %>
           </td>
           </tr>
 
@@ -118,10 +118,9 @@
           </td>
           </tr>
 
-          <tr>
-            <th>Nro. de Afiliado</th>
-            <td><%= @paciente.nro_afiliado %> </td>
-          </tr>
+           <th>Nro de Afiliado</th>
+          <td><%= f.text_field :nro_afiliado, :class =>"ui-widget-content", :size=> 20, :onkeypress=> 'return validate(event)' %>
+           </td>
            </table>
 
           <table>

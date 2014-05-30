@@ -2,7 +2,7 @@
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Obra Social</legend>
 
    <%  unless @paciente.titular.blank? %>
-         <table style=" text-align: left; "class="table-list">
+         <table style=" text-align: left; "class="table-list" >
                    
           <tr>
           <th>Nombre</th>
@@ -21,7 +21,7 @@
           <tr>
           <th>Matr&iacute;cula</th>
           <th></th>
-          <th><%=h @paciente.titular.matricula%></th>
+          <th><%=h @paciente.titular.nro_documento%></th>
           </tr>
 
           <tr>
@@ -33,7 +33,7 @@
 
           <table>
           <tr>
-          <td style=" float: left; margin-left:  950px"><%= link_to image_tag('cancel.png') + 'Borrar Titular', elimina_tit_paciente_path(@paciente), :confirm=> 'Esta seguro?'  %></td>
+          <td style=" float: left; margin-left:  950px"><%#= link_to image_tag('cancel.png') + 'Borrar Titular', elimina_tit_paciente_path(@paciente), :confirm=> 'Esta seguro?'  %></td>
           </tr>
           </table>
 
@@ -47,16 +47,17 @@
 
           
             <tr>
-              <td><%= link_to image_tag('add.png') + 'Asignar una Obra Social con Nuevo Titular', new_titular_paciente_url, :id=> 'titular' %>
+              <td><%= link_to image_tag('add.png') + 'Asignar una Obra Social ', new_titular_paciente_url, :id=> 'titular' %>
               </td>
               </tr><br/>
             <tr>
 
-              <td><%= link_to image_tag('user_add.png') + 'Asignar Obra Social con Titular Existente', search_titular_paciente_url + "?paciente_id="+@paciente.id.to_s, :id=> 'busc_titular'%>
+              <td><%= link_to image_tag('user_add.png') + 'Asignar Obra Social como adherente', search_titular_paciente_url + "?paciente_id="+@paciente.id.to_s, :id=> 'busc_titular'%>
               </td>
             </tr>
+
+           
    <%end %>
-         
 
 </fieldset><br/>
 
@@ -69,15 +70,16 @@
         {
       'hideOnContentClick': false,
       'titleShow': false
-
+     
     });
     $('#busc_titular').fancybox(
         {
       'hideOnContentClick': false,
       'titleShow': false
+      
 
     });
-    $.fancybox.resize();
+    
       });
    
 </script>

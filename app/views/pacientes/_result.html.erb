@@ -12,7 +12,7 @@
     <% @pacientes.each do |paciente| %>
      <tr class="<%= cycle('par','impar') -%>">
         <td><%=h paciente.nombre %></td>
-        <td><%=h paciente.tipo_documento.descripcion %><%=h paciente.matricula %></td>
+        <td><%=h paciente.tipo_documento.descripcion %><%=h paciente.nro_documento %></td>
         <td><%=h paciente.movil.blank? ? '-' : paciente.movil  %></td>
       
         <td><%= link_to image_tag('magnifier_zoom_in.png'), ver_paciente_path(paciente), :title => "Vista Rapida", :id => 'ver_paciente_' + paciente.id.to_s %>

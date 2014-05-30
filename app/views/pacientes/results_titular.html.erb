@@ -5,14 +5,14 @@
 
         <tr>
           <th>Nombre/Apellido</th>
-          <th>Matr&iacute;cula</th>
+          <th>Numero de Documento</th>
         </tr>
 
       <% @titulares.each do |titular| %>
         <tr class="<%=  cycle('par','impar')%>">
 
           <td><%=h titular.nombre %></td>
-          <td><%=h titular.matricula %></td>
+          <td><%=h titular.nro_documento %></td>
           <td>
 
               <%=link_to image_tag('16/tick.png'), update_titular_paciente_path(titular) + '?paciente_id=' + @paciente.id.to_s, :method=> :put, :title => 'Actualizar Titular' %>
@@ -28,3 +28,8 @@
 
 <td style="color:red">No se encontraron titulares</td>
 <% end %>
+
+
+<script type="text/javascript">
+$.fancybox.resize();
+</script>

@@ -1,3 +1,3 @@
-page << "$('#dni').val('#{@paciente.matricula}');"
+page << "$('#dni').val('#{@paciente.nro_documento}');"
 page << "$('#turno_paciente_id').val('#{@paciente.id.to_s}');"
-page << "$('#dni1').val('#{@paciente.matricula}');"
+page << "$('#dni1').val('#{@paciente.nro_documento}');"

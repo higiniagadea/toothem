@@ -37,9 +37,9 @@
                 </p>
            </div>
 
-                <p>aaaaaaaaa
-                 <%= image_tag imagen.archivo.public_filename(:thumb) %>
-                >
+                <p>
+                <img src <%= image_tag imagen.archivo.public_filename(:thumb) %> </>
+                
                 </p>
 
                 <p>Descripcion:  <%= imagen.descripcion.blank? ? '-' :imagen.descripcion %> </p>

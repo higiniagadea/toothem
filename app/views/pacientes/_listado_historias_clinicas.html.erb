@@ -1,6 +1,6 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-header ui-corner-all">Historias Cl&iacute;nicas</legend>
-
+<% unless @paciente.titular.blank? %>
 <table>
   <tr>
     
@@ -28,7 +28,9 @@
  
 
 <%end -%>
-
+<%else%>
+  No posee obra social
+  <%end%>
 </tr>
  </table>
 </fieldset>

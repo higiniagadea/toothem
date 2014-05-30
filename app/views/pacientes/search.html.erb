@@ -24,7 +24,7 @@
         <td><%=  collection_select(:get, :tipo_documento_id, TipoDocumento.all, :id, :descripcion, {}, :class =>"ui-widget-content") %> </td>
           
         <th>Nro:</th>
-          <td> <%= text_field_tag :matricula,{}, :class => 'ui-widget-content required', :title=> 'Ingrese Nro. de Documento ', :onkeypress=> 'return validate(event)' %></td>
+          <td> <%= text_field_tag :nro_documento,{}, :class => 'ui-widget-content required', :title=> 'Ingrese Nro. de Documento ', :onkeypress=> 'return validate(event)' %></td>
         </tr>
 
         <tr>
