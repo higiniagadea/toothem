@@ -54,18 +54,20 @@ class PacientesController < ApplicationController
   def result
     
     respond_to do |format|
-      if params[:nombre].blank? && params[:nro_documento].blank?
+      if params[:nombre].blank? && params[:matricula].blank?
       format.html{render :text => '<span style="color:red">Ingrese al menos un dato para realizar la b&uacute;squeda </span>' }
    
       elsif
-       #params[:nombre].size > 2 && params[:matricula].size > 2
+       #params[:nombre].size = 2 && params[:matricula].size = 2
        format.html{render :partial=> 'result', :layout => false }
        @pacientes = Paciente.basic_search(params).paginate  :page=> params[:page], :per_page=> 10, :order => 'nombre ASC'
-        
+       
+    
       end
-      end
+
     end
- 
+  end
+   
  
  def show
   
@@ -129,13 +131,13 @@ class PacientesController < ApplicationController
     @imagenes = Imagen.find_all_by_paciente_id(@paciente.id)
     @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha ASC')
     @trat = Tratamiento.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['paciente_id = ? and estado_tratamiento_id = ?',  @paciente.id.to_s  , 5 ], :order => 'fecha ASC')
-    #@pagos_pacientes = PagoPaciente.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['paciente_id = ?', @paciente.id.to_s] , :order => 'fecha ASC')
+    @pagos_pacientes = PagoPaciente.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['paciente_id = ?', @paciente.id.to_s] , :order => 'fecha ASC')
    
     #@profesionales = Profesional.paginate(:page => params[:page], :per_page => 10)
     #@prestaciones = Prestacion.find(:all)  
  
 
-    #@sald_pac = SaldoPaciente.find_by_sql('select ver_saldo_paciente(' + @paciente.id.to_s + ') as saldo ' )
+    @sald_pac = SaldoPaciente.find_by_sql('select ver_saldo_paciente(' + @paciente.id.to_s + ') as saldo ' )
 
     unless @paciente.archivo_id.blank?
       @archivo_ant = Archivo.find(@paciente.archivo_id)
@@ -275,7 +277,7 @@ class PacientesController < ApplicationController
         flash[:notice] = 'Titular creado.'
        
          #format.html {render :partial=> 'pacientes/edit_obra_social', :layout => 'default'}
-      format.html {redirect_to edit_paciente_path(@paciente) + '#obras_sociales'}
+      format.html {redirect_to edit_paciente_path(@paciente) }
       else
         format.html { render :action => ""  }
       end
@@ -287,8 +289,7 @@ class PacientesController < ApplicationController
     #params[:paciente][:consultorio_id]= current_usuario.consultorios
     params[:paciente][:usuario_id]= current_usuario.id
     @paciente = Paciente.new(params[:paciente])
-    @title = "Nuevo paciente"
-    respond_to do |format|
+        respond_to do |format|
       if @paciente.save
         flash[:notice] = 'Paciente creado.'
         format.html { redirect_to edit_paciente_path(@paciente)}
@@ -332,13 +333,14 @@ class PacientesController < ApplicationController
      if @paciente.destroy
       @paciente.tratamientos.destroy
       @paciente.imagenes.destroy
-      @paciente.odontogramas.destroy
       @paciente.historia_clinica_general.destroy
       @paciente.historia_clinica_ortodoncia.destroy
-      
+      @paciente.odontogramas.destroy
       flash[:notice] = 'Paciente Eliminado.'
       format.html { redirect_to(search_pacientes_url) }
       format.xml  { head :ok }
+    else 
+      
     end
   end
   end
@@ -382,7 +384,7 @@ end
 
    # format.json { render :json => !@paciente}
 
-   # end
+    #end
   #end
 
 #valida un nro de afiliado duplicado
@@ -390,7 +392,7 @@ end
  # @paciente = Paciente.find(:first, :conditions => {:nro_afiliado => params[:paciente][:nro_afiliado]})
   #  respond_to do |format|
    # format.json { render :json => !@paciente}
-    #end
+   # end
   #end
 
 #elimina el titular asignado al paciente
@@ -399,7 +401,7 @@ def elimina_tit
   @paciente.update_attribute(:titular_id, nil)
    respond_to do |format|
       format.html {redirect_to(edit_paciente_path(@paciente) + '#obra_social') }
-      
+     
 end
 end
 
@@ -420,42 +422,37 @@ end
   #  end
   #end
 
-#def verificar_numeroafiliado
-  #@paciente = Paciente.find(:first, :conditions => {:nro_afiliado => params[:paciente][:nro_afiliado]})
-    #respond_to do |format|
-   # format.json { render :json => !@paciente}
-  #  end
- # end
 
 #def verificar_numeromatricula
-  #@titular = Titular.find(:first,:conditions => {:matricula => params[:titular][:matricula]})
-    #respond_to do |format|
-    #format.json { render :json => !@paciente}
-   # end
-  #end
+ # @titular = Titular.find(:first,:conditions => {:matricula => params[:titular][:matricula]})
+  #  respond_to do |format|
+   # format.json { render :json => !@paciente}
+    #end
+#end
+
 
 def buscar_dni
   @paciente = Paciente.new
   respond_to do |format|
       format.html {render :layout => false}
   end
-
-
 end
+
+
 
 def result_dni
    respond_to do |format|
-      if  params[:paciente][:nro_documento].blank?
-      format.html{render :text => '<span style="color:red"> Ingrese un numero de documento para realizar la busqueda</span> ' }
+      if  params[:paciente][:matricula].blank?
+      format.html {render :text => '<span style="color:red"> Ingrese un numero de documento para realizar la busqueda</span> ' }
       elsif
-        format.html{render :partial=> 'result_dni', :layout => false }
+        format.html {render :layout => false, :partial=> 'result_dni'}
         @pacientes = Paciente.buscar(params[:paciente])
 
       end
     end
 end
 
-def asignar
+def asignar 
    @paciente = Paciente.find(params[:id])
     respond_to do |format|
       format.js
@@ -468,14 +465,8 @@ def liquidar
   @periodos = Periodo.find(:all)
 
 respond_to do |format|
- 
   format.html{render :partial => 'liquidacion', :layout => 'default'}
 end
 end
 
 end
-
-
-
-
-
