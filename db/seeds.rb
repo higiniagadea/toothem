@@ -59,22 +59,22 @@ pacientes = Paciente.create([{ :nombre => 'Carlos Barbiero',
                                                            :titular_id => 2,
                                                            :localidad_id => 1}
                                                       ])
-obras_sociales = ObraSocial.create([{
-                                                           :nombre => 'IOSCOR',
-                                                           :auditoria_previa => true,
-                                                           :auditoria_post => true,
-                                                           :incluye_ficha => true,
-                                                           :nro_max_codigos_por_mes => 4,
-                                                           :consultorio_id => 1
-                                                        },
-                                                        {
-                                                           :nombre => 'OSECAC',
-                                                           :auditoria_previa => true,
-                                                           :auditoria_post => true,
-                                                           :incluye_ficha => true,
-                                                           :nro_max_codigos_por_mes => 6,
-                                                           :consultorio_id => 1}
-                                                      ])
+# obras_sociales = ObraSocial.create([{
+#                                                            :nombre => 'IOSCOR',
+#                                                            :auditoria_previa => true,
+#                                                            :auditoria_post => true,
+#                                                            :incluye_ficha => true,
+#                                                            :nro_max_codigos_por_mes => 4,
+#                                                            :consultorio_id => 1
+#                                                         },
+#                                                         {
+#                                                            :nombre => 'OSECAC',
+#                                                            :auditoria_previa => true,
+#                                                            :auditoria_post => true,
+#                                                            :incluye_ficha => true,
+#                                                            :nro_max_codigos_por_mes => 6,
+#                                                            :consultorio_id => 1}
+#                                                       ])
 
 titulares = Titular.create([{
                                                            :nombre => 'Carlos Barbiero',
