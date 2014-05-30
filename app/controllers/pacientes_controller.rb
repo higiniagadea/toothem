@@ -54,7 +54,7 @@ class PacientesController < ApplicationController
   def result
     
     respond_to do |format|
-      if params[:nombre].blank? && params[:matricula].blank?
+      if params[:nombre].blank? && params[:nro_documento].blank?
       format.html{render :text => '<span style="color:red">Ingrese al menos un dato para realizar la b&uacute;squeda </span>' }
    
       elsif
@@ -375,23 +375,23 @@ end
 
 
 #valida una matricula duplicada
-def verificar_matricula
+#def verificar_matricula
 
-    @paciente = Paciente.find(:first, :conditions => {:matricula => params[:paciente][:matricula]})
-    respond_to do |format|
+ #   @paciente = Paciente.find(:first, :conditions => {:matricula => params[:paciente][:matricula]})
+  #  respond_to do |format|
 
-    format.json { render :json => !@paciente}
+   # format.json { render :json => !@paciente}
 
-    end
-  end
+   # end
+  #end
 
 #valida un nro de afiliado duplicado
-def verificar_nroafiliado
-  @paciente = Paciente.find(:first, :conditions => {:nro_afiliado => params[:paciente][:nro_afiliado]})
-    respond_to do |format|
-    format.json { render :json => !@paciente}
-    end
-  end
+#def verificar_nroafiliado
+ # @paciente = Paciente.find(:first, :conditions => {:nro_afiliado => params[:paciente][:nro_afiliado]})
+  #  respond_to do |format|
+   # format.json { render :json => !@paciente}
+    #end
+  #end
 
 #elimina el titular asignado al paciente
 def elimina_tit
@@ -445,7 +445,7 @@ end
 
 def result_dni
    respond_to do |format|
-      if  params[:paciente][:matricula].blank?
+      if  params[:paciente][:nro_documento].blank?
       format.html{render :text => '<span style="color:red"> Ingrese un numero de documento para realizar la busqueda</span> ' }
       elsif
         format.html{render :partial=> 'result_dni', :layout => false }
