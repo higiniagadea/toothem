@@ -38,15 +38,14 @@
     
     <tr>
       <th>Perfil</th>
-      <td> <%= f.collection_select(:perfil_id, Perfil.all, :id, :nombre, :class=>'ui-widget-content required') %>  
-                                                                                      
+      <td> <%= f.collection_select(:perfil_id, Perfil.all, :id, :nombre,{:include_blank => 'Seleccione'}, :class=> "ui-widget-content required", :title=> 'Seleccione un perfil') %>                                                                               
                                                                                        </td>
     </tr>
 
-    <tr>
-      <th>Administrador</th>
-      <td><%= f.check_box :administrador ,  :size => 15, :class=>'ui-widget-content' %></td>
-    </tr>
+
+     
+      <%#= f.check_box :administrador ,  :size => 15, :class=>'ui-widget-content' %>
+
 
 
    </table>

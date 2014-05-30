@@ -13,26 +13,32 @@
     <tr>
     <th>
      Nombre</th>
-    <td><%= f.text_field :nombre, :size =>10  , :class=> 'ui-widget-content required' , :title=> 'Ingrese al menos tres caracteres',:onkeypress=> 'return validate(event)' %>
+    <td><%= f.text_field :nombre, :size =>15  , :class=> 'ui-widget-content required' , :title=> 'Ingrese al menos tres caracteres',:onkeypress=> 'return validate(event)' %>
     </td>
     </tr>
 
     <tr>
     <th>
      Domicilio</th>
-    <td><%= f.text_field :domicilio, :size =>10, :class=> 'ui-widget-content' %>
+    <td><%= f.text_field :domicilio, :size =>15, :class=> 'ui-widget-content' %>
     </td>
     </tr>
+
     <tr>
     <th>
     Telefono</th>
-    <td><%= f.text_field :telefono, :class=> 'ui-widget-content', :onkeypress=> 'return validar(event)'  %>
+    <td><%= f.text_field :telefono, :size => 15, :class=> 'ui-widget-content', :onkeypress=> 'return validar(event)'  %>
     </td>
     </tr>
+    
     <tr>
-  
+     <th>Correo Electronico</th>
+     <td><%= f.text_field :correo_electronico, :size => 15,  :class=> 'ui-widget-content', :onkeypress=> 'return validate(event)'  %>
     </tr>
-   
+
+    <tr><th>Codigos por mes </td>
+   <td><%= f.text_field :codigos_por_mes , :size => 15,  :class=> 'ui-widget-content', :onkeypress=> 'return validar(event)'  %>
+    </tr>
 
   </table>
 

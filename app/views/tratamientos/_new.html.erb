@@ -127,7 +127,11 @@
 
   <%end%>
 <%else%>
-  No posee obra social
+
+<%# if @titular.obra_social.codigos_por_mes == params[:titular][:obra_social_id][:codigos_por_mes] %>
+  No poseee obra social
+
+  
   <%end%>
 
 

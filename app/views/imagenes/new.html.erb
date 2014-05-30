@@ -1,5 +1,6 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Nueva Imagen</legend>
+  <% unless @paciente.titular.blank? %>
   <% form_for(@imagen, :html => {:multipart => true }) do |f| -%>
   <%= f.error_messages %>
 
@@ -49,7 +50,9 @@
    <br/>
    <br/>
   <% end -%>
- 
+ <%else%>
+  No posee obra social
+  <%end%>
 </fieldset>
 
 <script type="text/javascript">

@@ -14,7 +14,7 @@
 <% @profesionales.each do |profesional| %>
   <tr class="<%= cycle('par','impar') -%>">
     <td><%=h profesional.nombre %></td>
-    <td><%=h profesional.documento %></td>
+    <td><%=h profesional.nro_documento %></td>
     <td><%= link_to image_tag('magnifier_zoom_in.png'), profesional, :title => 'Ver',  :id => 'ver_' + profesional.id.to_s%>
     <%= link_to image_tag('pencil.png'), edit_profesional_path(profesional), :title => 'Editar' %>
     <%= link_to image_tag('cancel.png'), profesional, :title => 'Eliminar', :confirm => 'Esta seguro?', :method => :delete %></td>

@@ -7,8 +7,11 @@
       <table  style=" text-align: left; "class="table-search">
        <tr>
       <th>Per&iacute;odo</th>
-      <td><%= select("periodo_obra_social", "periodo_id", PeriodoObraSocial.find(:all, :conditions => ['fue_liquidado = false']).collect {|p| [p.mes.strftime('%m/%y'), p.id]}, :include_blank => 'Seleccione') %> </td>
+      <td><%= select("periodo_obra_social", "periodo_obra_social_id", PeriodoObraSocial.find(:all, :conditions => ['fue_liquidado = false']).collect {|p| [p.mes.strftime('%m/%y'), p.id]}, :include_blank => 'Seleccione') %> </td>
     </tr>
+
+  
+
 
       </table>
 

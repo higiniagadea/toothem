@@ -17,10 +17,10 @@ class Profesional < ActiveRecord::Base
     }
   }
 
- named_scope :by_documento, lambda { |documento|
+ named_scope :by_nro_documento, lambda { |nro_documento|
     {
-      :conditions=> ['lower(documento) LIKE :documento',
-          { :documento => "%"+documento.downcase+"%"} ]
+      :conditions=> ['lower(nro_documento) LIKE :nro_documento',
+          { :nro_documento => "%"+nro_documento.downcase+"%"} ]
     }
   }
 
@@ -31,7 +31,7 @@ class Profesional < ActiveRecord::Base
     scope_builder do |builder|
 
         builder.by_nombre(options[:nombre]) if options[:nombre]
-       builder.by_documento(options[:documento]) if options[:documento]
+       builder.by_nro_documento(options[:nro_documento]) if options[:nro_documento]
        
     end
   end

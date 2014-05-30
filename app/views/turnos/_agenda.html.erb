@@ -35,7 +35,7 @@ $(document).ready(function(){
           columnFormat:'ddd d/M',
          // titleFormat : "MMM d[ yyyy]{ '&#8212;' d 'del' yyyy}",
            titleFormat : "MMM d[ yyyy]{ '&#8212;'[MMM] dd 'del' yyyy}",
-          weekends: true, //muestra sab y domingo en el calendario
+          weekends: false, //muestra sab y domingo en el calendario
           defaultEventMinutes : 30,
 
           buttonText: {prev: '&nbsp;&#9668;&nbsp;',
@@ -45,7 +45,7 @@ $(document).ready(function(){
                 today : 'Hoy'},
 
           unselectAuto: false,
-          weekMode : false,
+          //weekMode : false,
           slotEventOverlap : false,
           renderEvent : false,
           monthNamesShort : ['Enero' , 'Febrero' , 'Marzo' , 'Abril' , 'Mayo' , 'Junio' , 'Julio' ,
@@ -61,8 +61,8 @@ $(document).ready(function(){
             {
                   
               id : 'turno: <%= turno.id.to_s %>',
-               title  : 'Paciente: <%= turno.paciente_id %> Profesional <%= turno.profesional.nombre.to_s %> \n\
-                          Duracion: <%= turno.duracion %> minutos',
+               title  : 'Paciente: <%= turno.paciente.nombre.to_s %> Profesional <%= turno.profesional.nombre.to_s %> \n\
+                        Duracion: <%= turno.duracion %> minutos',
                start : '<%= turno.fecha_hora.to_time %>',
                end : '<%= (turno.fecha_hora.to_time + (60 * turno.duracion)) %>',
                allDay : false,

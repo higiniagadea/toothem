@@ -6,26 +6,16 @@
   <td><%=h @obra_social.nombre %>
   </td>
   </tr>
-
+  
+  
 
   <tr>
   <th>Codigos por mes</th>
-  <td><%=h @obra_social.nro_max_codigos_por_mes %>
+  <td><%=h @obra_social.codigos_por_mes %>
   </td>
   </tr>
 
-  <tr>
-  <th>Auditoria Previa</th>
-  <td><%=h boolean_desc(@obra_social.auditoria_previa) %>
-  </td>
-  </tr>
-
-   <tr>
-  <th>Auditoria Post</th>
-  <td><%=h boolean_desc(@obra_social.auditoria_post) %>
-  </td>
-  </tr>
-
+   
 </table>
 
 </fieldset>

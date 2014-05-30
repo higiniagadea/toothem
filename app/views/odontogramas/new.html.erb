@@ -1,7 +1,7 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
 <legend class="ui-widget ui-corner-all ui-widget-header">Odontograma </legend>
   <br/>
-
+<% unless @paciente.titular.blank? %>
  <% form_for(@odontograma) do |f| %>
 <div class="errores">
       <ol style="list-style:none"></ol>
@@ -143,11 +143,6 @@
 
 
 
-
-
-
-
-
  </tr>
  </table>
 
@@ -242,7 +237,9 @@
  </table>
  <%end%>
 
-
+ <%else%>
+  No posee obra social
+  <%end%>
   <br/>
   <br/><br/>
   </fieldset>

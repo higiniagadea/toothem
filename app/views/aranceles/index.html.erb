@@ -26,7 +26,7 @@
   </tr>
 <% @aranceles.each do |arancel| %>
   <tr class="<%= cycle('par','impar') -%>">
-    <td><%=h arancel.prestacion_id.blank? ? '-' : arancel.prestacion_id %></td>
+    <td><%=h arancel.prestacion.descripcion.blank? ? '-' : arancel.prestacion_id %></td>
     <td><%= number_to_currency(arancel.importe_cubierto) %></td>
     <td><%= number_to_currency(arancel.coseguro)%></td>
 

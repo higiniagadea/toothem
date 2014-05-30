@@ -12,7 +12,7 @@ class ObraSocial < ActiveRecord::Base
   
   validates_presence_of :nombre, :message => ', debe ingresar un nombre y apellido'
   
-  #validates_inclusion_of :nro_max_codigos_por_mes, :in => 1..999, :message => 'el número máximo de códigos por mes debe ser un número entre 1 y 999'
+  #validates_inclusion_of :codigos_por_mes, :in => 1..999, :message => 'el número máximo de códigos por mes debe ser un número entre 1 y 999'
   
 #scope_builder
   named_scope :by_nombre, lambda { |nombre|

@@ -3,11 +3,8 @@
  <% unless @obras_sociales.blank? %>
 <table style=" text-align: left;" class="listado">
   <tr>
-    <th>Nombre</th>
-    <th>Auditoria previa</th>
-    <th>Auditoria post</th>
-    <th>Nro max codigos por mes</th>
-  
+    <th>Nombre</th>    
+    <th>Codigos por mes</th>  
     <th>Acciones</th>
     
   </tr>
@@ -15,10 +12,8 @@
 <% @obras_sociales.each do |obra_social| %>
   <tr class="<%= cycle('par','impar') -%>">
     <td><%=h obra_social.nombre %></td>
-    <td><%=h boolean_desc(obra_social.auditoria_previa)%></td>
-    <td><%=h boolean_desc(obra_social.auditoria_post) %></td>
-    <td><%=h obra_social.nro_max_codigos_por_mes.blank? ? '-' : obra_social.nro_max_codigos_por_mes %></td>
-  
+    
+    <td><%=h obra_social.codigos_por_mes  %></td>
     
     
     <td><%= link_to image_tag('magnifier_zoom_in.png'), obra_social, :title => "Ver", :id => 'siete_' + obra_social.id.to_s  %>

@@ -3,8 +3,8 @@ class Archivo < ActiveRecord::Base
   
   
   has_attachment :content_type => :image,
-                 #:storage => :db_file,
-                  :storage => :file_system, :path_prefix => 'public/archivos',
+                 :storage => :db_file,
+                  :storage => :file_system, :path_prefix => 'public',
                  :max_size => 2.megabyte,
                  :resize_to => [640,480],
                  :thumbnails => {:thumb => [90,90]}
