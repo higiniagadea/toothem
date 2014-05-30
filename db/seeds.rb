@@ -40,7 +40,7 @@ pacientes = Paciente.create([{ :nombre => 'Carlos Barbiero',
                                                            :titular_id => 1,
                                                            :localidad_id => 1
                                                         },
-                                                        {:nombre => 'Cecilia',
+                                                        {:nombre => 'Ceciliaoooooooooo',
                                                            :tipo_documento_id => 1,
                                                            :nro_documento => "2000000",
                                                            :domicilio_particular => "Dr nicolini",
