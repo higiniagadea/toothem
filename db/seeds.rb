@@ -2,12 +2,18 @@
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
 # Examples:
-#   
+#
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Major.create(:name => 'Daley', :city => cities.first)
 
+usuario = Usuario.create([{
+    :login => "adm",
+    :password => "123456",
+    :password_confirmation => "123456"
+  }])
+
 pacientes = Paciente.create([{ :nombre => 'Carlos Barbiero',
-                                                           :tipo_documento => "DNI",
+                                                           :tipo_documento => 1,
                                                            :matricula => "27711711",
                                                            :domicilio_particular => "Blas Parera",
                                                            :domicilio_laboral => "9 julio",
@@ -27,7 +33,7 @@ pacientes = Paciente.create([{ :nombre => 'Carlos Barbiero',
                                                            :localidad_id => 1
                                                         },
                                                         {:nombre => 'Cecilia',
-                                                           :tipo_documento => "DNI",
+                                                           :tipo_documento => 1,
                                                            :matricula => "2000000",
                                                            :domicilio_particular => "Dr nicolini",
                                                            :domicilio_laboral => "25 mayo",
@@ -80,4 +86,3 @@ Color.create :descripcion => 'Azul'
 Color.create :descripcion => 'Rojo'
 Color.create :descripcion => 'trat a realizar'
 Color.create :descripcion => 'trat realizado'
-
