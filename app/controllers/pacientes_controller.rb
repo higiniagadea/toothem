@@ -287,7 +287,7 @@ class PacientesController < ApplicationController
      
   def create
     #params[:paciente][:consultorio_id]= current_usuario.consultorios
-    params[:paciente][:usuario_id]= current_usuario.id
+    #params[:paciente][:usuario_id]= current_usuario.id
     @paciente = Paciente.new(params[:paciente])
         respond_to do |format|
       if @paciente.save
