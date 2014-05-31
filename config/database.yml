@@ -10,7 +10,7 @@ development:
   pool: 5
   username: postgres
   password: postgres
-  host: localhost
+  host: 10.1.0.8
   port: 5432
 
 #test:
