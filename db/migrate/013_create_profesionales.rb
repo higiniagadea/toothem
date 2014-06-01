@@ -4,7 +4,7 @@ class CreateProfesionales < ActiveRecord::Migration
 
       t.column :nombre, :string
       t.column :tipo_documento_id, :integer
-      t.column :documento, :integer
+      t.column :nro_documento, :integer
       t.column :email, :string
       t.column :matricula_profesional, :string
       t.column :direccion, :string

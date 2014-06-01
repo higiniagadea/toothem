@@ -30,8 +30,8 @@ class Profesional < ActiveRecord::Base
 
     scope_builder do |builder|
 
-        builder.by_nombre(options[:nombre]) if options[:nombre]
-       builder.by_nro_documento(options[:nro_documento]) if options[:nro_documento]
+        builder.by_nombre(options[:nombre]) unless options[:nombre]
+       builder.by_nro_documento(options[:nro_documento]) unless options[:nro_documento]
        
     end
   end
