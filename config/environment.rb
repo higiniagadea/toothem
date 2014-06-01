@@ -40,14 +40,15 @@ Rails::Initializer.run do |config|
   # Run "rake -D time" for a list of tasks for finding time zone names.
   config.time_zone = 'Buenos Aires'
   Date::MONTHNAMES = %w(nil Enero Febrero Marzo Abril Mayo Junio Julio Agosto Septiembre Octubre Noviembre Diciembre)
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :enable_starttls_auto => true,
     :authentication => :plain,
     :address        => 'smtp.gmail.com',
     :port           => 587,
-    :domain         => 'github.com',
-    :user_name      => 'higiniagadea@github.com',
-    :password       => '236639hg'
+    :domain         => 'google.com',
+    :user_name      => 'higiniagadea@gmail.com',
+    :password       => '31236639'
   }
   #}#configurar para mandar mail para cambiar password
  
