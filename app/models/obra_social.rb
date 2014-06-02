@@ -47,10 +47,10 @@ class ObraSocial < ActiveRecord::Base
     
     scope_builder do |builder|
       
-        builder.by_nombre(options[:nombre]) if options[:nombre]
-        builder.by_auditoria_previa(options[:auditoria_previa]) if options[:auditoria_previa]
-        builder.by_auditoria_post(options[:auditoria_post]) if options[:auditoria_post]
-        builder.by_incluye_ficha(options[:incluye_ficha]) if options[:incluye_ficha]
+        builder.by_nombre(options[:nombre]) unless options[:nombre]
+        builder.by_auditoria_previa(options[:auditoria_previa]) unless options[:auditoria_previa]
+        builder.by_auditoria_post(options[:auditoria_post]) unless options[:auditoria_post]
+        builder.by_incluye_ficha(options[:incluye_ficha]) unless options[:incluye_ficha]
 
         builder.limitar
     end
