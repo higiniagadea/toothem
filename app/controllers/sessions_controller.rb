@@ -3,8 +3,8 @@ class SessionsController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
   
- 
-    layout 'login'
+ layout 'application'
+   # layout 'login'
   # render new.rhtml
   def new
     respond_to do |format|
