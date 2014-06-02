@@ -5,9 +5,9 @@ class SessionsController < ApplicationController
 
   
  
-    #layout 'default'
+    layout 'default'
 
-    layout 'login'
+    #layout 'login'
 
   # render new.rhtml
   def new
