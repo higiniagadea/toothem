@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
   include AuthenticatedSystem
   
  
-    layout 'login'
+    layout 'default'
   # render new.rhtml
   def new
     respond_to do |format|
