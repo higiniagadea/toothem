@@ -6,7 +6,7 @@ class CreateObrasSociales < ActiveRecord::Migration
         t.column :telefono, :character, 
         t.column :codigos_por_mes, :integer
         t.column :correo_electronico; :character     
-        t.column :deleted_at, :date
+        t.column :deleted_at, :date, :null => true
 
     end
   end
