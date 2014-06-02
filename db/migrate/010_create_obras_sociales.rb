@@ -5,7 +5,7 @@ class CreateObrasSociales < ActiveRecord::Migration
         t.column :domicilio, :string,:limit => 30
         t.column :telefono, :string, :limit => 30
         t.column :codigos_por_mes, :integer
-        t.column :correo_electronico; :string, :limit => 255, :null => false 
+        t.column :correo_electronico; :string, :null=> true
         t.column :deleted_at, :date, :null => true
 
     end
