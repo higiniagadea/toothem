@@ -47,7 +47,7 @@ class ObrasSocialesController < ApplicationController
   def create
     #params[:obra_social][:consultorio_id] = current_usuario.consultorio_id
     @obra_social = ObraSocial.new(params[:obra_social])
-    @pagetitle = "Nueva obra social"
+    #@pagetitle = "Nueva obra social"
     respond_to do |format|
       if @obra_social.save
         flash[:notice] = 'Obra Social creada.'
