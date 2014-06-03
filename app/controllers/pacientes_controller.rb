@@ -442,7 +442,7 @@ end
 
 def result_dni
    respond_to do |format|
-      if  params[:paciente][:matricula].blank?
+      if  params[:paciente][:nro_documento].blank?
       format.html {render :text => '<span style="color:red"> Ingrese un numero de documento para realizar la busqueda</span> ' }
       elsif
         format.html {render :layout => false, :partial=> 'result_dni'}
