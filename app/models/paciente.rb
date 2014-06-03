@@ -60,7 +60,7 @@ class Paciente < ActiveRecord::Base
 
   def self.buscar(options)
       scope_builder do |builder|
-       builder.by_matricula(options[:matricula]) unless options[:matricula].blank?
+       builder.by_nro_documento(options[:nro_documento]) unless options[:nro_documento].blank?
       end
   end
   

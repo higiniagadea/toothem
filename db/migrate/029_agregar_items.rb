@@ -25,8 +25,6 @@ class AgregarItems < ActiveRecord::Migration
       
   end
 
-   def self.down
-     drop_table :agregar_items
-  end
+
  
 end
