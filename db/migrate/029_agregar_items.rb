@@ -16,9 +16,7 @@ class AgregarItems < ActiveRecord::Migration
           Item.create :nombre => 'Buscar', :url => "/obras_sociales/buscar", :parent_id => obra_social.id, :orden => 1, :estatico => true, :url_imagen => "magnifier_zoom_in.png"
         Item.create :nombre => 'Nuevo', :url => "/obras_sociales/new", :parent_id => obra_social.id, :orden => 2, :estatico => true, :url_imagen => "add.png"
 
-      Item.create :nombre => 'Clinicas', :url => "/clinicas", :parent_id => 1, :orden => 4, :estatico => true
-        clinica = Item.find(:first, :conditions => "nombre like 'Clinicas'")
-          Item.create :nombre => 'Nuevo', :url => "/clinicas/new", :parent_id => clinica.id, :orden => 2, :estatico => true, :url_imagen => "add.png"
+    
 
       Item.create :nombre => 'Logout', :url => "/logout", :parent_id => 1, :orden => 100, :estatico => true
 
