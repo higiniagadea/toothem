@@ -128,7 +128,7 @@ class PacientesController < ApplicationController
    # @odontogramas = Odontograma.paginate(:page => params[:page], :per_page => 1, :conditions => ['paciente_id = ?', @paciente.id.to_s,], :order => 'created_at desc', :include => 'dientes')
     @odonto = Odontograma.paginate(:page => params[:page], :per_page => 12, :conditions => ['paciente_id = ?', @paciente.id.to_s,], :order => 'created_at desc', :include => 'dientes')
 
-    @imagenes = Imagen.find_all_by_paciente_id(@paciente.id)
+    #@imagenes = Imagen.find_all_by_paciente_id(@paciente.id)
     @tratamientos = Tratamiento.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['paciente_id = ?', @paciente.id.to_s], :order => 'fecha ASC')
     @trat = Tratamiento.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['paciente_id = ? and estado_tratamiento_id = ?',  @paciente.id.to_s  , 5 ], :order => 'fecha ASC')
     #@pagos_pacientes = PagoPaciente.paginate(:page=> params[:page], :per_page=> 12, :conditions => ['paciente_id = ?', @paciente.id.to_s] , :order => 'fecha ASC')
