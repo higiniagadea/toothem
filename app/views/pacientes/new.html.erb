@@ -13,7 +13,7 @@
     <tr>
     <th>
       Nombre y Apellido</th>
-    <th><%= f.text_field :nombre, :class => 'required ui-widget-content', :title=> 'Nombre y Apellido no puede estar vacio', :onkeypress=> 'return validate(event)'%>
+    <th><%= f.text_field :nombre_apellido, :class => 'required ui-widget-content', :title=> 'Nombre y Apellido no puede estar vacio', :onkeypress=> 'return validate(event)'%>
     </th>
     <th>
       Tipo Y Nro. de Documento</th>
@@ -24,14 +24,14 @@
     
     <tr>
     <th>Domicilio Particular</th>
-    <td colspan="3"><%= f.text_field :domicilio_particular, :title=> 'Domicilio Particular no puede estar vacio', :size=>88, :class =>"ui-widget-content required"%>
+    <td colspan="3"><%= f.text_field :domicilio_particular, :title=> 'Domicilio Particular no puede estar vacio', :size=>20, :class =>"ui-widget-content required"%>
     </td>
     </tr>
     
       <tr>
     <th>
       Domicilio Laboral</th>
-    <td colspan="3"><%= f.text_field :domicilio_laboral, :size=>88, :class =>"ui-widget-content"%>  </td>
+    <td colspan="3"><%= f.text_field :domicilio_laboral, :size=>20, :class =>"ui-widget-content"%>  </td>
     </tr>
     <tr>
 
@@ -68,16 +68,13 @@
 
     <tr>
     <th>
-      Tel&eacute;fono</th>
+      Tel&eacute;fono Particular</th>
     <td><%= f.text_field :telefono_particular, :class =>"ui-widget-content", :size=> 20, :onkeypress=> 'return validar(event)' %>
     </td>
-     <th>
-      M&oacute;vil</th>
-     <td><%= f.text_field :movil, :class =>"ui-widget-content", :size=> 20, :onkeypress=> 'return validar(event)' %>
-    </td>
+     
     <th>
-      Tel&eacute;fono Laboral</th>
-    <td><%= f.text_field :telefono_laboral, :class =>"ui-widget-content", :size=> 20, :onkeypress=> 'return validar(event)' %>
+      Tel&eacute;fono Celular</th>
+    <td><%= f.text_field :telefono_celular, :class =>"ui-widget-content", :size=> 20, :onkeypress=> 'return validar(event)' %>
     </td>
     </tr>
 
@@ -86,14 +83,7 @@
       Profesi&oacute;n</th>
     <td><%= f.text_field :profesion, :class =>"ui-widget-content", :size=>20, :onkeypress=> 'return validate(event)' %>
     </td>
-    <th>
-      Ocupaci&oacute;n</th>
-    <td><%= f.text_field :ocupacion, :class =>"ui-widget-content", :size=>20, :onkeypress=> 'return validate(event)' %>
-    </td>
-    <th>
-      Nivel Escolar</th>
-    <td><%= f.text_field :nivel_escolar, :class =>"ui-widget-content", :size=> 20, :onkeypress=> 'return validate(event)' %>
-    </td>
+   
     </tr>
 
     <th>Nro de Afiliado</th>
