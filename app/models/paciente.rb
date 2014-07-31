@@ -33,10 +33,9 @@ class Paciente < ActiveRecord::Base
           { :nombre => "%"+nombre.downcase+"%"} ]
     }
   }
-  named_scope :by_tipo_documento_id, lambda { |tipo_documento_id|
+  named_scope :by_tipo_documento_id, lambda do |tipo_documento_id|
     {
-      :conditions => ['tipo_documento_id= ?', tipo_documento_id]
-                 {:tipo_documento_id => tipo_documento_id }]
+      :conditions => ['tipo_documento_id= ?' , tipo_documento_id]
     }
   }
 
