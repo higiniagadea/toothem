@@ -39,11 +39,10 @@ class Usuario < ActiveRecord::Base
 
 
 
-
-  named_scope :by_name, lambda { |name|
+ named_scope :by_login, lambda { |login|
     {
-      :conditions=> ['lower(name) LIKE :name ',
-          { :name => "%"+name.downcase+"%"} ]
+      :conditions=> ['lower(login) LIKE :login ',
+          { :login => "%"+login.downcase+"%"} ]
     }
   }
 

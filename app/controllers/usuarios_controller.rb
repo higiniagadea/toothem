@@ -21,7 +21,7 @@ class UsuariosController < ApplicationController
     if success && @usuario.errors.empty?
 
       redirect_back_or_default('/usuarios/buscar')
-      flash[:notice] = 'Usuario creado'
+      flash[:notice] = 'Usuario Registrado'
       self.current_usuario = @usuario
       
     else
@@ -75,11 +75,14 @@ class UsuariosController < ApplicationController
 
   def resultado
    respond_to do |format|
-       @usuarios = Usuario.buscar(params).paginate(:page => params[:page], :per_page=> 10, :order => 'name ASC')
+      if params[:login].blank? 
+           format.html{render :text => '<span style="color:red">Ingrese al menos un dato para realizar la b&uacute;squeda </span>' }
+       else
+       @usuarios = Usuario.buscar(params).paginate(:page => params[:page], :per_page=> 10, :order => 'login ASC')
         format.html {render :partial => 'resultado', :layout => false}
       end
-  end
-
+    end
+  end 
 
   def destroy
     @usuario= Usuario.find(params[:id])
