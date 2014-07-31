@@ -50,7 +50,7 @@ class Usuario < ActiveRecord::Base
 def self.buscar(options)
   scope_builder do |builder|
 
-    builder.by_name(options[:name]) if options[:name]
+    builder.by_login(options[:login]) if options[:login]
   end
 end
 
