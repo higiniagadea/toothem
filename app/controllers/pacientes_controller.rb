@@ -55,7 +55,7 @@ class PacientesController < ApplicationController
     
     respond_to do |format|
       if params[:nombre].blank?
-      format.html{render :text => '<span style="color:red">Ingrese al menos un dato para realizar la b&uacute;squeda </span>' }
+      format.html{render :text => '<span style="color:red">Ingrese al menos un dato para realizar la b&uacute;squedaaaaaaaaaa</span>' }
    
       elsif
        #params[:nombre].size = 2 && params[:matricula].size = 2
