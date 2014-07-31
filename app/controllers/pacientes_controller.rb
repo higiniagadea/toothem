@@ -54,7 +54,7 @@ class PacientesController < ApplicationController
   def result
     
     respond_to do |format|
-      if params[:nombre].blank? && params[:matricula].blank?
+      if params[:nombre].blank?
       format.html{render :text => '<span style="color:red">Ingrese al menos un dato para realizar la b&uacute;squeda </span>' }
    
       elsif
@@ -240,8 +240,9 @@ class PacientesController < ApplicationController
   def results_titular
     @paciente = Paciente.find(params[:id])
     @titulares = Titular.basic_search_in_pacientes(params[:titular])          
-    #@titulares = Titular.find_all_by_obra_social_id(params[:obra_social].to_i)
+    @titulares = Titular.find_all_by_obra_social_id(params[:obra_social].to_i)
     respond_to do |format|
+       flash[:notice] = 'Obra Social Asignada.'
       format.html {render :layout => false}
 
   end
