@@ -11,7 +11,7 @@
     </tr>
     <% @pacientes.each do |paciente| %>
      <tr class="<%= cycle('par','impar') -%>">
-        <td><%=h paciente.nombre %></td>
+        <td><%=h paciente.nombre_apellido %></td>
         <td><%=h paciente.tipo_documento.descripcion %><%=h paciente.nro_documento %></td>
         <td><%=h paciente.movil.blank? ? '-' : paciente.movil  %></td>
       
