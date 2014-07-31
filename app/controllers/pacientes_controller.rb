@@ -143,21 +143,21 @@ class PacientesController < ApplicationController
      # @archivo_ant = Archivo.find(@paciente.archivo_id)
     #end
   
-    respond_to do |format|
-      unless @paciente.blank?
-        unless @paciente.archivo_id.blank?
-          @archivo = Archivo.find(@paciente.archivo_id)
-        end
+    #respond_to do |format|
+     # unless @paciente.blank?
+      #  unless @paciente.archivo_id.blank?
+      #    @archivo = Archivo.find(@paciente.archivo_id)
+      #  end
 
-        if params[:paginacion]
-            format.html   {redirect_to edit_paciente_path(@paciente, :page => params[:page]) + '#tratamientos'}
-        else
-            format.html unless @paciente.id.blank?
-        end
-      else
-       format.html {redirect_to search_pacientes_path}
-      end
-    end
+       # if params[:paginacion]
+        #    format.html   {redirect_to edit_paciente_path(@paciente, :page => params[:page]) + '#tratamientos'}
+        #else
+         #   format.html unless @paciente.id.blank?
+      #  end
+      #else
+       #format.html {redirect_to search_pacientes_path}
+      #end
+    #end
   end
 
   
