@@ -35,10 +35,15 @@ class Paciente < ActiveRecord::Base
   }
   named_scope :by_tipo_documento_id, lambda { |tipo_documento_id|
     {
-      :conditions => ['tipo_documento_id= :tipo_documento_id',
+      :conditions => ['tipo_documento_id= ?', tipo_documento_id]
                  {:tipo_documento_id => tipo_documento_id }]
     }
   }
+
+
+
+
+
  
   #named_scope :by_consultorio, lambda { |consultorio|
     #{
