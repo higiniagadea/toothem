@@ -39,7 +39,7 @@
         <table style=" text-align: left; "class="tablelist">
          <tr>
           <th>Nombre y Apellido</th>
-          <td><%= f.text_field :nombre, :class=>'ui-widget-content required', :title=> 'Nombre y Apellido no puede estar vacio', :size=> 20, :onkeypress=> 'return validate(event)' %>
+          <td><%= f.text_field :nombre_apellido, :class=>'ui-widget-content required', :title=> 'Nombre y Apellido no puede estar vacio', :size=> 20, :onkeypress=> 'return validate(event)' %>
           </td>
          <th>Tipo Y Nro.  Documento</th>
           <td> <%= @paciente.tipo_documento.descripcion %> <%= @paciente.nro_documento %>
@@ -91,17 +91,14 @@
 
           <tr>
           <th>
-            Tel&eacute;fono</th>
+            Tel&eacute;fono Particular</th>
           <td><%= f.text_field :telefono_particular, :class=> 'ui-widget-content ', :size=> 20, :onkeypress=> 'return validar(event)'  %>
           </td>
             <th>
-            Tel&eacute;fono M&oacute;vil</th>
-          <td><%= f.text_field :movil, :class=> 'ui-widget-content', :size=>20, :onkeypress=> 'return validar(event)'  %>
+            Tel&eacute;fono celular</th>
+          <td><%= f.text_field :telefono_celular, :class=> 'ui-widget-content', :size=>20, :onkeypress=> 'return validar(event)'  %>
           </td>
-          <th>
-            Tel&eacute;fono Laboral</th>
-          <td><%= f.text_field :telefono_laboral, :class=> 'ui-widget-content', :size=>20, :onkeypress=> 'return validar(event)'  %>
-          </td>        
+                
           </tr>
 
           <tr>
@@ -109,13 +106,6 @@
           <td><%= f.text_field :profesion, :class=> 'ui-widget-content ', :size=>20 , :onkeypress=> 'return validate(event)' %>
           </td>
 
-          <th>Ocupaci&oacute;n</th>
-          <td><%= f.text_field :ocupacion, :class=> 'ui-widget-content ', :size=>20 , :onkeypress=> 'return validate(event)' %>
-          </td>
-
-          <th>Nivel Escolar</th>
-          <td><%= f.text_field :nivel_escolar, :class=> 'ui-widget-content', :size=>20, :onkeypress=> 'return validate(event)'  %>
-          </td>
           </tr>
 
            <th>Nro de Afiliado</th>
