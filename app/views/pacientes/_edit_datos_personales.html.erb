@@ -4,9 +4,9 @@
    <div id="pacientes-screen">
      <div id= "pacientes-photo">
     <% if @paciente.archivo_id.blank? %>
-      <%= image_tag('nouser.jpg') %>
+      <%=# image_tag('nouser.jpg') %>
     <%else%>
-      <%= image_tag @paciente.archivo.public_filename(:thumb) ,:alt => 'imagen del paciente' %>
+      <%#= image_tag @paciente.archivo.public_filename(:thumb) ,:alt => 'imagen del paciente' %>
     <%end%>
 
        <script type="text/javascript">
