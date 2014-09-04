@@ -1,9 +1,9 @@
 <script type="text/javascript">
   $(document).ready(function()
 {
-	$.fn.clickMenu.setDefaults({arrowSrc:'/images/16/flecha.png'});
+  $.fn.clickMenu.setDefaults({arrowSrc:'/images/16/flecha.png'});
 
-	$('#menu1').clickMenu();
+  $('#menu1').clickMenu();
 
 });
 </script>
@@ -38,7 +38,8 @@
                         </ul>
                       </li>
                 <% else %>
-
+                   
+                      
 
                       <li id="primero" onclick="javascript:location.href='<%= modulo.url %>'">
                         <%= format_str(modulo.nombre) %>
