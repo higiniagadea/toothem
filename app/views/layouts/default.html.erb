@@ -17,12 +17,11 @@
   </head>
   <body>
 
-     <div id="main">
+    <div id="main">
       <div id="header">
-        <div id="logo">Logo </div>
+        <div id="logo">Logoo</div>
         <div id="session-data">
           <%= render :partial => 'sessions/session_data.html' %>
-
         </div>
       </div>
 
@@ -32,6 +31,7 @@
                   <div>
                     <%= render :partial => 'static/click_menu' %>
                   </div>
+
           <%if flash[:notice]%>
           <div class="notice-error">
               <div  id="notice" class="ui-state-highlight ui-corner-all" style=" padding: 0 .7em;">
@@ -58,26 +58,13 @@
 
           <div id="content">
 
-            <div id="wrapper">
-              
-              <%= yield %>
-
-
-            </div>
+             <div id="wrapper">              
+               <%= yield %>
+             </div>
           </div>
 
         </div>
-
-
       </div>
-
-
     </div>
-
-
-
-
-
-
   </body>
 </html>
