@@ -23,6 +23,5 @@ class AgregarItems < ActiveRecord::Migration
       
   end
 
-
  
 end

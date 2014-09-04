@@ -6,7 +6,7 @@
     </tr>
     <%  @pacientes.each do |paciente| %>
       <tr>
-        <td><%= paciente.nombre %></td>
+        <td><%= paciente.nombre_apellido %></td>
         <td><%= paciente.nro_documento %></td>
         <td><%= button_to_remote 'Asignar', :url => asignar_paciente_path(paciente), :success => "$('.qtip').remove()", :method => :get %> </td>
 

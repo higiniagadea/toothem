@@ -10,7 +10,7 @@ class CreateUsuarios < ActiveRecord::Migration
       t.string :updated_at
       t.string :remember_token,             :limit => 40
       t.string :remember_token_expires_at
-      t.string :nombre_apellido,            :limit => 100
+     
       t.integer :perfil_id
       t.integer :consultorio_id
       t.boolean :administrador, :default => false
