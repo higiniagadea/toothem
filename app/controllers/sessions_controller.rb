@@ -5,7 +5,13 @@ class SessionsController < ApplicationController
  
     layout 'default'
 
+<<<<<<< HEAD
   # render new.rhtml
+=======
+    #layout 'login'
+
+  
+>>>>>>> 8bf4140bf8cc2bcf575bab2f041756e3aacf34d0
   def new
     respond_to do |format|
      unless current_usuario.blank? ? format.html : format.html {redirect_to search_pacientes_path}
