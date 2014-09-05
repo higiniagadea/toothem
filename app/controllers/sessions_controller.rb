@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
 
     #layout 'login'
 
-  # render new.rhtml
+  
   def new
     respond_to do |format|
      unless current_usuario.blank? ? format.html : format.html {redirect_to search_pacientes_path}
