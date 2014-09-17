@@ -38,6 +38,5 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'pago_obra_social', 'pagos_obras_sociales'
   inflect.irregular 'saldo_paciente', 'saldos_pacientes'
   inflect.irregular 'periodo_obra_social', 'periodos_obras_sociales'
-  
-#   inflect.uncountable %w( fish sheep )
-end
+  inflect.irregular 'localidad', 'localidades'
+  inflect.irregular 'tipo_afiliado', 'tipos_afiliado'
