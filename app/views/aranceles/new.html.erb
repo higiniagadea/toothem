@@ -1,5 +1,5 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class ="ui-widget ui-widget-content ui-corner-all ui-widget-header">Nuevo Aranceleeeeeeee</legend>
+  <legend class ="ui-widget ui-widget-content ui-corner-all ui-widget-header">Nuevo Arancel</legend>
 
 <%  form_for(:arancel, @arancel, :url => {:method => :post, :action => "index"}, :html => {:id => 'nuevo_form'} )do |f| %>
   <%= f.error_messages(:id => 'error', :header_message=>'', :message=>'Se encontraron los siguientes errores') %>
@@ -38,7 +38,7 @@
 <table>
   <tr>
         <td  style=" float: left; margin-left:300px">
-          <%= f.submit 'Guardar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+          <%= f.submit 'Registrar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
         </td>
   </tr>
     <%  else -%>

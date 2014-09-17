@@ -9,8 +9,7 @@ def liquidar
     end
 end
 
-def resultado_liq
-  
+def resultado_liq  
   respond_to do |format|    
   unless params[:periodo][:periodo_id].blank?  
    @resultado =  Periodo.find_by_sql('select actualizar_cta_paciente(' + params[:periodo][:periodo_id].to_s + ') as liquidado ')
@@ -18,7 +17,9 @@ def resultado_liq
     else
     format.html{render :text => '<span style="color:red"> Seleccione el periodo para liquidar </span>'}
   end
+   format.html {redirect_to edit_paciente_path(@paciente) + '#cuentas_corrientes'}
   Periodo.find_by_sql('select ver_saldo_paciente(' + params[:periodo][:periodo_id].to_s + ') as liquidado' )
+    
 end
 end
 
@@ -48,7 +49,8 @@ end
       
        if @periodo.save
         flash[:notice] = 'Per&iacute;odo Guardado'
-        format.html { redirect_to liquidar_periodos_path}    
+        format.html { redirect_to liquidar_periodos_path}           
+        
        else
           format.html { render :partial => 'new', :layout => 'default' }
       end
