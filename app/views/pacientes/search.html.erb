@@ -20,18 +20,11 @@
 
       <table  style=" text-align: left; "class="table-search">
         <tr>
-          <th>Tipo Documento</th>
-        <td><%=  collection_select(:get, :tipo_documento_id, TipoDocumento.all, :id, :descripcion, {}, :class =>"ui-widget-content") %> </td>
-          
-        <th>Nro:</th>
+             
+        <th>Ingrese Numero de Documento</th>
           <td> <%= text_field_tag :nro_documento,{}, :class => 'ui-widget-content required', :title=> 'Ingrese Nro. de Documento ', :onkeypress=> 'return validate(event)' %></td>
         </tr>
 
-        <tr>
-          <th>Apellido/Nombre</th>
-        <td><%= text_field_tag :nombre,{}, :class => 'ui-widget-content required', :title=> 'Ingrese Nombre Y Apellido', :onkeypress=> 'return validar(event)'  %></td>
-
-        </tr>
       </table>
 
      <table>
@@ -114,6 +107,7 @@ function validar(e) { // 1
        errorLabelContainer: $("ol", $("#searchform div.errores")),
        wrapper: 'li',
        meta: "validate"
+
      
        
      });

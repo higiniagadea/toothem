@@ -4,9 +4,9 @@
    <div id="pacientes-screen">
      <div id= "pacientes-photo">
     <% if @paciente.archivo_id.blank? %>
-      <%=# image_tag('nouser.jpg') %>
+      <%= image_tag('nouser.jpg') %>
     <%else%>
-      <%#= image_tag @paciente.archivo.public_filename(:thumb) ,:alt => 'imagen del paciente' %>
+      <%= image_tag @paciente.archivo.public_filename(:thumb) ,:alt => 'imagen del paciente' %>
     <%end%>
 
        <script type="text/javascript">
@@ -39,86 +39,80 @@
         <table style=" text-align: left; "class="tablelist">
          <tr>
           <th>Nombre y Apellido</th>
-          <td><%= f.text_field :nombre_apellido, :class=>'ui-widget-content required', :title=> 'Nombre y Apellido no puede estar vacio', :size=> 20, :onkeypress=> 'return validate(event)' %>
+          <td><%= f.text_field :nombre, :class=>'ui-widget-content required', :title=> 'Nombre y Apellido no puede estar vacio', :size=> 25, :onkeypress=> 'return validate(event)' %>
           </td>
          <th>Tipo Y Nro.  Documento</th>
           <td> <%= @paciente.tipo_documento.descripcion %> <%= @paciente.nro_documento %>
           </td>
           </tr>
 
-          <tr>
-            <th>Domicilio Particular </th>
-          <td colspan="3"><%= f.text_field :domicilio_particular, :size=>88, :class=>'ui-widget-content required', :title=> 'Domicilio Particular no puede estar vacio' %>
-          </td>
-          </tr>
+           <tr>
+    <th>Domicilio Particular</th>
+    <td><%= f.text_field :domicilio_particular, :title=> 'Ingrese el Domicilio Particular', :size=>25, :class =>"ui-widget-content required"%>
+    </td>
+    </tr>
+    
+    <tr>
+    <th>Domicilio Laboral</th>
+    <td><%= f.text_field :domicilio_laboral, :size=>25, :class =>"ui-widget-content"%>  </td>
+    </tr>
+    <tr>
+     <th>Localidad</th>
+    <td><%= f.collection_select(:localidad_id, Localidad.all, :id, :descripcion, {:include_blank => 'Seleccione'}, :class=> "ui-widget-content required",  :title=> 'Seleccione Localidad') %></td>
+    </tr>
+    
+    <tr>
+     <th>Sexo</th>
+    <td><%= @paciente.sexo %>
+      </td>
+      </tr>
 
-          <tr>
-          <th>Domicilio Laboral</th>
-          <td colspan="3"><%= f.text_field :domicilio_laboral, :size=>88, :class=> 'ui-widget-content' %>
-          </td>
-          </tr>
+    <tr>
+    <th>
+      Correo Electronico</th>
+      <td><%= f.text_field :correo_electronico, :size=>25, :class =>"required email ui-widget-content", :title=> 'Ingrese el Correo Electronico'%> 
+    
+    </td>
+    </tr>
 
-          <tr>
-          <th>Sexo</th>
-          <td><select name="paciente[sexo]" class="ui-widget-content required">
-              <%=  options_for_select(["Masculino", "Femenino"], @paciente.sexo)%>
-            </select>
-          </td>
-          
+  
 
-          
-          <th>Estado civil</th>
-          <td><select name="paciente[estado_civil]" class="ui-widget-content" >
-              <%=  options_for_select([ "Soltero/a", "Casado/a","Divorciado/a","Viudo/a","Otro" ], @paciente.estado_civil)%>
-            </select>
-          </td>
-          </tr>
-        
+    <tr>
+    <th>
+      Fecha de Nacimiento</th>
+    <td><%= @paciente.fecha_nacimiento.strftime('%d/%m/%y') %>
+    </td>
+  </tr>
+  <tr>
+    <th>
+      Tel&eacute;fono Particular</th>
+    <td><%= f.text_field :telefono_particular, :class =>"ui-widget-content", :size=> 25, :onkeypress=> 'return validar(event)' %>
+    </td>
+    </tr>
 
-          <tr>
-          <th>Fecha de Nacimiento </th>
-          <td><span class="fecha_nacimiento" class ="ui-widget-content">
-              <input class="ui-widget-content required " title="Fecha de Nacimiento no puede estar en blanco" type="text" id="fecha_nacimiento" name="paciente[fecha_nacimiento]" readonly="readonly" value="<%=  @paciente.fecha_nacimiento.strftime('%d/%m/%Y')%>" />
-              </span>
-          </td>
-
-          <th>Grupo Sangu&iacute;neo</th>
-          <td><select name="paciente[grupo_sanguineo]" class ="ui-widget-content">
-          <%= options_for_select(["A+","A-","B+","B-","AB+","AB-","O+","O-"], @paciente.grupo_sanguineo) %>
-             </select>
-          </td>
-          </tr>
-
-          <tr>
-          <th>
-            Tel&eacute;fono Particular</th>
-          <td><%= f.text_field :telefono_particular, :class=> 'ui-widget-content ', :size=> 20, :onkeypress=> 'return validar(event)'  %>
-          </td>
-            <th>
-            Tel&eacute;fono celular</th>
-          <td><%= f.text_field :telefono_celular, :class=> 'ui-widget-content', :size=>20, :onkeypress=> 'return validar(event)'  %>
-          </td>
-                
-          </tr>
-
-          <tr>
-          <th>Profesi&oacute;n</th>
-          <td><%= f.text_field :profesion, :class=> 'ui-widget-content ', :size=>20 , :onkeypress=> 'return validate(event)' %>
-          </td>
-
-          </tr>
-
-           <th>Nro de Afiliado</th>
-          <td><%= f.text_field :nro_afiliado, :class =>"ui-widget-content", :size=> 20, :onkeypress=> 'return validate(event)' %>
-           </td>
-           </table>
-
-          <table>
-            <tr>
-
-          <td style=" float: left; margin-left:  950px"><%= link_to 'Cancelar', search_pacientes_path  %> <%= f.submit 'Actualizar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
-          </td>
-          </tr>
+    <tr>
+   
+    
+    <th>
+      Tel&eacute;fono Celular</th>
+    <td><%= f.text_field :telefono_celular, :class =>"ui-widget-content required", :size=> 25, :onkeypress=> 'return validar(event)',  :title=> 'Ingrese el Telefono Celular' %>
+    </td>
+    </tr>
+    <tr>
+    <th>Tipo de afiliado</th>
+   <td><%= f.collection_select(:tipo_afiliado_id, TipoAfiliado.all, :id, :descripcion, {:include_blank => 'Seleccione'}, :class=> "ui-widget-content required",  :title=> 'Seleccione tipo de afiliado') %>
+    </td>
+    </tr>
+    <tr>
+    <th>Nro de Afiliado</th>
+   <td><%= f.text_field :nro_afiliado, :class =>"ui-widget-content required", :size=> 25, :onkeypress=> 'return validar(event)', :title=> 'Ingrese el Nro de afiliado' %>
+    </td>
+    </tr>
+    <table>
+      <tr>
+       <td style=" float: left; margin-left: 1000px"><%= link_to 'Cancelar', search_pacientes_path %> <%= f.submit 'Guardar' %>
+    </td>
+    </tr>
            </table>
 
        
@@ -199,3 +193,4 @@ function validate(e) { // 1
 
 
   </script>
+
