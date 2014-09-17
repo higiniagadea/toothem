@@ -40,3 +40,5 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'periodo_obra_social', 'periodos_obras_sociales'
   inflect.irregular 'localidad', 'localidades'
   inflect.irregular 'tipo_afiliado', 'tipos_afiliado'
+
+end
