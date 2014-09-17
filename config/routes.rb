@@ -19,6 +19,9 @@ ActionController::Routing::Routes.draw do |map|
                            
                              
                               }
+  map.resources :localidades
+
+  map.resources :tipos_afiliado
 
   map.resources :acciones
 
@@ -121,7 +124,9 @@ map.resources :periodos_obras_sociales,  :collection => {:buscar => :get, :resul
 
                             end
 
-  map.resources :profesionales, :collection => {:buscar => :get, :resultado => [:get, :post]}
+  map.resources :profesionales, :collection => {:buscar => :get,
+                                                :resultado => [:get, :post],
+                                                :verificar_documento => [:get, :post]}
   
   map.resources :archivos
                 
@@ -139,7 +144,7 @@ map.resources :periodos_obras_sociales,  :collection => {:buscar => :get, :resul
   map.resources :usuarios, 
                            :collection =>{:renovar_clave => :get, :establecer_nueva_clave => :post,
                            :verificar_clave => :post,
-                           :olvide_mi_clave => [:get, :post], :resetear_clave => [:get,:post],
+                           :olvide_mi_contrasena => [:get, :post], :resetear_clave => [:get,:post],
                            :buscar => :get, :resultado => [:get, :post], :verificar => :get, :verificar_clave_email => :get,  :verificar_email => :get, :cambiar_clave => [:get, :post], :enviar_email => [:get, :post]}
 
   map.resource :session
@@ -170,7 +175,7 @@ map.resources :periodos_obras_sociales,  :collection => {:buscar => :get, :resul
 
 
    map.resources :obras_sociales, :collection => {:buscar => :get, :resultado => [:post, :get]} do |obra_social|
-     obra_social.resources :aranceles, :collection => {:busqueda => [:get, :post], :resultados => [:post, :get]}
+     obra_social.resources :aranceles, :collection => {:busqueda => [:get, :post], :resultados => [:post, :get],  :verificar_nombre => [:get]}
                                      
   end
   # Sample resource route within a namespace:
