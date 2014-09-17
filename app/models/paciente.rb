@@ -12,14 +12,18 @@ class Paciente < ActiveRecord::Base
   belongs_to :tipo_documento
   has_one :historia_clinica_general
   has_one :historia_clinica_ortodoncia  
- 
+  belongs_to :localidad
   has_many :imagenes
+  belongs_to :tipo_afiliado
 
-  validates_presence_of :nombre, :message => ' y apellido no pueden estar en blanco'
+  validates_presence_of :nombre, :message => ' nombre no pueden estar en blanco'
+  
   validates_uniqueness_of :nro_documento, :message => ' Ya existe'
   validates_presence_of :domicilio_particular, :message => 'No puede estar en blanco'
   validates_presence_of :fecha_nacimiento, :message=> 'No puede estar en blanco'
   validates_uniqueness_of :nro_afiliado, :message=> 'Ya existe ese numero '
+
+  #
 
    named_scope :by_nro_documento, lambda { |nro_documento|
     {
@@ -27,22 +31,22 @@ class Paciente < ActiveRecord::Base
           { :nro_documento => "%"+nro_documento.downcase+"%"} ]
     }
   }
-  named_scope :by_nombre, lambda { |nombre|
-    {
-      :conditions=> ['lower(nombre) LIKE :nombre ',
-          { :nombre => "%"+nombre.downcase+"%"} ]
-    }
-  }
-  named_scope :by_tipo_documento_id, lambda { |tipo_documento_id|
-    {
-      :conditions => ['tipo_documento_id= ?' , tipo_documento_id]
-    }
-  }
+  #named_scope :by_nombre, lambda { |nombre|
+   # {
+    #  :conditions=> ['lower(nombre) LIKE :nombre ',
+     #     { :nombre => "%"+nombre.downcase+"%"} ]
+    #}
+  #}
+  #named_scope :by_tipo_documento_id, lambda { |tipo_documento_id|
+   # {
+    #  :conditions => ['tipo_documento_id= :tipo_documento_id',
+     #            {:tipo_documento_id => tipo_documento_id }]
+    #}
+  #}
 
+  
 
-
-
-
+  #
  
   #named_scope :by_consultorio, lambda { |consultorio|
     #{
@@ -54,9 +58,10 @@ class Paciente < ActiveRecord::Base
 
   def self.basic_search(options)
     scope_builder do |builder|
-      builder.by_nombre(options[:nombre]) unless options[:nombre].blank?
+     # builder.by_nombre(options[:nombre]) unless options[:nombre].blank?
+      
       builder.by_nro_documento(options[:nro_documento]) unless options[:nro_documento].blank?
-       builder.by_tipo_documento_id(options[:tipo_documento_id]) unless options[:tipo_documento_id].blank?
+   #  builder.by_tipo_documento_id(options[:tipo_documento_id]) unless options[:tipo_documento_id].blank?
       #builder.by_consultorio
 
     end
