@@ -8,7 +8,7 @@ class Profesional < ActiveRecord::Base
   has_many :tratamientos,  :dependent => :destroy
 
   validates_presence_of :nombre, :message=>' requerido'
-  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :message => ' inválido'
+  #validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :message => ' inválido'
 
   named_scope :by_nombre, lambda { |nombre|
     {
@@ -30,8 +30,8 @@ class Profesional < ActiveRecord::Base
 
     scope_builder do |builder|
 
-        builder.by_nombre(options[:nombre]) unless options[:nombre]
-       builder.by_nro_documento(options[:nro_documento]) unless options[:nro_documento]
+        builder.by_nombre(options[:nombre]) if options[:nombre]
+       builder.by_nro_documento(options[:nro_documento]) if options[:nro_documento]
        
     end
   end

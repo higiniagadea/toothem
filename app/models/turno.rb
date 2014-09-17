@@ -13,8 +13,9 @@ class Turno < ActiveRecord::Base
      fecha_hasta = self.fecha_hora + self.duracion.minutes
     
      turno = Turno.find(:first, :conditions => ['(fecha_hora between ? and?) and profesional_id = ?',  fecha_desde, fecha_hasta, self.profesional_id])
-     tarea = Tarea.find(:first, :conditions => ['(fecha_hora between ? and?) and profesional_id = ?',  fecha_desde, fecha_hasta, self.profesional_id])
-     errors.add('Verifique la fecha y hora asignada') unless  turno.blank? && tarea.blank?
+     #tarea = Tarea.find(:first, :conditions => ['(fecha_hora between ? and?) and profesional_id = ?',  fecha_desde, fecha_hasta, self.profesional_id])
+     #errors.add('Verifique la fecha y hora asignada') unless  turno.blank? && tarea.blank?
+     errors.add('Turno no disponible, elija otra fecha y hora') unless  turno.blank?
    end
 
   named_scope :by_fechas, lambda { |fecha_desde, fecha_hasta|
