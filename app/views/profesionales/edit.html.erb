@@ -9,82 +9,69 @@
   <tr>
   <th>
    Nombre y Apellido </th>
-  <td><%= f.text_field :nombre, :class =>'ui-widget-content required', :title => 'Ingrese un Nombre', :onkeypress=> 'return validate(event)'%>
+  <td><%= @profesional.nombre%>
   </td>
-   <th>
-    Consultorio </th>
-    <td><%#= f.collection_select(:consultorio_id, Consultorio.all, :id, :nombre,  :class => 'ui-widget-content', :title=> 'Seleccione un consultorio' ) %>
-
-  </td>
-  </tr>
+   </tr>
 
   <tr>
   <th>
-   Tipo documento </th>
-  <td><%= f.collection_select(:tipo_documento_id, TipoDocumento.all, :id, :descripcion, {:include_blank => 'Seleccione'}, :class => 'ui-widget-content required', :title=> 'Seleccione un tipo documento') %>
-
-  </td>
-  <th>
- Documento</th>
-  <td><%= f.text_field :nro_documento, :class =>"ui-widget-content required", :title => 'Ingrese un documento valido', :onkeypress=> 'return validar(event)' %>
-  </td>
+   Tipo y Nro de Documento </th>
+   <td><%= @profesional.tipo_documento.descripcion %><%= @profesional.nro_documento%>
+    </td>
   </tr>
 
   <tr>
   <th>
    Matrícula Profesional</th>
-  <td><%= f.text_field :matricula_profesional, :class =>"ui-widget-content required", :title=> 'Matricula no puede estar en blanco' , :onkeypress=> 'return validar(event)'%>
+  <td><%= @profesional.matricula_profesional %>
   </td>
+</tr>
+<tr>
   <th>
-   E-mail </th>
-  <td><%= f.text_field :email, :class =>"ui-widget-content required", :title => 'Ingrese un mail valido' %>
+   Correo Electronico</th>
+  <td><%= f.text_field :correo_electronico, :class =>"required email ui-widget-content", :title => 'Ingrese un correo electronico valido' , :size => '25' %>
   </td>
   </tr>
 
   <tr>
   <th>
-    Direccion </th>
-  <td><%= f.text_field :direccion, :class =>"ui-widget-content " %>
+    Domicilio</th>
+  <td><%= f.text_field :domicilio, :class =>"ui-widget-content required " , :title => 'Ingrese el Domicilio' , :size => '25'%>
   </td>
+</tr>
+<tr>
   <th>
-    Telefono </th>
-  <td><%= f.text_field :telefono, :class =>"ui-widget-content" , :onkeypress=> 'return validar(event)'%>
+    Telefono Particular </th>
+  <td><%= f.text_field :telefono_particular, :class =>"ui-widget-content required" ,:title => 'Ingrese el Telefono Particular', :onkeypress=> 'return validar(event)', :size => '25'%>
   </td>
   </tr>
 
   <tr>
   <th>
-    Móvil </th>
-  <td><%= f.text_field :movil, :class =>"ui-widget-content" , :onkeypress=> 'return validar(event)' %>
+    Telefono Celular</th>
+  <td><%= f.text_field :telefono_celular, :class =>"ui-widget-content required" , :onkeypress=> 'return validar(event)', :size => '25', :title => 'Ingrese el Telefono Celular' %>
   </td>
-
+</tr>
+<tr>
   <th>Fecha Nacimiento</th>
-    <td><span class="fecha_nacimiento" class ="ui-widget-content">
-              <input class="ui-widget-content required "type="text" id="fecha_nacimiento" name="profesional[fecha_nacimiento]" readonly="readonly"  value="<%=@profesional.fecha_nacimiento.strftime('%d/%m/%y')%>" />
-      </span></td>
+    <td><%=@profesional.fecha_nacimiento.strftime('%d/%m/%y') %></td>  
   </tr>
 
+<tr>
+     <th>Estado laboral</th>
+    <td><%= f.collection_select(:estado_laboral_id, EstadoLaboral.all, :id, :descripcion, {:include_blank => 'Seleccione'}, :class=> "ui-widget-content required",  :title=> 'Seleccione Estado') %></td>
+    </tr>
 
-
-  <th>Fecha  de Ingreso</th>
-    <td><span class="fecha_ingreso" class ="ui-widget-content">
-              <input class="ui-widget-content required "type="text" id="fecha_ingreso" name="profesional[fecha_ingreso]" readonly="readonly" value="<%=@profesional.fecha_ingreso.strftime('%d/%m/%y')%>" />
-      </span></td>
-
-  <tr>
-  <th>
-   Estado Laboral</th>
-  <td><%= f.collection_select :estado_laboral_id, EstadoLaboral.all, :id, :descripcion, {:include_blank => 'Seleccione'}, :class => 'ui-widget-content required', :title=> 'Seleccione un estado',  :class =>"ui-widget-content " %>
-  </td>
-  </tr>
 </table>
   <table>
     <tr>
   <td style=" float: left; margin-left:  950px">
     <%= link_to 'Volver', buscar_profesionales_path %>
-    <%= f.submit 'Actualizar',  :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+    <%= f.submit 'Guardar',  :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
   </td>
     </tr>
+
+
 </table>
 </fieldset>
 <% end %>
@@ -130,7 +117,7 @@ function validate(e) { // 1
        wrapper: 'li',
        meta: "validate",
        rules: {
-          "profesional[documento]": {required: true, digits: true, rangelength: [6, 10]}
+          "profesional[nro_documento]": {required: true, digits: true, rangelength: [6, 10]}
     
        }
 
@@ -139,5 +126,5 @@ function validate(e) { // 1
    })
 
   $("#fecha_nacimiento").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Jutdo','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110',  maxDate: 0});
-  $("#fecha_ingreso").datepicker({ dateFormat: 'dd-mm-yy',dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'], monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Jutdo','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], buttonImage: '<%= image_path("22/calendar.png")%>',buttonImageOnly: true,showOn:'button', changeYear: true, yearRange: '1960:2110',  maxDate: 0});
+  
 </script>
