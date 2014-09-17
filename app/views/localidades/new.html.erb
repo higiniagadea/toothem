@@ -1,0 +1,28 @@
+<fieldset class="ui-widget ui-widget-content ui-corner-top">
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Nueva Localidad</legend>
+
+<% form_for(@localidad) do |f| %>
+  <%= f.error_messages %>
+<table style=" text-align: left;">
+
+  <tr>
+    <th>Descripcion de la localidad</th> 
+    <td><%= f.text_field :descripcion , :size => 15, :class=>'ui-widget-content required'%></td>
+  </tr>
+</table>
+
+<table>
+
+  <tr>
+    <td style=" float: left; margin-left:  800px"><%= f.submit 'Registrar', :class=>'ui-widget-content required' %>
+    <%= link_to 'Volver', localidad_path %>
+  </td>
+
+  </tr>
+
+</table>
+
+<% end %>
+
+
+</fieldset>
