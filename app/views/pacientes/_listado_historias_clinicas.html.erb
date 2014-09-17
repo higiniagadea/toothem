@@ -2,22 +2,6 @@
   <legend class="ui-widget ui-widget-header ui-corner-all">Historias Cl&iacute;nicas</legend>
 <% unless @paciente.titular.blank? %>
 <table>
-  <tr>
-    
-<%if @paciente.historia_clinica_general.blank? -%>
-     <%=  link_to image_tag('add.png') + 'Historia Cl&iacute;nica General', new_paciente_historia_clinica_general_path(@paciente),:id=>'new_general', :title => 'Nueva Historia Clinica' %>
-   
-<%elsif-%>
-    <%= link_to image_tag('pencil.png') + 'Historia Cl&iacute;nica General', edit_paciente_historia_clinica_general_path(@paciente, @historia_clinica_general),:id=> 'edit_general' ,:title => 'Ver' %>
-  <%end-%>
-   
-</tr>
-
-<br/>
-
-<tr>
-
-
 
 <% if @paciente.historia_clinica_ortodoncia.blank? -%>
 

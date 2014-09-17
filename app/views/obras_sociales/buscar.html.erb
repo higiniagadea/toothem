@@ -9,34 +9,34 @@
       'hideOnContentClick': false,
       'titleShow': false
 
-    });
-    </script>
-
-      </td>
-    </tr>
+      });
+      </script>
+    </tr></tr> 
+ 
   </table>
 
- <% form_remote_tag :url => resultado_obras_sociales_path,
+  <% form_remote_tag :url => resultado_obras_sociales_path,
                     :method => :post,
                     :update => :search_hits do -%>
   
-    <table style=" text-align: left">
+     <table style=" text-align: left">
       <tr>
       <th>Nombre</th>
       <td><%= text_field_tag :nombre, {}, :class => 'ui-widget-content', :onkeypress=> 'return validar(event)' %>
         </td>
-      </tr>
+      </tr>    
+     </table>
 
-     
-    </table>
   <table>
     <tr>
         <td  style=" float: left; margin-left:  400px"><%= submit_tag 'Buscar', :class => 'submit ui-button ui-widget ui-state-default ui-corner-all'  %>
         </td>
         <td id="tex"><%= image_tag('help.png') %></td>
     </tr>
-      </table>
+  </table>
+ 
 <%end -%>
+
 <div id ="search_hits">
   
 </div>

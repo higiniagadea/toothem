@@ -2,22 +2,15 @@
   <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Profesional</legend>
  <table style=" text-align: left;">
  <tr>
-  <th> Nombre</th>
+  <th> Nombre y Apellido</th>
   <td><%=h @profesional.nombre %>
   </td>
- 
-      <th>Consultorio
-      </th>
-      <td><%#= @profesional.consultorio_id%> </td>
-    </tr>
-
-
     <tr>
       <th>Tipo Documento</th>
       <td><%= @profesional.tipo_documento.descripcion  %> </td>
    
 
-  <th> Documento</th>
+  <th>Nro de  Documento</th>
   <td><%=h @profesional.nro_documento %>
   </td>
     </tr>
@@ -26,31 +19,28 @@
       <th>Matricula Profesional</th>
       <td><%= @profesional.matricula_profesional.blank? ? '-' : @profesional.matricula_profesional  %> </td>
    
-      <th>E-mail</th>
-      <td><%=@profesional.email %> </td>
+      <th>Correo Electronico</th>
+      <td><%=@profesional.correo_electronico %> </td>
     </tr>
     <tr>
-      <th>Telefono</th>
-      <td><%= @profesional.telefono.blank? ? '-' :@profesional.telefono %> </td>
+       
+       <th>Domicilio</th>
+      <td><%=@profesional.domicilio %> </td> 
+
+      <th>Telefono Particular</th>
+      <td><%= @profesional.telefono_particular.blank? ? '-' :@profesional.telefono_particular %> </td>
   
-      <th>Movil</th>
-      <td><%= @profesional.movil.blank? ? '-' :@profesional.movil %> </td>
+      
     </tr>
 
     <tr>
+      <th>Telefono Celular</th>
+      <td><%= @profesional.telefono_celular.blank? ? '-' :@profesional.telefono_celular %> </td>
+
       <th>Fecha de Nacimiento</th>
       <td><%= @profesional.fecha_nacimiento.blank? ? '-' :@profesional.fecha_nacimiento.strftime('%d/%m/%y') %> </td>
-    
-      <th>Fecha de Ingreso</th>
-      <td><%=@profesional.fecha_ingreso.blank? ? '-' :@profesional.fecha_ingreso.strftime('%d/%m/%y') %> </td>
     </tr>
-
-    <tr>
-      <th>Estado Laboral</th>
-      <td><%= @profesional.estado_laboral.descripcion %> </td>
-   
-      <th></th>
-    </tr>
+ 
   </table>
   <table>
     <tr>

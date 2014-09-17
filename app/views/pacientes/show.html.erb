@@ -31,12 +31,14 @@
         <th class="fieldname">Nombre y Apellido</th>
         <td class="fielddata" id="fnombre" ondblclick="<%= remote_function(:update => "fnombre",
                                                                            :url => "/pacientes/editfield/"+@paciente.id.to_s+"?fieldname=nombre") %>">
-            <%#=h @paciente.nombre %>
+            <%=h @paciente.nombre %>
         </td>
       </tr>
-     <%#= remote_function(:update => "fmatricula",
+      <tr class="odd">
+        <th class="fieldname">Documento</th>
+        <td id="fmatricula" class="fielddata" ondblclick="<%= remote_function(:update => "fmatricula",
                                                                               :url => "/pacientes/editfield/"+@paciente.id.to_s+"?fieldname=matricula") %>">
-            <%#=h @paciente.tipo_documento.descripcion %> <%#=h @paciente.matricula %></td>
+            <%=h @paciente.tipo_documento.descripcion %> <%=h @paciente.matricula %></td>
       </tr>
       <tr >
         <td class="fieldname">Fecha Nacimiento</td>

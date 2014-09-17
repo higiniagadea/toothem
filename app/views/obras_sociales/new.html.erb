@@ -20,24 +20,24 @@
     <tr>
     <th>
      Domicilio</th>
-    <td><%= f.text_field :domicilio, :size =>15, :class=> 'ui-widget-content required' %>
+    <td><%= f.text_field :domicilio, :size =>15, :class=> 'ui-widget-content required',:title=> 'Ingrese el domicilio' %>
     </td>
     </tr>
 
     <tr>
     <th>
     Telefono</th>
-    <td><%= f.text_field :telefono, :size => 15, :class=> 'ui-widget-content required', :onkeypress=> 'return validar(event)'  %>
+    <td><%= f.text_field :telefono, :size => 15, :class=> 'ui-widget-content required', :onkeypress=> 'return validar(event)', :title=> 'Ingrese el telefono'  %>
     </td>
     </tr>
     
     <tr>
      <th>Correo Electronico</th>
-     <td><%= f.text_field :correo_electronico, :size => 15,  :class=> 'ui-widget-content required'  %>
+     <td><%= f.text_field :correo_electronico, :size => 15,  :class=> 'ui-widget-content required', :onkeypress=> 'return validate(event)', :title=> 'Ingrese un correo electronico'  %>
     </tr>
 
-    <tr><th>Codigos por mes</td>
-   <td><%= f.text_field :codigos_por_mes , :size => 15,  :class=> 'ui-widget-content required', :onkeypress=> 'return validar(event)'  %>
+    <tr><th>Codigos por mes </td>
+   <td><%= f.text_field :codigos_por_mes , :size => 15,  :class=> 'ui-widget-content required', :onkeypress=> 'return validar(event)', :title=> 'Ingrese la cantidad de codigos por mes'  %>
     </tr>
 
   </table>
@@ -46,7 +46,7 @@
         <tr>
           <td style=" float: left; margin-left: 200px">
          
-            <%= f.submit 'Guardar' , :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+            <%= f.submit 'Registrar' , :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
 
           </td></tr>
   </table>
@@ -85,6 +85,7 @@ $(document).ready(function(){
        meta: "validate",
        rules :{
          "obra_social[nombre]": {required: true, rangelength: [3,30] }
+         //"obra_social[nombre]": {required: true, remote:"/obras_sociales/verificar_nombre?obra_social[nombre]=" + $('#obra_social[nombre]').val()},
         
        }
           

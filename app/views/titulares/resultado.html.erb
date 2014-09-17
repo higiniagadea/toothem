@@ -13,9 +13,9 @@
   <% @titulares.each do |titular| %>
     <tr class="<%=  cycle('par','impar')%>">
       <td><%=h titular.nombre %></td>
-      <td><%=h titular.nro_documento %></td>
+      <td><%=h titular.matricula %></td>
       <td><%=h titular.obra_social_id %></td>
-      <td><%#=h titular.nro_afiliado%></td>
+      <td><%=h titular.nro_afiliado%></td>
       <td><%= link_to 'Ver', titular %></td>
       <td><%= link_to 'Editar', edit_titular_path(titular) %></td>
       <td><%= link_to 'Borrar', titular, :confirm => '¿Está seguro? No podrá deshacer esta acción', :method => :delete %></td>

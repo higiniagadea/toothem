@@ -5,8 +5,8 @@
   <h1>Resultado de la b&uacute;squeda </h1>
 <table style=" text-align: left" class="listados">
   <tr>
-    <th>Nombre</th>
-    <th>Documento</th>
+    <th>Nombre y Apellido</th>
+    <th>Nro de Documento</th>
     <th>Acciones</th>
   
   </tr>
@@ -17,7 +17,7 @@
     <td><%=h profesional.nro_documento %></td>
     <td><%= link_to image_tag('magnifier_zoom_in.png'), profesional, :title => 'Ver',  :id => 'ver_' + profesional.id.to_s%>
     <%= link_to image_tag('pencil.png'), edit_profesional_path(profesional), :title => 'Editar' %>
-    <%= link_to image_tag('cancel.png'), profesional, :title => 'Eliminar', :confirm => 'Esta seguro?', :method => :delete %></td>
+    <%#= link_to image_tag('cancel.png'), profesional, :title => 'Eliminar', :confirm => 'Esta seguro?', :method => :delete %></td>
   </tr>
     <script type="text/javascript">
   $(document).ready(function()
@@ -33,7 +33,7 @@
  </script>
 <% end %>
   <%else%>
- <span style="color:red">No se encontraron resultados</span>
+ <span style="color:red">No se encontraron resultados segun el criterio de busqueda</span>
   <%end%>
 </table>
 

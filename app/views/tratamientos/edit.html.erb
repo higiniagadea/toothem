@@ -76,15 +76,18 @@
       
     </td>
   </tr>
-  <br/> 
+   
+ <br/>
+ <br/>
   <tr>
-    <th>Fue liquidado</th>
-    <th><%= boolean_desc(@tratamiento.fue_liquidado) %> </th>
+        <th>Observaciones</th>
+        <td><%= f.text_area :observaciones,  :class=> 'ui-widget-content' ,  :cols => 12, :rows => 4 %> </td>
+
   </tr>
   <br/>
     <tr>
-        <th>Observaciones</th>
-        <td><%= f.text_area :observaciones,  :class=> 'ui-widget-content' ,  :cols => 12, :rows => 4 %> </td>
+        <th>Fue liquidado</th>
+    <th><%#= f.check_box :fue_liquidado, {}, true, false %></th>
    </tr>
 </table>
   <table>

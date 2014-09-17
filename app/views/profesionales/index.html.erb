@@ -14,7 +14,7 @@
 <% @profesionales.each do |profesional| %>
   <tr class="<%= cycle('par','impar') -%>">
     <td><%=h profesional.nombre %></td>
-     <td><%=h profesional.consultorio_id %></td>
+     
       <td><%=h profesional.matricula_profesional %></td>
 
     <td><%= link_to image_tag('magnifier_zoom_in.png'), profesional, :title => 'Ver' %>

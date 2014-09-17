@@ -1,8 +1,8 @@
 
 <fieldset class=" ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-corner-all ui-widget-header">Ingresar al sistema</legend>
+  <legend class="ui-widget ui-corner-all ui-widget-header">Ingresar</legend>
       <% form_tag session_path, :id => 'loginf' do -%>
-      <p><%= label_tag 'Usuario' %><br />
+      <p><%= label_tag 'Nombre de Usuario' %><br />
       <%= text_field_tag 'login', @login, :class => 'ui-widget-content required'  %></p>
 
       <p><%= label_tag 'Contraseña' %><br/>
@@ -21,7 +21,7 @@
 
   </fieldset>
 
-<p style="text-align: left;"><%= link_to "Olvide mi contraseña", olvide_mi_clave_usuarios_path %></p>
+<p style="text-align: left;"><%= link_to "Olvide mi contraseña", olvide_mi_contrasena_usuarios_path %></p>
   
 <script type="text/javascript">
   $(document).ready(function(){

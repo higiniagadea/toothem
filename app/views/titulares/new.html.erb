@@ -13,8 +13,8 @@
 
   <tr>
   <td>
-    <label>Nro de documento</label></td>
-  <td><%= f.text_field :nro_documento %>
+    <label>Matrícula</label></td>
+  <td><%= f.text_field :matricula %>
   </td>
   </tr>
   <tr>
@@ -27,12 +27,12 @@
 
   <tr>
     <td>Nro de Afiliado</td>
-    <td><%#= f.text_field :nro_afiliado %> </td>
+    <td><%= f.text_field :nro_afiliado %> </td>
   </tr>
 
   <td>
     <label></label>
-    <%= f.submit 'Crear',  :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
+    <%= f.submit 'Registrar',  :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %>
   </td>
 </table>
 </fieldset>

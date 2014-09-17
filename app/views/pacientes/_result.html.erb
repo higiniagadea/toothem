@@ -4,16 +4,18 @@
  
   <table style=" text-align: left;" class="listados" >
     <tr>
-      <th>Nombre y Apellido </th>
+      <th>Nombre </th>
+       
       <th>Tipo y Nro. Documento</th>
-      <th> Telefono celular</th>
+      
       <th>Acciones</th>
     </tr>
     <% @pacientes.each do |paciente| %>
      <tr class="<%= cycle('par','impar') -%>">
         <td><%=h paciente.nombre %></td>
+         
         <td><%=h paciente.tipo_documento.descripcion %><%=h paciente.nro_documento %></td>
-        <td><%=h paciente.telefono_celular.blank? ? '-' : paciente.telefono_celular  %></td>
+        
       
         <td><%= link_to image_tag('magnifier_zoom_in.png'), ver_paciente_path(paciente), :title => "Vista Rapida", :id => 'ver_paciente_' + paciente.id.to_s %>
           <%= link_to image_tag('pencil.png'), edit_paciente_path(paciente), :title => "Editar" %></td>
@@ -36,7 +38,7 @@
 
    
  <%else%>
-     <td style="color:red">No se encontraron pacientes seg&uacute;n el criterio de b&uacute;squeda</td>
+  <span style="color:red">No se encontraron resultados seg&uacute;n el criterio de b&uacute;usqueda</span>
  <%end%> 
   
 </table>

@@ -4,63 +4,59 @@
   <div style=" float: center; margin-left: 930px"><%= link_to image_tag('add.png') + 'Nueva Imagen', new_imagen_path + '/'+@paciente.id.to_s, :id => 'cargar_imagen_' + @paciente.id.to_s %></div>
 <br/>
 <br/>
+
   <table class="show-data">
-<% unless @imagenes.blank? -%>
+  <% unless @imagenes.blank? -%>
 
-      <tr>
-        <td class="fielddata">
+    <tr>
+    <td class="fielddata">
+      <div id="pageContainer">
+        <div id="slideshow">
+          <div id="slidesContainer">
+           <% @imagenes.each do |imagen| %>
+              <div class="slide" style="float: left; font-size: 12px; font-weight: normal">         
+                <div class="tumbnail"><%= image_tag imagen.archivo.public_filename(:thumb) %>
 
-          <div id="pageContainer">
+                  <div id="acciones">
+                  <table  width="80%">
+                      
+                      <tr>
+                         <td>Descripcion:  <%= imagen.descripcion.blank? ? '-' :imagen.descripcion %></td>
+                         <td colspan="3"><%= link_to image_tag('pencil.png'), edit_imagen_path(imagen.id), :title => 'Ver Imagen', :id=> 'ver_imagen_' + @paciente.id.to_s %>
+                         <%= link_to image_tag('cancel.png'), imagen, :title => 'Eliminar Imagen', :confirm => "Esta seguro que desea eliminar la imagen?", :method => :delete %></td>
 
-  <!-- Slideshow HTML -->
-   <div id="slideshow">
-     <div id="slidesContainer">
+                        </tr>
+                      <tr>
+                        <td>Observaciones: <%= imagen.observaciones.blank? ? '-' :imagen.observaciones%>  </td>
+                      </tr>
+                      <tr>
+                        <td>Fecha <%= imagen.fecha.strftime('%d/%m/%Y').blank? ? '-' : imagen.fecha.strftime('%d/%m/%Y')%></td>
+                      </tr>
+                      
 
-        <% @imagenes.each do |imagen| %>
-
-        <div class="slide">
-           <div  style="float: right; font-size: 14px; font-weight: normal">
-          
-                   <p id="imagen" href="<%= imagen_url(imagen.id)%>" style=" float: left">
-                     <br/>
-                     <br/>
-                     <br/>
-                     <br/>
-                     <br/>
-                     <br/>
-                     <br/>
-
-                     <a style=" float: left; margin-left:  10px"><%= link_to image_tag('pencil.png'), edit_imagen_path(imagen.id), :title => 'Ver Imagen', :id=> 'ver_imagen_' + @paciente.id.to_s %>
-
-                      <%= link_to image_tag('cancel.png'), imagen, :title => 'Eliminar Imagen', :confirm => "Esta seguro que desea eliminar la imagen?", :method => :delete %>
-                     </a>
-                </p>
-           </div>
-
-                <p>
-                <img src <%= image_tag imagen.archivo.public_filename(:thumb) %> </>
+                  </table>
+                  </div>
                 
-                </p>
+                </div>
 
-                <p>Descripcion:  <%= imagen.descripcion.blank? ? '-' :imagen.descripcion %> </p>
+              </div>    
 
-                <p>Observaciones: <%= imagen.observaciones.blank? ? '-' :imagen.observaciones%>  </p>
+                   
+               
 
-                <p>Fecha <%= imagen.fecha.strftime('%d/%m/%Y').blank? ? '-' : imagen.fecha.strftime('%d/%m/%Y')%></p>
-        </div>
-        <%end%>
+          </div>
+          <%end%>  <%#por cada imagen=%>     
        
-       
-  <%  else -%>
-   No posee Imagenes
-<% end %>
+    <%  else -%>
+    No posee Imagenes
+  <% end %> <%#termina unless=%>    
 
-     </div>
-   </div>
-</div>
-        </td>
-      </tr>     
-    </table>
+        </div><%#cierra slideshow=%>    
+      </div><%#cierra Pagecontainer=%>    
+
+      </td><%#fieldata=%>    
+    </tr>     
+  </table>
 
 
 </fieldset>
@@ -91,8 +87,8 @@ $(document).ready(function(){
 
   // Insert controls in the DOM
   $('#slideshow')
-    .prepend('<div class="control" id="leftControl"><<</div>')
-    .append('<div class="control" id="rightControl">>></div>');
+    .prepend('<div class="control" id="leftControl">Anterior</div>')
+    .append('<div class="control" id="rightControl">Siguiente</div>');
 
   // Hide left arrow control on first load
   manageControls(currentPosition);

@@ -32,14 +32,14 @@
 
     <tr>
       <th>Confirmaci&oacute;n</th>
-      <td><%= f.password_field :password_confirmation ,  :size => 15, :class=>'ui-widget-content required' %></td>
+      <td><%= f.password_field :password_confirmation ,  :size => 15, :class=>'ui-widget-content required'%></td> 
     </tr>
 
     
     <tr>
       <th>Perfil</th>
-      <td> <%= f.collection_select(:perfil_id, Perfil.all, :id, :nombre,{:include_blank => 'Seleccione'}, :class=> "ui-widget-content required", :title=> 'Seleccione un perfil') %>                                                                               
-                                                                                       </td>
+      <td> <%= f.collection_select(:perfil_id, Perfil.all, :id, :nombre) %> </td>                                                          
+                                                                                      
     </tr>
 
 
@@ -52,9 +52,9 @@
   <table>
     
     <tr>
-      <td  style=" float: left; margin-left:  950px">
+      <td  style=" float: left; margin-left: 950px">
       <%= link_to 'Cancelar', buscar_usuarios_path %>
-      <%= submit_tag 'Guardar' , :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
+      <%= submit_tag 'Registrar' , :class => 'submit ui-button ui-widget ui-state-default ui-corner-all' %></td>
 
 </tr>
   </table>

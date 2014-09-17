@@ -7,8 +7,8 @@
     <th>Fecha de finalizacion</th>
     <th>Coseguro</th>
     <th>Fue liquidado</th>
-    <th>Fue liquidado Obra Social</th>
-    <th>Estado</th>
+    <th>Estado de Tratamiento</th>
+    <th style="margin-left: 400px"> <%= link_to image_tag('tick.png'), buscar_periodos_path , :title => 'Liquidar'%> </th>
   </tr>
 
  <% @trat.each do |tratamiento| %>
@@ -18,13 +18,14 @@
     <th><%=h tratamiento.fecha_finalizacion.blank? ? '-': tratamiento.fecha_finalizacion.strftime('%d/%m/%Y') %></th>
     <th><%=h number_to_currency(tratamiento.coseguro) %></th>
     <th><%=h boolean_desc(tratamiento.fue_liquidado) %></th>
-    <th><%=h boolean_desc(tratamiento.fue_liquidado_os) %></th>
     <th><%=h tratamiento.estado_tratamiento.nombre %></th>
+
   </tr>
+  
 
-   
  <% end %>
-
+  
+ 
   <%else%>
   No posee tratamientos finalizados
 <% end %>

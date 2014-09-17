@@ -1,16 +1,16 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-top">
-  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Eventos</legend>
+  <legend class="ui-widget ui-widget-content ui-corner-all ui-widget-header">Seleccionar Turno</legend>
 
 <% form_remote_tag  :url => {:controller => 'turnos', :action => 'agenda'},
                      :method => :get,
                      :update => :search_hit do -%>
 
 <tr>
-
+  
          <th> <label>Elija un Profesional</label></th>
         <th>
           <%= select("profesional", "profesional_id", Profesional.all.collect {|p| [ p.nombre, p.id]}, :include_blank => 'Seleccione') %>
-
+      
         </th>
 
     </tr>

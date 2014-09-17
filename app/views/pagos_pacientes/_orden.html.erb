@@ -1,26 +1,22 @@
 <div id="cuentas">   
 <% unless @pagos_pacientes.blank? %>
-<table style=" text-align: left "class="listado">
+<table style=" text-align: left "class="listados">
   <h1>Pagos</h1>
     <tr>
       <th>Nro.de recibo</th>      
-      <th>Fecha</th>
-     
+      <th>Fecha</th>     
       <th>Monto</th>
-      <th>Fue liquidado</th>
-      <th>Acciones</th>
+      <th>Fue liquidado</th>     
     </tr>
     <% @pagos_pacientes.each do |pago_paciente| %>
    <tr class="<%= cycle('par','impar') -%>">
      <th><%=h pago_paciente.nro_recibo %></th>
-     <th><%#=h pago_paciente.fecha.strftime('%d/%m/%Y')%></th>
+     <th><%=h pago_paciente.fecha.strftime('%d/%m/%Y')%></th>
      <th><%=h number_to_currency(pago_paciente.monto) %></th>
-     <th><%=h boolean_desc(pago_paciente.fue_liquidado) %></th>
-     
+     <th><%=h boolean_desc(pago_paciente.fue_liquidado) %></th>     
      <td><% if pago_paciente.fue_liquidado != true %>
-      <%= link_to image_tag('pencil.png'), edit_pago_paciente_path(pago_paciente,  :paciente_id => @paciente), :title => 'Editar', :id => 'edit_pago' + pago_paciente.id.to_s %>
-      <%end%>
-      <%= link_to image_tag('cancel.png'), pago_paciente_path(pago_paciente, :paciente_id => @paciente.id), :title => 'Eliminar', :confirm => 'Esta seguro?', :method => :delete %>
+      <%#= link_to image_tag('pencil.png'), edit_pago_paciente_path(pago_paciente,  :paciente_id => @paciente), :title => 'Editar', :id => 'edit_pago' + pago_paciente.id.to_s %>
+      <%end%>     
       </td>
 
     <script type="text/javascript">

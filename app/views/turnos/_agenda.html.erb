@@ -61,7 +61,7 @@ $(document).ready(function(){
             {
                   
               id : 'turno: <%= turno.id.to_s %>',
-               title  : 'Paciente: <%= turno.paciente.nombre.to_s %> Profesional <%= turno.profesional.nombre.to_s %> \n\
+               title  : 'Paciente: <%= turno.paciente_id %> Profesional <%= turno.profesional_id %> \n\
                         Duracion: <%= turno.duracion %> minutos',
                start : '<%= turno.fecha_hora.to_time %>',
                end : '<%= (turno.fecha_hora.to_time + (60 * turno.duracion)) %>',
@@ -72,24 +72,8 @@ $(document).ready(function(){
           
             
             <% end %>
-
-              <% for tarea in @tareas = Tarea.find(:all, :conditions => ['profesional_id = ?', params[:profesional][:profesional_id]])   -%>
-             { 
-              
-               id : 'tarea: <%= tarea.id.to_s %>',
-               title  : 'Tarea: <%= tarea.observaciones  %> \n\
-                         Duracion : <%= tarea.duracion %> minutos',
-               start : '<%= tarea.fecha_hora.to_time.iso8601 %>',
-               end : '<%=  (tarea.fecha_hora.to_time + (60 * tarea.duracion)) %>',
-               allDay : false,
-               url: '<%= eliminar_tarea_path(tarea) %>'
-
-              },                
-
-            <% end %>
- 
-
-              ],
+               ],
+             
 
 
           timeFormat: 'h:mm t{ - h:mm t} ',

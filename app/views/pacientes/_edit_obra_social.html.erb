@@ -24,7 +24,11 @@
           <th><%=h @paciente.titular.nro_documento%></th>
           </tr>
 
-         
+          <tr>
+          <th>Nro. de Afiliado</th>
+          <th></th>
+          <th><%=h @paciente.titular.nro_afiliado %></th>
+          </tr>
          </table>
 
           <table>
@@ -41,14 +45,23 @@
           </tr>
 
 
-          
+           <% if @paciente.tipo_afiliado_id == 2  %>
             <tr>
-              <td><%= link_to image_tag('add.png') + 'Asignar una Obra Social ', new_titular_paciente_url, :id=> 'titular' %>
+              <td><%= link_to image_tag('user_add.png') + 'Asignar Obra Social como adherente', search_titular_paciente_url + "?paciente_id="+@paciente.id.to_s, :id=> 'busc_titular'%>
               </td>
-              </tr><br/>
+
+            <%else%>
+             <% if @paciente.tipo_afiliado_id == 3  %>
+
+              <td><%= link_to image_tag('add.png') + 'Asignar una Obra Social ', buscar_obras_sociales_url %>
+              </td>
+              </tr>
+              <%end%>
+              <%end%>
+            
             <tr>
 
-              <td><%= link_to image_tag('user_add.png') + 'Asignar Obra Social como adherente', search_titular_paciente_url + "?paciente_id="+@paciente.id.to_s, :id=> 'busc_titular'%>
+              <td><%#= link_to image_tag('user_add.png') + 'Asignar Obra Social como adherente', search_titular_paciente_url + "?paciente_id="+@paciente.id.to_s, :id=> 'busc_titular'%>
               </td>
             </tr>
 
