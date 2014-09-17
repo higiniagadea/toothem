@@ -2,8 +2,8 @@ class CreatePacientes < ActiveRecord::Migration
   def self.up
     create_table "pacientes" do |t|
 
-      t.column :nombre_apellido, :string, :limit => 255, :null => false
-
+      t.column :nombre, :string, :limit => 255, :null => false
+     # t.column :apellido, :string, :limit => 255, :null => false
       t.column :tipo_documento_id, :integer
 
       t.column :nro_documento, :string, :limit => 50, :null => false
@@ -12,28 +12,22 @@ class CreatePacientes < ActiveRecord::Migration
       t.column :domicilio_particular, :string, :limit => 255, :null => false
       t.column :domicilio_laboral, :string, :limit => 255, :null => true
       t.column :fecha_nacimiento, :date, :null => true
-
+      t.column :tipo_afiliado_id, :integer
       t.column :grupo_sanguineo, :string, :limit => 255
 
       t.column :telefono_particular, :string, :limit => 255, :null => true
       t.column :telefono_celular, :string, :limit => 255, :null => true
      
       t.column :profesion, :string, :limit => 150, :null => true
-      
+      t.column :correo_electronico, :string
       t.column :nro_afiliado, :string, :limit => 150, :null => true
-      t.column :deleted_at, :date, :null => true
-      
-      
-
-
-      
+      t.column :deleted_at, :date, :null => true      
       # FKs
     
       t.column :archivo_id, :integer, :null => true # Imagen o foto del paciente
       t.column :consultorio_id, :integer, :null => true
       t.column :titular_id, :integer, :null => true
-      #t.column :localidad_id, :integer, :null => true
-
+      t.column :localidad_id, :integer
       t.timestamps
 
       
@@ -60,3 +54,4 @@ class CreatePacientes < ActiveRecord::Migration
     drop_table "pacientes"
   end
 end
+
