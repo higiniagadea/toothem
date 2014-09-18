@@ -24,7 +24,7 @@
     <tr>
       <th>
         Valor por defecto</th>
-      <td><%= f.text_field :valor, :size=> 22, :class => 'required ui-widget-content', :title => 'Valor no puede estar en blanco' %></td>
+      <td><%= f.text_field :valor, :size=> 22, :class => 'required ui-widget-content', :title => 'Valor no puede estar en blanco', :onkeypress=> 'return validate(event)' %></td>
     </tr>
   </table>
 
