@@ -45,13 +45,13 @@
           </tr>
 
 
-           <% if @paciente.tipo_afiliado_id == 2  %>
+           <% if @paciente.tipo_afiliado_id == 1  %>
             <tr>
               <td><%= link_to image_tag('user_add.png') + 'Asignar Obra Social como adherente', search_titular_paciente_url + "?paciente_id="+@paciente.id.to_s, :id=> 'busc_titular'%>
               </td>
 
             <%else%>
-             <% if @paciente.tipo_afiliado_id == 3  %>
+             <% if @paciente.tipo_afiliado_id == 2  %>
 
               <td><%= link_to image_tag('add.png') + 'Asignar una Obra Social ', buscar_obras_sociales_url %>
               </td>
