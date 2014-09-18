@@ -52,19 +52,16 @@ class PacientesController < ApplicationController
 
   #resultado de la busqueda de pacientes
   def result
-    
     respond_to do |format|
-      if params[:nombre].blank? 
-      format.html{render :text => '<span style="color:red">Ingrese al menos un dato para realizar la b&uacute;squeda</span>' }
+      if params[:nro_documento].size <= 1
+      
+      format.html{render :text => '<span style="color:red">Ingrese nro. de documento para realizar la b&uacute;squeda de pacientes </span>' }
    
       elsif
-       #params[:nombre].size = 2 && params[:matricula].size = 2
+       #params[:nro_documento].size == 8
        format.html{render :partial=> 'result', :layout => false }
-       @pacientes = Paciente.basic_search(params).paginate  :page=> params[:page], :per_page=> 10, :order => 'nombre ASC'
-       
-    
-      end
-
+       @pacientes = Paciente.basic_search(params).paginate  :page=> params[:page], :per_page=> 10
+      end 
     end
   end
    
