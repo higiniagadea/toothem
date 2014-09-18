@@ -18,21 +18,18 @@
                 <div class="tumbnail"><%= image_tag imagen.archivo.public_filename(:thumb), :alt => 'imagen del paciente' %>
 
                   <div id="acciones">
-                  <table>
-                      
+                  <table>                      
                       <tr>
                          <td>Descripcion:  <%= imagen.descripcion.blank? ? '-' :imagen.descripcion %></td>
                          <td colspan="3"><%= link_to image_tag('pencil.png'), edit_imagen_path(imagen.id), :title => 'Ver Imagen', :id=> 'ver_imagen_' + @paciente.id.to_s %>
                          <%= link_to image_tag('cancel.png'), imagen, :title => 'Eliminar Imagen', :confirm => "Esta seguro que desea eliminar la imagen?", :method => :delete %></td>
-
-                        </tr>
+                      </tr>
                       <tr>
                         <td>Observaciones: <%= imagen.observaciones.blank? ? '-' :imagen.observaciones%>  </td>
                       </tr>
                       <tr>
                         <td>Fecha <%= imagen.fecha.strftime('%d/%m/%Y').blank? ? '-' : imagen.fecha.strftime('%d/%m/%Y')%></td>
-                      </tr>
-                      
+                      </tr>           
 
                   </table>
                   </div>
