@@ -30,13 +30,10 @@ class ProfesionalesController < ApplicationController
 
   # GET /profesionales/new
   # GET /profesionales/new.xml
-  def new
-    
+  def new    
     @profesional = Profesional.new
-
-    respond_to do |format|
-      
-      format.html  { render :layout => 'default' }
+    respond_to do |format|      
+      format.html  #{ render :layout => 'default' }
     end
   end
 
