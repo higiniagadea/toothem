@@ -3,8 +3,7 @@ class SessionsController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
  
-   # layout 'default'
-layout 'login'
+    layout 'default'
   def new
     respond_to do |format|
      unless current_usuario.blank? ? format.html : format.html {redirect_to search_pacientes_path}
