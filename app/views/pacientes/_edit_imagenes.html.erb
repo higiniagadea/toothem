@@ -18,7 +18,7 @@
                 <div class="tumbnail"><%= image_tag imagen.archivo.public_filename(:thumb), :alt => 'imagen del paciente' %>
 
                   <div id="acciones">
-                  <table  width="60%">
+                  <table  width="80%">
                       
                       <tr>
                          <td>Descripcion:  <%= imagen.descripcion.blank? ? '-' :imagen.descripcion %></td>
@@ -78,7 +78,7 @@ $(document).ready(function(){
     // Float left to display horizontally, readjust .slides width
 	.css({
       'float' : 'right',
-      'width' : 'slideWidth'
+      'width' : slideWidth
 
     });
 
