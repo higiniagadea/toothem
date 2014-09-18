@@ -48,15 +48,14 @@ class ProfesionalesController < ApplicationController
 
   # POST /profesionales
   # POST /profesionales.xml
-  def create
-   
+  def create   
     #params[:profesional][:consultorio_id]= current_usuario.consultorios
     @profesional = Profesional.new(params[:profesional])
 
     respond_to do |format|
       if @profesional.save
         flash[:notice] = 'Profesional guardado.'
-        format.html { redirect_to buscar_profesionales_path  }
+        format.html{ redirect_to buscar_profesionales_path}
        
       else
         format.html { render :action => "new" }
@@ -67,10 +66,8 @@ class ProfesionalesController < ApplicationController
 
   # PUT /profesionales/1
   # PUT /profesionales/1.xml
-  def update
-  
+  def update  
     @profesional = Profesional.find(params[:id])
-
     respond_to do |format|
       if @profesional.update_attributes(params[:profesional])
         flash[:notice] = 'Profesional actualizado.'
