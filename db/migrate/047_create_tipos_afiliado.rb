@@ -5,9 +5,7 @@ class CreateTiposAfiliado < ActiveRecord::Migration
 
       t.timestamps
     end
-    TipoAfiliado.create :descripcion=>'Adherente'
-    TipoAfiliado.create :descripcion=>'Titular'
-    
+     
   end
 
   def self.down

@@ -111,8 +111,7 @@ class PacientesController < ApplicationController
   
   def new
     @paciente = Paciente.new
-   
-    respond_to do |format|
+     respond_to do |format|
       format.html
       format.xml  { render :xml => @paciente }
     end
