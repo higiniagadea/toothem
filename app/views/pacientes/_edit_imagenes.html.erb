@@ -1,7 +1,7 @@
 <fieldset class="ui-widget ui-widget-content ui-corner-all">        
 <legend class="ui-widget  ui-corner-all ui-widget-header">Im&aacute;genes</legend>
 
-  <table style=" float: left; margin-left: 800px"><%= link_to image_tag('add.png') + 'Nueva Imagen', new_imagen_path + '/'+@paciente.id.to_s, :id => 'cargar_imagen_' + @paciente.id.to_s %></table>
+  <div style=" float: left; margin-left: 800px"><%= link_to image_tag('add.png') + 'Nueva Imagen', new_imagen_path + '/'+@paciente.id.to_s, :id => 'cargar_imagen_' + @paciente.id.to_s %></div>
 <br/>
 <br/>
 
@@ -112,7 +112,7 @@ $(document).ready(function(){
     // Hide left arrow if position is first slide
   if(position==0){ $('#leftControl').hide() } else{ $('#leftControl').show() }
   // Hide right arrow if position is last slide
-    if(position==numberOfSlides-2){ $('#rightControl').hide() } else{ $('#rightControl').show() }
+    if(position==numberOfSlides-1){ $('#rightControl').hide() } else{ $('#rightControl').show() }
   }
 });
 </script>
