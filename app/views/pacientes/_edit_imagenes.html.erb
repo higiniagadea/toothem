@@ -76,7 +76,7 @@ $(document).ready(function(){
 
     .wrapAll('<div id="slideInner"></div>')
     // Float left to display horizontally, readjust .slides width
-	.css({
+  .css({
       'float' : 'right',
       'width' : slideWidth
 
@@ -87,8 +87,8 @@ $(document).ready(function(){
 
   // Insert controls in the DOM
   $('#slideshow')
-    .prepend('<div class="control" id="leftControl">Anterior</div>')
-    .append('<div class="control" id="rightControl">Siguiente</div>');
+    .prepend('<div class="control" id="leftControl"><<</div>')
+    .append('<div class="control" id="rightControl">>></div>');
 
   // Hide left arrow control on first load
   manageControls(currentPosition);
@@ -97,9 +97,9 @@ $(document).ready(function(){
   $('.control')
     .bind('click', function(){
     // Determine new position
-	currentPosition = ($(this).attr('id')=='rightControl') ? currentPosition+1 : currentPosition-1;
+  currentPosition = ($(this).attr('id')=='rightControl') ? currentPosition+1 : currentPosition-1;
 
-	// Hide / show controls
+  // Hide / show controls
     manageControls(currentPosition);
     // Move slideInner using margin-left
     $('#slideInner').animate({
@@ -110,8 +110,8 @@ $(document).ready(function(){
   // manageControls: Hides and Shows controls depending on currentPosition
   function manageControls(position){
     // Hide left arrow if position is first slide
-	if(position==0){ $('#leftControl').hide() } else{ $('#leftControl').show() }
-	// Hide right arrow if position is last slide
+  if(position==0){ $('#leftControl').hide() } else{ $('#leftControl').show() }
+  // Hide right arrow if position is last slide
     if(position==numberOfSlides-1){ $('#rightControl').hide() } else{ $('#rightControl').show() }
   }
 });
