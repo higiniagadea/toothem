@@ -33,7 +33,7 @@ class ProfesionalesController < ApplicationController
   def new    
     @profesional = Profesional.new
     respond_to do |format|      
-      format.html  #{ render :layout => 'default' }
+      format.html  { render :layout => 'default' }
     end
   end
 
