@@ -204,14 +204,14 @@ class PacientesController < ApplicationController
     #params[:paciente][:consultorio_id]= current_usuario.consultorios
     #params[:paciente][:usuario_id]= current_usuario.id
     @paciente = Paciente.new(params[:paciente])
-        respond_to do |format|
+    respond_to do |format|
       if @paciente.save
         flash[:notice] = 'Paciente Registrado.'
         format.html { redirect_to edit_paciente_path(@paciente)}
-        format.xml  { render :xml => @paciente, :status => :created, :location => @paciente }
+        #format.xml  { render :xml => @paciente, :status => :created, :location => @paciente }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @paciente.errors, :status => :unprocessable_entity }
+        #format.xml  { render :xml => @paciente.errors, :status => :unprocessable_entity }
       end
     end
   end
