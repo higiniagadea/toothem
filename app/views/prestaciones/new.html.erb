@@ -12,19 +12,19 @@
     <tr>
     <th>
       C&oacute;digo de prestaci&oacute;n</th>
-    <td><%= f.text_field :codigo, :class => 'required ui-widget-content', :size=> 22, :title => 'Codigo no puede estar en blanco', :onkeypress=> 'return validate(event)' %>
+    <td><%= f.text_field :codigo, :class => 'required ui-widget-content', :size=> 22, :title => 'Codigo no puede estar en blanco', :onkeypress=> 'return validar(event)' %>
     </td>
     </tr> 
     <tr>
     <th>
       Descripci&oacute;n</th>
-    <td><%= f.text_field :descripcion, :class => 'required ui-widget-content', :size=> 22, :title => 'Descripcion no puede estar en blanco', :onkeypress=> 'return validar(event)', :onkeypress=> 'return validate(event)' %>
+    <td><%= f.text_field :descripcion, :class => 'required ui-widget-content', :size=> 22, :title => 'Descripcion no puede estar en blanco', :onkeypress=> 'return validate(event)', :onkeypress=> 'return validate(event)' %>
     </td>
     </tr>
     <tr>
       <th>
         Valor por defecto</th>
-      <td><%= f.text_field :valor, :size=> 22, :class => 'required ui-widget-content', :title => 'Valor no puede estar en blanco', :onkeypress=> 'return validate(event)' %></td>
+      <td><%= f.text_field :valor, :size=> 22, :class => 'required ui-widget-content', :title => 'Valor no puede estar en blanco', :onkeypress=> 'return validar(event)' %></td>
     </tr>
   </table>
 
