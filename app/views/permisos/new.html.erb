@@ -1,0 +1,52 @@
+
+<% form_for(@permiso) do |f| %>
+  <%= f.error_messages %>
+<table style=" text-align: left;">
+
+    <tr>
+    <th>Descripcion</th> 
+    <td> <%= f.text_field :descripcion %></td>
+    </tr>
+
+    <tr>
+    <th>item</th> 
+    <td> <%= f.collection_select(:item_id, Item.all, :id, :nombre,{}) %></td>
+    </tr>
+   
+    <tr> 
+    <th>perfil</th>
+     <td> <%= f.collection_select(:perfil_id, Perfil.all, :id, :nombre,{}) %></td>
+    </tr>
+
+    <tr>
+     <th>Crear editar</th>
+    <th><%= f.check_box :crear_editar, {}, true, false %></th>
+    </tr>
+
+    <tr>
+     <th>Ver</th>
+    <th><%= f.check_box :ver, {}, true, false %></th>
+    </tr>
+
+    <tr>
+     <th>Borrar</th>
+    <th><%= f.check_box :borrar, {}, true, false %></th>
+    </tr>
+
+
+</table>
+
+<table>
+
+  <tr>
+    <td style=" float: left; margin-left:  800px"><%= f.submit 'Registrar', :class=>'ui-widget-content required' %>
+    <%= link_to 'Volver', permisos_path %>
+  </td>
+
+  </tr>
+
+</table>
+
+<% end %>
+
+
