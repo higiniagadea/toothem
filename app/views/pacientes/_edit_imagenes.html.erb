@@ -15,7 +15,7 @@
           <div id="slidesContainer">
            <% @imagenes.each do |imagen| %>
               <div class="slide" style="float: left; font-size: 12px; font-weight: normal">         
-                <div class="tumbnail"><%= image_tag imagen.archivo.public_filename(:thumb) %>
+                <div class="tumbnail"><%= image_tag imagen.archivo.public_filename(:thumb), :alt => 'imagen del paciente' %>
 
                   <div id="acciones">
                   <table  width="80%">
