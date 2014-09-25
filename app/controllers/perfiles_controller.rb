@@ -67,7 +67,6 @@ class PerfilesController < ApplicationController
     params[:perfil][:estatico]
   
     respond_to do |format|
-
       if @perfil.update_attributes(params[:perfil_id])
         flash[:notice] = 'Perfil actualizado.'
         format.html { redirect_to(@perfil) }
