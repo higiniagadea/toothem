@@ -8,39 +8,39 @@
       <th>Monto</th>
       <th>Fue liquidado</th>     
     </tr>
-          <% @pagos_pacientes.each do |pago_paciente| %>
-          <tr class="<%= cycle('par','impar') -%>">
-           <th><%=h pago_paciente.nro_recibo %></th>
-           <th><%=h pago_paciente.fecha.strftime('%d/%m/%Y')%></th>
-           <th><%=h number_to_currency(pago_paciente.monto) %></th>
-           <th><%=h boolean_desc(pago_paciente.fue_liquidado) %></th>     
-           <td><% if pago_paciente.fue_liquidado != true %>
-            <%#= link_to image_tag('pencil.png'), edit_pago_paciente_path(pago_paciente,  :paciente_id => @paciente), :title => 'Editar', :id => 'edit_pago' + pago_paciente.id.to_s %>
-            <%end%>     
-            </td>
+    <% @pagos_pacientes.each do |pago_paciente| %>
+   <tr class="<%= cycle('par','impar') -%>">
+     <th><%=h pago_paciente.nro_recibo %></th>
+     <th><%=h pago_paciente.fecha.strftime('%d/%m/%Y')%></th>
+     <th><%=h number_to_currency(pago_paciente.monto) %></th>
+     <th><%=h boolean_desc(pago_paciente.fue_liquidado) %></th>     
+     <td><% if pago_paciente.fue_liquidado != true %>
+      <%#= link_to image_tag('pencil.png'), edit_pago_paciente_path(pago_paciente,  :paciente_id => @paciente), :title => 'Editar', :id => 'edit_pago' + pago_paciente.id.to_s %>
+      <%end%>     
+      </td>
 
-                  <script type="text/javascript">
-                      $('#edit_pago<%= pago_paciente.id.to_s %>').fancybox(
-                          {
-                       'hideOnContentClick': false,
-                       'titleShow': false
+    <script type="text/javascript">
+        $('#edit_pago<%= pago_paciente.id.to_s %>').fancybox(
+            {
+         'hideOnContentClick': false,
+         'titleShow': false
 
-                      });
+        });
 
-                  </script>
-          </tr>
-          <%end %>
+    </script>
+   </tr>
+   <%end %>
   
 
   </table>
-  <table>
-   <%= will_paginate @pagos_pacientes, :previous_label =>'Anterior', :next_label => 'Siguiente' ,
-                                    :class => 'cuenta pagination',
-                                    :params => {:controller => "pagos_pacientes", :action => "orden"}
-                                        %>
+<table>
+ <%= will_paginate @pagos_pacientes, :previous_label =>'Anterior', :next_label => 'Siguiente' ,
+                                  :class => 'cuenta pagination',
+                                  :params => {:controller => "pagos_pacientes", :action => "orden"}
+                                      %>
 
-  </table>
+</table>
+   <%else%>
+   No posee pagos realizados
 <%end%>
-
-
 </div>
