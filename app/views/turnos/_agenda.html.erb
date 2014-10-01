@@ -61,8 +61,8 @@ $(document).ready(function(){
             {
                   
               id : 'turno: <%= turno.id.to_s %>',
-               title  : 'Paciente: <%= turno.paciente_id %> \n\
-                        Duracion: <%= turno.duracion %> minutos',
+               title  : 'Paciente: <%= turno.paciente_id %>',
+                       
                start : '<%= turno.fecha_hora.to_time %>',
                end : '<%= (turno.fecha_hora.to_time + (60 * turno.duracion)) %>',
                allDay : false,
