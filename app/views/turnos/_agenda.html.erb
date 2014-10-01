@@ -16,13 +16,6 @@
 $('#nuevo').mouseover(function(){
    $(this).attr('href', '<%= turno_tarea_turnos_path %>?profesional_id='+$('#profesional_profesional_id').val())
 })
-
- $('#nuevo').fancybox(
-        {
-      'hideOnContentClick': false,
-      'titleShow': false
-
-        })
 $(document).ready(function(){
       // page is now ready, initialize the calendar...
       $('#calendar').fullCalendar({
@@ -71,7 +64,8 @@ $(document).ready(function(){
                title  : 'Paciente: <%= turno.paciente_id %>',
                        
                start : '<%= turno.fecha_hora.to_time %>',
-               
+               end : '<%= (turno.fecha_hora.to_time + (60 * turno.duracion)) %>',
+               allDay : false,
                url: '<%= eliminar_turno_path(turno) %>'
                
               },
@@ -118,7 +112,12 @@ $(document).ready(function(){
           }
 
      });
-        
+         $('#nuevo').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+        });
 
 
   });
