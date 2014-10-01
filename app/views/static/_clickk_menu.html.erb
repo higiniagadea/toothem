@@ -8,7 +8,7 @@
 });
 </script>
 
-<%  @modulos = Item.find(:all, :conditions => 'parent_id = 12', :order => 'orden')%>
+<%  @modulos = Item.find(:all, :conditions => 'parent_id = 1', :order => 'orden')%>
 <% unless @modulos.blank? -%>
       <ul id="menu1">
         <% @modulos.each do |modulo| %>
