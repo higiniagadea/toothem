@@ -16,6 +16,13 @@
 $('#nuevo').mouseover(function(){
    $(this).attr('href', '<%= turno_tarea_turnos_path %>?profesional_id='+$('#profesional_profesional_id').val())
 })
+
+ $('#nuevo').fancybox(
+        {
+      'hideOnContentClick': false,
+      'titleShow': false
+
+        })
 $(document).ready(function(){
       // page is now ready, initialize the calendar...
       $('#calendar').fullCalendar({
@@ -112,12 +119,7 @@ $(document).ready(function(){
           }
 
      });
-         $('#nuevo').fancybox(
-        {
-      'hideOnContentClick': false,
-      'titleShow': false
-
-        });
+        
 
 
   });
