@@ -39,7 +39,7 @@
         <table style=" text-align: left; "class="tablelist">
          <tr>
           <th>Nombre y Apellido</th>
-          <td><%= f.text_field :nombre, :class=>'ui-widget-content required', :title=> 'Nombre y Apellido no puede estar vacio', :size=> 25, :onkeypress=> 'return validate(event)' %>
+          <td><%= @paciente.nombre %>
           </td>
          <th>Tipo Y Nro.  Documento</th>
           <td> <%= @paciente.tipo_documento.descripcion %> <%= @paciente.nro_documento %>
