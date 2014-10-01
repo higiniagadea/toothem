@@ -26,57 +26,23 @@
 
  
  <!--fieldset class="pacientes-data"-->
-   <h3><a href="javascript:void(0)">Historia familiar</a></h3>
+   <h3><a href="javascript:void(0)">Datos familiares</a></h3>
    <div>
    <table class="historia_clinica">
     <tr>
      <td class="labels">Nombre y Apellido del Padre:</td>
       <td><%= f.text_field :nombre_apellido_padre, :size=>10, :class=> 'ui-widget-content' %>
     </td>
-    <td class="labels">Ocupaci&oacute;n del Padre: </td>
-    <td><%= f.text_field :ocupacion_padre, :size=>10, :class=> 'ui-widget-content' %>
-    </td>
+    
     </tr>
-   </table>
-
    
- <table>
+
    <tr>
     <td class="labels">Nombre y Apellido de la Madre: </td>
     <td><%= f.text_field :nombre_apellido_madre, :size=>10, :class=> 'ui-widget-content' %>
     </td>
-    <td class="labels">Ocupaci&oacute;n de la Madre: </td>
-    <td><%= f.text_field :ocupacion_madre, :size=>10, :class=> 'ui-widget-content' %>
-    </td>
+    
 </tr>
-<tr class="odd">
-    <td class="labels">Cantidad de Hermanos: </td>
-    <td><%= f.text_field :cantidad_hermanos, :size=>10, :class=> 'ui-widget-content' %>
-    </td>       
-    <td class="labels">Nombre y Edades de los Hermanos: </td>
-    <td><%= f.text_field :nombres_edades_hermanos, :size=>10, :class=> 'ui-widget-content' %>
-    </td>
- </tr>
-  <tr>
-    <td class="labels">Vive con: </td>
-    <td><select name="historia_clinica_ortodoncia[vive_con]" class="ui-widget-content">
-        <%=  options_for_select([ "Madre", "Padre", "Esposo", "Solo", "Otros" ], @historia_clinica_ortodoncia.vive_con)%>
-    </select>
-    </td>
-
-    <td class="labels">Nombre del c&oacute;nyuge: </td>
-    <td><%= f.text_field :nombre_conyuge, :size=>10, :class=> 'ui-widget-content' %>
-    </td>
- </tr>
- <tr class="odd">
-    <td class="labels">Nombre y Apellido del M&eacute;dico Familiar: </td>
-    <td><%= f.text_field :nombre_apellido_medico_familiar, :size=>10, :class=> 'ui-widget-content' %>
-    </td>
-    <td class="labels">Domicilio del M&eacute;dico Familiar: </td>
-    <td><%= f.text_field :domicilio_medico, :size=>10, :class=> 'ui-widget-content' %>
-    </td>
-
-    </tr>
  
  </table>
       </div>
