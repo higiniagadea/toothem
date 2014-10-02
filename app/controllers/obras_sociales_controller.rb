@@ -105,12 +105,19 @@ class ObrasSocialesController < ApplicationController
 
     end
   end
-  def resultado
-    respond_to do |format|      
-        @obras_sociales = ObraSocial.basic_search(params).paginate :page => params[:page], :per_page => 10, :order => 'nombre ASC'
+  
+    def resultado
+    respond_to do |format| 
+      if params[:nombre].blank?
+       format.html {render :text => '<span style="color:red"> Ingrese un nombre de obra social para realizar la busqueda</span> '}
+       elsif     
         format.html {render :partial => 'resultado', :layout => false }
+        @obras_sociales = ObraSocial.basic_search(params).paginate :page => params[:page], :per_page => 10
+        
       end
-   end
+          
+    end
+  end 
 
   def buscar_cta_cte
    respond_to do |format|
