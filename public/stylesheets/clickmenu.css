@@ -1,12 +1,13 @@
 div.cmDiv
 {
-	border: 1px solid #E78F08;
-        background: #FFCC76;
+	border: 2px solid #A9D0F5;
+
+        background: #ffffff;
 	/*background-color: #eee;*/
         -moz-border-radius:8px;
         -webkit-border-radius:8px;
         font-weight: bold;
-        color: whitesmoke;
+        color: #000000;
         padding-top: 0px;
         width: 94%;
         margin-left: 3%;
@@ -63,18 +64,22 @@ div.cmDiv
 }
 .clickMenu li
 {
+	border-radius: 3px;
 	position: relative;
-	padding: 5px 20px 0 2px;
-        background: #FFCC76;
+	padding: 10px 20px 0 20px;
+        background: #A9D0F5;
 	white-space: nowrap;
         height: 25px;
-        
-}
+    margin-bottom: 1px;
+    margin: 5px 5px 5px 5px;
+    
+}/*menu paciente prof demas*/
+
 .clickMenu li.main
 {
 	float: left;
 	
-	background-color: #FFCC76;
+	background-color: #A9D0F5;
 	height: 20px; /* for ie */
         
         
@@ -87,7 +92,7 @@ div.cmDiv
 .clickMenu li.hover
 {
 	z-index: 1 !important; /* the hover z-index has to be below the normal one the hovering items may be drawn over a submenu */
-	background-color: #CCC;
+	background-color: #D8D8D8;
         -moz-border-radius:6px;
         -webkit-border-radius:6px;
 

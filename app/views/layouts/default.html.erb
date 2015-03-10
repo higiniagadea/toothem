@@ -17,55 +17,71 @@
   </head>
 
   <body>
+        <div id="wrapper">
+            <div id="container">
+                <div id="header">
+                 
+                  <%= image_tag("banner_thootem.jpg") %>
+                </div>
+                <br><br><br><br>
+                
+                   <div id="session-data">
+                      <%= render :partial => 'sessions/session_data.html' %>
+                    </div>
+               
+                <div id="content">              
 
-    <div id="main">
-      <div id="header">
-        <%= image_tag("banner_thootem.jpg") %>
-        <div id="session-data">
-          <%= render :partial => 'sessions/session_data.html' %>
-        </div>
-      </div>
+                  <div>
+                    <%= render :partial => 'static/click_menu' %>
+                  </div>
 
-      <div id="home">
-        
-        <div id="container">
-                  
-             <div> <%= render :partial => 'static/clickk_menu' %></div>
-                  
+                  <div id="main-content">
+                    <%if flash[:notice]%>
+                     <div class="notice-error">
+                      <div  id="notice" class="ui-state-highlight ui-corner-all" style=" padding: 0 .7em;">
+                       <p><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
+                       <%= flash[:notice] %>
+                       </p>
+                      </div>
+                     </div>
+                  <br>
 
-          <%if flash[:notice]%>
-          <div class="notice-error">
-              <div  id="notice" class="ui-state-highlight ui-corner-all" style=" padding: 0 .7em;">
-                <p><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
-                  <%= flash[:notice] %>
-                </p>
-              </div>
-          </div>
-          <br/>
+                       <%end%>
 
-            <%end%>
-            <%if flash[:error]%>
-          <div class="notice-error">
-          <div id="error" class="notice-error ui-state-error ui-corner-all" style="padding: 0 .7em;">
-            <p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
-            <%= flash[:error]%>
-            </p>
-          </div>
-          </div>
+                    <%if flash[:error]%>
+                <div class="notice-error">
+                
+                  <div id="error" class="notice-error ui-state-error ui-corner-all" style="padding: 0 .7em;">
+                  <p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
+                     <%= flash[:error]%>
+                  </p>
+                </div>
+
+                </div> <%#notice %>
           <br/>
 
 
           <%end%>
+                    <%= yield %>
+                  </div> <%#main content %>           
 
-          <div id="content">
+                    
 
-             <div id="wrapper">              
-               <%= yield %>
-             </div>
-          </div>
+
+
+                </div> <%#content %>
+                <div id="pre-footer">                
+
+                </div>
+
+
+            </div> <%#container %>
 
         </div>
-      </div>
-    </div>
-  </body>
+        <div id="footer">
+            &copy; Toothem
+        </div>
+
+
+    </body>
 </html>
